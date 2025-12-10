@@ -45,9 +45,9 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 - <span id="skip-len"></span>`fn len(&self) -> usize`
 
-- <span id="skip-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skip-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Skip<I>`
 
@@ -63,7 +63,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 - <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="skip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

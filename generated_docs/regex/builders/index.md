@@ -42,13 +42,13 @@ and `bytes::RegexSetBuilder`.
 
 - <span id="builder-new"></span>`fn new<I, S>(patterns: I) -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build-one-string"></span>`fn build_one_string(&self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md), [`Error`](../error/index.md)
+- <span id="builder-build-one-string"></span>`fn build_one_string(&self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md#regex), [`Error`](../error/index.md#error)
 
-- <span id="builder-build-one-bytes"></span>`fn build_one_bytes(&self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
+- <span id="builder-build-one-bytes"></span>`fn build_one_bytes(&self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md#regex), [`Error`](../error/index.md#error)
 
-- <span id="builder-build-many-string"></span>`fn build_many_string(&self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md), [`Error`](../error/index.md)
+- <span id="builder-build-many-string"></span>`fn build_many_string(&self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md#regexset), [`Error`](../error/index.md#error)
 
-- <span id="builder-build-many-bytes"></span>`fn build_many_bytes(&self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../error/index.md)
+- <span id="builder-build-many-bytes"></span>`fn build_many_bytes(&self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md#regexset), [`Error`](../error/index.md#error)
 
 - <span id="builder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 

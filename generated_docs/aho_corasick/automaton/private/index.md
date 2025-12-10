@@ -29,9 +29,9 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`DFA`](../../dfa/index.md)
-- [`NFA`](../../nfa/contiguous/index.md)
-- [`NFA`](../../nfa/noncontiguous/index.md)
+- [`DFA`](../../dfa/index.md#dfa)
+- [`NFA`](../../nfa/contiguous/index.md#nfa)
+- [`NFA`](../../nfa/noncontiguous/index.md#nfa)
 - `&'a T`
 - `alloc::sync::Arc<dyn AcAutomaton>`
 

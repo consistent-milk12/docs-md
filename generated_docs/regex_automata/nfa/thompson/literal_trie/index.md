@@ -118,11 +118,11 @@ more general composition of finite state machines.
 
 - <span id="literaltrie-reverse"></span>`fn reverse() -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
 
-- <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md#builderror)
 
-- <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md#stateid), [`BuildError`](../error/index.md#builderror)
 
-- <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md), [`ThompsonRef`](../compiler/index.md), [`BuildError`](../error/index.md)
+- <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md#builder), [`ThompsonRef`](../compiler/index.md#thompsonref), [`BuildError`](../error/index.md#builderror)
 
 #### Trait Implementations
 

@@ -175,7 +175,7 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 - <span id="error-pattern"></span>`fn pattern(&self) -> &str`
 
-- <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](../ast/index.md)
+- <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](../ast/index.md#span)
 
 #### Trait Implementations
 
@@ -392,7 +392,7 @@ A set of characters represented by Unicode scalar values.
 
 - <span id="classunicode-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
-- <span id="classunicode-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
+- <span id="classunicode-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md#casefolderror)
 
 - <span id="classunicode-negate"></span>`fn negate(&mut self)`
 
@@ -520,7 +520,7 @@ in the range.
 
 - <span id="classunicoderange-set-upper"></span>`fn set_upper(&mut self, bound: char)`
 
-- <span id="classunicoderange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md)
+- <span id="classunicoderange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md#casefolderror)
 
 ##### `impl Ord for ClassUnicodeRange`
 
@@ -690,7 +690,7 @@ in the range.
 
 - <span id="classbytesrange-set-upper"></span>`fn set_upper(&mut self, bound: u8)`
 
-- <span id="classbytesrange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md)
+- <span id="classbytesrange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md#casefolderror)
 
 ##### `impl Ord for ClassBytesRange`
 
@@ -1328,7 +1328,7 @@ and `(?i-u)k` will not match the same set of strings.
 
 - <span id="class-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
-- <span id="class-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
+- <span id="class-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md#casefolderror)
 
 - <span id="class-negate"></span>`fn negate(&mut self)`
 
@@ -1696,7 +1696,7 @@ running it using the [`visit`](visitor/index.md) function.
 
 #### Implementors
 
-- [`Writer`](print/index.md)
+- [`Writer`](print/index.md#writer)
 
 ## Functions
 

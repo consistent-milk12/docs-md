@@ -214,17 +214,17 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](api/index.md)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](api/index.md#builder)
 
-- <span id="builder-from-config"></span>`fn from_config(config: Config) -> Builder` — [`Config`](api/index.md), [`Builder`](api/index.md)
+- <span id="builder-from-config"></span>`fn from_config(config: Config) -> Builder` — [`Config`](api/index.md#config), [`Builder`](api/index.md#builder)
 
-- <span id="builder-build"></span>`fn build(&self) -> Option<Searcher>` — [`Searcher`](api/index.md)
+- <span id="builder-build"></span>`fn build(&self) -> Option<Searcher>` — [`Searcher`](api/index.md#searcher)
 
-- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](pattern/index.md), [`Searcher`](teddy/builder/index.md)
+- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](pattern/index.md#patterns), [`Searcher`](teddy/builder/index.md#searcher)
 
-- <span id="builder-add"></span>`fn add<P: AsRef<[u8]>>(&mut self, pattern: P) -> &mut Builder` — [`Builder`](api/index.md)
+- <span id="builder-add"></span>`fn add<P: AsRef<[u8]>>(&mut self, pattern: P) -> &mut Builder` — [`Builder`](api/index.md#builder)
 
-- <span id="builder-extend"></span>`fn extend<I, P>(&mut self, patterns: I) -> &mut Builder` — [`Builder`](api/index.md)
+- <span id="builder-extend"></span>`fn extend<I, P>(&mut self, patterns: I) -> &mut Builder` — [`Builder`](api/index.md#builder)
 
 - <span id="builder-len"></span>`fn len(&self) -> usize`
 
@@ -234,7 +234,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Clone for Builder`
 
-- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](api/index.md)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](api/index.md#builder)
 
 ##### `impl Debug for Builder`
 
@@ -242,7 +242,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default for Builder`
 
-- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](api/index.md)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](api/index.md#builder)
 
 ### `Config`
 
@@ -299,19 +299,19 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- <span id="config-new"></span>`fn new() -> Config` — [`Config`](api/index.md)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](api/index.md#config)
 
-- <span id="config-builder"></span>`fn builder(&self) -> Builder` — [`Builder`](api/index.md)
+- <span id="config-builder"></span>`fn builder(&self) -> Builder` — [`Builder`](api/index.md#builder)
 
-- <span id="config-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Config` — [`MatchKind`](api/index.md), [`Config`](api/index.md)
+- <span id="config-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Config` — [`MatchKind`](api/index.md#matchkind), [`Config`](api/index.md#config)
 
-- <span id="config-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Config` — [`Config`](api/index.md)
+- <span id="config-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Config` — [`Config`](api/index.md#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](api/index.md)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](api/index.md#config)
 
 ##### `impl Debug for Config`
 
@@ -319,7 +319,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default for Config`
 
-- <span id="config-default"></span>`fn default() -> Config` — [`Config`](api/index.md)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](api/index.md#config)
 
 ### `FindIter<'s, 'h>`
 
@@ -357,7 +357,7 @@ searched.
 
 - <span id="finditer-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
 ### `Searcher`
 
@@ -405,31 +405,31 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- <span id="searcher-new"></span>`fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](api/index.md)
+- <span id="searcher-new"></span>`fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](api/index.md#searcher)
 
-- <span id="searcher-config"></span>`fn config() -> Config` — [`Config`](api/index.md)
+- <span id="searcher-config"></span>`fn config() -> Config` — [`Config`](api/index.md#config)
 
-- <span id="searcher-builder"></span>`fn builder() -> Builder` — [`Builder`](api/index.md)
+- <span id="searcher-builder"></span>`fn builder() -> Builder` — [`Builder`](api/index.md#builder)
 
-- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
-- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../util/search/index.md), [`Match`](../util/search/index.md)
+- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../util/search/index.md#span), [`Match`](../util/search/index.md#match)
 
-- <span id="searcher-find-iter"></span>`fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](api/index.md)
+- <span id="searcher-find-iter"></span>`fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](api/index.md#finditer)
 
-- <span id="searcher-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](api/index.md)
+- <span id="searcher-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](api/index.md#matchkind)
 
 - <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../util/search/index.md), [`Match`](../util/search/index.md)
+- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../util/search/index.md#span), [`Match`](../util/search/index.md#match)
 
 #### Trait Implementations
 
 ##### `impl Clone for Searcher`
 
-- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](api/index.md)
+- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](api/index.md#searcher)
 
 ##### `impl Debug for Searcher`
 
@@ -483,7 +483,7 @@ type are leftmost-first.
 
 ##### `impl Clone for MatchKind`
 
-- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](api/index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](api/index.md#matchkind)
 
 ##### `impl Copy for MatchKind`
 
@@ -493,13 +493,13 @@ type are leftmost-first.
 
 ##### `impl Default for MatchKind`
 
-- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](api/index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](api/index.md#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](api/index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](api/index.md#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 

@@ -141,15 +141,15 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="segment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="segment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="segment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="segment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="segment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="segment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="segment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="segment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="segment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Segment<'data, 'file, R>`
 
@@ -209,7 +209,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="section-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
 - <span id="section-address"></span>`fn address(&self) -> u64`
 
@@ -219,29 +219,29 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="section-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="section-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="section-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="section-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="section-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="section-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="section-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
 
-- <span id="section-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="section-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
 
-- <span id="section-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="section-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="section-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="section-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="section-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="section-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="section-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="section-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="section-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="section-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
 
-- <span id="section-relocations"></span>`fn relocations(&self) -> SectionRelocationIterator<'data, 'file, R>` — [`SectionRelocationIterator`](../index.md)
+- <span id="section-relocations"></span>`fn relocations(&self) -> SectionRelocationIterator<'data, 'file, R>` — [`SectionRelocationIterator`](../index.md#sectionrelocationiterator)
 
-- <span id="section-relocation-map"></span>`fn relocation_map(&self) -> Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="section-relocation-map"></span>`fn relocation_map(&self) -> Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
 
-- <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Section<'data, 'file, R>`
 
@@ -301,15 +301,15 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 - <span id="comdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
-- <span id="comdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="comdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="comdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="comdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="comdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="comdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="comdat-sections"></span>`fn sections(&self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](../index.md)
+- <span id="comdat-sections"></span>`fn sections(&self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](../index.md#comdatsectioniterator)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Comdat<'data, 'file, R>`
 
@@ -373,9 +373,9 @@ Most functionality is provided by the [`ObjectSymbolTable`](../index.md) trait i
 
 - <span id="symboltable-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
+- <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-- <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
+- <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for SymbolTable<'data, 'file, R>`
 
@@ -437,19 +437,19 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
 
-- <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="symbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="symbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="symbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
 - <span id="symbol-address"></span>`fn address(&self) -> u64`
 
 - <span id="symbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="symbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md)
+- <span id="symbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
 
-- <span id="symbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md)
+- <span id="symbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
 
 - <span id="symbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
@@ -459,13 +459,13 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="symbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="symbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md)
+- <span id="symbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
 
 - <span id="symbol-is-global"></span>`fn is_global(&self) -> bool`
 
 - <span id="symbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
+- <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Symbol<'data, 'file, R>`
 
@@ -562,11 +562,11 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Implementations
 
-- <span id="file-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="file-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="file-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../macho/index.md), [`Result`](../../index.md)
+- <span id="file-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../macho/index.md#dyldcacheimage), [`Result`](../../index.md#result)
 
-- <span id="file-format"></span>`fn format(&self) -> BinaryFormat` — [`BinaryFormat`](../../index.md)
+- <span id="file-format"></span>`fn format(&self) -> BinaryFormat` — [`BinaryFormat`](../../index.md#binaryformat)
 
 #### Trait Implementations
 
@@ -596,63 +596,63 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="file-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
-- <span id="file-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
+- <span id="file-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
 
 - <span id="file-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
 - <span id="file-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="file-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="file-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
 
-- <span id="file-segments"></span>`fn segments(&self) -> SegmentIterator<'data, '_, R>` — [`SegmentIterator`](../index.md)
+- <span id="file-segments"></span>`fn segments(&self) -> SegmentIterator<'data, '_, R>` — [`SegmentIterator`](../index.md#segmentiterator)
 
-- <span id="file-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<Section<'data, 'file, R>>` — [`Section`](../index.md)
+- <span id="file-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<Section<'data, 'file, R>>` — [`Section`](../index.md#section)
 
-- <span id="file-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`Section`](../index.md)
+- <span id="file-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`Section`](../index.md#section)
 
-- <span id="file-sections"></span>`fn sections(&self) -> SectionIterator<'data, '_, R>` — [`SectionIterator`](../index.md)
+- <span id="file-sections"></span>`fn sections(&self) -> SectionIterator<'data, '_, R>` — [`SectionIterator`](../index.md#sectioniterator)
 
-- <span id="file-comdats"></span>`fn comdats(&self) -> ComdatIterator<'data, '_, R>` — [`ComdatIterator`](../index.md)
+- <span id="file-comdats"></span>`fn comdats(&self) -> ComdatIterator<'data, '_, R>` — [`ComdatIterator`](../index.md#comdatiterator)
 
-- <span id="file-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`Symbol`](../index.md)
+- <span id="file-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`Symbol`](../index.md#symbol)
 
-- <span id="file-symbols"></span>`fn symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
+- <span id="file-symbols"></span>`fn symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md#symboliterator)
 
-- <span id="file-symbol-table"></span>`fn symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
+- <span id="file-symbol-table"></span>`fn symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md#symboltable)
 
-- <span id="file-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
+- <span id="file-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md#symboliterator)
 
-- <span id="file-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
+- <span id="file-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md#symboltable)
 
-- <span id="file-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<DynamicRelocationIterator<'data, '_, R>>` — [`DynamicRelocationIterator`](../index.md)
+- <span id="file-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<DynamicRelocationIterator<'data, '_, R>>` — [`DynamicRelocationIterator`](../index.md#dynamicrelocationiterator)
 
-- <span id="file-symbol-map"></span>`fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../../index.md), [`SymbolMapName`](../../index.md)
+- <span id="file-symbol-map"></span>`fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../../index.md#symbolmap), [`SymbolMapName`](../../index.md#symbolmapname)
 
-- <span id="file-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md)
+- <span id="file-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md#objectmap)
 
-- <span id="file-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="file-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
 
-- <span id="file-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="file-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
 
 - <span id="file-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="file-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md)
+- <span id="file-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md#result)
 
-- <span id="file-build-id"></span>`fn build_id(&self) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="file-build-id"></span>`fn build_id(&self) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="file-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md)
+- <span id="file-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md#result)
 
-- <span id="file-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md)
+- <span id="file-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md#result)
 
-- <span id="file-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md), [`CodeView`](../../index.md)
+- <span id="file-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md#result), [`CodeView`](../../index.md#codeview)
 
 - <span id="file-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
 - <span id="file-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
 ##### `impl<'data, R: ReadRef<'data>> Sealed for File<'data, R>`
 

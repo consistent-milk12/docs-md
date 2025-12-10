@@ -61,9 +61,9 @@ struct ListVecConsumer;
 
 - <span id="listvecconsumer-type-result"></span>`type Result = LinkedList<Vec<T>>`
 
-- <span id="listvecconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="listvecconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="listvecconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -87,7 +87,7 @@ struct ListVecConsumer;
 
 - <span id="listvecconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="listvecconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ListVecFolder<T>`
 
@@ -109,7 +109,7 @@ struct ListVecFolder<T> {
 
 - <span id="listvecfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="listvecfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="listvecfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="listvecfolder-full"></span>`fn full(&self) -> bool`
 
@@ -147,9 +147,9 @@ struct ListConsumer;
 
 - <span id="listconsumer-type-result"></span>`type Result = LinkedList<T>`
 
-- <span id="listconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="listconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="listconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -173,7 +173,7 @@ struct ListConsumer;
 
 - <span id="listconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="listconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ListFolder<T>`
 
@@ -195,7 +195,7 @@ struct ListFolder<T> {
 
 - <span id="listfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="listfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="listfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="listfolder-full"></span>`fn full(&self) -> bool`
 
@@ -263,9 +263,9 @@ struct ListStringConsumer;
 
 - <span id="liststringconsumer-type-result"></span>`type Result = LinkedList<String>`
 
-- <span id="liststringconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="liststringconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="liststringconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -289,7 +289,7 @@ struct ListStringConsumer;
 
 - <span id="liststringconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="liststringconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ListStringFolder`
 
@@ -311,7 +311,7 @@ struct ListStringFolder {
 
 - <span id="liststringfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="liststringfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="liststringfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="liststringfolder-full"></span>`fn full(&self) -> bool`
 

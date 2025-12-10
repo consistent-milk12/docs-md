@@ -138,11 +138,11 @@ An iterator over function frames.
 
 - <span id="frameiter-new-empty"></span>`fn new_empty() -> Self`
 
-- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](frame/index.md)
+- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](frame/index.md#location)
 
-- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](frame/index.md)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md#resunit), [`Function`](function/index.md#function), [`InlinedFunction`](function/index.md#inlinedfunction), [`Location`](frame/index.md#location)
 
-- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md)
+- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md#frame)
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -258,7 +258,7 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Implementations
 
-- <span id="locationrangeiter-next-loc"></span>`fn next_loc(&mut self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](frame/index.md)
+- <span id="locationrangeiter-next-loc"></span>`fn next_loc(&mut self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](frame/index.md#location)
 
 #### Trait Implementations
 
@@ -377,11 +377,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
+- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md#lookupcontinuation)
 
-- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md), [`MappedLookup`](lookup/index.md)
+- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md#lookupresult), [`MappedLookup`](lookup/index.md#mappedlookup)
 
-- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
+- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md#lookupcontinuation)
 
 ### `DebugFile`
 
@@ -443,9 +443,9 @@ API consumer.
 
 #### Implementors
 
-- [`LoopingLookup`](lookup/index.md)
-- [`MappedLookup`](lookup/index.md)
-- [`SimpleLookup`](lookup/index.md)
+- [`LoopingLookup`](lookup/index.md#loopinglookup)
+- [`MappedLookup`](lookup/index.md#mappedlookup)
+- [`SimpleLookup`](lookup/index.md#simplelookup)
 
 ## Functions
 

@@ -53,7 +53,7 @@ This section contains the compilation unit index.
 
 ##### `impl<R: clone::Clone> Clone for DebugCuIndex<R>`
 
-- <span id="debugcuindex-clone"></span>`fn clone(&self) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
+- <span id="debugcuindex-clone"></span>`fn clone(&self) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md#debugcuindex)
 
 ##### `impl<R: marker::Copy> Copy for DebugCuIndex<R>`
 
@@ -63,11 +63,11 @@ This section contains the compilation unit index.
 
 ##### `impl<R: default::Default> Default for DebugCuIndex<R>`
 
-- <span id="debugcuindex-default"></span>`fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
+- <span id="debugcuindex-default"></span>`fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md#debugcuindex)
 
 ##### `impl<R> Section for DebugCuIndex<R>`
 
-- <span id="debugcuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugcuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugcuindex-reader"></span>`fn reader(&self) -> &R`
 
@@ -93,7 +93,7 @@ This section contains the type unit index.
 
 ##### `impl<R: clone::Clone> Clone for DebugTuIndex<R>`
 
-- <span id="debugtuindex-clone"></span>`fn clone(&self) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- <span id="debugtuindex-clone"></span>`fn clone(&self) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md#debugtuindex)
 
 ##### `impl<R: marker::Copy> Copy for DebugTuIndex<R>`
 
@@ -103,11 +103,11 @@ This section contains the type unit index.
 
 ##### `impl<R: default::Default> Default for DebugTuIndex<R>`
 
-- <span id="debugtuindex-default"></span>`fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- <span id="debugtuindex-default"></span>`fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md#debugtuindex)
 
 ##### `impl<R> Section for DebugTuIndex<R>`
 
-- <span id="debugtuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugtuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugtuindex-reader"></span>`fn reader(&self) -> &R`
 
@@ -133,11 +133,11 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 #### Implementations
 
-- <span id="unitindex-parse"></span>`fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
+- <span id="unitindex-parse"></span>`fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../../index.md#result), [`UnitIndex`](../index.md#unitindex)
 
 - <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
-- <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md), [`UnitIndexSectionIterator`](../index.md)
+- <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md#result), [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
 
 - <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
@@ -151,7 +151,7 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 ##### `impl<R: clone::Clone + Reader> Clone for UnitIndex<R>`
 
-- <span id="unitindex-clone"></span>`fn clone(&self) -> UnitIndex<R>` — [`UnitIndex`](../index.md)
+- <span id="unitindex-clone"></span>`fn clone(&self) -> UnitIndex<R>` — [`UnitIndex`](../index.md#unitindex)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for UnitIndex<R>`
 
@@ -175,7 +175,7 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 ##### `impl<'index, R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md)
+- <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
 
 ##### `impl<'index, R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
@@ -193,7 +193,7 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 - <span id="unitindexsectioniterator-type-item"></span>`type Item = UnitIndexSection`
 
-- <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md#unitindexsection)
 
 ### `UnitIndexSection`
 
@@ -227,7 +227,7 @@ Information about a unit's contribution to a section in a `.dwp` file.
 
 ##### `impl Clone for UnitIndexSection`
 
-- <span id="unitindexsection-clone"></span>`fn clone(&self) -> UnitIndexSection` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsection-clone"></span>`fn clone(&self) -> UnitIndexSection` — [`UnitIndexSection`](../index.md#unitindexsection)
 
 ##### `impl Copy for UnitIndexSection`
 
@@ -239,7 +239,7 @@ Information about a unit's contribution to a section in a `.dwp` file.
 
 ##### `impl PartialEq for UnitIndexSection`
 
-- <span id="unitindexsection-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsection-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md#unitindexsection)
 
 ##### `impl StructuralPartialEq for UnitIndexSection`
 
@@ -310,7 +310,7 @@ Section kinds which are permitted in a `.dwp` index.
 
 #### Implementations
 
-- <span id="indexsectionid-section-id"></span>`fn section_id(self) -> SectionId` — [`SectionId`](../../index.md)
+- <span id="indexsectionid-section-id"></span>`fn section_id(self) -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="indexsectionid-dwo-name"></span>`fn dwo_name(self) -> &'static str`
 
@@ -318,7 +318,7 @@ Section kinds which are permitted in a `.dwp` index.
 
 ##### `impl Clone for IndexSectionId`
 
-- <span id="indexsectionid-clone"></span>`fn clone(&self) -> IndexSectionId` — [`IndexSectionId`](../index.md)
+- <span id="indexsectionid-clone"></span>`fn clone(&self) -> IndexSectionId` — [`IndexSectionId`](../index.md#indexsectionid)
 
 ##### `impl Copy for IndexSectionId`
 
@@ -330,7 +330,7 @@ Section kinds which are permitted in a `.dwp` index.
 
 ##### `impl PartialEq for IndexSectionId`
 
-- <span id="indexsectionid-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md)
+- <span id="indexsectionid-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md#indexsectionid)
 
 ##### `impl StructuralPartialEq for IndexSectionId`
 

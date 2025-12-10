@@ -30,15 +30,15 @@ Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
 
 #### Implementations
 
-- <span id="hashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="hashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
 - <span id="hashtable-symbol-table-length"></span>`fn symbol_table_length(&self) -> u32`
 
-- <span id="hashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="hashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="hashtable-chain"></span>`fn chain(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> SymbolIndex` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="hashtable-chain"></span>`fn chain(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> SymbolIndex` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="hashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](../index.md), [`Version`](../index.md), [`SymbolTable`](../index.md), [`VersionTable`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="hashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](../index.md#fileheader), [`Version`](../index.md#version), [`SymbolTable`](../index.md#symboltable), [`VersionTable`](../index.md#versiontable), [`SymbolIndex`](../../../index.md#symbolindex)
 
 #### Trait Implementations
 
@@ -66,15 +66,15 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 
 #### Implementations
 
-- <span id="gnuhashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="gnuhashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
 - <span id="gnuhashtable-symbol-base"></span>`fn symbol_base(&self) -> u32`
 
-- <span id="gnuhashtable-symbol-table-length"></span>`fn symbol_table_length(&self, endian: <Elf as >::Endian) -> Option<u32>` — [`FileHeader`](../index.md)
+- <span id="gnuhashtable-symbol-table-length"></span>`fn symbol_table_length(&self, endian: <Elf as >::Endian) -> Option<u32>` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="gnuhashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="gnuhashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="gnuhashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](../index.md), [`Version`](../index.md), [`SymbolTable`](../index.md), [`VersionTable`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="gnuhashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](../index.md#fileheader), [`Version`](../index.md#version), [`SymbolTable`](../index.md#symboltable), [`VersionTable`](../index.md#versiontable), [`SymbolIndex`](../../../index.md#symbolindex)
 
 #### Trait Implementations
 

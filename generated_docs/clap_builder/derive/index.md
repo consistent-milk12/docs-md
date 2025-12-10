@@ -268,7 +268,7 @@ When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can
 
 #### Implementors
 
-- [`ColorChoice`](../util/color/index.md)
+- [`ColorChoice`](../util/color/index.md#colorchoice)
 
 ## Functions
 

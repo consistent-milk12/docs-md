@@ -53,7 +53,7 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for IterBridge<Iter>`
 

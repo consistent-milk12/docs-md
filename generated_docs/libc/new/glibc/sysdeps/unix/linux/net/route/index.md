@@ -45,7 +45,7 @@ struct rtentry {
 
 ##### `impl Clone for rtentry`
 
-- <span id="rtentry-clone"></span>`fn clone(&self) -> rtentry` — [`rtentry`](../../../../../../index.md)
+- <span id="rtentry-clone"></span>`fn clone(&self) -> rtentry` — [`rtentry`](../../../../../../index.md#rtentry)
 
 ##### `impl Copy for rtentry`
 

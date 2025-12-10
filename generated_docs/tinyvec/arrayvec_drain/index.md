@@ -28,7 +28,7 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 
 #### Implementations
 
-- <span id="arrayvecdrain-new"></span>`fn new<A, R>(arr: &'a mut ArrayVec<A>, range: R) -> Self` — [`ArrayVec`](../index.md)
+- <span id="arrayvecdrain-new"></span>`fn new<A, R>(arr: &'a mut ArrayVec<A>, range: R) -> Self` — [`ArrayVec`](../index.md#arrayvec)
 
 #### Trait Implementations
 

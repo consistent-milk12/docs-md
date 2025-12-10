@@ -1580,7 +1580,7 @@ struct sigaction {
 
 ##### `impl Clone for sigaction`
 
-- <span id="sigaction-clone"></span>`fn clone(&self) -> sigaction` — [`sigaction`](../index.md)
+- <span id="sigaction-clone"></span>`fn clone(&self) -> sigaction` — [`sigaction`](../index.md#sigaction)
 
 ##### `impl Copy for sigaction`
 
@@ -1612,7 +1612,7 @@ struct statfs {
 
 ##### `impl Clone for statfs`
 
-- <span id="statfs-clone"></span>`fn clone(&self) -> statfs` — [`statfs`](../index.md)
+- <span id="statfs-clone"></span>`fn clone(&self) -> statfs` — [`statfs`](../index.md#statfs)
 
 ##### `impl Copy for statfs`
 
@@ -1638,7 +1638,7 @@ struct flock {
 
 ##### `impl Clone for flock`
 
-- <span id="flock-clone"></span>`fn clone(&self) -> flock` — [`flock`](../index.md)
+- <span id="flock-clone"></span>`fn clone(&self) -> flock` — [`flock`](../index.md#flock)
 
 ##### `impl Copy for flock`
 
@@ -1664,7 +1664,7 @@ struct flock64 {
 
 ##### `impl Clone for flock64`
 
-- <span id="flock64-clone"></span>`fn clone(&self) -> flock64` — [`flock64`](../index.md)
+- <span id="flock64-clone"></span>`fn clone(&self) -> flock64` — [`flock64`](../index.md#flock64)
 
 ##### `impl Copy for flock64`
 
@@ -1688,15 +1688,15 @@ struct siginfo_t {
 
 #### Implementations
 
-- <span id="siginfo-t-si-addr"></span>`unsafe fn si_addr(&self) -> *mut c_void` — [`c_void`](../../../../../../index.md)
+- <span id="siginfo-t-si-addr"></span>`unsafe fn si_addr(&self) -> *mut c_void` — [`c_void`](../../../../../../index.md#c-void)
 
-- <span id="siginfo-t-si-value"></span>`unsafe fn si_value(&self) -> crate::sigval` — [`sigval`](../../../../../../index.md)
+- <span id="siginfo-t-si-value"></span>`unsafe fn si_value(&self) -> crate::sigval` — [`sigval`](../../../../../../index.md#sigval)
 
 #### Trait Implementations
 
 ##### `impl Clone for siginfo_t`
 
-- <span id="siginfo-t-clone"></span>`fn clone(&self) -> siginfo_t` — [`siginfo_t`](../index.md)
+- <span id="siginfo-t-clone"></span>`fn clone(&self) -> siginfo_t` — [`siginfo_t`](../index.md#siginfo-t)
 
 ##### `impl Copy for siginfo_t`
 
@@ -1720,7 +1720,7 @@ struct stack_t {
 
 ##### `impl Clone for stack_t`
 
-- <span id="stack-t-clone"></span>`fn clone(&self) -> stack_t` — [`stack_t`](../index.md)
+- <span id="stack-t-clone"></span>`fn clone(&self) -> stack_t` — [`stack_t`](../index.md#stack-t)
 
 ##### `impl Copy for stack_t`
 
@@ -1759,7 +1759,7 @@ struct stat {
 
 ##### `impl Clone for stat`
 
-- <span id="stat-clone"></span>`fn clone(&self) -> stat` — [`stat`](../index.md)
+- <span id="stat-clone"></span>`fn clone(&self) -> stat` — [`stat`](../index.md#stat)
 
 ##### `impl Copy for stat`
 
@@ -1798,7 +1798,7 @@ struct stat64 {
 
 ##### `impl Clone for stat64`
 
-- <span id="stat64-clone"></span>`fn clone(&self) -> stat64` — [`stat64`](../index.md)
+- <span id="stat64-clone"></span>`fn clone(&self) -> stat64` — [`stat64`](../index.md#stat64)
 
 ##### `impl Copy for stat64`
 
@@ -1831,7 +1831,7 @@ struct statfs64 {
 
 ##### `impl Clone for statfs64`
 
-- <span id="statfs64-clone"></span>`fn clone(&self) -> statfs64` — [`statfs64`](../index.md)
+- <span id="statfs64-clone"></span>`fn clone(&self) -> statfs64` — [`statfs64`](../index.md#statfs64)
 
 ##### `impl Copy for statfs64`
 
@@ -1864,7 +1864,7 @@ struct statvfs64 {
 
 ##### `impl Clone for statvfs64`
 
-- <span id="statvfs64-clone"></span>`fn clone(&self) -> statvfs64` — [`statvfs64`](../index.md)
+- <span id="statvfs64-clone"></span>`fn clone(&self) -> statvfs64` — [`statvfs64`](../index.md#statvfs64)
 
 ##### `impl Copy for statvfs64`
 
@@ -1886,7 +1886,7 @@ struct pthread_attr_t {
 
 ##### `impl Clone for pthread_attr_t`
 
-- <span id="pthread-attr-t-clone"></span>`fn clone(&self) -> pthread_attr_t` — [`pthread_attr_t`](../index.md)
+- <span id="pthread-attr-t-clone"></span>`fn clone(&self) -> pthread_attr_t` — [`pthread_attr_t`](../index.md#pthread-attr-t)
 
 ##### `impl Copy for pthread_attr_t`
 
@@ -1910,7 +1910,7 @@ struct _libc_fpxreg {
 
 ##### `impl Clone for _libc_fpxreg`
 
-- <span id="libc-fpxreg-clone"></span>`fn clone(&self) -> _libc_fpxreg` — [`_libc_fpxreg`](../index.md)
+- <span id="libc-fpxreg-clone"></span>`fn clone(&self) -> _libc_fpxreg` — [`_libc_fpxreg`](../index.md#libc-fpxreg)
 
 ##### `impl Copy for _libc_fpxreg`
 
@@ -1932,7 +1932,7 @@ struct _libc_xmmreg {
 
 ##### `impl Clone for _libc_xmmreg`
 
-- <span id="libc-xmmreg-clone"></span>`fn clone(&self) -> _libc_xmmreg` — [`_libc_xmmreg`](../index.md)
+- <span id="libc-xmmreg-clone"></span>`fn clone(&self) -> _libc_xmmreg` — [`_libc_xmmreg`](../index.md#libc-xmmreg)
 
 ##### `impl Copy for _libc_xmmreg`
 
@@ -1964,7 +1964,7 @@ struct _libc_fpstate {
 
 ##### `impl Clone for _libc_fpstate`
 
-- <span id="libc-fpstate-clone"></span>`fn clone(&self) -> _libc_fpstate` — [`_libc_fpstate`](../index.md)
+- <span id="libc-fpstate-clone"></span>`fn clone(&self) -> _libc_fpstate` — [`_libc_fpstate`](../index.md#libc-fpstate)
 
 ##### `impl Copy for _libc_fpstate`
 
@@ -2012,7 +2012,7 @@ struct user_regs_struct {
 
 ##### `impl Clone for user_regs_struct`
 
-- <span id="user-regs-struct-clone"></span>`fn clone(&self) -> user_regs_struct` — [`user_regs_struct`](../index.md)
+- <span id="user-regs-struct-clone"></span>`fn clone(&self) -> user_regs_struct` — [`user_regs_struct`](../index.md#user-regs-struct)
 
 ##### `impl Copy for user_regs_struct`
 
@@ -2048,7 +2048,7 @@ struct user {
 
 ##### `impl Clone for user`
 
-- <span id="user-clone"></span>`fn clone(&self) -> user` — [`user`](../index.md)
+- <span id="user-clone"></span>`fn clone(&self) -> user` — [`user`](../index.md#user)
 
 ##### `impl Copy for user`
 
@@ -2072,7 +2072,7 @@ struct mcontext_t {
 
 ##### `impl Clone for mcontext_t`
 
-- <span id="mcontext-t-clone"></span>`fn clone(&self) -> mcontext_t` — [`mcontext_t`](../index.md)
+- <span id="mcontext-t-clone"></span>`fn clone(&self) -> mcontext_t` — [`mcontext_t`](../index.md#mcontext-t)
 
 ##### `impl Copy for mcontext_t`
 
@@ -2104,7 +2104,7 @@ struct ipc_perm {
 
 ##### `impl Clone for ipc_perm`
 
-- <span id="ipc-perm-clone"></span>`fn clone(&self) -> ipc_perm` — [`ipc_perm`](../index.md)
+- <span id="ipc-perm-clone"></span>`fn clone(&self) -> ipc_perm` — [`ipc_perm`](../index.md#ipc-perm)
 
 ##### `impl Copy for ipc_perm`
 
@@ -2135,7 +2135,7 @@ struct shmid_ds {
 
 ##### `impl Clone for shmid_ds`
 
-- <span id="shmid-ds-clone"></span>`fn clone(&self) -> shmid_ds` — [`shmid_ds`](../index.md)
+- <span id="shmid-ds-clone"></span>`fn clone(&self) -> shmid_ds` — [`shmid_ds`](../index.md#shmid-ds)
 
 ##### `impl Copy for shmid_ds`
 
@@ -2161,7 +2161,7 @@ struct ptrace_rseq_configuration {
 
 ##### `impl Clone for ptrace_rseq_configuration`
 
-- <span id="ptrace-rseq-configuration-clone"></span>`fn clone(&self) -> ptrace_rseq_configuration` — [`ptrace_rseq_configuration`](../index.md)
+- <span id="ptrace-rseq-configuration-clone"></span>`fn clone(&self) -> ptrace_rseq_configuration` — [`ptrace_rseq_configuration`](../index.md#ptrace-rseq-configuration)
 
 ##### `impl Copy for ptrace_rseq_configuration`
 
@@ -2193,7 +2193,7 @@ struct clone_args {
 
 ##### `impl Clone for clone_args`
 
-- <span id="clone-args-clone"></span>`fn clone(&self) -> clone_args` — [`clone_args`](../index.md)
+- <span id="clone-args-clone"></span>`fn clone(&self) -> clone_args` — [`clone_args`](../index.md#clone-args)
 
 ##### `impl Copy for clone_args`
 
@@ -2225,7 +2225,7 @@ struct user_fpregs_struct {
 
 ##### `impl Clone for user_fpregs_struct`
 
-- <span id="user-fpregs-struct-clone"></span>`fn clone(&self) -> user_fpregs_struct` — [`user_fpregs_struct`](../index.md)
+- <span id="user-fpregs-struct-clone"></span>`fn clone(&self) -> user_fpregs_struct` — [`user_fpregs_struct`](../index.md#user-fpregs-struct)
 
 ##### `impl Copy for user_fpregs_struct`
 
@@ -2253,7 +2253,7 @@ struct ucontext_t {
 
 ##### `impl Clone for ucontext_t`
 
-- <span id="ucontext-t-clone"></span>`fn clone(&self) -> ucontext_t` — [`ucontext_t`](../index.md)
+- <span id="ucontext-t-clone"></span>`fn clone(&self) -> ucontext_t` — [`ucontext_t`](../index.md#ucontext-t)
 
 ##### `impl Copy for ucontext_t`
 
@@ -2275,7 +2275,7 @@ struct max_align_t {
 
 ##### `impl Clone for max_align_t`
 
-- <span id="max-align-t-clone"></span>`fn clone(&self) -> max_align_t` — [`max_align_t`](../index.md)
+- <span id="max-align-t-clone"></span>`fn clone(&self) -> max_align_t` — [`max_align_t`](../index.md#max-align-t)
 
 ##### `impl Copy for max_align_t`
 

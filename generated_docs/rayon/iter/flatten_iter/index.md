@@ -56,7 +56,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
-- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FlattenIter<I>`
 
@@ -96,9 +96,9 @@ struct FlattenIterConsumer<C> {
 
 - <span id="flatteniterconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="flatteniterconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="flatteniterconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="flatteniterconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -122,7 +122,7 @@ struct FlattenIterConsumer<C> {
 
 - <span id="flatteniterconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="flatteniterconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `FlattenIterFolder<C>`
 
@@ -144,7 +144,7 @@ struct FlattenIterFolder<C> {
 
 - <span id="flatteniterfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="flatteniterfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="flatteniterfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="flatteniterfolder-full"></span>`fn full(&self) -> bool`
 

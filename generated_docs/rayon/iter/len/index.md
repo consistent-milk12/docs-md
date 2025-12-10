@@ -46,11 +46,11 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I> IndexedParallelIterator for MinLen<I>`
 
-- <span id="minlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="minlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="minlen-len"></span>`fn len(&self) -> usize`
 
-- <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MinLen<I>`
 
@@ -66,7 +66,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="minlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -119,7 +119,7 @@ struct MinLenProducer<P> {
 
 - <span id="minlenproducer-type-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
 
-- <span id="minlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="minlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="minlenproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -160,11 +160,11 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I> IndexedParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="maxlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="maxlen-len"></span>`fn len(&self) -> usize`
 
-- <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MaxLen<I>`
 
@@ -180,7 +180,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="maxlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -233,7 +233,7 @@ struct MaxLenProducer<P> {
 
 - <span id="maxlenproducer-type-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
 
-- <span id="maxlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="maxlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="maxlenproducer-min-len"></span>`fn min_len(&self) -> usize`
 

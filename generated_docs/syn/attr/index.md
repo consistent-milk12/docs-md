@@ -203,17 +203,17 @@ assert_eq!(doc, attr);
 
 #### Implementations
 
-- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md)
+- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md#path)
 
-- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
+- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md#result)
 
-- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md#result), [`Parser`](../parse/index.md#parser)
 
-- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
+- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md#parsenestedmeta), [`Result`](../error/index.md#result)
 
-- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
-- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 #### Trait Implementations
 
@@ -261,11 +261,11 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- <span id="metalist-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
+- <span id="metalist-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md#result)
 
-- <span id="metalist-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- <span id="metalist-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md#result), [`Parser`](../parse/index.md#parser)
 
-- <span id="metalist-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
+- <span id="metalist-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md#parsenestedmeta), [`Result`](../error/index.md#result)
 
 #### Trait Implementations
 
@@ -285,7 +285,7 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 ##### `impl Parse for crate::attr::MetaList`
 
-- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::MetaList`
 
@@ -337,7 +337,7 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 
 ##### `impl Parse for crate::attr::MetaNameValue`
 
-- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::MetaNameValue`
 
@@ -447,13 +447,13 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md)
+- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md#path)
 
-- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../error/index.md), [`Path`](../path/index.md)
+- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../error/index.md#result), [`Path`](../path/index.md#path)
 
-- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](../error/index.md), [`MetaList`](#metalist)
+- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](../error/index.md#result), [`MetaList`](#metalist)
 
-- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](../error/index.md), [`MetaNameValue`](#metanamevalue)
+- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](../error/index.md#result), [`MetaNameValue`](#metanamevalue)
 
 #### Trait Implementations
 
@@ -473,7 +473,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::attr::Meta`
 
-- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::Meta`
 

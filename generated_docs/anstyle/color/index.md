@@ -47,15 +47,15 @@ struct Ansi256Color(u8);
 
 #### Implementations
 
-- <span id="ansi256color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md), [`Style`](../index.md)
+- <span id="ansi256color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md#color), [`Style`](../index.md#style)
 
-- <span id="ansi256color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md)
+- <span id="ansi256color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md#style)
 
 - <span id="ansi256color-index"></span>`const fn index(self) -> u8`
 
-- <span id="ansi256color-into-ansi"></span>`const fn into_ansi(self) -> Option<AnsiColor>` — [`AnsiColor`](../index.md)
+- <span id="ansi256color-into-ansi"></span>`const fn into_ansi(self) -> Option<AnsiColor>` — [`AnsiColor`](../index.md#ansicolor)
 
-- <span id="ansi256color-from-ansi"></span>`const fn from_ansi(color: AnsiColor) -> Self` — [`AnsiColor`](../index.md)
+- <span id="ansi256color-from-ansi"></span>`const fn from_ansi(color: AnsiColor) -> Self` — [`AnsiColor`](../index.md#ansicolor)
 
 - <span id="ansi256color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
@@ -71,7 +71,7 @@ struct Ansi256Color(u8);
 
 ##### `impl Clone for Ansi256Color`
 
-- <span id="ansi256color-clone"></span>`fn clone(&self) -> Ansi256Color` — [`Ansi256Color`](../index.md)
+- <span id="ansi256color-clone"></span>`fn clone(&self) -> Ansi256Color` — [`Ansi256Color`](../index.md#ansi256color)
 
 ##### `impl Copy for Ansi256Color`
 
@@ -87,15 +87,15 @@ struct Ansi256Color(u8);
 
 ##### `impl Ord for Ansi256Color`
 
-- <span id="ansi256color-cmp"></span>`fn cmp(&self, other: &Ansi256Color) -> cmp::Ordering` — [`Ansi256Color`](../index.md)
+- <span id="ansi256color-cmp"></span>`fn cmp(&self, other: &Ansi256Color) -> cmp::Ordering` — [`Ansi256Color`](../index.md#ansi256color)
 
 ##### `impl PartialEq for Ansi256Color`
 
-- <span id="ansi256color-eq"></span>`fn eq(&self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](../index.md)
+- <span id="ansi256color-eq"></span>`fn eq(&self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](../index.md#ansi256color)
 
 ##### `impl PartialOrd for Ansi256Color`
 
-- <span id="ansi256color-partial-cmp"></span>`fn partial_cmp(&self, other: &Ansi256Color) -> option::Option<cmp::Ordering>` — [`Ansi256Color`](../index.md)
+- <span id="ansi256color-partial-cmp"></span>`fn partial_cmp(&self, other: &Ansi256Color) -> option::Option<cmp::Ordering>` — [`Ansi256Color`](../index.md#ansi256color)
 
 ##### `impl StructuralPartialEq for Ansi256Color`
 
@@ -111,9 +111,9 @@ struct RgbColor(u8, u8, u8);
 
 #### Implementations
 
-- <span id="rgbcolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md), [`Style`](../index.md)
+- <span id="rgbcolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md#color), [`Style`](../index.md#style)
 
-- <span id="rgbcolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md)
+- <span id="rgbcolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md#style)
 
 - <span id="rgbcolor-r"></span>`const fn r(self) -> u8`
 
@@ -135,7 +135,7 @@ struct RgbColor(u8, u8, u8);
 
 ##### `impl Clone for RgbColor`
 
-- <span id="rgbcolor-clone"></span>`fn clone(&self) -> RgbColor` — [`RgbColor`](../index.md)
+- <span id="rgbcolor-clone"></span>`fn clone(&self) -> RgbColor` — [`RgbColor`](../index.md#rgbcolor)
 
 ##### `impl Copy for RgbColor`
 
@@ -151,15 +151,15 @@ struct RgbColor(u8, u8, u8);
 
 ##### `impl Ord for RgbColor`
 
-- <span id="rgbcolor-cmp"></span>`fn cmp(&self, other: &RgbColor) -> cmp::Ordering` — [`RgbColor`](../index.md)
+- <span id="rgbcolor-cmp"></span>`fn cmp(&self, other: &RgbColor) -> cmp::Ordering` — [`RgbColor`](../index.md#rgbcolor)
 
 ##### `impl PartialEq for RgbColor`
 
-- <span id="rgbcolor-eq"></span>`fn eq(&self, other: &RgbColor) -> bool` — [`RgbColor`](../index.md)
+- <span id="rgbcolor-eq"></span>`fn eq(&self, other: &RgbColor) -> bool` — [`RgbColor`](../index.md#rgbcolor)
 
 ##### `impl PartialOrd for RgbColor`
 
-- <span id="rgbcolor-partial-cmp"></span>`fn partial_cmp(&self, other: &RgbColor) -> option::Option<cmp::Ordering>` — [`RgbColor`](../index.md)
+- <span id="rgbcolor-partial-cmp"></span>`fn partial_cmp(&self, other: &RgbColor) -> option::Option<cmp::Ordering>` — [`RgbColor`](../index.md#rgbcolor)
 
 ##### `impl StructuralPartialEq for RgbColor`
 
@@ -278,9 +278,9 @@ Any ANSI color code scheme
 
 #### Implementations
 
-- <span id="color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md), [`Style`](../index.md)
+- <span id="color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md#color), [`Style`](../index.md#style)
 
-- <span id="color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md)
+- <span id="color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md#style)
 
 - <span id="color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
@@ -298,7 +298,7 @@ Any ANSI color code scheme
 
 ##### `impl Clone for Color`
 
-- <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](../index.md)
+- <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](../index.md#color)
 
 ##### `impl Copy for Color`
 
@@ -314,15 +314,15 @@ Any ANSI color code scheme
 
 ##### `impl Ord for Color`
 
-- <span id="color-cmp"></span>`fn cmp(&self, other: &Color) -> cmp::Ordering` — [`Color`](../index.md)
+- <span id="color-cmp"></span>`fn cmp(&self, other: &Color) -> cmp::Ordering` — [`Color`](../index.md#color)
 
 ##### `impl PartialEq for Color`
 
-- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](../index.md)
+- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](../index.md#color)
 
 ##### `impl PartialOrd for Color`
 
-- <span id="color-partial-cmp"></span>`fn partial_cmp(&self, other: &Color) -> option::Option<cmp::Ordering>` — [`Color`](../index.md)
+- <span id="color-partial-cmp"></span>`fn partial_cmp(&self, other: &Color) -> option::Option<cmp::Ordering>` — [`Color`](../index.md#color)
 
 ##### `impl StructuralPartialEq for Color`
 
@@ -423,9 +423,9 @@ The user's terminal defines the meaning of the each palette code.
 
 #### Implementations
 
-- <span id="ansicolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md), [`Style`](../index.md)
+- <span id="ansicolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](../index.md#color), [`Style`](../index.md#style)
 
-- <span id="ansicolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md)
+- <span id="ansicolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](../index.md#style)
 
 - <span id="ansicolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
@@ -449,7 +449,7 @@ The user's terminal defines the meaning of the each palette code.
 
 ##### `impl Clone for AnsiColor`
 
-- <span id="ansicolor-clone"></span>`fn clone(&self) -> AnsiColor` — [`AnsiColor`](../index.md)
+- <span id="ansicolor-clone"></span>`fn clone(&self) -> AnsiColor` — [`AnsiColor`](../index.md#ansicolor)
 
 ##### `impl Copy for AnsiColor`
 
@@ -465,15 +465,15 @@ The user's terminal defines the meaning of the each palette code.
 
 ##### `impl Ord for AnsiColor`
 
-- <span id="ansicolor-cmp"></span>`fn cmp(&self, other: &AnsiColor) -> cmp::Ordering` — [`AnsiColor`](../index.md)
+- <span id="ansicolor-cmp"></span>`fn cmp(&self, other: &AnsiColor) -> cmp::Ordering` — [`AnsiColor`](../index.md#ansicolor)
 
 ##### `impl PartialEq for AnsiColor`
 
-- <span id="ansicolor-eq"></span>`fn eq(&self, other: &AnsiColor) -> bool` — [`AnsiColor`](../index.md)
+- <span id="ansicolor-eq"></span>`fn eq(&self, other: &AnsiColor) -> bool` — [`AnsiColor`](../index.md#ansicolor)
 
 ##### `impl PartialOrd for AnsiColor`
 
-- <span id="ansicolor-partial-cmp"></span>`fn partial_cmp(&self, other: &AnsiColor) -> option::Option<cmp::Ordering>` — [`AnsiColor`](../index.md)
+- <span id="ansicolor-partial-cmp"></span>`fn partial_cmp(&self, other: &AnsiColor) -> option::Option<cmp::Ordering>` — [`AnsiColor`](../index.md#ansicolor)
 
 ##### `impl StructuralPartialEq for AnsiColor`
 

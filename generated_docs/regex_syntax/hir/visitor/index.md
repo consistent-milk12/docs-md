@@ -39,9 +39,9 @@ size and a heap size proportional to the size of the `Hir`.
 
 - <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](#visitor)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md#hir), [`Visitor`](#visitor)
 
-- <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
+- <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md#hir), [`Frame`](#frame)
 
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
@@ -93,7 +93,7 @@ an `Hir`.
 
 #### Implementations
 
-- <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md)
+- <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md#hir)
 
 ## Traits
 
@@ -152,7 +152,7 @@ running it using the [`visit`](#visit) function.
 
 #### Implementors
 
-- [`Writer`](../print/index.md)
+- [`Writer`](../print/index.md#writer)
 
 ## Functions
 

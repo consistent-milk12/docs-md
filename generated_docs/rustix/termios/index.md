@@ -116,7 +116,7 @@ struct Termios {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](#tcsetattr).
 
 
 
@@ -168,11 +168,11 @@ struct Termios {
 
 - <span id="termios-output-speed"></span>`fn output_speed(&self) -> u32`
 
-- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
+- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
 
-- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
+- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
 
-- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
+- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md#result)
 
 #### Trait Implementations
 
@@ -284,9 +284,9 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="inputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../ffi/index.md), [`InputModes`](#inputmodes)
+- <span id="inputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../ffi/index.md#c-uint), [`InputModes`](#inputmodes)
 
 ##### `impl FromIterator for InputModes`
 
@@ -476,9 +476,9 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="outputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../ffi/index.md), [`OutputModes`](#outputmodes)
+- <span id="outputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../ffi/index.md#c-uint), [`OutputModes`](#outputmodes)
 
 ##### `impl FromIterator for OutputModes`
 
@@ -638,9 +638,9 @@ probably these flags.
 
 - <span id="controlmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="controlmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../ffi/index.md), [`ControlModes`](#controlmodes)
+- <span id="controlmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../ffi/index.md#c-uint), [`ControlModes`](#controlmodes)
 
 ##### `impl FromIterator for ControlModes`
 
@@ -800,9 +800,9 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md#c-uint)
 
-- <span id="localmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../ffi/index.md), [`LocalModes`](#localmodes)
+- <span id="localmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../ffi/index.md#c-uint), [`LocalModes`](#localmodes)
 
 ##### `impl FromIterator for LocalModes`
 
@@ -1051,7 +1051,7 @@ enum OptionalActions {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
 
-`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
 
 
 #### Variants
@@ -1105,7 +1105,7 @@ enum QueueSelector {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
-`TC*` values for use with [`tcflush`](../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflush`](#tcflush).
 
 
 #### Variants

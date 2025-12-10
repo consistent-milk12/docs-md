@@ -108,7 +108,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md#parker)
 
 - <span id="parker-park"></span>`fn park(&self)`
 
@@ -116,11 +116,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md#unparker)
 
-- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md#parker)
 
-- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md#parker)
 
 #### Trait Implementations
 
@@ -150,15 +150,15 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
 - <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md#unparker)
 
-- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md#unparker)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](parker/index.md)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](parker/index.md#unparker)
 
 ##### `impl Debug for Unparker`
 
@@ -237,7 +237,7 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
+- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md#shardedlock)
 
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
 
@@ -249,7 +249,7 @@ let lock = ShardedLock::new(5);
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md#shardedlock)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -408,7 +408,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 ##### `impl Clone for WaitGroup`
 
-- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md#waitgroup)
 
 ##### `impl Debug for WaitGroup`
 

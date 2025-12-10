@@ -49,7 +49,7 @@ Parallel iterator over a B-Tree set
 
 - <span id="intoiter-type-item"></span>`type Item = T`
 
-- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -103,7 +103,7 @@ Parallel iterator over an immutable reference to a B-Tree set
 
 - <span id="iter-type-item"></span>`type Item = &'a T`
 
-- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

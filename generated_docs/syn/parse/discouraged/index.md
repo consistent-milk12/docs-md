@@ -33,7 +33,7 @@ Extensions to the `ParseStream` API to support speculative parsing.
 
 #### Implementors
 
-- [`ParseBuffer`](../index.md)
+- [`ParseBuffer`](../index.md#parsebuffer)
 
 ### `AnyDelimiter`
 
@@ -54,5 +54,5 @@ delimiters the same as if they were visible.
 
 #### Implementors
 
-- [`ParseBuffer`](../index.md)
+- [`ParseBuffer`](../index.md#parsebuffer)
 

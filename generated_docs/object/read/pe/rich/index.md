@@ -55,13 +55,13 @@ Parsed information about a Rich Header.
 
 - <span id="richheaderinfo-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
 
-- <span id="richheaderinfo-unmasked-entries"></span>`fn unmasked_entries(&self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](../index.md)
+- <span id="richheaderinfo-unmasked-entries"></span>`fn unmasked_entries(&self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](../index.md#richheaderentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for RichHeaderInfo<'data>`
 
-- <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md)
+- <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md#richheaderinfo)
 
 ##### `impl Copy for RichHeaderInfo<'data>`
 
@@ -98,7 +98,7 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 
 ##### `impl Clone for RichHeaderEntry`
 
-- <span id="richheaderentry-clone"></span>`fn clone(&self) -> RichHeaderEntry` — [`RichHeaderEntry`](../index.md)
+- <span id="richheaderentry-clone"></span>`fn clone(&self) -> RichHeaderEntry` — [`RichHeaderEntry`](../index.md#richheaderentry)
 
 ##### `impl Copy for RichHeaderEntry`
 

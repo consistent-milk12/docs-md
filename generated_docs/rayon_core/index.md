@@ -196,7 +196,7 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- <span id="broadcastcontext-with"></span>`fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](broadcast/index.md)
+- <span id="broadcastcontext-with"></span>`fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](broadcast/index.md#broadcastcontext)
 
 - <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
@@ -284,7 +284,7 @@ See [`scope()`](scope/index.md) for more information.
 
 #### Implementations
 
-- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md#workerthread), [`Registry`](registry/index.md#registry)
 
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
@@ -327,7 +327,7 @@ See [`scope_fifo()`](scope/index.md) for more information.
 
 #### Implementations
 
-- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md#workerthread), [`Registry`](registry/index.md#registry)
 
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
@@ -392,9 +392,9 @@ terminate.
 
 #### Implementations
 
-- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md)
+- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md#threadpool)
 
-- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 - <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
@@ -422,9 +422,9 @@ terminate.
 
 - <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
-- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
+- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
 
-- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
+- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
 
 #### Trait Implementations
 
@@ -624,7 +624,7 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 - <span id="configuration-new"></span>`fn new() -> Configuration` — [`Configuration`](#configuration)
 
-- <span id="configuration-build"></span>`fn build(self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md)
+- <span id="configuration-build"></span>`fn build(self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md#threadpool)
 
 - <span id="configuration-thread-name"></span>`fn thread_name<F>(self, closure: F) -> Self`
 
@@ -738,7 +738,7 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 ##### `impl Clone for Yield`
 
-- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](thread_pool/index.md)
+- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](thread_pool/index.md#yield)
 
 ##### `impl Copy for Yield`
 
@@ -750,7 +750,7 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 ##### `impl PartialEq for Yield`
 
-- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md)
+- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md#yield)
 
 ##### `impl Pointable for Yield`
 

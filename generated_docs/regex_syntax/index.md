@@ -262,15 +262,15 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](parser/index
 
 #### Implementations
 
-- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](parser/index.md)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](parser/index.md#parser)
 
-- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](error/index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md#hir), [`Error`](error/index.md#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](parser/index.md)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](parser/index.md#parser)
 
 ##### `impl Debug for Parser`
 
@@ -297,37 +297,37 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](parser/index.md)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](parser/index.md#parser)
 
-- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
-- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
@@ -335,7 +335,7 @@ This type combines the builder options for both the [AST
 
 ##### `impl Default for ParserBuilder`
 
-- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](parser/index.md#parserbuilder)
 
 ### `UnicodeWordError`
 
@@ -401,7 +401,7 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](error/index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](error/index.md#error)
 
 ##### `impl Debug for Error`
 
@@ -417,7 +417,7 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](error/index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](error/index.md#error)
 
 ##### `impl StructuralPartialEq for Error`
 

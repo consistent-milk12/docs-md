@@ -57,7 +57,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](../i
 
 - <span id="filtermap-type-item"></span>`type Item = R`
 
-- <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FilterMap<I, P>`
 
@@ -98,9 +98,9 @@ struct FilterMapConsumer<'p, C, P> {
 
 - <span id="filtermapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="filtermapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="filtermapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="filtermapconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="filtermapconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="filtermapconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -124,7 +124,7 @@ struct FilterMapConsumer<'p, C, P> {
 
 - <span id="filtermapconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="filtermapconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="filtermapconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `FilterMapFolder<'p, C, P>`
 
@@ -145,7 +145,7 @@ struct FilterMapFolder<'p, C, P> {
 
 - <span id="filtermapfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="filtermapfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="filtermapfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="filtermapfolder-full"></span>`fn full(&self) -> bool`
 

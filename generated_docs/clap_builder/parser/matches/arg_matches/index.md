@@ -134,7 +134,7 @@ if matches.contains_id("out") {
 
 - <span id="argmatches-args-present"></span>`fn args_present(&self) -> bool`
 
-- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](../value_source/index.md)
+- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](../value_source/index.md#valuesource)
 
 - <span id="argmatches-index-of"></span>`fn index_of(&self, id: &str) -> Option<usize>`
 
@@ -235,7 +235,7 @@ assert_eq!(
 
 ##### `impl DoubleEndedIterator for IdsRef<'a>`
 
-- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md)
+- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md#id)
 
 ##### `impl ExactSizeIterator for IdsRef<'_>`
 
@@ -251,7 +251,7 @@ assert_eq!(
 
 - <span id="idsref-type-item"></span>`type Item = &'a Id`
 
-- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md)
+- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md#id)
 
 - <span id="idsref-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

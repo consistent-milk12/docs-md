@@ -210,83 +210,83 @@ with the addition of changing the foreground color. Recommended to be constructe
 
 - <span id="fgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
-- <span id="fgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- <span id="fgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
 - <span id="fgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> FgColorDisplay<'a, C, T>` — [`FgColorDisplay`](#fgcolordisplay)
 
-- <span id="fgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md)
+- <span id="fgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
-- <span id="fgcolordisplay-black"></span>`const fn black(self) -> FgColorDisplay<'a, colors::Black, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Black`](colors/index.md)
+- <span id="fgcolordisplay-black"></span>`const fn black(self) -> FgColorDisplay<'a, colors::Black, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="fgcolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- <span id="fgcolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="fgcolordisplay-red"></span>`const fn red(self) -> FgColorDisplay<'a, colors::Red, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Red`](colors/index.md)
+- <span id="fgcolordisplay-red"></span>`const fn red(self) -> FgColorDisplay<'a, colors::Red, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="fgcolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- <span id="fgcolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="fgcolordisplay-green"></span>`const fn green(self) -> FgColorDisplay<'a, colors::Green, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Green`](colors/index.md)
+- <span id="fgcolordisplay-green"></span>`const fn green(self) -> FgColorDisplay<'a, colors::Green, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="fgcolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- <span id="fgcolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="fgcolordisplay-yellow"></span>`const fn yellow(self) -> FgColorDisplay<'a, colors::Yellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Yellow`](colors/index.md)
+- <span id="fgcolordisplay-yellow"></span>`const fn yellow(self) -> FgColorDisplay<'a, colors::Yellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="fgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- <span id="fgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="fgcolordisplay-blue"></span>`const fn blue(self) -> FgColorDisplay<'a, colors::Blue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Blue`](colors/index.md)
+- <span id="fgcolordisplay-blue"></span>`const fn blue(self) -> FgColorDisplay<'a, colors::Blue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="fgcolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- <span id="fgcolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="fgcolordisplay-magenta"></span>`const fn magenta(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md)
+- <span id="fgcolordisplay-magenta"></span>`const fn magenta(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="fgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="fgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="fgcolordisplay-purple"></span>`const fn purple(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md)
+- <span id="fgcolordisplay-purple"></span>`const fn purple(self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="fgcolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="fgcolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="fgcolordisplay-cyan"></span>`const fn cyan(self) -> FgColorDisplay<'a, colors::Cyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Cyan`](colors/index.md)
+- <span id="fgcolordisplay-cyan"></span>`const fn cyan(self) -> FgColorDisplay<'a, colors::Cyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="fgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- <span id="fgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="fgcolordisplay-white"></span>`const fn white(self) -> FgColorDisplay<'a, colors::White, T>` — [`FgColorDisplay`](#fgcolordisplay), [`White`](colors/index.md)
+- <span id="fgcolordisplay-white"></span>`const fn white(self) -> FgColorDisplay<'a, colors::White, T>` — [`FgColorDisplay`](#fgcolordisplay), [`White`](colors/index.md#white)
 
-- <span id="fgcolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- <span id="fgcolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
 
-- <span id="fgcolordisplay-bright-black"></span>`const fn bright_black(self) -> FgColorDisplay<'a, colors::BrightBlack, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlack`](colors/index.md)
+- <span id="fgcolordisplay-bright-black"></span>`const fn bright_black(self) -> FgColorDisplay<'a, colors::BrightBlack, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="fgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="fgcolordisplay-bright-red"></span>`const fn bright_red(self) -> FgColorDisplay<'a, colors::BrightRed, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightRed`](colors/index.md)
+- <span id="fgcolordisplay-bright-red"></span>`const fn bright_red(self) -> FgColorDisplay<'a, colors::BrightRed, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="fgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="fgcolordisplay-bright-green"></span>`const fn bright_green(self) -> FgColorDisplay<'a, colors::BrightGreen, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightGreen`](colors/index.md)
+- <span id="fgcolordisplay-bright-green"></span>`const fn bright_green(self) -> FgColorDisplay<'a, colors::BrightGreen, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="fgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="fgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> FgColorDisplay<'a, colors::BrightYellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightYellow`](colors/index.md)
+- <span id="fgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> FgColorDisplay<'a, colors::BrightYellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="fgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="fgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> FgColorDisplay<'a, colors::BrightBlue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlue`](colors/index.md)
+- <span id="fgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> FgColorDisplay<'a, colors::BrightBlue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="fgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="fgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md)
+- <span id="fgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="fgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="fgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md)
+- <span id="fgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="fgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="fgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> FgColorDisplay<'a, colors::BrightCyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightCyan`](colors/index.md)
+- <span id="fgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> FgColorDisplay<'a, colors::BrightCyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="fgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="fgcolordisplay-bright-white"></span>`const fn bright_white(self) -> FgColorDisplay<'a, colors::BrightWhite, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightWhite`](colors/index.md)
+- <span id="fgcolordisplay-bright-white"></span>`const fn bright_white(self) -> FgColorDisplay<'a, colors::BrightWhite, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
-- <span id="fgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- <span id="fgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
 #### Trait Implementations
 
@@ -346,85 +346,85 @@ with the addition of changing the background color. Recommended to be constructe
 
 - <span id="bgcolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- <span id="bgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- <span id="bgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
 - <span id="bgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
-- <span id="bgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md)
+- <span id="bgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
 - <span id="bgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> BgColorDisplay<'a, C, T>` — [`BgColorDisplay`](#bgcolordisplay)
 
-- <span id="bgcolordisplay-on-black"></span>`const fn on_black(self) -> BgColorDisplay<'a, colors::Black, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Black`](colors/index.md)
+- <span id="bgcolordisplay-on-black"></span>`const fn on_black(self) -> BgColorDisplay<'a, colors::Black, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="bgcolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- <span id="bgcolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="bgcolordisplay-on-red"></span>`const fn on_red(self) -> BgColorDisplay<'a, colors::Red, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Red`](colors/index.md)
+- <span id="bgcolordisplay-on-red"></span>`const fn on_red(self) -> BgColorDisplay<'a, colors::Red, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="bgcolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- <span id="bgcolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="bgcolordisplay-on-green"></span>`const fn on_green(self) -> BgColorDisplay<'a, colors::Green, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Green`](colors/index.md)
+- <span id="bgcolordisplay-on-green"></span>`const fn on_green(self) -> BgColorDisplay<'a, colors::Green, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="bgcolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- <span id="bgcolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="bgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> BgColorDisplay<'a, colors::Yellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Yellow`](colors/index.md)
+- <span id="bgcolordisplay-on-yellow"></span>`const fn on_yellow(self) -> BgColorDisplay<'a, colors::Yellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="bgcolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- <span id="bgcolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="bgcolordisplay-on-blue"></span>`const fn on_blue(self) -> BgColorDisplay<'a, colors::Blue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Blue`](colors/index.md)
+- <span id="bgcolordisplay-on-blue"></span>`const fn on_blue(self) -> BgColorDisplay<'a, colors::Blue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="bgcolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- <span id="bgcolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="bgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md)
+- <span id="bgcolordisplay-on-magenta"></span>`const fn on_magenta(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="bgcolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="bgcolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="bgcolordisplay-on-purple"></span>`const fn on_purple(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md)
+- <span id="bgcolordisplay-on-purple"></span>`const fn on_purple(self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="bgcolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="bgcolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="bgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> BgColorDisplay<'a, colors::Cyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Cyan`](colors/index.md)
+- <span id="bgcolordisplay-on-cyan"></span>`const fn on_cyan(self) -> BgColorDisplay<'a, colors::Cyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="bgcolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- <span id="bgcolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="bgcolordisplay-on-white"></span>`const fn on_white(self) -> BgColorDisplay<'a, colors::White, T>` — [`BgColorDisplay`](#bgcolordisplay), [`White`](colors/index.md)
+- <span id="bgcolordisplay-on-white"></span>`const fn on_white(self) -> BgColorDisplay<'a, colors::White, T>` — [`BgColorDisplay`](#bgcolordisplay), [`White`](colors/index.md#white)
 
-- <span id="bgcolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- <span id="bgcolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
 
-- <span id="bgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> BgColorDisplay<'a, colors::BrightBlack, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlack`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> BgColorDisplay<'a, colors::BrightBlack, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="bgcolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- <span id="bgcolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="bgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> BgColorDisplay<'a, colors::BrightRed, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightRed`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> BgColorDisplay<'a, colors::BrightRed, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="bgcolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- <span id="bgcolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="bgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> BgColorDisplay<'a, colors::BrightGreen, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightGreen`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> BgColorDisplay<'a, colors::BrightGreen, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="bgcolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- <span id="bgcolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="bgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> BgColorDisplay<'a, colors::BrightYellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightYellow`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> BgColorDisplay<'a, colors::BrightYellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="bgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- <span id="bgcolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="bgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> BgColorDisplay<'a, colors::BrightBlue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlue`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> BgColorDisplay<'a, colors::BrightBlue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="bgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- <span id="bgcolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="bgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="bgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="bgcolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="bgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="bgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="bgcolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="bgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> BgColorDisplay<'a, colors::BrightCyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightCyan`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> BgColorDisplay<'a, colors::BrightCyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="bgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- <span id="bgcolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="bgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> BgColorDisplay<'a, colors::BrightWhite, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightWhite`](colors/index.md)
+- <span id="bgcolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> BgColorDisplay<'a, colors::BrightWhite, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
-- <span id="bgcolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- <span id="bgcolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
 #### Trait Implementations
 
@@ -484,7 +484,7 @@ coloring is not an option.
 
 - <span id="cratefgdyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- <span id="cratefgdyncolordisplay-on-color"></span>`const fn on_color<Bg: DynColor>(self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- <span id="cratefgdyncolordisplay-on-color"></span>`const fn on_color<Bg: DynColor>(self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
 - <span id="cratefgdyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
@@ -548,7 +548,7 @@ coloring is not an option.
 
 - <span id="cratebgdyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
-- <span id="cratebgdyncolordisplay-color"></span>`const fn color<Fg: DynColor>(self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- <span id="cratebgdyncolordisplay-color"></span>`const fn color<Fg: DynColor>(self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
 #### Trait Implementations
 
@@ -605,7 +605,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for Rgb`
 
-- <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](colors/dynamic/index.md)
+- <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](colors/dynamic/index.md#rgb)
 
 ##### `impl Copy for Rgb`
 
@@ -629,7 +629,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for Rgb`
 
-- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](colors/dynamic/index.md)
+- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](colors/dynamic/index.md#rgb)
 
 ##### `impl StructuralPartialEq for Rgb`
 
@@ -649,85 +649,85 @@ A wrapper type which applies both a foreground and background color
 
 - <span id="combocolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- <span id="combocolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- <span id="combocolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
-- <span id="combocolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- <span id="combocolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
-- <span id="combocolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md)
+- <span id="combocolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
-- <span id="combocolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md)
+- <span id="combocolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
-- <span id="combocolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- <span id="combocolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="combocolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- <span id="combocolordisplay-black"></span>`const fn black(self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
 
-- <span id="combocolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- <span id="combocolordisplay-on-red"></span>`const fn on_red(self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="combocolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- <span id="combocolordisplay-red"></span>`const fn red(self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Red`](colors/index.md#red)
 
-- <span id="combocolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- <span id="combocolordisplay-on-green"></span>`const fn on_green(self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="combocolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- <span id="combocolordisplay-green"></span>`const fn green(self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Green`](colors/index.md#green)
 
-- <span id="combocolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- <span id="combocolordisplay-on-yellow"></span>`const fn on_yellow(self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="combocolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- <span id="combocolordisplay-yellow"></span>`const fn yellow(self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Yellow`](colors/index.md#yellow)
 
-- <span id="combocolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- <span id="combocolordisplay-on-blue"></span>`const fn on_blue(self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="combocolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- <span id="combocolordisplay-blue"></span>`const fn blue(self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Blue`](colors/index.md#blue)
 
-- <span id="combocolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="combocolordisplay-on-magenta"></span>`const fn on_magenta(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="combocolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="combocolordisplay-magenta"></span>`const fn magenta(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="combocolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="combocolordisplay-on-purple"></span>`const fn on_purple(self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="combocolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- <span id="combocolordisplay-purple"></span>`const fn purple(self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Magenta`](colors/index.md#magenta)
 
-- <span id="combocolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- <span id="combocolordisplay-on-cyan"></span>`const fn on_cyan(self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="combocolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- <span id="combocolordisplay-cyan"></span>`const fn cyan(self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Cyan`](colors/index.md#cyan)
 
-- <span id="combocolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- <span id="combocolordisplay-on-white"></span>`const fn on_white(self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
 
-- <span id="combocolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- <span id="combocolordisplay-white"></span>`const fn white(self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`White`](colors/index.md#white)
 
-- <span id="combocolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- <span id="combocolordisplay-on-bright-black"></span>`const fn on_bright_black(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="combocolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- <span id="combocolordisplay-bright-black"></span>`const fn bright_black(self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlack`](colors/index.md#brightblack)
 
-- <span id="combocolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- <span id="combocolordisplay-on-bright-red"></span>`const fn on_bright_red(self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="combocolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- <span id="combocolordisplay-bright-red"></span>`const fn bright_red(self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightRed`](colors/index.md#brightred)
 
-- <span id="combocolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- <span id="combocolordisplay-on-bright-green"></span>`const fn on_bright_green(self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="combocolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- <span id="combocolordisplay-bright-green"></span>`const fn bright_green(self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightGreen`](colors/index.md#brightgreen)
 
-- <span id="combocolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- <span id="combocolordisplay-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="combocolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- <span id="combocolordisplay-bright-yellow"></span>`const fn bright_yellow(self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightYellow`](colors/index.md#brightyellow)
 
-- <span id="combocolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- <span id="combocolordisplay-on-bright-blue"></span>`const fn on_bright_blue(self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="combocolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- <span id="combocolordisplay-bright-blue"></span>`const fn bright_blue(self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightBlue`](colors/index.md#brightblue)
 
-- <span id="combocolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="combocolordisplay-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="combocolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="combocolordisplay-bright-magenta"></span>`const fn bright_magenta(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="combocolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="combocolordisplay-on-bright-purple"></span>`const fn on_bright_purple(self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="combocolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- <span id="combocolordisplay-bright-purple"></span>`const fn bright_purple(self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightMagenta`](colors/index.md#brightmagenta)
 
-- <span id="combocolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- <span id="combocolordisplay-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="combocolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- <span id="combocolordisplay-bright-cyan"></span>`const fn bright_cyan(self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightCyan`](colors/index.md#brightcyan)
 
-- <span id="combocolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- <span id="combocolordisplay-on-bright-white"></span>`const fn on_bright_white(self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
-- <span id="combocolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- <span id="combocolordisplay-bright-white"></span>`const fn bright_white(self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`BrightWhite`](colors/index.md#brightwhite)
 
 #### Trait Implementations
 
@@ -788,9 +788,9 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
 
 - <span id="combodyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- <span id="combodyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- <span id="combodyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
-- <span id="combodyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- <span id="combodyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
 #### Trait Implementations
 
@@ -1178,7 +1178,7 @@ struct StyleFlags(u8);
 
 ##### `impl Clone for StyleFlags`
 
-- <span id="styleflags-clone"></span>`fn clone(&self) -> StyleFlags` — [`StyleFlags`](dyn_styles/index.md)
+- <span id="styleflags-clone"></span>`fn clone(&self) -> StyleFlags` — [`StyleFlags`](dyn_styles/index.md#styleflags)
 
 ##### `impl Copy for StyleFlags`
 
@@ -1194,7 +1194,7 @@ struct StyleFlags(u8);
 
 ##### `impl PartialEq for StyleFlags`
 
-- <span id="styleflags-eq"></span>`fn eq(&self, other: &StyleFlags) -> bool` — [`StyleFlags`](dyn_styles/index.md)
+- <span id="styleflags-eq"></span>`fn eq(&self, other: &StyleFlags) -> bool` — [`StyleFlags`](dyn_styles/index.md#styleflags)
 
 ##### `impl StructuralPartialEq for StyleFlags`
 
@@ -1307,7 +1307,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for AnsiColors`
 
-- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](colors/ansi_colors/index.md)
+- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl Copy for AnsiColors`
 
@@ -1331,7 +1331,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for AnsiColors`
 
-- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](colors/ansi_colors/index.md)
+- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
 
@@ -1498,7 +1498,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for CssColors`
 
-- <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](colors/css/dynamic/index.md)
+- <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](colors/css/dynamic/index.md#csscolors)
 
 ##### `impl Copy for CssColors`
 
@@ -1522,7 +1522,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for CssColors`
 
-- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](colors/css/dynamic/index.md)
+- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](colors/css/dynamic/index.md#csscolors)
 
 ##### `impl StructuralPartialEq for CssColors`
 
@@ -1798,7 +1798,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for XtermColors`
 
-- <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](colors/xterm/dynamic/index.md)
+- <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
 
 ##### `impl Copy for XtermColors`
 
@@ -1822,7 +1822,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for XtermColors`
 
-- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](colors/xterm/dynamic/index.md)
+- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
 
@@ -1941,280 +1941,280 @@ A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolor
 
 #### Implementors
 
-- [`AeroBlue`](colors/xterm/index.md)
-- [`AltoBeige`](colors/xterm/index.md)
-- [`Alto`](colors/xterm/index.md)
-- [`AnakiwaBlue`](colors/xterm/index.md)
-- [`Aqua`](colors/xterm/index.md)
-- [`Aquamarine`](colors/xterm/index.md)
-- [`AzureRadiance`](colors/xterm/index.md)
-- [`BayLeaf`](colors/xterm/index.md)
-- [`Bermuda`](colors/xterm/index.md)
-- [`BittersweetOrange`](colors/xterm/index.md)
-- [`Black`](colors/index.md)
-- [`Black`](colors/xterm/index.md)
-- [`BlazeOrange`](colors/xterm/index.md)
-- [`BlueRibbon`](colors/xterm/index.md)
-- [`BlueStone`](colors/xterm/index.md)
-- [`Blue`](colors/index.md)
-- [`Blue`](colors/xterm/index.md)
-- [`BlushPink`](colors/xterm/index.md)
-- [`BondiBlue`](colors/xterm/index.md)
-- [`Boulder`](colors/xterm/index.md)
-- [`Bouquet`](colors/xterm/index.md)
-- [`BrightBlack`](colors/index.md)
-- [`BrightBlue`](colors/index.md)
-- [`BrightCyan`](colors/index.md)
-- [`BrightElectricViolet`](colors/xterm/index.md)
-- [`BrightGreen`](colors/index.md)
-- [`BrightGreen`](colors/xterm/index.md)
-- [`BrightHeliotrope`](colors/xterm/index.md)
-- [`BrightMagenta`](colors/index.md)
-- [`BrightRed`](colors/index.md)
-- [`BrightRed`](colors/xterm/index.md)
-- [`BrightTurquoise`](colors/xterm/index.md)
-- [`BrightWhite`](colors/index.md)
-- [`BrightYellow`](colors/index.md)
-- [`BrighterElectricViolet`](colors/xterm/index.md)
-- [`Brown`](colors/xterm/index.md)
-- [`BuddhaGold`](colors/xterm/index.md)
-- [`CamaroneGreen`](colors/xterm/index.md)
-- [`CanCanPink`](colors/xterm/index.md)
-- [`Canary`](colors/xterm/index.md)
-- [`Caramel`](colors/xterm/index.md)
-- [`CaribbeanGreen`](colors/xterm/index.md)
-- [`Celadon`](colors/xterm/index.md)
-- [`Cerulean`](colors/xterm/index.md)
-- [`ChartreuseGreen`](colors/xterm/index.md)
-- [`ChartreuseYellow`](colors/xterm/index.md)
-- [`ChelseaCucumber`](colors/xterm/index.md)
-- [`ChetwodeBlue`](colors/xterm/index.md)
-- [`ClamShell`](colors/xterm/index.md)
-- [`ClayCreekOlive`](colors/xterm/index.md)
-- [`CodGray`](colors/xterm/index.md)
-- [`ConiferGreen`](colors/xterm/index.md)
-- [`CopperRose`](colors/xterm/index.md)
-- [`Copperfield`](colors/xterm/index.md)
-- [`Corn`](colors/xterm/index.md)
-- [`CornflowerBlue`](colors/xterm/index.md)
-- [`CosmosSalmon`](colors/xterm/index.md)
-- [`CottonCandy`](colors/xterm/index.md)
-- [`CranberryPink`](colors/xterm/index.md)
-- [`Cumulus`](colors/xterm/index.md)
-- [`CustomColor`](colors/custom/index.md)
-- [`Cyan`](colors/index.md)
-- [`Cyan`](colors/xterm/index.md)
-- [`Dandelion`](colors/xterm/index.md)
-- [`DarkAlto`](colors/xterm/index.md)
-- [`DarkAnakiwaBlue`](colors/xterm/index.md)
-- [`DarkAquamarine`](colors/xterm/index.md)
-- [`DarkBlue`](colors/xterm/index.md)
-- [`DarkBrightGreen`](colors/xterm/index.md)
-- [`DarkCodGray`](colors/xterm/index.md)
-- [`DarkCorn`](colors/xterm/index.md)
-- [`DarkCornflowerBlue`](colors/xterm/index.md)
-- [`DarkDoveGray`](colors/xterm/index.md)
-- [`DarkFeijoaGreen`](colors/xterm/index.md)
-- [`DarkFlirt`](colors/xterm/index.md)
-- [`DarkFreshEggplant`](colors/xterm/index.md)
-- [`DarkGray`](colors/xterm/index.md)
-- [`DarkGreen`](colors/xterm/index.md)
-- [`DarkHeliotropePurple`](colors/xterm/index.md)
-- [`DarkHotPink`](colors/xterm/index.md)
-- [`DarkLavenderRose`](colors/xterm/index.md)
-- [`DarkLimeade`](colors/xterm/index.md)
-- [`DarkMalibuBlue`](colors/xterm/index.md)
-- [`DarkMediumPurple`](colors/xterm/index.md)
-- [`DarkMineShaft`](colors/xterm/index.md)
-- [`DarkMintGreen`](colors/xterm/index.md)
-- [`DarkPastelGreen`](colors/xterm/index.md)
-- [`DarkPurplePizzazz`](colors/xterm/index.md)
-- [`DarkPurple`](colors/xterm/index.md)
-- [`DarkRose`](colors/xterm/index.md)
-- [`DarkScreaminGreen`](colors/xterm/index.md)
-- [`DarkSilverChalice`](colors/xterm/index.md)
-- [`DarkSilver`](colors/xterm/index.md)
-- [`DarkSpringGreen`](colors/xterm/index.md)
-- [`DarkTachaOrange`](colors/xterm/index.md)
-- [`DarkTundora`](colors/xterm/index.md)
-- [`DarkViolet`](colors/xterm/index.md)
-- [`DecoOrange`](colors/xterm/index.md)
-- [`DeepCerulean`](colors/xterm/index.md)
-- [`DeepSeaGreen`](colors/xterm/index.md)
-- [`Default`](colors/index.md)
-- [`DelugePurple`](colors/xterm/index.md)
-- [`DollyYellow`](colors/xterm/index.md)
-- [`DoveGray`](colors/xterm/index.md)
-- [`DownyTeal`](colors/xterm/index.md)
-- [`DustyGray`](colors/xterm/index.md)
-- [`ElectricIndigo`](colors/xterm/index.md)
-- [`ElectricPurple`](colors/xterm/index.md)
-- [`ElectricViolet`](colors/xterm/index.md)
-- [`EndeavourBlue`](colors/xterm/index.md)
-- [`Feijoa`](colors/xterm/index.md)
-- [`FernGreen`](colors/xterm/index.md)
-- [`Flirt`](colors/xterm/index.md)
-- [`FlushOrange`](colors/xterm/index.md)
-- [`FogPink`](colors/xterm/index.md)
-- [`FrenchPassLightBlue`](colors/xterm/index.md)
-- [`FuchsiaPink`](colors/xterm/index.md)
-- [`Fuchsia`](colors/xterm/index.md)
-- [`GalleryGray`](colors/xterm/index.md)
-- [`GladeGreen`](colors/xterm/index.md)
-- [`Gold`](colors/xterm/index.md)
-- [`GrandisCaramel`](colors/xterm/index.md)
-- [`Gray`](colors/xterm/index.md)
-- [`GreenYellow`](colors/xterm/index.md)
-- [`Green`](colors/index.md)
-- [`Green`](colors/xterm/index.md)
-- [`GuardsmanRed`](colors/xterm/index.md)
-- [`GulfStream`](colors/xterm/index.md)
-- [`HavelockBlue`](colors/xterm/index.md)
-- [`Heliotrope`](colors/xterm/index.md)
-- [`HillaryOlive`](colors/xterm/index.md)
-- [`HippieBlue`](colors/xterm/index.md)
-- [`HollywoodCerise`](colors/xterm/index.md)
-- [`Honeysuckle`](colors/xterm/index.md)
-- [`HopbushPink`](colors/xterm/index.md)
-- [`HotPink`](colors/xterm/index.md)
-- [`Indigo`](colors/xterm/index.md)
-- [`Jade`](colors/xterm/index.md)
-- [`JapaneseLaurel`](colors/xterm/index.md)
-- [`JungleMist`](colors/xterm/index.md)
-- [`JuniperGreen`](colors/xterm/index.md)
-- [`LaserLemon`](colors/xterm/index.md)
-- [`LavenderRose`](colors/xterm/index.md)
-- [`Lavender`](colors/xterm/index.md)
-- [`LightAnakiwaBlue`](colors/xterm/index.md)
-- [`LightAquamarine`](colors/xterm/index.md)
-- [`LightAzureRadiance`](colors/xterm/index.md)
-- [`LightCaribbeanGreen`](colors/xterm/index.md)
-- [`LightCodGray`](colors/xterm/index.md)
-- [`LightElectricViolet`](colors/xterm/index.md)
-- [`LightFlirt`](colors/xterm/index.md)
-- [`LightFreshEggplant`](colors/xterm/index.md)
-- [`LightGray`](colors/xterm/index.md)
-- [`LightHeliotrope`](colors/xterm/index.md)
-- [`LightHollywoodCerise`](colors/xterm/index.md)
-- [`LightJapaneseLaurel`](colors/xterm/index.md)
-- [`LightLimeade`](colors/xterm/index.md)
-- [`LightMalibuBlue`](colors/xterm/index.md)
-- [`LightMineShaft`](colors/xterm/index.md)
-- [`LightMintGreen`](colors/xterm/index.md)
-- [`LightOrchid`](colors/xterm/index.md)
-- [`LightPastelGreen`](colors/xterm/index.md)
-- [`LightScreaminGreen`](colors/xterm/index.md)
-- [`LightSilverChalice`](colors/xterm/index.md)
-- [`LightSpringGreen`](colors/xterm/index.md)
-- [`LighterAquamarine`](colors/xterm/index.md)
-- [`LighterHeliotrope`](colors/xterm/index.md)
-- [`Lilac`](colors/xterm/index.md)
-- [`Lime`](colors/xterm/index.md)
-- [`Limeade`](colors/xterm/index.md)
-- [`LochmaraBlue`](colors/xterm/index.md)
-- [`Magenta`](colors/index.md)
-- [`Malachite`](colors/xterm/index.md)
-- [`MalibuBlue`](colors/xterm/index.md)
-- [`MangoTango`](colors/xterm/index.md)
-- [`Maroon`](colors/xterm/index.md)
-- [`MatrixPink`](colors/xterm/index.md)
-- [`Mauve`](colors/xterm/index.md)
-- [`MediumPurple`](colors/xterm/index.md)
-- [`MediumVioletRed`](colors/xterm/index.md)
-- [`MelroseLilac`](colors/xterm/index.md)
-- [`Mercury`](colors/xterm/index.md)
-- [`MidnightBlue`](colors/xterm/index.md)
-- [`MineShaft`](colors/xterm/index.md)
-- [`MintGreen`](colors/xterm/index.md)
-- [`MuesliOrange`](colors/xterm/index.md)
-- [`NavyBlue`](colors/xterm/index.md)
-- [`NobelGray`](colors/xterm/index.md)
-- [`OliveGreen`](colors/xterm/index.md)
-- [`Olive`](colors/xterm/index.md)
-- [`Orchid`](colors/xterm/index.md)
-- [`OrientBlue`](colors/xterm/index.md)
-- [`OysterBay`](colors/xterm/index.md)
-- [`PaleGoldenrod`](colors/xterm/index.md)
-- [`PastelGreen`](colors/xterm/index.md)
-- [`PersianGreen`](colors/xterm/index.md)
-- [`PharlapPink`](colors/xterm/index.md)
-- [`PigmentIndigo`](colors/xterm/index.md)
-- [`PinkFlamingo`](colors/xterm/index.md)
-- [`PinkLace`](colors/xterm/index.md)
-- [`PinkSalmon`](colors/xterm/index.md)
-- [`PirateGold`](colors/xterm/index.md)
-- [`Pistachio`](colors/xterm/index.md)
-- [`PixieGreen`](colors/xterm/index.md)
-- [`PoloBlue`](colors/xterm/index.md)
-- [`PompadourMagenta`](colors/xterm/index.md)
-- [`PortafinoYellow`](colors/xterm/index.md)
-- [`PurplePizzazz`](colors/xterm/index.md)
-- [`Purple`](colors/xterm/index.md)
-- [`RazzmatazzCerise`](colors/xterm/index.md)
-- [`Red`](colors/index.md)
-- [`Red`](colors/xterm/index.md)
-- [`ReefPaleYellow`](colors/xterm/index.md)
-- [`RioGrandeGreen`](colors/xterm/index.md)
-- [`RobinEggBlue`](colors/xterm/index.md)
-- [`RomanOrange`](colors/xterm/index.md)
-- [`Rose`](colors/xterm/index.md)
-- [`RoseofSharonOrange`](colors/xterm/index.md)
-- [`Rosewood`](colors/xterm/index.md)
-- [`Salmon`](colors/xterm/index.md)
-- [`ScampiIndigo`](colors/xterm/index.md)
-- [`ScienceBlue`](colors/xterm/index.md)
-- [`ScorpionGray`](colors/xterm/index.md)
-- [`ScorpionOlive`](colors/xterm/index.md)
-- [`ScreaminGreen`](colors/xterm/index.md)
-- [`SeaPink`](colors/xterm/index.md)
-- [`ShakespeareBlue`](colors/xterm/index.md)
-- [`SilverChalice`](colors/xterm/index.md)
-- [`SilverTree`](colors/xterm/index.md)
-- [`Silver`](colors/xterm/index.md)
-- [`SlateBlue`](colors/xterm/index.md)
-- [`SnowyMint`](colors/xterm/index.md)
-- [`SpringGreen`](colors/xterm/index.md)
-- [`StratosBlue`](colors/xterm/index.md)
-- [`StrikemasterPurple`](colors/xterm/index.md)
-- [`Sundown`](colors/xterm/index.md)
-- [`Tacao`](colors/xterm/index.md)
-- [`TachaOrange`](colors/xterm/index.md)
-- [`TanBeige`](colors/xterm/index.md)
-- [`TapestryPink`](colors/xterm/index.md)
-- [`Teal`](colors/xterm/index.md)
-- [`TennOrange`](colors/xterm/index.md)
-- [`TexasRose`](colors/xterm/index.md)
-- [`ThistlePink`](colors/xterm/index.md)
-- [`Tradewind`](colors/xterm/index.md)
-- [`Tundora`](colors/xterm/index.md)
-- [`UserBlack`](colors/xterm/index.md)
-- [`UserBlue`](colors/xterm/index.md)
-- [`UserBrightBlack`](colors/xterm/index.md)
-- [`UserBrightBlue`](colors/xterm/index.md)
-- [`UserBrightCyan`](colors/xterm/index.md)
-- [`UserBrightGreen`](colors/xterm/index.md)
-- [`UserBrightMagenta`](colors/xterm/index.md)
-- [`UserBrightRed`](colors/xterm/index.md)
-- [`UserBrightWhite`](colors/xterm/index.md)
-- [`UserBrightYellow`](colors/xterm/index.md)
-- [`UserCyan`](colors/xterm/index.md)
-- [`UserGreen`](colors/xterm/index.md)
-- [`UserMagenta`](colors/xterm/index.md)
-- [`UserRed`](colors/xterm/index.md)
-- [`UserWhite`](colors/xterm/index.md)
-- [`UserYellow`](colors/xterm/index.md)
-- [`VerdunGreen`](colors/xterm/index.md)
-- [`Viking`](colors/xterm/index.md)
-- [`VistaBlue`](colors/xterm/index.md)
-- [`VividTangerine`](colors/xterm/index.md)
-- [`White`](colors/index.md)
-- [`White`](colors/xterm/index.md)
-- [`WildBlueYonder`](colors/xterm/index.md)
-- [`WildWatermelon`](colors/xterm/index.md)
-- [`WistfulLilac`](colors/xterm/index.md)
-- [`YellowSea`](colors/xterm/index.md)
-- [`Yellow`](colors/index.md)
-- [`Yellow`](colors/xterm/index.md)
+- [`AeroBlue`](colors/xterm/index.md#aeroblue)
+- [`AltoBeige`](colors/xterm/index.md#altobeige)
+- [`Alto`](colors/xterm/index.md#alto)
+- [`AnakiwaBlue`](colors/xterm/index.md#anakiwablue)
+- [`Aqua`](colors/xterm/index.md#aqua)
+- [`Aquamarine`](colors/xterm/index.md#aquamarine)
+- [`AzureRadiance`](colors/xterm/index.md#azureradiance)
+- [`BayLeaf`](colors/xterm/index.md#bayleaf)
+- [`Bermuda`](colors/xterm/index.md#bermuda)
+- [`BittersweetOrange`](colors/xterm/index.md#bittersweetorange)
+- [`Black`](colors/index.md#black)
+- [`Black`](colors/xterm/index.md#black)
+- [`BlazeOrange`](colors/xterm/index.md#blazeorange)
+- [`BlueRibbon`](colors/xterm/index.md#blueribbon)
+- [`BlueStone`](colors/xterm/index.md#bluestone)
+- [`Blue`](colors/index.md#blue)
+- [`Blue`](colors/xterm/index.md#blue)
+- [`BlushPink`](colors/xterm/index.md#blushpink)
+- [`BondiBlue`](colors/xterm/index.md#bondiblue)
+- [`Boulder`](colors/xterm/index.md#boulder)
+- [`Bouquet`](colors/xterm/index.md#bouquet)
+- [`BrightBlack`](colors/index.md#brightblack)
+- [`BrightBlue`](colors/index.md#brightblue)
+- [`BrightCyan`](colors/index.md#brightcyan)
+- [`BrightElectricViolet`](colors/xterm/index.md#brightelectricviolet)
+- [`BrightGreen`](colors/index.md#brightgreen)
+- [`BrightGreen`](colors/xterm/index.md#brightgreen)
+- [`BrightHeliotrope`](colors/xterm/index.md#brightheliotrope)
+- [`BrightMagenta`](colors/index.md#brightmagenta)
+- [`BrightRed`](colors/index.md#brightred)
+- [`BrightRed`](colors/xterm/index.md#brightred)
+- [`BrightTurquoise`](colors/xterm/index.md#brightturquoise)
+- [`BrightWhite`](colors/index.md#brightwhite)
+- [`BrightYellow`](colors/index.md#brightyellow)
+- [`BrighterElectricViolet`](colors/xterm/index.md#brighterelectricviolet)
+- [`Brown`](colors/xterm/index.md#brown)
+- [`BuddhaGold`](colors/xterm/index.md#buddhagold)
+- [`CamaroneGreen`](colors/xterm/index.md#camaronegreen)
+- [`CanCanPink`](colors/xterm/index.md#cancanpink)
+- [`Canary`](colors/xterm/index.md#canary)
+- [`Caramel`](colors/xterm/index.md#caramel)
+- [`CaribbeanGreen`](colors/xterm/index.md#caribbeangreen)
+- [`Celadon`](colors/xterm/index.md#celadon)
+- [`Cerulean`](colors/xterm/index.md#cerulean)
+- [`ChartreuseGreen`](colors/xterm/index.md#chartreusegreen)
+- [`ChartreuseYellow`](colors/xterm/index.md#chartreuseyellow)
+- [`ChelseaCucumber`](colors/xterm/index.md#chelseacucumber)
+- [`ChetwodeBlue`](colors/xterm/index.md#chetwodeblue)
+- [`ClamShell`](colors/xterm/index.md#clamshell)
+- [`ClayCreekOlive`](colors/xterm/index.md#claycreekolive)
+- [`CodGray`](colors/xterm/index.md#codgray)
+- [`ConiferGreen`](colors/xterm/index.md#conifergreen)
+- [`CopperRose`](colors/xterm/index.md#copperrose)
+- [`Copperfield`](colors/xterm/index.md#copperfield)
+- [`Corn`](colors/xterm/index.md#corn)
+- [`CornflowerBlue`](colors/xterm/index.md#cornflowerblue)
+- [`CosmosSalmon`](colors/xterm/index.md#cosmossalmon)
+- [`CottonCandy`](colors/xterm/index.md#cottoncandy)
+- [`CranberryPink`](colors/xterm/index.md#cranberrypink)
+- [`Cumulus`](colors/xterm/index.md#cumulus)
+- [`CustomColor`](colors/custom/index.md#customcolor)
+- [`Cyan`](colors/index.md#cyan)
+- [`Cyan`](colors/xterm/index.md#cyan)
+- [`Dandelion`](colors/xterm/index.md#dandelion)
+- [`DarkAlto`](colors/xterm/index.md#darkalto)
+- [`DarkAnakiwaBlue`](colors/xterm/index.md#darkanakiwablue)
+- [`DarkAquamarine`](colors/xterm/index.md#darkaquamarine)
+- [`DarkBlue`](colors/xterm/index.md#darkblue)
+- [`DarkBrightGreen`](colors/xterm/index.md#darkbrightgreen)
+- [`DarkCodGray`](colors/xterm/index.md#darkcodgray)
+- [`DarkCorn`](colors/xterm/index.md#darkcorn)
+- [`DarkCornflowerBlue`](colors/xterm/index.md#darkcornflowerblue)
+- [`DarkDoveGray`](colors/xterm/index.md#darkdovegray)
+- [`DarkFeijoaGreen`](colors/xterm/index.md#darkfeijoagreen)
+- [`DarkFlirt`](colors/xterm/index.md#darkflirt)
+- [`DarkFreshEggplant`](colors/xterm/index.md#darkfresheggplant)
+- [`DarkGray`](colors/xterm/index.md#darkgray)
+- [`DarkGreen`](colors/xterm/index.md#darkgreen)
+- [`DarkHeliotropePurple`](colors/xterm/index.md#darkheliotropepurple)
+- [`DarkHotPink`](colors/xterm/index.md#darkhotpink)
+- [`DarkLavenderRose`](colors/xterm/index.md#darklavenderrose)
+- [`DarkLimeade`](colors/xterm/index.md#darklimeade)
+- [`DarkMalibuBlue`](colors/xterm/index.md#darkmalibublue)
+- [`DarkMediumPurple`](colors/xterm/index.md#darkmediumpurple)
+- [`DarkMineShaft`](colors/xterm/index.md#darkmineshaft)
+- [`DarkMintGreen`](colors/xterm/index.md#darkmintgreen)
+- [`DarkPastelGreen`](colors/xterm/index.md#darkpastelgreen)
+- [`DarkPurplePizzazz`](colors/xterm/index.md#darkpurplepizzazz)
+- [`DarkPurple`](colors/xterm/index.md#darkpurple)
+- [`DarkRose`](colors/xterm/index.md#darkrose)
+- [`DarkScreaminGreen`](colors/xterm/index.md#darkscreamingreen)
+- [`DarkSilverChalice`](colors/xterm/index.md#darksilverchalice)
+- [`DarkSilver`](colors/xterm/index.md#darksilver)
+- [`DarkSpringGreen`](colors/xterm/index.md#darkspringgreen)
+- [`DarkTachaOrange`](colors/xterm/index.md#darktachaorange)
+- [`DarkTundora`](colors/xterm/index.md#darktundora)
+- [`DarkViolet`](colors/xterm/index.md#darkviolet)
+- [`DecoOrange`](colors/xterm/index.md#decoorange)
+- [`DeepCerulean`](colors/xterm/index.md#deepcerulean)
+- [`DeepSeaGreen`](colors/xterm/index.md#deepseagreen)
+- [`Default`](colors/index.md#default)
+- [`DelugePurple`](colors/xterm/index.md#delugepurple)
+- [`DollyYellow`](colors/xterm/index.md#dollyyellow)
+- [`DoveGray`](colors/xterm/index.md#dovegray)
+- [`DownyTeal`](colors/xterm/index.md#downyteal)
+- [`DustyGray`](colors/xterm/index.md#dustygray)
+- [`ElectricIndigo`](colors/xterm/index.md#electricindigo)
+- [`ElectricPurple`](colors/xterm/index.md#electricpurple)
+- [`ElectricViolet`](colors/xterm/index.md#electricviolet)
+- [`EndeavourBlue`](colors/xterm/index.md#endeavourblue)
+- [`Feijoa`](colors/xterm/index.md#feijoa)
+- [`FernGreen`](colors/xterm/index.md#ferngreen)
+- [`Flirt`](colors/xterm/index.md#flirt)
+- [`FlushOrange`](colors/xterm/index.md#flushorange)
+- [`FogPink`](colors/xterm/index.md#fogpink)
+- [`FrenchPassLightBlue`](colors/xterm/index.md#frenchpasslightblue)
+- [`FuchsiaPink`](colors/xterm/index.md#fuchsiapink)
+- [`Fuchsia`](colors/xterm/index.md#fuchsia)
+- [`GalleryGray`](colors/xterm/index.md#gallerygray)
+- [`GladeGreen`](colors/xterm/index.md#gladegreen)
+- [`Gold`](colors/xterm/index.md#gold)
+- [`GrandisCaramel`](colors/xterm/index.md#grandiscaramel)
+- [`Gray`](colors/xterm/index.md#gray)
+- [`GreenYellow`](colors/xterm/index.md#greenyellow)
+- [`Green`](colors/index.md#green)
+- [`Green`](colors/xterm/index.md#green)
+- [`GuardsmanRed`](colors/xterm/index.md#guardsmanred)
+- [`GulfStream`](colors/xterm/index.md#gulfstream)
+- [`HavelockBlue`](colors/xterm/index.md#havelockblue)
+- [`Heliotrope`](colors/xterm/index.md#heliotrope)
+- [`HillaryOlive`](colors/xterm/index.md#hillaryolive)
+- [`HippieBlue`](colors/xterm/index.md#hippieblue)
+- [`HollywoodCerise`](colors/xterm/index.md#hollywoodcerise)
+- [`Honeysuckle`](colors/xterm/index.md#honeysuckle)
+- [`HopbushPink`](colors/xterm/index.md#hopbushpink)
+- [`HotPink`](colors/xterm/index.md#hotpink)
+- [`Indigo`](colors/xterm/index.md#indigo)
+- [`Jade`](colors/xterm/index.md#jade)
+- [`JapaneseLaurel`](colors/xterm/index.md#japaneselaurel)
+- [`JungleMist`](colors/xterm/index.md#junglemist)
+- [`JuniperGreen`](colors/xterm/index.md#junipergreen)
+- [`LaserLemon`](colors/xterm/index.md#laserlemon)
+- [`LavenderRose`](colors/xterm/index.md#lavenderrose)
+- [`Lavender`](colors/xterm/index.md#lavender)
+- [`LightAnakiwaBlue`](colors/xterm/index.md#lightanakiwablue)
+- [`LightAquamarine`](colors/xterm/index.md#lightaquamarine)
+- [`LightAzureRadiance`](colors/xterm/index.md#lightazureradiance)
+- [`LightCaribbeanGreen`](colors/xterm/index.md#lightcaribbeangreen)
+- [`LightCodGray`](colors/xterm/index.md#lightcodgray)
+- [`LightElectricViolet`](colors/xterm/index.md#lightelectricviolet)
+- [`LightFlirt`](colors/xterm/index.md#lightflirt)
+- [`LightFreshEggplant`](colors/xterm/index.md#lightfresheggplant)
+- [`LightGray`](colors/xterm/index.md#lightgray)
+- [`LightHeliotrope`](colors/xterm/index.md#lightheliotrope)
+- [`LightHollywoodCerise`](colors/xterm/index.md#lighthollywoodcerise)
+- [`LightJapaneseLaurel`](colors/xterm/index.md#lightjapaneselaurel)
+- [`LightLimeade`](colors/xterm/index.md#lightlimeade)
+- [`LightMalibuBlue`](colors/xterm/index.md#lightmalibublue)
+- [`LightMineShaft`](colors/xterm/index.md#lightmineshaft)
+- [`LightMintGreen`](colors/xterm/index.md#lightmintgreen)
+- [`LightOrchid`](colors/xterm/index.md#lightorchid)
+- [`LightPastelGreen`](colors/xterm/index.md#lightpastelgreen)
+- [`LightScreaminGreen`](colors/xterm/index.md#lightscreamingreen)
+- [`LightSilverChalice`](colors/xterm/index.md#lightsilverchalice)
+- [`LightSpringGreen`](colors/xterm/index.md#lightspringgreen)
+- [`LighterAquamarine`](colors/xterm/index.md#lighteraquamarine)
+- [`LighterHeliotrope`](colors/xterm/index.md#lighterheliotrope)
+- [`Lilac`](colors/xterm/index.md#lilac)
+- [`Lime`](colors/xterm/index.md#lime)
+- [`Limeade`](colors/xterm/index.md#limeade)
+- [`LochmaraBlue`](colors/xterm/index.md#lochmarablue)
+- [`Magenta`](colors/index.md#magenta)
+- [`Malachite`](colors/xterm/index.md#malachite)
+- [`MalibuBlue`](colors/xterm/index.md#malibublue)
+- [`MangoTango`](colors/xterm/index.md#mangotango)
+- [`Maroon`](colors/xterm/index.md#maroon)
+- [`MatrixPink`](colors/xterm/index.md#matrixpink)
+- [`Mauve`](colors/xterm/index.md#mauve)
+- [`MediumPurple`](colors/xterm/index.md#mediumpurple)
+- [`MediumVioletRed`](colors/xterm/index.md#mediumvioletred)
+- [`MelroseLilac`](colors/xterm/index.md#melroselilac)
+- [`Mercury`](colors/xterm/index.md#mercury)
+- [`MidnightBlue`](colors/xterm/index.md#midnightblue)
+- [`MineShaft`](colors/xterm/index.md#mineshaft)
+- [`MintGreen`](colors/xterm/index.md#mintgreen)
+- [`MuesliOrange`](colors/xterm/index.md#muesliorange)
+- [`NavyBlue`](colors/xterm/index.md#navyblue)
+- [`NobelGray`](colors/xterm/index.md#nobelgray)
+- [`OliveGreen`](colors/xterm/index.md#olivegreen)
+- [`Olive`](colors/xterm/index.md#olive)
+- [`Orchid`](colors/xterm/index.md#orchid)
+- [`OrientBlue`](colors/xterm/index.md#orientblue)
+- [`OysterBay`](colors/xterm/index.md#oysterbay)
+- [`PaleGoldenrod`](colors/xterm/index.md#palegoldenrod)
+- [`PastelGreen`](colors/xterm/index.md#pastelgreen)
+- [`PersianGreen`](colors/xterm/index.md#persiangreen)
+- [`PharlapPink`](colors/xterm/index.md#pharlappink)
+- [`PigmentIndigo`](colors/xterm/index.md#pigmentindigo)
+- [`PinkFlamingo`](colors/xterm/index.md#pinkflamingo)
+- [`PinkLace`](colors/xterm/index.md#pinklace)
+- [`PinkSalmon`](colors/xterm/index.md#pinksalmon)
+- [`PirateGold`](colors/xterm/index.md#pirategold)
+- [`Pistachio`](colors/xterm/index.md#pistachio)
+- [`PixieGreen`](colors/xterm/index.md#pixiegreen)
+- [`PoloBlue`](colors/xterm/index.md#poloblue)
+- [`PompadourMagenta`](colors/xterm/index.md#pompadourmagenta)
+- [`PortafinoYellow`](colors/xterm/index.md#portafinoyellow)
+- [`PurplePizzazz`](colors/xterm/index.md#purplepizzazz)
+- [`Purple`](colors/xterm/index.md#purple)
+- [`RazzmatazzCerise`](colors/xterm/index.md#razzmatazzcerise)
+- [`Red`](colors/index.md#red)
+- [`Red`](colors/xterm/index.md#red)
+- [`ReefPaleYellow`](colors/xterm/index.md#reefpaleyellow)
+- [`RioGrandeGreen`](colors/xterm/index.md#riograndegreen)
+- [`RobinEggBlue`](colors/xterm/index.md#robineggblue)
+- [`RomanOrange`](colors/xterm/index.md#romanorange)
+- [`Rose`](colors/xterm/index.md#rose)
+- [`RoseofSharonOrange`](colors/xterm/index.md#roseofsharonorange)
+- [`Rosewood`](colors/xterm/index.md#rosewood)
+- [`Salmon`](colors/xterm/index.md#salmon)
+- [`ScampiIndigo`](colors/xterm/index.md#scampiindigo)
+- [`ScienceBlue`](colors/xterm/index.md#scienceblue)
+- [`ScorpionGray`](colors/xterm/index.md#scorpiongray)
+- [`ScorpionOlive`](colors/xterm/index.md#scorpionolive)
+- [`ScreaminGreen`](colors/xterm/index.md#screamingreen)
+- [`SeaPink`](colors/xterm/index.md#seapink)
+- [`ShakespeareBlue`](colors/xterm/index.md#shakespeareblue)
+- [`SilverChalice`](colors/xterm/index.md#silverchalice)
+- [`SilverTree`](colors/xterm/index.md#silvertree)
+- [`Silver`](colors/xterm/index.md#silver)
+- [`SlateBlue`](colors/xterm/index.md#slateblue)
+- [`SnowyMint`](colors/xterm/index.md#snowymint)
+- [`SpringGreen`](colors/xterm/index.md#springgreen)
+- [`StratosBlue`](colors/xterm/index.md#stratosblue)
+- [`StrikemasterPurple`](colors/xterm/index.md#strikemasterpurple)
+- [`Sundown`](colors/xterm/index.md#sundown)
+- [`Tacao`](colors/xterm/index.md#tacao)
+- [`TachaOrange`](colors/xterm/index.md#tachaorange)
+- [`TanBeige`](colors/xterm/index.md#tanbeige)
+- [`TapestryPink`](colors/xterm/index.md#tapestrypink)
+- [`Teal`](colors/xterm/index.md#teal)
+- [`TennOrange`](colors/xterm/index.md#tennorange)
+- [`TexasRose`](colors/xterm/index.md#texasrose)
+- [`ThistlePink`](colors/xterm/index.md#thistlepink)
+- [`Tradewind`](colors/xterm/index.md#tradewind)
+- [`Tundora`](colors/xterm/index.md#tundora)
+- [`UserBlack`](colors/xterm/index.md#userblack)
+- [`UserBlue`](colors/xterm/index.md#userblue)
+- [`UserBrightBlack`](colors/xterm/index.md#userbrightblack)
+- [`UserBrightBlue`](colors/xterm/index.md#userbrightblue)
+- [`UserBrightCyan`](colors/xterm/index.md#userbrightcyan)
+- [`UserBrightGreen`](colors/xterm/index.md#userbrightgreen)
+- [`UserBrightMagenta`](colors/xterm/index.md#userbrightmagenta)
+- [`UserBrightRed`](colors/xterm/index.md#userbrightred)
+- [`UserBrightWhite`](colors/xterm/index.md#userbrightwhite)
+- [`UserBrightYellow`](colors/xterm/index.md#userbrightyellow)
+- [`UserCyan`](colors/xterm/index.md#usercyan)
+- [`UserGreen`](colors/xterm/index.md#usergreen)
+- [`UserMagenta`](colors/xterm/index.md#usermagenta)
+- [`UserRed`](colors/xterm/index.md#userred)
+- [`UserWhite`](colors/xterm/index.md#userwhite)
+- [`UserYellow`](colors/xterm/index.md#useryellow)
+- [`VerdunGreen`](colors/xterm/index.md#verdungreen)
+- [`Viking`](colors/xterm/index.md#viking)
+- [`VistaBlue`](colors/xterm/index.md#vistablue)
+- [`VividTangerine`](colors/xterm/index.md#vividtangerine)
+- [`White`](colors/index.md#white)
+- [`White`](colors/xterm/index.md#white)
+- [`WildBlueYonder`](colors/xterm/index.md#wildblueyonder)
+- [`WildWatermelon`](colors/xterm/index.md#wildwatermelon)
+- [`WistfulLilac`](colors/xterm/index.md#wistfullilac)
+- [`YellowSea`](colors/xterm/index.md#yellowsea)
+- [`Yellow`](colors/index.md#yellow)
+- [`Yellow`](colors/xterm/index.md#yellow)
 
 ### `DynColor`
 
@@ -2248,11 +2248,11 @@ is recommended you avoid this.
 
 #### Implementors
 
-- [`AnsiColors`](colors/ansi_colors/index.md)
-- [`CssColors`](colors/css/dynamic/index.md)
+- [`AnsiColors`](colors/ansi_colors/index.md#ansicolors)
+- [`CssColors`](colors/css/dynamic/index.md#csscolors)
 - [`DynColors`](#dyncolors)
-- [`Rgb`](colors/dynamic/index.md)
-- [`XtermColors`](colors/xterm/dynamic/index.md)
+- [`Rgb`](colors/dynamic/index.md#rgb)
+- [`XtermColors`](colors/xterm/dynamic/index.md#xtermcolors)
 - `str`
 
 ### `OwoColorize`

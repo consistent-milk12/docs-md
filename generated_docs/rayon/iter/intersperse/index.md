@@ -36,7 +36,7 @@ item of the adapted iterator.  This struct is created by the
 
 #### Implementations
 
-- <span id="intersperse-new"></span>`fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../index.md)
+- <span id="intersperse-new"></span>`fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../index.md#paralleliterator)
 
 #### Trait Implementations
 
@@ -50,11 +50,11 @@ item of the adapted iterator.  This struct is created by the
 
 ##### `impl<I> IndexedParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="intersperse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="intersperse-len"></span>`fn len(&self) -> usize`
 
-- <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Intersperse<I>`
 
@@ -70,7 +70,7 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="intersperse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -105,7 +105,7 @@ where
 
 #### Implementations
 
-- <span id="intersperseproducer-new"></span>`fn new(base: P, item: <P as >::Item, len: usize) -> Self` — [`Producer`](../plumbing/index.md)
+- <span id="intersperseproducer-new"></span>`fn new(base: P, item: <P as >::Item, len: usize) -> Self` — [`Producer`](../plumbing/index.md#producer)
 
 #### Trait Implementations
 
@@ -131,7 +131,7 @@ where
 
 - <span id="intersperseproducer-type-intoiter"></span>`type IntoIter = IntersperseIter<<P as Producer>::IntoIter>`
 
-- <span id="intersperseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="intersperseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="intersperseproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -224,9 +224,9 @@ struct IntersperseConsumer<C, T> {
 
 - <span id="intersperseconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="intersperseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="intersperseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="intersperseconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="intersperseconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="intersperseconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -250,7 +250,7 @@ struct IntersperseConsumer<C, T> {
 
 - <span id="intersperseconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="intersperseconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="intersperseconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `IntersperseFolder<C, T>`
 
@@ -274,7 +274,7 @@ struct IntersperseFolder<C, T> {
 
 - <span id="interspersefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="interspersefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="interspersefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="interspersefolder-full"></span>`fn full(&self) -> bool`
 

@@ -30,27 +30,27 @@ struct Validator<'cmd> {
 
 #### Implementations
 
-- <span id="validator-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md)
+- <span id="validator-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md#command)
 
-- <span id="validator-validate"></span>`fn validate(&mut self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- <span id="validator-validate"></span>`fn validate(&mut self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Result`](../../error/index.md#result)
 
-- <span id="validator-validate-conflicts"></span>`fn validate_conflicts(&mut self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Conflicts`](#conflicts), [`Result`](../../error/index.md)
+- <span id="validator-validate-conflicts"></span>`fn validate_conflicts(&mut self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Conflicts`](#conflicts), [`Result`](../../error/index.md#result)
 
-- <span id="validator-validate-exclusive"></span>`fn validate_exclusive(&self, matcher: &ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- <span id="validator-validate-exclusive"></span>`fn validate_exclusive(&self, matcher: &ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Result`](../../error/index.md#result)
 
-- <span id="validator-build-conflict-err"></span>`fn build_conflict_err(&self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../util/id/index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- <span id="validator-build-conflict-err"></span>`fn build_conflict_err(&self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../util/id/index.md#id), [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Result`](../../error/index.md#result)
 
-- <span id="validator-build-conflict-err-usage"></span>`fn build_conflict_err_usage(&self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- <span id="validator-build-conflict-err-usage"></span>`fn build_conflict_err_usage(&self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Id`](../../util/id/index.md#id), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
 
-- <span id="validator-gather-requires"></span>`fn gather_requires(&mut self, matcher: &ArgMatcher)` — [`ArgMatcher`](../arg_matcher/index.md)
+- <span id="validator-gather-requires"></span>`fn gather_requires(&mut self, matcher: &ArgMatcher)` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher)
 
-- <span id="validator-validate-required"></span>`fn validate_required(&mut self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Conflicts`](#conflicts), [`Result`](../../error/index.md)
+- <span id="validator-validate-required"></span>`fn validate_required(&mut self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Conflicts`](#conflicts), [`Result`](../../error/index.md#result)
 
-- <span id="validator-is-missing-required-ok"></span>`fn is_missing_required_ok(&self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../builder/arg/index.md), [`Conflicts`](#conflicts)
+- <span id="validator-is-missing-required-ok"></span>`fn is_missing_required_ok(&self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../builder/arg/index.md#arg), [`Conflicts`](#conflicts)
 
-- <span id="validator-fails-arg-required-unless"></span>`fn fails_arg_required_unless(&self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../builder/arg/index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- <span id="validator-fails-arg-required-unless"></span>`fn fails_arg_required_unless(&self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../builder/arg/index.md#arg), [`ArgMatcher`](../arg_matcher/index.md#argmatcher)
 
-- <span id="validator-missing-required-error"></span>`fn missing_required_error(&self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`Result`](../../error/index.md)
+- <span id="validator-missing-required-error"></span>`fn missing_required_error(&self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md#argmatcher), [`Id`](../../util/id/index.md#id), [`Result`](../../error/index.md#result)
 
 ### `Conflicts`
 
@@ -64,11 +64,11 @@ struct Conflicts {
 
 #### Implementations
 
-- <span id="conflicts-with-args"></span>`fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../builder/command/index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- <span id="conflicts-with-args"></span>`fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../builder/command/index.md#command), [`ArgMatcher`](../arg_matcher/index.md#argmatcher)
 
-- <span id="conflicts-gather-conflicts"></span>`fn gather_conflicts(&self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../builder/command/index.md), [`Id`](../../util/id/index.md)
+- <span id="conflicts-gather-conflicts"></span>`fn gather_conflicts(&self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../builder/command/index.md#command), [`Id`](../../util/id/index.md#id)
 
-- <span id="conflicts-get-direct-conflicts"></span>`fn get_direct_conflicts(&self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../util/id/index.md)
+- <span id="conflicts-get-direct-conflicts"></span>`fn get_direct_conflicts(&self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../util/id/index.md#id)
 
 #### Trait Implementations
 

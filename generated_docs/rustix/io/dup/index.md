@@ -25,7 +25,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
+`O_*` constants for use with [`dup2`](../index.md).
 
 
 #### Implementations
@@ -52,7 +52,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md)
+- <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
 ##### `impl BitOrAssign for DupFlags`
 
@@ -70,7 +70,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Clone for DupFlags`
 
-- <span id="dupflags-clone"></span>`fn clone(&self) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md)
+- <span id="dupflags-clone"></span>`fn clone(&self) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
 ##### `impl Copy for DupFlags`
 
@@ -90,9 +90,9 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-type-bits"></span>`type Bits = u32`
 
-- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](../../backend/io/types/index.md)
+- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md#c-uint), [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
 ##### `impl FromIterator for DupFlags`
 
@@ -126,7 +126,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for DupFlags`
 
-- <span id="dupflags-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md)
+- <span id="dupflags-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
 ##### `impl PublicFlags for DupFlags`
 
@@ -164,7 +164,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -209,7 +209,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../index.md).
+support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

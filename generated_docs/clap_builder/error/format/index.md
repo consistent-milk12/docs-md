@@ -68,7 +68,7 @@ overhead for [`RichFormatter`](#richformatter).
 
 ##### `impl ErrorFormatter for KindFormatter`
 
-- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
 
 ### `RichFormatter`
 
@@ -86,7 +86,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md#error), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
 
 ### `Escape<'s>`
 

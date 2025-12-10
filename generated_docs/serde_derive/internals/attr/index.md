@@ -111,7 +111,7 @@ struct Attr<'c, T> {
 
 #### Implementations
 
-- <span id="attr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- <span id="attr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt), [`Symbol`](../symbol/index.md#symbol)
 
 - <span id="attr-set"></span>`fn set<A: ToTokens>(&mut self, obj: A, value: T)`
 
@@ -133,7 +133,7 @@ struct BoolAttr<'c>(Attr<'c, ()>);
 
 #### Implementations
 
-- <span id="boolattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- <span id="boolattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt), [`Symbol`](../symbol/index.md#symbol)
 
 - <span id="boolattr-set-true"></span>`fn set_true<A: ToTokens>(&mut self, obj: A)`
 
@@ -154,7 +154,7 @@ struct VecAttr<'c, T> {
 
 #### Implementations
 
-- <span id="vecattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- <span id="vecattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt), [`Symbol`](../symbol/index.md#symbol)
 
 - <span id="vecattr-insert"></span>`fn insert<A: ToTokens>(&mut self, obj: A, value: T)`
 
@@ -222,9 +222,9 @@ Represents struct or enum attribute information.
 
 #### Implementations
 
-- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../ctxt/index.md)
+- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt)
 
-- <span id="container-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="container-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md#multiname)
 
 - <span id="container-rename-all-rules"></span>`fn rename_all_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
@@ -284,11 +284,11 @@ Represents variant attribute information
 
 #### Implementations
 
-- <span id="variant-from-ast"></span>`fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../ctxt/index.md)
+- <span id="variant-from-ast"></span>`fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt)
 
-- <span id="variant-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="variant-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md#multiname)
 
-- <span id="variant-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="variant-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md#name)
 
 - <span id="variant-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
@@ -347,11 +347,11 @@ Represents field attribute information
 
 #### Implementations
 
-- <span id="field-from-ast"></span>`fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../ctxt/index.md), [`Variant`](#variant), [`Default`](#default)
+- <span id="field-from-ast"></span>`fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../ctxt/index.md#ctxt), [`Variant`](#variant), [`Default`](#default)
 
-- <span id="field-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="field-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md#multiname)
 
-- <span id="field-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="field-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md#name)
 
 - <span id="field-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
@@ -446,7 +446,7 @@ The different possible ways to change case of fields in a struct, or variants in
 
 #### Implementations
 
-- <span id="renamerule-from-str"></span>`fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md)
+- <span id="renamerule-from-str"></span>`fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md#parseerror)
 
 - <span id="renamerule-apply-to-variant"></span>`fn apply_to_variant(self, variant: &str) -> String`
 
@@ -458,13 +458,13 @@ The different possible ways to change case of fields in a struct, or variants in
 
 ##### `impl Clone for RenameRule`
 
-- <span id="renamerule-clone"></span>`fn clone(&self) -> RenameRule` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-clone"></span>`fn clone(&self) -> RenameRule` — [`RenameRule`](../case/index.md#renamerule)
 
 ##### `impl Copy for RenameRule`
 
 ##### `impl PartialEq for RenameRule`
 
-- <span id="renamerule-eq"></span>`fn eq(&self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-eq"></span>`fn eq(&self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md#renamerule)
 
 ##### `impl StructuralPartialEq for RenameRule`
 

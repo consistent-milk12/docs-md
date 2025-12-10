@@ -32,7 +32,7 @@ struct JSONReportHandler;
 
 ##### `impl Clone for JSONReportHandler`
 
-- <span id="jsonreporthandler-clone"></span>`fn clone(&self) -> JSONReportHandler` — [`JSONReportHandler`](../index.md)
+- <span id="jsonreporthandler-clone"></span>`fn clone(&self) -> JSONReportHandler` — [`JSONReportHandler`](../index.md#jsonreporthandler)
 
 ##### `impl Debug for JSONReportHandler`
 
@@ -46,7 +46,7 @@ struct JSONReportHandler;
 
 ##### `impl ReportHandler for JSONReportHandler`
 
-- <span id="jsonreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="jsonreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md#diagnostic)
 
 ### `Escape<'a>`
 

@@ -38,11 +38,11 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="once-len"></span>`fn len(&self) -> usize`
 
-- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Once<T>`
 
@@ -58,7 +58,7 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-type-item"></span>`type Item = T`
 
-- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="once-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

@@ -51,21 +51,21 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 
 - <span id="importtable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
-- <span id="importtable-descriptors"></span>`fn descriptors(&self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../../index.md), [`ImportDescriptorIterator`](../index.md)
+- <span id="importtable-descriptors"></span>`fn descriptors(&self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../../index.md#result), [`ImportDescriptorIterator`](../index.md#importdescriptoriterator)
 
-- <span id="importtable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="importtable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="importtable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md), [`ImportThunkList`](../index.md)
+- <span id="importtable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md#result), [`ImportThunkList`](../index.md#importthunklist)
 
-- <span id="importtable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md), [`Result`](../../../index.md), [`Import`](../index.md)
+- <span id="importtable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md#imagentheaders), [`Result`](../../../index.md#result), [`Import`](../index.md#import)
 
-- <span id="importtable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md)
+- <span id="importtable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImportTable<'data>`
 
-- <span id="importtable-clone"></span>`fn clone(&self) -> ImportTable<'data>` — [`ImportTable`](../index.md)
+- <span id="importtable-clone"></span>`fn clone(&self) -> ImportTable<'data>` — [`ImportTable`](../index.md#importtable)
 
 ##### `impl Debug for ImportTable<'data>`
 
@@ -86,13 +86,13 @@ A fallible iterator for the descriptors in the import data directory.
 
 #### Implementations
 
-- <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../../index.md), [`ImageImportDescriptor`](../../../pe/index.md)
+- <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../../index.md#result), [`ImageImportDescriptor`](../../../pe/index.md#imageimportdescriptor)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-clone"></span>`fn clone(&self) -> ImportDescriptorIterator<'data>` — [`ImportDescriptorIterator`](../index.md)
+- <span id="importdescriptoriterator-clone"></span>`fn clone(&self) -> ImportDescriptorIterator<'data>` — [`ImportDescriptorIterator`](../index.md#importdescriptoriterator)
 
 ##### `impl Debug for ImportDescriptorIterator<'data>`
 
@@ -128,15 +128,15 @@ These may be in the import lookup table, or the import address table.
 
 #### Implementations
 
-- <span id="importthunklist-get"></span>`fn get<Pe: ImageNtHeaders>(&self, index: usize) -> Result<<Pe as >::ImageThunkData>` — [`Result`](../../../index.md), [`ImageNtHeaders`](../index.md)
+- <span id="importthunklist-get"></span>`fn get<Pe: ImageNtHeaders>(&self, index: usize) -> Result<<Pe as >::ImageThunkData>` — [`Result`](../../../index.md#result), [`ImageNtHeaders`](../index.md#imagentheaders)
 
-- <span id="importthunklist-next"></span>`fn next<Pe: ImageNtHeaders>(&mut self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../../index.md), [`ImageNtHeaders`](../index.md)
+- <span id="importthunklist-next"></span>`fn next<Pe: ImageNtHeaders>(&mut self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../../index.md#result), [`ImageNtHeaders`](../index.md#imagentheaders)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImportThunkList<'data>`
 
-- <span id="importthunklist-clone"></span>`fn clone(&self) -> ImportThunkList<'data>` — [`ImportThunkList`](../index.md)
+- <span id="importthunklist-clone"></span>`fn clone(&self) -> ImportThunkList<'data>` — [`ImportThunkList`](../index.md#importthunklist)
 
 ##### `impl Debug for ImportThunkList<'data>`
 
@@ -163,21 +163,21 @@ Returned by
 
 - <span id="delayloadimporttable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
-- <span id="delayloadimporttable-descriptors"></span>`fn descriptors(&self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../../index.md), [`DelayLoadDescriptorIterator`](../index.md)
+- <span id="delayloadimporttable-descriptors"></span>`fn descriptors(&self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../../index.md#result), [`DelayLoadDescriptorIterator`](../index.md#delayloaddescriptoriterator)
 
-- <span id="delayloadimporttable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="delayloadimporttable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="delayloadimporttable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md), [`ImportThunkList`](../index.md)
+- <span id="delayloadimporttable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md#result), [`ImportThunkList`](../index.md#importthunklist)
 
-- <span id="delayloadimporttable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md), [`Result`](../../../index.md), [`Import`](../index.md)
+- <span id="delayloadimporttable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md#imagentheaders), [`Result`](../../../index.md#result), [`Import`](../index.md#import)
 
-- <span id="delayloadimporttable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md)
+- <span id="delayloadimporttable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for DelayLoadImportTable<'data>`
 
-- <span id="delayloadimporttable-clone"></span>`fn clone(&self) -> DelayLoadImportTable<'data>` — [`DelayLoadImportTable`](../index.md)
+- <span id="delayloadimporttable-clone"></span>`fn clone(&self) -> DelayLoadImportTable<'data>` — [`DelayLoadImportTable`](../index.md#delayloadimporttable)
 
 ##### `impl Debug for DelayLoadImportTable<'data>`
 
@@ -198,13 +198,13 @@ A fallible iterator for the descriptors in the delay-load data directory.
 
 #### Implementations
 
-- <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../../index.md), [`ImageDelayloadDescriptor`](../../../pe/index.md)
+- <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../../index.md#result), [`ImageDelayloadDescriptor`](../../../pe/index.md#imagedelayloaddescriptor)
 
 #### Trait Implementations
 
 ##### `impl Clone for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-clone"></span>`fn clone(&self) -> DelayLoadDescriptorIterator<'data>` — [`DelayLoadDescriptorIterator`](../index.md)
+- <span id="delayloaddescriptoriterator-clone"></span>`fn clone(&self) -> DelayLoadDescriptorIterator<'data>` — [`DelayLoadDescriptorIterator`](../index.md#delayloaddescriptoriterator)
 
 ##### `impl Debug for DelayLoadDescriptorIterator<'data>`
 
@@ -255,7 +255,7 @@ A parsed import thunk.
 
 ##### `impl Clone for Import<'data>`
 
-- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md)
+- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md#import)
 
 ##### `impl Copy for Import<'data>`
 
@@ -295,6 +295,6 @@ A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and
 
 #### Implementors
 
-- [`ImageThunkData32`](../../../pe/index.md)
-- [`ImageThunkData64`](../../../pe/index.md)
+- [`ImageThunkData32`](../../../pe/index.md#imagethunkdata32)
+- [`ImageThunkData64`](../../../pe/index.md#imagethunkdata64)
 

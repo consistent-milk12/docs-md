@@ -51,11 +51,11 @@ Refer to usage examples on the following two entry-points:
 
 #### Implementations
 
-- <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../error/index.md), [`ParseStream`](../parse/index.md)
+- <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../error/index.md#result), [`ParseStream`](../parse/index.md#parsestream)
 
-- <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../error/index.md)
+- <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../error/index.md#result)
 
-- <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../error/index.md)
+- <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../error/index.md#error)
 
 ## Functions
 

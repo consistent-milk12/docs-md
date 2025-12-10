@@ -42,11 +42,11 @@ Parallel iterator that moves out of an array.
 
 ##### `impl<T: Send, const N: usize> IndexedParallelIterator for IntoIter<T, N>`
 
-- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
-- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for IntoIter<T, N>`
 
@@ -62,7 +62,7 @@ Parallel iterator that moves out of an array.
 
 - <span id="intoiter-type-item"></span>`type Item = T`
 
-- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

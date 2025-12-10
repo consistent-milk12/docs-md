@@ -140,7 +140,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Clone for Errno`
 
-- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../backend/io/errno/index.md)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../backend/io/errno/index.md#errno)
 
 ##### `impl Copy for Errno`
 
@@ -162,7 +162,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl PartialEq for Errno`
 
-- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../backend/io/errno/index.md)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../backend/io/errno/index.md#errno)
 
 ##### `impl StructuralPartialEq for Errno`
 
@@ -233,7 +233,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -278,7 +278,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

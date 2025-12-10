@@ -32,6 +32,6 @@ trait IsStyled { ... }
 
 #### Implementors
 
-- [`Styled`](../../index.md)
+- [`Styled`](../../index.md#styled)
 - `&T`
 

@@ -139,7 +139,7 @@ grammar, there may be other tokens in between these two things.
 
 ##### `impl Parse for crate::generics::Generics`
 
-- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::Generics`
 
@@ -172,7 +172,7 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../lifetime/index.md)
+- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../lifetime/index.md#lifetime)
 
 #### Trait Implementations
 
@@ -192,7 +192,7 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 ##### `impl Parse for crate::generics::LifetimeParam`
 
-- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::LifetimeParam`
 
@@ -243,7 +243,7 @@ A generic type parameter: `T: Into<String>`.
 
 ##### `impl Parse for crate::generics::TypeParam`
 
-- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::TypeParam`
 
@@ -295,7 +295,7 @@ A const generic parameter: `const LENGTH: usize`.
 
 ##### `impl Parse for crate::generics::ConstParam`
 
-- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::ConstParam`
 
@@ -616,7 +616,7 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
 
-- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::BoundLifetimes`
 
@@ -659,7 +659,7 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 #### Trait Implementations
 
@@ -679,7 +679,7 @@ A trait used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TraitBound`
 
-- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::TraitBound`
 
@@ -729,7 +729,7 @@ use<'a, T>`.
 
 ##### `impl Parse for crate::generics::PreciseCapture`
 
-- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::PreciseCapture`
 
@@ -777,7 +777,7 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 ##### `impl Parse for crate::generics::WhereClause`
 
-- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::WhereClause`
 
@@ -950,7 +950,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::GenericParam`
 
-- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::GenericParam`
 
@@ -983,9 +983,9 @@ A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
-- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
+- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result), [`Punctuated`](../punctuated/index.md#punctuated), [`Plus`](../token/index.md#plus)
 
 #### Trait Implementations
 
@@ -1005,7 +1005,7 @@ A trait or lifetime used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TypeParamBound`
 
-- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::TypeParamBound`
 
@@ -1055,7 +1055,7 @@ A modifier on a trait bound, currently only used for the `?` in
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::TraitBoundModifier`
 
@@ -1115,7 +1115,7 @@ Single parameter in a precise capturing bound.
 
 ##### `impl Parse for crate::generics::CapturedParam`
 
-- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::CapturedParam`
 
@@ -1177,7 +1177,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::WherePredicate`
 
-- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::WherePredicate`
 

@@ -133,15 +133,15 @@ External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for Decompositions<I>`
 
-- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
@@ -171,17 +171,17 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
-- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
+- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md#streamsafe)
 
 ### `Recompositions<I>`
 
@@ -209,7 +209,7 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I: clone::Clone> Clone for Recompositions<I>`
 
-- <span id="recompositions-clone"></span>`fn clone(&self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="recompositions-clone"></span>`fn clone(&self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Recompositions<I>`
 
@@ -237,17 +237,17 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I> UnicodeNormalization for Recompositions<I>`
 
-- <span id="recompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="recompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="recompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="recompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="recompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="recompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="recompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="recompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="recompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="recompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
-- <span id="recompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
+- <span id="recompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md#streamsafe)
 
 ### `Replacements<I>`
 
@@ -264,13 +264,13 @@ External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for Replacements<I>`
 
-- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
@@ -300,17 +300,17 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
-- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
+- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md#streamsafe)
 
 ### `StreamSafe<I>`
 
@@ -353,17 +353,17 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- <span id="streamsafe-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="streamsafe-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="streamsafe-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- <span id="streamsafe-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md#decompositions)
 
-- <span id="streamsafe-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="streamsafe-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="streamsafe-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
+- <span id="streamsafe-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md#recompositions)
 
-- <span id="streamsafe-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
+- <span id="streamsafe-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md#replacements)
 
-- <span id="streamsafe-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
+- <span id="streamsafe-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md#streamsafe)
 
 ## Enums
 
@@ -410,7 +410,7 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 ##### `impl PartialEq for IsNormalized`
 
-- <span id="isnormalized-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](quick_check/index.md)
+- <span id="isnormalized-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](quick_check/index.md#isnormalized)
 
 ##### `impl StructuralPartialEq for IsNormalized`
 

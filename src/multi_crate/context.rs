@@ -1694,8 +1694,9 @@ impl LinkResolver for SingleCrateView<'_> {
             // Same file - just use anchor
             format!("#{}", slugify_anchor(display_name))
         } else {
-            // Different file - compute relative path within crate
-            LinkRegistry::compute_relative_path(current_local, target_path)
+            // Different file - compute relative path within crate and append anchor
+            let path = LinkRegistry::compute_relative_path(current_local, target_path);
+            format!("{}#{}", path, slugify_anchor(display_name))
         };
 
         Some(format!("[`{display_name}`]({relative_path})"))

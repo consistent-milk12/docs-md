@@ -57,7 +57,7 @@ See [`scope()`](#scope) for more information.
 
 #### Implementations
 
-- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md#workerthread), [`Registry`](../registry/index.md#registry)
 
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
@@ -100,7 +100,7 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Implementations
 
-- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md#workerthread), [`Registry`](../registry/index.md#registry)
 
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
@@ -164,13 +164,13 @@ struct ScopeBase<'scope> {
 
 #### Implementations
 
-- <span id="scopebase-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scopebase-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md#workerthread), [`Registry`](../registry/index.md#registry)
 
-- <span id="scopebase-heap-job-ref"></span>`fn heap_job_ref<FUNC>(&self, job: Box<HeapJob<FUNC>>) -> JobRef` — [`HeapJob`](../job/index.md), [`JobRef`](../job/index.md)
+- <span id="scopebase-heap-job-ref"></span>`fn heap_job_ref<FUNC>(&self, job: Box<HeapJob<FUNC>>) -> JobRef` — [`HeapJob`](../job/index.md#heapjob), [`JobRef`](../job/index.md#jobref)
 
-- <span id="scopebase-inject-broadcast"></span>`fn inject_broadcast<FUNC>(&self, job: Arc<ArcJob<FUNC>>)` — [`ArcJob`](../job/index.md)
+- <span id="scopebase-inject-broadcast"></span>`fn inject_broadcast<FUNC>(&self, job: Arc<ArcJob<FUNC>>)` — [`ArcJob`](../job/index.md#arcjob)
 
-- <span id="scopebase-complete"></span>`fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md)
+- <span id="scopebase-complete"></span>`fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md#workerthread)
 
 - <span id="scopebase-execute-job"></span>`unsafe fn execute_job<FUNC>(this: *const Self, func: FUNC)`
 

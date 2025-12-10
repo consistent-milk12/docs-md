@@ -27,13 +27,13 @@ The error type for `try_reserve` methods.
 
 #### Implementations
 
-- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../raw_vec/index.md)
+- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../raw_vec/index.md#tryreserveerrorkind)
 
 #### Trait Implementations
 
 ##### `impl Clone for TryReserveError`
 
-- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](../raw_vec/index.md)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](../raw_vec/index.md#tryreserveerror)
 
 ##### `impl Debug for TryReserveError`
 
@@ -47,7 +47,7 @@ The error type for `try_reserve` methods.
 
 ##### `impl PartialEq for TryReserveError`
 
-- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](../raw_vec/index.md)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](../raw_vec/index.md#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 
@@ -87,7 +87,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl Clone for TryReserveErrorKind`
 
-- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../raw_vec/index.md)
+- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../raw_vec/index.md#tryreserveerrorkind)
 
 ##### `impl Debug for TryReserveErrorKind`
 
@@ -97,7 +97,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl PartialEq for TryReserveErrorKind`
 
-- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../raw_vec/index.md)
+- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../raw_vec/index.md#tryreserveerrorkind)
 
 ##### `impl StructuralPartialEq for TryReserveErrorKind`
 

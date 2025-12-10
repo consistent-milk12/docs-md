@@ -48,7 +48,7 @@ struct IdentAny;
 
 ##### `impl Token for IdentAny`
 
-- <span id="identany-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
+- <span id="identany-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md#cursor)
 
 - <span id="identany-display"></span>`fn display() -> &'static str`
 
@@ -64,5 +64,5 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`Ident`](../../ident/index.md)
+- [`Ident`](../../ident/index.md#ident)
 

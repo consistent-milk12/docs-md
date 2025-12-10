@@ -70,7 +70,7 @@ Data structure sent to a `proc_macro_derive` macro.
 
 ##### `impl Parse for crate::derive::DeriveInput`
 
-- <span id="cratederivederiveinput-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- <span id="cratederivederiveinput-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
 ##### `impl PartialEq for crate::DeriveInput`
 

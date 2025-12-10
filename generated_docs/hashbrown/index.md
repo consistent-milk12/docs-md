@@ -107,7 +107,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md#defaulthashbuilder)
 
 ##### `impl Debug for DefaultHashBuilder`
 
@@ -115,7 +115,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Default for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md#defaulthashbuilder)
 
 ### `DefaultHasher`
 
@@ -133,7 +133,7 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 ##### `impl Clone for DefaultHasher`
 
-- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](hasher/index.md)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](hasher/index.md#defaulthasher)
 
 ##### `impl Hasher for DefaultHasher`
 
@@ -392,7 +392,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md)
+- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md#iter)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
@@ -515,31 +515,31 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
@@ -575,7 +575,7 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md)
+- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md#iter)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
@@ -585,11 +585,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
 ### `HashTable<T, A>`
 
@@ -665,7 +665,7 @@ doing this because it changes the runtime of hash table operations from
 
 - <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
+- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md#intoiter)
 
 ## Enums
 

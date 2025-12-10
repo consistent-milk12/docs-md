@@ -66,7 +66,7 @@ struct ImplRenderer<'a> {
 }
 ```
 
-*Defined in `src/generator/impls.rs:241-250`*
+*Defined in `src/generator/impls.rs:248-257`*
 
 Renders impl blocks to markdown.
 
@@ -95,7 +95,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
+- <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md#rendercontext)
 
 - <span id="implrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
@@ -141,7 +141,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 fn is_trivial_derive_impl(impl_block: &rustdoc_types::Impl) -> bool
 ```
 
-*Defined in `src/generator/impls.rs:113-123`*
+*Defined in `src/generator/impls.rs:113-127`*
 
 Check if an impl block is for a trivial derive trait.
 
@@ -162,7 +162,7 @@ use rustdoc_types::Impl;
 fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str>
 ```
 
-*Defined in `src/generator/impls.rs:129-138`*
+*Defined in `src/generator/impls.rs:133-142`*
 
 Get the description for a trivial derive trait.
 
@@ -174,7 +174,7 @@ Returns `None` if the trait is not in the trivial derives list.
 fn is_blanket_impl(impl_block: &rustdoc_types::Impl) -> bool
 ```
 
-*Defined in `src/generator/impls.rs:145-155`*
+*Defined in `src/generator/impls.rs:149-163`*
 
 Check if an impl block is for a blanket trait that should be filtered.
 
@@ -187,7 +187,7 @@ that add noise to documentation (From, Into, Any, Borrow, etc.).
 fn is_generic_type(ty: &rustdoc_types::Type) -> bool
 ```
 
-*Defined in `src/generator/impls.rs:180-210`*
+*Defined in `src/generator/impls.rs:188-218`*
 
 Check if a type is generic (contains a type parameter like `T`).
 
@@ -218,7 +218,7 @@ is_generic_type(&Type::ResolvedPath {
 fn generic_args_contain_generic(args: &rustdoc_types::GenericArgs) -> bool
 ```
 
-*Defined in `src/generator/impls.rs:213-229`*
+*Defined in `src/generator/impls.rs:221-236`*
 
 Check if generic args contain any generic type parameters.
 

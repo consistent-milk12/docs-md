@@ -63,7 +63,7 @@ where
 
 #### Implementations
 
-- <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md#result), [`LookupParser`](#lookupparser)
 
 #### Trait Implementations
 
@@ -136,9 +136,9 @@ where
 
 - <span id="pubstuffparser-type-entry"></span>`type Entry = Entry`
 
-- <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md#result), [`LookupParser`](#lookupparser)
 
-- <span id="pubstuffparser-parse-entry"></span>`fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md)
+- <span id="pubstuffparser-parse-entry"></span>`fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md#result)
 
 ## Traits
 
@@ -184,6 +184,6 @@ trait PubStuffEntry<R: Reader> { ... }
 
 #### Implementors
 
-- [`PubNamesEntry`](../index.md)
-- [`PubTypesEntry`](../index.md)
+- [`PubNamesEntry`](../index.md#pubnamesentry)
+- [`PubTypesEntry`](../index.md#pubtypesentry)
 

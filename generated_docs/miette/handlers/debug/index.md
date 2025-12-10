@@ -32,7 +32,7 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl Clone for DebugReportHandler`
 
-- <span id="debugreporthandler-clone"></span>`fn clone(&self) -> DebugReportHandler` — [`DebugReportHandler`](../index.md)
+- <span id="debugreporthandler-clone"></span>`fn clone(&self) -> DebugReportHandler` — [`DebugReportHandler`](../index.md#debugreporthandler)
 
 ##### `impl Debug for DebugReportHandler`
 
@@ -46,5 +46,5 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl ReportHandler for DebugReportHandler`
 
-- <span id="debugreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="debugreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md#diagnostic)
 

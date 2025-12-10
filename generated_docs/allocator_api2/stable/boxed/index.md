@@ -179,11 +179,11 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-pin"></span>`fn pin(x: T) -> Pin<Box<T>>` — [`Box`](#box)
 
-- <span id="box-try-new"></span>`fn try_new(x: T) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md)
+- <span id="box-try-new"></span>`fn try_new(x: T) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md#allocerror)
 
-- <span id="box-try-new-uninit"></span>`fn try_new_uninit() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
+- <span id="box-try-new-uninit"></span>`fn try_new_uninit() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md#allocerror)
 
-- <span id="box-try-new-zeroed"></span>`fn try_new_zeroed() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
+- <span id="box-try-new-zeroed"></span>`fn try_new_zeroed() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md#allocerror)
 
 #### Trait Implementations
 

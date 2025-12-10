@@ -37,11 +37,11 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 
 #### Implementations
 
-- <span id="noteiterator-new"></span>`fn new(endian: <Elf as >::Endian, align: <Elf as >::Word, data: &'data [u8]) -> read::Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="noteiterator-new"></span>`fn new(endian: <Elf as >::Endian, align: <Elf as >::Word, data: &'data [u8]) -> read::Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
-- <span id="noteiterator-next"></span>`fn next(&mut self) -> read::Result<Option<Note<'data, Elf>>>` — [`Result`](../../../index.md), [`Note`](../index.md)
+- <span id="noteiterator-next"></span>`fn next(&mut self) -> read::Result<Option<Note<'data, Elf>>>` — [`Result`](../../../index.md#result), [`Note`](../index.md#note)
 
-- <span id="noteiterator-parse"></span>`fn parse(&mut self) -> read::Result<Note<'data, Elf>>` — [`Result`](../../../index.md), [`Note`](../index.md)
+- <span id="noteiterator-parse"></span>`fn parse(&mut self) -> read::Result<Note<'data, Elf>>` — [`Result`](../../../index.md#result), [`Note`](../index.md#note)
 
 #### Trait Implementations
 
@@ -81,11 +81,11 @@ A parsed [`NoteHeader`](../index.md).
 
 #### Implementations
 
-- <span id="note-n-type"></span>`fn n_type(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md)
+- <span id="note-n-type"></span>`fn n_type(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="note-n-namesz"></span>`fn n_namesz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md)
+- <span id="note-n-namesz"></span>`fn n_namesz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="note-n-descsz"></span>`fn n_descsz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md)
+- <span id="note-n-descsz"></span>`fn n_descsz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md#fileheader)
 
 - <span id="note-name-bytes"></span>`fn name_bytes(&self) -> &'data [u8]`
 
@@ -93,7 +93,7 @@ A parsed [`NoteHeader`](../index.md).
 
 - <span id="note-desc"></span>`fn desc(&self) -> &'data [u8]`
 
-- <span id="note-gnu-properties"></span>`fn gnu_properties(&self, endian: <Elf as >::Endian) -> Option<GnuPropertyIterator<'data, <Elf as >::Endian>>` — [`FileHeader`](../index.md), [`GnuPropertyIterator`](../index.md)
+- <span id="note-gnu-properties"></span>`fn gnu_properties(&self, endian: <Elf as >::Endian) -> Option<GnuPropertyIterator<'data, <Elf as >::Endian>>` — [`FileHeader`](../index.md#fileheader), [`GnuPropertyIterator`](../index.md#gnupropertyiterator)
 
 #### Trait Implementations
 
@@ -119,9 +119,9 @@ Returned by `Note::gnu_properties`.
 
 #### Implementations
 
-- <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> read::Result<Option<GnuProperty<'data>>>` — [`Result`](../../../index.md), [`GnuProperty`](../index.md)
+- <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> read::Result<Option<GnuProperty<'data>>>` — [`Result`](../../../index.md#result), [`GnuProperty`](../index.md#gnuproperty)
 
-- <span id="gnupropertyiterator-parse"></span>`fn parse(&mut self) -> read::Result<GnuProperty<'data>>` — [`Result`](../../../index.md), [`GnuProperty`](../index.md)
+- <span id="gnupropertyiterator-parse"></span>`fn parse(&mut self) -> read::Result<GnuProperty<'data>>` — [`Result`](../../../index.md#result), [`GnuProperty`](../index.md#gnuproperty)
 
 #### Trait Implementations
 
@@ -162,7 +162,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
 - <span id="gnuproperty-pr-data"></span>`fn pr_data(&self) -> &'data [u8]`
 
-- <span id="gnuproperty-data-u32"></span>`fn data_u32<E: endian::Endian>(&self, endian: E) -> read::Result<u32>` — [`Result`](../../../index.md)
+- <span id="gnuproperty-data-u32"></span>`fn data_u32<E: endian::Endian>(&self, endian: E) -> read::Result<u32>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
@@ -196,6 +196,6 @@ A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [
 
 #### Implementors
 
-- [`NoteHeader32`](../../../elf/index.md)
-- [`NoteHeader64`](../../../elf/index.md)
+- [`NoteHeader32`](../../../elf/index.md#noteheader32)
+- [`NoteHeader64`](../../../elf/index.md#noteheader64)
 

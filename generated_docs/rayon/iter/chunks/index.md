@@ -46,11 +46,11 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<I> IndexedParallelIterator for Chunks<I>`
 
-- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chunks-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Chunks<I>`
 
@@ -66,7 +66,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 - <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
-- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -125,7 +125,7 @@ struct ChunkProducer<P, F> {
 
 - <span id="chunkproducer-type-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
 
-- <span id="chunkproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="chunkproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="chunkproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

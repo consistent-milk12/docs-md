@@ -136,23 +136,23 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../util/primitives/index.md)
+- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../util/primitives/index.md#patternid)
 
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
 - <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
 
-- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
+- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md#patternid), [`BuildError`](error/index.md#builderror)
 
-- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
+- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md#patternid), [`BuildError`](error/index.md#builderror)
 
-- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -270,25 +270,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](regex/index.md)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](regex/index.md#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](regex/index.md), [`Builder`](regex/index.md)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](regex/index.md#config), [`Builder`](regex/index.md#builder)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](regex/index.md)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md#config), [`Builder`](regex/index.md#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](regex/index.md)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](regex/index.md#builder)
 
 ##### `impl Debug for Builder`
 
@@ -358,9 +358,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="cache-new"></span>`fn new(re: &Regex) -> Cache` — [`Regex`](regex/index.md), [`Cache`](regex/index.md)
+- <span id="cache-new"></span>`fn new(re: &Regex) -> Cache` — [`Regex`](regex/index.md#regex), [`Cache`](regex/index.md#cache)
 
-- <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](regex/index.md)
+- <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](regex/index.md#regex)
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -368,7 +368,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Cache`
 
-- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](regex/index.md)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](regex/index.md#cache)
 
 ##### `impl Debug for Cache`
 
@@ -402,9 +402,9 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
-- <span id="capturesmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md)
+- <span id="capturesmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md#regex)
 
-- <span id="capturesmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
+- <span id="capturesmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md#input)
 
 #### Trait Implementations
 
@@ -426,7 +426,7 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 - <span id="capturesmatches-type-item"></span>`type Item = Captures`
 
-- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../util/captures/index.md)
+- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../util/captures/index.md#captures)
 
 - <span id="capturesmatches-count"></span>`fn count(self) -> usize`
 
@@ -482,49 +482,49 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="config-new"></span>`fn new() -> Config` — [`Config`](regex/index.md)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](regex/index.md)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md#matchkind), [`Config`](regex/index.md#config)
 
-- <span id="config-utf8-empty"></span>`fn utf8_empty(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-utf8-empty"></span>`fn utf8_empty(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-auto-prefilter"></span>`fn auto_prefilter(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-auto-prefilter"></span>`fn auto_prefilter(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](regex/index.md)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md#prefilter), [`Config`](regex/index.md#config)
 
-- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/compiler/index.md), [`Config`](regex/index.md)
+- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/compiler/index.md#whichcaptures), [`Config`](regex/index.md#config)
 
-- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-onepass-size-limit"></span>`fn onepass_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- <span id="config-onepass-size-limit"></span>`fn onepass_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-hybrid-cache-capacity"></span>`fn hybrid_cache_capacity(self, limit: usize) -> Config` — [`Config`](regex/index.md)
+- <span id="config-hybrid-cache-capacity"></span>`fn hybrid_cache_capacity(self, limit: usize) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-dfa-size-limit"></span>`fn dfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- <span id="config-dfa-size-limit"></span>`fn dfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-dfa-state-limit"></span>`fn dfa_state_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- <span id="config-dfa-state-limit"></span>`fn dfa_state_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-line-terminator"></span>`fn line_terminator(self, byte: u8) -> Config` — [`Config`](regex/index.md)
+- <span id="config-line-terminator"></span>`fn line_terminator(self, byte: u8) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-hybrid"></span>`fn hybrid(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-hybrid"></span>`fn hybrid(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-dfa"></span>`fn dfa(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-dfa"></span>`fn dfa(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-onepass"></span>`fn onepass(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-onepass"></span>`fn onepass(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-backtrack"></span>`fn backtrack(self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- <span id="config-backtrack"></span>`fn backtrack(self, yes: bool) -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../index.md#matchkind)
 
 - <span id="config-get-utf8-empty"></span>`fn get_utf8_empty(&self) -> bool`
 
 - <span id="config-get-auto-prefilter"></span>`fn get_auto_prefilter(&self) -> bool`
 
-- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md#prefilter)
 
-- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/compiler/index.md)
+- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/compiler/index.md#whichcaptures)
 
 - <span id="config-get-nfa-size-limit"></span>`fn get_nfa_size_limit(&self) -> Option<usize>`
 
@@ -548,13 +548,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-get-backtrack"></span>`fn get_backtrack(&self) -> bool`
 
-- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](regex/index.md)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](regex/index.md#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](regex/index.md)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](regex/index.md#config)
 
 ##### `impl Debug for Config`
 
@@ -562,7 +562,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Config`
 
-- <span id="config-default"></span>`fn default() -> Config` — [`Config`](regex/index.md)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](regex/index.md#config)
 
 ### `FindMatches<'r, 'h>`
 
@@ -589,9 +589,9 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
-- <span id="findmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md)
+- <span id="findmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md#regex)
 
-- <span id="findmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
+- <span id="findmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md#input)
 
 #### Trait Implementations
 
@@ -613,7 +613,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - <span id="findmatches-type-item"></span>`type Item = Match`
 
-- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md#match)
 
 - <span id="findmatches-count"></span>`fn count(self) -> usize`
 
@@ -843,19 +843,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md#regex), [`BuildError`](error/index.md#builderror)
 
-- <span id="regex-config"></span>`fn config() -> Config` — [`Config`](regex/index.md)
+- <span id="regex-config"></span>`fn config() -> Config` — [`Config`](regex/index.md#config)
 
-- <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](regex/index.md)
+- <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](regex/index.md#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Regex`
 
-- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](regex/index.md)
+- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](regex/index.md#regex)
 
 ##### `impl Debug for Regex`
 
@@ -885,7 +885,7 @@ This iterator can be created with the `Regex::split` method.
 
 #### Implementations
 
-- <span id="split-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
+- <span id="split-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md#input)
 
 #### Trait Implementations
 
@@ -907,7 +907,7 @@ This iterator can be created with the `Regex::split` method.
 
 - <span id="split-type-item"></span>`type Item = Span`
 
-- <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md)
+- <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md#span)
 
 ### `SplitN<'r, 'h>`
 
@@ -934,7 +934,7 @@ This iterator can be created with the `Regex::splitn` method.
 
 #### Implementations
 
-- <span id="splitn-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
+- <span id="splitn-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md#input)
 
 #### Trait Implementations
 
@@ -956,7 +956,7 @@ This iterator can be created with the `Regex::splitn` method.
 
 - <span id="splitn-type-item"></span>`type Item = Span`
 
-- <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md)
+- <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md#span)
 
 - <span id="splitn-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

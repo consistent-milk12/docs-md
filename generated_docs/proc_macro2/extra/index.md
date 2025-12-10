@@ -27,19 +27,19 @@ struct DelimSpan {
 
 *Defined in [`proc-macro2-1.0.103/src/extra.rs:82-85`](../../../.source_1765210505/proc-macro2-1.0.103/src/extra.rs#L82-L85)*
 
-An object that holds a [`Group`](../index.md)'s `span_open()` and `span_close()` together
+An object that holds a [`Group`](../imp/index.md)'s `span_open()` and `span_close()` together
 in a more compact representation than holding those 2 spans individually.
 
 
 #### Implementations
 
-- <span id="delimspan-new"></span>`fn new(group: &imp::Group) -> Self` — [`Group`](../imp/index.md)
+- <span id="delimspan-new"></span>`fn new(group: &imp::Group) -> Self` — [`Group`](../imp/index.md#group)
 
-- <span id="delimspan-join"></span>`fn join(&self) -> Span` — [`Span`](../index.md)
+- <span id="delimspan-join"></span>`fn join(&self) -> Span` — [`Span`](../index.md#span)
 
-- <span id="delimspan-open"></span>`fn open(&self) -> Span` — [`Span`](../index.md)
+- <span id="delimspan-open"></span>`fn open(&self) -> Span` — [`Span`](../index.md#span)
 
-- <span id="delimspan-close"></span>`fn close(&self) -> Span` — [`Span`](../index.md)
+- <span id="delimspan-close"></span>`fn close(&self) -> Span` — [`Span`](../index.md#span)
 
 #### Trait Implementations
 

@@ -39,11 +39,11 @@ struct Version {
 
 ##### `impl PartialEq for crate::version::Version`
 
-- <span id="crateversionversion-eq"></span>`fn eq(&self, rhs: &Bound) -> bool` — [`Bound`](../bound/index.md)
+- <span id="crateversionversion-eq"></span>`fn eq(&self, rhs: &Bound) -> bool` — [`Bound`](../bound/index.md#bound)
 
 ##### `impl PartialOrd for crate::version::Version`
 
-- <span id="crateversionversion-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](../bound/index.md)
+- <span id="crateversionversion-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](../bound/index.md#bound)
 
 ##### `impl StructuralPartialEq for Version`
 

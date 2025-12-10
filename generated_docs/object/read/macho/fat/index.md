@@ -71,7 +71,7 @@ struct FatArch32 {
 
 ##### `impl Clone for FatArch32`
 
-- <span id="fatarch32-clone"></span>`fn clone(&self) -> FatArch32` — [`FatArch32`](../../../macho/index.md)
+- <span id="fatarch32-clone"></span>`fn clone(&self) -> FatArch32` — [`FatArch32`](../../../macho/index.md#fatarch32)
 
 ##### `impl Copy for FatArch32`
 
@@ -89,9 +89,9 @@ struct FatArch32 {
 
 - <span id="fatarch32-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md#fatarch)
 
-- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md#fatarch)
 
 - <span id="fatarch32-align"></span>`fn align(&self) -> u32`
 
@@ -142,7 +142,7 @@ struct FatArch64 {
 
 ##### `impl Clone for FatArch64`
 
-- <span id="fatarch64-clone"></span>`fn clone(&self) -> FatArch64` — [`FatArch64`](../../../macho/index.md)
+- <span id="fatarch64-clone"></span>`fn clone(&self) -> FatArch64` — [`FatArch64`](../../../macho/index.md#fatarch64)
 
 ##### `impl Copy for FatArch64`
 
@@ -160,9 +160,9 @@ struct FatArch64 {
 
 - <span id="fatarch64-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md#fatarch)
 
-- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md#fatarch)
 
 - <span id="fatarch64-align"></span>`fn align(&self) -> u32`
 
@@ -193,7 +193,7 @@ struct FatHeader {
 
 ##### `impl Clone for FatHeader`
 
-- <span id="fatheader-clone"></span>`fn clone(&self) -> FatHeader` — [`FatHeader`](../../../macho/index.md)
+- <span id="fatheader-clone"></span>`fn clone(&self) -> FatHeader` — [`FatHeader`](../../../macho/index.md#fatheader)
 
 ##### `impl Copy for FatHeader`
 
@@ -221,9 +221,9 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 
 #### Implementations
 
-- <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
-- <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../../macho/index.md)
+- <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../../macho/index.md#fatheader)
 
 - <span id="machofatfile-arches"></span>`fn arches(&self) -> &'data [Fat]`
 
@@ -231,7 +231,7 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 
 ##### `impl<'data, Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
 
-- <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](../index.md)
+- <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](../index.md#machofatfile)
 
 ##### `impl<'data, Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
 
@@ -279,8 +279,8 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 
 #### Implementors
 
-- [`FatArch32`](../../../macho/index.md)
-- [`FatArch64`](../../../macho/index.md)
+- [`FatArch32`](../../../macho/index.md#fatarch32)
+- [`FatArch64`](../../../macho/index.md#fatarch64)
 
 ## Type Aliases
 

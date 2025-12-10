@@ -22,8 +22,8 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`IoRead`](../index.md)
-- [`SliceRead`](../index.md)
-- [`StrRead`](../index.md)
+- [`IoRead`](../index.md#ioread)
+- [`SliceRead`](../index.md#sliceread)
+- [`StrRead`](../index.md#strread)
 - `&mut R`
 

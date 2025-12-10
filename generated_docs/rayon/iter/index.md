@@ -439,7 +439,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<I: clone::Clone> Clone for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md)
+- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md#exponentialblocks)
 
 ##### `impl<I: fmt::Debug> Debug for ExponentialBlocks<I>`
 
@@ -459,7 +459,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 - <span id="exponentialblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ExponentialBlocks<I>`
 
@@ -500,7 +500,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<I: clone::Clone> Clone for UniformBlocks<I>`
 
-- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md)
+- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md#uniformblocks)
 
 ##### `impl<I: fmt::Debug> Debug for UniformBlocks<I>`
 
@@ -520,7 +520,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 - <span id="uniformblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for UniformBlocks<I>`
 
@@ -559,7 +559,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Chain<A, B>`
 
-- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](chain/index.md)
+- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](chain/index.md#chain)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Chain<A, B>`
 
@@ -567,11 +567,11 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 ##### `impl<A, B> IndexedParallelIterator for Chain<A, B>`
 
-- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chain-len"></span>`fn len(&self) -> usize`
 
-- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Chain<A, B>`
 
@@ -587,7 +587,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 - <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
-- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -629,7 +629,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 ##### `impl<I: clone::Clone> Clone for Chunks<I>`
 
-- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](chunks/index.md)
+- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](chunks/index.md#chunks)
 
 ##### `impl<I: fmt::Debug> Debug for Chunks<I>`
 
@@ -637,11 +637,11 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 ##### `impl<I> IndexedParallelIterator for Chunks<I>`
 
-- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chunks-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Chunks<I>`
 
@@ -657,7 +657,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 - <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
-- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -698,7 +698,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: clone::Clone> Clone for Cloned<I>`
 
-- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](cloned/index.md)
+- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](cloned/index.md#cloned)
 
 ##### `impl<I: fmt::Debug> Debug for Cloned<I>`
 
@@ -706,11 +706,11 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
 
-- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="cloned-len"></span>`fn len(&self) -> usize`
 
-- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Cloned<I>`
 
@@ -726,7 +726,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-type-item"></span>`type Item = T`
 
-- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -767,7 +767,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: clone::Clone> Clone for Copied<I>`
 
-- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](copied/index.md)
+- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](copied/index.md#copied)
 
 ##### `impl<I: fmt::Debug> Debug for Copied<I>`
 
@@ -775,11 +775,11 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<'a, T, I> IndexedParallelIterator for Copied<I>`
 
-- <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="copied-len"></span>`fn len(&self) -> usize`
 
-- <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Copied<I>`
 
@@ -795,7 +795,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-type-item"></span>`type Item = T`
 
-- <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="copied-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -838,11 +838,11 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T: Send> IndexedParallelIterator for Empty<T>`
 
-- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="empty-len"></span>`fn len(&self) -> usize`
 
-- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Empty<T>`
 
@@ -858,7 +858,7 @@ Iterator adaptor for [the `empty()` function].
 
 - <span id="empty-type-item"></span>`type Item = T`
 
-- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="empty-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -898,7 +898,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone> Clone for Enumerate<I>`
 
-- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md)
+- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md#enumerate)
 
 ##### `impl<I: fmt::Debug> Debug for Enumerate<I>`
 
@@ -906,11 +906,11 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I> IndexedParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="enumerate-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="enumerate-len"></span>`fn len(&self) -> usize`
 
-- <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Enumerate<I>`
 
@@ -926,7 +926,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
-- <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="enumerate-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -967,7 +967,7 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Filter<I, P>`
 
-- <span id="filter-clone"></span>`fn clone(&self) -> Filter<I, P>` — [`Filter`](filter/index.md)
+- <span id="filter-clone"></span>`fn clone(&self) -> Filter<I, P>` — [`Filter`](filter/index.md#filter)
 
 ##### `impl<I: Debug, P> Debug for Filter<I, P>`
 
@@ -987,7 +987,7 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 - <span id="filter-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Filter<I, P>`
 
@@ -1026,7 +1026,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for FilterMap<I, P>`
 
-- <span id="filtermap-clone"></span>`fn clone(&self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md)
+- <span id="filtermap-clone"></span>`fn clone(&self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md#filtermap)
 
 ##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 
@@ -1046,7 +1046,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 - <span id="filtermap-type-item"></span>`type Item = R`
 
-- <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FilterMap<I, P>`
 
@@ -1085,7 +1085,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMap<I, F>`
 
-- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md)
+- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md#flatmap)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
@@ -1105,7 +1105,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 - <span id="flatmap-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
-- <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FlatMap<I, F>`
 
@@ -1144,7 +1144,7 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-clone"></span>`fn clone(&self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md)
+- <span id="flatmapiter-clone"></span>`fn clone(&self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md#flatmapiter)
 
 ##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 
@@ -1164,7 +1164,7 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 - <span id="flatmapiter-type-item"></span>`type Item = <SI as IntoIterator>::Item`
 
-- <span id="flatmapiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="flatmapiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FlatMapIter<I, F>`
 
@@ -1202,7 +1202,7 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 ##### `impl<I: clone::Clone> Clone for Flatten<I>`
 
-- <span id="flatten-clone"></span>`fn clone(&self) -> Flatten<I>` — [`Flatten`](flatten/index.md)
+- <span id="flatten-clone"></span>`fn clone(&self) -> Flatten<I>` — [`Flatten`](flatten/index.md#flatten)
 
 ##### `impl<I: fmt::Debug> Debug for Flatten<I>`
 
@@ -1222,7 +1222,7 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
-- <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Flatten<I>`
 
@@ -1260,7 +1260,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<I: clone::Clone> Clone for FlattenIter<I>`
 
-- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md)
+- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md#flatteniter)
 
 ##### `impl<I: fmt::Debug> Debug for FlattenIter<I>`
 
@@ -1280,7 +1280,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
-- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FlattenIter<I>`
 
@@ -1320,7 +1320,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for Fold<I, ID, F>`
 
-- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md)
+- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md#fold)
 
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
@@ -1340,7 +1340,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 - <span id="fold-type-item"></span>`type Item = U`
 
-- <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Fold<I, ID, F>`
 
@@ -1380,7 +1380,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldWith<I, U, F>`
 
-- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md)
+- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md#foldwith)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
@@ -1400,7 +1400,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 - <span id="foldwith-type-item"></span>`type Item = U`
 
-- <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FoldWith<I, U, F>`
 
@@ -1443,7 +1443,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md)
+- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md#foldchunks)
 
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
@@ -1453,9 +1453,9 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-len"></span>`fn len(&self) -> usize`
 
-- <span id="foldchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="foldchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for FoldChunks<I, ID, F>`
 
@@ -1471,7 +1471,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-type-item"></span>`type Item = U`
 
-- <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="foldchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1516,7 +1516,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-clone"></span>`fn clone(&self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md)
+- <span id="foldchunkswith-clone"></span>`fn clone(&self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md#foldchunkswith)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 
@@ -1526,9 +1526,9 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-len"></span>`fn len(&self) -> usize`
 
-- <span id="foldchunkswith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="foldchunkswith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for FoldChunksWith<I, U, F>`
 
@@ -1544,7 +1544,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-type-item"></span>`type Item = U`
 
-- <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="foldchunkswith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1587,7 +1587,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Inspect<I, F>`
 
-- <span id="inspect-clone"></span>`fn clone(&self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md)
+- <span id="inspect-clone"></span>`fn clone(&self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md#inspect)
 
 ##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 
@@ -1595,11 +1595,11 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 ##### `impl<I, F> IndexedParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="inspect-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="inspect-len"></span>`fn len(&self) -> usize`
 
-- <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Inspect<I, F>`
 
@@ -1615,7 +1615,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 - <span id="inspect-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="inspect-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1657,7 +1657,7 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for Interleave<I, J>`
 
-- <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md)
+- <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md#interleave)
 
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for Interleave<I, J>`
 
@@ -1665,11 +1665,11 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 ##### `impl<I, J> IndexedParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleave-len"></span>`fn len(&self) -> usize`
 
-- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Interleave<I, J>`
 
@@ -1685,7 +1685,7 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 - <span id="interleave-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleave-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1729,7 +1729,7 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md)
+- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md#interleaveshortest)
 
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for InterleaveShortest<I, J>`
 
@@ -1737,11 +1737,11 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I, J> IndexedParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="interleaveshortest-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleaveshortest-len"></span>`fn len(&self) -> usize`
 
-- <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for InterleaveShortest<I, J>`
 
@@ -1757,7 +1757,7 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleaveshortest-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1801,7 +1801,7 @@ item of the adapted iterator.  This struct is created by the
 
 ##### `impl<I> Clone for Intersperse<I>`
 
-- <span id="intersperse-clone"></span>`fn clone(&self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md)
+- <span id="intersperse-clone"></span>`fn clone(&self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md#intersperse)
 
 ##### `impl<I> Debug for Intersperse<I>`
 
@@ -1809,11 +1809,11 @@ item of the adapted iterator.  This struct is created by the
 
 ##### `impl<I> IndexedParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="intersperse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="intersperse-len"></span>`fn len(&self) -> usize`
 
-- <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Intersperse<I>`
 
@@ -1829,7 +1829,7 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="intersperse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1870,7 +1870,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MaxLen<I>`
 
-- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](len/index.md)
+- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](len/index.md#maxlen)
 
 ##### `impl<I: fmt::Debug> Debug for MaxLen<I>`
 
@@ -1878,11 +1878,11 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I> IndexedParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="maxlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="maxlen-len"></span>`fn len(&self) -> usize`
 
-- <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MaxLen<I>`
 
@@ -1898,7 +1898,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="maxlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -1939,7 +1939,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MinLen<I>`
 
-- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](len/index.md)
+- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](len/index.md#minlen)
 
 ##### `impl<I: fmt::Debug> Debug for MinLen<I>`
 
@@ -1947,11 +1947,11 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I> IndexedParallelIterator for MinLen<I>`
 
-- <span id="minlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="minlen-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="minlen-len"></span>`fn len(&self) -> usize`
 
-- <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MinLen<I>`
 
@@ -1967,7 +1967,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="minlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2009,7 +2009,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Map<I, F>`
 
-- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](map/index.md)
+- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](map/index.md#map)
 
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 
@@ -2017,11 +2017,11 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 ##### `impl<I, F, R> IndexedParallelIterator for Map<I, F>`
 
-- <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="map-len"></span>`fn len(&self) -> usize`
 
-- <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Map<I, F>`
 
@@ -2037,7 +2037,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-type-item"></span>`type Item = <F as FnOnce>::Output`
 
-- <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="map-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2080,7 +2080,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone, INIT: clone::Clone, F: clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md)
+- <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md#mapinit)
 
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
@@ -2088,11 +2088,11 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I, INIT, T, F, R> IndexedParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="mapinit-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="mapinit-len"></span>`fn len(&self) -> usize`
 
-- <span id="mapinit-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="mapinit-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MapInit<I, INIT, F>`
 
@@ -2108,7 +2108,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-type-item"></span>`type Item = R`
 
-- <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="mapinit-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2151,7 +2151,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone, T: clone::Clone, F: clone::Clone> Clone for MapWith<I, T, F>`
 
-- <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md)
+- <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md#mapwith)
 
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
@@ -2159,11 +2159,11 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I, T, F, R> IndexedParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="mapwith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="mapwith-len"></span>`fn len(&self) -> usize`
 
-- <span id="mapwith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="mapwith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MapWith<I, T, F>`
 
@@ -2179,7 +2179,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 - <span id="mapwith-type-item"></span>`type Item = R`
 
-- <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="mapwith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2286,7 +2286,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T: clone::Clone> Clone for MultiZip<T>`
 
-- <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md)
+- <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md#multizip)
 
 ##### `impl<T: fmt::Debug> Debug for MultiZip<T>`
 
@@ -2294,11 +2294,11 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="multizip-len"></span>`fn len(&self) -> usize`
 
-- <span id="multizip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="multizip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for MultiZip<T>`
 
@@ -2314,7 +2314,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
-- <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="multizip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2349,7 +2349,7 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: clone::Clone> Clone for Once<T>`
 
-- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](once/index.md)
+- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](once/index.md#once)
 
 ##### `impl<T: fmt::Debug> Debug for Once<T>`
 
@@ -2357,11 +2357,11 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="once-len"></span>`fn len(&self) -> usize`
 
-- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Once<T>`
 
@@ -2377,7 +2377,7 @@ Iterator adaptor for [the `once()` function].
 
 - <span id="once-type-item"></span>`type Item = T`
 
-- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="once-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2413,13 +2413,13 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 #### Implementations
 
-- <span id="panicfuse-new"></span>`fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
+- <span id="panicfuse-new"></span>`fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md#panicfuse)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for PanicFuse<I>`
 
-- <span id="panicfuse-clone"></span>`fn clone(&self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
+- <span id="panicfuse-clone"></span>`fn clone(&self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md#panicfuse)
 
 ##### `impl<I: fmt::Debug> Debug for PanicFuse<I>`
 
@@ -2427,11 +2427,11 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 ##### `impl<I> IndexedParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="panicfuse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="panicfuse-len"></span>`fn len(&self) -> usize`
 
-- <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for PanicFuse<I>`
 
@@ -2447,7 +2447,7 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 - <span id="panicfuse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="panicfuse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2484,7 +2484,7 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 ##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
-- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md)
+- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md#iterbridge)
 
 ##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
@@ -2504,7 +2504,7 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for IterBridge<Iter>`
 
@@ -2545,7 +2545,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Positions<I, P>`
 
-- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](positions/index.md)
+- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](positions/index.md#positions)
 
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
@@ -2565,7 +2565,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-type-item"></span>`type Item = usize`
 
-- <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Positions<I, P>`
 
@@ -2596,15 +2596,15 @@ Iterator adaptor for [the `repeat()` function].
 
 #### Implementations
 
-- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
+- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md#repeatn)
 
-- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md), [`RepeatN`](repeat/index.md), [`IntoParallelIterator`](#intoparalleliterator)
+- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md#zip), [`RepeatN`](repeat/index.md#repeatn), [`IntoParallelIterator`](#intoparalleliterator)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for Repeat<T>`
 
-- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](repeat/index.md)
+- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](repeat/index.md#repeat)
 
 ##### `impl<T: fmt::Debug> Debug for Repeat<T>`
 
@@ -2624,7 +2624,7 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-type-item"></span>`type Item = T`
 
-- <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
@@ -2657,7 +2657,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T: clone::Clone> Clone for RepeatN<T>`
 
-- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
+- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md#repeatn)
 
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
@@ -2665,9 +2665,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IndexedParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="repeatn-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="repeatn-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="repeatn-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 - <span id="repeatn-len"></span>`fn len(&self) -> usize`
 
@@ -2685,7 +2685,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 - <span id="repeatn-type-item"></span>`type Item = T`
 
-- <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="repeatn-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2725,7 +2725,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 ##### `impl<I: clone::Clone> Clone for Rev<I>`
 
-- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](rev/index.md)
+- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](rev/index.md#rev)
 
 ##### `impl<I: fmt::Debug> Debug for Rev<I>`
 
@@ -2733,11 +2733,11 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 ##### `impl<I> IndexedParallelIterator for Rev<I>`
 
-- <span id="rev-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="rev-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="rev-len"></span>`fn len(&self) -> usize`
 
-- <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Rev<I>`
 
@@ -2753,7 +2753,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 - <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="rev-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2794,7 +2794,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 ##### `impl<I: clone::Clone> Clone for Skip<I>`
 
-- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](skip/index.md)
+- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](skip/index.md#skip)
 
 ##### `impl<I: fmt::Debug> Debug for Skip<I>`
 
@@ -2804,9 +2804,9 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-len"></span>`fn len(&self) -> usize`
 
-- <span id="skip-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="skip-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Skip<I>`
 
@@ -2822,7 +2822,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="skip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -2863,7 +2863,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone> Clone for SkipAny<I>`
 
-- <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md)
+- <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md#skipany)
 
 ##### `impl<I: fmt::Debug> Debug for SkipAny<I>`
 
@@ -2883,7 +2883,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 - <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SkipAny<I>`
 
@@ -2923,7 +2923,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md)
+- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md#skipanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
@@ -2943,7 +2943,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
@@ -2977,7 +2977,7 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 ##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
-- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](splitter/index.md)
+- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](splitter/index.md#split)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
@@ -2997,7 +2997,7 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 - <span id="split-type-item"></span>`type Item = D`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Split<D, S>`
 
@@ -3036,7 +3036,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I: clone::Clone> Clone for StepBy<I>`
 
-- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](step_by/index.md)
+- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](step_by/index.md#stepby)
 
 ##### `impl<I: fmt::Debug> Debug for StepBy<I>`
 
@@ -3044,11 +3044,11 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I> IndexedParallelIterator for StepBy<I>`
 
-- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="stepby-len"></span>`fn len(&self) -> usize`
 
-- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for StepBy<I>`
 
@@ -3064,7 +3064,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="stepby-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -3105,7 +3105,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 ##### `impl<I: clone::Clone> Clone for Take<I>`
 
-- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](take/index.md)
+- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](take/index.md#take)
 
 ##### `impl<I: fmt::Debug> Debug for Take<I>`
 
@@ -3115,9 +3115,9 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-len"></span>`fn len(&self) -> usize`
 
-- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Take<I>`
 
@@ -3133,7 +3133,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -3174,7 +3174,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone> Clone for TakeAny<I>`
 
-- <span id="takeany-clone"></span>`fn clone(&self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md)
+- <span id="takeany-clone"></span>`fn clone(&self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md#takeany)
 
 ##### `impl<I: fmt::Debug> Debug for TakeAny<I>`
 
@@ -3194,7 +3194,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 - <span id="takeany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TakeAny<I>`
 
@@ -3234,7 +3234,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md)
+- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md#takeanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
@@ -3254,7 +3254,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TakeAnyWhile<I, P>`
 
@@ -3295,7 +3295,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: clone::Clone, U: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md)
+- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md#tryfold)
 
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
@@ -3315,7 +3315,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 - <span id="tryfold-type-item"></span>`type Item = U`
 
-- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TryFold<I, U, ID, F>`
 
@@ -3349,13 +3349,13 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 #### Implementations
 
-- <span id="tryfoldwith-new"></span>`fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](private/index.md)
+- <span id="tryfoldwith-new"></span>`fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](private/index.md#try)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone, U: clone::Clone + Try, F: clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md)
+- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md#tryfoldwith)
 
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
@@ -3375,7 +3375,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 - <span id="tryfoldwith-type-item"></span>`type Item = U`
 
-- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TryFoldWith<I, U, F>`
 
@@ -3416,7 +3416,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Update<I, F>`
 
-- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](update/index.md)
+- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](update/index.md#update)
 
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 
@@ -3424,11 +3424,11 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I, F> IndexedParallelIterator for Update<I, F>`
 
-- <span id="update-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="update-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="update-len"></span>`fn len(&self) -> usize`
 
-- <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Update<I, F>`
 
@@ -3444,7 +3444,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 - <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="update-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -3493,7 +3493,7 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 - <span id="walktree-type-item"></span>`type Item = S`
 
-- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTree<S, B>`
 
@@ -3543,7 +3543,7 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 - <span id="walktreepostfix-type-item"></span>`type Item = S`
 
-- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTreePostfix<S, B>`
 
@@ -3593,7 +3593,7 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 - <span id="walktreeprefix-type-item"></span>`type Item = S`
 
-- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTreePrefix<S, B>`
 
@@ -3633,7 +3633,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 ##### `impl<I: clone::Clone> Clone for WhileSome<I>`
 
-- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md)
+- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md#whilesome)
 
 ##### `impl<I: fmt::Debug> Debug for WhileSome<I>`
 
@@ -3653,7 +3653,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 - <span id="whilesome-type-item"></span>`type Item = T`
 
-- <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WhileSome<I>`
 
@@ -3693,7 +3693,7 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Zip<A, B>`
 
-- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](zip/index.md)
+- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](zip/index.md#zip)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Zip<A, B>`
 
@@ -3701,11 +3701,11 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A, B> IndexedParallelIterator for Zip<A, B>`
 
-- <span id="zip-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="zip-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zip-len"></span>`fn len(&self) -> usize`
 
-- <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Zip<A, B>`
 
@@ -3721,7 +3721,7 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -3764,7 +3764,7 @@ see its documentation for more information.
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for ZipEq<A, B>`
 
-- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md)
+- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md#zipeq)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for ZipEq<A, B>`
 
@@ -3772,11 +3772,11 @@ see its documentation for more information.
 
 ##### `impl<A, B> IndexedParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="zipeq-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zipeq-len"></span>`fn len(&self) -> usize`
 
-- <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
+- <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for ZipEq<A, B>`
 
@@ -3792,7 +3792,7 @@ see its documentation for more information.
 
 - <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
+- <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zipeq-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -4311,124 +4311,124 @@ For examples of using parallel iterators, see [the docs on the
 
 #### Implementors
 
-- [`Bytes`](../str/index.md)
-- [`Chain`](chain/index.md)
-- [`CharIndices`](../str/index.md)
-- [`Chars`](../str/index.md)
-- [`ChunkByMut`](../slice/chunk_by/index.md)
-- [`ChunkBy`](../slice/chunk_by/index.md)
-- [`ChunksExactMut`](../slice/chunks/index.md)
-- [`ChunksExact`](../slice/chunks/index.md)
-- [`ChunksMut`](../slice/chunks/index.md)
-- [`Chunks`](../slice/chunks/index.md)
-- [`Chunks`](chunks/index.md)
-- [`Cloned`](cloned/index.md)
-- [`Copied`](copied/index.md)
-- [`Drain`](../collections/binary_heap/index.md)
-- [`Drain`](../collections/hash_map/index.md)
-- [`Drain`](../collections/hash_set/index.md)
-- [`Drain`](../collections/vec_deque/index.md)
-- [`Drain`](../string/index.md)
-- [`Drain`](../vec/index.md)
+- [`Bytes`](../str/index.md#bytes)
+- [`Chain`](chain/index.md#chain)
+- [`CharIndices`](../str/index.md#charindices)
+- [`Chars`](../str/index.md#chars)
+- [`ChunkByMut`](../slice/chunk_by/index.md#chunkbymut)
+- [`ChunkBy`](../slice/chunk_by/index.md#chunkby)
+- [`ChunksExactMut`](../slice/chunks/index.md#chunksexactmut)
+- [`ChunksExact`](../slice/chunks/index.md#chunksexact)
+- [`ChunksMut`](../slice/chunks/index.md#chunksmut)
+- [`Chunks`](../slice/chunks/index.md#chunks)
+- [`Chunks`](chunks/index.md#chunks)
+- [`Cloned`](cloned/index.md#cloned)
+- [`Copied`](copied/index.md#copied)
+- [`Drain`](../collections/binary_heap/index.md#drain)
+- [`Drain`](../collections/hash_map/index.md#drain)
+- [`Drain`](../collections/hash_set/index.md#drain)
+- [`Drain`](../collections/vec_deque/index.md#drain)
+- [`Drain`](../string/index.md#drain)
+- [`Drain`](../vec/index.md#drain)
 - [`Either`](#either)
-- [`Empty`](empty/index.md)
-- [`EncodeUtf16`](../str/index.md)
-- [`Enumerate`](enumerate/index.md)
-- [`ExponentialBlocks`](blocks/index.md)
-- [`FilterMap`](filter_map/index.md)
-- [`Filter`](filter/index.md)
-- [`FlatMapIter`](flat_map_iter/index.md)
-- [`FlatMap`](flat_map/index.md)
-- [`FlattenIter`](flatten_iter/index.md)
-- [`Flatten`](flatten/index.md)
-- [`FoldChunksWith`](fold_chunks_with/index.md)
-- [`FoldChunks`](fold_chunks/index.md)
-- [`FoldWith`](fold/index.md)
-- [`Fold`](fold/index.md)
-- [`Inspect`](inspect/index.md)
-- [`InterleaveShortest`](interleave_shortest/index.md)
-- [`Interleave`](interleave/index.md)
-- [`Intersperse`](intersperse/index.md)
-- [`IntoIter`](../array/index.md)
-- [`IntoIter`](../collections/binary_heap/index.md)
-- [`IntoIter`](../collections/btree_map/index.md)
-- [`IntoIter`](../collections/btree_set/index.md)
-- [`IntoIter`](../collections/hash_map/index.md)
-- [`IntoIter`](../collections/hash_set/index.md)
-- [`IntoIter`](../collections/linked_list/index.md)
-- [`IntoIter`](../collections/vec_deque/index.md)
-- [`IntoIter`](../option/index.md)
-- [`IntoIter`](../result/index.md)
-- [`IntoIter`](../vec/index.md)
-- [`IterBridge`](par_bridge/index.md)
-- [`IterMut`](../collections/btree_map/index.md)
-- [`IterMut`](../collections/hash_map/index.md)
-- [`IterMut`](../collections/linked_list/index.md)
-- [`IterMut`](../collections/vec_deque/index.md)
-- [`IterMut`](../option/index.md)
-- [`IterMut`](../result/index.md)
-- [`IterMut`](../slice/index.md)
-- [`Iter`](../collections/binary_heap/index.md)
-- [`Iter`](../collections/btree_map/index.md)
-- [`Iter`](../collections/btree_set/index.md)
-- [`Iter`](../collections/hash_map/index.md)
-- [`Iter`](../collections/hash_set/index.md)
-- [`Iter`](../collections/linked_list/index.md)
-- [`Iter`](../collections/vec_deque/index.md)
-- [`Iter`](../option/index.md)
-- [`Iter`](../range/index.md)
-- [`Iter`](../range_inclusive/index.md)
-- [`Iter`](../result/index.md)
-- [`Iter`](../slice/index.md)
-- [`Lines`](../str/index.md)
-- [`MapInit`](map_with/index.md)
-- [`MapWith`](map_with/index.md)
-- [`Map`](map/index.md)
-- [`MatchIndices`](../str/index.md)
-- [`Matches`](../str/index.md)
-- [`MaxLen`](len/index.md)
-- [`MinLen`](len/index.md)
-- [`MultiZip`](multizip/index.md)
-- [`Once`](once/index.md)
-- [`PanicFuse`](panic_fuse/index.md)
-- [`Positions`](positions/index.md)
-- [`RChunksExactMut`](../slice/rchunks/index.md)
-- [`RChunksExact`](../slice/rchunks/index.md)
-- [`RChunksMut`](../slice/rchunks/index.md)
-- [`RChunks`](../slice/rchunks/index.md)
-- [`RepeatN`](repeat/index.md)
-- [`Repeat`](repeat/index.md)
-- [`Rev`](rev/index.md)
-- [`SkipAnyWhile`](skip_any_while/index.md)
-- [`SkipAny`](skip_any/index.md)
-- [`Skip`](skip/index.md)
-- [`SplitAsciiWhitespace`](../str/index.md)
-- [`SplitInclusiveMut`](../slice/index.md)
-- [`SplitInclusive`](../slice/index.md)
-- [`SplitInclusive`](../str/index.md)
-- [`SplitMut`](../slice/index.md)
-- [`SplitTerminator`](../str/index.md)
-- [`SplitWhitespace`](../str/index.md)
-- [`Split`](../slice/index.md)
-- [`Split`](../str/index.md)
-- [`Split`](splitter/index.md)
-- [`StepBy`](step_by/index.md)
-- [`TakeAnyWhile`](take_any_while/index.md)
-- [`TakeAny`](take_any/index.md)
-- [`Take`](take/index.md)
-- [`TryFoldWith`](try_fold/index.md)
-- [`TryFold`](try_fold/index.md)
-- [`UniformBlocks`](blocks/index.md)
-- [`UnzipA`](unzip/index.md)
-- [`UnzipB`](unzip/index.md)
-- [`Update`](update/index.md)
-- [`WalkTreePostfix`](walk_tree/index.md)
-- [`WalkTreePrefix`](walk_tree/index.md)
-- [`WalkTree`](walk_tree/index.md)
-- [`WhileSome`](while_some/index.md)
-- [`Windows`](../slice/index.md)
-- [`ZipEq`](zip_eq/index.md)
-- [`Zip`](zip/index.md)
+- [`Empty`](empty/index.md#empty)
+- [`EncodeUtf16`](../str/index.md#encodeutf16)
+- [`Enumerate`](enumerate/index.md#enumerate)
+- [`ExponentialBlocks`](blocks/index.md#exponentialblocks)
+- [`FilterMap`](filter_map/index.md#filtermap)
+- [`Filter`](filter/index.md#filter)
+- [`FlatMapIter`](flat_map_iter/index.md#flatmapiter)
+- [`FlatMap`](flat_map/index.md#flatmap)
+- [`FlattenIter`](flatten_iter/index.md#flatteniter)
+- [`Flatten`](flatten/index.md#flatten)
+- [`FoldChunksWith`](fold_chunks_with/index.md#foldchunkswith)
+- [`FoldChunks`](fold_chunks/index.md#foldchunks)
+- [`FoldWith`](fold/index.md#foldwith)
+- [`Fold`](fold/index.md#fold)
+- [`Inspect`](inspect/index.md#inspect)
+- [`InterleaveShortest`](interleave_shortest/index.md#interleaveshortest)
+- [`Interleave`](interleave/index.md#interleave)
+- [`Intersperse`](intersperse/index.md#intersperse)
+- [`IntoIter`](../array/index.md#intoiter)
+- [`IntoIter`](../collections/binary_heap/index.md#intoiter)
+- [`IntoIter`](../collections/btree_map/index.md#intoiter)
+- [`IntoIter`](../collections/btree_set/index.md#intoiter)
+- [`IntoIter`](../collections/hash_map/index.md#intoiter)
+- [`IntoIter`](../collections/hash_set/index.md#intoiter)
+- [`IntoIter`](../collections/linked_list/index.md#intoiter)
+- [`IntoIter`](../collections/vec_deque/index.md#intoiter)
+- [`IntoIter`](../option/index.md#intoiter)
+- [`IntoIter`](../result/index.md#intoiter)
+- [`IntoIter`](../vec/index.md#intoiter)
+- [`IterBridge`](par_bridge/index.md#iterbridge)
+- [`IterMut`](../collections/btree_map/index.md#itermut)
+- [`IterMut`](../collections/hash_map/index.md#itermut)
+- [`IterMut`](../collections/linked_list/index.md#itermut)
+- [`IterMut`](../collections/vec_deque/index.md#itermut)
+- [`IterMut`](../option/index.md#itermut)
+- [`IterMut`](../result/index.md#itermut)
+- [`IterMut`](../slice/index.md#itermut)
+- [`Iter`](../collections/binary_heap/index.md#iter)
+- [`Iter`](../collections/btree_map/index.md#iter)
+- [`Iter`](../collections/btree_set/index.md#iter)
+- [`Iter`](../collections/hash_map/index.md#iter)
+- [`Iter`](../collections/hash_set/index.md#iter)
+- [`Iter`](../collections/linked_list/index.md#iter)
+- [`Iter`](../collections/vec_deque/index.md#iter)
+- [`Iter`](../option/index.md#iter)
+- [`Iter`](../range/index.md#iter)
+- [`Iter`](../range_inclusive/index.md#iter)
+- [`Iter`](../result/index.md#iter)
+- [`Iter`](../slice/index.md#iter)
+- [`Lines`](../str/index.md#lines)
+- [`MapInit`](map_with/index.md#mapinit)
+- [`MapWith`](map_with/index.md#mapwith)
+- [`Map`](map/index.md#map)
+- [`MatchIndices`](../str/index.md#matchindices)
+- [`Matches`](../str/index.md#matches)
+- [`MaxLen`](len/index.md#maxlen)
+- [`MinLen`](len/index.md#minlen)
+- [`MultiZip`](multizip/index.md#multizip)
+- [`Once`](once/index.md#once)
+- [`PanicFuse`](panic_fuse/index.md#panicfuse)
+- [`Positions`](positions/index.md#positions)
+- [`RChunksExactMut`](../slice/rchunks/index.md#rchunksexactmut)
+- [`RChunksExact`](../slice/rchunks/index.md#rchunksexact)
+- [`RChunksMut`](../slice/rchunks/index.md#rchunksmut)
+- [`RChunks`](../slice/rchunks/index.md#rchunks)
+- [`RepeatN`](repeat/index.md#repeatn)
+- [`Repeat`](repeat/index.md#repeat)
+- [`Rev`](rev/index.md#rev)
+- [`SkipAnyWhile`](skip_any_while/index.md#skipanywhile)
+- [`SkipAny`](skip_any/index.md#skipany)
+- [`Skip`](skip/index.md#skip)
+- [`SplitAsciiWhitespace`](../str/index.md#splitasciiwhitespace)
+- [`SplitInclusiveMut`](../slice/index.md#splitinclusivemut)
+- [`SplitInclusive`](../slice/index.md#splitinclusive)
+- [`SplitInclusive`](../str/index.md#splitinclusive)
+- [`SplitMut`](../slice/index.md#splitmut)
+- [`SplitTerminator`](../str/index.md#splitterminator)
+- [`SplitWhitespace`](../str/index.md#splitwhitespace)
+- [`Split`](../slice/index.md#split)
+- [`Split`](../str/index.md#split)
+- [`Split`](splitter/index.md#split)
+- [`StepBy`](step_by/index.md#stepby)
+- [`TakeAnyWhile`](take_any_while/index.md#takeanywhile)
+- [`TakeAny`](take_any/index.md#takeany)
+- [`Take`](take/index.md#take)
+- [`TryFoldWith`](try_fold/index.md#tryfoldwith)
+- [`TryFold`](try_fold/index.md#tryfold)
+- [`UniformBlocks`](blocks/index.md#uniformblocks)
+- [`UnzipA`](unzip/index.md#unzipa)
+- [`UnzipB`](unzip/index.md#unzipb)
+- [`Update`](update/index.md#update)
+- [`WalkTreePostfix`](walk_tree/index.md#walktreepostfix)
+- [`WalkTreePrefix`](walk_tree/index.md#walktreeprefix)
+- [`WalkTree`](walk_tree/index.md#walktree)
+- [`WhileSome`](while_some/index.md#whilesome)
+- [`Windows`](../slice/index.md#windows)
+- [`ZipEq`](zip_eq/index.md#zipeq)
+- [`Zip`](zip/index.md#zip)
 
 ### `IndexedParallelIterator`
 
@@ -4582,64 +4582,64 @@ those points.
 
 #### Implementors
 
-- [`Chain`](chain/index.md)
-- [`ChunksExactMut`](../slice/chunks/index.md)
-- [`ChunksExact`](../slice/chunks/index.md)
-- [`ChunksMut`](../slice/chunks/index.md)
-- [`Chunks`](../slice/chunks/index.md)
-- [`Chunks`](chunks/index.md)
-- [`Cloned`](cloned/index.md)
-- [`Copied`](copied/index.md)
-- [`Drain`](../collections/binary_heap/index.md)
-- [`Drain`](../collections/vec_deque/index.md)
-- [`Drain`](../vec/index.md)
+- [`Chain`](chain/index.md#chain)
+- [`ChunksExactMut`](../slice/chunks/index.md#chunksexactmut)
+- [`ChunksExact`](../slice/chunks/index.md#chunksexact)
+- [`ChunksMut`](../slice/chunks/index.md#chunksmut)
+- [`Chunks`](../slice/chunks/index.md#chunks)
+- [`Chunks`](chunks/index.md#chunks)
+- [`Cloned`](cloned/index.md#cloned)
+- [`Copied`](copied/index.md#copied)
+- [`Drain`](../collections/binary_heap/index.md#drain)
+- [`Drain`](../collections/vec_deque/index.md#drain)
+- [`Drain`](../vec/index.md#drain)
 - [`Either`](#either)
-- [`Empty`](empty/index.md)
-- [`Enumerate`](enumerate/index.md)
-- [`FoldChunksWith`](fold_chunks_with/index.md)
-- [`FoldChunks`](fold_chunks/index.md)
-- [`Inspect`](inspect/index.md)
-- [`InterleaveShortest`](interleave_shortest/index.md)
-- [`Interleave`](interleave/index.md)
-- [`Intersperse`](intersperse/index.md)
-- [`IntoIter`](../array/index.md)
-- [`IntoIter`](../collections/binary_heap/index.md)
-- [`IntoIter`](../collections/vec_deque/index.md)
-- [`IntoIter`](../option/index.md)
-- [`IntoIter`](../result/index.md)
-- [`IntoIter`](../vec/index.md)
-- [`IterMut`](../collections/vec_deque/index.md)
-- [`IterMut`](../option/index.md)
-- [`IterMut`](../result/index.md)
-- [`IterMut`](../slice/index.md)
-- [`Iter`](../collections/binary_heap/index.md)
-- [`Iter`](../collections/vec_deque/index.md)
-- [`Iter`](../option/index.md)
-- [`Iter`](../range/index.md)
-- [`Iter`](../range_inclusive/index.md)
-- [`Iter`](../result/index.md)
-- [`Iter`](../slice/index.md)
-- [`MapInit`](map_with/index.md)
-- [`MapWith`](map_with/index.md)
-- [`Map`](map/index.md)
-- [`MaxLen`](len/index.md)
-- [`MinLen`](len/index.md)
-- [`MultiZip`](multizip/index.md)
-- [`Once`](once/index.md)
-- [`PanicFuse`](panic_fuse/index.md)
-- [`RChunksExactMut`](../slice/rchunks/index.md)
-- [`RChunksExact`](../slice/rchunks/index.md)
-- [`RChunksMut`](../slice/rchunks/index.md)
-- [`RChunks`](../slice/rchunks/index.md)
-- [`RepeatN`](repeat/index.md)
-- [`Rev`](rev/index.md)
-- [`Skip`](skip/index.md)
-- [`StepBy`](step_by/index.md)
-- [`Take`](take/index.md)
-- [`Update`](update/index.md)
-- [`Windows`](../slice/index.md)
-- [`ZipEq`](zip_eq/index.md)
-- [`Zip`](zip/index.md)
+- [`Empty`](empty/index.md#empty)
+- [`Enumerate`](enumerate/index.md#enumerate)
+- [`FoldChunksWith`](fold_chunks_with/index.md#foldchunkswith)
+- [`FoldChunks`](fold_chunks/index.md#foldchunks)
+- [`Inspect`](inspect/index.md#inspect)
+- [`InterleaveShortest`](interleave_shortest/index.md#interleaveshortest)
+- [`Interleave`](interleave/index.md#interleave)
+- [`Intersperse`](intersperse/index.md#intersperse)
+- [`IntoIter`](../array/index.md#intoiter)
+- [`IntoIter`](../collections/binary_heap/index.md#intoiter)
+- [`IntoIter`](../collections/vec_deque/index.md#intoiter)
+- [`IntoIter`](../option/index.md#intoiter)
+- [`IntoIter`](../result/index.md#intoiter)
+- [`IntoIter`](../vec/index.md#intoiter)
+- [`IterMut`](../collections/vec_deque/index.md#itermut)
+- [`IterMut`](../option/index.md#itermut)
+- [`IterMut`](../result/index.md#itermut)
+- [`IterMut`](../slice/index.md#itermut)
+- [`Iter`](../collections/binary_heap/index.md#iter)
+- [`Iter`](../collections/vec_deque/index.md#iter)
+- [`Iter`](../option/index.md#iter)
+- [`Iter`](../range/index.md#iter)
+- [`Iter`](../range_inclusive/index.md#iter)
+- [`Iter`](../result/index.md#iter)
+- [`Iter`](../slice/index.md#iter)
+- [`MapInit`](map_with/index.md#mapinit)
+- [`MapWith`](map_with/index.md#mapwith)
+- [`Map`](map/index.md#map)
+- [`MaxLen`](len/index.md#maxlen)
+- [`MinLen`](len/index.md#minlen)
+- [`MultiZip`](multizip/index.md#multizip)
+- [`Once`](once/index.md#once)
+- [`PanicFuse`](panic_fuse/index.md#panicfuse)
+- [`RChunksExactMut`](../slice/rchunks/index.md#rchunksexactmut)
+- [`RChunksExact`](../slice/rchunks/index.md#rchunksexact)
+- [`RChunksMut`](../slice/rchunks/index.md#rchunksmut)
+- [`RChunks`](../slice/rchunks/index.md#rchunks)
+- [`RepeatN`](repeat/index.md#repeatn)
+- [`Rev`](rev/index.md#rev)
+- [`Skip`](skip/index.md#skip)
+- [`StepBy`](step_by/index.md#stepby)
+- [`Take`](take/index.md#take)
+- [`Update`](update/index.md#update)
+- [`Windows`](../slice/index.md#windows)
+- [`ZipEq`](zip_eq/index.md#zipeq)
+- [`Zip`](zip/index.md#zip)
 
 ### `FromParallelIterator<T>`
 
@@ -4760,7 +4760,7 @@ assert_eq!(bh.mass, 4080);
 
 #### Implementors
 
-- [`Collector`](unzip/index.md)
+- [`Collector`](unzip/index.md#collector)
 - [`Either`](#either)
 - `()`
 - `(A, B)`

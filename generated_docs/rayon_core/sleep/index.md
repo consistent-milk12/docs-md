@@ -58,11 +58,11 @@ events. See the `README.md` in this module for more details.
 
 - <span id="sleep-work-found"></span>`fn work_found(&self)`
 
-- <span id="sleep-no-work-found"></span>`fn no_work_found(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
+- <span id="sleep-no-work-found"></span>`fn no_work_found(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md#corelatch)
 
-- <span id="sleep-announce-sleepy"></span>`fn announce_sleepy(&self) -> JobsEventCounter` — [`JobsEventCounter`](counters/index.md)
+- <span id="sleep-announce-sleepy"></span>`fn announce_sleepy(&self) -> JobsEventCounter` — [`JobsEventCounter`](counters/index.md#jobseventcounter)
 
-- <span id="sleep-sleep"></span>`fn sleep(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
+- <span id="sleep-sleep"></span>`fn sleep(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md#corelatch)
 
 - <span id="sleep-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
 

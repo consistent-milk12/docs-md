@@ -37,7 +37,7 @@ The raw contents of the `.debug_macinfo` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugMacinfo<R>`
 
-- <span id="debugmacinfo-clone"></span>`fn clone(&self) -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
+- <span id="debugmacinfo-clone"></span>`fn clone(&self) -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md#debugmacinfo)
 
 ##### `impl<R: marker::Copy> Copy for DebugMacinfo<R>`
 
@@ -47,11 +47,11 @@ The raw contents of the `.debug_macinfo` section.
 
 ##### `impl<R: default::Default> Default for DebugMacinfo<R>`
 
-- <span id="debugmacinfo-default"></span>`fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
+- <span id="debugmacinfo-default"></span>`fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md#debugmacinfo)
 
 ##### `impl<R> Section for DebugMacinfo<R>`
 
-- <span id="debugmacinfo-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugmacinfo-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugmacinfo-reader"></span>`fn reader(&self) -> &R`
 
@@ -75,7 +75,7 @@ The raw contents of the `.debug_macro` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugMacro<R>`
 
-- <span id="debugmacro-clone"></span>`fn clone(&self) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
+- <span id="debugmacro-clone"></span>`fn clone(&self) -> DebugMacro<R>` — [`DebugMacro`](../index.md#debugmacro)
 
 ##### `impl<R: marker::Copy> Copy for DebugMacro<R>`
 
@@ -85,11 +85,11 @@ The raw contents of the `.debug_macro` section.
 
 ##### `impl<R: default::Default> Default for DebugMacro<R>`
 
-- <span id="debugmacro-default"></span>`fn default() -> DebugMacro<R>` — [`DebugMacro`](../index.md)
+- <span id="debugmacro-default"></span>`fn default() -> DebugMacro<R>` — [`DebugMacro`](../index.md#debugmacro)
 
 ##### `impl<R> Section for DebugMacro<R>`
 
-- <span id="debugmacro-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugmacro-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugmacro-reader"></span>`fn reader(&self) -> &R`
 
@@ -119,9 +119,9 @@ struct MacroUnitHeader<R: Reader> {
 
 - <span id="macrounitheader-const-opcode-operands-table-flag"></span>`const OPCODE_OPERANDS_TABLE_FLAG: u8`
 
-- <span id="macrounitheader-parse"></span>`fn parse(input: &mut R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="macrounitheader-parse"></span>`fn parse(input: &mut R) -> Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="macrounitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md)
+- <span id="macrounitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md#format)
 
 #### Trait Implementations
 
@@ -149,13 +149,13 @@ Iterator over the entries in the `.debug_macro` section.
 
 #### Implementations
 
-- <span id="macroiter-next"></span>`fn next(&mut self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../../index.md), [`MacroEntry`](../index.md)
+- <span id="macroiter-next"></span>`fn next(&mut self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../../index.md#result), [`MacroEntry`](../index.md#macroentry)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for MacroIter<R>`
 
-- <span id="macroiter-clone"></span>`fn clone(&self) -> MacroIter<R>` — [`MacroIter`](../index.md)
+- <span id="macroiter-clone"></span>`fn clone(&self) -> MacroIter<R>` — [`MacroIter`](../index.md#macroiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for MacroIter<R>`
 
@@ -202,13 +202,13 @@ A string in a macro entry.
 
 #### Implementations
 
-- <span id="macrostring-string"></span>`fn string(&self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](../index.md), [`Result`](../../index.md)
+- <span id="macrostring-string"></span>`fn string(&self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](../index.md#unitref), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for MacroString<R, Offset>`
 
-- <span id="macrostring-clone"></span>`fn clone(&self) -> MacroString<R, Offset>` — [`MacroString`](../index.md)
+- <span id="macrostring-clone"></span>`fn clone(&self) -> MacroString<R, Offset>` — [`MacroString`](../index.md#macrostring)
 
 ##### `impl<R, Offset> Debug for MacroString<R, Offset>`
 
@@ -218,7 +218,7 @@ A string in a macro entry.
 
 ##### `impl<R, Offset> PartialEq for MacroString<R, Offset>`
 
-- <span id="macrostring-eq"></span>`fn eq(&self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](../index.md)
+- <span id="macrostring-eq"></span>`fn eq(&self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](../index.md#macrostring)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroString<R, Offset>`
 
@@ -293,7 +293,7 @@ an Entry in the `.debug_macro` section.
 
 ##### `impl<R, Offset> Clone for MacroEntry<R, Offset>`
 
-- <span id="macroentry-clone"></span>`fn clone(&self) -> MacroEntry<R, Offset>` — [`MacroEntry`](../index.md)
+- <span id="macroentry-clone"></span>`fn clone(&self) -> MacroEntry<R, Offset>` — [`MacroEntry`](../index.md#macroentry)
 
 ##### `impl<R, Offset> Debug for MacroEntry<R, Offset>`
 
@@ -303,7 +303,7 @@ an Entry in the `.debug_macro` section.
 
 ##### `impl<R, Offset> PartialEq for MacroEntry<R, Offset>`
 
-- <span id="macroentry-eq"></span>`fn eq(&self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](../index.md)
+- <span id="macroentry-eq"></span>`fn eq(&self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](../index.md#macroentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroEntry<R, Offset>`
 

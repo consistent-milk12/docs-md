@@ -61,9 +61,9 @@ struct FindConsumer<'p, P> {
 
 - <span id="findconsumer-type-result"></span>`type Result = Option<T>`
 
-- <span id="findconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="findconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="findconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -87,7 +87,7 @@ struct FindConsumer<'p, P> {
 
 - <span id="findconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="findconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `FindFolder<'p, T, P>`
 
@@ -111,7 +111,7 @@ struct FindFolder<'p, T, P> {
 
 - <span id="findfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="findfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="findfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="findfolder-full"></span>`fn full(&self) -> bool`
 

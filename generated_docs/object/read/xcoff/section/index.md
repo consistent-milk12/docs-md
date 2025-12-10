@@ -90,13 +90,13 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Implementations
 
-- <span id="xcoffsection-xcoff-file"></span>`fn xcoff_file(&self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](../index.md)
+- <span id="xcoffsection-xcoff-file"></span>`fn xcoff_file(&self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](../index.md#xcofffile)
 
-- <span id="xcoffsection-xcoff-section"></span>`fn xcoff_section(&self) -> &'data <Xcoff as >::SectionHeader` — [`FileHeader`](../index.md)
+- <span id="xcoffsection-xcoff-section"></span>`fn xcoff_section(&self) -> &'data <Xcoff as >::SectionHeader` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="xcoffsection-xcoff-relocations"></span>`fn xcoff_relocations(&self) -> Result<&'data [<Xcoff as >::Rel]>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="xcoffsection-xcoff-relocations"></span>`fn xcoff_relocations(&self) -> Result<&'data [<Xcoff as >::Rel]>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
-- <span id="xcoffsection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
@@ -108,7 +108,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="xcoffsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
 - <span id="xcoffsection-address"></span>`fn address(&self) -> u64`
 
@@ -118,31 +118,31 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="xcoffsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="xcoffsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="xcoffsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md#result), [`CompressedFileRange`](../../../index.md#compressedfilerange)
 
-- <span id="xcoffsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
+- <span id="xcoffsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md#result), [`CompressedData`](../../../index.md#compresseddata)
 
-- <span id="xcoffsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md#result)
 
-- <span id="xcoffsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md)
+- <span id="xcoffsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md#sectionkind)
 
-- <span id="xcoffsection-relocations"></span>`fn relocations(&self) -> <Self as >::RelocationIterator` — [`ObjectSection`](../../index.md)
+- <span id="xcoffsection-relocations"></span>`fn relocations(&self) -> <Self as >::RelocationIterator` — [`ObjectSection`](../../index.md#objectsection)
 
-- <span id="xcoffsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
+- <span id="xcoffsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md#result), [`RelocationMap`](../../../index.md#relocationmap)
 
-- <span id="xcoffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
+- <span id="xcoffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
 
-- <span id="xcoffsection-uncompressed-data"></span>`fn uncompressed_data(&self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../../index.md)
+- <span id="xcoffsection-uncompressed-data"></span>`fn uncompressed_data(&self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../../index.md#result)
 
 ##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
 
@@ -162,21 +162,21 @@ Returned by `FileHeader::sections`.
 
 #### Implementations
 
-- <span id="sectiontable-parse"></span>`fn parse<R: ReadRef<'data>>(header: &Xcoff, data: R, offset: &mut u64) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="sectiontable-parse"></span>`fn parse<R: ReadRef<'data>>(header: &Xcoff, data: R, offset: &mut u64) -> Result<Self>` — [`Result`](../../../index.md#result)
 
-- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Xcoff as >::SectionHeader>` — [`FileHeader`](../index.md)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Xcoff as >::SectionHeader>` — [`FileHeader`](../index.md#fileheader)
 
 - <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
 - <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Xcoff as >::SectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Xcoff as >::SectionHeader>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
 
-- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](../index.md)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](../index.md#sectiontable)
 
 ##### `impl<'data, Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
 
@@ -252,8 +252,8 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md
 
 #### Implementors
 
-- [`SectionHeader32`](../../../xcoff/index.md)
-- [`SectionHeader64`](../../../xcoff/index.md)
+- [`SectionHeader32`](../../../xcoff/index.md#sectionheader32)
+- [`SectionHeader64`](../../../xcoff/index.md#sectionheader64)
 
 ## Type Aliases
 

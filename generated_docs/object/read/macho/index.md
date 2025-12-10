@@ -269,13 +269,13 @@ A parsed representation of the dyld shared cache.
 
 #### Implementations
 
-- <span id="dyldcache-subcache-suffixes"></span>`fn subcache_suffixes(data: R) -> Result<Vec<String>>` — [`Result`](../../index.md)
+- <span id="dyldcache-subcache-suffixes"></span>`fn subcache_suffixes(data: R) -> Result<Vec<String>>` — [`Result`](../../index.md#result)
 
-- <span id="dyldcache-parse"></span>`fn parse(data: R, subcache_data: &[R]) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="dyldcache-parse"></span>`fn parse(data: R, subcache_data: &[R]) -> Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="dyldcache-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="dyldcache-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
-- <span id="dyldcache-endianness"></span>`fn endianness(&self) -> Endianness` — [`Endianness`](../../index.md)
+- <span id="dyldcache-endianness"></span>`fn endianness(&self) -> Endianness` — [`Endianness`](../../index.md#endianness)
 
 - <span id="dyldcache-data"></span>`fn data(&self) -> R`
 
@@ -375,13 +375,13 @@ One image (dylib) from inside the dyld shared cache.
 
 #### Implementations
 
-- <span id="dyldcacheimage-info"></span>`fn info(&self) -> &'data macho::DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](../../macho/index.md)
+- <span id="dyldcacheimage-info"></span>`fn info(&self) -> &'data macho::DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](../../macho/index.md#dyldcacheimageinfo)
 
-- <span id="dyldcacheimage-path"></span>`fn path(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="dyldcacheimage-path"></span>`fn path(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="dyldcacheimage-image-data-and-offset"></span>`fn image_data_and_offset(&self) -> Result<(R, u64)>` — [`Result`](../../index.md)
+- <span id="dyldcacheimage-image-data-and-offset"></span>`fn image_data_and_offset(&self) -> Result<(R, u64)>` — [`Result`](../../index.md#result)
 
-- <span id="dyldcacheimage-parse-object"></span>`fn parse_object(&self) -> Result<File<'data, R>>` — [`Result`](../../index.md), [`File`](../index.md)
+- <span id="dyldcacheimage-parse-object"></span>`fn parse_object(&self) -> Result<File<'data, R>>` — [`Result`](../../index.md#result), [`File`](../index.md#file)
 
 #### Trait Implementations
 
@@ -455,9 +455,9 @@ Information about a mapping.
 
 - <span id="dyldcachemapping-init-prot"></span>`fn init_prot(&self) -> u32`
 
-- <span id="dyldcachemapping-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="dyldcachemapping-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="dyldcachemapping-relocations"></span>`fn relocations(&self) -> Result<DyldCacheRelocationIterator<'data, E, R>>` — [`Result`](../../index.md), [`DyldCacheRelocationIterator`](#dyldcacherelocationiterator)
+- <span id="dyldcachemapping-relocations"></span>`fn relocations(&self) -> Result<DyldCacheRelocationIterator<'data, E, R>>` — [`Result`](../../index.md#result), [`DyldCacheRelocationIterator`](#dyldcacherelocationiterator)
 
 #### Trait Implementations
 
@@ -552,7 +552,7 @@ where
 
 #### Implementations
 
-- <span id="dyldcacherelocationiteratorv2-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+- <span id="dyldcacherelocationiteratorv2-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md#result), [`DyldRelocation`](#dyldrelocation)
 
 #### Trait Implementations
 
@@ -593,7 +593,7 @@ where
 
 #### Implementations
 
-- <span id="dyldcacherelocationiteratorv3-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+- <span id="dyldcacherelocationiteratorv3-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md#result), [`DyldRelocation`](#dyldrelocation)
 
 #### Trait Implementations
 
@@ -634,7 +634,7 @@ where
 
 #### Implementations
 
-- <span id="dyldcacherelocationiteratorv5-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+- <span id="dyldcacherelocationiteratorv5-next"></span>`fn next(&mut self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md#result), [`DyldRelocation`](#dyldrelocation)
 
 #### Trait Implementations
 
@@ -733,9 +733,9 @@ to [`crate::FileKind::MachOFat32`](../../index.md) or [`crate::FileKind::MachOFa
 
 #### Implementations
 
-- <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../macho/index.md)
+- <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../macho/index.md#fatheader)
 
 - <span id="machofatfile-arches"></span>`fn arches(&self) -> &'data [Fat]`
 
@@ -774,11 +774,11 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 #### Implementations
 
-- <span id="machofile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="machofile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](#dyldcacheimage), [`Result`](../../index.md)
+- <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](#dyldcacheimage), [`Result`](../../index.md#result)
 
-- <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`MachOSectionInternal`](section/index.md)
+- <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSectionInternal`](section/index.md#machosectioninternal)
 
 - <span id="machofile-endian"></span>`fn endian(&self) -> <Mach as >::Endian` — [`MachHeader`](#machheader)
 
@@ -788,11 +788,11 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-macho-header"></span>`fn macho_header(&self) -> &'data Mach`
 
-- <span id="machofile-macho-load-commands"></span>`fn macho_load_commands(&self) -> Result<LoadCommandIterator<'data, <Mach as >::Endian>>` — [`Result`](../../index.md), [`LoadCommandIterator`](#loadcommanditerator), [`MachHeader`](#machheader)
+- <span id="machofile-macho-load-commands"></span>`fn macho_load_commands(&self) -> Result<LoadCommandIterator<'data, <Mach as >::Endian>>` — [`Result`](../../index.md#result), [`LoadCommandIterator`](#loadcommanditerator), [`MachHeader`](#machheader)
 
 - <span id="machofile-macho-symbol-table"></span>`fn macho_symbol_table(&self) -> &SymbolTable<'data, Mach, R>` — [`SymbolTable`](#symboltable)
 
-- <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../index.md), [`BuildVersionCommand`](../../macho/index.md), [`MachHeader`](#machheader)
+- <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../index.md#result), [`BuildVersionCommand`](../../macho/index.md#buildversioncommand), [`MachHeader`](#machheader)
 
 #### Trait Implementations
 
@@ -822,27 +822,27 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
-- <span id="machofile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
+- <span id="machofile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md#subarchitecture)
 
 - <span id="machofile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
 - <span id="machofile-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="machofile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="machofile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md#objectkind)
 
 - <span id="machofile-segments"></span>`fn segments(&self) -> MachOSegmentIterator<'data, '_, Mach, R>` — [`MachOSegmentIterator`](#machosegmentiterator)
 
 - <span id="machofile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<MachOSection<'data, 'file, Mach, R>>` — [`MachOSection`](#machosection)
 
-- <span id="machofile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`MachOSection`](#machosection)
+- <span id="machofile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<MachOSection<'data, '_, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSection`](#machosection)
 
 - <span id="machofile-sections"></span>`fn sections(&self) -> MachOSectionIterator<'data, '_, Mach, R>` — [`MachOSectionIterator`](#machosectioniterator)
 
 - <span id="machofile-comdats"></span>`fn comdats(&self) -> MachOComdatIterator<'data, '_, Mach, R>` — [`MachOComdatIterator`](#machocomdatiterator)
 
-- <span id="machofile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`MachOSymbol`](#machosymbol)
+- <span id="machofile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<MachOSymbol<'data, '_, Mach, R>>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`MachOSymbol`](#machosymbol)
 
 - <span id="machofile-symbols"></span>`fn symbols(&self) -> MachOSymbolIterator<'data, '_, Mach, R>` — [`MachOSymbolIterator`](#machosymboliterator)
 
@@ -852,23 +852,23 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<MachOSymbolTable<'data, '_, Mach, R>>` — [`MachOSymbolTable`](#machosymboltable)
 
-- <span id="machofile-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md)
+- <span id="machofile-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md#objectmap)
 
-- <span id="machofile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="machofile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md#result), [`Import`](../../index.md#import)
 
-- <span id="machofile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="machofile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md#result), [`Export`](../../index.md#export)
 
-- <span id="machofile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md)
+- <span id="machofile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md#nodynamicrelocationiterator)
 
 - <span id="machofile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="machofile-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md)
+- <span id="machofile-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md#result)
 
 - <span id="machofile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
 - <span id="machofile-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
 ##### `impl<'data, Mach, R> Sealed for MachOFile<'data, Mach, R>`
 
@@ -936,15 +936,15 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
-- <span id="machocomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="machocomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="machocomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machocomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machocomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="machocomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
+- <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
 
@@ -1003,9 +1003,9 @@ An iterator for the load commands from a [`MachHeader`](#machheader).
 
 - <span id="loadcommanditerator-new"></span>`fn new(endian: E, data: &'data [u8], ncmds: u32) -> Self`
 
-- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../index.md), [`LoadCommandData`](#loadcommanddata)
+- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../index.md#result), [`LoadCommandData`](#loadcommanddata)
 
-- <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../index.md), [`LoadCommandData`](#loadcommanddata)
+- <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../index.md#result), [`LoadCommandData`](#loadcommanddata)
 
 #### Trait Implementations
 
@@ -1057,31 +1057,31 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
 
-- <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../index.md)
+- <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../index.md#result)
 
 - <span id="loadcommanddata-raw-data"></span>`fn raw_data(&self) -> &'data [u8]`
 
-- <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../macho/index.md), [`Result`](../../index.md)
+- <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../macho/index.md#lcstr), [`Result`](../../index.md#result)
 
-- <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../index.md), [`LoadCommandVariant`](#loadcommandvariant)
+- <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../index.md#result), [`LoadCommandVariant`](#loadcommandvariant)
 
-- <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../index.md), [`SegmentCommand32`](../../macho/index.md)
+- <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../index.md#result), [`SegmentCommand32`](../../macho/index.md#segmentcommand32)
 
-- <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../index.md), [`SymtabCommand`](../../macho/index.md)
+- <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../index.md#result), [`SymtabCommand`](../../macho/index.md#symtabcommand)
 
-- <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../index.md), [`DysymtabCommand`](../../macho/index.md)
+- <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../index.md#result), [`DysymtabCommand`](../../macho/index.md#dysymtabcommand)
 
-- <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../index.md), [`DylibCommand`](../../macho/index.md)
+- <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../index.md#result), [`DylibCommand`](../../macho/index.md#dylibcommand)
 
-- <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../index.md), [`UuidCommand`](../../macho/index.md)
+- <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../index.md#result), [`UuidCommand`](../../macho/index.md#uuidcommand)
 
-- <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../index.md), [`SegmentCommand64`](../../macho/index.md)
+- <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../index.md#result), [`SegmentCommand64`](../../macho/index.md#segmentcommand64)
 
-- <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../index.md), [`DyldInfoCommand`](../../macho/index.md)
+- <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../index.md#result), [`DyldInfoCommand`](../../macho/index.md#dyldinfocommand)
 
-- <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../index.md), [`EntryPointCommand`](../../macho/index.md)
+- <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../index.md#result), [`EntryPointCommand`](../../macho/index.md#entrypointcommand)
 
-- <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../index.md), [`BuildVersionCommand`](../../macho/index.md)
+- <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../index.md#result), [`BuildVersionCommand`](../../macho/index.md#buildversioncommand)
 
 #### Trait Implementations
 
@@ -1155,7 +1155,7 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="machosegment-macho-segment"></span>`fn macho_segment(&self) -> &'data <Mach as >::Segment` — [`MachHeader`](#machheader)
 
-- <span id="machosegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
@@ -1173,15 +1173,15 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="machosegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="machosegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="machosegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="machosegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="machosegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
 
@@ -1209,7 +1209,7 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 ##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
-- <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](segment/index.md)
+- <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](segment/index.md#machosegmentinternal)
 
 ##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
@@ -1277,11 +1277,11 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="machosection-macho-section"></span>`fn macho_section(&self) -> &'data <Mach as >::Section` — [`MachHeader`](#machheader)
 
-- <span id="machosection-macho-relocations"></span>`fn macho_relocations(&self) -> Result<&'data [macho::Relocation<<Mach as >::Endian>]>` — [`Result`](../../index.md), [`Relocation`](../../macho/index.md), [`MachHeader`](#machheader)
+- <span id="machosection-macho-relocations"></span>`fn macho_relocations(&self) -> Result<&'data [macho::Relocation<<Mach as >::Endian>]>` — [`Result`](../../index.md#result), [`Relocation`](../../macho/index.md#relocation), [`MachHeader`](#machheader)
 
-- <span id="machosection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-maybe-compressed-gnu"></span>`fn maybe_compressed_gnu(&self) -> Result<Option<CompressedFileRange>>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="machosection-maybe-compressed-gnu"></span>`fn maybe_compressed_gnu(&self) -> Result<Option<CompressedFileRange>>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
 
 #### Trait Implementations
 
@@ -1293,7 +1293,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="machosection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
 - <span id="machosection-address"></span>`fn address(&self) -> u64`
 
@@ -1303,29 +1303,29 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="machosection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="machosection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="machosection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="machosection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md#result), [`CompressedFileRange`](../../index.md#compressedfilerange)
 
-- <span id="machosection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="machosection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md#result), [`CompressedData`](../../index.md#compresseddata)
 
-- <span id="machosection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="machosection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="machosection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="machosection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md#result)
 
-- <span id="machosection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="machosection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md#sectionkind)
 
 - <span id="machosection-relocations"></span>`fn relocations(&self) -> MachORelocationIterator<'data, 'file, Mach, R>` — [`MachORelocationIterator`](#machorelocationiterator)
 
-- <span id="machosection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="machosection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md#result), [`RelocationMap`](../../index.md#relocationmap)
 
-- <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
 
@@ -1353,13 +1353,13 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Implementations
 
-- <span id="machosectioninternal-parse"></span>`fn parse(index: SectionIndex, section: &'data <Mach as >::Section, data: R) -> Self` — [`SectionIndex`](../../index.md), [`MachHeader`](#machheader)
+- <span id="machosectioninternal-parse"></span>`fn parse(index: SectionIndex, section: &'data <Mach as >::Section, data: R) -> Self` — [`SectionIndex`](../../index.md#sectionindex), [`MachHeader`](#machheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
 
-- <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](section/index.md)
+- <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](section/index.md#machosectioninternal)
 
 ##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
 
@@ -1388,9 +1388,9 @@ Returned by `macho::SymtabCommand::symbols`.
 
 #### Implementations
 
-- <span id="symboltable-new"></span>`fn new(symbols: &'data [<Mach as >::Nlist], strings: StringTable<'data, R>) -> Self` — [`MachHeader`](#machheader), [`StringTable`](../index.md)
+- <span id="symboltable-new"></span>`fn new(symbols: &'data [<Mach as >::Nlist], strings: StringTable<'data, R>) -> Self` — [`MachHeader`](#machheader), [`StringTable`](../index.md#stringtable)
 
-- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md#stringtable)
 
 - <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Mach as >::Nlist>` — [`MachHeader`](#machheader)
 
@@ -1398,11 +1398,11 @@ Returned by `macho::SymtabCommand::symbols`.
 
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
-- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Mach as >::Nlist>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`MachHeader`](#machheader)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Mach as >::Nlist>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`MachHeader`](#machheader)
 
-- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Mach as >::Nlist) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md)
+- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Mach as >::Nlist) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md#symbolmap)
 
-- <span id="symboltable-object-map"></span>`fn object_map(&self, endian: <Mach as >::Endian) -> ObjectMap<'data>` — [`MachHeader`](#machheader), [`ObjectMap`](../../index.md)
+- <span id="symboltable-object-map"></span>`fn object_map(&self, endian: <Mach as >::Endian) -> ObjectMap<'data>` — [`MachHeader`](#machheader), [`ObjectMap`](../../index.md#objectmap)
 
 #### Trait Implementations
 
@@ -1453,9 +1453,9 @@ A symbol table in a [`MachOFile`](#machofile).
 
 - <span id="machosymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
+- <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-- <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
+- <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
 
@@ -1522,7 +1522,7 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 #### Implementations
 
-- <span id="machosymbol-new"></span>`fn new(file: &'file MachOFile<'data, Mach, R>, index: SymbolIndex, nlist: &'data <Mach as >::Nlist) -> Option<Self>` — [`MachOFile`](#machofile), [`SymbolIndex`](../../index.md), [`MachHeader`](#machheader)
+- <span id="machosymbol-new"></span>`fn new(file: &'file MachOFile<'data, Mach, R>, index: SymbolIndex, nlist: &'data <Mach as >::Nlist) -> Option<Self>` — [`MachOFile`](#machofile), [`SymbolIndex`](../../index.md#symbolindex), [`MachHeader`](#machheader)
 
 - <span id="machosymbol-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](#machofile)
 
@@ -1542,19 +1542,19 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 ##### `impl<'data, 'file, Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
-- <span id="machosymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="machosymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
-- <span id="machosymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="machosymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md#result)
 
 - <span id="machosymbol-address"></span>`fn address(&self) -> u64`
 
 - <span id="machosymbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="machosymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md)
+- <span id="machosymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md#symbolkind)
 
-- <span id="machosymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md)
+- <span id="machosymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md#symbolsection)
 
 - <span id="machosymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
@@ -1564,13 +1564,13 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="machosymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="machosymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md)
+- <span id="machosymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md#symbolscope)
 
 - <span id="machosymbol-is-global"></span>`fn is_global(&self) -> bool`
 
 - <span id="machosymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
+- <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
 
@@ -1724,7 +1724,7 @@ where
 
 ##### `impl<'data, E> Clone for DyldCacheMappingVersion<'data, E>`
 
-- <span id="dyldcachemappingversion-clone"></span>`fn clone(&self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](dyld_cache/index.md)
+- <span id="dyldcachemappingversion-clone"></span>`fn clone(&self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](dyld_cache/index.md#dyldcachemappingversion)
 
 ##### `impl<'data, E> Copy for DyldCacheMappingVersion<'data, E>`
 
@@ -1804,7 +1804,7 @@ enum RelocationStateV2 {
 
 ##### `impl Clone for RelocationStateV2`
 
-- <span id="relocationstatev2-clone"></span>`fn clone(&self) -> RelocationStateV2` — [`RelocationStateV2`](dyld_cache/index.md)
+- <span id="relocationstatev2-clone"></span>`fn clone(&self) -> RelocationStateV2` — [`RelocationStateV2`](dyld_cache/index.md#relocationstatev2)
 
 ##### `impl Copy for RelocationStateV2`
 
@@ -1816,7 +1816,7 @@ enum RelocationStateV2 {
 
 ##### `impl PartialEq for RelocationStateV2`
 
-- <span id="relocationstatev2-eq"></span>`fn eq(&self, other: &RelocationStateV2) -> bool` — [`RelocationStateV2`](dyld_cache/index.md)
+- <span id="relocationstatev2-eq"></span>`fn eq(&self, other: &RelocationStateV2) -> bool` — [`RelocationStateV2`](dyld_cache/index.md#relocationstatev2)
 
 ##### `impl StructuralPartialEq for RelocationStateV2`
 
@@ -1835,7 +1835,7 @@ enum RelocationStateV3 {
 
 ##### `impl Clone for RelocationStateV3`
 
-- <span id="relocationstatev3-clone"></span>`fn clone(&self) -> RelocationStateV3` — [`RelocationStateV3`](dyld_cache/index.md)
+- <span id="relocationstatev3-clone"></span>`fn clone(&self) -> RelocationStateV3` — [`RelocationStateV3`](dyld_cache/index.md#relocationstatev3)
 
 ##### `impl Copy for RelocationStateV3`
 
@@ -1847,7 +1847,7 @@ enum RelocationStateV3 {
 
 ##### `impl PartialEq for RelocationStateV3`
 
-- <span id="relocationstatev3-eq"></span>`fn eq(&self, other: &RelocationStateV3) -> bool` — [`RelocationStateV3`](dyld_cache/index.md)
+- <span id="relocationstatev3-eq"></span>`fn eq(&self, other: &RelocationStateV3) -> bool` — [`RelocationStateV3`](dyld_cache/index.md#relocationstatev3)
 
 ##### `impl StructuralPartialEq for RelocationStateV3`
 
@@ -1866,7 +1866,7 @@ enum RelocationStateV5 {
 
 ##### `impl Clone for RelocationStateV5`
 
-- <span id="relocationstatev5-clone"></span>`fn clone(&self) -> RelocationStateV5` — [`RelocationStateV5`](dyld_cache/index.md)
+- <span id="relocationstatev5-clone"></span>`fn clone(&self) -> RelocationStateV5` — [`RelocationStateV5`](dyld_cache/index.md#relocationstatev5)
 
 ##### `impl Copy for RelocationStateV5`
 
@@ -1878,7 +1878,7 @@ enum RelocationStateV5 {
 
 ##### `impl PartialEq for RelocationStateV5`
 
-- <span id="relocationstatev5-eq"></span>`fn eq(&self, other: &RelocationStateV5) -> bool` — [`RelocationStateV5`](dyld_cache/index.md)
+- <span id="relocationstatev5-eq"></span>`fn eq(&self, other: &RelocationStateV5) -> bool` — [`RelocationStateV5`](dyld_cache/index.md#relocationstatev5)
 
 ##### `impl StructuralPartialEq for RelocationStateV5`
 
@@ -2118,8 +2118,8 @@ A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`m
 
 #### Implementors
 
-- [`FatArch32`](../../macho/index.md)
-- [`FatArch64`](../../macho/index.md)
+- [`FatArch32`](../../macho/index.md#fatarch32)
+- [`FatArch64`](../../macho/index.md#fatarch64)
 
 ### `MachHeader`
 
@@ -2189,8 +2189,8 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 
 #### Implementors
 
-- [`MachHeader32`](../../macho/index.md)
-- [`MachHeader64`](../../macho/index.md)
+- [`MachHeader32`](../../macho/index.md#machheader32)
+- [`MachHeader64`](../../macho/index.md#machheader64)
 
 ### `Segment`
 
@@ -2256,8 +2256,8 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 
 #### Implementors
 
-- [`SegmentCommand32`](../../macho/index.md)
-- [`SegmentCommand64`](../../macho/index.md)
+- [`SegmentCommand32`](../../macho/index.md#segmentcommand32)
+- [`SegmentCommand64`](../../macho/index.md#segmentcommand64)
 
 ### `Section`
 
@@ -2319,8 +2319,8 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 
 #### Implementors
 
-- [`Section32`](../../macho/index.md)
-- [`Section64`](../../macho/index.md)
+- [`Section32`](../../macho/index.md#section32)
+- [`Section64`](../../macho/index.md#section64)
 
 ### `Nlist`
 
@@ -2372,8 +2372,8 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 
 #### Implementors
 
-- [`Nlist32`](../../macho/index.md)
-- [`Nlist64`](../../macho/index.md)
+- [`Nlist32`](../../macho/index.md#nlist32)
+- [`Nlist64`](../../macho/index.md#nlist64)
 
 ## Type Aliases
 

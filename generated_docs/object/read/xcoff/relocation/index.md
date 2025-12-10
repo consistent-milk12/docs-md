@@ -83,8 +83,8 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 
 #### Implementors
 
-- [`Rel32`](../../../xcoff/index.md)
-- [`Rel64`](../../../xcoff/index.md)
+- [`Rel32`](../../../xcoff/index.md#rel32)
+- [`Rel64`](../../../xcoff/index.md#rel64)
 
 ## Type Aliases
 

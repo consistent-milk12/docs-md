@@ -35,7 +35,7 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 
 ##### `impl<'p, A, I> DoubleEndedIterator for TinyVecSplice<'p, A, I>`
 
-- <span id="tinyvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
 ##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Drop for TinyVecSplice<'p, A, I>`
 
@@ -59,7 +59,7 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 
 - <span id="tinyvecsplice-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="tinyvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
 - <span id="tinyvecsplice-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -116,19 +116,19 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 - <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
-- <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](../index.md)
+- <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](../index.md#array)
 
-- <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](../index.md#array)
 
 #### Trait Implementations
 
 ##### `impl<A: Array> AsMut for TinyVec<A>`
 
-- <span id="tinyvec-as-mut"></span>`fn as_mut(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyvec-as-mut"></span>`fn as_mut(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md#array)
 
 ##### `impl<A: Array> AsRef for TinyVec<A>`
 
-- <span id="tinyvec-as-ref"></span>`fn as_ref(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyvec-as-ref"></span>`fn as_ref(&self) -> &[<A as >::Item]` — [`Array`](../index.md#array)
 
 ##### `impl<A: Array> Binary for TinyVec<A>`
 
@@ -300,7 +300,7 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 
 #### Implementations
 
-- <span id="tinyveciterator-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyveciterator-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md#array)
 
 #### Trait Implementations
 
@@ -340,5 +340,5 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 
 - <span id="tinyveciterator-last"></span>`fn last(self) -> Option<<Self as >::Item>`
 
-- <span id="tinyveciterator-nth"></span>`fn nth(&mut self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyveciterator-nth"></span>`fn nth(&mut self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 

@@ -39,7 +39,7 @@ It is generally not used for reading sections in an executable file.
 
 ##### `impl<R: clone::Clone + Reader<Offset = usize>, T: clone::Clone + Relocate<<R as >::Offset>> Clone for RelocateReader<R, T>`
 
-- <span id="relocatereader-clone"></span>`fn clone(&self) -> RelocateReader<R, T>` — [`RelocateReader`](../index.md)
+- <span id="relocatereader-clone"></span>`fn clone(&self) -> RelocateReader<R, T>` — [`RelocateReader`](../index.md#relocatereader)
 
 ##### `impl<R: fmt::Debug + Reader<Offset = usize>, T: fmt::Debug + Relocate<<R as >::Offset>> Debug for RelocateReader<R, T>`
 
@@ -51,39 +51,39 @@ It is generally not used for reading sections in an executable file.
 
 - <span id="relocatereader-type-offset"></span>`type Offset = <R as Reader>::Offset`
 
-- <span id="relocatereader-read-address"></span>`fn read_address(&mut self, address_size: u8) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="relocatereader-read-address"></span>`fn read_address(&mut self, address_size: u8) -> Result<u64>` — [`Result`](../../index.md#result)
 
-- <span id="relocatereader-read-offset"></span>`fn read_offset(&mut self, format: Format) -> Result<<R as >::Offset>` — [`Format`](../../index.md), [`Result`](../../index.md), [`Reader`](../index.md)
+- <span id="relocatereader-read-offset"></span>`fn read_offset(&mut self, format: Format) -> Result<<R as >::Offset>` — [`Format`](../../index.md#format), [`Result`](../../index.md#result), [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-read-sized-offset"></span>`fn read_sized_offset(&mut self, size: u8) -> Result<<R as >::Offset>` — [`Result`](../../index.md), [`Reader`](../index.md)
+- <span id="relocatereader-read-sized-offset"></span>`fn read_sized_offset(&mut self, size: u8) -> Result<<R as >::Offset>` — [`Result`](../../index.md#result), [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-split"></span>`fn split(&mut self, len: <Self as >::Offset) -> Result<Self>` — [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="relocatereader-split"></span>`fn split(&mut self, len: <Self as >::Offset) -> Result<Self>` — [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="relocatereader-endian"></span>`fn endian(&self) -> <Self as >::Endian` — [`Reader`](../index.md)
+- <span id="relocatereader-endian"></span>`fn endian(&self) -> <Self as >::Endian` — [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-len"></span>`fn len(&self) -> <Self as >::Offset` — [`Reader`](../index.md)
+- <span id="relocatereader-len"></span>`fn len(&self) -> <Self as >::Offset` — [`Reader`](../index.md#reader)
 
 - <span id="relocatereader-empty"></span>`fn empty(&mut self)`
 
-- <span id="relocatereader-truncate"></span>`fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="relocatereader-truncate"></span>`fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="relocatereader-offset-from"></span>`fn offset_from(&self, base: &Self) -> <Self as >::Offset` — [`Reader`](../index.md)
+- <span id="relocatereader-offset-from"></span>`fn offset_from(&self, base: &Self) -> <Self as >::Offset` — [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-offset-id"></span>`fn offset_id(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
+- <span id="relocatereader-offset-id"></span>`fn offset_id(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md#readeroffsetid)
 
-- <span id="relocatereader-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](../index.md), [`Reader`](../index.md)
+- <span id="relocatereader-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](../index.md#readeroffsetid), [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-find"></span>`fn find(&self, byte: u8) -> Result<<Self as >::Offset>` — [`Result`](../../index.md), [`Reader`](../index.md)
+- <span id="relocatereader-find"></span>`fn find(&self, byte: u8) -> Result<<Self as >::Offset>` — [`Result`](../../index.md#result), [`Reader`](../index.md#reader)
 
-- <span id="relocatereader-skip"></span>`fn skip(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="relocatereader-skip"></span>`fn skip(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="relocatereader-to-slice"></span>`fn to_slice(&self) -> Result<Cow<'_, [u8]>>` — [`Result`](../../index.md)
+- <span id="relocatereader-to-slice"></span>`fn to_slice(&self) -> Result<Cow<'_, [u8]>>` — [`Result`](../../index.md#result)
 
-- <span id="relocatereader-to-string"></span>`fn to_string(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
+- <span id="relocatereader-to-string"></span>`fn to_string(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md#result)
 
-- <span id="relocatereader-to-string-lossy"></span>`fn to_string_lossy(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
+- <span id="relocatereader-to-string-lossy"></span>`fn to_string_lossy(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md#result)
 
-- <span id="relocatereader-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../../index.md)
+- <span id="relocatereader-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../../index.md#result)
 
 ## Traits
 

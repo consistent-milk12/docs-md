@@ -784,7 +784,7 @@ struct statvfs {
 
 ##### `impl Clone for statvfs`
 
-- <span id="statvfs-clone"></span>`fn clone(&self) -> statvfs` — [`statvfs`](../index.md)
+- <span id="statvfs-clone"></span>`fn clone(&self) -> statvfs` — [`statvfs`](../index.md#statvfs)
 
 ##### `impl Copy for statvfs`
 

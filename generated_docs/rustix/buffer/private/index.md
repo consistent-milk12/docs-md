@@ -36,7 +36,7 @@ trait Sealed<T> { ... }
 
 #### Implementors
 
-- [`SpareCapacity`](../index.md)
+- [`SpareCapacity`](../index.md#sparecapacity)
 - `&'a mut [core::mem::MaybeUninit<T>; N]`
 - `&'a mut [core::mem::MaybeUninit<T>]`
 - `&'a mut alloc::vec::Vec<core::mem::MaybeUninit<T>>`

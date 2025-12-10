@@ -6786,63 +6786,63 @@ struct user_desc {
 
 #### Implementations
 
-- <span id="user-desc-seg-32bit"></span>`fn seg_32bit(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-seg-32bit"></span>`fn seg_32bit(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-seg-32bit"></span>`fn set_seg_32bit(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-seg-32bit"></span>`fn set_seg_32bit(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-seg-32bit-raw"></span>`unsafe fn seg_32bit_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-seg-32bit-raw"></span>`unsafe fn seg_32bit_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-seg-32bit-raw"></span>`unsafe fn set_seg_32bit_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-seg-32bit-raw"></span>`unsafe fn set_seg_32bit_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-contents"></span>`fn contents(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-contents"></span>`fn contents(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-contents"></span>`fn set_contents(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-contents"></span>`fn set_contents(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-contents-raw"></span>`unsafe fn contents_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-contents-raw"></span>`unsafe fn contents_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-contents-raw"></span>`unsafe fn set_contents_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-contents-raw"></span>`unsafe fn set_contents_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-read-exec-only"></span>`fn read_exec_only(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-read-exec-only"></span>`fn read_exec_only(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-read-exec-only"></span>`fn set_read_exec_only(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-read-exec-only"></span>`fn set_read_exec_only(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-read-exec-only-raw"></span>`unsafe fn read_exec_only_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-read-exec-only-raw"></span>`unsafe fn read_exec_only_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-read-exec-only-raw"></span>`unsafe fn set_read_exec_only_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-read-exec-only-raw"></span>`unsafe fn set_read_exec_only_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-limit-in-pages"></span>`fn limit_in_pages(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-limit-in-pages"></span>`fn limit_in_pages(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-limit-in-pages"></span>`fn set_limit_in_pages(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-limit-in-pages"></span>`fn set_limit_in_pages(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-limit-in-pages-raw"></span>`unsafe fn limit_in_pages_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-limit-in-pages-raw"></span>`unsafe fn limit_in_pages_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-limit-in-pages-raw"></span>`unsafe fn set_limit_in_pages_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-limit-in-pages-raw"></span>`unsafe fn set_limit_in_pages_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-seg-not-present"></span>`fn seg_not_present(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-seg-not-present"></span>`fn seg_not_present(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-seg-not-present"></span>`fn set_seg_not_present(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-seg-not-present"></span>`fn set_seg_not_present(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-seg-not-present-raw"></span>`unsafe fn seg_not_present_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-seg-not-present-raw"></span>`unsafe fn seg_not_present_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-seg-not-present-raw"></span>`unsafe fn set_seg_not_present_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-seg-not-present-raw"></span>`unsafe fn set_seg_not_present_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-useable"></span>`fn useable(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-useable"></span>`fn useable(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-useable"></span>`fn set_useable(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-useable"></span>`fn set_useable(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-useable-raw"></span>`unsafe fn useable_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-useable-raw"></span>`unsafe fn useable_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-useable-raw"></span>`unsafe fn set_useable_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-useable-raw"></span>`unsafe fn set_useable_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-lm"></span>`fn lm(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-lm"></span>`fn lm(&self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-lm"></span>`fn set_lm(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-lm"></span>`fn set_lm(&mut self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-lm-raw"></span>`unsafe fn lm_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-lm-raw"></span>`unsafe fn lm_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-set-lm-raw"></span>`unsafe fn set_lm_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
+- <span id="user-desc-set-lm-raw"></span>`unsafe fn set_lm_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md#c-uint)
 
-- <span id="user-desc-new-bitfield-1"></span>`fn new_bitfield_1(seg_32bit: crate::ctypes::c_uint, contents: crate::ctypes::c_uint, read_exec_only: crate::ctypes::c_uint, limit_in_pages: crate::ctypes::c_uint, seg_not_present: crate::ctypes::c_uint, useable: crate::ctypes::c_uint, lm: crate::ctypes::c_uint) -> __BindgenBitfieldUnit<[u8; 1]>` — [`c_uint`](../ctypes/index.md), [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
+- <span id="user-desc-new-bitfield-1"></span>`fn new_bitfield_1(seg_32bit: crate::ctypes::c_uint, contents: crate::ctypes::c_uint, read_exec_only: crate::ctypes::c_uint, limit_in_pages: crate::ctypes::c_uint, seg_not_present: crate::ctypes::c_uint, useable: crate::ctypes::c_uint, lm: crate::ctypes::c_uint) -> __BindgenBitfieldUnit<[u8; 1]>` — [`c_uint`](../ctypes/index.md#c-uint), [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
 #### Trait Implementations
 

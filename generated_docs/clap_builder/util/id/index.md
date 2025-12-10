@@ -38,7 +38,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
-- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../../builder/str/index.md)
+- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../../builder/str/index.md#str)
 
 #### Trait Implementations
 
@@ -76,7 +76,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../../builder/resettable/index.md), [`Id`](#id)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../../builder/resettable/index.md#resettable), [`Id`](#id)
 
 ##### `impl Ord for Id`
 

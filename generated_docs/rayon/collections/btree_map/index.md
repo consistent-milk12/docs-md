@@ -50,7 +50,7 @@ Parallel iterator over a B-Tree map
 
 - <span id="intoiter-type-item"></span>`type Item = (K, V)`
 
-- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -104,7 +104,7 @@ Parallel iterator over an immutable reference to a B-Tree map
 
 - <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -154,7 +154,7 @@ Parallel iterator over a mutable reference to a B-Tree map
 
 - <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
-- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="itermut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

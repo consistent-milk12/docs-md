@@ -86,9 +86,9 @@ operations operate on the symbolic link.
 
 - <span id="direntry-path-is-symlink"></span>`fn path_is_symlink(&self) -> bool`
 
-- <span id="direntry-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata>` — [`Result`](../index.md#result)
 
-- <span id="direntry-metadata-internal"></span>`fn metadata_internal(&self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- <span id="direntry-metadata-internal"></span>`fn metadata_internal(&self) -> Result<fs::Metadata>` — [`Result`](../index.md#result)
 
 - <span id="direntry-file-type"></span>`fn file_type(&self) -> fs::FileType`
 
@@ -98,9 +98,9 @@ operations operate on the symbolic link.
 
 - <span id="direntry-is-dir"></span>`fn is_dir(&self) -> bool`
 
-- <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
+- <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md#result)
 
-- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](#direntry)
+- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md#result), [`DirEntry`](#direntry)
 
 #### Trait Implementations
 

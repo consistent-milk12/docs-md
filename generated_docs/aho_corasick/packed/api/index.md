@@ -174,7 +174,7 @@ if cfg!(all(feature = "std", any(
 
 - <span id="builder-build"></span>`fn build(&self) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](../pattern/index.md), [`Searcher`](../teddy/builder/index.md)
+- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](../pattern/index.md#patterns), [`Searcher`](../teddy/builder/index.md#searcher)
 
 - <span id="builder-add"></span>`fn add<P: AsRef<[u8]>>(&mut self, pattern: P) -> &mut Builder` — [`Builder`](#builder)
 
@@ -250,9 +250,9 @@ if cfg!(all(feature = "std", any(
 
 - <span id="searcher-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../../util/search/index.md#match)
 
-- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
+- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md#span), [`Match`](../../util/search/index.md#match)
 
 - <span id="searcher-find-iter"></span>`fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](#finditer)
 
@@ -262,7 +262,7 @@ if cfg!(all(feature = "std", any(
 
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
+- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md#span), [`Match`](../../util/search/index.md#match)
 
 #### Trait Implementations
 
@@ -310,7 +310,7 @@ searched.
 
 - <span id="finditer-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../util/search/index.md#match)
 
 ## Enums
 

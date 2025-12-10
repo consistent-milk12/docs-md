@@ -92,7 +92,7 @@ assert_eq!(
 
 ##### `impl Clone for IdsRef<'a>`
 
-- <span id="idsref-clone"></span>`fn clone(&self) -> IdsRef<'a>` — [`IdsRef`](matches/arg_matches/index.md)
+- <span id="idsref-clone"></span>`fn clone(&self) -> IdsRef<'a>` — [`IdsRef`](matches/arg_matches/index.md#idsref)
 
 ##### `impl Debug for IdsRef<'a>`
 
@@ -100,7 +100,7 @@ assert_eq!(
 
 ##### `impl DoubleEndedIterator for IdsRef<'a>`
 
-- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
+- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../util/id/index.md#id)
 
 ##### `impl ExactSizeIterator for IdsRef<'_>`
 
@@ -116,7 +116,7 @@ assert_eq!(
 
 - <span id="idsref-type-item"></span>`type Item = &'a Id`
 
-- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
+- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../util/id/index.md#id)
 
 - <span id="idsref-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -162,7 +162,7 @@ assert_eq!(
 
 ##### `impl Clone for RawValues<'a>`
 
-- <span id="rawvalues-clone"></span>`fn clone(&self) -> RawValues<'a>` — [`RawValues`](matches/arg_matches/index.md)
+- <span id="rawvalues-clone"></span>`fn clone(&self) -> RawValues<'a>` — [`RawValues`](matches/arg_matches/index.md#rawvalues)
 
 ##### `impl Debug for RawValues<'a>`
 
@@ -230,7 +230,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<T: clone::Clone> Clone for Values<T>`
 
-- <span id="values-clone"></span>`fn clone(&self) -> Values<T>` — [`Values`](matches/arg_matches/index.md)
+- <span id="values-clone"></span>`fn clone(&self) -> Values<T>` — [`Values`](matches/arg_matches/index.md#values)
 
 ##### `impl<T: fmt::Debug> Debug for Values<T>`
 
@@ -299,7 +299,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<'a, T: clone::Clone> Clone for ValuesRef<'a, T>`
 
-- <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](matches/arg_matches/index.md)
+- <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](matches/arg_matches/index.md#valuesref)
 
 ##### `impl<'a, T: fmt::Debug> Debug for ValuesRef<'a, T>`
 
@@ -399,37 +399,37 @@ if matches.contains_id("out") {
 
 - <span id="argmatches-get-flag"></span>`fn get_flag(&self, id: &str) -> bool`
 
-- <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](matches/arg_matches/index.md)
+- <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](matches/arg_matches/index.md#valuesref)
 
-- <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](matches/arg_matches/index.md)
+- <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](matches/arg_matches/index.md#occurrencesref)
 
-- <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](matches/arg_matches/index.md)
+- <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](matches/arg_matches/index.md#rawvalues)
 
-- <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](matches/arg_matches/index.md)
+- <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](matches/arg_matches/index.md#rawoccurrences)
 
 - <span id="argmatches-remove-one"></span>`fn remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<T>`
 
-- <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](matches/arg_matches/index.md)
+- <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](matches/arg_matches/index.md#values)
 
-- <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](matches/arg_matches/index.md)
+- <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](matches/arg_matches/index.md#occurrences)
 
 - <span id="argmatches-contains-id"></span>`fn contains_id(&self, id: &str) -> bool`
 
-- <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](matches/arg_matches/index.md)
+- <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](matches/arg_matches/index.md#idsref)
 
 - <span id="argmatches-args-present"></span>`fn args_present(&self) -> bool`
 
-- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](matches/value_source/index.md)
+- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
 - <span id="argmatches-index-of"></span>`fn index_of(&self, id: &str) -> Option<usize>`
 
-- <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](matches/arg_matches/index.md)
+- <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](matches/arg_matches/index.md#indices)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
+- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md#argmatches)
 
 ##### `impl Debug for ArgMatches`
 
@@ -437,13 +437,13 @@ if matches.contains_id("out") {
 
 ##### `impl Default for ArgMatches`
 
-- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
+- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md#argmatches)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](matches/arg_matches/index.md)
+- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](matches/arg_matches/index.md#argmatches)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -484,7 +484,7 @@ assert_eq!(indices.next(), None);
 
 ##### `impl Clone for Indices<'a>`
 
-- <span id="indices-clone"></span>`fn clone(&self) -> Indices<'a>` — [`Indices`](matches/arg_matches/index.md)
+- <span id="indices-clone"></span>`fn clone(&self) -> Indices<'a>` — [`Indices`](matches/arg_matches/index.md#indices)
 
 ##### `impl Debug for Indices<'a>`
 
@@ -554,7 +554,7 @@ Origin of the argument's value
 
 ##### `impl Clone for ValueSource`
 
-- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](matches/value_source/index.md)
+- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
 ##### `impl Copy for ValueSource`
 
@@ -566,15 +566,15 @@ Origin of the argument's value
 
 ##### `impl Ord for ValueSource`
 
-- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](matches/value_source/index.md)
+- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
 ##### `impl PartialEq for ValueSource`
 
-- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](matches/value_source/index.md)
+- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
 ##### `impl PartialOrd for ValueSource`
 
-- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](matches/value_source/index.md)
+- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
 ##### `impl StructuralPartialEq for ValueSource`
 
@@ -607,13 +607,13 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- <span id="matcheserror-unwrap"></span>`fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](error/index.md)
+- <span id="matcheserror-unwrap"></span>`fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](error/index.md#matcheserror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchesError`
 
-- <span id="matcheserror-clone"></span>`fn clone(&self) -> MatchesError` — [`MatchesError`](error/index.md)
+- <span id="matcheserror-clone"></span>`fn clone(&self) -> MatchesError` — [`MatchesError`](error/index.md#matcheserror)
 
 ##### `impl Debug for MatchesError`
 

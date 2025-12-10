@@ -40,7 +40,7 @@ feature
 
 - <span id="str-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`
 
-- <span id="str-into-inner"></span>`fn into_inner(self) -> Inner` — [`Inner`](inner/index.md)
+- <span id="str-into-inner"></span>`fn into_inner(self) -> Inner` — [`Inner`](inner/index.md#inner)
 
 - <span id="str-as-str"></span>`fn as_str(&self) -> &str`
 
@@ -80,7 +80,7 @@ feature
 
 ##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<String>` — [`Resettable`](../resettable/index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<String>` — [`Resettable`](../resettable/index.md#resettable)
 
 ##### `impl Ord for Str`
 

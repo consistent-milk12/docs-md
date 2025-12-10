@@ -2401,7 +2401,7 @@ An offset into the `.debug_info` section.
 
 #### Implementations
 
-- <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
+- <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md#unitheader), [`UnitOffset`](#unitoffset)
 
 #### Trait Implementations
 
@@ -2905,7 +2905,7 @@ An offset into the `.debug_types` section.
 
 #### Implementations
 
-- <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
+- <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md#unitheader), [`UnitOffset`](#unitoffset)
 
 #### Trait Implementations
 
@@ -7011,7 +7011,7 @@ An offset into the current compilation or type unit.
 
 #### Implementations
 
-- <span id="cratereadunitoffset-to-unit-section-offset"></span>`fn to_unit_section_offset<R>(&self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](read/index.md), [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="cratereadunitoffset-to-unit-section-offset"></span>`fn to_unit_section_offset<R>(&self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](read/index.md#unit), [`UnitSectionOffset`](#unitsectionoffset)
 
 #### Trait Implementations
 
@@ -8123,28 +8123,28 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 
 #### Implementors
 
-- [`DebugAbbrev`](read/index.md)
-- [`DebugAddr`](read/index.md)
-- [`DebugAranges`](read/index.md)
-- [`DebugCuIndex`](read/index.md)
-- [`DebugFrame`](read/index.md)
-- [`DebugInfo`](read/index.md)
-- [`DebugLineStr`](read/index.md)
-- [`DebugLine`](read/index.md)
-- [`DebugLocLists`](read/index.md)
-- [`DebugLoc`](read/index.md)
-- [`DebugMacinfo`](read/index.md)
-- [`DebugMacro`](read/index.md)
-- [`DebugPubNames`](read/index.md)
-- [`DebugPubTypes`](read/index.md)
-- [`DebugRanges`](read/index.md)
-- [`DebugRngLists`](read/index.md)
-- [`DebugStrOffsets`](read/index.md)
-- [`DebugStr`](read/index.md)
-- [`DebugTuIndex`](read/index.md)
-- [`DebugTypes`](read/index.md)
-- [`EhFrameHdr`](read/index.md)
-- [`EhFrame`](read/index.md)
+- [`DebugAbbrev`](read/index.md#debugabbrev)
+- [`DebugAddr`](read/index.md#debugaddr)
+- [`DebugAranges`](read/index.md#debugaranges)
+- [`DebugCuIndex`](read/index.md#debugcuindex)
+- [`DebugFrame`](read/index.md#debugframe)
+- [`DebugInfo`](read/index.md#debuginfo)
+- [`DebugLineStr`](read/index.md#debuglinestr)
+- [`DebugLine`](read/index.md#debugline)
+- [`DebugLocLists`](read/index.md#debugloclists)
+- [`DebugLoc`](read/index.md#debugloc)
+- [`DebugMacinfo`](read/index.md#debugmacinfo)
+- [`DebugMacro`](read/index.md#debugmacro)
+- [`DebugPubNames`](read/index.md#debugpubnames)
+- [`DebugPubTypes`](read/index.md#debugpubtypes)
+- [`DebugRanges`](read/index.md#debugranges)
+- [`DebugRngLists`](read/index.md#debugrnglists)
+- [`DebugStrOffsets`](read/index.md#debugstroffsets)
+- [`DebugStr`](read/index.md#debugstr)
+- [`DebugTuIndex`](read/index.md#debugtuindex)
+- [`DebugTypes`](read/index.md#debugtypes)
+- [`EhFrameHdr`](read/index.md#ehframehdr)
+- [`EhFrame`](read/index.md#ehframe)
 
 ## Type Aliases
 

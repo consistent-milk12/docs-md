@@ -120,7 +120,7 @@ number of spans was actually much simpler.
 
 - <span id="spans-from-formatter"></span>`fn from_formatter<'e, E: core::fmt::Display>(fmter: &'p Formatter<'e, E>) -> Spans<'p>` — [`Formatter`](#formatter), [`Spans`](#spans)
 
-- <span id="spans-add"></span>`fn add(&mut self, span: ast::Span)` — [`Span`](../ast/index.md)
+- <span id="spans-add"></span>`fn add(&mut self, span: ast::Span)` — [`Span`](../ast/index.md#span)
 
 - <span id="spans-notate"></span>`fn notate(&self) -> String`
 

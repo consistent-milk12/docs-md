@@ -150,7 +150,7 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md)
+- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md#error)
 
 - <span id="regex-is-match"></span>`fn is_match(&self, haystack: &[u8]) -> bool`
 
@@ -190,7 +190,7 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 - <span id="regex-type-err"></span>`type Err = Error`
 
-- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md)
+- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md#error)
 
 ##### `impl ToString for Regex`
 

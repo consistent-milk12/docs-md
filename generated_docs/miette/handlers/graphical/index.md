@@ -57,7 +57,7 @@ printer.
 
 - <span id="graphicalreporthandler-new"></span>`fn new() -> Self`
 
-- <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
+- <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md#graphicaltheme)
 
 - <span id="graphicalreporthandler-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
@@ -73,7 +73,7 @@ printer.
 
 - <span id="graphicalreporthandler-with-urls"></span>`fn with_urls(self, urls: bool) -> Self`
 
-- <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
+- <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md#graphicaltheme)
 
 - <span id="graphicalreporthandler-with-width"></span>`fn with_width(self, width: usize) -> Self`
 
@@ -91,7 +91,7 @@ printer.
 
 - <span id="graphicalreporthandler-with-show-related-as-nested"></span>`fn with_show_related_as_nested(self, show_related_as_nested: bool) -> Self`
 
-- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../../highlighters/index.md)
+- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../../highlighters/index.md#highlighter)
 
 - <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
@@ -101,7 +101,7 @@ printer.
 
 ##### `impl Clone for GraphicalReportHandler`
 
-- <span id="graphicalreporthandler-clone"></span>`fn clone(&self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](../index.md)
+- <span id="graphicalreporthandler-clone"></span>`fn clone(&self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](../index.md#graphicalreporthandler)
 
 ##### `impl Debug for GraphicalReportHandler`
 
@@ -115,7 +115,7 @@ printer.
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
-- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md#diagnostic)
 
 ### `Line`
 
@@ -174,7 +174,7 @@ struct FancySpan {
 
 #### Implementations
 
-- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../../index.md)
+- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../../index.md#sourcespan)
 
 - <span id="fancyspan-style"></span>`fn style(&self) -> Style`
 

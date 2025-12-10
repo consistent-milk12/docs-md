@@ -48,11 +48,11 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../inde
 
 ##### `impl<I, F> IndexedParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="inspect-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="inspect-len"></span>`fn len(&self) -> usize`
 
-- <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Inspect<I, F>`
 
@@ -68,7 +68,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../inde
 
 - <span id="inspect-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="inspect-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -121,7 +121,7 @@ struct InspectProducer<'f, P, F> {
 
 - <span id="inspectproducer-type-intoiter"></span>`type IntoIter = Inspect<<P as Producer>::IntoIter, &'f F>`
 
-- <span id="inspectproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="inspectproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="inspectproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -156,9 +156,9 @@ struct InspectConsumer<'f, C, F> {
 
 - <span id="inspectconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="inspectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="inspectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="inspectconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="inspectconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="inspectconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -182,7 +182,7 @@ struct InspectConsumer<'f, C, F> {
 
 - <span id="inspectconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="inspectconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="inspectconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `InspectFolder<'f, C, F>`
 
@@ -205,7 +205,7 @@ struct InspectFolder<'f, C, F> {
 
 - <span id="inspectfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="inspectfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="inspectfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="inspectfolder-full"></span>`fn full(&self) -> bool`
 

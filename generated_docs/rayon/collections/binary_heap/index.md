@@ -42,11 +42,11 @@ Parallel iterator over a binary heap
 
 ##### `impl<T: Send> IndexedParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
-- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for IntoIter<T>`
 
@@ -62,7 +62,7 @@ Parallel iterator over a binary heap
 
 - <span id="intoiter-type-item"></span>`type Item = T`
 
-- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -104,11 +104,11 @@ Parallel iterator over an immutable reference to a binary heap
 
 ##### `impl<'a, T: Sync + 'a> IndexedParallelIterator for Iter<'a, T>`
 
-- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="iter-len"></span>`fn len(&self) -> usize`
 
-- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Iter<'a, T>`
 
@@ -124,7 +124,7 @@ Parallel iterator over an immutable reference to a binary heap
 
 - <span id="iter-type-item"></span>`type Item = &'a T`
 
-- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -167,11 +167,11 @@ but keeps the total capacity.
 
 ##### `impl<T: Ord + Send> IndexedParallelIterator for Drain<'_, T>`
 
-- <span id="drain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="drain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="drain-len"></span>`fn len(&self) -> usize`
 
-- <span id="drain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="drain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Drain<'a, T>`
 
@@ -187,7 +187,7 @@ but keeps the total capacity.
 
 - <span id="drain-type-item"></span>`type Item = T`
 
-- <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="drain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

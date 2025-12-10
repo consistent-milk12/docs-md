@@ -461,7 +461,7 @@ The header at the start of every 32-bit XCOFF file.
 
 - <span id="xcofffileheader32-f-timdat"></span>`fn f_timdat(&self) -> u32`
 
-- <span id="xcofffileheader32-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md)
+- <span id="xcofffileheader32-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
 
 - <span id="xcofffileheader32-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
 
@@ -555,7 +555,7 @@ The header at the start of every 64-bit XCOFF file.
 
 - <span id="xcofffileheader64-f-timdat"></span>`fn f_timdat(&self) -> u32`
 
-- <span id="xcofffileheader64-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md)
+- <span id="xcofffileheader64-f-symptr"></span>`fn f_symptr(&self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md#fileheader)
 
 - <span id="xcofffileheader64-f-nsyms"></span>`fn f_nsyms(&self) -> u32`
 
@@ -734,19 +734,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - <span id="xcoffauxheader32-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
 
-- <span id="xcoffauxheader32-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
 - <span id="xcoffauxheader32-o-snentry"></span>`fn o_snentry(&self) -> u16`
 
@@ -770,9 +770,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - <span id="xcoffauxheader32-o-cputype"></span>`fn o_cputype(&self) -> u8`
 
-- <span id="xcoffauxheader32-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader32-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader32-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
 - <span id="xcoffauxheader32-o-debugger"></span>`fn o_debugger(&self) -> u32`
 
@@ -986,19 +986,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - <span id="xcoffauxheader64-o-vstamp"></span>`fn o_vstamp(&self) -> u16`
 
-- <span id="xcoffauxheader64-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-tsize"></span>`fn o_tsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-dsize"></span>`fn o_dsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-bsize"></span>`fn o_bsize(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-entry"></span>`fn o_entry(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-text-start"></span>`fn o_text_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-data-start"></span>`fn o_data_start(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-toc"></span>`fn o_toc(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
 - <span id="xcoffauxheader64-o-snentry"></span>`fn o_snentry(&self) -> u16`
 
@@ -1022,9 +1022,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - <span id="xcoffauxheader64-o-cputype"></span>`fn o_cputype(&self) -> u8`
 
-- <span id="xcoffauxheader64-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-maxstack"></span>`fn o_maxstack(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
-- <span id="xcoffauxheader64-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
+- <span id="xcoffauxheader64-o-maxdata"></span>`fn o_maxdata(&self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md#auxheader)
 
 - <span id="xcoffauxheader64-o-debugger"></span>`fn o_debugger(&self) -> u32`
 
@@ -1143,25 +1143,25 @@ Section header.
 
 - <span id="xcoffsectionheader32-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
-- <span id="xcoffsectionheader32-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader32-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
 - <span id="xcoffsectionheader32-s-flags"></span>`fn s_flags(&self) -> u32`
 
-- <span id="xcoffsectionheader32-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md), [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader32-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
 ### `SectionHeader64`
 
@@ -1257,25 +1257,25 @@ Section header.
 
 - <span id="xcoffsectionheader64-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
-- <span id="xcoffsectionheader64-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-paddr"></span>`fn s_paddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-vaddr"></span>`fn s_vaddr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-size"></span>`fn s_size(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-scnptr"></span>`fn s_scnptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-relptr"></span>`fn s_relptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-lnnoptr"></span>`fn s_lnnoptr(&self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-nreloc"></span>`fn s_nreloc(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
-- <span id="xcoffsectionheader64-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-s-nlnno"></span>`fn s_nlnno(&self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
 - <span id="xcoffsectionheader64-s-flags"></span>`fn s_flags(&self) -> u32`
 
-- <span id="xcoffsectionheader64-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md), [`SectionHeader`](../read/xcoff/index.md)
+- <span id="xcoffsectionheader64-relocations"></span>`fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md#result), [`SectionHeader`](../read/xcoff/index.md#sectionheader)
 
 ### `SymbolBytes`
 
@@ -1362,7 +1362,7 @@ Symbol table entry.
 
 - <span id="xcoffsymbol32-type-word"></span>`type Word = u32`
 
-- <span id="xcoffsymbol32-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
+- <span id="xcoffsymbol32-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
 - <span id="xcoffsymbol32-n-scnum"></span>`fn n_scnum(&self) -> i16`
 
@@ -1374,7 +1374,7 @@ Symbol table entry.
 
 - <span id="xcoffsymbol32-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
 
-- <span id="xcoffsymbol32-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
+- <span id="xcoffsymbol32-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
 ### `Symbol64`
 
@@ -1437,7 +1437,7 @@ Symbol table entry.
 
 - <span id="xcoffsymbol64-type-word"></span>`type Word = u64`
 
-- <span id="xcoffsymbol64-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
+- <span id="xcoffsymbol64-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
 - <span id="xcoffsymbol64-n-scnum"></span>`fn n_scnum(&self) -> i16`
 
@@ -1449,7 +1449,7 @@ Symbol table entry.
 
 - <span id="xcoffsymbol64-name-offset"></span>`fn name_offset(&self) -> Option<u32>`
 
-- <span id="xcoffsymbol64-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
+- <span id="xcoffsymbol64-name"></span>`fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
 ### `FileAux32`
 
@@ -2172,7 +2172,7 @@ Relocation table entry
 
 - <span id="xcoffrel32-type-word"></span>`type Word = u32`
 
-- <span id="xcoffrel32-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
+- <span id="xcoffrel32-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 
 - <span id="xcoffrel32-r-symndx"></span>`fn r_symndx(&self) -> u32`
 
@@ -2231,7 +2231,7 @@ Relocation table entry
 
 - <span id="xcoffrel64-type-word"></span>`type Word = u64`
 
-- <span id="xcoffrel64-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
+- <span id="xcoffrel64-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 
 - <span id="xcoffrel64-r-symndx"></span>`fn r_symndx(&self) -> u32`
 

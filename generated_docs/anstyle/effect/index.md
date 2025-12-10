@@ -65,17 +65,17 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 - <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
 
-- <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](../index.md)
+- <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](../index.md#effects)
 
-- <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](../index.md)
+- <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](../index.md#effects)
 
-- <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](../index.md)
+- <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](../index.md#effects)
 
 - <span id="effects-clear"></span>`const fn clear(self) -> Self`
 
 - <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
-- <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](../index.md)
+- <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](../index.md#effectiter)
 
 - <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](#effectindexiter)
 
@@ -97,7 +97,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Clone for Effects`
 
-- <span id="effects-clone"></span>`fn clone(&self) -> Effects` — [`Effects`](../index.md)
+- <span id="effects-clone"></span>`fn clone(&self) -> Effects` — [`Effects`](../index.md#effects)
 
 ##### `impl Copy for Effects`
 
@@ -107,7 +107,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Default for Effects`
 
-- <span id="effects-default"></span>`fn default() -> Effects` — [`Effects`](../index.md)
+- <span id="effects-default"></span>`fn default() -> Effects` — [`Effects`](../index.md#effects)
 
 ##### `impl Eq for Effects`
 
@@ -117,15 +117,15 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Ord for Effects`
 
-- <span id="effects-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](../index.md)
+- <span id="effects-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](../index.md#effects)
 
 ##### `impl PartialEq for Effects`
 
-- <span id="effects-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](../index.md)
+- <span id="effects-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](../index.md#effects)
 
 ##### `impl PartialOrd for Effects`
 
-- <span id="effects-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](../index.md)
+- <span id="effects-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](../index.md#effects)
 
 ##### `impl StructuralPartialEq for Effects`
 
@@ -199,7 +199,7 @@ Enumerate each enabled value in [`Effects`](../index.md)
 
 ##### `impl Clone for EffectIter`
 
-- <span id="effectiter-clone"></span>`fn clone(&self) -> EffectIter` — [`EffectIter`](../index.md)
+- <span id="effectiter-clone"></span>`fn clone(&self) -> EffectIter` — [`EffectIter`](../index.md#effectiter)
 
 ##### `impl Debug for EffectIter`
 
@@ -223,7 +223,7 @@ Enumerate each enabled value in [`Effects`](../index.md)
 
 ##### `impl PartialEq for EffectIter`
 
-- <span id="effectiter-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](../index.md)
+- <span id="effectiter-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](../index.md#effectiter)
 
 ##### `impl StructuralPartialEq for EffectIter`
 

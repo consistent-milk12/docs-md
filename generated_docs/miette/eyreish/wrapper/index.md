@@ -31,7 +31,7 @@ struct DisplayError<M>(M);
 
 ##### `impl<E> Diag for DisplayError<M>`
 
-- <span id="displayerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="displayerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl<M> Diagnostic for DisplayError<M>`
 
@@ -65,7 +65,7 @@ struct MessageError<M>(M);
 
 ##### `impl<E> Diag for MessageError<M>`
 
-- <span id="messageerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="messageerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl<M> Diagnostic for MessageError<M>`
 
@@ -99,25 +99,25 @@ struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 
 ##### `impl Diag for BoxedError`
 
-- <span id="boxederror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="boxederror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl Diagnostic for BoxedError`
 
 - <span id="boxederror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="boxederror-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
+- <span id="boxederror-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md#severity)
 
 - <span id="boxederror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 - <span id="boxederror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="boxederror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="boxederror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md#labeledspan)
 
-- <span id="boxederror-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="boxederror-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md#sourcecode)
 
-- <span id="boxederror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="boxederror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md#diagnostic)
 
-- <span id="boxederror-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
+- <span id="boxederror-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md#diagnostic)
 
 ##### `impl Display for BoxedError`
 
@@ -158,25 +158,25 @@ struct WithSourceCode<E, C> {
 
 ##### `impl<E> Diag for WithSourceCode<E, C>`
 
-- <span id="withsourcecode-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="withsourcecode-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C>`
 
 - <span id="withsourcecode-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="withsourcecode-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
+- <span id="withsourcecode-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md#severity)
 
 - <span id="withsourcecode-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 - <span id="withsourcecode-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="withsourcecode-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="withsourcecode-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md#labeledspan)
 
-- <span id="withsourcecode-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="withsourcecode-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md#sourcecode)
 
-- <span id="withsourcecode-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="withsourcecode-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md#diagnostic)
 
-- <span id="withsourcecode-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
+- <span id="withsourcecode-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md#diagnostic)
 
 ##### `impl<E: Display, C> Display for WithSourceCode<E, C>`
 

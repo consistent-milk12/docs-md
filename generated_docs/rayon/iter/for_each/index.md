@@ -33,7 +33,7 @@ struct ForEachConsumer<'f, F> {
 
 - <span id="foreachconsumer-type-result"></span>`type Result = ()`
 
-- <span id="foreachconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](../noop/index.md)
+- <span id="foreachconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](../noop/index.md#noopreducer)
 
 - <span id="foreachconsumer-into-folder"></span>`fn into_folder(self) -> Self`
 
@@ -71,7 +71,7 @@ struct ForEachConsumer<'f, F> {
 
 - <span id="foreachconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="foreachconsumer-to-reducer"></span>`fn to_reducer(&self) -> NoopReducer` — [`NoopReducer`](../noop/index.md)
+- <span id="foreachconsumer-to-reducer"></span>`fn to_reducer(&self) -> NoopReducer` — [`NoopReducer`](../noop/index.md#noopreducer)
 
 ## Functions
 

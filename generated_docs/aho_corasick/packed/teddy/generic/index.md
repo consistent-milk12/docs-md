@@ -41,7 +41,7 @@ Also, the `PatternID` used here is a `u16`.
 
 #### Implementations
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md#patternid)
 
 - <span id="match-start"></span>`fn start(&self) -> *const u8`
 
@@ -88,7 +88,7 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- <span id="slim-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Slim`](#slim)
+- <span id="slim-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md#patterns), [`Slim`](#slim)
 
 - <span id="slim-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -133,7 +133,7 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- <span id="fat-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
+- <span id="fat-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md#patterns), [`Fat`](#fat)
 
 - <span id="fat-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -189,7 +189,7 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
+- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md#patterns), [`Teddy`](#teddy)
 
 - <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
 

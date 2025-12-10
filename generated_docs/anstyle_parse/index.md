@@ -118,7 +118,7 @@ struct Params {
 
 - <span id="params-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md)
+- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md#paramsiter)
 
 - <span id="params-is-full"></span>`fn is_full(&self) -> bool`
 
@@ -132,7 +132,7 @@ struct Params {
 
 ##### `impl Clone for Params`
 
-- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](params/index.md)
+- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](params/index.md#params)
 
 ##### `impl Debug for Params`
 
@@ -140,7 +140,7 @@ struct Params {
 
 ##### `impl Default for Params`
 
-- <span id="params-default"></span>`fn default() -> Params` — [`Params`](params/index.md)
+- <span id="params-default"></span>`fn default() -> Params` — [`Params`](params/index.md#params)
 
 ##### `impl Eq for Params`
 
@@ -154,7 +154,7 @@ struct Params {
 
 ##### `impl PartialEq for Params`
 
-- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](params/index.md)
+- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](params/index.md#params)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -173,7 +173,7 @@ Immutable subparameter iterator.
 
 #### Implementations
 
-- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](params/index.md)
+- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](params/index.md#params)
 
 #### Trait Implementations
 
@@ -218,7 +218,7 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](params/index.md)
+- <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](params/index.md#params)
 
 - <span id="parser-intermediates"></span>`fn intermediates(&self) -> &[u8]`
 
@@ -226,11 +226,11 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - <span id="parser-process-utf8"></span>`fn process_utf8<P>(&mut self, performer: &mut P, byte: u8)`
 
-- <span id="parser-perform-state-change"></span>`fn perform_state_change<P>(&mut self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/definitions/index.md), [`Action`](state/definitions/index.md)
+- <span id="parser-perform-state-change"></span>`fn perform_state_change<P>(&mut self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/definitions/index.md#state), [`Action`](state/definitions/index.md#action)
 
 - <span id="parser-osc-dispatch"></span>`fn osc_dispatch<P: Perform>(&self, performer: &mut P, byte: u8)`
 
-- <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md)
+- <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md#action)
 
 #### Trait Implementations
 

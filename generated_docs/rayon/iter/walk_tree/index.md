@@ -112,7 +112,7 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 - <span id="walktreeprefix-type-item"></span>`type Item = S`
 
-- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTreePrefix<S, B>`
 
@@ -204,7 +204,7 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 - <span id="walktreepostfix-type-item"></span>`type Item = S`
 
-- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTreePostfix<S, B>`
 
@@ -251,7 +251,7 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 - <span id="walktree-type-item"></span>`type Item = S`
 
-- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WalkTree<S, B>`
 

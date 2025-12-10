@@ -104,7 +104,7 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../error/index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md#hir), [`Error`](../error/index.md#error)
 
 #### Trait Implementations
 

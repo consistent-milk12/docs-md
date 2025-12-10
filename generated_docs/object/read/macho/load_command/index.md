@@ -32,15 +32,15 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 - <span id="loadcommanditerator-new"></span>`fn new(endian: E, data: &'data [u8], ncmds: u32) -> Self`
 
-- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
+- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../../index.md#result), [`LoadCommandData`](../index.md#loadcommanddata)
 
-- <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
+- <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../../index.md#result), [`LoadCommandData`](../index.md#loadcommanddata)
 
 #### Trait Implementations
 
 ##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
+- <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
 
 ##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
@@ -50,7 +50,7 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 ##### `impl<'data, E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
+- <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
 
 ##### `impl<I> IntoIterator for LoadCommandIterator<'data, E>`
 
@@ -86,37 +86,37 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
 
-- <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../../index.md)
+- <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../../index.md#result)
 
 - <span id="loadcommanddata-raw-data"></span>`fn raw_data(&self) -> &'data [u8]`
 
-- <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md), [`Result`](../../../index.md)
+- <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md#lcstr), [`Result`](../../../index.md#result)
 
-- <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandVariant`](../index.md)
+- <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md#result), [`LoadCommandVariant`](../index.md#loadcommandvariant)
 
-- <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand32`](../../../macho/index.md)
+- <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md#result), [`SegmentCommand32`](../../../macho/index.md#segmentcommand32)
 
-- <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md), [`SymtabCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md#result), [`SymtabCommand`](../../../macho/index.md#symtabcommand)
 
-- <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../../index.md), [`DysymtabCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../../index.md#result), [`DysymtabCommand`](../../../macho/index.md#dysymtabcommand)
 
-- <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../../index.md), [`DylibCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../../index.md#result), [`DylibCommand`](../../../macho/index.md#dylibcommand)
 
-- <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../../index.md), [`UuidCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../../index.md#result), [`UuidCommand`](../../../macho/index.md#uuidcommand)
 
-- <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand64`](../../../macho/index.md)
+- <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../../index.md#result), [`SegmentCommand64`](../../../macho/index.md#segmentcommand64)
 
-- <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../../index.md), [`DyldInfoCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../../index.md#result), [`DyldInfoCommand`](../../../macho/index.md#dyldinfocommand)
 
-- <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../../index.md), [`EntryPointCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../../index.md#result), [`EntryPointCommand`](../../../macho/index.md#entrypointcommand)
 
-- <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../../index.md), [`BuildVersionCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../../index.md#result), [`BuildVersionCommand`](../../../macho/index.md#buildversioncommand)
 
 #### Trait Implementations
 
 ##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
-- <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md)
+- <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md#loadcommanddata)
 
 ##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
@@ -312,7 +312,7 @@ A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted acco
 
 ##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
-- <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md)
+- <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md#loadcommandvariant)
 
 ##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 

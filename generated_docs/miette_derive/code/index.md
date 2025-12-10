@@ -22,7 +22,7 @@ struct Code(String);
 
 #### Implementations
 
-- <span id="code-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="code-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md#diagnosticdef)
 
 - <span id="code-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 

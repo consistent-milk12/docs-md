@@ -58,7 +58,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](../ind
 
 - <span id="takeany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TakeAny<I>`
 
@@ -95,9 +95,9 @@ struct TakeAnyConsumer<'f, C> {
 
 - <span id="takeanyconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="takeanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="takeanyconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanyconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="takeanyconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -121,7 +121,7 @@ struct TakeAnyConsumer<'f, C> {
 
 - <span id="takeanyconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="takeanyconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanyconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `TakeAnyFolder<'f, C>`
 
@@ -144,7 +144,7 @@ struct TakeAnyFolder<'f, C> {
 
 - <span id="takeanyfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="takeanyfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="takeanyfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="takeanyfolder-full"></span>`fn full(&self) -> bool`
 

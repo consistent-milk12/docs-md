@@ -84,9 +84,9 @@ A partially parsed archive file.
 
 #### Implementations
 
-- <span id="archivefile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivefile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="archivefile-parse-aixbig"></span>`fn parse_aixbig(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivefile-parse-aixbig"></span>`fn parse_aixbig(data: R) -> read::Result<Self>` — [`Result`](../../index.md#result)
 
 - <span id="archivefile-kind"></span>`fn kind(&self) -> ArchiveKind` — [`ArchiveKind`](#archivekind)
 
@@ -94,9 +94,9 @@ A partially parsed archive file.
 
 - <span id="archivefile-members"></span>`fn members(&self) -> ArchiveMemberIterator<'data, R>` — [`ArchiveMemberIterator`](#archivememberiterator)
 
-- <span id="archivefile-member"></span>`fn member(&self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](#archiveoffset), [`Result`](../../index.md), [`ArchiveMember`](#archivemember)
+- <span id="archivefile-member"></span>`fn member(&self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](#archiveoffset), [`Result`](../../index.md#result), [`ArchiveMember`](#archivemember)
 
-- <span id="archivefile-symbols"></span>`fn symbols(&self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>` — [`Result`](../../index.md), [`ArchiveSymbolIterator`](#archivesymboliterator)
+- <span id="archivefile-symbols"></span>`fn symbols(&self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>` — [`Result`](../../index.md#result), [`ArchiveSymbolIterator`](#archivesymboliterator)
 
 #### Trait Implementations
 
@@ -162,15 +162,15 @@ A partially parsed archive member.
 
 #### Implementations
 
-- <span id="archivemember-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivemember-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="archivemember-parse-aixbig-index"></span>`fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../archive/index.md), [`Result`](../../index.md)
+- <span id="archivemember-parse-aixbig-index"></span>`fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../archive/index.md#aixmemberoffset), [`Result`](../../index.md#result)
 
-- <span id="archivemember-parse-aixbig"></span>`fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivemember-parse-aixbig"></span>`fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../index.md#result)
 
-- <span id="archivemember-header"></span>`fn header(&self) -> Option<&'data archive::Header>` — [`Header`](../../archive/index.md)
+- <span id="archivemember-header"></span>`fn header(&self) -> Option<&'data archive::Header>` — [`Header`](../../archive/index.md#header)
 
-- <span id="archivemember-aix-header"></span>`fn aix_header(&self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../archive/index.md)
+- <span id="archivemember-aix-header"></span>`fn aix_header(&self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../archive/index.md#aixheader)
 
 - <span id="archivemember-name"></span>`fn name(&self) -> &'data [u8]`
 
@@ -188,7 +188,7 @@ A partially parsed archive member.
 
 - <span id="archivemember-is-thin"></span>`fn is_thin(&self) -> bool`
 
-- <span id="archivemember-data"></span>`fn data<R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="archivemember-data"></span>`fn data<R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 

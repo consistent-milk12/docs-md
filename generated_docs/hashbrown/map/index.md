@@ -298,7 +298,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 - <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](../hash_map/index.md)
+- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](../hash_map/index.md#iter)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
@@ -419,7 +419,7 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 #### Implementations
 
-- <span id="itermut-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md)
+- <span id="itermut-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md#iter)
 
 #### Trait Implementations
 
@@ -498,7 +498,7 @@ assert_eq!(iter.next(), None);
 
 #### Implementations
 
-- <span id="intoiter-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md)
+- <span id="intoiter-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md#iter)
 
 #### Trait Implementations
 
@@ -866,7 +866,7 @@ assert_eq!(drain_iter.next(), None);
 
 #### Implementations
 
-- <span id="drain-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md)
+- <span id="drain-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md#iter)
 
 #### Trait Implementations
 
@@ -1096,7 +1096,7 @@ assert_eq!(map.len(), 2);
 
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> V`
 
-- <span id="occupiedentry-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> Entry<'a, K, V, S, A>` — [`Entry`](../hash_map/index.md)
+- <span id="occupiedentry-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> Entry<'a, K, V, S, A>` — [`Entry`](../hash_map/index.md#entry)
 
 #### Trait Implementations
 
@@ -1121,7 +1121,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -1157,7 +1157,7 @@ assert!(map[&"b"] == 20 && map.len() == 2);
 
 - <span id="vacantentry-insert"></span>`fn insert(self, value: V) -> &'a mut V`
 
-- <span id="vacantentry-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="vacantentry-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md#occupiedentry)
 
 #### Trait Implementations
 
@@ -1214,7 +1214,7 @@ assert!(map["b"] == 20 && map.len() == 2);
 
 - <span id="vacantentryref-insert-with-key"></span>`fn insert_with_key(self, key: K, value: V) -> &'map mut V`
 
-- <span id="vacantentryref-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'map, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="vacantentryref-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'map, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md#occupiedentry)
 
 #### Trait Implementations
 
@@ -1348,9 +1348,9 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
+- <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md#rawentrymut)
 
-- <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
+- <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md#rawentrymut)
 
 #### Trait Implementations
 
@@ -1457,7 +1457,7 @@ assert_eq!(map.len(), 1);
 
 - <span id="rawoccupiedentrymut-remove-entry"></span>`fn remove_entry(self) -> (K, V)`
 
-- <span id="rawoccupiedentrymut-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
+- <span id="rawoccupiedentrymut-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md#rawentrymut)
 
 #### Trait Implementations
 
@@ -1535,7 +1535,7 @@ assert!(map[&"c"] == 30 && map.len() == 3);
 
 - <span id="rawvacantentrymut-insert-with-hasher"></span>`fn insert_with_hasher<H>(self, hash: u64, key: K, value: V, hasher: H) -> (&'a mut K, &'a mut V)`
 
-- <span id="rawvacantentrymut-insert-entry"></span>`fn insert_entry(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](../raw_entry/index.md)
+- <span id="rawvacantentrymut-insert-entry"></span>`fn insert_entry(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](../raw_entry/index.md#rawoccupiedentrymut)
 
 #### Trait Implementations
 
@@ -1695,11 +1695,11 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- <span id="entry-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="entry-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md#occupiedentry)
 
 - <span id="entry-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
 
-- <span id="entry-or-insert-entry"></span>`fn or_insert_entry(self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="entry-or-insert-entry"></span>`fn or_insert_entry(self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md#occupiedentry)
 
 - <span id="entry-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
 
@@ -1817,7 +1817,7 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md#occupiedentry)
 
 - <span id="entryref-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
 
@@ -1848,7 +1848,7 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This is a lower-level version of [`Entry`](../hash_map/index.md).
+This is a lower-level version of [`Entry`](../hash_set/index.md).
 
 This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../hash_map/index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](../raw_entry/index.md).
@@ -1965,7 +1965,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
 
 #### Implementations
 
-- <span id="rawentrymut-insert"></span>`fn insert(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](../raw_entry/index.md)
+- <span id="rawentrymut-insert"></span>`fn insert(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](../raw_entry/index.md#rawoccupiedentrymut)
 
 - <span id="rawentrymut-or-insert"></span>`fn or_insert(self, default_key: K, default_val: V) -> (&'a mut K, &'a mut V)`
 

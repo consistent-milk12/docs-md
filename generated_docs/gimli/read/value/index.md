@@ -91,15 +91,15 @@ The type of an entry on the DWARF stack.
 
 - <span id="valuetype-bit-size"></span>`fn bit_size(self, addr_mask: u64) -> u32`
 
-- <span id="valuetype-from-encoding"></span>`fn from_encoding(encoding: constants::DwAte, byte_size: u64) -> Option<ValueType>` — [`DwAte`](../../index.md), [`ValueType`](../index.md)
+- <span id="valuetype-from-encoding"></span>`fn from_encoding(encoding: constants::DwAte, byte_size: u64) -> Option<ValueType>` — [`DwAte`](../../index.md#dwate), [`ValueType`](../index.md#valuetype)
 
-- <span id="valuetype-from-entry"></span>`fn from_entry<R: Reader>(entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<Option<ValueType>>` — [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`ValueType`](../index.md)
+- <span id="valuetype-from-entry"></span>`fn from_entry<R: Reader>(entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<Option<ValueType>>` — [`DebuggingInformationEntry`](../index.md#debugginginformationentry), [`Result`](../../index.md#result), [`ValueType`](../index.md#valuetype)
 
 #### Trait Implementations
 
 ##### `impl Clone for ValueType`
 
-- <span id="valuetype-clone"></span>`fn clone(&self) -> ValueType` — [`ValueType`](../index.md)
+- <span id="valuetype-clone"></span>`fn clone(&self) -> ValueType` — [`ValueType`](../index.md#valuetype)
 
 ##### `impl Copy for ValueType`
 
@@ -111,7 +111,7 @@ The type of an entry on the DWARF stack.
 
 ##### `impl PartialEq for ValueType`
 
-- <span id="valuetype-eq"></span>`fn eq(&self, other: &ValueType) -> bool` — [`ValueType`](../index.md)
+- <span id="valuetype-eq"></span>`fn eq(&self, other: &ValueType) -> bool` — [`ValueType`](../index.md#valuetype)
 
 ##### `impl StructuralPartialEq for ValueType`
 
@@ -185,69 +185,69 @@ The value of an entry on the DWARF stack.
 
 #### Implementations
 
-- <span id="value-value-type"></span>`fn value_type(&self) -> ValueType` — [`ValueType`](../index.md)
+- <span id="value-value-type"></span>`fn value_type(&self) -> ValueType` — [`ValueType`](../index.md#valuetype)
 
-- <span id="value-parse"></span>`fn parse<R: Reader>(value_type: ValueType, bytes: R) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-parse"></span>`fn parse<R: Reader>(value_type: ValueType, bytes: R) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-to-u64"></span>`fn to_u64(self, addr_mask: u64) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="value-to-u64"></span>`fn to_u64(self, addr_mask: u64) -> Result<u64>` — [`Result`](../../index.md#result)
 
-- <span id="value-from-u64"></span>`fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-from-u64"></span>`fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-from-f32"></span>`fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-from-f32"></span>`fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-from-f64"></span>`fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-from-f64"></span>`fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-convert"></span>`fn convert(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-convert"></span>`fn convert(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-reinterpret"></span>`fn reinterpret(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-reinterpret"></span>`fn reinterpret(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-abs"></span>`fn abs(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-abs"></span>`fn abs(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-neg"></span>`fn neg(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-neg"></span>`fn neg(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-add"></span>`fn add(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-add"></span>`fn add(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-sub"></span>`fn sub(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-sub"></span>`fn sub(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-mul"></span>`fn mul(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-mul"></span>`fn mul(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-div"></span>`fn div(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-div"></span>`fn div(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-rem"></span>`fn rem(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-rem"></span>`fn rem(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-not"></span>`fn not(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../index.md)
+- <span id="value-not"></span>`fn not(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
-- <span id="value-and"></span>`fn and(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-and"></span>`fn and(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-or"></span>`fn or(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-or"></span>`fn or(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-xor"></span>`fn xor(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-xor"></span>`fn xor(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-shift-length"></span>`fn shift_length(self) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="value-shift-length"></span>`fn shift_length(self) -> Result<u64>` — [`Result`](../../index.md#result)
 
-- <span id="value-shl"></span>`fn shl(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-shl"></span>`fn shl(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-shr"></span>`fn shr(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-shr"></span>`fn shr(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-shra"></span>`fn shra(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-shra"></span>`fn shra(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-eq"></span>`fn eq(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-eq"></span>`fn eq(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-ge"></span>`fn ge(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-ge"></span>`fn ge(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-gt"></span>`fn gt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-gt"></span>`fn gt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-le"></span>`fn le(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-le"></span>`fn le(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-lt"></span>`fn lt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-lt"></span>`fn lt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
-- <span id="value-ne"></span>`fn ne(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md), [`Result`](../../index.md)
+- <span id="value-ne"></span>`fn ne(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for Value`
 
-- <span id="value-clone"></span>`fn clone(&self) -> Value` — [`Value`](../index.md)
+- <span id="value-clone"></span>`fn clone(&self) -> Value` — [`Value`](../index.md#value)
 
 ##### `impl Copy for Value`
 
@@ -257,7 +257,7 @@ The value of an entry on the DWARF stack.
 
 ##### `impl PartialEq for Value`
 
-- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](../index.md)
+- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](../index.md#value)
 
 ##### `impl StructuralPartialEq for Value`
 

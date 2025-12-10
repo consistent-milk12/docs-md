@@ -47,7 +47,7 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl Clone for NarratableReportHandler`
 
-- <span id="narratablereporthandler-clone"></span>`fn clone(&self) -> NarratableReportHandler` — [`NarratableReportHandler`](../index.md)
+- <span id="narratablereporthandler-clone"></span>`fn clone(&self) -> NarratableReportHandler` — [`NarratableReportHandler`](../index.md#narratablereporthandler)
 
 ##### `impl Debug for NarratableReportHandler`
 
@@ -61,7 +61,7 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
-- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md#diagnostic)
 
 ### `Line`
 
@@ -78,7 +78,7 @@ struct Line {
 
 #### Implementations
 
-- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../../index.md), [`SpanAttach`](#spanattach)
+- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../../index.md#sourcespan), [`SpanAttach`](#spanattach)
 
 #### Trait Implementations
 

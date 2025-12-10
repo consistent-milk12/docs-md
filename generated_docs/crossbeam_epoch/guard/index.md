@@ -89,7 +89,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-defer-unchecked"></span>`unsafe fn defer_unchecked<F, R>(&self, f: F)`
 
-- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](../atomic/index.md)
+- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](../atomic/index.md#shared)
 
 - <span id="guard-flush"></span>`fn flush(&self)`
 
@@ -97,7 +97,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-repin-after"></span>`fn repin_after<F, R>(&mut self, f: F) -> R`
 
-- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](../collector/index.md)
+- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](../collector/index.md#collector)
 
 #### Trait Implementations
 
@@ -115,7 +115,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-type-init"></span>`type Init = T`
 
-- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
 - <span id="guard-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

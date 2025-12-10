@@ -41,31 +41,31 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 #### Implementations
 
-- <span id="elffile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../../index.md)
+- <span id="elffile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../../index.md#result)
 
-- <span id="elffile-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](../index.md)
+- <span id="elffile-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](../index.md#fileheader)
 
 - <span id="elffile-data"></span>`fn data(&self) -> R`
 
 - <span id="elffile-raw-header"></span>`fn raw_header(&self) -> &'data Elf`
 
-- <span id="elffile-raw-segments"></span>`fn raw_segments(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](../index.md)
+- <span id="elffile-raw-segments"></span>`fn raw_segments(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](../index.md#fileheader)
 
 - <span id="elffile-elf-header"></span>`fn elf_header(&self) -> &'data Elf`
 
-- <span id="elffile-elf-program-headers"></span>`fn elf_program_headers(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](../index.md)
+- <span id="elffile-elf-program-headers"></span>`fn elf_program_headers(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="elffile-elf-section-table"></span>`fn elf_section_table(&self) -> &SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md)
+- <span id="elffile-elf-section-table"></span>`fn elf_section_table(&self) -> &SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md#sectiontable)
 
-- <span id="elffile-elf-symbol-table"></span>`fn elf_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md)
+- <span id="elffile-elf-symbol-table"></span>`fn elf_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
-- <span id="elffile-elf-dynamic-symbol-table"></span>`fn elf_dynamic_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md)
+- <span id="elffile-elf-dynamic-symbol-table"></span>`fn elf_dynamic_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
-- <span id="elffile-elf-relocation-sections"></span>`fn elf_relocation_sections(&self) -> &RelocationSections` — [`RelocationSections`](../index.md)
+- <span id="elffile-elf-relocation-sections"></span>`fn elf_relocation_sections(&self) -> &RelocationSections` — [`RelocationSections`](../index.md#relocationsections)
 
-- <span id="elffile-raw-section-by-name"></span>`fn raw_section_by_name<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md)
+- <span id="elffile-raw-section-by-name"></span>`fn raw_section_by_name<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md#elfsection)
 
-- <span id="elffile-zdebug-section-by-name"></span>`fn zdebug_section_by_name<'file>(self: &'file Self, _section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md)
+- <span id="elffile-zdebug-section-by-name"></span>`fn zdebug_section_by_name<'file>(self: &'file Self, _section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md#elfsection)
 
 #### Trait Implementations
 
@@ -95,53 +95,53 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="elffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
+- <span id="elffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
 - <span id="elffile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
 - <span id="elffile-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="elffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md)
+- <span id="elffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
 
-- <span id="elffile-segments"></span>`fn segments(&self) -> ElfSegmentIterator<'data, '_, Elf, R>` — [`ElfSegmentIterator`](../index.md)
+- <span id="elffile-segments"></span>`fn segments(&self) -> ElfSegmentIterator<'data, '_, Elf, R>` — [`ElfSegmentIterator`](../index.md#elfsegmentiterator)
 
-- <span id="elffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md)
+- <span id="elffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](../index.md#elfsection)
 
-- <span id="elffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> read::Result<ElfSection<'data, '_, Elf, R>>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`ElfSection`](../index.md)
+- <span id="elffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> read::Result<ElfSection<'data, '_, Elf, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`ElfSection`](../index.md#elfsection)
 
-- <span id="elffile-sections"></span>`fn sections(&self) -> ElfSectionIterator<'data, '_, Elf, R>` — [`ElfSectionIterator`](../index.md)
+- <span id="elffile-sections"></span>`fn sections(&self) -> ElfSectionIterator<'data, '_, Elf, R>` — [`ElfSectionIterator`](../index.md#elfsectioniterator)
 
-- <span id="elffile-comdats"></span>`fn comdats(&self) -> ElfComdatIterator<'data, '_, Elf, R>` — [`ElfComdatIterator`](../index.md)
+- <span id="elffile-comdats"></span>`fn comdats(&self) -> ElfComdatIterator<'data, '_, Elf, R>` — [`ElfComdatIterator`](../index.md#elfcomdatiterator)
 
-- <span id="elffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<ElfSymbol<'data, '_, Elf, R>>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`ElfSymbol`](../index.md)
+- <span id="elffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<ElfSymbol<'data, '_, Elf, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ElfSymbol`](../index.md#elfsymbol)
 
-- <span id="elffile-symbols"></span>`fn symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](../index.md)
+- <span id="elffile-symbols"></span>`fn symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](../index.md#elfsymboliterator)
 
-- <span id="elffile-symbol-table"></span>`fn symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](../index.md)
+- <span id="elffile-symbol-table"></span>`fn symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](../index.md#elfsymboltable)
 
-- <span id="elffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](../index.md)
+- <span id="elffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](../index.md#elfsymboliterator)
 
-- <span id="elffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](../index.md)
+- <span id="elffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](../index.md#elfsymboltable)
 
-- <span id="elffile-dynamic-relocations"></span>`fn dynamic_relocations<'file>(self: &'file Self) -> Option<ElfDynamicRelocationIterator<'data, 'file, Elf, R>>` — [`ElfDynamicRelocationIterator`](../index.md)
+- <span id="elffile-dynamic-relocations"></span>`fn dynamic_relocations<'file>(self: &'file Self) -> Option<ElfDynamicRelocationIterator<'data, 'file, Elf, R>>` — [`ElfDynamicRelocationIterator`](../index.md#elfdynamicrelocationiterator)
 
-- <span id="elffile-imports"></span>`fn imports(&self) -> read::Result<Vec<Import<'data>>>` — [`Result`](../../../index.md), [`Import`](../../../index.md)
+- <span id="elffile-imports"></span>`fn imports(&self) -> read::Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
 
-- <span id="elffile-exports"></span>`fn exports(&self) -> read::Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../../../index.md)
+- <span id="elffile-exports"></span>`fn exports(&self) -> read::Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
 
 - <span id="elffile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="elffile-build-id"></span>`fn build_id(&self) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="elffile-build-id"></span>`fn build_id(&self) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md#result)
 
-- <span id="elffile-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> read::Result<Option<(&'data [u8], u32)>>` — [`Result`](../../../index.md)
+- <span id="elffile-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> read::Result<Option<(&'data [u8], u32)>>` — [`Result`](../../../index.md#result)
 
-- <span id="elffile-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> read::Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../../index.md)
+- <span id="elffile-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> read::Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../../index.md#result)
 
 - <span id="elffile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
 - <span id="elffile-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="elffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md)
+- <span id="elffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
 ##### `impl<'data, Elf, R> Sealed for ElfFile<'data, Elf, R>`
 
@@ -283,8 +283,8 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 
 #### Implementors
 
-- [`FileHeader32`](../../../elf/index.md)
-- [`FileHeader64`](../../../elf/index.md)
+- [`FileHeader32`](../../../elf/index.md#fileheader32)
+- [`FileHeader64`](../../../elf/index.md#fileheader64)
 
 ## Type Aliases
 

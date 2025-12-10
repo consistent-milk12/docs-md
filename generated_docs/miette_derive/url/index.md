@@ -25,7 +25,7 @@ enum Url {
 
 #### Implementations
 
-- <span id="url-gen-enum"></span>`fn gen_enum(enum_name: &syn::Ident, variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="url-gen-enum"></span>`fn gen_enum(enum_name: &syn::Ident, variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md#diagnosticdef)
 
 - <span id="url-gen-struct"></span>`fn gen_struct(&self, struct_name: &syn::Ident, fields: &Fields) -> Option<TokenStream>`
 

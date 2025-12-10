@@ -32,7 +32,7 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 
 ##### `impl Diag for DiagnosticError`
 
-- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl Diagnostic for DiagnosticError`
 

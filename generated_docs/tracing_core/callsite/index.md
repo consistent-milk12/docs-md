@@ -203,19 +203,19 @@ A default [`Callsite`](#callsite) implementation.
 
 - <span id="defaultcallsite-const-interest-always"></span>`const INTEREST_ALWAYS: u8`
 
-- <span id="defaultcallsite-new"></span>`const fn new(meta: &'static Metadata<'static>) -> Self` — [`Metadata`](../metadata/index.md)
+- <span id="defaultcallsite-new"></span>`const fn new(meta: &'static Metadata<'static>) -> Self` — [`Metadata`](../metadata/index.md#metadata)
 
-- <span id="defaultcallsite-register"></span>`fn register(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md)
+- <span id="defaultcallsite-register"></span>`fn register(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
 
-- <span id="defaultcallsite-interest"></span>`fn interest(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md)
+- <span id="defaultcallsite-interest"></span>`fn interest(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
 
 #### Trait Implementations
 
 ##### `impl Callsite for DefaultCallsite`
 
-- <span id="defaultcallsite-set-interest"></span>`fn set_interest(&self, interest: Interest)` — [`Interest`](../subscriber/index.md)
+- <span id="defaultcallsite-set-interest"></span>`fn set_interest(&self, interest: Interest)` — [`Interest`](../subscriber/index.md#interest)
 
-- <span id="defaultcallsite-metadata"></span>`fn metadata(&self) -> &Metadata<'static>` — [`Metadata`](../metadata/index.md)
+- <span id="defaultcallsite-metadata"></span>`fn metadata(&self) -> &Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
 
 ##### `impl Debug for DefaultCallsite`
 
@@ -234,7 +234,7 @@ struct Callsites {
 
 #### Implementations
 
-- <span id="callsites-rebuild-interest"></span>`fn rebuild_interest(&self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md)
+- <span id="callsites-rebuild-interest"></span>`fn rebuild_interest(&self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md#rebuilder)
 
 - <span id="callsites-push-dyn"></span>`fn push_dyn(&self, callsite: &'static dyn Callsite)` — [`Callsite`](#callsite)
 

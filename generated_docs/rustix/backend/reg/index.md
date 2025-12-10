@@ -227,7 +227,7 @@ once.
 
 - <span id="retreg-decode-usize"></span>`fn decode_usize(self) -> usize`
 
-- <span id="retreg-decode-raw-fd"></span>`fn decode_raw_fd(self) -> RawFd` — [`RawFd`](../../maybe_polyfill/os/fd/index.md)
+- <span id="retreg-decode-raw-fd"></span>`fn decode_raw_fd(self) -> RawFd` — [`RawFd`](../../maybe_polyfill/os/fd/index.md#rawfd)
 
 - <span id="retreg-decode-c-int"></span>`fn decode_c_int(self) -> c::c_int`
 

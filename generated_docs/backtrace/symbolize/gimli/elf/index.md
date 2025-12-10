@@ -84,13 +84,13 @@ struct Object<'a> {
 
 - <span id="object-parse"></span>`fn parse(data: &'a [u8]) -> Option<Object<'a>>` — [`Object`](#object)
 
-- <span id="object-section"></span>`fn section(&self, stash: &'a Stash, name: &str) -> Option<&'a [u8]>` — [`Stash`](../stash/index.md)
+- <span id="object-section"></span>`fn section(&self, stash: &'a Stash, name: &str) -> Option<&'a [u8]>` — [`Stash`](../stash/index.md#stash)
 
 - <span id="object-section-header"></span>`fn section_header(&self, name: &str) -> Option<&<object::elf::FileHeader64<object::NativeEndian> as FileHeader>::SectionHeader>`
 
 - <span id="object-search-symtab"></span>`fn search_symtab(&self, addr: u64) -> Option<&[u8]>`
 
-- <span id="object-search-object-map"></span>`fn search_object_map(&self, _addr: u64) -> Option<(&Context<'_>, u64)>` — [`Context`](../index.md)
+- <span id="object-search-object-map"></span>`fn search_object_map(&self, _addr: u64) -> Option<(&Context<'_>, u64)>` — [`Context`](../index.md#context)
 
 - <span id="object-build-id"></span>`fn build_id(&self) -> Option<&'a [u8]>`
 

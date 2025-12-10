@@ -42,7 +42,7 @@ implement `name`. For example [`String`](../../clap_builder/index.md). Or if you
 
 ##### `impl<S: clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
 
-- <span id="namedsource-clone"></span>`fn clone(&self) -> NamedSource<S>` — [`NamedSource`](../index.md)
+- <span id="namedsource-clone"></span>`fn clone(&self) -> NamedSource<S>` — [`NamedSource`](../index.md#namedsource)
 
 ##### `impl<S: SourceCode> Debug for NamedSource<S>`
 
@@ -56,21 +56,21 @@ implement `name`. For example [`String`](../../clap_builder/index.md). Or if you
 
 ##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
 
-- <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](../index.md)
+- <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](../index.md#namedsource)
 
 ##### `impl<D> OwoColorize for NamedSource<S>`
 
 ##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 
-- <span id="namedsource-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](../index.md)
+- <span id="namedsource-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](../index.md#namedsource)
 
 ##### `impl<S: cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
 
-- <span id="namedsource-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](../index.md)
+- <span id="namedsource-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](../index.md#namedsource)
 
 ##### `impl<S: SourceCode + 'static> SourceCode for NamedSource<S>`
 
-- <span id="namedsource-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`MietteError`](../index.md)
+- <span id="namedsource-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](../index.md#sourcespan), [`SpanContents`](../index.md#spancontents), [`MietteError`](../index.md#mietteerror)
 
 ##### `impl<S: SourceCode + 'static> StructuralPartialEq for NamedSource<S>`
 

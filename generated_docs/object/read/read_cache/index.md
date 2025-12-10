@@ -43,7 +43,7 @@ the file size.
 
 - <span id="readcache-new"></span>`fn new(read: R) -> Self`
 
-- <span id="readcache-range"></span>`fn range(&self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](../index.md)
+- <span id="readcache-range"></span>`fn range(&self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](../index.md#readcacherange)
 
 - <span id="readcache-clear"></span>`fn clear(&mut self)`
 

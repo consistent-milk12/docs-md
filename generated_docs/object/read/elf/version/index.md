@@ -42,7 +42,7 @@ A version index.
 
 ##### `impl Clone for VersionIndex`
 
-- <span id="versionindex-clone"></span>`fn clone(&self) -> VersionIndex` — [`VersionIndex`](../index.md)
+- <span id="versionindex-clone"></span>`fn clone(&self) -> VersionIndex` — [`VersionIndex`](../index.md#versionindex)
 
 ##### `impl Copy for VersionIndex`
 
@@ -52,7 +52,7 @@ A version index.
 
 ##### `impl Default for VersionIndex`
 
-- <span id="versionindex-default"></span>`fn default() -> VersionIndex` — [`VersionIndex`](../index.md)
+- <span id="versionindex-default"></span>`fn default() -> VersionIndex` — [`VersionIndex`](../index.md#versionindex)
 
 ### `Version<'data>`
 
@@ -83,7 +83,7 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.m
 
 ##### `impl Clone for Version<'data>`
 
-- <span id="version-clone"></span>`fn clone(&self) -> Version<'data>` — [`Version`](../index.md)
+- <span id="version-clone"></span>`fn clone(&self) -> Version<'data>` — [`Version`](../index.md#version)
 
 ##### `impl Copy for Version<'data>`
 
@@ -93,7 +93,7 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.m
 
 ##### `impl Default for Version<'data>`
 
-- <span id="version-default"></span>`fn default() -> Version<'data>` — [`Version`](../index.md)
+- <span id="version-default"></span>`fn default() -> Version<'data>` — [`Version`](../index.md#version)
 
 ### `VersionTable<'data, Elf: FileHeader>`
 
@@ -117,21 +117,21 @@ Returned by [`SectionTable::versions`](super::SectionTable::versions).
 
 #### Implementations
 
-- <span id="versiontable-parse"></span>`fn parse<R: ReadRef<'data>>(endian: <Elf as >::Endian, versyms: &'data [elf::Versym<<Elf as >::Endian>], verdefs: Option<VerdefIterator<'data, Elf>>, verneeds: Option<VerneedIterator<'data, Elf>>, strings: StringTable<'data, R>) -> Result<Self>` — [`FileHeader`](../index.md), [`Versym`](../../../elf/index.md), [`VerdefIterator`](../index.md), [`VerneedIterator`](../index.md), [`StringTable`](../../index.md), [`Result`](../../../index.md)
+- <span id="versiontable-parse"></span>`fn parse<R: ReadRef<'data>>(endian: <Elf as >::Endian, versyms: &'data [elf::Versym<<Elf as >::Endian>], verdefs: Option<VerdefIterator<'data, Elf>>, verneeds: Option<VerneedIterator<'data, Elf>>, strings: StringTable<'data, R>) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Versym`](../../../elf/index.md#versym), [`VerdefIterator`](../index.md#verdefiterator), [`VerneedIterator`](../index.md#verneediterator), [`StringTable`](../../index.md#stringtable), [`Result`](../../../index.md#result)
 
 - <span id="versiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="versiontable-version-index"></span>`fn version_index(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> VersionIndex` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md), [`VersionIndex`](../index.md)
+- <span id="versiontable-version-index"></span>`fn version_index(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> VersionIndex` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex), [`VersionIndex`](../index.md#versionindex)
 
-- <span id="versiontable-version"></span>`fn version(&self, index: VersionIndex) -> Result<Option<&Version<'data>>>` — [`VersionIndex`](../index.md), [`Result`](../../../index.md), [`Version`](../index.md)
+- <span id="versiontable-version"></span>`fn version(&self, index: VersionIndex) -> Result<Option<&Version<'data>>>` — [`VersionIndex`](../index.md#versionindex), [`Result`](../../../index.md#result), [`Version`](../index.md#version)
 
-- <span id="versiontable-matches"></span>`fn matches(&self, endian: <Elf as >::Endian, index: SymbolIndex, need: Option<&Version<'_>>) -> bool` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md), [`Version`](../index.md)
+- <span id="versiontable-matches"></span>`fn matches(&self, endian: <Elf as >::Endian, index: SymbolIndex, need: Option<&Version<'_>>) -> bool` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex), [`Version`](../index.md#version)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VersionTable<'data, Elf>`
 
-- <span id="versiontable-clone"></span>`fn clone(&self) -> VersionTable<'data, Elf>` — [`VersionTable`](../index.md)
+- <span id="versiontable-clone"></span>`fn clone(&self) -> VersionTable<'data, Elf>` — [`VersionTable`](../index.md#versiontable)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VersionTable<'data, Elf>`
 
@@ -156,17 +156,17 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index
 
 #### Implementations
 
-- <span id="verdefiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](../index.md)
+- <span id="verdefiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="verdefiterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>>` — [`Result`](../../../index.md), [`Verdef`](../../../elf/index.md), [`FileHeader`](../index.md), [`VerdauxIterator`](../index.md)
+- <span id="verdefiterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>>` — [`Result`](../../../index.md#result), [`Verdef`](../../../elf/index.md#verdef), [`FileHeader`](../index.md#fileheader), [`VerdauxIterator`](../index.md#verdauxiterator)
 
-- <span id="verdefiterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>` — [`Result`](../../../index.md), [`Verdef`](../../../elf/index.md), [`FileHeader`](../index.md), [`VerdauxIterator`](../index.md)
+- <span id="verdefiterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>` — [`Result`](../../../index.md#result), [`Verdef`](../../../elf/index.md#verdef), [`FileHeader`](../index.md#fileheader), [`VerdauxIterator`](../index.md#verdauxiterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-clone"></span>`fn clone(&self) -> VerdefIterator<'data, Elf>` — [`VerdefIterator`](../index.md)
+- <span id="verdefiterator-clone"></span>`fn clone(&self) -> VerdefIterator<'data, Elf>` — [`VerdefIterator`](../index.md#verdefiterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdefIterator<'data, Elf>`
 
@@ -202,17 +202,17 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERD
 
 #### Implementations
 
-- <span id="verdauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](../index.md)
+- <span id="verdauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Verdaux<<Elf as >::Endian>>>` — [`Result`](../../../index.md), [`Verdaux`](../../../elf/index.md), [`FileHeader`](../index.md)
+- <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Verdaux<<Elf as >::Endian>>>` — [`Result`](../../../index.md#result), [`Verdaux`](../../../elf/index.md#verdaux), [`FileHeader`](../index.md#fileheader)
 
-- <span id="verdauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Verdaux<<Elf as >::Endian>>` — [`Result`](../../../index.md), [`Verdaux`](../../../elf/index.md), [`FileHeader`](../index.md)
+- <span id="verdauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Verdaux<<Elf as >::Endian>>` — [`Result`](../../../index.md#result), [`Verdaux`](../../../elf/index.md#verdaux), [`FileHeader`](../index.md#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-clone"></span>`fn clone(&self) -> VerdauxIterator<'data, Elf>` — [`VerdauxIterator`](../index.md)
+- <span id="verdauxiterator-clone"></span>`fn clone(&self) -> VerdauxIterator<'data, Elf>` — [`VerdauxIterator`](../index.md#verdauxiterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdauxIterator<'data, Elf>`
 
@@ -247,17 +247,17 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/inde
 
 #### Implementations
 
-- <span id="verneediterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](../index.md)
+- <span id="verneediterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="verneediterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>>` — [`Result`](../../../index.md), [`Verneed`](../../../elf/index.md), [`FileHeader`](../index.md), [`VernauxIterator`](../index.md)
+- <span id="verneediterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>>` — [`Result`](../../../index.md#result), [`Verneed`](../../../elf/index.md#verneed), [`FileHeader`](../index.md#fileheader), [`VernauxIterator`](../index.md#vernauxiterator)
 
-- <span id="verneediterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>` — [`Result`](../../../index.md), [`Verneed`](../../../elf/index.md), [`FileHeader`](../index.md), [`VernauxIterator`](../index.md)
+- <span id="verneediterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>` — [`Result`](../../../index.md#result), [`Verneed`](../../../elf/index.md#verneed), [`FileHeader`](../index.md#fileheader), [`VernauxIterator`](../index.md#vernauxiterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-clone"></span>`fn clone(&self) -> VerneedIterator<'data, Elf>` — [`VerneedIterator`](../index.md)
+- <span id="verneediterator-clone"></span>`fn clone(&self) -> VerneedIterator<'data, Elf>` — [`VerneedIterator`](../index.md#verneediterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerneedIterator<'data, Elf>`
 
@@ -293,17 +293,17 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERN
 
 #### Implementations
 
-- <span id="vernauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](../index.md)
+- <span id="vernauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](../index.md#fileheader)
 
-- <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Vernaux<<Elf as >::Endian>>>` — [`Result`](../../../index.md), [`Vernaux`](../../../elf/index.md), [`FileHeader`](../index.md)
+- <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Vernaux<<Elf as >::Endian>>>` — [`Result`](../../../index.md#result), [`Vernaux`](../../../elf/index.md#vernaux), [`FileHeader`](../index.md#fileheader)
 
-- <span id="vernauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Vernaux<<Elf as >::Endian>>` — [`Result`](../../../index.md), [`Vernaux`](../../../elf/index.md), [`FileHeader`](../index.md)
+- <span id="vernauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Vernaux<<Elf as >::Endian>>` — [`Result`](../../../index.md#result), [`Vernaux`](../../../elf/index.md#vernaux), [`FileHeader`](../index.md#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-clone"></span>`fn clone(&self) -> VernauxIterator<'data, Elf>` — [`VernauxIterator`](../index.md)
+- <span id="vernauxiterator-clone"></span>`fn clone(&self) -> VernauxIterator<'data, Elf>` — [`VernauxIterator`](../index.md#vernauxiterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VernauxIterator<'data, Elf>`
 

@@ -32,15 +32,15 @@ A single parsed pubtype.
 
 - <span id="pubtypesentry-name"></span>`fn name(&self) -> &R`
 
-- <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md#debuginfooffset), [`Reader`](../index.md#reader)
 
-- <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntry<R>`
 
-- <span id="pubtypesentry-clone"></span>`fn clone(&self) -> PubTypesEntry<R>` — [`PubTypesEntry`](../index.md)
+- <span id="pubtypesentry-clone"></span>`fn clone(&self) -> PubTypesEntry<R>` — [`PubTypesEntry`](../index.md#pubtypesentry)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntry<R>`
 
@@ -48,7 +48,7 @@ A single parsed pubtype.
 
 ##### `impl<R: Reader> PubStuffEntry for PubTypesEntry<R>`
 
-- <span id="pubtypesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
+- <span id="pubtypesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`DebugInfoOffset`](../../index.md#debuginfooffset)
 
 ### `DebugPubTypes<R: Reader>`
 
@@ -69,7 +69,7 @@ found in the `.debug_info` section.
 
 ##### `impl<R: clone::Clone + Reader> Clone for DebugPubTypes<R>`
 
-- <span id="debugpubtypes-clone"></span>`fn clone(&self) -> DebugPubTypes<R>` — [`DebugPubTypes`](../index.md)
+- <span id="debugpubtypes-clone"></span>`fn clone(&self) -> DebugPubTypes<R>` — [`DebugPubTypes`](../index.md#debugpubtypes)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for DebugPubTypes<R>`
 
@@ -77,7 +77,7 @@ found in the `.debug_info` section.
 
 ##### `impl<R: Reader> Section for DebugPubTypes<R>`
 
-- <span id="debugpubtypes-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugpubtypes-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugpubtypes-reader"></span>`fn reader(&self) -> &R`
 
@@ -96,13 +96,13 @@ Can be [used with
 
 #### Implementations
 
-- <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../../index.md), [`PubTypesEntry`](../index.md)
+- <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../../index.md#result), [`PubTypesEntry`](../index.md#pubtypesentry)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntryIter<R>`
 
-- <span id="pubtypesentryiter-clone"></span>`fn clone(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
+- <span id="pubtypesentryiter-clone"></span>`fn clone(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md#pubtypesentryiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntryIter<R>`
 

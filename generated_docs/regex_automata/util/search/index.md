@@ -148,15 +148,15 @@ results in no match being reported.
 
 #### Implementations
 
-- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md#input)
 
-- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](../../index.md#input)
 
-- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](../../index.md#input)
 
-- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
+- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md#anchored), [`Input`](../../index.md#input)
 
-- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](../../index.md#input)
 
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
@@ -166,7 +166,7 @@ results in no match being reported.
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
-- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](../../index.md)
+- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](../../index.md#anchored)
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
@@ -176,11 +176,11 @@ results in no match being reported.
 
 - <span id="input-end"></span>`fn end(&self) -> usize`
 
-- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](../../index.md)
+- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](../../index.md#span)
 
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
-- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md#anchored)
 
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
@@ -192,7 +192,7 @@ results in no match being reported.
 
 ##### `impl Clone for Input<'h>`
 
-- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](../../index.md#input)
 
 ##### `impl Debug for Input<'h>`
 
@@ -245,13 +245,13 @@ which means things like `Span::from(5..10)` work.
 
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
-- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](../../index.md)
+- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](../../index.md#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](../../index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](../../index.md#span)
 
 ##### `impl Copy for Span`
 
@@ -269,15 +269,15 @@ which means things like `Span::from(5..10)` work.
 
 - <span id="u8-type-output"></span>`type Output = [u8]`
 
-- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](../../index.md)
+- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](../../index.md#span)
 
 ##### `impl IndexMut for [u8]`
 
-- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](../../index.md)
+- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](../../index.md#span)
 
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](../../index.md)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](../../index.md#span)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -320,11 +320,11 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../primitives/index.md), [`HalfMatch`](../../index.md)
+- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../primitives/index.md#patternid), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md)
+- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md#patternid)
 
 - <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
@@ -332,7 +332,7 @@ have a pattern ID of `0`.
 
 ##### `impl Clone for HalfMatch`
 
-- <span id="halfmatch-clone"></span>`fn clone(&self) -> HalfMatch` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-clone"></span>`fn clone(&self) -> HalfMatch` — [`HalfMatch`](../../index.md#halfmatch)
 
 ##### `impl Copy for HalfMatch`
 
@@ -348,7 +348,7 @@ have a pattern ID of `0`.
 
 ##### `impl PartialEq for HalfMatch`
 
-- <span id="halfmatch-eq"></span>`fn eq(&self, other: &HalfMatch) -> bool` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-eq"></span>`fn eq(&self, other: &HalfMatch) -> bool` — [`HalfMatch`](../../index.md#halfmatch)
 
 ##### `impl StructuralPartialEq for HalfMatch`
 
@@ -388,11 +388,11 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md), [`Match`](../../index.md)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md#patternid), [`Match`](../../index.md#match)
 
-- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
+- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md#match)
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md#patternid)
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
@@ -400,7 +400,7 @@ start offset as less than or equal to its end offset.
 
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](../../index.md)
+- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](../../index.md#span)
 
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -410,7 +410,7 @@ start offset as less than or equal to its end offset.
 
 ##### `impl Clone for Match`
 
-- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](../../index.md)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](../../index.md#match)
 
 ##### `impl Copy for Match`
 
@@ -426,7 +426,7 @@ start offset as less than or equal to its end offset.
 
 ##### `impl PartialEq for Match`
 
-- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](../../index.md)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](../../index.md#match)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -505,15 +505,15 @@ assert!(set.is_empty());
 
 #### Implementations
 
-- <span id="patternset-new"></span>`fn new(capacity: usize) -> PatternSet` — [`PatternSet`](../../index.md)
+- <span id="patternset-new"></span>`fn new(capacity: usize) -> PatternSet` — [`PatternSet`](../../index.md#patternset)
 
 - <span id="patternset-clear"></span>`fn clear(&mut self)`
 
-- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md)
+- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md)
+- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../primitives/index.md), [`PatternSetInsertError`](../../index.md)
+- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../primitives/index.md#patternid), [`PatternSetInsertError`](../../index.md#patternsetinserterror)
 
 - <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -523,13 +523,13 @@ assert!(set.is_empty());
 
 - <span id="patternset-capacity"></span>`fn capacity(&self) -> usize`
 
-- <span id="patternset-iter"></span>`fn iter(&self) -> PatternSetIter<'_>` — [`PatternSetIter`](../../index.md)
+- <span id="patternset-iter"></span>`fn iter(&self) -> PatternSetIter<'_>` — [`PatternSetIter`](../../index.md#patternsetiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternSet`
 
-- <span id="patternset-clone"></span>`fn clone(&self) -> PatternSet` — [`PatternSet`](../../index.md)
+- <span id="patternset-clone"></span>`fn clone(&self) -> PatternSet` — [`PatternSet`](../../index.md#patternset)
 
 ##### `impl Debug for PatternSet`
 
@@ -539,7 +539,7 @@ assert!(set.is_empty());
 
 ##### `impl PartialEq for PatternSet`
 
-- <span id="patternset-eq"></span>`fn eq(&self, other: &PatternSet) -> bool` — [`PatternSet`](../../index.md)
+- <span id="patternset-eq"></span>`fn eq(&self, other: &PatternSet) -> bool` — [`PatternSet`](../../index.md#patternset)
 
 ##### `impl StructuralPartialEq for PatternSet`
 
@@ -566,7 +566,7 @@ This error is created by the `PatternSet::try_insert` routine.
 
 ##### `impl Clone for PatternSetInsertError`
 
-- <span id="patternsetinserterror-clone"></span>`fn clone(&self) -> PatternSetInsertError` — [`PatternSetInsertError`](../../index.md)
+- <span id="patternsetinserterror-clone"></span>`fn clone(&self) -> PatternSetInsertError` — [`PatternSetInsertError`](../../index.md#patternsetinserterror)
 
 ##### `impl Debug for PatternSetInsertError`
 
@@ -603,7 +603,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl Clone for PatternSetIter<'a>`
 
-- <span id="patternsetiter-clone"></span>`fn clone(&self) -> PatternSetIter<'a>` — [`PatternSetIter`](../../index.md)
+- <span id="patternsetiter-clone"></span>`fn clone(&self) -> PatternSetIter<'a>` — [`PatternSetIter`](../../index.md#patternsetiter)
 
 ##### `impl Debug for PatternSetIter<'a>`
 
@@ -611,7 +611,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl DoubleEndedIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md#patternid)
 
 ##### `impl IntoIterator for PatternSetIter<'a>`
 
@@ -625,7 +625,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 - <span id="patternsetiter-type-item"></span>`type Item = PatternID`
 
-- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md#patternid)
 
 - <span id="patternsetiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -687,23 +687,23 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 #### Implementations
 
-- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md#matcherrorkind), [`MatchError`](../../index.md#matcherror)
 
-- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md#matcherrorkind)
 
-- <span id="matcherror-quit"></span>`fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-quit"></span>`fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
-- <span id="matcherror-gave-up"></span>`fn gave_up(offset: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-gave-up"></span>`fn gave_up(offset: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
-- <span id="matcherror-haystack-too-long"></span>`fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-haystack-too-long"></span>`fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
-- <span id="matcherror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](../../index.md#anchored), [`MatchError`](../../index.md#matcherror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
 ##### `impl Debug for MatchError`
 
@@ -719,7 +719,7 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 ##### `impl PartialEq for MatchError`
 
-- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
+- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](../../index.md#matcherror)
 
 ##### `impl StructuralPartialEq for MatchError`
 
@@ -862,13 +862,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
-- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md#patternid)
 
 #### Trait Implementations
 
 ##### `impl Clone for Anchored`
 
-- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](../../index.md#anchored)
 
 ##### `impl Copy for Anchored`
 
@@ -880,7 +880,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl PartialEq for Anchored`
 
-- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
+- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](../../index.md#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -1050,7 +1050,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for MatchKind`
 
-- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](../../index.md#matchkind)
 
 ##### `impl Copy for MatchKind`
 
@@ -1060,13 +1060,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for MatchKind`
 
-- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](../../index.md#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -1136,7 +1136,7 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md#matcherrorkind)
 
 ##### `impl Debug for MatchErrorKind`
 
@@ -1146,7 +1146,7 @@ a semver-compatible release.
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md#matcherrorkind)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 

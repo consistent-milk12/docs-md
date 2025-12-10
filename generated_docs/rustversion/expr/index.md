@@ -57,7 +57,7 @@ enum Expr {
 
 #### Implementations
 
-- <span id="expr-eval"></span>`fn eval(&self, rustc: Version) -> bool` — [`Version`](../version/index.md)
+- <span id="expr-eval"></span>`fn eval(&self, rustc: Version) -> bool` — [`Version`](../version/index.md#version)
 
 ## Functions
 

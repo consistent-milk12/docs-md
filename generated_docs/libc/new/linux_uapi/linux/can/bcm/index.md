@@ -197,7 +197,7 @@ struct bcm_timeval {
 
 ##### `impl Clone for bcm_timeval`
 
-- <span id="bcm-timeval-clone"></span>`fn clone(&self) -> bcm_timeval` — [`bcm_timeval`](../../../../index.md)
+- <span id="bcm-timeval-clone"></span>`fn clone(&self) -> bcm_timeval` — [`bcm_timeval`](../../../../index.md#bcm-timeval)
 
 ##### `impl Copy for bcm_timeval`
 
@@ -226,7 +226,7 @@ struct bcm_msg_head {
 
 ##### `impl Clone for bcm_msg_head`
 
-- <span id="bcm-msg-head-clone"></span>`fn clone(&self) -> bcm_msg_head` — [`bcm_msg_head`](../../../../index.md)
+- <span id="bcm-msg-head-clone"></span>`fn clone(&self) -> bcm_msg_head` — [`bcm_msg_head`](../../../../index.md#bcm-msg-head)
 
 ##### `impl Copy for bcm_msg_head`
 
@@ -253,7 +253,7 @@ struct can_frame {
 
 ##### `impl Clone for can_frame`
 
-- <span id="can-frame-clone"></span>`fn clone(&self) -> can_frame` — [`can_frame`](../../../../index.md)
+- <span id="can-frame-clone"></span>`fn clone(&self) -> can_frame` — [`can_frame`](../../../../index.md#can-frame)
 
 ##### `impl Copy for can_frame`
 
@@ -280,7 +280,7 @@ struct canfd_frame {
 
 ##### `impl Clone for canfd_frame`
 
-- <span id="canfd-frame-clone"></span>`fn clone(&self) -> canfd_frame` — [`canfd_frame`](../../../../index.md)
+- <span id="canfd-frame-clone"></span>`fn clone(&self) -> canfd_frame` — [`canfd_frame`](../../../../index.md#canfd-frame)
 
 ##### `impl Copy for canfd_frame`
 
@@ -307,7 +307,7 @@ struct canxl_frame {
 
 ##### `impl Clone for canxl_frame`
 
-- <span id="canxl-frame-clone"></span>`fn clone(&self) -> canxl_frame` — [`canxl_frame`](../../../../index.md)
+- <span id="canxl-frame-clone"></span>`fn clone(&self) -> canxl_frame` — [`canxl_frame`](../../../../index.md#canxl-frame)
 
 ##### `impl Copy for canxl_frame`
 
@@ -331,7 +331,7 @@ struct sockaddr_can {
 
 ##### `impl Clone for sockaddr_can`
 
-- <span id="sockaddr-can-clone"></span>`fn clone(&self) -> sockaddr_can` — [`sockaddr_can`](../../../../index.md)
+- <span id="sockaddr-can-clone"></span>`fn clone(&self) -> sockaddr_can` — [`sockaddr_can`](../../../../index.md#sockaddr-can)
 
 ##### `impl Copy for sockaddr_can`
 
@@ -354,7 +354,7 @@ struct __c_anonymous_sockaddr_can_tp {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_tp`
 
-- <span id="c-anonymous-sockaddr-can-tp-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](../../../../index.md)
+- <span id="c-anonymous-sockaddr-can-tp-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](../../../../index.md#c-anonymous-sockaddr-can-tp)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_tp`
 
@@ -378,7 +378,7 @@ struct __c_anonymous_sockaddr_can_j1939 {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_j1939`
 
-- <span id="c-anonymous-sockaddr-can-j1939-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](../../../../index.md)
+- <span id="c-anonymous-sockaddr-can-j1939-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](../../../../index.md#c-anonymous-sockaddr-can-j1939)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_j1939`
 
@@ -401,7 +401,7 @@ struct can_filter {
 
 ##### `impl Clone for can_filter`
 
-- <span id="can-filter-clone"></span>`fn clone(&self) -> can_filter` — [`can_filter`](../../../../index.md)
+- <span id="can-filter-clone"></span>`fn clone(&self) -> can_filter` — [`can_filter`](../../../../index.md#can-filter)
 
 ##### `impl Copy for can_filter`
 

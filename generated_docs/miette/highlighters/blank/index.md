@@ -28,7 +28,7 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Clone for BlankHighlighter`
 
-- <span id="blankhighlighter-clone"></span>`fn clone(&self) -> BlankHighlighter` — [`BlankHighlighter`](../index.md)
+- <span id="blankhighlighter-clone"></span>`fn clone(&self) -> BlankHighlighter` — [`BlankHighlighter`](../index.md#blankhighlighter)
 
 ##### `impl Debug for BlankHighlighter`
 
@@ -40,7 +40,7 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Highlighter for BlankHighlighter`
 
-- <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../../index.md), [`HighlighterState`](../index.md)
+- <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../../index.md#spancontents), [`HighlighterState`](../index.md#highlighterstate)
 
 ##### `impl OwoColorize for BlankHighlighter`
 
@@ -59,7 +59,7 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Clone for BlankHighlighterState`
 
-- <span id="blankhighlighterstate-clone"></span>`fn clone(&self) -> BlankHighlighterState` — [`BlankHighlighterState`](../index.md)
+- <span id="blankhighlighterstate-clone"></span>`fn clone(&self) -> BlankHighlighterState` — [`BlankHighlighterState`](../index.md#blankhighlighterstate)
 
 ##### `impl Debug for BlankHighlighterState`
 

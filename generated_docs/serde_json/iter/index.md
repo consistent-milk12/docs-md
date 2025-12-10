@@ -69,5 +69,5 @@ struct LineColIterator<I> {
 
 - <span id="linecoliterator-type-item"></span>`type Item = Result<u8, Error>`
 
-- <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md)
+- <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md#result)
 

@@ -22,7 +22,7 @@ trait Sealed: Copy { ... }
 
 #### Implementors
 
-- [`End`](../../lookahead/index.md)
-- [`PeekFn`](../../ext/private/index.md)
+- [`End`](../../lookahead/index.md#end)
+- [`PeekFn`](../../ext/private/index.md#peekfn)
 - `F`
 

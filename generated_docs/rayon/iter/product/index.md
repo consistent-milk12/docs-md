@@ -41,7 +41,7 @@ struct ProductConsumer<P: Send> {
 
 - <span id="productconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- <span id="productconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="productconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="productconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -71,7 +71,7 @@ struct ProductConsumer<P: Send> {
 
 - <span id="productconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="productconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="productconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ProductFolder<P>`
 

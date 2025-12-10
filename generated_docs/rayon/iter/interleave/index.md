@@ -46,11 +46,11 @@ the `interleave()` method on [`IndexedParallelIterator`](../index.md)
 
 ##### `impl<I, J> IndexedParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="interleave-len"></span>`fn len(&self) -> usize`
 
-- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Interleave<I, J>`
 
@@ -66,7 +66,7 @@ the `interleave()` method on [`IndexedParallelIterator`](../index.md)
 
 - <span id="interleave-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="interleave-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -129,7 +129,7 @@ where
 
 - <span id="interleaveproducer-type-intoiter"></span>`type IntoIter = InterleaveSeq<<I as Producer>::IntoIter, <J as Producer>::IntoIter>`
 
-- <span id="interleaveproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="interleaveproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="interleaveproducer-min-len"></span>`fn min_len(&self) -> usize`
 

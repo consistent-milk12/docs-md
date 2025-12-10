@@ -40,11 +40,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
-- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
-- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md)
+- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md#progressstyle)
 
-- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
+- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md#progressstyle)
 
 - <span id="progressbar-with-tab-width"></span>`fn with_tab_width(self, tab_width: usize) -> Self`
 
@@ -56,11 +56,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
+- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md#progressfinish)
 
 - <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
-- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
+- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md#progressstyle)
 
 - <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
 
@@ -84,7 +84,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
-- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../state/index.md)
+- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../state/index.md#progressstate)
 
 - <span id="progressbar-set-position"></span>`fn set_position(&self, pos: u64)`
 
@@ -122,17 +122,17 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
-- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
+- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
 - <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
 - <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../iter/index.md)
+- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../iter/index.md#progressbariter)
 
-- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../iter/index.md)
+- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../iter/index.md#progressbariter)
 
-- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../iter/index.md)
+- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../iter/index.md#progressbariter)
 
 - <span id="progressbar-position"></span>`fn position(&self) -> u64`
 
@@ -152,7 +152,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-prefix"></span>`fn prefix(&self) -> String`
 
-- <span id="progressbar-state"></span>`fn state(&self) -> MutexGuard<'_, BarState>` — [`BarState`](../state/index.md)
+- <span id="progressbar-state"></span>`fn state(&self) -> MutexGuard<'_, BarState>` — [`BarState`](../state/index.md#barstate)
 
 #### Trait Implementations
 
@@ -209,7 +209,7 @@ struct Ticker {
 
 #### Implementations
 
-- <span id="ticker-new"></span>`fn new(interval: Duration, bar_state: &Arc<Mutex<BarState>>) -> Self` — [`BarState`](../state/index.md)
+- <span id="ticker-new"></span>`fn new(interval: Duration, bar_state: &Arc<Mutex<BarState>>) -> Self` — [`BarState`](../state/index.md#barstate)
 
 - <span id="ticker-stop"></span>`fn stop(&self)`
 

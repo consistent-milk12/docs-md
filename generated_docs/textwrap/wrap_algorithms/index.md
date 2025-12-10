@@ -99,7 +99,7 @@ an entire paragraph at a time in order to find optimal line breaks
 
 - <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
-- <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
+- <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md#word)
 
 #### Trait Implementations
 

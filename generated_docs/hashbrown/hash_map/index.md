@@ -1113,7 +1113,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 

@@ -76,7 +76,7 @@ feature
 
 ##### `impl IntoResettable for OsStr`
 
-- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../resettable/index.md), [`OsStr`](#osstr)
+- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../resettable/index.md#resettable), [`OsStr`](#osstr)
 
 ##### `impl Ord for OsStr`
 

@@ -222,12 +222,12 @@ This is the primary trait for the unified read API.
 
 #### Implementors
 
-- [`CoffFile`](../coff/index.md)
-- [`ElfFile`](../elf/index.md)
-- [`File`](../index.md)
-- [`MachOFile`](../macho/index.md)
-- [`PeFile`](../pe/index.md)
-- [`XcoffFile`](../xcoff/index.md)
+- [`CoffFile`](../coff/index.md#cofffile)
+- [`ElfFile`](../elf/index.md#elffile)
+- [`File`](../index.md#file)
+- [`MachOFile`](../macho/index.md#machofile)
+- [`PeFile`](../pe/index.md#pefile)
+- [`XcoffFile`](../xcoff/index.md#xcofffile)
 
 ### `ObjectSegment<'data>`
 
@@ -281,12 +281,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSegment`](../coff/index.md)
-- [`ElfSegment`](../elf/index.md)
-- [`MachOSegment`](../macho/index.md)
-- [`PeSegment`](../pe/index.md)
-- [`Segment`](../index.md)
-- [`XcoffSegment`](../xcoff/index.md)
+- [`CoffSegment`](../coff/index.md#coffsegment)
+- [`ElfSegment`](../elf/index.md#elfsegment)
+- [`MachOSegment`](../macho/index.md#machosegment)
+- [`PeSegment`](../pe/index.md#pesegment)
+- [`Segment`](../index.md#segment)
+- [`XcoffSegment`](../xcoff/index.md#xcoffsegment)
 
 ### `ObjectSection<'data>`
 
@@ -382,12 +382,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSection`](../coff/index.md)
-- [`ElfSection`](../elf/index.md)
-- [`MachOSection`](../macho/index.md)
-- [`PeSection`](../pe/index.md)
-- [`Section`](../index.md)
-- [`XcoffSection`](../xcoff/index.md)
+- [`CoffSection`](../coff/index.md#coffsection)
+- [`ElfSection`](../elf/index.md#elfsection)
+- [`MachOSection`](../macho/index.md#machosection)
+- [`PeSection`](../pe/index.md#pesection)
+- [`Section`](../index.md#section)
+- [`XcoffSection`](../xcoff/index.md#xcoffsection)
 
 ### `ObjectComdat<'data>`
 
@@ -429,12 +429,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffComdat`](../coff/index.md)
-- [`Comdat`](../index.md)
-- [`ElfComdat`](../elf/index.md)
-- [`MachOComdat`](../macho/index.md)
-- [`PeComdat`](../pe/index.md)
-- [`XcoffComdat`](../xcoff/index.md)
+- [`CoffComdat`](../coff/index.md#coffcomdat)
+- [`Comdat`](../index.md#comdat)
+- [`ElfComdat`](../elf/index.md#elfcomdat)
+- [`MachOComdat`](../macho/index.md#machocomdat)
+- [`PeComdat`](../pe/index.md#pecomdat)
+- [`XcoffComdat`](../xcoff/index.md#xcoffcomdat)
 
 ### `ObjectSymbolTable<'data>`
 
@@ -466,11 +466,11 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSymbolTable`](../coff/index.md)
-- [`ElfSymbolTable`](../elf/index.md)
-- [`MachOSymbolTable`](../macho/index.md)
-- [`SymbolTable`](../index.md)
-- [`XcoffSymbolTable`](../xcoff/index.md)
+- [`CoffSymbolTable`](../coff/index.md#coffsymboltable)
+- [`ElfSymbolTable`](../elf/index.md#elfsymboltable)
+- [`MachOSymbolTable`](../macho/index.md#machosymboltable)
+- [`SymbolTable`](../index.md#symboltable)
+- [`XcoffSymbolTable`](../xcoff/index.md#xcoffsymboltable)
 
 ### `ObjectSymbol<'data>`
 
@@ -554,9 +554,9 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSymbol`](../coff/index.md)
-- [`ElfSymbol`](../elf/index.md)
-- [`MachOSymbol`](../macho/index.md)
-- [`Symbol`](../index.md)
-- [`XcoffSymbol`](../xcoff/index.md)
+- [`CoffSymbol`](../coff/index.md#coffsymbol)
+- [`ElfSymbol`](../elf/index.md#elfsymbol)
+- [`MachOSymbol`](../macho/index.md#machosymbol)
+- [`Symbol`](../index.md#symbol)
+- [`XcoffSymbol`](../xcoff/index.md#xcoffsymbol)
 

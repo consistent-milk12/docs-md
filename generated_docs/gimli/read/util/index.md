@@ -35,13 +35,13 @@ struct ArrayVec<A: ArrayLike> {
 
 - <span id="arrayvec-clear"></span>`fn clear(&mut self)`
 
-- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md#arraylike), [`CapacityFull`](sealed/index.md#capacityfull)
 
-- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md#arraylike), [`CapacityFull`](sealed/index.md#capacityfull)
 
-- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md#arraylike)
 
-- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md#arraylike)
 
 #### Trait Implementations
 
@@ -61,11 +61,11 @@ struct ArrayVec<A: ArrayLike> {
 
 - <span id="arrayvec-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
-- <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md#arraylike)
 
 ##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
 
-- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md#arraylike)
 
 ##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
 

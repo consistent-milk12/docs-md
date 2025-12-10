@@ -24,7 +24,7 @@ struct Memchr(u8);
 
 #### Implementations
 
-- <span id="memchr-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr>` — [`MatchKind`](../../../index.md), [`Memchr`](#memchr)
+- <span id="memchr-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr>` — [`MatchKind`](../../../index.md#matchkind), [`Memchr`](#memchr)
 
 #### Trait Implementations
 
@@ -38,9 +38,9 @@ struct Memchr(u8);
 
 ##### `impl PrefilterI for Memchr`
 
-- <span id="memchr-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="memchr-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="memchr-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -56,7 +56,7 @@ struct Memchr2(u8, u8);
 
 #### Implementations
 
-- <span id="memchr2-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr2>` — [`MatchKind`](../../../index.md), [`Memchr2`](#memchr2)
+- <span id="memchr2-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr2>` — [`MatchKind`](../../../index.md#matchkind), [`Memchr2`](#memchr2)
 
 #### Trait Implementations
 
@@ -70,9 +70,9 @@ struct Memchr2(u8, u8);
 
 ##### `impl PrefilterI for Memchr2`
 
-- <span id="memchr2-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr2-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="memchr2-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr2-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="memchr2-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -88,7 +88,7 @@ struct Memchr3(u8, u8, u8);
 
 #### Implementations
 
-- <span id="memchr3-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr3>` — [`MatchKind`](../../../index.md), [`Memchr3`](#memchr3)
+- <span id="memchr3-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr3>` — [`MatchKind`](../../../index.md#matchkind), [`Memchr3`](#memchr3)
 
 #### Trait Implementations
 
@@ -102,9 +102,9 @@ struct Memchr3(u8, u8, u8);
 
 ##### `impl PrefilterI for Memchr3`
 
-- <span id="memchr3-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr3-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="memchr3-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr3-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="memchr3-memory-usage"></span>`fn memory_usage(&self) -> usize`
 

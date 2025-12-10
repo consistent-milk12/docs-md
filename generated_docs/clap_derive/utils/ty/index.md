@@ -59,7 +59,7 @@ enum Ty {
 
 #### Implementations
 
-- <span id="ty-from-syn-ty"></span>`fn from_syn_ty(ty: &Type) -> Sp<Self>` — [`Sp`](../spanned/index.md)
+- <span id="ty-from-syn-ty"></span>`fn from_syn_ty(ty: &Type) -> Sp<Self>` — [`Sp`](../spanned/index.md#sp)
 
 - <span id="ty-as-str"></span>`fn as_str(&self) -> &'static str`
 

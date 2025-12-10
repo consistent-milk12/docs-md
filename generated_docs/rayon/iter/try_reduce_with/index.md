@@ -41,7 +41,7 @@ struct TryReduceWithConsumer<'r, R> {
 
 - <span id="tryreducewithconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- <span id="tryreducewithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="tryreducewithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="tryreducewithconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -71,7 +71,7 @@ struct TryReduceWithConsumer<'r, R> {
 
 - <span id="tryreducewithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="tryreducewithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="tryreducewithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `TryReduceWithFolder<'r, R, T: Try>`
 

@@ -59,9 +59,9 @@ terminate.
 
 #### Implementations
 
-- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](#threadpool)
+- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md#configuration), [`ThreadPool`](#threadpool)
 
-- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](../index.md)
+- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md#threadpoolbuilder), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](../index.md#threadpoolbuilderror)
 
 - <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 

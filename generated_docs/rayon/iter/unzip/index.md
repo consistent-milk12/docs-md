@@ -195,7 +195,7 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 - <span id="unzipa-type-item"></span>`type Item = <OP as UnzipOp>::Left`
 
-- <span id="unzipa-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="unzipa-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="unzipa-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -248,7 +248,7 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 - <span id="unzipb-type-item"></span>`type Item = <OP as UnzipOp>::Right`
 
-- <span id="unzipb-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="unzipb-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="unzipb-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -290,9 +290,9 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-type-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
 
-- <span id="unzipconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="unzipconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="unzipconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="unzipconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="unzipconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -316,7 +316,7 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="unzipconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="unzipconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `UnzipFolder<'a, OP, FA, FB>`
 
@@ -340,7 +340,7 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 - <span id="unzipfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="unzipfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="unzipfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="unzipfolder-full"></span>`fn full(&self) -> bool`
 
@@ -429,7 +429,7 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - <span id="uneither-type-right"></span>`type Right = R`
 
-- <span id="uneither-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md)
+- <span id="uneither-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md#either)
 
 ### `Collector<FromT>`
 

@@ -26,6 +26,6 @@ trait Diag { ... }
 
 #### Implementors
 
-- [`Report`](../../../index.md)
+- [`Report`](../../../index.md#report)
 - `E`
 

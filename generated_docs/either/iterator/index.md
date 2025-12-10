@@ -31,7 +31,7 @@ and `factor_iter_mut` methods.
 
 #### Implementations
 
-- <span id="itereither-new"></span>`fn new(inner: Either<L, R>) -> Self` — [`Either`](../index.md)
+- <span id="itereither-new"></span>`fn new(inner: Either<L, R>) -> Self` — [`Either`](../index.md#either)
 
 #### Trait Implementations
 

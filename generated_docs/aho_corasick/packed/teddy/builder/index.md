@@ -66,7 +66,7 @@ and number of patterns given to the builder.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
+- <span id="builder-build"></span>`fn build(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
 
 - <span id="builder-only-fat"></span>`fn only_fat(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
@@ -74,7 +74,7 @@ and number of patterns given to the builder.
 
 - <span id="builder-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- <span id="builder-build-imp"></span>`fn build_imp(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
+- <span id="builder-build-imp"></span>`fn build_imp(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
 
 #### Trait Implementations
 
@@ -128,7 +128,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 
 #### Implementations
 
-- <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md)
+- <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md#match)
 
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -188,7 +188,7 @@ requires `alloc`, there's no real reason (AFAIK) to go down this path. (The
 
 #### Implementors
 
-- [`FatAVX2`](x86_64/index.md)
-- [`SlimAVX2`](x86_64/index.md)
-- [`SlimSSSE3`](x86_64/index.md)
+- [`FatAVX2`](x86_64/index.md#fatavx2)
+- [`SlimAVX2`](x86_64/index.md#slimavx2)
+- [`SlimSSSE3`](x86_64/index.md#slimssse3)
 

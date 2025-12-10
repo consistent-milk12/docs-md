@@ -32,27 +32,27 @@ Manages multiple progress bars from different threads
 
 - <span id="multiprogress-new"></span>`fn new() -> Self`
 
-- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
-- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
+- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
 - <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
 - <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
 
-- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
-- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../progress_bar/index.md)
+- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../progress_bar/index.md#progressbar)
 
 - <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
@@ -126,15 +126,15 @@ struct MultiState {
 
 #### Implementations
 
-- <span id="multistate-new"></span>`fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- <span id="multistate-new"></span>`fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
 - <span id="multistate-mark-zombie"></span>`fn mark_zombie(&mut self, index: usize)`
 
-- <span id="multistate-draw"></span>`fn draw(&mut self, force_draw: bool, extra_lines: Option<Vec<LineType>>, now: Instant) -> io::Result<()>` — [`LineType`](../draw_target/index.md)
+- <span id="multistate-draw"></span>`fn draw(&mut self, force_draw: bool, extra_lines: Option<Vec<LineType>>, now: Instant) -> io::Result<()>` — [`LineType`](../draw_target/index.md#linetype)
 
 - <span id="multistate-println"></span>`fn println<I: AsRef<str>>(&mut self, msg: I, now: Instant) -> io::Result<()>`
 
-- <span id="multistate-draw-state"></span>`fn draw_state(&mut self, idx: usize) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](../draw_target/index.md)
+- <span id="multistate-draw-state"></span>`fn draw_state(&mut self, idx: usize) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](../draw_target/index.md#drawstatewrapper)
 
 - <span id="multistate-is-hidden"></span>`fn is_hidden(&self) -> bool`
 

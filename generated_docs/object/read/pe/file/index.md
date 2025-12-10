@@ -71,25 +71,25 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 #### Implementations
 
-- <span id="pefile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="pefile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
 - <span id="pefile-data"></span>`fn data(&self) -> R`
 
-- <span id="pefile-dos-header"></span>`fn dos_header(&self) -> &'data pe::ImageDosHeader` — [`ImageDosHeader`](../../../pe/index.md)
+- <span id="pefile-dos-header"></span>`fn dos_header(&self) -> &'data pe::ImageDosHeader` — [`ImageDosHeader`](../../../pe/index.md#imagedosheader)
 
 - <span id="pefile-nt-headers"></span>`fn nt_headers(&self) -> &'data Pe`
 
-- <span id="pefile-rich-header-info"></span>`fn rich_header_info(&self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](../index.md)
+- <span id="pefile-rich-header-info"></span>`fn rich_header_info(&self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](../index.md#richheaderinfo)
 
-- <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../coff/index.md)
+- <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../coff/index.md#sectiontable)
 
-- <span id="pefile-data-directories"></span>`fn data_directories(&self) -> DataDirectories<'data>` — [`DataDirectories`](../index.md)
+- <span id="pefile-data-directories"></span>`fn data_directories(&self) -> DataDirectories<'data>` — [`DataDirectories`](../index.md#datadirectories)
 
-- <span id="pefile-data-directory"></span>`fn data_directory(&self, id: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../../pe/index.md)
+- <span id="pefile-data-directory"></span>`fn data_directory(&self, id: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../../pe/index.md#imagedatadirectory)
 
-- <span id="pefile-export-table"></span>`fn export_table(&self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../../index.md), [`ExportTable`](../index.md)
+- <span id="pefile-export-table"></span>`fn export_table(&self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../../index.md#result), [`ExportTable`](../index.md#exporttable)
 
-- <span id="pefile-import-table"></span>`fn import_table(&self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../../index.md), [`ImportTable`](../index.md)
+- <span id="pefile-import-table"></span>`fn import_table(&self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../../index.md#result), [`ImportTable`](../index.md#importtable)
 
 - <span id="pefile-section-alignment"></span>`fn section_alignment(&self) -> u64`
 
@@ -121,43 +121,43 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="pefile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
+- <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
-- <span id="pefile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
+- <span id="pefile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
 
 - <span id="pefile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
 - <span id="pefile-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="pefile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md)
+- <span id="pefile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md#objectkind)
 
-- <span id="pefile-segments"></span>`fn segments(&self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](../index.md)
+- <span id="pefile-segments"></span>`fn segments(&self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](../index.md#pesegmentiterator)
 
-- <span id="pefile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](../index.md)
+- <span id="pefile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](../index.md#pesection)
 
-- <span id="pefile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`PeSection`](../index.md)
+- <span id="pefile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`PeSection`](../index.md#pesection)
 
-- <span id="pefile-sections"></span>`fn sections(&self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](../index.md)
+- <span id="pefile-sections"></span>`fn sections(&self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](../index.md#pesectioniterator)
 
-- <span id="pefile-comdats"></span>`fn comdats(&self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](../index.md)
+- <span id="pefile-comdats"></span>`fn comdats(&self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](../index.md#pecomdatiterator)
 
-- <span id="pefile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`CoffSymbol`](../../coff/index.md)
+- <span id="pefile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`CoffSymbol`](../../coff/index.md#coffsymbol)
 
-- <span id="pefile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md)
+- <span id="pefile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
 
-- <span id="pefile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md)
+- <span id="pefile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
 
-- <span id="pefile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md)
+- <span id="pefile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../../coff/index.md#coffsymboliterator)
 
-- <span id="pefile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md)
+- <span id="pefile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../../coff/index.md#coffsymboltable)
 
-- <span id="pefile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md)
+- <span id="pefile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md#nodynamicrelocationiterator)
 
-- <span id="pefile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md), [`Import`](../../../index.md)
+- <span id="pefile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md#result), [`Import`](../../../index.md#import)
 
-- <span id="pefile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../../../index.md)
+- <span id="pefile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md#result), [`Export`](../../../index.md#export)
 
-- <span id="pefile-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../../index.md), [`CodeView`](../../../index.md)
+- <span id="pefile-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../../index.md#result), [`CodeView`](../../../index.md#codeview)
 
 - <span id="pefile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
@@ -165,7 +165,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="pefile-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="pefile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md)
+- <span id="pefile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
 ##### `impl<'data, Pe, R> Sealed for PeFile<'data, Pe, R>`
 
@@ -233,15 +233,15 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="pecomdat-type-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md)
+- <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
-- <span id="pecomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md)
+- <span id="pecomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="pecomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="pecomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
-- <span id="pecomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="pecomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md#result)
 
-- <span id="pecomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md)
+- <span id="pecomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeComdat<'data, 'file, Pe, R>`
 
@@ -338,8 +338,8 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 
 #### Implementors
 
-- [`ImageNtHeaders32`](../../../pe/index.md)
-- [`ImageNtHeaders64`](../../../pe/index.md)
+- [`ImageNtHeaders32`](../../../pe/index.md#imagentheaders32)
+- [`ImageNtHeaders64`](../../../pe/index.md#imagentheaders64)
 
 ### `ImageOptionalHeader`
 
@@ -415,8 +415,8 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md
 
 #### Implementors
 
-- [`ImageOptionalHeader32`](../../../pe/index.md)
-- [`ImageOptionalHeader64`](../../../pe/index.md)
+- [`ImageOptionalHeader32`](../../../pe/index.md#imageoptionalheader32)
+- [`ImageOptionalHeader64`](../../../pe/index.md#imageoptionalheader64)
 
 ## Functions
 

@@ -141,17 +141,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- <span id="config-from-input-forward"></span>`fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
+- <span id="config-from-input-forward"></span>`fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
 
-- <span id="config-from-input-reverse"></span>`fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
+- <span id="config-from-input-reverse"></span>`fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
 
 - <span id="config-look-behind"></span>`fn look_behind(self, byte: Option<u8>) -> Config` — [`Config`](#config)
 
-- <span id="config-anchored"></span>`fn anchored(self, mode: Anchored) -> Config` — [`Anchored`](../../index.md), [`Config`](#config)
+- <span id="config-anchored"></span>`fn anchored(self, mode: Anchored) -> Config` — [`Anchored`](../../index.md#anchored), [`Config`](#config)
 
 - <span id="config-get-look-behind"></span>`fn get_look_behind(&self) -> Option<u8>`
 
-- <span id="config-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="config-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md#anchored)
 
 #### Trait Implementations
 
@@ -190,13 +190,13 @@ result of the epsilon closure that the NFA engines tend to need to do.)
 
 #### Implementations
 
-- <span id="startbytemap-new"></span>`fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md), [`StartByteMap`](#startbytemap)
+- <span id="startbytemap-new"></span>`fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md#lookmatcher), [`StartByteMap`](#startbytemap)
 
 - <span id="startbytemap-get"></span>`fn get(&self, byte: u8) -> Start` — [`Start`](#start)
 
-- <span id="startbytemap-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md)
+- <span id="startbytemap-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md#deserializeerror)
 
-- <span id="startbytemap-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="startbytemap-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
 - <span id="startbytemap-write-to-len"></span>`fn write_to_len(&self) -> usize`
 

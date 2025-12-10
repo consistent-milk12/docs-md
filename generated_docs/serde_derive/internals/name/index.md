@@ -29,7 +29,7 @@ struct MultiName {
 
 #### Implementations
 
-- <span id="multiname-from-attrs"></span>`fn from_attrs(source_name: Name, ser_name: Attr<'_, Name>, de_name: Attr<'_, Name>, de_aliases: Option<VecAttr<'_, Name>>) -> Self` — [`Name`](#name), [`Attr`](../attr/index.md), [`VecAttr`](../attr/index.md)
+- <span id="multiname-from-attrs"></span>`fn from_attrs(source_name: Name, ser_name: Attr<'_, Name>, de_name: Attr<'_, Name>, de_aliases: Option<VecAttr<'_, Name>>) -> Self` — [`Name`](#name), [`Attr`](../attr/index.md#attr), [`VecAttr`](../attr/index.md#vecattr)
 
 - <span id="multiname-serialize-name"></span>`fn serialize_name(&self) -> &Name` — [`Name`](#name)
 

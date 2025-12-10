@@ -47,7 +47,7 @@ have some non-empty spare capacity.
 
 - <span id="sparecapacity-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
 
-- <span id="sparecapacity-assume-init"></span>`unsafe fn assume_init(self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md)
+- <span id="sparecapacity-assume-init"></span>`unsafe fn assume_init(self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md#sealed)
 
 ## Traits
 

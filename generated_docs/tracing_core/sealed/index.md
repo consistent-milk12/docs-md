@@ -22,9 +22,9 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`DebugValue`](../field/index.md)
-- [`DisplayValue`](../field/index.md)
-- [`Empty`](../field/index.md)
+- [`DebugValue`](../field/index.md#debugvalue)
+- [`DisplayValue`](../field/index.md#displayvalue)
+- [`Empty`](../field/index.md#empty)
 - `&'a T`
 - `&'a mut T`
 - `NonZeroI128`

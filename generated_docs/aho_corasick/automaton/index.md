@@ -95,7 +95,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md), [`Candidate`](../util/prefilter/index.md)
+- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md#span), [`Candidate`](../util/prefilter/index.md#candidate)
 
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -103,7 +103,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 ##### `impl Clone for Prefilter`
 
-- <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md)
+- <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md#prefilter)
 
 ##### `impl Debug for Prefilter`
 
@@ -145,13 +145,13 @@ panics or silent logical errors.
 
 - <span id="stateid-const-size"></span>`const SIZE: usize`
 
-- <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
+- <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md#stateid), [`StateIDError`](../util/primitives/index.md#stateiderror)
 
-- <span id="stateid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="stateid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="stateid-must"></span>`fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-must"></span>`fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
 - <span id="stateid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
@@ -163,19 +163,19 @@ panics or silent logical errors.
 
 - <span id="stateid-one-more"></span>`fn one_more(&self) -> usize`
 
-- <span id="stateid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
+- <span id="stateid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md#stateid), [`StateIDError`](../util/primitives/index.md#stateiderror)
 
-- <span id="stateid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
 - <span id="stateid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
-- <span id="stateid-iter"></span>`fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md)
+- <span id="stateid-iter"></span>`fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md#stateiditer)
 
 #### Trait Implementations
 
 ##### `impl Clone for StateID`
 
-- <span id="stateid-clone"></span>`fn clone(&self) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-clone"></span>`fn clone(&self) -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl Copy for StateID`
 
@@ -185,7 +185,7 @@ panics or silent logical errors.
 
 ##### `impl Default for StateID`
 
-- <span id="stateid-default"></span>`fn default() -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-default"></span>`fn default() -> StateID` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl Eq for StateID`
 
@@ -197,23 +197,23 @@ panics or silent logical errors.
 
 - <span id="t-type-output"></span>`type Output = T`
 
-- <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](../util/primitives/index.md)
+- <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl<T> IndexMut for [T]`
 
-- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](../util/primitives/index.md)
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl Ord for StateID`
 
-- <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl PartialEq for StateID`
 
-- <span id="stateid-eq"></span>`fn eq(&self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-eq"></span>`fn eq(&self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl PartialOrd for StateID`
 
-- <span id="stateid-partial-cmp"></span>`fn partial_cmp(&self, other: &StateID) -> option::Option<cmp::Ordering>` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-partial-cmp"></span>`fn partial_cmp(&self, other: &StateID) -> option::Option<cmp::Ordering>` — [`StateID`](../util/primitives/index.md#stateid)
 
 ##### `impl StructuralPartialEq for StateID`
 
@@ -241,7 +241,7 @@ trait.
 
 ##### `impl Clone for StateIDError`
 
-- <span id="stateiderror-clone"></span>`fn clone(&self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md)
+- <span id="stateiderror-clone"></span>`fn clone(&self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md#stateiderror)
 
 ##### `impl Debug for StateIDError`
 
@@ -257,7 +257,7 @@ trait.
 
 ##### `impl PartialEq for StateIDError`
 
-- <span id="stateiderror-eq"></span>`fn eq(&self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md)
+- <span id="stateiderror-eq"></span>`fn eq(&self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md#stateiderror)
 
 ##### `impl StructuralPartialEq for StateIDError`
 
@@ -379,7 +379,7 @@ assert_eq!(expected, matches);
 
 - <span id="overlappingstate-start"></span>`fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
 #### Trait Implementations
 
@@ -438,11 +438,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Implementations
 
-- <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md)
+- <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md#input), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md#matcherror)
 
-- <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
-- <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
 #### Trait Implementations
 
@@ -462,7 +462,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="finditer-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -510,7 +510,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - <span id="findoverlappingiter-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -558,7 +558,7 @@ implementation.
 
 - <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md)
+- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md#match)
 
 ### `StreamChunkIter<'a, A, R>`
 
@@ -643,19 +643,19 @@ chunks it can copy and which it needs to replace.
 
 #### Implementations
 
-- <span id="streamchunkiter-new"></span>`fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../util/error/index.md)
+- <span id="streamchunkiter-new"></span>`fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../util/error/index.md#matcherror)
 
 - <span id="streamchunkiter-next"></span>`fn next(&mut self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
 
-- <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md)
+- <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md#match)
 
-- <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md)
+- <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md#match)
 
 - <span id="streamchunkiter-get-pre-roll-non-match-chunk"></span>`fn get_pre_roll_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
 - <span id="streamchunkiter-get-eof-non-match-chunk"></span>`fn get_eof_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
-- <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../util/search/index.md)
+- <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../util/search/index.md#match)
 
 #### Trait Implementations
 
@@ -717,7 +717,7 @@ implementations are permitted to return false positives.
 
 ##### `impl Clone for Candidate`
 
-- <span id="candidate-clone"></span>`fn clone(&self) -> Candidate` — [`Candidate`](../util/prefilter/index.md)
+- <span id="candidate-clone"></span>`fn clone(&self) -> Candidate` — [`Candidate`](../util/prefilter/index.md#candidate)
 
 ##### `impl Debug for Candidate`
 
@@ -1041,9 +1041,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementors
 
-- [`DFA`](../dfa/index.md)
-- [`NFA`](../nfa/contiguous/index.md)
-- [`NFA`](../nfa/noncontiguous/index.md)
+- [`DFA`](../dfa/index.md#dfa)
+- [`NFA`](../nfa/contiguous/index.md#nfa)
+- [`NFA`](../nfa/noncontiguous/index.md#nfa)
 - `&'a A`
 
 ## Functions

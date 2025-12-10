@@ -118,7 +118,7 @@ doing this because it changes the runtime of hash table operations from
 
 - <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](../hash_table/index.md)
+- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](../hash_table/index.md#intoiter)
 
 ### `OccupiedEntry<'a, T, A>`
 
@@ -134,7 +134,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -184,7 +184,7 @@ fn main() {
 
 #### Implementations
 
-- <span id="occupiedentry-remove"></span>`fn remove(self) -> (T, VacantEntry<'a, T, A>)` — [`VacantEntry`](../hash_table/index.md)
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> (T, VacantEntry<'a, T, A>)` — [`VacantEntry`](../hash_table/index.md#vacantentry)
 
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
@@ -192,7 +192,7 @@ fn main() {
 
 - <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut T`
 
-- <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md#hashtable)
 
 - <span id="occupiedentry-bucket-index"></span>`fn bucket_index(&self) -> usize`
 
@@ -221,7 +221,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -260,9 +260,9 @@ fn main() {
 
 #### Implementations
 
-- <span id="vacantentry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md#occupiedentry)
 
-- <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md#hashtable)
 
 #### Trait Implementations
 
@@ -325,7 +325,7 @@ fn main() {
 
 #### Implementations
 
-- <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md#hashtable)
 
 #### Trait Implementations
 
@@ -356,7 +356,7 @@ documentation for more.
 
 ##### `impl<'a, T> Clone for Iter<'a, T>`
 
-- <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a, T>` — [`Iter`](../hash_table/index.md)
+- <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a, T>` — [`Iter`](../hash_table/index.md#iter)
 
 ##### `impl<T: fmt::Debug> Debug for Iter<'_, T>`
 
@@ -522,7 +522,7 @@ documentation for more.
 
 ##### `impl<'a, T> Clone for IterHash<'a, T>`
 
-- <span id="iterhash-clone"></span>`fn clone(&self) -> IterHash<'a, T>` — [`IterHash`](../hash_table/index.md)
+- <span id="iterhash-clone"></span>`fn clone(&self) -> IterHash<'a, T>` — [`IterHash`](../hash_table/index.md#iterhash)
 
 ##### `impl<T> Debug for IterHash<'_, T>`
 
@@ -912,11 +912,11 @@ fn main() {
 
 #### Implementations
 
-- <span id="entry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+- <span id="entry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md#occupiedentry)
 
-- <span id="entry-or-insert"></span>`fn or_insert(self, default: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md#occupiedentry)
 
-- <span id="entry-or-insert-with"></span>`fn or_insert_with(self, default: impl FnOnce() -> T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+- <span id="entry-or-insert-with"></span>`fn or_insert_with(self, default: impl FnOnce() -> T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md#occupiedentry)
 
 - <span id="entry-and-modify"></span>`fn and_modify(self, f: impl FnOnce(&mut T)) -> Self`
 

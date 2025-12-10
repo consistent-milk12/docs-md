@@ -42,7 +42,7 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 
 - <span id="parser-advance"></span>`fn advance<R>(&mut self, receiver: &mut R, byte: u8)`
 
-- <span id="parser-perform-action"></span>`fn perform_action<R>(&mut self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](types/index.md)
+- <span id="parser-perform-action"></span>`fn perform_action<R>(&mut self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](types/index.md#action)
 
 #### Trait Implementations
 

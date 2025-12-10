@@ -61,7 +61,7 @@ struct IntervalSet<I> {
 
 - <span id="intervalset-intervals"></span>`fn intervals(&self) -> &[I]`
 
-- <span id="intervalset-case-fold-simple"></span>`fn case_fold_simple(&mut self) -> Result<(), unicode::CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
+- <span id="intervalset-case-fold-simple"></span>`fn case_fold_simple(&mut self) -> Result<(), unicode::CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md#casefolderror)
 
 - <span id="intervalset-union"></span>`fn union(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
@@ -181,8 +181,8 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 
 #### Implementors
 
-- [`ClassBytesRange`](../index.md)
-- [`ClassUnicodeRange`](../index.md)
+- [`ClassBytesRange`](../index.md#classbytesrange)
+- [`ClassUnicodeRange`](../index.md#classunicoderange)
 
 ### `Bound`
 

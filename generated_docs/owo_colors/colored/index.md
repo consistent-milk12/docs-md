@@ -62,7 +62,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for AnsiColors`
 
-- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](../colors/ansi_colors/index.md)
+- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](../colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl Copy for AnsiColors`
 
@@ -86,7 +86,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for AnsiColors`
 
-- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](../colors/ansi_colors/index.md)
+- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](../colors/ansi_colors/index.md#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
 

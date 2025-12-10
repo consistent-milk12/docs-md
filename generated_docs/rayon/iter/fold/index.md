@@ -60,7 +60,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../index.m
 
 - <span id="fold-type-item"></span>`type Item = U`
 
-- <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Fold<I, ID, F>`
 
@@ -98,9 +98,9 @@ struct FoldConsumer<'c, C, ID, F> {
 
 - <span id="foldconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="foldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="foldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="foldconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="foldconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="foldconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -124,7 +124,7 @@ struct FoldConsumer<'c, C, ID, F> {
 
 - <span id="foldconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="foldconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="foldconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `FoldFolder<'r, C, ID, F>`
 
@@ -148,7 +148,7 @@ struct FoldFolder<'r, C, ID, F> {
 
 - <span id="foldfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="foldfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="foldfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="foldfolder-full"></span>`fn full(&self) -> bool`
 
@@ -212,7 +212,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../in
 
 - <span id="foldwith-type-item"></span>`type Item = U`
 
-- <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for FoldWith<I, U, F>`
 
@@ -250,9 +250,9 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 - <span id="foldwithconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="foldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="foldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="foldwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="foldwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="foldwithconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -276,5 +276,5 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 - <span id="foldwithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="foldwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="foldwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 

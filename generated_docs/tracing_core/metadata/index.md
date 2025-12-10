@@ -141,9 +141,9 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md), [`Kind`](#kind)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md#fieldset), [`Kind`](#kind)
 
-- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md)
+- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md#fieldset)
 
 - <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](#level)
 
@@ -157,7 +157,7 @@ of `Metadata`'s other fields is checked in debug builds.
 
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
-- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
+- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
 

@@ -37,7 +37,7 @@ trait's documentation for details.
 
 #### Implementations
 
-- <span id="withdispatch-dispatcher"></span>`fn dispatcher(&self) -> &Dispatch` — [`Dispatch`](../dispatcher/index.md)
+- <span id="withdispatch-dispatcher"></span>`fn dispatcher(&self) -> &Dispatch` — [`Dispatch`](../dispatcher/index.md#dispatch)
 
 - <span id="withdispatch-inner"></span>`fn inner(&self) -> &T`
 
@@ -99,9 +99,9 @@ trait's documentation for details.
 
 #### Implementations
 
-- <span id="instrumented-span"></span>`fn span(&self) -> &Span` — [`Span`](../span/index.md)
+- <span id="instrumented-span"></span>`fn span(&self) -> &Span` — [`Span`](../span/index.md#span)
 
-- <span id="instrumented-span-mut"></span>`fn span_mut(&mut self) -> &mut Span` — [`Span`](../span/index.md)
+- <span id="instrumented-span-mut"></span>`fn span_mut(&mut self) -> &mut Span` — [`Span`](../span/index.md#span)
 
 - <span id="instrumented-inner"></span>`fn inner(&self) -> &T`
 

@@ -57,7 +57,7 @@ An epoch-based garbage collector.
 
 - <span id="collector-type-init"></span>`type Init = T`
 
-- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
 - <span id="collector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -83,7 +83,7 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../guard/index.md)
+- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../guard/index.md#guard)
 
 - <span id="localhandle-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
@@ -105,7 +105,7 @@ A handle to a garbage collector.
 
 - <span id="localhandle-type-init"></span>`type Init = T`
 
-- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
 - <span id="localhandle-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

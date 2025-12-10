@@ -83,11 +83,11 @@ struct FlexibleItemType {
 
 #### Implementations
 
-- <span id="flexibleitemtype-parse"></span>`fn parse(input: ParseStream<'_>, allow_defaultness: TypeDefaultness, where_clause_location: WhereClauseLocation) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`TypeDefaultness`](#typedefaultness), [`WhereClauseLocation`](#whereclauselocation), [`Result`](../../error/index.md)
+- <span id="flexibleitemtype-parse"></span>`fn parse(input: ParseStream<'_>, allow_defaultness: TypeDefaultness, where_clause_location: WhereClauseLocation) -> Result<Self>` — [`ParseStream`](../../parse/index.md#parsestream), [`TypeDefaultness`](#typedefaultness), [`WhereClauseLocation`](#whereclauselocation), [`Result`](../../error/index.md#result)
 
-- <span id="flexibleitemtype-parse-optional-bounds"></span>`fn parse_optional_bounds(input: ParseStream<'_>) -> Result<(Option<token::Colon>, Punctuated<TypeParamBound, token::Plus>)>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md), [`Colon`](../../token/index.md), [`Punctuated`](../../punctuated/index.md), [`TypeParamBound`](../../generics/index.md), [`Plus`](../../token/index.md)
+- <span id="flexibleitemtype-parse-optional-bounds"></span>`fn parse_optional_bounds(input: ParseStream<'_>) -> Result<(Option<token::Colon>, Punctuated<TypeParamBound, token::Plus>)>` — [`ParseStream`](../../parse/index.md#parsestream), [`Result`](../../error/index.md#result), [`Colon`](../../token/index.md#colon), [`Punctuated`](../../punctuated/index.md#punctuated), [`TypeParamBound`](../../generics/index.md#typeparambound), [`Plus`](../../token/index.md#plus)
 
-- <span id="flexibleitemtype-parse-optional-definition"></span>`fn parse_optional_definition(input: ParseStream<'_>) -> Result<Option<(token::Eq, Type)>>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md), [`Eq`](../../token/index.md), [`Type`](../../ty/index.md)
+- <span id="flexibleitemtype-parse-optional-definition"></span>`fn parse_optional_definition(input: ParseStream<'_>) -> Result<Option<(token::Eq, Type)>>` — [`ParseStream`](../../parse/index.md#parsestream), [`Result`](../../error/index.md#result), [`Eq`](../../token/index.md#eq), [`Type`](../../ty/index.md#type)
 
 ## Enums
 

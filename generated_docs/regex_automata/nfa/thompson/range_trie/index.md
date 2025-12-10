@@ -118,19 +118,19 @@ that it is acyclic.
 
 - <span id="rangetrie-insert"></span>`fn insert(&mut self, ranges: &[Utf8Range])`
 
-- <span id="rangetrie-add-empty"></span>`fn add_empty(&mut self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-empty"></span>`fn add_empty(&mut self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="rangetrie-duplicate"></span>`fn duplicate(&mut self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-duplicate"></span>`fn duplicate(&mut self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="rangetrie-add-transition"></span>`fn add_transition(&mut self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-transition"></span>`fn add_transition(&mut self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="rangetrie-add-transition-at"></span>`fn add_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-transition-at"></span>`fn add_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="rangetrie-set-transition-at"></span>`fn set_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-set-transition-at"></span>`fn set_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="rangetrie-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- <span id="rangetrie-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md#stateid), [`State`](#state)
 
-- <span id="rangetrie-state-mut"></span>`fn state_mut(&mut self, id: StateID) -> &mut State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- <span id="rangetrie-state-mut"></span>`fn state_mut(&mut self, id: StateID) -> &mut State` — [`StateID`](../../../util/primitives/index.md#stateid), [`State`](#state)
 
 #### Trait Implementations
 
@@ -303,11 +303,11 @@ is always the root state along with all ranges given.
 
 #### Implementations
 
-- <span id="nextinsert-new"></span>`fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md), [`NextInsert`](#nextinsert)
+- <span id="nextinsert-new"></span>`fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md#stateid), [`NextInsert`](#nextinsert)
 
-- <span id="nextinsert-push"></span>`fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md)
+- <span id="nextinsert-push"></span>`fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="nextinsert-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="nextinsert-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 - <span id="nextinsert-ranges"></span>`fn ranges(&self) -> &[Utf8Range]`
 

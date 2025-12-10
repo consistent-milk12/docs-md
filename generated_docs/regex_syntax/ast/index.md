@@ -2763,9 +2763,9 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 
 #### Implementors
 
-- [`NestLimiter`](parse/index.md)
-- [`TranslatorI`](../hir/translate/index.md)
-- [`Writer`](print/index.md)
+- [`NestLimiter`](parse/index.md#nestlimiter)
+- [`TranslatorI`](../hir/translate/index.md#translatori)
+- [`Writer`](print/index.md#writer)
 
 ## Functions
 

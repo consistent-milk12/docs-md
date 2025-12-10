@@ -79,7 +79,7 @@ Holds configuration options for wrapping and filling text.
 
 - <span id="options-new"></span>`const fn new(width: usize) -> Self`
 
-- <span id="options-line-ending"></span>`fn line_ending(self, line_ending: LineEnding) -> Self` — [`LineEnding`](../line_ending/index.md)
+- <span id="options-line-ending"></span>`fn line_ending(self, line_ending: LineEnding) -> Self` — [`LineEnding`](../line_ending/index.md#lineending)
 
 - <span id="options-width"></span>`fn width(self, width: usize) -> Self`
 
@@ -89,11 +89,11 @@ Holds configuration options for wrapping and filling text.
 
 - <span id="options-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- <span id="options-word-separator"></span>`fn word_separator(self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../word_separators/index.md), [`Options`](#options)
+- <span id="options-word-separator"></span>`fn word_separator(self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../word_separators/index.md#wordseparator), [`Options`](#options)
 
-- <span id="options-wrap-algorithm"></span>`fn wrap_algorithm(self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../wrap_algorithms/index.md), [`Options`](#options)
+- <span id="options-wrap-algorithm"></span>`fn wrap_algorithm(self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../wrap_algorithms/index.md#wrapalgorithm), [`Options`](#options)
 
-- <span id="options-word-splitter"></span>`fn word_splitter(self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../word_splitters/index.md), [`Options`](#options)
+- <span id="options-word-splitter"></span>`fn word_splitter(self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../word_splitters/index.md#wordsplitter), [`Options`](#options)
 
 #### Trait Implementations
 

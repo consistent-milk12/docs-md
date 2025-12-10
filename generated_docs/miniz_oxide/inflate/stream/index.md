@@ -138,13 +138,13 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 
 #### Implementations
 
-- <span id="inflatestate-new"></span>`fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md), [`InflateState`](#inflatestate)
+- <span id="inflatestate-new"></span>`fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md#dataformat), [`InflateState`](#inflatestate)
 
-- <span id="inflatestate-decompressor"></span>`fn decompressor(&mut self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md)
+- <span id="inflatestate-decompressor"></span>`fn decompressor(&mut self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md#decompressoroxide)
 
-- <span id="inflatestate-last-status"></span>`const fn last_status(&self) -> TINFLStatus` — [`TINFLStatus`](../index.md)
+- <span id="inflatestate-last-status"></span>`const fn last_status(&self) -> TINFLStatus` — [`TINFLStatus`](../index.md#tinflstatus)
 
-- <span id="inflatestate-reset"></span>`fn reset(&mut self, data_format: DataFormat)` — [`DataFormat`](../../index.md)
+- <span id="inflatestate-reset"></span>`fn reset(&mut self, data_format: DataFormat)` — [`DataFormat`](../../index.md#dataformat)
 
 - <span id="inflatestate-reset-as"></span>`fn reset_as<T: ResetPolicy>(&mut self, policy: T)`
 

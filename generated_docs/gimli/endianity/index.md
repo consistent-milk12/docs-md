@@ -32,7 +32,7 @@ Little endian byte order.
 
 ##### `impl Clone for LittleEndian`
 
-- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl Copy for LittleEndian`
 
@@ -42,7 +42,7 @@ Little endian byte order.
 
 ##### `impl Default for LittleEndian`
 
-- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl Endianity for LittleEndian`
 
@@ -56,7 +56,7 @@ Little endian byte order.
 
 ##### `impl PartialEq for LittleEndian`
 
-- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -74,7 +74,7 @@ Big endian byte order.
 
 ##### `impl Clone for BigEndian`
 
-- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl Copy for BigEndian`
 
@@ -84,7 +84,7 @@ Big endian byte order.
 
 ##### `impl Default for BigEndian`
 
-- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl Endianity for BigEndian`
 
@@ -98,7 +98,7 @@ Big endian byte order.
 
 ##### `impl PartialEq for BigEndian`
 
-- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -131,7 +131,7 @@ Byte order that is selectable at runtime.
 
 ##### `impl Clone for RunTimeEndian`
 
-- <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](../index.md#runtimeendian)
 
 ##### `impl Copy for RunTimeEndian`
 
@@ -141,7 +141,7 @@ Byte order that is selectable at runtime.
 
 ##### `impl Default for RunTimeEndian`
 
-- <span id="runtimeendian-default"></span>`fn default() -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-default"></span>`fn default() -> RunTimeEndian` — [`RunTimeEndian`](../index.md#runtimeendian)
 
 ##### `impl Endianity for RunTimeEndian`
 
@@ -155,7 +155,7 @@ Byte order that is selectable at runtime.
 
 ##### `impl PartialEq for RunTimeEndian`
 
-- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md#runtimeendian)
 
 ##### `impl StructuralPartialEq for RunTimeEndian`
 
@@ -233,9 +233,9 @@ A trait describing the endianity of some buffer.
 
 #### Implementors
 
-- [`BigEndian`](../index.md)
-- [`LittleEndian`](../index.md)
-- [`RunTimeEndian`](../index.md)
+- [`BigEndian`](../index.md#bigendian)
+- [`LittleEndian`](../index.md#littleendian)
+- [`RunTimeEndian`](../index.md#runtimeendian)
 
 ## Type Aliases
 

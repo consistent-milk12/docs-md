@@ -94,7 +94,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
-- <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md)
+- <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
@@ -102,15 +102,15 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-from-msg"></span>`fn from_msg<D, E>(msg: D, error: E) -> Self`
 
-- <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md)
+- <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
-- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](error/index.md), [`ReportHandler`](../index.md)
+- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](error/index.md#errorvtable), [`ReportHandler`](../index.md#reporthandler)
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
 
-- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md)
+- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
@@ -122,11 +122,11 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
 
-- <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md)
+- <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
-- <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md)
+- <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
-- <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md), [`Report`](../index.md)
+- <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md#sourcecode), [`Report`](../index.md#report)
 
 - <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
 
@@ -134,7 +134,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md)
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
 
 ##### `impl Debug for super::Report`
 
@@ -152,7 +152,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Diag for super::Report`
 
-- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Display for super::Report`
 
@@ -200,7 +200,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
-- <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md)
+- <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
@@ -208,15 +208,15 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-from-msg"></span>`fn from_msg<D, E>(msg: D, error: E) -> Self`
 
-- <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md)
+- <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
-- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](error/index.md), [`ReportHandler`](../index.md)
+- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](error/index.md#errorvtable), [`ReportHandler`](../index.md#reporthandler)
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
 
-- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md)
+- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
@@ -228,11 +228,11 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
 
-- <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md)
+- <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
-- <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md)
+- <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](../index.md#reporthandler)
 
-- <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md), [`Report`](../index.md)
+- <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](../index.md#sourcecode), [`Report`](../index.md#report)
 
 - <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
 
@@ -240,7 +240,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md)
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md#diagnostic)
 
 ##### `impl Debug for super::Report`
 
@@ -258,7 +258,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Diag for super::Report`
 
-- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Display for super::Report`
 
@@ -303,7 +303,7 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 
 ##### `impl Diag for InstallError`
 
-- <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for InstallError`
 
@@ -340,7 +340,7 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 
 ##### `impl Diag for DiagnosticError`
 
-- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for DiagnosticError`
 
@@ -596,11 +596,11 @@ Error Report Handler trait for customizing `miette::Report`
 
 #### Implementors
 
-- [`DebugReportHandler`](../handlers/index.md)
-- [`GraphicalReportHandler`](../handlers/index.md)
-- [`JSONReportHandler`](../handlers/index.md)
-- [`MietteHandler`](../index.md)
-- [`NarratableReportHandler`](../handlers/index.md)
+- [`DebugReportHandler`](../handlers/index.md#debugreporthandler)
+- [`GraphicalReportHandler`](../handlers/index.md#graphicalreporthandler)
+- [`JSONReportHandler`](../handlers/index.md#jsonreporthandler)
+- [`MietteHandler`](../index.md#miettehandler)
+- [`NarratableReportHandler`](../handlers/index.md#narratablereporthandler)
 
 ### `WrapErr<T, E>`
 

@@ -83,7 +83,7 @@ Values per occurrence for an argument
 
 ##### `impl IntoResettable for ValueRange`
 
-- <span id="valuerange-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueRange>` — [`Resettable`](../resettable/index.md), [`ValueRange`](#valuerange)
+- <span id="valuerange-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueRange>` — [`Resettable`](../resettable/index.md#resettable), [`ValueRange`](#valuerange)
 
 ##### `impl PartialEq for ValueRange`
 

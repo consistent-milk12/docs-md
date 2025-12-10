@@ -48,7 +48,7 @@ zero-allocation conversions to/from `Vec`, though not zero-cost:
 
 - <span id="a-mut-drainguard-type-item"></span>`type Item = T`
 
-- <span id="a-mut-drainguard-par-drain"></span>`fn par_drain<R: RangeBounds<usize>>(self, range: R) -> <Self as >::Iter` — [`ParallelDrainRange`](../../iter/index.md)
+- <span id="a-mut-drainguard-par-drain"></span>`fn par_drain<R: RangeBounds<usize>>(self, range: R) -> <Self as >::Iter` — [`ParallelDrainRange`](../../iter/index.md#paralleldrainrange)
 
 ##### `impl<T> Pointable for DrainGuard<'a, T, C>`
 

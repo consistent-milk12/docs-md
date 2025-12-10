@@ -45,7 +45,7 @@ struct OnceLock<T> {
 
 - <span id="oncelock-type-init"></span>`type Init = T`
 
-- <span id="oncelock-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="oncelock-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="oncelock-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

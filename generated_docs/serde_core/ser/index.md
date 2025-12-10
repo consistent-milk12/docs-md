@@ -329,7 +329,7 @@ type appropriate for a basic JSON data format.
 
 #### Implementors
 
-- [`Error`](../de/value/index.md)
+- [`Error`](../de/value/index.md#error)
 - `fmt::Error`
 
 ### `Serialize`
@@ -373,49 +373,49 @@ provides an implementation of `Serialize` for it.
 
 #### Implementors
 
-- [`AtomicBool`](../lib/index.md)
-- [`AtomicI16`](../lib/index.md)
-- [`AtomicI32`](../lib/index.md)
-- [`AtomicI64`](../lib/index.md)
-- [`AtomicI8`](../lib/index.md)
-- [`AtomicIsize`](../lib/index.md)
-- [`AtomicU16`](../lib/index.md)
-- [`AtomicU32`](../lib/index.md)
-- [`AtomicU64`](../lib/index.md)
-- [`AtomicU8`](../lib/index.md)
-- [`AtomicUsize`](../lib/index.md)
-- [`BTreeMap`](../lib/index.md)
-- [`BTreeSet`](../lib/index.md)
-- [`BinaryHeap`](../lib/index.md)
-- [`Bound`](../lib/index.md)
-- [`Box`](../lib/index.md)
-- [`CStr`](../lib/index.md)
-- [`CString`](../lib/index.md)
-- [`Cell`](../lib/index.md)
-- [`Cow`](../lib/index.md)
-- [`Duration`](../lib/index.md)
-- [`HashMap`](../lib/index.md)
-- [`HashSet`](../lib/index.md)
-- [`LinkedList`](../lib/index.md)
-- [`Mutex`](../lib/index.md)
-- [`OsStr`](../lib/index.md)
-- [`OsString`](../lib/index.md)
-- [`PathBuf`](../lib/index.md)
-- [`Path`](../lib/index.md)
-- [`PhantomData`](../lib/index.md)
-- [`RangeFrom`](../lib/index.md)
-- [`RangeInclusive`](../lib/index.md)
-- [`RangeTo`](../lib/index.md)
-- [`Range`](../lib/index.md)
-- [`RefCell`](../lib/index.md)
-- [`Reverse`](../lib/index.md)
-- [`RwLock`](../lib/index.md)
-- [`Saturating`](../lib/index.md)
-- [`String`](../lib/index.md)
-- [`SystemTime`](../lib/index.md)
-- [`VecDeque`](../lib/index.md)
-- [`Vec`](../lib/index.md)
-- [`Wrapping`](../lib/index.md)
+- [`AtomicBool`](../lib/index.md#atomicbool)
+- [`AtomicI16`](../lib/index.md#atomici16)
+- [`AtomicI32`](../lib/index.md#atomici32)
+- [`AtomicI64`](../lib/index.md#atomici64)
+- [`AtomicI8`](../lib/index.md#atomici8)
+- [`AtomicIsize`](../lib/index.md#atomicisize)
+- [`AtomicU16`](../lib/index.md#atomicu16)
+- [`AtomicU32`](../lib/index.md#atomicu32)
+- [`AtomicU64`](../lib/index.md#atomicu64)
+- [`AtomicU8`](../lib/index.md#atomicu8)
+- [`AtomicUsize`](../lib/index.md#atomicusize)
+- [`BTreeMap`](../lib/index.md#btreemap)
+- [`BTreeSet`](../lib/index.md#btreeset)
+- [`BinaryHeap`](../lib/index.md#binaryheap)
+- [`Bound`](../lib/index.md#bound)
+- [`Box`](../lib/index.md#box)
+- [`CStr`](../lib/index.md#cstr)
+- [`CString`](../lib/index.md#cstring)
+- [`Cell`](../lib/index.md#cell)
+- [`Cow`](../lib/index.md#cow)
+- [`Duration`](../lib/index.md#duration)
+- [`HashMap`](../lib/index.md#hashmap)
+- [`HashSet`](../lib/index.md#hashset)
+- [`LinkedList`](../lib/index.md#linkedlist)
+- [`Mutex`](../lib/index.md#mutex)
+- [`OsStr`](../lib/index.md#osstr)
+- [`OsString`](../lib/index.md#osstring)
+- [`PathBuf`](../lib/index.md#pathbuf)
+- [`Path`](../lib/index.md#path)
+- [`PhantomData`](../lib/index.md#phantomdata)
+- [`RangeFrom`](../lib/index.md#rangefrom)
+- [`RangeInclusive`](../lib/index.md#rangeinclusive)
+- [`RangeTo`](../lib/index.md#rangeto)
+- [`Range`](../lib/index.md#range)
+- [`RefCell`](../lib/index.md#refcell)
+- [`Reverse`](../lib/index.md#reverse)
+- [`RwLock`](../lib/index.md#rwlock)
+- [`Saturating`](../lib/index.md#saturating)
+- [`String`](../lib/index.md#string)
+- [`SystemTime`](../lib/index.md#systemtime)
+- [`VecDeque`](../lib/index.md#vecdeque)
+- [`Vec`](../lib/index.md#vec)
+- [`Wrapping`](../lib/index.md#wrapping)
 - `&'a T`
 - `&'a mut T`
 - `()`
@@ -829,7 +829,7 @@ implementation of `SerializeSeq` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeTuple`
 
@@ -941,7 +941,7 @@ implementation of `SerializeTuple` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeTupleStruct`
 
@@ -998,7 +998,7 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeTupleVariant`
 
@@ -1068,7 +1068,7 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeMap`
 
@@ -1156,7 +1156,7 @@ implementation of `SerializeMap` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeStruct`
 
@@ -1223,7 +1223,7 @@ implementation of `SerializeStruct` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ### `SerializeStructVariant`
 
@@ -1296,7 +1296,7 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](impossible/index.md)
+- [`Impossible`](impossible/index.md#impossible)
 
 ## Functions
 

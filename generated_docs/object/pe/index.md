@@ -1701,7 +1701,7 @@ DOS .EXE header
 
 #### Implementations
 
-- <span id="peimagedosheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimagedosheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
 - <span id="peimagedosheader-nt-headers-offset"></span>`fn nt_headers_offset(&self) -> u32`
 
@@ -2244,7 +2244,7 @@ struct ImageFileHeader {
 
 - <span id="peimagefileheader-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- <span id="peimagefileheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimagefileheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
 ##### `impl Copy for ImageFileHeader`
 
@@ -2269,9 +2269,9 @@ struct ImageDataDirectory {
 
 - <span id="peimagedatadirectory-address-range"></span>`fn address_range(&self) -> (u32, u32)`
 
-- <span id="peimagedatadirectory-file-range"></span>`fn file_range(&self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
+- <span id="peimagedatadirectory-file-range"></span>`fn file_range(&self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md#sectiontable), [`Result`](../index.md#result)
 
-- <span id="peimagedatadirectory-data"></span>`fn data<'data, R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
+- <span id="peimagedatadirectory-data"></span>`fn data<'data, R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md#sectiontable), [`Result`](../index.md#result)
 
 #### Trait Implementations
 
@@ -2590,7 +2590,7 @@ struct ImageNtHeaders64 {
 
 - <span id="peimagentheaders64-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- <span id="peimagentheaders64-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
+- <span id="peimagentheaders64-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
 
 ##### `impl Pod for ImageNtHeaders64`
 
@@ -2632,7 +2632,7 @@ struct ImageNtHeaders32 {
 
 - <span id="peimagentheaders32-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- <span id="peimagentheaders32-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
+- <span id="peimagentheaders32-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md#imagentheaders)
 
 ##### `impl Pod for ImageNtHeaders32`
 
@@ -2671,11 +2671,11 @@ struct Guid([u8; 16]);
 
 #### Implementations
 
-- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md#u32), [`LittleEndian`](../index.md#littleendian)
 
-- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md#u16), [`LittleEndian`](../index.md#littleendian)
 
-- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md#u16), [`LittleEndian`](../index.md#littleendian)
 
 - <span id="guid-data4"></span>`fn data4(self) -> [u8; 8]`
 
@@ -2711,11 +2711,11 @@ struct ClsId([u8; 16]);
 
 #### Implementations
 
-- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md#u32), [`LittleEndian`](../index.md#littleendian)
 
-- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md#u16), [`LittleEndian`](../index.md#littleendian)
 
-- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md#u16), [`LittleEndian`](../index.md#littleendian)
 
 - <span id="guid-data4"></span>`fn data4(self) -> [u8; 8]`
 
@@ -2950,7 +2950,7 @@ struct AnonObjectHeaderBigobj {
 
 - <span id="peanonobjectheaderbigobj-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- <span id="peanonobjectheaderbigobj-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peanonobjectheaderbigobj-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md#result)
 
 ##### `impl Copy for AnonObjectHeaderBigobj`
 
@@ -2981,7 +2981,7 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- <span id="peimagesectionheader-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../index.md)
+- <span id="peimagesectionheader-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../index.md#sectionkind)
 
 #### Trait Implementations
 
@@ -3273,7 +3273,7 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (both with padding).
 
 #### Implementations
 
-- <span id="peimageauxsymbolweak-default-symbol"></span>`fn default_symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="peimageauxsymbolweak-default-symbol"></span>`fn default_symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
 #### Trait Implementations
 
@@ -3398,7 +3398,7 @@ struct ImageRelocation {
 
 #### Implementations
 
-- <span id="peimagerelocation-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="peimagerelocation-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
 #### Trait Implementations
 
@@ -3964,17 +3964,17 @@ struct ImageResourceDirectoryEntry {
 
 - <span id="peimageresourcedirectoryentry-has-name"></span>`fn has_name(&self) -> bool`
 
-- <span id="peimageresourcedirectoryentry-name"></span>`fn name(&self) -> ResourceName` — [`ResourceName`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-name"></span>`fn name(&self) -> ResourceName` — [`ResourceName`](../read/pe/index.md#resourcename)
 
 - <span id="peimageresourcedirectoryentry-id"></span>`fn id(&self) -> u16`
 
-- <span id="peimageresourcedirectoryentry-name-or-id"></span>`fn name_or_id(&self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-name-or-id"></span>`fn name_or_id(&self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md#resourcenameorid)
 
 - <span id="peimageresourcedirectoryentry-is-table"></span>`fn is_table(&self) -> bool`
 
 - <span id="peimageresourcedirectoryentry-data-offset"></span>`fn data_offset(&self) -> u32`
 
-- <span id="peimageresourcedirectoryentry-data"></span>`fn data<'data>(&self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md), [`Result`](../index.md), [`ResourceDirectoryEntryData`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-data"></span>`fn data<'data>(&self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md#resourcedirectory), [`Result`](../index.md#result), [`ResourceDirectoryEntryData`](../read/pe/index.md#resourcedirectoryentrydata)
 
 #### Trait Implementations
 
@@ -5187,9 +5187,9 @@ struct ImportObjectHeader {
 
 #### Implementations
 
-- <span id="peimportobjectheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimportobjectheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md#result)
 
-- <span id="peimportobjectheader-parse-data"></span>`fn parse_data<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md), [`ImportObjectData`](../read/coff/index.md)
+- <span id="peimportobjectheader-parse-data"></span>`fn parse_data<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md#result), [`ImportObjectData`](../read/coff/index.md#importobjectdata)
 
 - <span id="peimportobjectheader-import-type"></span>`fn import_type(&self) -> u16`
 

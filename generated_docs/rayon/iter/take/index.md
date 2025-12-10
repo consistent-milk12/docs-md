@@ -45,9 +45,9 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 - <span id="take-len"></span>`fn len(&self) -> usize`
 
-- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Take<I>`
 
@@ -63,7 +63,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 - <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

@@ -43,11 +43,11 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 
 ##### `impl<I> IndexedParallelIterator for Rev<I>`
 
-- <span id="rev-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="rev-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="rev-len"></span>`fn len(&self) -> usize`
 
-- <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Rev<I>`
 
@@ -63,7 +63,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 
 - <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="rev-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -116,7 +116,7 @@ struct RevProducer<P> {
 
 - <span id="revproducer-type-intoiter"></span>`type IntoIter = Rev<<P as Producer>::IntoIter>`
 
-- <span id="revproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="revproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="revproducer-min-len"></span>`fn min_len(&self) -> usize`
 

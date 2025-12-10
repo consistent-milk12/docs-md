@@ -152,21 +152,21 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
+- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md#regex), [`Error`](../../error/index.md#error)
 
 - <span id="regex-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
-- <span id="regex-find"></span>`fn find<'h>(&self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](../../index.md)
+- <span id="regex-find"></span>`fn find<'h>(&self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](../../index.md#match)
 
-- <span id="regex-find-iter"></span>`fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](../../index.md)
+- <span id="regex-find-iter"></span>`fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](../../index.md#matches)
 
-- <span id="regex-captures"></span>`fn captures<'h>(&self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](../../index.md)
+- <span id="regex-captures"></span>`fn captures<'h>(&self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](../../index.md#captures)
 
-- <span id="regex-captures-iter"></span>`fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../../index.md)
+- <span id="regex-captures-iter"></span>`fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../../index.md#capturematches)
 
-- <span id="regex-split"></span>`fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](../../index.md)
+- <span id="regex-split"></span>`fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](../../index.md#split)
 
-- <span id="regex-splitn"></span>`fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../../index.md)
+- <span id="regex-splitn"></span>`fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../../index.md#splitn)
 
 - <span id="regex-replace"></span>`fn replace<'h, R: Replacer>(&self, haystack: &'h str, rep: R) -> Cow<'h, str>`
 
@@ -178,7 +178,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 ##### `impl Clone for Regex`
 
-- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](../../index.md)
+- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](../../index.md#regex)
 
 ##### `impl Debug for Regex`
 
@@ -192,7 +192,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 - <span id="regex-type-err"></span>`type Err = Error`
 
-- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
+- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md#regex), [`Error`](../../error/index.md#error)
 
 ##### `impl ToString for Regex`
 
@@ -275,13 +275,13 @@ assert_eq!("αβγδ", m.as_str());
 
 - <span id="match-as-str"></span>`fn as_str(&self) -> &'h str`
 
-- <span id="match-new"></span>`fn new(haystack: &'h str, start: usize, end: usize) -> Match<'h>` — [`Match`](../../index.md)
+- <span id="match-new"></span>`fn new(haystack: &'h str, start: usize, end: usize) -> Match<'h>` — [`Match`](../../index.md#match)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match<'h>`
 
-- <span id="match-clone"></span>`fn clone(&self) -> Match<'h>` — [`Match`](../../index.md)
+- <span id="match-clone"></span>`fn clone(&self) -> Match<'h>` — [`Match`](../../index.md#match)
 
 ##### `impl Copy for Match<'h>`
 
@@ -293,7 +293,7 @@ assert_eq!("αβγδ", m.as_str());
 
 ##### `impl PartialEq for Match<'h>`
 
-- <span id="match-eq"></span>`fn eq(&self, other: &Match<'h>) -> bool` — [`Match`](../../index.md)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match<'h>) -> bool` — [`Match`](../../index.md#match)
 
 ##### `impl StructuralPartialEq for Match<'h>`
 
@@ -363,17 +363,17 @@ assert_eq!("y", &caps["last"]);
 
 #### Implementations
 
-- <span id="captures-get"></span>`fn get(&self, i: usize) -> Option<Match<'h>>` — [`Match`](../../index.md)
+- <span id="captures-get"></span>`fn get(&self, i: usize) -> Option<Match<'h>>` — [`Match`](../../index.md#match)
 
-- <span id="captures-get-match"></span>`fn get_match(&self) -> Match<'h>` — [`Match`](../../index.md)
+- <span id="captures-get-match"></span>`fn get_match(&self) -> Match<'h>` — [`Match`](../../index.md#match)
 
-- <span id="captures-name"></span>`fn name(&self, name: &str) -> Option<Match<'h>>` — [`Match`](../../index.md)
+- <span id="captures-name"></span>`fn name(&self, name: &str) -> Option<Match<'h>>` — [`Match`](../../index.md#match)
 
 - <span id="captures-extract"></span>`fn extract<const N: usize>(&self) -> (&'h str, [&'h str; N])`
 
 - <span id="captures-expand"></span>`fn expand(&self, replacement: &str, dst: &mut String)`
 
-- <span id="captures-iter"></span>`fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](../../index.md)
+- <span id="captures-iter"></span>`fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](../../index.md#subcapturematches)
 
 - <span id="captures-len"></span>`fn len(&self) -> usize`
 
@@ -446,7 +446,7 @@ assert_eq!(None, locs.get(9944060567225171988));
 
 ##### `impl Clone for CaptureLocations`
 
-- <span id="capturelocations-clone"></span>`fn clone(&self) -> CaptureLocations` — [`CaptureLocations`](../../index.md)
+- <span id="capturelocations-clone"></span>`fn clone(&self) -> CaptureLocations` — [`CaptureLocations`](../../index.md#capturelocations)
 
 ##### `impl Debug for CaptureLocations`
 
@@ -499,7 +499,7 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 - <span id="matches-type-item"></span>`type Item = Match<'h>`
 
-- <span id="matches-next"></span>`fn next(&mut self) -> Option<Match<'h>>` — [`Match`](../../index.md)
+- <span id="matches-next"></span>`fn next(&mut self) -> Option<Match<'h>>` — [`Match`](../../index.md#match)
 
 - <span id="matches-count"></span>`fn count(self) -> usize`
 
@@ -550,7 +550,7 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 - <span id="capturematches-type-item"></span>`type Item = Captures<'h>`
 
-- <span id="capturematches-next"></span>`fn next(&mut self) -> Option<Captures<'h>>` — [`Captures`](../../index.md)
+- <span id="capturematches-next"></span>`fn next(&mut self) -> Option<Captures<'h>>` — [`Captures`](../../index.md#captures)
 
 - <span id="capturematches-count"></span>`fn count(self) -> usize`
 
@@ -677,7 +677,7 @@ This iterator is created by `Regex::capture_names`.
 
 ##### `impl Clone for CaptureNames<'r>`
 
-- <span id="capturenames-clone"></span>`fn clone(&self) -> CaptureNames<'r>` — [`CaptureNames`](../../index.md)
+- <span id="capturenames-clone"></span>`fn clone(&self) -> CaptureNames<'r>` — [`CaptureNames`](../../index.md#capturenames)
 
 ##### `impl Debug for CaptureNames<'r>`
 
@@ -737,7 +737,7 @@ matched haystack.
 
 ##### `impl Clone for SubCaptureMatches<'c, 'h>`
 
-- <span id="subcapturematches-clone"></span>`fn clone(&self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](../../index.md)
+- <span id="subcapturematches-clone"></span>`fn clone(&self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](../../index.md#subcapturematches)
 
 ##### `impl Debug for SubCaptureMatches<'c, 'h>`
 
@@ -759,7 +759,7 @@ matched haystack.
 
 - <span id="subcapturematches-type-item"></span>`type Item = Option<Match<'h>>`
 
-- <span id="subcapturematches-next"></span>`fn next(&mut self) -> Option<Option<Match<'h>>>` — [`Match`](../../index.md)
+- <span id="subcapturematches-next"></span>`fn next(&mut self) -> Option<Option<Match<'h>>>` — [`Match`](../../index.md#match)
 
 - <span id="subcapturematches-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -788,7 +788,7 @@ This type is created by `Replacer::by_ref`.
 
 ##### `impl<'a, R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
 
-- <span id="replacerref-replace-append"></span>`fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)` — [`Captures`](../../index.md)
+- <span id="replacerref-replace-append"></span>`fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)` — [`Captures`](../../index.md#captures)
 
 - <span id="replacerref-no-expansion"></span>`fn no_expansion(&mut self) -> Option<Cow<'_, str>>`
 
@@ -824,7 +824,7 @@ assert_eq!(result, "$2 $last");
 
 ##### `impl Clone for NoExpand<'s>`
 
-- <span id="noexpand-clone"></span>`fn clone(&self) -> NoExpand<'s>` — [`NoExpand`](../../index.md)
+- <span id="noexpand-clone"></span>`fn clone(&self) -> NoExpand<'s>` — [`NoExpand`](../../index.md#noexpand)
 
 ##### `impl Debug for NoExpand<'s>`
 
@@ -832,7 +832,7 @@ assert_eq!(result, "$2 $last");
 
 ##### `impl Replacer for NoExpand<'s>`
 
-- <span id="noexpand-replace-append"></span>`fn replace_append(&mut self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](../../index.md)
+- <span id="noexpand-replace-append"></span>`fn replace_append(&mut self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](../../index.md#captures)
 
 - <span id="noexpand-no-expansion"></span>`fn no_expansion(&mut self) -> Option<Cow<'_, str>>`
 
@@ -897,8 +897,8 @@ assert_eq!(result, "Bruce Springsteen");
 
 #### Implementors
 
-- [`NoExpand`](../../index.md)
-- [`ReplacerRef`](../../index.md)
+- [`NoExpand`](../../index.md#noexpand)
+- [`ReplacerRef`](../../index.md#replacerref)
 - `&'a alloc::borrow::Cow<'a, str>`
 - `&'a alloc::string::String`
 - `&'a str`

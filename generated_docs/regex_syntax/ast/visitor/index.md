@@ -61,13 +61,13 @@ size and a heap size proportional to the size of the `Ast`.
 
 - <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](#visitor)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md#ast), [`Visitor`](#visitor)
 
-- <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](#visitor)
+- <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md#ast), [`Frame`](#frame), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
-- <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](#visitor)
+- <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md#classbracketed), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-visit-class-pre"></span>`fn visit_class_pre<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
@@ -125,7 +125,7 @@ an `Ast`.
 
 #### Implementations
 
-- <span id="frame-child"></span>`fn child(&self) -> &'a Ast` — [`Ast`](../index.md)
+- <span id="frame-child"></span>`fn child(&self) -> &'a Ast` — [`Ast`](../index.md#ast)
 
 ### `ClassFrame<'a>`
 
@@ -209,9 +209,9 @@ syntax, which is not possible.)
 
 #### Implementations
 
-- <span id="classinduct-from-bracketed"></span>`fn from_bracketed(ast: &'a ast::ClassBracketed) -> ClassInduct<'a>` — [`ClassBracketed`](../index.md), [`ClassInduct`](#classinduct)
+- <span id="classinduct-from-bracketed"></span>`fn from_bracketed(ast: &'a ast::ClassBracketed) -> ClassInduct<'a>` — [`ClassBracketed`](../index.md#classbracketed), [`ClassInduct`](#classinduct)
 
-- <span id="classinduct-from-set"></span>`fn from_set(ast: &'a ast::ClassSet) -> ClassInduct<'a>` — [`ClassSet`](../index.md), [`ClassInduct`](#classinduct)
+- <span id="classinduct-from-set"></span>`fn from_set(ast: &'a ast::ClassSet) -> ClassInduct<'a>` — [`ClassSet`](../index.md#classset), [`ClassInduct`](#classinduct)
 
 #### Trait Implementations
 
@@ -301,9 +301,9 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 
 #### Implementors
 
-- [`NestLimiter`](../parse/index.md)
-- [`TranslatorI`](../../hir/translate/index.md)
-- [`Writer`](../print/index.md)
+- [`NestLimiter`](../parse/index.md#nestlimiter)
+- [`TranslatorI`](../../hir/translate/index.md#translatori)
+- [`Writer`](../print/index.md#writer)
 
 ## Functions
 

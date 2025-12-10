@@ -50,7 +50,7 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 - <span id="deferred-type-init"></span>`type Init = T`
 
-- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
 - <span id="deferred-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

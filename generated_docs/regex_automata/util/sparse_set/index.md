@@ -133,9 +133,9 @@ other properties listed above are extremely useful.
 
 - <span id="sparseset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="sparseset-insert"></span>`fn insert(&mut self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
+- <span id="sparseset-insert"></span>`fn insert(&mut self, id: StateID) -> bool` — [`StateID`](../primitives/index.md#stateid)
 
-- <span id="sparseset-contains"></span>`fn contains(&self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
+- <span id="sparseset-contains"></span>`fn contains(&self, id: StateID) -> bool` — [`StateID`](../primitives/index.md#stateid)
 
 - <span id="sparseset-clear"></span>`fn clear(&mut self)`
 
@@ -183,5 +183,5 @@ The lifetime `'a` refers to the lifetime of the set being iterated over.
 
 - <span id="sparsesetiter-type-item"></span>`type Item = StateID`
 
-- <span id="sparsesetiter-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](../primitives/index.md)
+- <span id="sparsesetiter-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](../primitives/index.md#stateid)
 

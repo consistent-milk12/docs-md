@@ -29,15 +29,15 @@ The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`DebugAddrIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md#debugaddrbase), [`Reader`](../index.md#reader), [`DebugAddrIndex`](../../index.md#debugaddrindex), [`Result`](../../index.md#result)
 
-- <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
+- <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md#addrheaderiter)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone> Clone for DebugAddr<R>`
 
-- <span id="debugaddr-clone"></span>`fn clone(&self) -> DebugAddr<R>` — [`DebugAddr`](../index.md)
+- <span id="debugaddr-clone"></span>`fn clone(&self) -> DebugAddr<R>` — [`DebugAddr`](../index.md#debugaddr)
 
 ##### `impl<R: marker::Copy> Copy for DebugAddr<R>`
 
@@ -47,11 +47,11 @@ The raw contents of the `.debug_addr` section.
 
 ##### `impl<R: default::Default> Default for DebugAddr<R>`
 
-- <span id="debugaddr-default"></span>`fn default() -> DebugAddr<R>` — [`DebugAddr`](../index.md)
+- <span id="debugaddr-default"></span>`fn default() -> DebugAddr<R>` — [`DebugAddr`](../index.md#debugaddr)
 
 ##### `impl<R> Section for DebugAddr<R>`
 
-- <span id="debugaddr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugaddr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugaddr-reader"></span>`fn reader(&self) -> &R`
 
@@ -70,13 +70,13 @@ An iterator over the headers of a `.debug_addr` section.
 
 #### Implementations
 
-- <span id="addrheaderiter-next"></span>`fn next(&mut self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../../index.md), [`AddrHeader`](../index.md)
+- <span id="addrheaderiter-next"></span>`fn next(&mut self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../../index.md#result), [`AddrHeader`](../index.md#addrheader)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for AddrHeaderIter<R>`
 
-- <span id="addrheaderiter-clone"></span>`fn clone(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
+- <span id="addrheaderiter-clone"></span>`fn clone(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md#addrheaderiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for AddrHeaderIter<R>`
 
@@ -104,21 +104,21 @@ These entries all belong to a single unit.
 
 #### Implementations
 
-- <span id="addrheader-parse"></span>`fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../../index.md), [`Result`](../../index.md)
+- <span id="addrheader-parse"></span>`fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../../index.md#debugaddroffset), [`Result`](../../index.md#result)
 
-- <span id="addrheader-offset"></span>`fn offset(&self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../../index.md)
+- <span id="addrheader-offset"></span>`fn offset(&self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../../index.md#debugaddroffset)
 
 - <span id="addrheader-length"></span>`fn length(&self) -> Offset`
 
-- <span id="addrheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="addrheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md#encoding)
 
-- <span id="addrheader-entries"></span>`fn entries(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
+- <span id="addrheader-entries"></span>`fn entries(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md#addrentryiter)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for AddrHeader<R, Offset>`
 
-- <span id="addrheader-clone"></span>`fn clone(&self) -> AddrHeader<R, Offset>` — [`AddrHeader`](../index.md)
+- <span id="addrheader-clone"></span>`fn clone(&self) -> AddrHeader<R, Offset>` — [`AddrHeader`](../index.md#addrheader)
 
 ##### `impl<R, Offset> Debug for AddrHeader<R, Offset>`
 
@@ -128,7 +128,7 @@ These entries all belong to a single unit.
 
 ##### `impl<R, Offset> PartialEq for AddrHeader<R, Offset>`
 
-- <span id="addrheader-eq"></span>`fn eq(&self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](../index.md)
+- <span id="addrheader-eq"></span>`fn eq(&self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](../index.md#addrheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for AddrHeader<R, Offset>`
 
@@ -150,13 +150,13 @@ Can be [used with
 
 #### Implementations
 
-- <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../../index.md)
+- <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for AddrEntryIter<R>`
 
-- <span id="addrentryiter-clone"></span>`fn clone(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
+- <span id="addrentryiter-clone"></span>`fn clone(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md#addrentryiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for AddrEntryIter<R>`
 

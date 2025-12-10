@@ -50,11 +50,11 @@ This `struct` is created by the `into_par_iter` function.
 
 ##### `impl<T: Send> IndexedParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
-- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for IntoIter<T>`
 
@@ -70,7 +70,7 @@ This `struct` is created by the `into_par_iter` function.
 
 - <span id="intoiter-type-item"></span>`type Item = T`
 
-- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -117,11 +117,11 @@ This `struct` is created by the `par_iter` function.
 
 ##### `impl<'a, T: Sync> IndexedParallelIterator for Iter<'a, T>`
 
-- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="iter-len"></span>`fn len(&self) -> usize`
 
-- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Iter<'a, T>`
 
@@ -137,7 +137,7 @@ This `struct` is created by the `par_iter` function.
 
 - <span id="iter-type-item"></span>`type Item = &'a T`
 
-- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -180,11 +180,11 @@ This `struct` is created by the `par_iter_mut` function.
 
 ##### `impl<'a, T: Send> IndexedParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="itermut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="itermut-len"></span>`fn len(&self) -> usize`
 
-- <span id="itermut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="itermut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for IterMut<'a, T>`
 
@@ -200,7 +200,7 @@ This `struct` is created by the `par_iter_mut` function.
 
 - <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
-- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 - <span id="itermut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -254,7 +254,7 @@ Private producer for an option
 
 - <span id="optionproducer-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
-- <span id="optionproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+- <span id="optionproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
 - <span id="optionproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

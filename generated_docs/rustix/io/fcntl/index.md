@@ -32,7 +32,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../index.md).
 
 
 
@@ -60,7 +60,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 - <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
-- <span id="fdflags-bitor"></span>`fn bitor(self, other: FdFlags) -> Self` — [`FdFlags`](../../backend/io/types/index.md)
+- <span id="fdflags-bitor"></span>`fn bitor(self, other: FdFlags) -> Self` — [`FdFlags`](../../backend/io/types/index.md#fdflags)
 
 ##### `impl BitOrAssign for FdFlags`
 
@@ -78,7 +78,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Clone for FdFlags`
 
-- <span id="fdflags-clone"></span>`fn clone(&self) -> FdFlags` — [`FdFlags`](../../backend/io/types/index.md)
+- <span id="fdflags-clone"></span>`fn clone(&self) -> FdFlags` — [`FdFlags`](../../backend/io/types/index.md#fdflags)
 
 ##### `impl Copy for FdFlags`
 
@@ -98,9 +98,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 - <span id="fdflags-type-bits"></span>`type Bits = u32`
 
-- <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../ffi/index.md), [`FdFlags`](../../backend/io/types/index.md)
+- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../ffi/index.md#c-uint), [`FdFlags`](../../backend/io/types/index.md#fdflags)
 
 ##### `impl FromIterator for FdFlags`
 
@@ -134,7 +134,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for FdFlags`
 
-- <span id="fdflags-eq"></span>`fn eq(&self, other: &FdFlags) -> bool` — [`FdFlags`](../../backend/io/types/index.md)
+- <span id="fdflags-eq"></span>`fn eq(&self, other: &FdFlags) -> bool` — [`FdFlags`](../../backend/io/types/index.md#fdflags)
 
 ##### `impl PublicFlags for FdFlags`
 

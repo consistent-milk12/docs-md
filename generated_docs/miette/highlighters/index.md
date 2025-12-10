@@ -103,7 +103,7 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Highlighter for BlankHighlighter`
 
-- <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../index.md), [`HighlighterState`](#highlighterstate)
+- <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../index.md#spancontents), [`HighlighterState`](#highlighterstate)
 
 ##### `impl OwoColorize for BlankHighlighter`
 

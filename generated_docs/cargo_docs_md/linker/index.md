@@ -71,7 +71,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:257-269`*
+*Defined in `src/linker.rs:271-283`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -155,7 +155,7 @@ enum AssocItemKind {
 }
 ```
 
-*Defined in `src/linker.rs:41-48`*
+*Defined in `src/linker.rs:41-50`*
 
 Kind of associated item for anchor generation.
 
@@ -230,7 +230,7 @@ Used to disambiguate anchors when multiple items share the same name
 fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String
 ```
 
-*Defined in `src/linker.rs:72-83`*
+*Defined in `src/linker.rs:74-87`*
 
 Generate a compound anchor for an associated item on a type.
 
@@ -260,7 +260,7 @@ assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-a
 fn method_anchor(type_name: &str, method_name: &str) -> String
 ```
 
-*Defined in `src/linker.rs:104-106`*
+*Defined in `src/linker.rs:108-110`*
 
 Generate a compound anchor for a method on a type.
 
@@ -287,7 +287,7 @@ assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
 fn slugify_anchor(name: &str) -> String
 ```
 
-*Defined in `src/linker.rs:134-145`*
+*Defined in `src/linker.rs:138-149`*
 
 Convert a name to a GitHub-style markdown anchor slug.
 
@@ -321,7 +321,7 @@ assert_eq!(slugify_anchor("Größe"), "größe");
 fn slugify_anchor_ascii(name: &str) -> String
 ```
 
-*Defined in `src/linker.rs:148-180`*
+*Defined in `src/linker.rs:152-188`*
 
 Fast ASCII-only slugification (no allocation for normalization).
 
@@ -331,7 +331,7 @@ Fast ASCII-only slugification (no allocation for normalization).
 fn slugify_anchor_impl(name: &str) -> String
 ```
 
-*Defined in `src/linker.rs:183-217`*
+*Defined in `src/linker.rs:191-231`*
 
 Unicode-aware slugification with full lowercase support.
 
@@ -341,7 +341,7 @@ Unicode-aware slugification with full lowercase support.
 const fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
 ```
 
-*Defined in `src/linker.rs:237-249`*
+*Defined in `src/linker.rs:251-263`*
 
 Check if an item kind generates a heading anchor in markdown.
 

@@ -1880,7 +1880,7 @@ See Section 7.3.5.
 
 ##### `impl Clone for DwSect`
 
-- <span id="dwsect-clone"></span>`fn clone(&self) -> DwSect` — [`DwSect`](../index.md)
+- <span id="dwsect-clone"></span>`fn clone(&self) -> DwSect` — [`DwSect`](../index.md#dwsect)
 
 ##### `impl Copy for DwSect`
 
@@ -1900,15 +1900,15 @@ See Section 7.3.5.
 
 ##### `impl Ord for DwSect`
 
-- <span id="dwsect-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](../index.md)
+- <span id="dwsect-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](../index.md#dwsect)
 
 ##### `impl PartialEq for DwSect`
 
-- <span id="dwsect-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](../index.md)
+- <span id="dwsect-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](../index.md#dwsect)
 
 ##### `impl PartialOrd for DwSect`
 
-- <span id="dwsect-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](../index.md)
+- <span id="dwsect-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](../index.md#dwsect)
 
 ##### `impl StructuralPartialEq for DwSect`
 
@@ -1934,7 +1934,7 @@ The section type field in a `.dwp` unit index with version 2.
 
 ##### `impl Clone for DwSectV2`
 
-- <span id="dwsectv2-clone"></span>`fn clone(&self) -> DwSectV2` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-clone"></span>`fn clone(&self) -> DwSectV2` — [`DwSectV2`](../index.md#dwsectv2)
 
 ##### `impl Copy for DwSectV2`
 
@@ -1954,15 +1954,15 @@ The section type field in a `.dwp` unit index with version 2.
 
 ##### `impl Ord for DwSectV2`
 
-- <span id="dwsectv2-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](../index.md#dwsectv2)
 
 ##### `impl PartialEq for DwSectV2`
 
-- <span id="dwsectv2-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](../index.md#dwsectv2)
 
 ##### `impl PartialOrd for DwSectV2`
 
-- <span id="dwsectv2-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](../index.md#dwsectv2)
 
 ##### `impl StructuralPartialEq for DwSectV2`
 
@@ -1990,7 +1990,7 @@ See Section 7.5.1, Table 7.2.
 
 ##### `impl Clone for DwUt`
 
-- <span id="dwut-clone"></span>`fn clone(&self) -> DwUt` — [`DwUt`](../index.md)
+- <span id="dwut-clone"></span>`fn clone(&self) -> DwUt` — [`DwUt`](../index.md#dwut)
 
 ##### `impl Copy for DwUt`
 
@@ -2010,15 +2010,15 @@ See Section 7.5.1, Table 7.2.
 
 ##### `impl Ord for DwUt`
 
-- <span id="dwut-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](../index.md)
+- <span id="dwut-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](../index.md#dwut)
 
 ##### `impl PartialEq for DwUt`
 
-- <span id="dwut-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](../index.md)
+- <span id="dwut-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](../index.md#dwut)
 
 ##### `impl PartialOrd for DwUt`
 
-- <span id="dwut-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](../index.md)
+- <span id="dwut-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](../index.md#dwut)
 
 ##### `impl StructuralPartialEq for DwUt`
 
@@ -2050,7 +2050,7 @@ Section 7.24:
 
 ##### `impl Clone for DwCfa`
 
-- <span id="dwcfa-clone"></span>`fn clone(&self) -> DwCfa` — [`DwCfa`](../index.md)
+- <span id="dwcfa-clone"></span>`fn clone(&self) -> DwCfa` — [`DwCfa`](../index.md#dwcfa)
 
 ##### `impl Copy for DwCfa`
 
@@ -2070,15 +2070,15 @@ Section 7.24:
 
 ##### `impl Ord for DwCfa`
 
-- <span id="dwcfa-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](../index.md)
+- <span id="dwcfa-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](../index.md#dwcfa)
 
 ##### `impl PartialEq for DwCfa`
 
-- <span id="dwcfa-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](../index.md)
+- <span id="dwcfa-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](../index.md#dwcfa)
 
 ##### `impl PartialOrd for DwCfa`
 
-- <span id="dwcfa-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](../index.md)
+- <span id="dwcfa-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](../index.md#dwcfa)
 
 ##### `impl StructuralPartialEq for DwCfa`
 
@@ -2106,7 +2106,7 @@ See Section 7.5.3, Table 7.4.
 
 ##### `impl Clone for DwChildren`
 
-- <span id="dwchildren-clone"></span>`fn clone(&self) -> DwChildren` — [`DwChildren`](../index.md)
+- <span id="dwchildren-clone"></span>`fn clone(&self) -> DwChildren` — [`DwChildren`](../index.md#dwchildren)
 
 ##### `impl Copy for DwChildren`
 
@@ -2126,15 +2126,15 @@ See Section 7.5.3, Table 7.4.
 
 ##### `impl Ord for DwChildren`
 
-- <span id="dwchildren-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](../index.md)
+- <span id="dwchildren-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](../index.md#dwchildren)
 
 ##### `impl PartialEq for DwChildren`
 
-- <span id="dwchildren-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](../index.md)
+- <span id="dwchildren-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](../index.md#dwchildren)
 
 ##### `impl PartialOrd for DwChildren`
 
-- <span id="dwchildren-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](../index.md)
+- <span id="dwchildren-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](../index.md#dwchildren)
 
 ##### `impl StructuralPartialEq for DwChildren`
 
@@ -2162,7 +2162,7 @@ See Section 7.5.3, Table 7.3.
 
 ##### `impl Clone for DwTag`
 
-- <span id="dwtag-clone"></span>`fn clone(&self) -> DwTag` — [`DwTag`](../index.md)
+- <span id="dwtag-clone"></span>`fn clone(&self) -> DwTag` — [`DwTag`](../index.md#dwtag)
 
 ##### `impl Copy for DwTag`
 
@@ -2182,15 +2182,15 @@ See Section 7.5.3, Table 7.3.
 
 ##### `impl Ord for DwTag`
 
-- <span id="dwtag-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](../index.md)
+- <span id="dwtag-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](../index.md#dwtag)
 
 ##### `impl PartialEq for DwTag`
 
-- <span id="dwtag-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](../index.md)
+- <span id="dwtag-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](../index.md#dwtag)
 
 ##### `impl PartialOrd for DwTag`
 
-- <span id="dwtag-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](../index.md)
+- <span id="dwtag-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](../index.md#dwtag)
 
 ##### `impl StructuralPartialEq for DwTag`
 
@@ -2218,7 +2218,7 @@ See Section 7.5.4, Table 7.5.
 
 ##### `impl Clone for DwAt`
 
-- <span id="dwat-clone"></span>`fn clone(&self) -> DwAt` — [`DwAt`](../index.md)
+- <span id="dwat-clone"></span>`fn clone(&self) -> DwAt` — [`DwAt`](../index.md#dwat)
 
 ##### `impl Copy for DwAt`
 
@@ -2238,15 +2238,15 @@ See Section 7.5.4, Table 7.5.
 
 ##### `impl Ord for DwAt`
 
-- <span id="dwat-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](../index.md)
+- <span id="dwat-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](../index.md#dwat)
 
 ##### `impl PartialEq for DwAt`
 
-- <span id="dwat-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](../index.md)
+- <span id="dwat-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](../index.md#dwat)
 
 ##### `impl PartialOrd for DwAt`
 
-- <span id="dwat-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](../index.md)
+- <span id="dwat-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](../index.md#dwat)
 
 ##### `impl StructuralPartialEq for DwAt`
 
@@ -2274,7 +2274,7 @@ See Section 7.5.6, Table 7.6.
 
 ##### `impl Clone for DwForm`
 
-- <span id="dwform-clone"></span>`fn clone(&self) -> DwForm` — [`DwForm`](../index.md)
+- <span id="dwform-clone"></span>`fn clone(&self) -> DwForm` — [`DwForm`](../index.md#dwform)
 
 ##### `impl Copy for DwForm`
 
@@ -2294,15 +2294,15 @@ See Section 7.5.6, Table 7.6.
 
 ##### `impl Ord for DwForm`
 
-- <span id="dwform-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](../index.md)
+- <span id="dwform-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](../index.md#dwform)
 
 ##### `impl PartialEq for DwForm`
 
-- <span id="dwform-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](../index.md)
+- <span id="dwform-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](../index.md#dwform)
 
 ##### `impl PartialOrd for DwForm`
 
-- <span id="dwform-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](../index.md)
+- <span id="dwform-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](../index.md#dwform)
 
 ##### `impl StructuralPartialEq for DwForm`
 
@@ -2330,7 +2330,7 @@ See Section 7.8, Table 7.11.
 
 ##### `impl Clone for DwAte`
 
-- <span id="dwate-clone"></span>`fn clone(&self) -> DwAte` — [`DwAte`](../index.md)
+- <span id="dwate-clone"></span>`fn clone(&self) -> DwAte` — [`DwAte`](../index.md#dwate)
 
 ##### `impl Copy for DwAte`
 
@@ -2350,15 +2350,15 @@ See Section 7.8, Table 7.11.
 
 ##### `impl Ord for DwAte`
 
-- <span id="dwate-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](../index.md)
+- <span id="dwate-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](../index.md#dwate)
 
 ##### `impl PartialEq for DwAte`
 
-- <span id="dwate-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](../index.md)
+- <span id="dwate-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](../index.md#dwate)
 
 ##### `impl PartialOrd for DwAte`
 
-- <span id="dwate-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](../index.md)
+- <span id="dwate-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](../index.md#dwate)
 
 ##### `impl StructuralPartialEq for DwAte`
 
@@ -2386,7 +2386,7 @@ See Section 7.7.3, Table 7.10.
 
 ##### `impl Clone for DwLle`
 
-- <span id="dwlle-clone"></span>`fn clone(&self) -> DwLle` — [`DwLle`](../index.md)
+- <span id="dwlle-clone"></span>`fn clone(&self) -> DwLle` — [`DwLle`](../index.md#dwlle)
 
 ##### `impl Copy for DwLle`
 
@@ -2406,15 +2406,15 @@ See Section 7.7.3, Table 7.10.
 
 ##### `impl Ord for DwLle`
 
-- <span id="dwlle-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](../index.md)
+- <span id="dwlle-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](../index.md#dwlle)
 
 ##### `impl PartialEq for DwLle`
 
-- <span id="dwlle-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](../index.md)
+- <span id="dwlle-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](../index.md#dwlle)
 
 ##### `impl PartialOrd for DwLle`
 
-- <span id="dwlle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](../index.md)
+- <span id="dwlle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](../index.md#dwlle)
 
 ##### `impl StructuralPartialEq for DwLle`
 
@@ -2442,7 +2442,7 @@ See Section 7.8, Table 7.12.
 
 ##### `impl Clone for DwDs`
 
-- <span id="dwds-clone"></span>`fn clone(&self) -> DwDs` — [`DwDs`](../index.md)
+- <span id="dwds-clone"></span>`fn clone(&self) -> DwDs` — [`DwDs`](../index.md#dwds)
 
 ##### `impl Copy for DwDs`
 
@@ -2462,15 +2462,15 @@ See Section 7.8, Table 7.12.
 
 ##### `impl Ord for DwDs`
 
-- <span id="dwds-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](../index.md)
+- <span id="dwds-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](../index.md#dwds)
 
 ##### `impl PartialEq for DwDs`
 
-- <span id="dwds-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](../index.md)
+- <span id="dwds-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](../index.md#dwds)
 
 ##### `impl PartialOrd for DwDs`
 
-- <span id="dwds-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](../index.md)
+- <span id="dwds-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](../index.md#dwds)
 
 ##### `impl StructuralPartialEq for DwDs`
 
@@ -2498,7 +2498,7 @@ See Section 7.8, Table 7.13.
 
 ##### `impl Clone for DwEnd`
 
-- <span id="dwend-clone"></span>`fn clone(&self) -> DwEnd` — [`DwEnd`](../index.md)
+- <span id="dwend-clone"></span>`fn clone(&self) -> DwEnd` — [`DwEnd`](../index.md#dwend)
 
 ##### `impl Copy for DwEnd`
 
@@ -2518,15 +2518,15 @@ See Section 7.8, Table 7.13.
 
 ##### `impl Ord for DwEnd`
 
-- <span id="dwend-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](../index.md)
+- <span id="dwend-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](../index.md#dwend)
 
 ##### `impl PartialEq for DwEnd`
 
-- <span id="dwend-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](../index.md)
+- <span id="dwend-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](../index.md#dwend)
 
 ##### `impl PartialOrd for DwEnd`
 
-- <span id="dwend-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](../index.md)
+- <span id="dwend-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](../index.md#dwend)
 
 ##### `impl StructuralPartialEq for DwEnd`
 
@@ -2554,7 +2554,7 @@ See Section 7.9, Table 7.14.
 
 ##### `impl Clone for DwAccess`
 
-- <span id="dwaccess-clone"></span>`fn clone(&self) -> DwAccess` — [`DwAccess`](../index.md)
+- <span id="dwaccess-clone"></span>`fn clone(&self) -> DwAccess` — [`DwAccess`](../index.md#dwaccess)
 
 ##### `impl Copy for DwAccess`
 
@@ -2574,15 +2574,15 @@ See Section 7.9, Table 7.14.
 
 ##### `impl Ord for DwAccess`
 
-- <span id="dwaccess-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](../index.md)
+- <span id="dwaccess-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](../index.md#dwaccess)
 
 ##### `impl PartialEq for DwAccess`
 
-- <span id="dwaccess-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](../index.md)
+- <span id="dwaccess-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](../index.md#dwaccess)
 
 ##### `impl PartialOrd for DwAccess`
 
-- <span id="dwaccess-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](../index.md)
+- <span id="dwaccess-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](../index.md#dwaccess)
 
 ##### `impl StructuralPartialEq for DwAccess`
 
@@ -2610,7 +2610,7 @@ See Section 7.10, Table 7.15.
 
 ##### `impl Clone for DwVis`
 
-- <span id="dwvis-clone"></span>`fn clone(&self) -> DwVis` — [`DwVis`](../index.md)
+- <span id="dwvis-clone"></span>`fn clone(&self) -> DwVis` — [`DwVis`](../index.md#dwvis)
 
 ##### `impl Copy for DwVis`
 
@@ -2630,15 +2630,15 @@ See Section 7.10, Table 7.15.
 
 ##### `impl Ord for DwVis`
 
-- <span id="dwvis-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](../index.md)
+- <span id="dwvis-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](../index.md#dwvis)
 
 ##### `impl PartialEq for DwVis`
 
-- <span id="dwvis-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](../index.md)
+- <span id="dwvis-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](../index.md#dwvis)
 
 ##### `impl PartialOrd for DwVis`
 
-- <span id="dwvis-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](../index.md)
+- <span id="dwvis-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](../index.md#dwvis)
 
 ##### `impl StructuralPartialEq for DwVis`
 
@@ -2666,7 +2666,7 @@ See Section 7.11, Table 7.16.
 
 ##### `impl Clone for DwVirtuality`
 
-- <span id="dwvirtuality-clone"></span>`fn clone(&self) -> DwVirtuality` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-clone"></span>`fn clone(&self) -> DwVirtuality` — [`DwVirtuality`](../index.md#dwvirtuality)
 
 ##### `impl Copy for DwVirtuality`
 
@@ -2686,15 +2686,15 @@ See Section 7.11, Table 7.16.
 
 ##### `impl Ord for DwVirtuality`
 
-- <span id="dwvirtuality-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](../index.md#dwvirtuality)
 
 ##### `impl PartialEq for DwVirtuality`
 
-- <span id="dwvirtuality-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../index.md#dwvirtuality)
 
 ##### `impl PartialOrd for DwVirtuality`
 
-- <span id="dwvirtuality-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](../index.md#dwvirtuality)
 
 ##### `impl StructuralPartialEq for DwVirtuality`
 
@@ -2722,7 +2722,7 @@ See Section 7.12, Table 7.17.
 
 ##### `impl Clone for DwLang`
 
-- <span id="dwlang-clone"></span>`fn clone(&self) -> DwLang` — [`DwLang`](../index.md)
+- <span id="dwlang-clone"></span>`fn clone(&self) -> DwLang` — [`DwLang`](../index.md#dwlang)
 
 ##### `impl Copy for DwLang`
 
@@ -2742,15 +2742,15 @@ See Section 7.12, Table 7.17.
 
 ##### `impl Ord for DwLang`
 
-- <span id="dwlang-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](../index.md)
+- <span id="dwlang-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](../index.md#dwlang)
 
 ##### `impl PartialEq for DwLang`
 
-- <span id="dwlang-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](../index.md)
+- <span id="dwlang-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](../index.md#dwlang)
 
 ##### `impl PartialOrd for DwLang`
 
-- <span id="dwlang-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](../index.md)
+- <span id="dwlang-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](../index.md#dwlang)
 
 ##### `impl StructuralPartialEq for DwLang`
 
@@ -2779,7 +2779,7 @@ See Section 7.13.
 
 ##### `impl Clone for DwAddr`
 
-- <span id="dwaddr-clone"></span>`fn clone(&self) -> DwAddr` — [`DwAddr`](../index.md)
+- <span id="dwaddr-clone"></span>`fn clone(&self) -> DwAddr` — [`DwAddr`](../index.md#dwaddr)
 
 ##### `impl Copy for DwAddr`
 
@@ -2799,15 +2799,15 @@ See Section 7.13.
 
 ##### `impl Ord for DwAddr`
 
-- <span id="dwaddr-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](../index.md)
+- <span id="dwaddr-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](../index.md#dwaddr)
 
 ##### `impl PartialEq for DwAddr`
 
-- <span id="dwaddr-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](../index.md)
+- <span id="dwaddr-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](../index.md#dwaddr)
 
 ##### `impl PartialOrd for DwAddr`
 
-- <span id="dwaddr-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](../index.md)
+- <span id="dwaddr-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](../index.md#dwaddr)
 
 ##### `impl StructuralPartialEq for DwAddr`
 
@@ -2835,7 +2835,7 @@ See Section 7.14, Table 7.18.
 
 ##### `impl Clone for DwId`
 
-- <span id="dwid-clone"></span>`fn clone(&self) -> DwId` — [`DwId`](../index.md)
+- <span id="dwid-clone"></span>`fn clone(&self) -> DwId` — [`DwId`](../index.md#dwid)
 
 ##### `impl Copy for DwId`
 
@@ -2855,15 +2855,15 @@ See Section 7.14, Table 7.18.
 
 ##### `impl Ord for DwId`
 
-- <span id="dwid-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](../index.md)
+- <span id="dwid-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](../index.md#dwid)
 
 ##### `impl PartialEq for DwId`
 
-- <span id="dwid-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](../index.md)
+- <span id="dwid-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](../index.md#dwid)
 
 ##### `impl PartialOrd for DwId`
 
-- <span id="dwid-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](../index.md)
+- <span id="dwid-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](../index.md#dwid)
 
 ##### `impl StructuralPartialEq for DwId`
 
@@ -2891,7 +2891,7 @@ See Section 7.15, Table 7.19.
 
 ##### `impl Clone for DwCc`
 
-- <span id="dwcc-clone"></span>`fn clone(&self) -> DwCc` — [`DwCc`](../index.md)
+- <span id="dwcc-clone"></span>`fn clone(&self) -> DwCc` — [`DwCc`](../index.md#dwcc)
 
 ##### `impl Copy for DwCc`
 
@@ -2911,15 +2911,15 @@ See Section 7.15, Table 7.19.
 
 ##### `impl Ord for DwCc`
 
-- <span id="dwcc-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](../index.md)
+- <span id="dwcc-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](../index.md#dwcc)
 
 ##### `impl PartialEq for DwCc`
 
-- <span id="dwcc-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](../index.md)
+- <span id="dwcc-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](../index.md#dwcc)
 
 ##### `impl PartialOrd for DwCc`
 
-- <span id="dwcc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](../index.md)
+- <span id="dwcc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](../index.md#dwcc)
 
 ##### `impl StructuralPartialEq for DwCc`
 
@@ -2947,7 +2947,7 @@ See Section 7.16, Table 7.20.
 
 ##### `impl Clone for DwInl`
 
-- <span id="dwinl-clone"></span>`fn clone(&self) -> DwInl` — [`DwInl`](../index.md)
+- <span id="dwinl-clone"></span>`fn clone(&self) -> DwInl` — [`DwInl`](../index.md#dwinl)
 
 ##### `impl Copy for DwInl`
 
@@ -2967,15 +2967,15 @@ See Section 7.16, Table 7.20.
 
 ##### `impl Ord for DwInl`
 
-- <span id="dwinl-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](../index.md)
+- <span id="dwinl-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](../index.md#dwinl)
 
 ##### `impl PartialEq for DwInl`
 
-- <span id="dwinl-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](../index.md)
+- <span id="dwinl-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](../index.md#dwinl)
 
 ##### `impl PartialOrd for DwInl`
 
-- <span id="dwinl-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](../index.md)
+- <span id="dwinl-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](../index.md#dwinl)
 
 ##### `impl StructuralPartialEq for DwInl`
 
@@ -3003,7 +3003,7 @@ See Section 7.17, Table 7.17.
 
 ##### `impl Clone for DwOrd`
 
-- <span id="dword-clone"></span>`fn clone(&self) -> DwOrd` — [`DwOrd`](../index.md)
+- <span id="dword-clone"></span>`fn clone(&self) -> DwOrd` — [`DwOrd`](../index.md#dword)
 
 ##### `impl Copy for DwOrd`
 
@@ -3023,15 +3023,15 @@ See Section 7.17, Table 7.17.
 
 ##### `impl Ord for DwOrd`
 
-- <span id="dword-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](../index.md)
+- <span id="dword-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](../index.md#dword)
 
 ##### `impl PartialEq for DwOrd`
 
-- <span id="dword-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](../index.md)
+- <span id="dword-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](../index.md#dword)
 
 ##### `impl PartialOrd for DwOrd`
 
-- <span id="dword-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](../index.md)
+- <span id="dword-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](../index.md#dword)
 
 ##### `impl StructuralPartialEq for DwOrd`
 
@@ -3059,7 +3059,7 @@ See Section 7.18, Table 7.22.
 
 ##### `impl Clone for DwDsc`
 
-- <span id="dwdsc-clone"></span>`fn clone(&self) -> DwDsc` — [`DwDsc`](../index.md)
+- <span id="dwdsc-clone"></span>`fn clone(&self) -> DwDsc` — [`DwDsc`](../index.md#dwdsc)
 
 ##### `impl Copy for DwDsc`
 
@@ -3079,15 +3079,15 @@ See Section 7.18, Table 7.22.
 
 ##### `impl Ord for DwDsc`
 
-- <span id="dwdsc-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](../index.md)
+- <span id="dwdsc-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](../index.md#dwdsc)
 
 ##### `impl PartialEq for DwDsc`
 
-- <span id="dwdsc-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](../index.md)
+- <span id="dwdsc-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](../index.md#dwdsc)
 
 ##### `impl PartialOrd for DwDsc`
 
-- <span id="dwdsc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](../index.md)
+- <span id="dwdsc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](../index.md#dwdsc)
 
 ##### `impl StructuralPartialEq for DwDsc`
 
@@ -3115,7 +3115,7 @@ See Section 7.19, Table 7.23.
 
 ##### `impl Clone for DwIdx`
 
-- <span id="dwidx-clone"></span>`fn clone(&self) -> DwIdx` — [`DwIdx`](../index.md)
+- <span id="dwidx-clone"></span>`fn clone(&self) -> DwIdx` — [`DwIdx`](../index.md#dwidx)
 
 ##### `impl Copy for DwIdx`
 
@@ -3135,15 +3135,15 @@ See Section 7.19, Table 7.23.
 
 ##### `impl Ord for DwIdx`
 
-- <span id="dwidx-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](../index.md)
+- <span id="dwidx-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](../index.md#dwidx)
 
 ##### `impl PartialEq for DwIdx`
 
-- <span id="dwidx-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](../index.md)
+- <span id="dwidx-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](../index.md#dwidx)
 
 ##### `impl PartialOrd for DwIdx`
 
-- <span id="dwidx-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](../index.md)
+- <span id="dwidx-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](../index.md#dwidx)
 
 ##### `impl StructuralPartialEq for DwIdx`
 
@@ -3171,7 +3171,7 @@ See Section 7.20, Table 7.24.
 
 ##### `impl Clone for DwDefaulted`
 
-- <span id="dwdefaulted-clone"></span>`fn clone(&self) -> DwDefaulted` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-clone"></span>`fn clone(&self) -> DwDefaulted` — [`DwDefaulted`](../index.md#dwdefaulted)
 
 ##### `impl Copy for DwDefaulted`
 
@@ -3191,15 +3191,15 @@ See Section 7.20, Table 7.24.
 
 ##### `impl Ord for DwDefaulted`
 
-- <span id="dwdefaulted-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](../index.md#dwdefaulted)
 
 ##### `impl PartialEq for DwDefaulted`
 
-- <span id="dwdefaulted-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../index.md#dwdefaulted)
 
 ##### `impl PartialOrd for DwDefaulted`
 
-- <span id="dwdefaulted-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](../index.md#dwdefaulted)
 
 ##### `impl StructuralPartialEq for DwDefaulted`
 
@@ -3227,7 +3227,7 @@ See Section 7.22, Table 7.25.
 
 ##### `impl Clone for DwLns`
 
-- <span id="dwlns-clone"></span>`fn clone(&self) -> DwLns` — [`DwLns`](../index.md)
+- <span id="dwlns-clone"></span>`fn clone(&self) -> DwLns` — [`DwLns`](../index.md#dwlns)
 
 ##### `impl Copy for DwLns`
 
@@ -3247,15 +3247,15 @@ See Section 7.22, Table 7.25.
 
 ##### `impl Ord for DwLns`
 
-- <span id="dwlns-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](../index.md)
+- <span id="dwlns-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](../index.md#dwlns)
 
 ##### `impl PartialEq for DwLns`
 
-- <span id="dwlns-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](../index.md)
+- <span id="dwlns-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](../index.md#dwlns)
 
 ##### `impl PartialOrd for DwLns`
 
-- <span id="dwlns-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](../index.md)
+- <span id="dwlns-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](../index.md#dwlns)
 
 ##### `impl StructuralPartialEq for DwLns`
 
@@ -3283,7 +3283,7 @@ See Section 7.22, Table 7.26.
 
 ##### `impl Clone for DwLne`
 
-- <span id="dwlne-clone"></span>`fn clone(&self) -> DwLne` — [`DwLne`](../index.md)
+- <span id="dwlne-clone"></span>`fn clone(&self) -> DwLne` — [`DwLne`](../index.md#dwlne)
 
 ##### `impl Copy for DwLne`
 
@@ -3303,15 +3303,15 @@ See Section 7.22, Table 7.26.
 
 ##### `impl Ord for DwLne`
 
-- <span id="dwlne-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](../index.md)
+- <span id="dwlne-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](../index.md#dwlne)
 
 ##### `impl PartialEq for DwLne`
 
-- <span id="dwlne-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](../index.md)
+- <span id="dwlne-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](../index.md#dwlne)
 
 ##### `impl PartialOrd for DwLne`
 
-- <span id="dwlne-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](../index.md)
+- <span id="dwlne-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](../index.md#dwlne)
 
 ##### `impl StructuralPartialEq for DwLne`
 
@@ -3339,7 +3339,7 @@ See Section 7.22, Table 7.27.
 
 ##### `impl Clone for DwLnct`
 
-- <span id="dwlnct-clone"></span>`fn clone(&self) -> DwLnct` — [`DwLnct`](../index.md)
+- <span id="dwlnct-clone"></span>`fn clone(&self) -> DwLnct` — [`DwLnct`](../index.md#dwlnct)
 
 ##### `impl Copy for DwLnct`
 
@@ -3359,15 +3359,15 @@ See Section 7.22, Table 7.27.
 
 ##### `impl Ord for DwLnct`
 
-- <span id="dwlnct-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](../index.md)
+- <span id="dwlnct-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](../index.md#dwlnct)
 
 ##### `impl PartialEq for DwLnct`
 
-- <span id="dwlnct-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](../index.md)
+- <span id="dwlnct-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](../index.md#dwlnct)
 
 ##### `impl PartialOrd for DwLnct`
 
-- <span id="dwlnct-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](../index.md)
+- <span id="dwlnct-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](../index.md#dwlnct)
 
 ##### `impl StructuralPartialEq for DwLnct`
 
@@ -3395,7 +3395,7 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 ##### `impl Clone for DwMacinfo`
 
-- <span id="dwmacinfo-clone"></span>`fn clone(&self) -> DwMacinfo` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-clone"></span>`fn clone(&self) -> DwMacinfo` — [`DwMacinfo`](../index.md#dwmacinfo)
 
 ##### `impl Copy for DwMacinfo`
 
@@ -3415,15 +3415,15 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 ##### `impl Ord for DwMacinfo`
 
-- <span id="dwmacinfo-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](../index.md#dwmacinfo)
 
 ##### `impl PartialEq for DwMacinfo`
 
-- <span id="dwmacinfo-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../index.md#dwmacinfo)
 
 ##### `impl PartialOrd for DwMacinfo`
 
-- <span id="dwmacinfo-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](../index.md#dwmacinfo)
 
 ##### `impl StructuralPartialEq for DwMacinfo`
 
@@ -3451,7 +3451,7 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 ##### `impl Clone for DwMacro`
 
-- <span id="dwmacro-clone"></span>`fn clone(&self) -> DwMacro` — [`DwMacro`](../index.md)
+- <span id="dwmacro-clone"></span>`fn clone(&self) -> DwMacro` — [`DwMacro`](../index.md#dwmacro)
 
 ##### `impl Copy for DwMacro`
 
@@ -3471,15 +3471,15 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 ##### `impl Ord for DwMacro`
 
-- <span id="dwmacro-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](../index.md)
+- <span id="dwmacro-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](../index.md#dwmacro)
 
 ##### `impl PartialEq for DwMacro`
 
-- <span id="dwmacro-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](../index.md)
+- <span id="dwmacro-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](../index.md#dwmacro)
 
 ##### `impl PartialOrd for DwMacro`
 
-- <span id="dwmacro-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](../index.md)
+- <span id="dwmacro-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](../index.md#dwmacro)
 
 ##### `impl StructuralPartialEq for DwMacro`
 
@@ -3507,7 +3507,7 @@ See Section 7.25, Table 7.30.
 
 ##### `impl Clone for DwRle`
 
-- <span id="dwrle-clone"></span>`fn clone(&self) -> DwRle` — [`DwRle`](../index.md)
+- <span id="dwrle-clone"></span>`fn clone(&self) -> DwRle` — [`DwRle`](../index.md#dwrle)
 
 ##### `impl Copy for DwRle`
 
@@ -3527,15 +3527,15 @@ See Section 7.25, Table 7.30.
 
 ##### `impl Ord for DwRle`
 
-- <span id="dwrle-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](../index.md)
+- <span id="dwrle-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](../index.md#dwrle)
 
 ##### `impl PartialEq for DwRle`
 
-- <span id="dwrle-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](../index.md)
+- <span id="dwrle-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](../index.md#dwrle)
 
 ##### `impl PartialOrd for DwRle`
 
-- <span id="dwrle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](../index.md)
+- <span id="dwrle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](../index.md#dwrle)
 
 ##### `impl StructuralPartialEq for DwRle`
 
@@ -3563,7 +3563,7 @@ See Section 7.7.1, Table 7.9.
 
 ##### `impl Clone for DwOp`
 
-- <span id="dwop-clone"></span>`fn clone(&self) -> DwOp` — [`DwOp`](../index.md)
+- <span id="dwop-clone"></span>`fn clone(&self) -> DwOp` — [`DwOp`](../index.md#dwop)
 
 ##### `impl Copy for DwOp`
 
@@ -3583,15 +3583,15 @@ See Section 7.7.1, Table 7.9.
 
 ##### `impl Ord for DwOp`
 
-- <span id="dwop-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](../index.md)
+- <span id="dwop-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](../index.md#dwop)
 
 ##### `impl PartialEq for DwOp`
 
-- <span id="dwop-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](../index.md)
+- <span id="dwop-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](../index.md#dwop)
 
 ##### `impl PartialOrd for DwOp`
 
-- <span id="dwop-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](../index.md)
+- <span id="dwop-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](../index.md#dwop)
 
 ##### `impl StructuralPartialEq for DwOp`
 
@@ -3625,11 +3625,11 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 - <span id="dwehpe-type-output"></span>`type Output = DwEhPe`
 
-- <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md#dwehpe)
 
 ##### `impl Clone for DwEhPe`
 
-- <span id="dwehpe-clone"></span>`fn clone(&self) -> DwEhPe` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-clone"></span>`fn clone(&self) -> DwEhPe` — [`DwEhPe`](../index.md#dwehpe)
 
 ##### `impl Copy for DwEhPe`
 
@@ -3649,15 +3649,15 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 ##### `impl Ord for DwEhPe`
 
-- <span id="dwehpe-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](../index.md#dwehpe)
 
 ##### `impl PartialEq for DwEhPe`
 
-- <span id="dwehpe-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](../index.md#dwehpe)
 
 ##### `impl PartialOrd for DwEhPe`
 
-- <span id="dwehpe-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](../index.md#dwehpe)
 
 ##### `impl StructuralPartialEq for DwEhPe`
 

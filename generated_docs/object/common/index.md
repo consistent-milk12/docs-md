@@ -94,13 +94,13 @@ A CPU architecture.
 
 #### Implementations
 
-- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md)
+- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md#addresssize)
 
 #### Trait Implementations
 
 ##### `impl Clone for Architecture`
 
-- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md)
+- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md#architecture)
 
 ##### `impl Copy for Architecture`
 
@@ -116,7 +116,7 @@ A CPU architecture.
 
 ##### `impl PartialEq for Architecture`
 
-- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md)
+- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md#architecture)
 
 ##### `impl StructuralPartialEq for Architecture`
 
@@ -137,7 +137,7 @@ A CPU sub-architecture.
 
 ##### `impl Clone for SubArchitecture`
 
-- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md#subarchitecture)
 
 ##### `impl Copy for SubArchitecture`
 
@@ -153,7 +153,7 @@ A CPU sub-architecture.
 
 ##### `impl PartialEq for SubArchitecture`
 
-- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md#subarchitecture)
 
 ##### `impl StructuralPartialEq for SubArchitecture`
 
@@ -182,7 +182,7 @@ This may differ from the address size supported by the file format (such as for 
 
 ##### `impl Clone for AddressSize`
 
-- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md)
+- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md#addresssize)
 
 ##### `impl Copy for AddressSize`
 
@@ -198,7 +198,7 @@ This may differ from the address size supported by the file format (such as for 
 
 ##### `impl PartialEq for AddressSize`
 
-- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md)
+- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md#addresssize)
 
 ##### `impl StructuralPartialEq for AddressSize`
 
@@ -221,13 +221,13 @@ A binary file format.
 
 #### Implementations
 
-- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
 #### Trait Implementations
 
 ##### `impl Clone for BinaryFormat`
 
-- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
 ##### `impl Copy for BinaryFormat`
 
@@ -243,7 +243,7 @@ A binary file format.
 
 ##### `impl PartialEq for BinaryFormat`
 
-- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md#binaryformat)
 
 ##### `impl StructuralPartialEq for BinaryFormat`
 
@@ -416,7 +416,7 @@ The kind of a section.
 
 ##### `impl Clone for SectionKind`
 
-- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md)
+- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md#sectionkind)
 
 ##### `impl Copy for SectionKind`
 
@@ -432,7 +432,7 @@ The kind of a section.
 
 ##### `impl PartialEq for SectionKind`
 
-- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md)
+- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md#sectionkind)
 
 ##### `impl StructuralPartialEq for SectionKind`
 
@@ -503,7 +503,7 @@ sections.
 
 ##### `impl Clone for ComdatKind`
 
-- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md#comdatkind)
 
 ##### `impl Copy for ComdatKind`
 
@@ -519,7 +519,7 @@ sections.
 
 ##### `impl PartialEq for ComdatKind`
 
-- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md#comdatkind)
 
 ##### `impl StructuralPartialEq for ComdatKind`
 
@@ -575,7 +575,7 @@ The kind of a symbol.
 
 ##### `impl Clone for SymbolKind`
 
-- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md#symbolkind)
 
 ##### `impl Copy for SymbolKind`
 
@@ -591,7 +591,7 @@ The kind of a symbol.
 
 ##### `impl PartialEq for SymbolKind`
 
-- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md#symbolkind)
 
 ##### `impl StructuralPartialEq for SymbolKind`
 
@@ -632,7 +632,7 @@ A symbol scope.
 
 ##### `impl Clone for SymbolScope`
 
-- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md#symbolscope)
 
 ##### `impl Copy for SymbolScope`
 
@@ -648,7 +648,7 @@ A symbol scope.
 
 ##### `impl PartialEq for SymbolScope`
 
-- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md#symbolscope)
 
 ##### `impl StructuralPartialEq for SymbolScope`
 
@@ -738,7 +738,7 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl Clone for RelocationKind`
 
-- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md#relocationkind)
 
 ##### `impl Copy for RelocationKind`
 
@@ -754,7 +754,7 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl PartialEq for RelocationKind`
 
-- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md#relocationkind)
 
 ##### `impl StructuralPartialEq for RelocationKind`
 
@@ -881,7 +881,7 @@ a specific instruction.
 
 ##### `impl Clone for RelocationEncoding`
 
-- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 ##### `impl Copy for RelocationEncoding`
 
@@ -897,7 +897,7 @@ a specific instruction.
 
 ##### `impl PartialEq for RelocationEncoding`
 
-- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 ##### `impl StructuralPartialEq for RelocationEncoding`
 
@@ -953,7 +953,7 @@ File flags that are specific to each file format.
 
 ##### `impl Clone for FileFlags`
 
-- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md)
+- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl Copy for FileFlags`
 
@@ -969,7 +969,7 @@ File flags that are specific to each file format.
 
 ##### `impl PartialEq for FileFlags`
 
-- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md)
+- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl StructuralPartialEq for FileFlags`
 
@@ -1018,7 +1018,7 @@ Segment flags that are specific to each file format.
 
 ##### `impl Clone for SegmentFlags`
 
-- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl Copy for SegmentFlags`
 
@@ -1034,7 +1034,7 @@ Segment flags that are specific to each file format.
 
 ##### `impl PartialEq for SegmentFlags`
 
-- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl StructuralPartialEq for SegmentFlags`
 
@@ -1088,7 +1088,7 @@ Section flags that are specific to each file format.
 
 ##### `impl Clone for SectionFlags`
 
-- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl Copy for SectionFlags`
 
@@ -1104,7 +1104,7 @@ Section flags that are specific to each file format.
 
 ##### `impl PartialEq for SectionFlags`
 
-- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl StructuralPartialEq for SectionFlags`
 
@@ -1163,7 +1163,7 @@ Symbol flags that are specific to each file format.
 
 ##### `impl<Section: clone::Clone, Symbol: clone::Clone> Clone for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md#symbolflags)
 
 ##### `impl<Section: marker::Copy, Symbol: marker::Copy> Copy for SymbolFlags<Section, Symbol>`
 
@@ -1179,7 +1179,7 @@ Symbol flags that are specific to each file format.
 
 ##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md#symbolflags)
 
 ##### `impl<Section, Symbol> StructuralPartialEq for SymbolFlags<Section, Symbol>`
 
@@ -1240,7 +1240,7 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl Clone for RelocationFlags`
 
-- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md#relocationflags)
 
 ##### `impl Copy for RelocationFlags`
 
@@ -1256,7 +1256,7 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl PartialEq for RelocationFlags`
 
-- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md#relocationflags)
 
 ##### `impl StructuralPartialEq for RelocationFlags`
 

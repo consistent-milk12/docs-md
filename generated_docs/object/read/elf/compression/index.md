@@ -38,6 +38,6 @@ A trait for generic access to [`elf::CompressionHeader32`](../../../elf/index.md
 
 #### Implementors
 
-- [`CompressionHeader32`](../../../elf/index.md)
-- [`CompressionHeader64`](../../../elf/index.md)
+- [`CompressionHeader32`](../../../elf/index.md#compressionheader32)
+- [`CompressionHeader64`](../../../elf/index.md#compressionheader64)
 

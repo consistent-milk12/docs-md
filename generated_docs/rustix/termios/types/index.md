@@ -64,7 +64,7 @@ struct Termios {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
 
 
 
@@ -116,17 +116,17 @@ struct Termios {
 
 - <span id="termios-output-speed"></span>`fn output_speed(&self) -> u32`
 
-- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
-- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
-- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for Termios`
 
-- <span id="termios-clone"></span>`fn clone(&self) -> Termios` — [`Termios`](../index.md)
+- <span id="termios-clone"></span>`fn clone(&self) -> Termios` — [`Termios`](../index.md#termios)
 
 ##### `impl Debug for Termios`
 
@@ -194,7 +194,7 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
-- <span id="inputmodes-bitor"></span>`fn bitor(self, other: InputModes) -> Self` — [`InputModes`](../index.md)
+- <span id="inputmodes-bitor"></span>`fn bitor(self, other: InputModes) -> Self` — [`InputModes`](../index.md#inputmodes)
 
 ##### `impl BitOrAssign for InputModes`
 
@@ -212,7 +212,7 @@ Flags controlling terminal input.
 
 ##### `impl Clone for InputModes`
 
-- <span id="inputmodes-clone"></span>`fn clone(&self) -> InputModes` — [`InputModes`](../index.md)
+- <span id="inputmodes-clone"></span>`fn clone(&self) -> InputModes` — [`InputModes`](../index.md#inputmodes)
 
 ##### `impl Copy for InputModes`
 
@@ -232,9 +232,9 @@ Flags controlling terminal input.
 
 - <span id="inputmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="inputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../../ffi/index.md), [`InputModes`](../index.md)
+- <span id="inputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../../ffi/index.md#c-uint), [`InputModes`](../index.md#inputmodes)
 
 ##### `impl FromIterator for InputModes`
 
@@ -268,7 +268,7 @@ Flags controlling terminal input.
 
 ##### `impl PartialEq for InputModes`
 
-- <span id="inputmodes-eq"></span>`fn eq(&self, other: &InputModes) -> bool` — [`InputModes`](../index.md)
+- <span id="inputmodes-eq"></span>`fn eq(&self, other: &InputModes) -> bool` — [`InputModes`](../index.md#inputmodes)
 
 ##### `impl PublicFlags for InputModes`
 
@@ -386,7 +386,7 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
-- <span id="outputmodes-bitor"></span>`fn bitor(self, other: OutputModes) -> Self` — [`OutputModes`](../index.md)
+- <span id="outputmodes-bitor"></span>`fn bitor(self, other: OutputModes) -> Self` — [`OutputModes`](../index.md#outputmodes)
 
 ##### `impl BitOrAssign for OutputModes`
 
@@ -404,7 +404,7 @@ Flags controlling terminal output.
 
 ##### `impl Clone for OutputModes`
 
-- <span id="outputmodes-clone"></span>`fn clone(&self) -> OutputModes` — [`OutputModes`](../index.md)
+- <span id="outputmodes-clone"></span>`fn clone(&self) -> OutputModes` — [`OutputModes`](../index.md#outputmodes)
 
 ##### `impl Copy for OutputModes`
 
@@ -424,9 +424,9 @@ Flags controlling terminal output.
 
 - <span id="outputmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="outputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../../ffi/index.md), [`OutputModes`](../index.md)
+- <span id="outputmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../../ffi/index.md#c-uint), [`OutputModes`](../index.md#outputmodes)
 
 ##### `impl FromIterator for OutputModes`
 
@@ -460,7 +460,7 @@ Flags controlling terminal output.
 
 ##### `impl PartialEq for OutputModes`
 
-- <span id="outputmodes-eq"></span>`fn eq(&self, other: &OutputModes) -> bool` — [`OutputModes`](../index.md)
+- <span id="outputmodes-eq"></span>`fn eq(&self, other: &OutputModes) -> bool` — [`OutputModes`](../index.md#outputmodes)
 
 ##### `impl PublicFlags for OutputModes`
 
@@ -548,7 +548,7 @@ probably these flags.
 
 - <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
-- <span id="controlmodes-bitor"></span>`fn bitor(self, other: ControlModes) -> Self` — [`ControlModes`](../index.md)
+- <span id="controlmodes-bitor"></span>`fn bitor(self, other: ControlModes) -> Self` — [`ControlModes`](../index.md#controlmodes)
 
 ##### `impl BitOrAssign for ControlModes`
 
@@ -566,7 +566,7 @@ probably these flags.
 
 ##### `impl Clone for ControlModes`
 
-- <span id="controlmodes-clone"></span>`fn clone(&self) -> ControlModes` — [`ControlModes`](../index.md)
+- <span id="controlmodes-clone"></span>`fn clone(&self) -> ControlModes` — [`ControlModes`](../index.md#controlmodes)
 
 ##### `impl Copy for ControlModes`
 
@@ -586,9 +586,9 @@ probably these flags.
 
 - <span id="controlmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="controlmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../../ffi/index.md), [`ControlModes`](../index.md)
+- <span id="controlmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../../ffi/index.md#c-uint), [`ControlModes`](../index.md#controlmodes)
 
 ##### `impl FromIterator for ControlModes`
 
@@ -622,7 +622,7 @@ probably these flags.
 
 ##### `impl PartialEq for ControlModes`
 
-- <span id="controlmodes-eq"></span>`fn eq(&self, other: &ControlModes) -> bool` — [`ControlModes`](../index.md)
+- <span id="controlmodes-eq"></span>`fn eq(&self, other: &ControlModes) -> bool` — [`ControlModes`](../index.md#controlmodes)
 
 ##### `impl PublicFlags for ControlModes`
 
@@ -710,7 +710,7 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
-- <span id="localmodes-bitor"></span>`fn bitor(self, other: LocalModes) -> Self` — [`LocalModes`](../index.md)
+- <span id="localmodes-bitor"></span>`fn bitor(self, other: LocalModes) -> Self` — [`LocalModes`](../index.md#localmodes)
 
 ##### `impl BitOrAssign for LocalModes`
 
@@ -728,7 +728,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl Clone for LocalModes`
 
-- <span id="localmodes-clone"></span>`fn clone(&self) -> LocalModes` — [`LocalModes`](../index.md)
+- <span id="localmodes-clone"></span>`fn clone(&self) -> LocalModes` — [`LocalModes`](../index.md#localmodes)
 
 ##### `impl Copy for LocalModes`
 
@@ -748,9 +748,9 @@ Flags controlling “local” terminal modes.
 
 - <span id="localmodes-type-bits"></span>`type Bits = u32`
 
-- <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="localmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../../ffi/index.md), [`LocalModes`](../index.md)
+- <span id="localmodes-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../../ffi/index.md#c-uint), [`LocalModes`](../index.md#localmodes)
 
 ##### `impl FromIterator for LocalModes`
 
@@ -784,7 +784,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl PartialEq for LocalModes`
 
-- <span id="localmodes-eq"></span>`fn eq(&self, other: &LocalModes) -> bool` — [`LocalModes`](../index.md)
+- <span id="localmodes-eq"></span>`fn eq(&self, other: &LocalModes) -> bool` — [`LocalModes`](../index.md#localmodes)
 
 ##### `impl PublicFlags for LocalModes`
 
@@ -823,7 +823,7 @@ various special control codes.
 
 ##### `impl Clone for SpecialCodes`
 
-- <span id="specialcodes-clone"></span>`fn clone(&self) -> SpecialCodes` — [`SpecialCodes`](../index.md)
+- <span id="specialcodes-clone"></span>`fn clone(&self) -> SpecialCodes` — [`SpecialCodes`](../index.md#specialcodes)
 
 ##### `impl Debug for SpecialCodes`
 
@@ -833,11 +833,11 @@ various special control codes.
 
 - <span id="specialcodes-type-output"></span>`type Output = u8`
 
-- <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ##### `impl IndexMut for SpecialCodes`
 
-- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ### `SpecialCode`
 
@@ -905,7 +905,7 @@ Indices for use with `Termios::special_codes`.
 
 ##### `impl Clone for SpecialCodeIndex`
 
-- <span id="specialcodeindex-clone"></span>`fn clone(&self) -> SpecialCodeIndex` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodeindex-clone"></span>`fn clone(&self) -> SpecialCodeIndex` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ##### `impl Copy for SpecialCodeIndex`
 
@@ -923,15 +923,15 @@ Indices for use with `Termios::special_codes`.
 
 - <span id="specialcodes-type-output"></span>`type Output = u8`
 
-- <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ##### `impl IndexMut for SpecialCodes`
 
-- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ##### `impl PartialEq for SpecialCodeIndex`
 
-- <span id="specialcodeindex-eq"></span>`fn eq(&self, other: &SpecialCodeIndex) -> bool` — [`SpecialCodeIndex`](../index.md)
+- <span id="specialcodeindex-eq"></span>`fn eq(&self, other: &SpecialCodeIndex) -> bool` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
 ##### `impl StructuralPartialEq for SpecialCodeIndex`
 
@@ -965,7 +965,7 @@ struct Winsize {
 
 ##### `impl Clone for Winsize`
 
-- <span id="winsize-clone"></span>`fn clone(&self) -> Winsize` — [`Winsize`](../index.md)
+- <span id="winsize-clone"></span>`fn clone(&self) -> Winsize` — [`Winsize`](../index.md#winsize)
 
 ##### `impl Copy for Winsize`
 
@@ -981,7 +981,7 @@ struct Winsize {
 
 ##### `impl PartialEq for Winsize`
 
-- <span id="winsize-eq"></span>`fn eq(&self, other: &Winsize) -> bool` — [`Winsize`](../index.md)
+- <span id="winsize-eq"></span>`fn eq(&self, other: &Winsize) -> bool` — [`Winsize`](../index.md#winsize)
 
 ##### `impl StructuralPartialEq for Winsize`
 
@@ -999,7 +999,7 @@ enum OptionalActions {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
 
-`TCSA*` values for use with [`tcsetattr`](../../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](../index.md).
 
 
 #### Variants
@@ -1021,7 +1021,7 @@ enum OptionalActions {
 
 ##### `impl Clone for OptionalActions`
 
-- <span id="optionalactions-clone"></span>`fn clone(&self) -> OptionalActions` — [`OptionalActions`](../index.md)
+- <span id="optionalactions-clone"></span>`fn clone(&self) -> OptionalActions` — [`OptionalActions`](../index.md#optionalactions)
 
 ##### `impl Copy for OptionalActions`
 
@@ -1037,7 +1037,7 @@ enum OptionalActions {
 
 ##### `impl PartialEq for OptionalActions`
 
-- <span id="optionalactions-eq"></span>`fn eq(&self, other: &OptionalActions) -> bool` — [`OptionalActions`](../index.md)
+- <span id="optionalactions-eq"></span>`fn eq(&self, other: &OptionalActions) -> bool` — [`OptionalActions`](../index.md#optionalactions)
 
 ##### `impl StructuralPartialEq for OptionalActions`
 
@@ -1053,7 +1053,7 @@ enum QueueSelector {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
-`TC*` values for use with [`tcflush`](../../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflush`](../index.md).
 
 
 #### Variants
@@ -1074,7 +1074,7 @@ enum QueueSelector {
 
 ##### `impl Clone for QueueSelector`
 
-- <span id="queueselector-clone"></span>`fn clone(&self) -> QueueSelector` — [`QueueSelector`](../index.md)
+- <span id="queueselector-clone"></span>`fn clone(&self) -> QueueSelector` — [`QueueSelector`](../index.md#queueselector)
 
 ##### `impl Copy for QueueSelector`
 
@@ -1090,7 +1090,7 @@ enum QueueSelector {
 
 ##### `impl PartialEq for QueueSelector`
 
-- <span id="queueselector-eq"></span>`fn eq(&self, other: &QueueSelector) -> bool` — [`QueueSelector`](../index.md)
+- <span id="queueselector-eq"></span>`fn eq(&self, other: &QueueSelector) -> bool` — [`QueueSelector`](../index.md#queueselector)
 
 ##### `impl StructuralPartialEq for QueueSelector`
 
@@ -1132,7 +1132,7 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](../index.md)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](../index.md#action)
 
 ##### `impl Copy for Action`
 
@@ -1148,7 +1148,7 @@ enum Action {
 
 ##### `impl PartialEq for Action`
 
-- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](../index.md)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](../index.md#action)
 
 ##### `impl StructuralPartialEq for Action`
 

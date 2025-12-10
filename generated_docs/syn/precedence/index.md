@@ -41,9 +41,9 @@ enum Precedence {
 
 - <span id="precedence-const-min"></span>`const MIN: Self`
 
-- <span id="precedence-of-binop"></span>`fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../op/index.md)
+- <span id="precedence-of-binop"></span>`fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../op/index.md#binop)
 
-- <span id="precedence-of"></span>`fn of(e: &Expr) -> Self` — [`Expr`](../expr/index.md)
+- <span id="precedence-of"></span>`fn of(e: &Expr) -> Self` — [`Expr`](../expr/index.md#expr)
 
 #### Trait Implementations
 

@@ -95,7 +95,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl IntoResettable for StyledStr`
 
-- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md), [`StyledStr`](#styledstr)
+- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md#resettable), [`StyledStr`](#styledstr)
 
 ##### `impl Ord for StyledStr`
 

@@ -22,7 +22,7 @@ struct ByteSet([bool; 256]);
 
 #### Implementations
 
-- <span id="byteset-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<ByteSet>` — [`MatchKind`](../../../index.md), [`ByteSet`](#byteset)
+- <span id="byteset-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<ByteSet>` — [`MatchKind`](../../../index.md#matchkind), [`ByteSet`](#byteset)
 
 #### Trait Implementations
 
@@ -36,9 +36,9 @@ struct ByteSet([bool; 256]);
 
 ##### `impl PrefilterI for ByteSet`
 
-- <span id="byteset-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="byteset-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="byteset-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="byteset-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="byteset-memory-usage"></span>`fn memory_usage(&self) -> usize`
 

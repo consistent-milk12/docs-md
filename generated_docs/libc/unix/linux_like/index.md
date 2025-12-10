@@ -9302,7 +9302,7 @@ struct in_addr {
 
 ##### `impl Clone for in_addr`
 
-- <span id="in-addr-clone"></span>`fn clone(&self) -> in_addr` — [`in_addr`](../index.md)
+- <span id="in-addr-clone"></span>`fn clone(&self) -> in_addr` — [`in_addr`](../index.md#in-addr)
 
 ##### `impl Copy for in_addr`
 
@@ -9325,7 +9325,7 @@ struct ip_mreq {
 
 ##### `impl Clone for ip_mreq`
 
-- <span id="ip-mreq-clone"></span>`fn clone(&self) -> ip_mreq` — [`ip_mreq`](../index.md)
+- <span id="ip-mreq-clone"></span>`fn clone(&self) -> ip_mreq` — [`ip_mreq`](../index.md#ip-mreq)
 
 ##### `impl Copy for ip_mreq`
 
@@ -9349,7 +9349,7 @@ struct ip_mreqn {
 
 ##### `impl Clone for ip_mreqn`
 
-- <span id="ip-mreqn-clone"></span>`fn clone(&self) -> ip_mreqn` — [`ip_mreqn`](../index.md)
+- <span id="ip-mreqn-clone"></span>`fn clone(&self) -> ip_mreqn` — [`ip_mreqn`](../index.md#ip-mreqn)
 
 ##### `impl Copy for ip_mreqn`
 
@@ -9373,7 +9373,7 @@ struct ip_mreq_source {
 
 ##### `impl Clone for ip_mreq_source`
 
-- <span id="ip-mreq-source-clone"></span>`fn clone(&self) -> ip_mreq_source` — [`ip_mreq_source`](../index.md)
+- <span id="ip-mreq-source-clone"></span>`fn clone(&self) -> ip_mreq_source` — [`ip_mreq_source`](../index.md#ip-mreq-source)
 
 ##### `impl Copy for ip_mreq_source`
 
@@ -9396,7 +9396,7 @@ struct sockaddr {
 
 ##### `impl Clone for sockaddr`
 
-- <span id="sockaddr-clone"></span>`fn clone(&self) -> sockaddr` — [`sockaddr`](../index.md)
+- <span id="sockaddr-clone"></span>`fn clone(&self) -> sockaddr` — [`sockaddr`](../index.md#sockaddr)
 
 ##### `impl Copy for sockaddr`
 
@@ -9421,7 +9421,7 @@ struct sockaddr_in {
 
 ##### `impl Clone for sockaddr_in`
 
-- <span id="sockaddr-in-clone"></span>`fn clone(&self) -> sockaddr_in` — [`sockaddr_in`](../index.md)
+- <span id="sockaddr-in-clone"></span>`fn clone(&self) -> sockaddr_in` — [`sockaddr_in`](../index.md#sockaddr-in)
 
 ##### `impl Copy for sockaddr_in`
 
@@ -9447,7 +9447,7 @@ struct sockaddr_in6 {
 
 ##### `impl Clone for sockaddr_in6`
 
-- <span id="sockaddr-in6-clone"></span>`fn clone(&self) -> sockaddr_in6` — [`sockaddr_in6`](../index.md)
+- <span id="sockaddr-in6-clone"></span>`fn clone(&self) -> sockaddr_in6` — [`sockaddr_in6`](../index.md#sockaddr-in6)
 
 ##### `impl Copy for sockaddr_in6`
 
@@ -9476,7 +9476,7 @@ struct addrinfo {
 
 ##### `impl Clone for addrinfo`
 
-- <span id="addrinfo-clone"></span>`fn clone(&self) -> addrinfo` — [`addrinfo`](../index.md)
+- <span id="addrinfo-clone"></span>`fn clone(&self) -> addrinfo` — [`addrinfo`](../index.md#addrinfo)
 
 ##### `impl Copy for addrinfo`
 
@@ -9504,7 +9504,7 @@ struct sockaddr_ll {
 
 ##### `impl Clone for sockaddr_ll`
 
-- <span id="sockaddr-ll-clone"></span>`fn clone(&self) -> sockaddr_ll` — [`sockaddr_ll`](../index.md)
+- <span id="sockaddr-ll-clone"></span>`fn clone(&self) -> sockaddr_ll` — [`sockaddr_ll`](../index.md#sockaddr-ll)
 
 ##### `impl Copy for sockaddr_ll`
 
@@ -9526,7 +9526,7 @@ struct fd_set {
 
 ##### `impl Clone for fd_set`
 
-- <span id="fd-set-clone"></span>`fn clone(&self) -> fd_set` — [`fd_set`](../index.md)
+- <span id="fd-set-clone"></span>`fn clone(&self) -> fd_set` — [`fd_set`](../index.md#fd-set)
 
 ##### `impl Copy for fd_set`
 
@@ -9558,7 +9558,7 @@ struct tm {
 
 ##### `impl Clone for tm`
 
-- <span id="tm-clone"></span>`fn clone(&self) -> tm` — [`tm`](../index.md)
+- <span id="tm-clone"></span>`fn clone(&self) -> tm` — [`tm`](../index.md#tm)
 
 ##### `impl Copy for tm`
 
@@ -9580,7 +9580,7 @@ struct sched_param {
 
 ##### `impl Clone for sched_param`
 
-- <span id="sched-param-clone"></span>`fn clone(&self) -> sched_param` — [`sched_param`](../index.md)
+- <span id="sched-param-clone"></span>`fn clone(&self) -> sched_param` — [`sched_param`](../index.md#sched-param)
 
 ##### `impl Copy for sched_param`
 
@@ -9605,7 +9605,7 @@ struct Dl_info {
 
 ##### `impl Clone for Dl_info`
 
-- <span id="dl-info-clone"></span>`fn clone(&self) -> Dl_info` — [`Dl_info`](../index.md)
+- <span id="dl-info-clone"></span>`fn clone(&self) -> Dl_info` — [`Dl_info`](../index.md#dl-info)
 
 ##### `impl Copy for Dl_info`
 
@@ -9650,7 +9650,7 @@ struct lconv {
 
 ##### `impl Clone for lconv`
 
-- <span id="lconv-clone"></span>`fn clone(&self) -> lconv` — [`lconv`](../index.md)
+- <span id="lconv-clone"></span>`fn clone(&self) -> lconv` — [`lconv`](../index.md#lconv)
 
 ##### `impl Copy for lconv`
 
@@ -9674,7 +9674,7 @@ struct in_pktinfo {
 
 ##### `impl Clone for in_pktinfo`
 
-- <span id="in-pktinfo-clone"></span>`fn clone(&self) -> in_pktinfo` — [`in_pktinfo`](../index.md)
+- <span id="in-pktinfo-clone"></span>`fn clone(&self) -> in_pktinfo` — [`in_pktinfo`](../index.md#in-pktinfo)
 
 ##### `impl Copy for in_pktinfo`
 
@@ -9702,7 +9702,7 @@ struct ifaddrs {
 
 ##### `impl Clone for ifaddrs`
 
-- <span id="ifaddrs-clone"></span>`fn clone(&self) -> ifaddrs` — [`ifaddrs`](../index.md)
+- <span id="ifaddrs-clone"></span>`fn clone(&self) -> ifaddrs` — [`ifaddrs`](../index.md#ifaddrs)
 
 ##### `impl Copy for ifaddrs`
 
@@ -9733,7 +9733,7 @@ struct in6_rtmsg {
 
 ##### `impl Clone for in6_rtmsg`
 
-- <span id="in6-rtmsg-clone"></span>`fn clone(&self) -> in6_rtmsg` — [`in6_rtmsg`](../index.md)
+- <span id="in6-rtmsg-clone"></span>`fn clone(&self) -> in6_rtmsg` — [`in6_rtmsg`](../index.md#in6-rtmsg)
 
 ##### `impl Copy for in6_rtmsg`
 
@@ -9759,7 +9759,7 @@ struct arpreq {
 
 ##### `impl Clone for arpreq`
 
-- <span id="arpreq-clone"></span>`fn clone(&self) -> arpreq` — [`arpreq`](../index.md)
+- <span id="arpreq-clone"></span>`fn clone(&self) -> arpreq` — [`arpreq`](../index.md#arpreq)
 
 ##### `impl Copy for arpreq`
 
@@ -9784,7 +9784,7 @@ struct arpreq_old {
 
 ##### `impl Clone for arpreq_old`
 
-- <span id="arpreq-old-clone"></span>`fn clone(&self) -> arpreq_old` — [`arpreq_old`](../index.md)
+- <span id="arpreq-old-clone"></span>`fn clone(&self) -> arpreq_old` — [`arpreq_old`](../index.md#arpreq-old)
 
 ##### `impl Copy for arpreq_old`
 
@@ -9810,7 +9810,7 @@ struct arphdr {
 
 ##### `impl Clone for arphdr`
 
-- <span id="arphdr-clone"></span>`fn clone(&self) -> arphdr` — [`arphdr`](../index.md)
+- <span id="arphdr-clone"></span>`fn clone(&self) -> arphdr` — [`arphdr`](../index.md#arphdr)
 
 ##### `impl Copy for arphdr`
 
@@ -9833,7 +9833,7 @@ struct mmsghdr {
 
 ##### `impl Clone for mmsghdr`
 
-- <span id="mmsghdr-clone"></span>`fn clone(&self) -> mmsghdr` — [`mmsghdr`](../index.md)
+- <span id="mmsghdr-clone"></span>`fn clone(&self) -> mmsghdr` — [`mmsghdr`](../index.md#mmsghdr)
 
 ##### `impl Copy for mmsghdr`
 
@@ -9856,7 +9856,7 @@ struct sockaddr_un {
 
 ##### `impl Clone for sockaddr_un`
 
-- <span id="sockaddr-un-clone"></span>`fn clone(&self) -> sockaddr_un` — [`sockaddr_un`](../index.md)
+- <span id="sockaddr-un-clone"></span>`fn clone(&self) -> sockaddr_un` — [`sockaddr_un`](../index.md#sockaddr-un)
 
 ##### `impl Copy for sockaddr_un`
 
@@ -9880,7 +9880,7 @@ struct sockaddr_storage {
 
 ##### `impl Clone for sockaddr_storage`
 
-- <span id="sockaddr-storage-clone"></span>`fn clone(&self) -> sockaddr_storage` — [`sockaddr_storage`](../index.md)
+- <span id="sockaddr-storage-clone"></span>`fn clone(&self) -> sockaddr_storage` — [`sockaddr_storage`](../index.md#sockaddr-storage)
 
 ##### `impl Copy for sockaddr_storage`
 
@@ -9907,7 +9907,7 @@ struct utsname {
 
 ##### `impl Clone for utsname`
 
-- <span id="utsname-clone"></span>`fn clone(&self) -> utsname` — [`utsname`](../index.md)
+- <span id="utsname-clone"></span>`fn clone(&self) -> utsname` — [`utsname`](../index.md#utsname)
 
 ##### `impl Copy for utsname`
 
@@ -9932,7 +9932,7 @@ struct file_clone_range {
 
 ##### `impl Clone for file_clone_range`
 
-- <span id="file-clone-range-clone"></span>`fn clone(&self) -> file_clone_range` — [`file_clone_range`](../index.md)
+- <span id="file-clone-range-clone"></span>`fn clone(&self) -> file_clone_range` — [`file_clone_range`](../index.md#file-clone-range)
 
 ##### `impl Copy for file_clone_range`
 
@@ -9957,7 +9957,7 @@ struct sock_filter {
 
 ##### `impl Clone for sock_filter`
 
-- <span id="sock-filter-clone"></span>`fn clone(&self) -> sock_filter` — [`sock_filter`](../index.md)
+- <span id="sock-filter-clone"></span>`fn clone(&self) -> sock_filter` — [`sock_filter`](../index.md#sock-filter)
 
 ##### `impl Copy for sock_filter`
 
@@ -9980,7 +9980,7 @@ struct sock_fprog {
 
 ##### `impl Clone for sock_fprog`
 
-- <span id="sock-fprog-clone"></span>`fn clone(&self) -> sock_fprog` — [`sock_fprog`](../index.md)
+- <span id="sock-fprog-clone"></span>`fn clone(&self) -> sock_fprog` — [`sock_fprog`](../index.md#sock-fprog)
 
 ##### `impl Copy for sock_fprog`
 
@@ -10025,7 +10025,7 @@ struct statx {
 
 ##### `impl Clone for statx`
 
-- <span id="statx-clone"></span>`fn clone(&self) -> statx` — [`statx`](../index.md)
+- <span id="statx-clone"></span>`fn clone(&self) -> statx` — [`statx`](../index.md#statx)
 
 ##### `impl Copy for statx`
 
@@ -10049,7 +10049,7 @@ struct statx_timestamp {
 
 ##### `impl Clone for statx_timestamp`
 
-- <span id="statx-timestamp-clone"></span>`fn clone(&self) -> statx_timestamp` — [`statx_timestamp`](../index.md)
+- <span id="statx-timestamp-clone"></span>`fn clone(&self) -> statx_timestamp` — [`statx_timestamp`](../index.md#statx-timestamp)
 
 ##### `impl Copy for statx_timestamp`
 
@@ -10072,7 +10072,7 @@ struct epoll_event {
 
 ##### `impl Clone for epoll_event`
 
-- <span id="epoll-event-clone"></span>`fn clone(&self) -> epoll_event` — [`epoll_event`](../index.md)
+- <span id="epoll-event-clone"></span>`fn clone(&self) -> epoll_event` — [`epoll_event`](../index.md#epoll-event)
 
 ##### `impl Copy for epoll_event`
 
@@ -10098,7 +10098,7 @@ struct sigevent {
 
 ##### `impl Clone for sigevent`
 
-- <span id="sigevent-clone"></span>`fn clone(&self) -> sigevent` — [`sigevent`](../index.md)
+- <span id="sigevent-clone"></span>`fn clone(&self) -> sigevent` — [`sigevent`](../index.md#sigevent)
 
 ##### `impl Copy for sigevent`
 
@@ -14500,7 +14500,7 @@ enum timezone {
 
 ##### `impl Clone for timezone`
 
-- <span id="timezone-clone"></span>`fn clone(&self) -> timezone` — [`timezone`](../index.md)
+- <span id="timezone-clone"></span>`fn clone(&self) -> timezone` — [`timezone`](../index.md#timezone)
 
 ##### `impl Copy for timezone`
 

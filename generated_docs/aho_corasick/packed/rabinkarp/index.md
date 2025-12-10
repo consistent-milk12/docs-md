@@ -73,13 +73,13 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 
 #### Implementations
 
-- <span id="rabinkarp-new"></span>`fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md), [`RabinKarp`](#rabinkarp)
+- <span id="rabinkarp-new"></span>`fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md#patterns), [`RabinKarp`](#rabinkarp)
 
-- <span id="rabinkarp-find-at"></span>`fn find_at(&self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- <span id="rabinkarp-find-at"></span>`fn find_at(&self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../util/search/index.md#match)
 
 - <span id="rabinkarp-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="rabinkarp-verify"></span>`fn verify(&self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../util/primitives/index.md), [`Match`](../../util/search/index.md)
+- <span id="rabinkarp-verify"></span>`fn verify(&self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Match`](../../util/search/index.md#match)
 
 - <span id="rabinkarp-hash"></span>`fn hash(&self, bytes: &[u8]) -> usize`
 

@@ -153,7 +153,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl IntoResettable for Option<crate::builder::ValueHint>`
 
-- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](../resettable/index.md), [`ValueHint`](#valuehint)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](../resettable/index.md#resettable), [`ValueHint`](#valuehint)
 
 ##### `impl PartialEq for ValueHint`
 

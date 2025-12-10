@@ -67,7 +67,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Clone for Errno`
 
-- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../../backend/io/errno/index.md)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../../backend/io/errno/index.md#errno)
 
 ##### `impl Copy for Errno`
 
@@ -89,7 +89,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl PartialEq for Errno`
 
-- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../../backend/io/errno/index.md)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../../backend/io/errno/index.md#errno)
 
 ##### `impl StructuralPartialEq for Errno`
 

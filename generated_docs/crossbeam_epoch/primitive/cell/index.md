@@ -40,7 +40,7 @@ struct UnsafeCell<T>(::core::cell::UnsafeCell<T>);
 
 - <span id="unsafecell-type-init"></span>`type Init = T`
 
-- <span id="unsafecell-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="unsafecell-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="unsafecell-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

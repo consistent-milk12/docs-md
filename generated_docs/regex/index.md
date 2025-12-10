@@ -1403,7 +1403,7 @@ the compiled regular expression.
 
 - <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md#error)
 
 - <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
@@ -1460,7 +1460,7 @@ and a size limit on the compiled regular expression.
 
 - <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md#error)
 
 - <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
@@ -1603,7 +1603,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md#error)
 
 - <span id="regex-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
@@ -1643,7 +1643,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 - <span id="regex-type-err"></span>`type Err = Error`
 
-- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md#error)
 
 ##### `impl ToString for Regex`
 
@@ -2425,7 +2425,7 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md#error)
 
 - <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
@@ -2663,13 +2663,13 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](error/index.md)
+- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](error/index.md#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](error/index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](error/index.md#error)
 
 ##### `impl Debug for Error`
 
@@ -2685,7 +2685,7 @@ An error that occurred during parsing or compiling a regular expression.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](error/index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](error/index.md#error)
 
 ##### `impl StructuralPartialEq for Error`
 

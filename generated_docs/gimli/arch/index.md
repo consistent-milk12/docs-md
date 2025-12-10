@@ -365,7 +365,7 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf32/aadwarf32.rst).
 
 ##### `impl Clone for Arm`
 
-- <span id="arm-clone"></span>`fn clone(&self) -> Arm` — [`Arm`](../index.md)
+- <span id="arm-clone"></span>`fn clone(&self) -> Arm` — [`Arm`](../index.md#arm)
 
 ##### `impl Copy for Arm`
 
@@ -636,7 +636,7 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 ##### `impl Clone for AArch64`
 
-- <span id="aarch64-clone"></span>`fn clone(&self) -> AArch64` — [`AArch64`](../index.md)
+- <span id="aarch64-clone"></span>`fn clone(&self) -> AArch64` — [`AArch64`](../index.md#aarch64)
 
 ##### `impl Copy for AArch64`
 
@@ -932,7 +932,7 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 ##### `impl Clone for LoongArch`
 
-- <span id="loongarch-clone"></span>`fn clone(&self) -> LoongArch` — [`LoongArch`](../index.md)
+- <span id="loongarch-clone"></span>`fn clone(&self) -> LoongArch` — [`LoongArch`](../index.md#loongarch)
 
 ##### `impl Copy for LoongArch`
 
@@ -1156,7 +1156,7 @@ See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
 
 ##### `impl Clone for MIPS`
 
-- <span id="mips-clone"></span>`fn clone(&self) -> MIPS` — [`MIPS`](../index.md)
+- <span id="mips-clone"></span>`fn clone(&self) -> MIPS` — [`MIPS`](../index.md#mips)
 
 ##### `impl Copy for MIPS`
 
@@ -1438,7 +1438,7 @@ See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-do
 
 ##### `impl Clone for RiscV`
 
-- <span id="riscv-clone"></span>`fn clone(&self) -> RiscV` — [`RiscV`](../index.md)
+- <span id="riscv-clone"></span>`fn clone(&self) -> RiscV` — [`RiscV`](../index.md#riscv)
 
 ##### `impl Copy for RiscV`
 
@@ -1552,7 +1552,7 @@ See section 2.4.2 of the [i386 psABI](https://gitlab.com/x86-psABIs/i386-ABI).
 
 ##### `impl Clone for X86`
 
-- <span id="x86-clone"></span>`fn clone(&self) -> X86` — [`X86`](../index.md)
+- <span id="x86-clone"></span>`fn clone(&self) -> X86` — [`X86`](../index.md#x86)
 
 ##### `impl Copy for X86`
 
@@ -1802,7 +1802,7 @@ See section 3.6.2 of the [x86-64 psABI](https://gitlab.com/x86-psABIs/x86-64-ABI
 
 ##### `impl Clone for X86_64`
 
-- <span id="x86-64-clone"></span>`fn clone(&self) -> X86_64` — [`X86_64`](../index.md)
+- <span id="x86-64-clone"></span>`fn clone(&self) -> X86_64` — [`X86_64`](../index.md#x86-64)
 
 ##### `impl Copy for X86_64`
 
@@ -2050,7 +2050,7 @@ See [64-bit ELF ABI Specification for OpenPOWER Architecture](https://openpowerf
 
 ##### `impl Clone for PowerPc64`
 
-- <span id="powerpc64-clone"></span>`fn clone(&self) -> PowerPc64` — [`PowerPc64`](../index.md)
+- <span id="powerpc64-clone"></span>`fn clone(&self) -> PowerPc64` — [`PowerPc64`](../index.md#powerpc64)
 
 ##### `impl Copy for PowerPc64`
 

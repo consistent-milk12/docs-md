@@ -226,13 +226,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="captures-is-match"></span>`fn is_match(&self) -> bool`
 
-- <span id="captures-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- <span id="captures-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="captures-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="captures-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../../index.md#match)
 
-- <span id="captures-get-group"></span>`fn get_group(&self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="captures-get-group"></span>`fn get_group(&self, index: usize) -> Option<Span>` — [`Span`](../../index.md#span)
 
-- <span id="captures-get-group-by-name"></span>`fn get_group_by_name(&self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="captures-get-group-by-name"></span>`fn get_group_by_name(&self, name: &str) -> Option<Span>` — [`Span`](../../index.md#span)
 
 - <span id="captures-iter"></span>`fn iter(&self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
 
@@ -328,7 +328,7 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 - <span id="capturespatterniter-type-item"></span>`type Item = Option<Span>`
 
-- <span id="capturespatterniter-next"></span>`fn next(&mut self) -> Option<Option<Span>>` — [`Span`](../../index.md)
+- <span id="capturespatterniter-next"></span>`fn next(&mut self) -> Option<Option<Span>>` — [`Span`](../../index.md#span)
 
 - <span id="capturespatterniter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -516,21 +516,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="groupinfo-empty"></span>`fn empty() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
-- <span id="groupinfo-to-index"></span>`fn to_index(&self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfo-to-index"></span>`fn to_index(&self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="groupinfo-to-name"></span>`fn to_name(&self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfo-to-name"></span>`fn to_name(&self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="groupinfo-pattern-names"></span>`fn pattern_names(&self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../primitives/index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
+- <span id="groupinfo-pattern-names"></span>`fn pattern_names(&self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../primitives/index.md#patternid), [`GroupInfoPatternNames`](#groupinfopatternnames)
 
 - <span id="groupinfo-all-names"></span>`fn all_names(&self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](#groupinfoallnames)
 
-- <span id="groupinfo-slots"></span>`fn slots(&self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfo-slots"></span>`fn slots(&self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="groupinfo-slot"></span>`fn slot(&self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfo-slot"></span>`fn slot(&self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../primitives/index.md#patternid)
 
 - <span id="groupinfo-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="groupinfo-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfo-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md#patternid)
 
 - <span id="groupinfo-all-group-len"></span>`fn all_group_len(&self) -> usize`
 
@@ -574,17 +574,17 @@ be wrapped in an `Arc` to make `GroupInfo` reference counted.
 
 #### Implementations
 
-- <span id="groupinfoinner-add-first-group"></span>`fn add_first_group(&mut self, pid: PatternID)` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfoinner-add-first-group"></span>`fn add_first_group(&mut self, pid: PatternID)` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="groupinfoinner-add-explicit-group"></span>`fn add_explicit_group<N: AsRef<str>>(&mut self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../primitives/index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoinner-add-explicit-group"></span>`fn add_explicit_group<N: AsRef<str>>(&mut self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../primitives/index.md#patternid), [`SmallIndex`](../primitives/index.md#smallindex), [`GroupInfoError`](#groupinfoerror)
 
 - <span id="groupinfoinner-fixup-slot-ranges"></span>`fn fixup_slot_ranges(&mut self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
 
 - <span id="groupinfoinner-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="groupinfoinner-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfoinner-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md#patternid)
 
-- <span id="groupinfoinner-small-slot-len"></span>`fn small_slot_len(&self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
+- <span id="groupinfoinner-small-slot-len"></span>`fn small_slot_len(&self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md#smallindex)
 
 #### Trait Implementations
 
@@ -615,15 +615,15 @@ there are no duplicate capture groups for a specific pattern.
 
 #### Implementations
 
-- <span id="groupinfoerror-too-many-patterns"></span>`fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-too-many-patterns"></span>`fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md#patterniderror), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-too-many-groups"></span>`fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-too-many-groups"></span>`fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../primitives/index.md#patternid), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-missing-groups"></span>`fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-missing-groups"></span>`fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md#patternid), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-first-must-be-unnamed"></span>`fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-first-must-be-unnamed"></span>`fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md#patternid), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-duplicate"></span>`fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-duplicate"></span>`fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../primitives/index.md#patternid), [`GroupInfoError`](#groupinfoerror)
 
 #### Trait Implementations
 
@@ -738,7 +738,7 @@ from which this iterator was created.
 
 - <span id="groupinfoallnames-type-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
 
-- <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md)
+- <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md#patternid)
 
 ## Enums
 

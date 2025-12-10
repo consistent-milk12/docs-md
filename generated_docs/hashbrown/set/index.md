@@ -160,31 +160,31 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
@@ -220,7 +220,7 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](../hash_set/index.md)
+- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](../hash_set/index.md#iter)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
@@ -230,11 +230,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
 
-- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
 ### `Iter<'a, K>`
 
@@ -628,7 +628,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -685,7 +685,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -715,7 +715,7 @@ assert!(set.contains("b") && set.len() == 2);
 
 - <span id="vacantentry-into-value"></span>`fn into_value(self) -> T`
 
-- <span id="vacantentry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md#occupiedentry)
 
 #### Trait Implementations
 
@@ -809,7 +809,7 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
 #### Implementations
 
-- <span id="entry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
+- <span id="entry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md#occupiedentry)
 
 - <span id="entry-or-insert"></span>`fn or_insert(self)`
 

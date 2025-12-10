@@ -45,11 +45,11 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A, B> IndexedParallelIterator for Zip<A, B>`
 
-- <span id="zip-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="zip-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="zip-len"></span>`fn len(&self) -> usize`
 
-- <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Zip<A, B>`
 
@@ -65,7 +65,7 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="zip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -118,7 +118,7 @@ struct ZipProducer<A: Producer, B: Producer> {
 
 - <span id="zipproducer-type-intoiter"></span>`type IntoIter = Zip<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
-- <span id="zipproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="zipproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="zipproducer-min-len"></span>`fn min_len(&self) -> usize`
 

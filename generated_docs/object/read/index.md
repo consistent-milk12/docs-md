@@ -304,7 +304,7 @@ The error type used within the read module.
 
 ##### `impl Clone for Error`
 
-- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md#error)
 
 ##### `impl Copy for Error`
 
@@ -322,7 +322,7 @@ The error type used within the read module.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md#error)
 
 ##### `impl StructuralPartialEq for Error`
 
@@ -344,7 +344,7 @@ The index used to identify a section in a file.
 
 ##### `impl Clone for SectionIndex`
 
-- <span id="sectionindex-clone"></span>`fn clone(&self) -> SectionIndex` — [`SectionIndex`](../index.md)
+- <span id="sectionindex-clone"></span>`fn clone(&self) -> SectionIndex` — [`SectionIndex`](../index.md#sectionindex)
 
 ##### `impl Copy for SectionIndex`
 
@@ -364,7 +364,7 @@ The index used to identify a section in a file.
 
 ##### `impl PartialEq for SectionIndex`
 
-- <span id="sectionindex-eq"></span>`fn eq(&self, other: &SectionIndex) -> bool` — [`SectionIndex`](../index.md)
+- <span id="sectionindex-eq"></span>`fn eq(&self, other: &SectionIndex) -> bool` — [`SectionIndex`](../index.md#sectionindex)
 
 ##### `impl StructuralPartialEq for SectionIndex`
 
@@ -386,7 +386,7 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl Clone for SymbolIndex`
 
-- <span id="symbolindex-clone"></span>`fn clone(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="symbolindex-clone"></span>`fn clone(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
 ##### `impl Copy for SymbolIndex`
 
@@ -406,7 +406,7 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl PartialEq for SymbolIndex`
 
-- <span id="symbolindex-eq"></span>`fn eq(&self, other: &SymbolIndex) -> bool` — [`SymbolIndex`](../index.md)
+- <span id="symbolindex-eq"></span>`fn eq(&self, other: &SymbolIndex) -> bool` — [`SymbolIndex`](../index.md#symbolindex)
 
 ##### `impl StructuralPartialEq for SymbolIndex`
 
@@ -442,7 +442,7 @@ Returned by `Object::symbol_map`.
 
 ##### `impl<T: clone::Clone + SymbolMapEntry> Clone for SymbolMap<T>`
 
-- <span id="symbolmap-clone"></span>`fn clone(&self) -> SymbolMap<T>` — [`SymbolMap`](../index.md)
+- <span id="symbolmap-clone"></span>`fn clone(&self) -> SymbolMap<T>` — [`SymbolMap`](../index.md#symbolmap)
 
 ##### `impl<T: fmt::Debug + SymbolMapEntry> Debug for SymbolMap<T>`
 
@@ -450,7 +450,7 @@ Returned by `Object::symbol_map`.
 
 ##### `impl<T: default::Default + SymbolMapEntry> Default for SymbolMap<T>`
 
-- <span id="symbolmap-default"></span>`fn default() -> SymbolMap<T>` — [`SymbolMap`](../index.md)
+- <span id="symbolmap-default"></span>`fn default() -> SymbolMap<T>` — [`SymbolMap`](../index.md#symbolmap)
 
 ### `SymbolMapName<'data>`
 
@@ -477,7 +477,7 @@ The type used for entries in a [`SymbolMap`](../index.md) that maps from address
 
 ##### `impl Clone for SymbolMapName<'data>`
 
-- <span id="symbolmapname-clone"></span>`fn clone(&self) -> SymbolMapName<'data>` — [`SymbolMapName`](../index.md)
+- <span id="symbolmapname-clone"></span>`fn clone(&self) -> SymbolMapName<'data>` — [`SymbolMapName`](../index.md#symbolmapname)
 
 ##### `impl Copy for SymbolMapName<'data>`
 
@@ -493,7 +493,7 @@ The type used for entries in a [`SymbolMap`](../index.md) that maps from address
 
 ##### `impl PartialEq for SymbolMapName<'data>`
 
-- <span id="symbolmapname-eq"></span>`fn eq(&self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](../index.md)
+- <span id="symbolmapname-eq"></span>`fn eq(&self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](../index.md#symbolmapname)
 
 ##### `impl StructuralPartialEq for SymbolMapName<'data>`
 
@@ -520,17 +520,17 @@ Returned by `Object::object_map`.
 
 #### Implementations
 
-- <span id="objectmap-get"></span>`fn get(&self, address: u64) -> Option<&ObjectMapEntry<'data>>` — [`ObjectMapEntry`](../index.md)
+- <span id="objectmap-get"></span>`fn get(&self, address: u64) -> Option<&ObjectMapEntry<'data>>` — [`ObjectMapEntry`](../index.md#objectmapentry)
 
-- <span id="objectmap-symbols"></span>`fn symbols(&self) -> &[ObjectMapEntry<'data>]` — [`ObjectMapEntry`](../index.md)
+- <span id="objectmap-symbols"></span>`fn symbols(&self) -> &[ObjectMapEntry<'data>]` — [`ObjectMapEntry`](../index.md#objectmapentry)
 
-- <span id="objectmap-objects"></span>`fn objects(&self) -> &[ObjectMapFile<'data>]` — [`ObjectMapFile`](../index.md)
+- <span id="objectmap-objects"></span>`fn objects(&self) -> &[ObjectMapFile<'data>]` — [`ObjectMapFile`](../index.md#objectmapfile)
 
 #### Trait Implementations
 
 ##### `impl Clone for ObjectMap<'data>`
 
-- <span id="objectmap-clone"></span>`fn clone(&self) -> ObjectMap<'data>` — [`ObjectMap`](../index.md)
+- <span id="objectmap-clone"></span>`fn clone(&self) -> ObjectMap<'data>` — [`ObjectMap`](../index.md#objectmap)
 
 ##### `impl Debug for ObjectMap<'data>`
 
@@ -538,7 +538,7 @@ Returned by `Object::object_map`.
 
 ##### `impl Default for ObjectMap<'data>`
 
-- <span id="objectmap-default"></span>`fn default() -> ObjectMap<'data>` — [`ObjectMap`](../index.md)
+- <span id="objectmap-default"></span>`fn default() -> ObjectMap<'data>` — [`ObjectMap`](../index.md#objectmap)
 
 ### `ObjectMapEntry<'data>`
 
@@ -565,13 +565,13 @@ A symbol in an [`ObjectMap`](../index.md).
 
 - <span id="objectmapentry-object-index"></span>`fn object_index(&self) -> usize`
 
-- <span id="objectmapentry-object"></span>`fn object<'a>(&self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>` — [`ObjectMap`](../index.md), [`ObjectMapFile`](../index.md)
+- <span id="objectmapentry-object"></span>`fn object<'a>(&self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>` — [`ObjectMap`](../index.md#objectmap), [`ObjectMapFile`](../index.md#objectmapfile)
 
 #### Trait Implementations
 
 ##### `impl Clone for ObjectMapEntry<'data>`
 
-- <span id="objectmapentry-clone"></span>`fn clone(&self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md)
+- <span id="objectmapentry-clone"></span>`fn clone(&self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md#objectmapentry)
 
 ##### `impl Copy for ObjectMapEntry<'data>`
 
@@ -581,7 +581,7 @@ A symbol in an [`ObjectMap`](../index.md).
 
 ##### `impl Default for ObjectMapEntry<'data>`
 
-- <span id="objectmapentry-default"></span>`fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md)
+- <span id="objectmapentry-default"></span>`fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md#objectmapentry)
 
 ##### `impl Eq for ObjectMapEntry<'data>`
 
@@ -591,7 +591,7 @@ A symbol in an [`ObjectMap`](../index.md).
 
 ##### `impl PartialEq for ObjectMapEntry<'data>`
 
-- <span id="objectmapentry-eq"></span>`fn eq(&self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](../index.md)
+- <span id="objectmapentry-eq"></span>`fn eq(&self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](../index.md#objectmapentry)
 
 ##### `impl StructuralPartialEq for ObjectMapEntry<'data>`
 
@@ -624,7 +624,7 @@ An object file name in an [`ObjectMap`](../index.md).
 
 ##### `impl Clone for ObjectMapFile<'data>`
 
-- <span id="objectmapfile-clone"></span>`fn clone(&self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](../index.md)
+- <span id="objectmapfile-clone"></span>`fn clone(&self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](../index.md#objectmapfile)
 
 ##### `impl Copy for ObjectMapFile<'data>`
 
@@ -640,7 +640,7 @@ An object file name in an [`ObjectMap`](../index.md).
 
 ##### `impl PartialEq for ObjectMapFile<'data>`
 
-- <span id="objectmapfile-eq"></span>`fn eq(&self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](../index.md)
+- <span id="objectmapfile-eq"></span>`fn eq(&self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](../index.md#objectmapfile)
 
 ##### `impl StructuralPartialEq for ObjectMapFile<'data>`
 
@@ -669,7 +669,7 @@ Returned by `Object::imports`.
 
 ##### `impl Clone for Import<'data>`
 
-- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md)
+- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md#import)
 
 ##### `impl Copy for Import<'data>`
 
@@ -681,7 +681,7 @@ Returned by `Object::imports`.
 
 ##### `impl PartialEq for Import<'data>`
 
-- <span id="import-eq"></span>`fn eq(&self, other: &Import<'data>) -> bool` — [`Import`](../index.md)
+- <span id="import-eq"></span>`fn eq(&self, other: &Import<'data>) -> bool` — [`Import`](../index.md#import)
 
 ##### `impl StructuralPartialEq for Import<'data>`
 
@@ -710,7 +710,7 @@ Returned by `Object::exports`.
 
 ##### `impl Clone for Export<'data>`
 
-- <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](../index.md)
+- <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](../index.md#export)
 
 ##### `impl Copy for Export<'data>`
 
@@ -722,7 +722,7 @@ Returned by `Object::exports`.
 
 ##### `impl PartialEq for Export<'data>`
 
-- <span id="export-eq"></span>`fn eq(&self, other: &Export<'data>) -> bool` — [`Export`](../index.md)
+- <span id="export-eq"></span>`fn eq(&self, other: &Export<'data>) -> bool` — [`Export`](../index.md#export)
 
 ##### `impl StructuralPartialEq for Export<'data>`
 
@@ -752,7 +752,7 @@ PDB information from the debug directory in a PE file.
 
 ##### `impl Clone for CodeView<'data>`
 
-- <span id="codeview-clone"></span>`fn clone(&self) -> CodeView<'data>` — [`CodeView`](../index.md)
+- <span id="codeview-clone"></span>`fn clone(&self) -> CodeView<'data>` — [`CodeView`](../index.md#codeview)
 
 ##### `impl Copy for CodeView<'data>`
 
@@ -764,7 +764,7 @@ PDB information from the debug directory in a PE file.
 
 ##### `impl PartialEq for CodeView<'data>`
 
-- <span id="codeview-eq"></span>`fn eq(&self, other: &CodeView<'data>) -> bool` — [`CodeView`](../index.md)
+- <span id="codeview-eq"></span>`fn eq(&self, other: &CodeView<'data>) -> bool` — [`CodeView`](../index.md#codeview)
 
 ##### `impl StructuralPartialEq for CodeView<'data>`
 
@@ -790,13 +790,13 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 
 #### Implementations
 
-- <span id="relocation-kind"></span>`fn kind(&self) -> RelocationKind` — [`RelocationKind`](../index.md)
+- <span id="relocation-kind"></span>`fn kind(&self) -> RelocationKind` — [`RelocationKind`](../index.md#relocationkind)
 
-- <span id="relocation-encoding"></span>`fn encoding(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md)
+- <span id="relocation-encoding"></span>`fn encoding(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 - <span id="relocation-size"></span>`fn size(&self) -> u8`
 
-- <span id="relocation-target"></span>`fn target(&self) -> RelocationTarget` — [`RelocationTarget`](../index.md)
+- <span id="relocation-target"></span>`fn target(&self) -> RelocationTarget` — [`RelocationTarget`](../index.md#relocationtarget)
 
 - <span id="relocation-addend"></span>`fn addend(&self) -> i64`
 
@@ -804,7 +804,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 
 - <span id="relocation-has-implicit-addend"></span>`fn has_implicit_addend(&self) -> bool`
 
-- <span id="relocation-flags"></span>`fn flags(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md)
+- <span id="relocation-flags"></span>`fn flags(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md#relocationflags)
 
 #### Trait Implementations
 
@@ -830,9 +830,9 @@ Returned by `ObjectSection::relocation_map`.
 
 #### Implementations
 
-- <span id="relocationmap-new"></span>`fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](#object), [`Result`](../index.md)
+- <span id="relocationmap-new"></span>`fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](#object), [`Result`](../index.md#result)
 
-- <span id="relocationmap-add"></span>`fn add<'data: 'file, 'file, T>(&mut self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](../index.md), [`Result`](../index.md)
+- <span id="relocationmap-add"></span>`fn add<'data: 'file, 'file, T>(&mut self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](../index.md#relocation), [`Result`](../index.md#result)
 
 - <span id="relocationmap-relocate"></span>`fn relocate(&self, offset: u64, value: u64) -> u64`
 
@@ -844,7 +844,7 @@ Returned by `ObjectSection::relocation_map`.
 
 ##### `impl Default for RelocationMap`
 
-- <span id="relocationmap-default"></span>`fn default() -> RelocationMap` — [`RelocationMap`](../index.md)
+- <span id="relocationmap-default"></span>`fn default() -> RelocationMap` — [`RelocationMap`](../index.md#relocationmap)
 
 ### `RelocationMapEntry`
 
@@ -920,13 +920,13 @@ Returned by `ObjectSection::compressed_file_range`.
 
 - <span id="compressedfilerange-none"></span>`fn none(range: Option<(u64, u64)>) -> Self`
 
-- <span id="compressedfilerange-data"></span>`fn data<'data, R: ReadRef<'data>>(self, file: R) -> Result<CompressedData<'data>>` — [`Result`](../index.md), [`CompressedData`](../index.md)
+- <span id="compressedfilerange-data"></span>`fn data<'data, R: ReadRef<'data>>(self, file: R) -> Result<CompressedData<'data>>` — [`Result`](../index.md#result), [`CompressedData`](../index.md#compresseddata)
 
 #### Trait Implementations
 
 ##### `impl Clone for CompressedFileRange`
 
-- <span id="compressedfilerange-clone"></span>`fn clone(&self) -> CompressedFileRange` — [`CompressedFileRange`](../index.md)
+- <span id="compressedfilerange-clone"></span>`fn clone(&self) -> CompressedFileRange` — [`CompressedFileRange`](../index.md#compressedfilerange)
 
 ##### `impl Copy for CompressedFileRange`
 
@@ -942,7 +942,7 @@ Returned by `ObjectSection::compressed_file_range`.
 
 ##### `impl PartialEq for CompressedFileRange`
 
-- <span id="compressedfilerange-eq"></span>`fn eq(&self, other: &CompressedFileRange) -> bool` — [`CompressedFileRange`](../index.md)
+- <span id="compressedfilerange-eq"></span>`fn eq(&self, other: &CompressedFileRange) -> bool` — [`CompressedFileRange`](../index.md#compressedfilerange)
 
 ##### `impl StructuralPartialEq for CompressedFileRange`
 
@@ -980,13 +980,13 @@ Returned by `ObjectSection::compressed_data`.
 
 - <span id="compresseddata-none"></span>`fn none(data: &'data [u8]) -> Self`
 
-- <span id="compresseddata-decompress"></span>`fn decompress(self) -> Result<Cow<'data, [u8]>>` — [`Result`](../index.md)
+- <span id="compresseddata-decompress"></span>`fn decompress(self) -> Result<Cow<'data, [u8]>>` — [`Result`](../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for CompressedData<'data>`
 
-- <span id="compresseddata-clone"></span>`fn clone(&self) -> CompressedData<'data>` — [`CompressedData`](../index.md)
+- <span id="compresseddata-clone"></span>`fn clone(&self) -> CompressedData<'data>` — [`CompressedData`](../index.md#compresseddata)
 
 ##### `impl Copy for CompressedData<'data>`
 
@@ -1002,7 +1002,7 @@ Returned by `ObjectSection::compressed_data`.
 
 ##### `impl PartialEq for CompressedData<'data>`
 
-- <span id="compresseddata-eq"></span>`fn eq(&self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](../index.md)
+- <span id="compresseddata-eq"></span>`fn eq(&self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](../index.md#compresseddata)
 
 ##### `impl StructuralPartialEq for CompressedData<'data>`
 
@@ -1229,7 +1229,7 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 
 ##### `impl Clone for ByteString<'data>`
 
-- <span id="bytestring-clone"></span>`fn clone(&self) -> ByteString<'data>` — [`ByteString`](util/index.md)
+- <span id="bytestring-clone"></span>`fn clone(&self) -> ByteString<'data>` — [`ByteString`](util/index.md#bytestring)
 
 ##### `impl Copy for ByteString<'data>`
 
@@ -1239,13 +1239,13 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 
 ##### `impl Default for ByteString<'data>`
 
-- <span id="bytestring-default"></span>`fn default() -> ByteString<'data>` — [`ByteString`](util/index.md)
+- <span id="bytestring-default"></span>`fn default() -> ByteString<'data>` — [`ByteString`](util/index.md#bytestring)
 
 ##### `impl Eq for ByteString<'data>`
 
 ##### `impl PartialEq for ByteString<'data>`
 
-- <span id="bytestring-eq"></span>`fn eq(&self, other: &ByteString<'data>) -> bool` — [`ByteString`](util/index.md)
+- <span id="bytestring-eq"></span>`fn eq(&self, other: &ByteString<'data>) -> bool` — [`ByteString`](util/index.md#bytestring)
 
 ##### `impl StructuralPartialEq for ByteString<'data>`
 
@@ -1352,15 +1352,15 @@ Most functionality is provided by the [`ObjectSegment`](#objectsegment) trait im
 
 - <span id="segment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- <span id="segment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="segment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
-- <span id="segment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md)
+- <span id="segment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md#result)
 
-- <span id="segment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../index.md)
+- <span id="segment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../index.md#result)
 
-- <span id="segment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../index.md)
+- <span id="segment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../index.md#result)
 
-- <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md)
+- <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Segment<'data, 'file, R>`
 
@@ -1420,7 +1420,7 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 
 - <span id="section-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../index.md)
+- <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../index.md#sectionindex)
 
 - <span id="section-address"></span>`fn address(&self) -> u64`
 
@@ -1430,29 +1430,29 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 
 - <span id="section-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- <span id="section-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="section-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
-- <span id="section-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md)
+- <span id="section-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md#result)
 
-- <span id="section-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../index.md), [`CompressedFileRange`](../index.md)
+- <span id="section-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../index.md#result), [`CompressedFileRange`](../index.md#compressedfilerange)
 
-- <span id="section-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../index.md), [`CompressedData`](../index.md)
+- <span id="section-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../index.md#result), [`CompressedData`](../index.md#compresseddata)
 
-- <span id="section-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="section-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
-- <span id="section-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md)
+- <span id="section-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md#result)
 
-- <span id="section-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../index.md)
+- <span id="section-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../index.md#result)
 
-- <span id="section-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../index.md)
+- <span id="section-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../index.md#result)
 
-- <span id="section-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../index.md)
+- <span id="section-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../index.md#sectionkind)
 
 - <span id="section-relocations"></span>`fn relocations(&self) -> SectionRelocationIterator<'data, 'file, R>` — [`SectionRelocationIterator`](#sectionrelocationiterator)
 
-- <span id="section-relocation-map"></span>`fn relocation_map(&self) -> Result<RelocationMap>` — [`Result`](../index.md), [`RelocationMap`](../index.md)
+- <span id="section-relocation-map"></span>`fn relocation_map(&self) -> Result<RelocationMap>` — [`Result`](../index.md#result), [`RelocationMap`](../index.md#relocationmap)
 
-- <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../index.md)
+- <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Section<'data, 'file, R>`
 
@@ -1512,13 +1512,13 @@ Most functionality is provided by the [`ObjectComdat`](#objectcomdat) trait impl
 
 - <span id="comdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../index.md)
+- <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../index.md#comdatkind)
 
-- <span id="comdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="comdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
-- <span id="comdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="comdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
-- <span id="comdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md)
+- <span id="comdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md#result)
 
 - <span id="comdat-sections"></span>`fn sections(&self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](#comdatsectioniterator)
 
@@ -1586,7 +1586,7 @@ Most functionality is provided by the [`ObjectSymbolTable`](#objectsymboltable) 
 
 - <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](#objectsymboltable)
 
-- <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../index.md), [`Result`](../index.md), [`ObjectSymbolTable`](#objectsymboltable)
+- <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../index.md#symbolindex), [`Result`](../index.md#result), [`ObjectSymbolTable`](#objectsymboltable)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for SymbolTable<'data, 'file, R>`
 
@@ -1648,19 +1648,19 @@ Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait impl
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
 
-- <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
-- <span id="symbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="symbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
-- <span id="symbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../index.md#result)
 
 - <span id="symbol-address"></span>`fn address(&self) -> u64`
 
 - <span id="symbol-size"></span>`fn size(&self) -> u64`
 
-- <span id="symbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../index.md)
+- <span id="symbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../index.md#symbolkind)
 
-- <span id="symbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../index.md)
+- <span id="symbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../index.md#symbolsection)
 
 - <span id="symbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
@@ -1670,13 +1670,13 @@ Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait impl
 
 - <span id="symbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- <span id="symbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../index.md)
+- <span id="symbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../index.md#symbolscope)
 
 - <span id="symbol-is-global"></span>`fn is_global(&self) -> bool`
 
 - <span id="symbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../index.md), [`SectionIndex`](../index.md), [`SymbolIndex`](../index.md)
+- <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../index.md#symbolflags), [`SectionIndex`](../index.md#sectionindex), [`SymbolIndex`](../index.md#symbolindex)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Symbol<'data, 'file, R>`
 
@@ -1900,15 +1900,15 @@ A file format kind.
 
 #### Implementations
 
-- <span id="filekind-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>` — [`Result`](../index.md), [`FileKind`](../index.md)
+- <span id="filekind-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>` — [`Result`](../index.md#result), [`FileKind`](../index.md#filekind)
 
-- <span id="filekind-parse-at"></span>`fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>` — [`Result`](../index.md), [`FileKind`](../index.md)
+- <span id="filekind-parse-at"></span>`fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>` — [`Result`](../index.md#result), [`FileKind`](../index.md#filekind)
 
 #### Trait Implementations
 
 ##### `impl Clone for FileKind`
 
-- <span id="filekind-clone"></span>`fn clone(&self) -> FileKind` — [`FileKind`](../index.md)
+- <span id="filekind-clone"></span>`fn clone(&self) -> FileKind` — [`FileKind`](../index.md#filekind)
 
 ##### `impl Copy for FileKind`
 
@@ -1924,7 +1924,7 @@ A file format kind.
 
 ##### `impl PartialEq for FileKind`
 
-- <span id="filekind-eq"></span>`fn eq(&self, other: &FileKind) -> bool` — [`FileKind`](../index.md)
+- <span id="filekind-eq"></span>`fn eq(&self, other: &FileKind) -> bool` — [`FileKind`](../index.md#filekind)
 
 ##### `impl StructuralPartialEq for FileKind`
 
@@ -1972,7 +1972,7 @@ Returned by `Object::kind`.
 
 ##### `impl Clone for ObjectKind`
 
-- <span id="objectkind-clone"></span>`fn clone(&self) -> ObjectKind` — [`ObjectKind`](../index.md)
+- <span id="objectkind-clone"></span>`fn clone(&self) -> ObjectKind` — [`ObjectKind`](../index.md#objectkind)
 
 ##### `impl Copy for ObjectKind`
 
@@ -1988,7 +1988,7 @@ Returned by `Object::kind`.
 
 ##### `impl PartialEq for ObjectKind`
 
-- <span id="objectkind-eq"></span>`fn eq(&self, other: &ObjectKind) -> bool` — [`ObjectKind`](../index.md)
+- <span id="objectkind-eq"></span>`fn eq(&self, other: &ObjectKind) -> bool` — [`ObjectKind`](../index.md#objectkind)
 
 ##### `impl StructuralPartialEq for ObjectKind`
 
@@ -2037,13 +2037,13 @@ The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 
 #### Implementations
 
-- <span id="symbolsection-index"></span>`fn index(self) -> Option<SectionIndex>` — [`SectionIndex`](../index.md)
+- <span id="symbolsection-index"></span>`fn index(self) -> Option<SectionIndex>` — [`SectionIndex`](../index.md#sectionindex)
 
 #### Trait Implementations
 
 ##### `impl Clone for SymbolSection`
 
-- <span id="symbolsection-clone"></span>`fn clone(&self) -> SymbolSection` — [`SymbolSection`](../index.md)
+- <span id="symbolsection-clone"></span>`fn clone(&self) -> SymbolSection` — [`SymbolSection`](../index.md#symbolsection)
 
 ##### `impl Copy for SymbolSection`
 
@@ -2059,7 +2059,7 @@ The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 
 ##### `impl PartialEq for SymbolSection`
 
-- <span id="symbolsection-eq"></span>`fn eq(&self, other: &SymbolSection) -> bool` — [`SymbolSection`](../index.md)
+- <span id="symbolsection-eq"></span>`fn eq(&self, other: &SymbolSection) -> bool` — [`SymbolSection`](../index.md#symbolsection)
 
 ##### `impl StructuralPartialEq for SymbolSection`
 
@@ -2095,7 +2095,7 @@ The target referenced by a [`Relocation`](../index.md).
 
 ##### `impl Clone for RelocationTarget`
 
-- <span id="relocationtarget-clone"></span>`fn clone(&self) -> RelocationTarget` — [`RelocationTarget`](../index.md)
+- <span id="relocationtarget-clone"></span>`fn clone(&self) -> RelocationTarget` — [`RelocationTarget`](../index.md#relocationtarget)
 
 ##### `impl Copy for RelocationTarget`
 
@@ -2111,7 +2111,7 @@ The target referenced by a [`Relocation`](../index.md).
 
 ##### `impl PartialEq for RelocationTarget`
 
-- <span id="relocationtarget-eq"></span>`fn eq(&self, other: &RelocationTarget) -> bool` — [`RelocationTarget`](../index.md)
+- <span id="relocationtarget-eq"></span>`fn eq(&self, other: &RelocationTarget) -> bool` — [`RelocationTarget`](../index.md#relocationtarget)
 
 ##### `impl StructuralPartialEq for RelocationTarget`
 
@@ -2156,7 +2156,7 @@ A data compression format.
 
 ##### `impl Clone for CompressionFormat`
 
-- <span id="compressionformat-clone"></span>`fn clone(&self) -> CompressionFormat` — [`CompressionFormat`](../index.md)
+- <span id="compressionformat-clone"></span>`fn clone(&self) -> CompressionFormat` — [`CompressionFormat`](../index.md#compressionformat)
 
 ##### `impl Copy for CompressionFormat`
 
@@ -2172,7 +2172,7 @@ A data compression format.
 
 ##### `impl PartialEq for CompressionFormat`
 
-- <span id="compressionformat-eq"></span>`fn eq(&self, other: &CompressionFormat) -> bool` — [`CompressionFormat`](../index.md)
+- <span id="compressionformat-eq"></span>`fn eq(&self, other: &CompressionFormat) -> bool` — [`CompressionFormat`](../index.md#compressionformat)
 
 ##### `impl StructuralPartialEq for CompressionFormat`
 
@@ -2225,13 +2225,13 @@ A CPU architecture.
 
 #### Implementations
 
-- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md)
+- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md#addresssize)
 
 #### Trait Implementations
 
 ##### `impl Clone for Architecture`
 
-- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md)
+- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md#architecture)
 
 ##### `impl Copy for Architecture`
 
@@ -2247,7 +2247,7 @@ A CPU architecture.
 
 ##### `impl PartialEq for Architecture`
 
-- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md)
+- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md#architecture)
 
 ##### `impl StructuralPartialEq for Architecture`
 
@@ -2268,7 +2268,7 @@ A CPU sub-architecture.
 
 ##### `impl Clone for SubArchitecture`
 
-- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md#subarchitecture)
 
 ##### `impl Copy for SubArchitecture`
 
@@ -2284,7 +2284,7 @@ A CPU sub-architecture.
 
 ##### `impl PartialEq for SubArchitecture`
 
-- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md#subarchitecture)
 
 ##### `impl StructuralPartialEq for SubArchitecture`
 
@@ -2313,7 +2313,7 @@ This may differ from the address size supported by the file format (such as for 
 
 ##### `impl Clone for AddressSize`
 
-- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md)
+- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md#addresssize)
 
 ##### `impl Copy for AddressSize`
 
@@ -2329,7 +2329,7 @@ This may differ from the address size supported by the file format (such as for 
 
 ##### `impl PartialEq for AddressSize`
 
-- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md)
+- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md#addresssize)
 
 ##### `impl StructuralPartialEq for AddressSize`
 
@@ -2352,13 +2352,13 @@ A binary file format.
 
 #### Implementations
 
-- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
 #### Trait Implementations
 
 ##### `impl Clone for BinaryFormat`
 
-- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
 ##### `impl Copy for BinaryFormat`
 
@@ -2374,7 +2374,7 @@ A binary file format.
 
 ##### `impl PartialEq for BinaryFormat`
 
-- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md#binaryformat)
 
 ##### `impl StructuralPartialEq for BinaryFormat`
 
@@ -2547,7 +2547,7 @@ The kind of a section.
 
 ##### `impl Clone for SectionKind`
 
-- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md)
+- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md#sectionkind)
 
 ##### `impl Copy for SectionKind`
 
@@ -2563,7 +2563,7 @@ The kind of a section.
 
 ##### `impl PartialEq for SectionKind`
 
-- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md)
+- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md#sectionkind)
 
 ##### `impl StructuralPartialEq for SectionKind`
 
@@ -2634,7 +2634,7 @@ sections.
 
 ##### `impl Clone for ComdatKind`
 
-- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md#comdatkind)
 
 ##### `impl Copy for ComdatKind`
 
@@ -2650,7 +2650,7 @@ sections.
 
 ##### `impl PartialEq for ComdatKind`
 
-- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md#comdatkind)
 
 ##### `impl StructuralPartialEq for ComdatKind`
 
@@ -2706,7 +2706,7 @@ The kind of a symbol.
 
 ##### `impl Clone for SymbolKind`
 
-- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md#symbolkind)
 
 ##### `impl Copy for SymbolKind`
 
@@ -2722,7 +2722,7 @@ The kind of a symbol.
 
 ##### `impl PartialEq for SymbolKind`
 
-- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md#symbolkind)
 
 ##### `impl StructuralPartialEq for SymbolKind`
 
@@ -2763,7 +2763,7 @@ A symbol scope.
 
 ##### `impl Clone for SymbolScope`
 
-- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md#symbolscope)
 
 ##### `impl Copy for SymbolScope`
 
@@ -2779,7 +2779,7 @@ A symbol scope.
 
 ##### `impl PartialEq for SymbolScope`
 
-- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md#symbolscope)
 
 ##### `impl StructuralPartialEq for SymbolScope`
 
@@ -2869,7 +2869,7 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl Clone for RelocationKind`
 
-- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md#relocationkind)
 
 ##### `impl Copy for RelocationKind`
 
@@ -2885,7 +2885,7 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl PartialEq for RelocationKind`
 
-- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md#relocationkind)
 
 ##### `impl StructuralPartialEq for RelocationKind`
 
@@ -3012,7 +3012,7 @@ a specific instruction.
 
 ##### `impl Clone for RelocationEncoding`
 
-- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 ##### `impl Copy for RelocationEncoding`
 
@@ -3028,7 +3028,7 @@ a specific instruction.
 
 ##### `impl PartialEq for RelocationEncoding`
 
-- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md#relocationencoding)
 
 ##### `impl StructuralPartialEq for RelocationEncoding`
 
@@ -3084,7 +3084,7 @@ File flags that are specific to each file format.
 
 ##### `impl Clone for FileFlags`
 
-- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md)
+- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl Copy for FileFlags`
 
@@ -3100,7 +3100,7 @@ File flags that are specific to each file format.
 
 ##### `impl PartialEq for FileFlags`
 
-- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md)
+- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl StructuralPartialEq for FileFlags`
 
@@ -3149,7 +3149,7 @@ Segment flags that are specific to each file format.
 
 ##### `impl Clone for SegmentFlags`
 
-- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl Copy for SegmentFlags`
 
@@ -3165,7 +3165,7 @@ Segment flags that are specific to each file format.
 
 ##### `impl PartialEq for SegmentFlags`
 
-- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md#segmentflags)
 
 ##### `impl StructuralPartialEq for SegmentFlags`
 
@@ -3219,7 +3219,7 @@ Section flags that are specific to each file format.
 
 ##### `impl Clone for SectionFlags`
 
-- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl Copy for SectionFlags`
 
@@ -3235,7 +3235,7 @@ Section flags that are specific to each file format.
 
 ##### `impl PartialEq for SectionFlags`
 
-- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md#sectionflags)
 
 ##### `impl StructuralPartialEq for SectionFlags`
 
@@ -3294,7 +3294,7 @@ Symbol flags that are specific to each file format.
 
 ##### `impl<Section: clone::Clone, Symbol: clone::Clone> Clone for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md#symbolflags)
 
 ##### `impl<Section: marker::Copy, Symbol: marker::Copy> Copy for SymbolFlags<Section, Symbol>`
 
@@ -3310,7 +3310,7 @@ Symbol flags that are specific to each file format.
 
 ##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
 
-- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md#symbolflags)
 
 ##### `impl<Section, Symbol> StructuralPartialEq for SymbolFlags<Section, Symbol>`
 
@@ -3371,7 +3371,7 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl Clone for RelocationFlags`
 
-- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md#relocationflags)
 
 ##### `impl Copy for RelocationFlags`
 
@@ -3387,7 +3387,7 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl PartialEq for RelocationFlags`
 
-- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md#relocationflags)
 
 ##### `impl StructuralPartialEq for RelocationFlags`
 
@@ -3416,11 +3416,11 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 #### Implementations
 
-- <span id="file-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../index.md)
+- <span id="file-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../index.md#result)
 
-- <span id="file-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](macho/index.md), [`Result`](../index.md)
+- <span id="file-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](macho/index.md#dyldcacheimage), [`Result`](../index.md#result)
 
-- <span id="file-format"></span>`fn format(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="file-format"></span>`fn format(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
 #### Trait Implementations
 
@@ -3450,27 +3450,27 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 - <span id="file-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../index.md)
+- <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../index.md#architecture)
 
-- <span id="file-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../index.md)
+- <span id="file-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../index.md#subarchitecture)
 
 - <span id="file-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
 - <span id="file-is-64"></span>`fn is_64(&self) -> bool`
 
-- <span id="file-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../index.md)
+- <span id="file-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../index.md#objectkind)
 
 - <span id="file-segments"></span>`fn segments(&self) -> SegmentIterator<'data, '_, R>` — [`SegmentIterator`](#segmentiterator)
 
 - <span id="file-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<Section<'data, 'file, R>>` — [`Section`](#section)
 
-- <span id="file-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../index.md), [`Result`](../index.md), [`Section`](#section)
+- <span id="file-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../index.md#sectionindex), [`Result`](../index.md#result), [`Section`](#section)
 
 - <span id="file-sections"></span>`fn sections(&self) -> SectionIterator<'data, '_, R>` — [`SectionIterator`](#sectioniterator)
 
 - <span id="file-comdats"></span>`fn comdats(&self) -> ComdatIterator<'data, '_, R>` — [`ComdatIterator`](#comdatiterator)
 
-- <span id="file-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../index.md), [`Result`](../index.md), [`Symbol`](#symbol)
+- <span id="file-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../index.md#symbolindex), [`Result`](../index.md#result), [`Symbol`](#symbol)
 
 - <span id="file-symbols"></span>`fn symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](#symboliterator)
 
@@ -3482,31 +3482,31 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 - <span id="file-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<DynamicRelocationIterator<'data, '_, R>>` — [`DynamicRelocationIterator`](#dynamicrelocationiterator)
 
-- <span id="file-symbol-map"></span>`fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../index.md), [`SymbolMapName`](../index.md)
+- <span id="file-symbol-map"></span>`fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../index.md#symbolmap), [`SymbolMapName`](../index.md#symbolmapname)
 
-- <span id="file-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../index.md)
+- <span id="file-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../index.md#objectmap)
 
-- <span id="file-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../index.md), [`Import`](../index.md)
+- <span id="file-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../index.md#result), [`Import`](../index.md#import)
 
-- <span id="file-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../index.md), [`Export`](../index.md)
+- <span id="file-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../index.md#result), [`Export`](../index.md#export)
 
 - <span id="file-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- <span id="file-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../index.md)
+- <span id="file-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../index.md#result)
 
-- <span id="file-build-id"></span>`fn build_id(&self) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md)
+- <span id="file-build-id"></span>`fn build_id(&self) -> Result<Option<&'data [u8]>>` — [`Result`](../index.md#result)
 
-- <span id="file-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../index.md)
+- <span id="file-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../index.md#result)
 
-- <span id="file-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../index.md)
+- <span id="file-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../index.md#result)
 
-- <span id="file-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../index.md), [`CodeView`](../index.md)
+- <span id="file-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../index.md#result), [`CodeView`](../index.md#codeview)
 
 - <span id="file-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
 - <span id="file-entry"></span>`fn entry(&self) -> u64`
 
-- <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../index.md)
+- <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../index.md#fileflags)
 
 ##### `impl<'data, R: ReadRef<'data>> Sealed for File<'data, R>`
 
@@ -3831,8 +3831,8 @@ An entry in a [`SymbolMap`](../index.md).
 
 #### Implementors
 
-- [`ObjectMapEntry`](../index.md)
-- [`SymbolMapName`](../index.md)
+- [`ObjectMapEntry`](../index.md#objectmapentry)
+- [`SymbolMapName`](../index.md#symbolmapname)
 
 ### `ReadRef<'a>`
 
@@ -4123,12 +4123,12 @@ This is the primary trait for the unified read API.
 
 #### Implementors
 
-- [`CoffFile`](coff/index.md)
-- [`ElfFile`](elf/index.md)
+- [`CoffFile`](coff/index.md#cofffile)
+- [`ElfFile`](elf/index.md#elffile)
 - [`File`](#file)
-- [`MachOFile`](macho/index.md)
-- [`PeFile`](pe/index.md)
-- [`XcoffFile`](xcoff/index.md)
+- [`MachOFile`](macho/index.md#machofile)
+- [`PeFile`](pe/index.md#pefile)
+- [`XcoffFile`](xcoff/index.md#xcofffile)
 
 ### `ObjectSegment<'data>`
 
@@ -4182,12 +4182,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSegment`](coff/index.md)
-- [`ElfSegment`](elf/index.md)
-- [`MachOSegment`](macho/index.md)
-- [`PeSegment`](pe/index.md)
+- [`CoffSegment`](coff/index.md#coffsegment)
+- [`ElfSegment`](elf/index.md#elfsegment)
+- [`MachOSegment`](macho/index.md#machosegment)
+- [`PeSegment`](pe/index.md#pesegment)
 - [`Segment`](#segment)
-- [`XcoffSegment`](xcoff/index.md)
+- [`XcoffSegment`](xcoff/index.md#xcoffsegment)
 
 ### `ObjectSection<'data>`
 
@@ -4283,12 +4283,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSection`](coff/index.md)
-- [`ElfSection`](elf/index.md)
-- [`MachOSection`](macho/index.md)
-- [`PeSection`](pe/index.md)
+- [`CoffSection`](coff/index.md#coffsection)
+- [`ElfSection`](elf/index.md#elfsection)
+- [`MachOSection`](macho/index.md#machosection)
+- [`PeSection`](pe/index.md#pesection)
 - [`Section`](#section)
-- [`XcoffSection`](xcoff/index.md)
+- [`XcoffSection`](xcoff/index.md#xcoffsection)
 
 ### `ObjectComdat<'data>`
 
@@ -4330,12 +4330,12 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffComdat`](coff/index.md)
+- [`CoffComdat`](coff/index.md#coffcomdat)
 - [`Comdat`](#comdat)
-- [`ElfComdat`](elf/index.md)
-- [`MachOComdat`](macho/index.md)
-- [`PeComdat`](pe/index.md)
-- [`XcoffComdat`](xcoff/index.md)
+- [`ElfComdat`](elf/index.md#elfcomdat)
+- [`MachOComdat`](macho/index.md#machocomdat)
+- [`PeComdat`](pe/index.md#pecomdat)
+- [`XcoffComdat`](xcoff/index.md#xcoffcomdat)
 
 ### `ObjectSymbolTable<'data>`
 
@@ -4367,11 +4367,11 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSymbolTable`](coff/index.md)
-- [`ElfSymbolTable`](elf/index.md)
-- [`MachOSymbolTable`](macho/index.md)
+- [`CoffSymbolTable`](coff/index.md#coffsymboltable)
+- [`ElfSymbolTable`](elf/index.md#elfsymboltable)
+- [`MachOSymbolTable`](macho/index.md#machosymboltable)
 - [`SymbolTable`](#symboltable)
-- [`XcoffSymbolTable`](xcoff/index.md)
+- [`XcoffSymbolTable`](xcoff/index.md#xcoffsymboltable)
 
 ### `ObjectSymbol<'data>`
 
@@ -4455,11 +4455,11 @@ This trait is part of the unified read API.
 
 #### Implementors
 
-- [`CoffSymbol`](coff/index.md)
-- [`ElfSymbol`](elf/index.md)
-- [`MachOSymbol`](macho/index.md)
+- [`CoffSymbol`](coff/index.md#coffsymbol)
+- [`ElfSymbol`](elf/index.md#elfsymbol)
+- [`MachOSymbol`](macho/index.md#machosymbol)
 - [`Symbol`](#symbol)
-- [`XcoffSymbol`](xcoff/index.md)
+- [`XcoffSymbol`](xcoff/index.md#xcoffsymbol)
 
 ## Functions
 

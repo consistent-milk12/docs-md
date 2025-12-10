@@ -74,7 +74,7 @@ perhaps more conveniently, with `DFA::config`.
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md#matchkind), [`Config`](#config)
 
 - <span id="config-starts-for-each-pattern"></span>`fn starts_for_each_pattern(self, yes: bool) -> Config` — [`Config`](#config)
 
@@ -82,7 +82,7 @@ perhaps more conveniently, with `DFA::config`.
 
 - <span id="config-size-limit"></span>`fn size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md#matchkind)
 
 - <span id="config-get-starts-for-each-pattern"></span>`fn get_starts_for_each_pattern(&self) -> bool`
 
@@ -178,13 +178,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`DFA`](#dfa), [`BuildError`](#builderror)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md#config), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md#config), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -301,21 +301,21 @@ because the duplication is cheap.
 
 #### Implementations
 
-- <span id="internalbuilder-new"></span>`fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/nfa/index.md), [`InternalBuilder`](#internalbuilder)
+- <span id="internalbuilder-new"></span>`fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`InternalBuilder`](#internalbuilder)
 
 - <span id="internalbuilder-build"></span>`fn build(self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
 - <span id="internalbuilder-shuffle-states"></span>`fn shuffle_states(&mut self)`
 
-- <span id="internalbuilder-compile-transition"></span>`fn compile_transition(&mut self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/nfa/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+- <span id="internalbuilder-compile-transition"></span>`fn compile_transition(&mut self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`Transition`](../../nfa/thompson/nfa/index.md#transition), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
 
-- <span id="internalbuilder-add-start-state"></span>`fn add_start_state(&mut self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-start-state"></span>`fn add_start_state(&mut self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../util/primitives/index.md#patternid), [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
 
-- <span id="internalbuilder-add-dfa-state-for-nfa-state"></span>`fn add_dfa_state_for_nfa_state(&mut self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-dfa-state-for-nfa-state"></span>`fn add_dfa_state_for_nfa_state(&mut self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
 
-- <span id="internalbuilder-add-empty-state"></span>`fn add_empty_state(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-empty-state"></span>`fn add_empty_state(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](#builderror)
 
-- <span id="internalbuilder-stack-push"></span>`fn stack_push(&mut self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+- <span id="internalbuilder-stack-push"></span>`fn stack_push(&mut self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
 
 #### Trait Implementations
 
@@ -589,7 +589,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="dfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- <span id="dfa-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="dfa-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa), [`DFA`](#dfa), [`BuildError`](#builderror)
 
 - <span id="dfa-always-match"></span>`fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
@@ -599,7 +599,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- <span id="dfa-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../util/captures/index.md)
+- <span id="dfa-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../util/captures/index.md#captures)
 
 - <span id="dfa-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
 
@@ -607,7 +607,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="dfa-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
 
-- <span id="dfa-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../../nfa/thompson/nfa/index.md)
+- <span id="dfa-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../../nfa/thompson/nfa/index.md#nfa)
 
 - <span id="dfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
@@ -637,9 +637,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="cratedfaonepassdfa-stride2"></span>`fn stride2(&self) -> usize`
 
-- <span id="cratedfaonepassdfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="cratedfaonepassdfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="cratedfaonepassdfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="cratedfaonepassdfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
 ### `SparseTransitionIter<'a>`
 
@@ -723,7 +723,7 @@ only be used with the new one-pass DFA (and not the old one).
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="cache-explicit-slots"></span>`fn explicit_slots(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md)
+- <span id="cache-explicit-slots"></span>`fn explicit_slots(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize)
 
 - <span id="cache-setup-search"></span>`fn setup_search(&mut self, explicit_slot_len: usize)`
 
@@ -765,15 +765,15 @@ must be satisfied in order to follow this transition.
 
 - <span id="transition-const-info-mask"></span>`const INFO_MASK: u64`
 
-- <span id="transition-new"></span>`fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`Transition`](#transition)
+- <span id="transition-new"></span>`fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md#stateid), [`Epsilons`](#epsilons), [`Transition`](#transition)
 
 - <span id="transition-is-dead"></span>`fn is_dead(self) -> bool`
 
 - <span id="transition-match-wins"></span>`fn match_wins(&self) -> bool`
 
-- <span id="transition-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="transition-set-state-id"></span>`fn set_state_id(&mut self, sid: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-set-state-id"></span>`fn set_state_id(&mut self, sid: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
 - <span id="transition-epsilons"></span>`fn epsilons(&self) -> Epsilons` — [`Epsilons`](#epsilons)
 
@@ -838,11 +838,11 @@ ever non-empty for match states.
 
 - <span id="patternepsilons-is-empty"></span>`fn is_empty(self) -> bool`
 
-- <span id="patternepsilons-pattern-id"></span>`fn pattern_id(self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
+- <span id="patternepsilons-pattern-id"></span>`fn pattern_id(self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="patternepsilons-pattern-id-unchecked"></span>`fn pattern_id_unchecked(self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+- <span id="patternepsilons-pattern-id-unchecked"></span>`fn pattern_id_unchecked(self) -> PatternID` — [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="patternepsilons-set-pattern-id"></span>`fn set_pattern_id(self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
+- <span id="patternepsilons-set-pattern-id"></span>`fn set_pattern_id(self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../util/primitives/index.md#patternid), [`PatternEpsilons`](#patternepsilons)
 
 - <span id="patternepsilons-epsilons"></span>`fn epsilons(self) -> Epsilons` — [`Epsilons`](#epsilons)
 
@@ -901,9 +901,9 @@ the lower 42 bits of a `Transition`. (Where the high 22 bits contains a
 
 - <span id="epsilons-set-slots"></span>`fn set_slots(self, slots: Slots) -> Epsilons` — [`Slots`](#slots), [`Epsilons`](#epsilons)
 
-- <span id="epsilons-looks"></span>`fn looks(self) -> LookSet` — [`LookSet`](../../util/look/index.md)
+- <span id="epsilons-looks"></span>`fn looks(self) -> LookSet` — [`LookSet`](../../util/look/index.md#lookset)
 
-- <span id="epsilons-set-looks"></span>`fn set_looks(self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md), [`Epsilons`](#epsilons)
+- <span id="epsilons-set-looks"></span>`fn set_looks(self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md#lookset), [`Epsilons`](#epsilons)
 
 #### Trait Implementations
 
@@ -970,7 +970,7 @@ index in the corresponding NFA.
 
 - <span id="slots-iter"></span>`fn iter(self) -> SlotsIter` — [`SlotsIter`](#slotsiter)
 
-- <span id="slots-apply"></span>`fn apply(self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md)
+- <span id="slots-apply"></span>`fn apply(self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize)
 
 #### Trait Implementations
 
@@ -1045,15 +1045,15 @@ trait.
 
 #### Implementations
 
-- <span id="builderror-nfa"></span>`fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md#builderror)
 
-- <span id="builderror-word"></span>`fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builderror-word"></span>`fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md#unicodewordboundaryerror), [`BuildError`](#builderror)
 
 - <span id="builderror-too-many-states"></span>`fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
 - <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-unsupported-look"></span>`fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builderror-unsupported-look"></span>`fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../util/look/index.md#look), [`BuildError`](#builderror)
 
 - <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 

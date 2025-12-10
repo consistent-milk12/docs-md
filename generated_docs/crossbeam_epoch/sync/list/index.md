@@ -45,7 +45,7 @@ cache-line than thread-local data in terms of performance.
 
 #### Implementations
 
-- <span id="entry-delete"></span>`unsafe fn delete(&self, guard: &Guard)` — [`Guard`](../../guard/index.md)
+- <span id="entry-delete"></span>`unsafe fn delete(&self, guard: &Guard)` — [`Guard`](../../guard/index.md#guard)
 
 #### Trait Implementations
 
@@ -63,7 +63,7 @@ cache-line than thread-local data in terms of performance.
 
 - <span id="entry-type-init"></span>`type Init = T`
 
-- <span id="entry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="entry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="entry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -98,9 +98,9 @@ A lock-free, intrusive linked list of type `T`.
 
 - <span id="list-new"></span>`fn new() -> Self`
 
-- <span id="list-insert"></span>`unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../atomic/index.md), [`Guard`](../../guard/index.md)
+- <span id="list-insert"></span>`unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../atomic/index.md#shared), [`Guard`](../../guard/index.md#guard)
 
-- <span id="list-iter"></span>`fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../guard/index.md), [`Iter`](#iter)
+- <span id="list-iter"></span>`fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../guard/index.md#guard), [`Iter`](#iter)
 
 #### Trait Implementations
 
@@ -118,7 +118,7 @@ A lock-free, intrusive linked list of type `T`.
 
 - <span id="list-type-init"></span>`type Init = T`
 
-- <span id="list-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="list-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="list-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -187,7 +187,7 @@ An iterator used for retrieving values from the list.
 
 - <span id="iter-type-init"></span>`type Init = T`
 
-- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="iter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -232,7 +232,7 @@ An error that occurs during iteration over the list.
 
 - <span id="itererror-type-init"></span>`type Init = T`
 
-- <span id="itererror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="itererror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="itererror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -314,5 +314,5 @@ struct B {
 
 #### Implementors
 
-- [`Local`](../../internal/index.md)
+- [`Local`](../../internal/index.md#local)
 

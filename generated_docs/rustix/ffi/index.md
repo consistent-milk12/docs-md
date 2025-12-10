@@ -79,7 +79,7 @@ than once.
 
 - <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`tcdrain`](../backend/termios/syscalls/index.md)
+- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`tcdrain`](../backend/termios/syscalls/index.md#tcdrain)
 
 - <span id="patterns-len"></span>`fn len(&self) -> usize`
 
@@ -91,7 +91,7 @@ than once.
 
 - <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`tcdrain`](../backend/termios/syscalls/index.md)
+- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`tcdrain`](../backend/termios/syscalls/index.md#tcdrain)
 
 - <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>`
 
@@ -107,7 +107,7 @@ than once.
 
 ##### `impl Debug for Patterns`
 
-- <span id="patterns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`ArgReg`](../backend/reg/index.md), [`A0`](../backend/reg/index.md)
+- <span id="patterns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`ArgReg`](../backend/reg/index.md#argreg), [`A0`](../backend/reg/index.md#a0)
 
 ## Functions
 

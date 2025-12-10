@@ -70,7 +70,7 @@ always available in a symbol, however, so all methods return an `Option`.
 
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md#bytesorwidestring)
 
 - <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 

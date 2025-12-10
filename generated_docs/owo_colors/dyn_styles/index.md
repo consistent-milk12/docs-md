@@ -104,7 +104,7 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 
 - <span id="cratestyled-type-inner"></span>`type Inner = T`
 
-- <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](../index.md)
+- <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](../index.md#style)
 
 - <span id="cratestyled-inner"></span>`fn inner(&self) -> &T`
 
@@ -167,7 +167,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-new"></span>`const fn new() -> Self`
 
-- <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](../index.md)
+- <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](../index.md#styled)
 
 - <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
 
@@ -271,17 +271,17 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
 
-- <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](../index.md)
+- <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](../index.md#effect)
 
-- <span id="style-set-effects"></span>`const fn set_effects(self, effects: &[Effect], to: bool) -> Self` — [`Effect`](../index.md)
+- <span id="style-set-effects"></span>`const fn set_effects(self, effects: &[Effect], to: bool) -> Self` — [`Effect`](../index.md#effect)
 
-- <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+- <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](../index.md#effect)
 
-- <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+- <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](../index.md#effect)
 
-- <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+- <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md#effect)
 
-- <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+- <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md#effect)
 
 - <span id="style-remove-all-effects"></span>`const fn remove_all_effects(self) -> Self`
 
@@ -299,9 +299,9 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-is-plain"></span>`const fn is_plain(&self) -> bool`
 
-- <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+- <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md#styleprefixformatter)
 
-- <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+- <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md#stylesuffixformatter)
 
 - <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -311,7 +311,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 ##### `impl Clone for Style`
 
-- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md#style)
 
 ##### `impl Copy for Style`
 
@@ -327,7 +327,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md#style)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -384,7 +384,7 @@ the suffix, which is useful for formatting the prefix separately.
 
 ##### `impl Clone for StylePrefixFormatter`
 
-- <span id="styleprefixformatter-clone"></span>`fn clone(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+- <span id="styleprefixformatter-clone"></span>`fn clone(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md#styleprefixformatter)
 
 ##### `impl Copy for StylePrefixFormatter`
 
@@ -400,7 +400,7 @@ the suffix, which is useful for formatting the prefix separately.
 
 ##### `impl PartialEq for StylePrefixFormatter`
 
-- <span id="styleprefixformatter-eq"></span>`fn eq(&self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](../index.md)
+- <span id="styleprefixformatter-eq"></span>`fn eq(&self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](../index.md#styleprefixformatter)
 
 ##### `impl StructuralPartialEq for StylePrefixFormatter`
 
@@ -421,7 +421,7 @@ the prefix, which is useful for formatting the suffix separately.
 
 ##### `impl Clone for StyleSuffixFormatter`
 
-- <span id="stylesuffixformatter-clone"></span>`fn clone(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+- <span id="stylesuffixformatter-clone"></span>`fn clone(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md#stylesuffixformatter)
 
 ##### `impl Copy for StyleSuffixFormatter`
 
@@ -437,7 +437,7 @@ the prefix, which is useful for formatting the suffix separately.
 
 ##### `impl PartialEq for StyleSuffixFormatter`
 
-- <span id="stylesuffixformatter-eq"></span>`fn eq(&self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](../index.md)
+- <span id="stylesuffixformatter-eq"></span>`fn eq(&self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](../index.md#stylesuffixformatter)
 
 ##### `impl StructuralPartialEq for StyleSuffixFormatter`
 
@@ -467,7 +467,7 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 
 ##### `impl Clone for Effect`
 
-- <span id="effect-clone"></span>`fn clone(&self) -> Effect` — [`Effect`](../index.md)
+- <span id="effect-clone"></span>`fn clone(&self) -> Effect` — [`Effect`](../index.md#effect)
 
 ##### `impl Copy for Effect`
 

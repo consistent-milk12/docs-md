@@ -83,15 +83,15 @@ created.
 
 #### Implementations
 
-- <span id="attributes-new"></span>`fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-new"></span>`fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="attributes-new-root"></span>`fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-new-root"></span>`fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="attributes-child-of"></span>`fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-child-of"></span>`fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="attributes-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md)
+- <span id="attributes-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
 
-- <span id="attributes-values"></span>`fn values(&self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md)
+- <span id="attributes-values"></span>`fn values(&self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md#valueset)
 
 - <span id="attributes-is-root"></span>`fn is_root(&self) -> bool`
 
@@ -99,13 +99,13 @@ created.
 
 - <span id="attributes-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](#id)
 
-- <span id="attributes-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="attributes-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
 
-- <span id="attributes-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md)
+- <span id="attributes-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
 
 - <span id="attributes-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="attributes-fields"></span>`fn fields(&self) -> &FieldSet` — [`FieldSet`](../field/index.md)
+- <span id="attributes-fields"></span>`fn fields(&self) -> &FieldSet` — [`FieldSet`](../field/index.md#fieldset)
 
 #### Trait Implementations
 
@@ -127,13 +127,13 @@ A set of fields recorded by a span.
 
 #### Implementations
 
-- <span id="record-new"></span>`fn new(values: &'a field::ValueSet<'a>) -> Self` — [`ValueSet`](../field/index.md)
+- <span id="record-new"></span>`fn new(values: &'a field::ValueSet<'a>) -> Self` — [`ValueSet`](../field/index.md#valueset)
 
-- <span id="record-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="record-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
 
 - <span id="record-len"></span>`fn len(&self) -> usize`
 
-- <span id="record-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md)
+- <span id="record-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
 
 - <span id="record-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -165,7 +165,7 @@ possible states:
 
 #### Implementations
 
-- <span id="current-new"></span>`fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md)
+- <span id="current-new"></span>`fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
 - <span id="current-none"></span>`fn none() -> Self`
 
@@ -173,11 +173,11 @@ possible states:
 
 - <span id="current-is-known"></span>`fn is_known(&self) -> bool`
 
-- <span id="current-into-inner"></span>`fn into_inner(self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../metadata/index.md)
+- <span id="current-into-inner"></span>`fn into_inner(self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
 - <span id="current-id"></span>`fn id(&self) -> Option<&Id>` — [`Id`](#id)
 
-- <span id="current-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../metadata/index.md)
+- <span id="current-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../metadata/index.md#metadata)
 
 #### Trait Implementations
 

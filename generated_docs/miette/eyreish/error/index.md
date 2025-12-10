@@ -83,7 +83,7 @@ struct ErrorImpl<E> {
 
 #### Implementations
 
-- <span id="errorimpl-erase"></span>`fn erase(&self) -> Ref<'_, ErrorImpl<()>>` — [`Ref`](../ptr/index.md), [`ErrorImpl`](#errorimpl)
+- <span id="errorimpl-erase"></span>`fn erase(&self) -> Ref<'_, ErrorImpl<()>>` — [`Ref`](../ptr/index.md#ref), [`ErrorImpl`](#errorimpl)
 
 #### Trait Implementations
 
@@ -120,23 +120,23 @@ struct ContextError<D, E> {
 
 ##### `impl<E> Diag for ContextError<D, E>`
 
-- <span id="contexterror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="contexterror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
 ##### `impl<D, E> Diagnostic for super::error::ContextError<D, E>`
 
 - <span id="supererrorcontexterror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="supererrorcontexterror-severity"></span>`fn severity(&self) -> Option<crate::Severity>` — [`Severity`](../../index.md)
+- <span id="supererrorcontexterror-severity"></span>`fn severity(&self) -> Option<crate::Severity>` — [`Severity`](../../index.md#severity)
 
 - <span id="supererrorcontexterror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 - <span id="supererrorcontexterror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- <span id="supererrorcontexterror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="supererrorcontexterror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md#labeledspan)
 
-- <span id="supererrorcontexterror-source-code"></span>`fn source_code(&self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="supererrorcontexterror-source-code"></span>`fn source_code(&self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md#sourcecode)
 
-- <span id="supererrorcontexterror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="supererrorcontexterror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md#diagnostic)
 
 ##### `impl<D, E> Display for super::error::ContextError<D, E>`
 

@@ -67,7 +67,7 @@ will almost certainly result in a corrupt machine.
 
 - <span id="remapper-new"></span>`fn new(r: &impl Remappable) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
 
-- <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../../util/primitives/index.md)
+- <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../../util/primitives/index.md#stateid)
 
 - <span id="remapper-remap"></span>`fn remap(self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
 
@@ -113,9 +113,9 @@ indices.
 
 #### Implementations
 
-- <span id="indexmapper-to-index"></span>`fn to_index(&self, id: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
+- <span id="indexmapper-to-index"></span>`fn to_index(&self, id: StateID) -> usize` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="indexmapper-to-state-id"></span>`fn to_state_id(&self, index: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="indexmapper-to-state-id"></span>`fn to_state_id(&self, index: usize) -> StateID` — [`StateID`](../../util/primitives/index.md#stateid)
 
 #### Trait Implementations
 
@@ -177,5 +177,5 @@ DFAs are partitioned.
 
 #### Implementors
 
-- [`DFA`](../onepass/index.md)
+- [`DFA`](../onepass/index.md#dfa)
 

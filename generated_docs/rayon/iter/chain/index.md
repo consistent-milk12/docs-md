@@ -45,11 +45,11 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../index.
 
 ##### `impl<A, B> IndexedParallelIterator for Chain<A, B>`
 
-- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chain-len"></span>`fn len(&self) -> usize`
 
-- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Chain<A, B>`
 
@@ -65,7 +65,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../index.
 
 - <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
-- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -126,7 +126,7 @@ where
 
 - <span id="chainproducer-type-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
-- <span id="chainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="chainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="chainproducer-min-len"></span>`fn min_len(&self) -> usize`
 

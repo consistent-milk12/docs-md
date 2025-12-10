@@ -75,7 +75,7 @@ deserializing JSON data.
 
 - <span id="error-is-eof"></span>`fn is_eof(&self) -> bool`
 
-- <span id="error-io-error-kind"></span>`fn io_error_kind(&self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md)
+- <span id="error-io-error-kind"></span>`fn io_error_kind(&self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md#errorkind)
 
 #### Trait Implementations
 

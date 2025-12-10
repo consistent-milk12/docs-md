@@ -46,11 +46,11 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../index
 
 ##### `impl<'a, T, I> IndexedParallelIterator for Copied<I>`
 
-- <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="copied-len"></span>`fn len(&self) -> usize`
 
-- <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Copied<I>`
 
@@ -66,7 +66,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../index
 
 - <span id="copied-type-item"></span>`type Item = T`
 
-- <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="copied-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -118,7 +118,7 @@ struct CopiedProducer<P> {
 
 - <span id="copiedproducer-type-intoiter"></span>`type IntoIter = Copied<<P as Producer>::IntoIter>`
 
-- <span id="copiedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="copiedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="copiedproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -152,9 +152,9 @@ struct CopiedConsumer<C> {
 
 - <span id="copiedconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="copiedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="copiedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="copiedconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="copiedconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="copiedconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -178,7 +178,7 @@ struct CopiedConsumer<C> {
 
 - <span id="copiedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="copiedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="copiedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `CopiedFolder<F>`
 
@@ -200,7 +200,7 @@ struct CopiedFolder<F> {
 
 - <span id="copiedfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="copiedfolder-complete"></span>`fn complete(self) -> <F as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="copiedfolder-complete"></span>`fn complete(self) -> <F as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="copiedfolder-full"></span>`fn full(&self) -> bool`
 

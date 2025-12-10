@@ -69,21 +69,21 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 #### Implementations
 
-- <span id="repr-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- <span id="repr-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
 - <span id="repr-const-new"></span>`const fn const_new(text: &'static str) -> Self`
 
-- <span id="repr-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- <span id="repr-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
 - <span id="repr-from-utf8"></span>`fn from_utf8<B: AsRef<[u8]>>(buf: B) -> Result<Self, Utf8Error>`
 
-- <span id="repr-from-utf8-unchecked"></span>`unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- <span id="repr-from-utf8-unchecked"></span>`unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
-- <span id="repr-from-string"></span>`fn from_string(s: String, should_inline: bool) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- <span id="repr-from-string"></span>`fn from_string(s: String, should_inline: bool) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
 - <span id="repr-into-string"></span>`fn into_string(self) -> String`
 
-- <span id="repr-reserve"></span>`fn reserve(&mut self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](../index.md)
+- <span id="repr-reserve"></span>`fn reserve(&mut self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
 - <span id="repr-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
 
@@ -107,7 +107,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 - <span id="repr-as-static-str"></span>`const fn as_static_str(&self) -> Option<&'static str>`
 
-- <span id="repr-as-static-variant-mut"></span>`fn as_static_variant_mut(&mut self) -> Option<&mut StaticStr>` — [`StaticStr`](static_str/index.md)
+- <span id="repr-as-static-variant-mut"></span>`fn as_static_variant_mut(&mut self) -> Option<&mut StaticStr>` — [`StaticStr`](static_str/index.md#staticstr)
 
 - <span id="repr-as-mut-buf"></span>`unsafe fn as_mut_buf(&mut self) -> &mut [u8]`
 
@@ -115,19 +115,19 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 - <span id="repr-last-byte"></span>`const fn last_byte(&self) -> u8`
 
-- <span id="repr-from-inline"></span>`const fn from_inline(inline: InlineBuffer) -> Self` — [`InlineBuffer`](inline/index.md)
+- <span id="repr-from-inline"></span>`const fn from_inline(inline: InlineBuffer) -> Self` — [`InlineBuffer`](inline/index.md#inlinebuffer)
 
-- <span id="repr-from-heap"></span>`const fn from_heap(heap: HeapBuffer) -> Self` — [`HeapBuffer`](heap/index.md)
+- <span id="repr-from-heap"></span>`const fn from_heap(heap: HeapBuffer) -> Self` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
-- <span id="repr-from-static"></span>`const fn from_static(heap: StaticStr) -> Self` — [`StaticStr`](static_str/index.md)
+- <span id="repr-from-static"></span>`const fn from_static(heap: StaticStr) -> Self` — [`StaticStr`](static_str/index.md#staticstr)
 
-- <span id="repr-into-heap"></span>`const unsafe fn into_heap(self) -> HeapBuffer` — [`HeapBuffer`](heap/index.md)
+- <span id="repr-into-heap"></span>`const unsafe fn into_heap(self) -> HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
-- <span id="repr-as-mut-heap"></span>`unsafe fn as_mut_heap(&mut self) -> &mut HeapBuffer` — [`HeapBuffer`](heap/index.md)
+- <span id="repr-as-mut-heap"></span>`unsafe fn as_mut_heap(&mut self) -> &mut HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
-- <span id="repr-as-heap"></span>`unsafe fn as_heap(&self) -> &HeapBuffer` — [`HeapBuffer`](heap/index.md)
+- <span id="repr-as-heap"></span>`unsafe fn as_heap(&self) -> &HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
-- <span id="repr-as-mut-inline"></span>`unsafe fn as_mut_inline(&mut self) -> &mut InlineBuffer` — [`InlineBuffer`](inline/index.md)
+- <span id="repr-as-mut-inline"></span>`unsafe fn as_mut_inline(&mut self) -> &mut InlineBuffer` — [`InlineBuffer`](inline/index.md#inlinebuffer)
 
 #### Trait Implementations
 

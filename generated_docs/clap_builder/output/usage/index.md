@@ -27,15 +27,15 @@ struct Usage<'cmd> {
 
 #### Implementations
 
-- <span id="usage-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md)
+- <span id="usage-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md#command)
 
-- <span id="usage-required"></span>`fn required(self, required: &'cmd ChildGraph<Id>) -> Self` — [`ChildGraph`](../../util/graph/index.md), [`Id`](../../util/id/index.md)
+- <span id="usage-required"></span>`fn required(self, required: &'cmd ChildGraph<Id>) -> Self` — [`ChildGraph`](../../util/graph/index.md#childgraph), [`Id`](../../util/id/index.md#id)
 
-- <span id="usage-create-usage-with-title"></span>`fn create_usage_with_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- <span id="usage-create-usage-with-title"></span>`fn create_usage_with_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md#id), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
 
-- <span id="usage-create-usage-no-title"></span>`fn create_usage_no_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- <span id="usage-create-usage-no-title"></span>`fn create_usage_no_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md#id), [`StyledStr`](../../builder/styled_str/index.md#styledstr)
 
-- <span id="usage-write-usage-no-title"></span>`fn write_usage_no_title(&self, styled: &mut StyledStr, used: &[Id]) -> bool` — [`StyledStr`](../../builder/styled_str/index.md), [`Id`](../../util/id/index.md)
+- <span id="usage-write-usage-no-title"></span>`fn write_usage_no_title(&self, styled: &mut StyledStr, used: &[Id]) -> bool` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Id`](../../util/id/index.md#id)
 
 ## Constants
 

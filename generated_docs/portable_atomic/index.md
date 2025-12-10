@@ -347,7 +347,7 @@ assembly.
 
 - <span id="atomicbool-as-ptr"></span>`const fn as_ptr(&self) -> *mut bool`
 
-- <span id="atomicbool-as-atomic-u8"></span>`fn as_atomic_u8(&self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](imp/core_atomic/index.md)
+- <span id="atomicbool-as-atomic-u8"></span>`fn as_atomic_u8(&self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](imp/core_atomic/index.md#atomicu8)
 
 #### Trait Implementations
 

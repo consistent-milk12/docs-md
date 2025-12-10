@@ -67,9 +67,9 @@ A mapping from section index to associated relocation sections.
 
 #### Implementations
 
-- <span id="relocationsections-parse"></span>`fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](../index.md), [`SectionTable`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md)
+- <span id="relocationsections-parse"></span>`fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](../index.md#fileheader), [`SectionTable`](../index.md#sectiontable), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result)
 
-- <span id="relocationsections-get"></span>`fn get(&self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../../index.md)
+- <span id="relocationsections-get"></span>`fn get(&self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../../index.md#sectionindex)
 
 #### Trait Implementations
 
@@ -79,7 +79,7 @@ A mapping from section index to associated relocation sections.
 
 ##### `impl Default for RelocationSections`
 
-- <span id="relocationsections-default"></span>`fn default() -> RelocationSections` — [`RelocationSections`](../index.md)
+- <span id="relocationsections-default"></span>`fn default() -> RelocationSections` — [`RelocationSections`](../index.md#relocationsections)
 
 ### `ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
@@ -187,7 +187,7 @@ Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 #### Implementations
 
-- <span id="relriterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](../index.md)
+- <span id="relriterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](../index.md#fileheader)
 
 #### Trait Implementations
 
@@ -248,17 +248,17 @@ The specification has been submited here: <https://groups.google.com/g/generic-a
 
 #### Implementations
 
-- <span id="crel-symbol"></span>`fn symbol(&self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../../index.md)
+- <span id="crel-symbol"></span>`fn symbol(&self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../../index.md#symbolindex)
 
-- <span id="crel-from-rel"></span>`fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](../index.md), [`Crel`](../index.md)
+- <span id="crel-from-rel"></span>`fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](../index.md#rel), [`Crel`](../index.md#crel)
 
-- <span id="crel-from-rela"></span>`fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](../index.md), [`Crel`](../index.md)
+- <span id="crel-from-rela"></span>`fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](../index.md#rela), [`Crel`](../index.md#crel)
 
 #### Trait Implementations
 
 ##### `impl Clone for Crel`
 
-- <span id="crel-clone"></span>`fn clone(&self) -> Crel` — [`Crel`](../index.md)
+- <span id="crel-clone"></span>`fn clone(&self) -> Crel` — [`Crel`](../index.md#crel)
 
 ##### `impl Copy for Crel`
 
@@ -387,7 +387,7 @@ Compact relocation iterator.
 
 #### Implementations
 
-- <span id="creliterator-new"></span>`fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../../index.md)
+- <span id="creliterator-new"></span>`fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../../index.md#error)
 
 - <span id="creliterator-is-rela"></span>`fn is_rela(&self) -> bool`
 
@@ -395,13 +395,13 @@ Compact relocation iterator.
 
 - <span id="creliterator-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="creliterator-parse"></span>`fn parse(&mut self) -> read::Result<Crel>` — [`Result`](../../../index.md), [`Crel`](../index.md)
+- <span id="creliterator-parse"></span>`fn parse(&mut self) -> read::Result<Crel>` — [`Result`](../../../index.md#result), [`Crel`](../index.md#crel)
 
 #### Trait Implementations
 
 ##### `impl Clone for CrelIterator<'data>`
 
-- <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](../index.md)
+- <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](../index.md#creliterator)
 
 ##### `impl Debug for CrelIterator<'data>`
 
@@ -495,8 +495,8 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 
 #### Implementors
 
-- [`Rel32`](../../../elf/index.md)
-- [`Rel64`](../../../elf/index.md)
+- [`Rel32`](../../../elf/index.md#rel32)
+- [`Rel64`](../../../elf/index.md#rel64)
 
 ### `Rela`
 
@@ -536,8 +536,8 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 
 #### Implementors
 
-- [`Rela32`](../../../elf/index.md)
-- [`Rela64`](../../../elf/index.md)
+- [`Rela32`](../../../elf/index.md#rela32)
+- [`Rela64`](../../../elf/index.md#rela64)
 
 ### `Relr`
 
@@ -571,8 +571,8 @@ A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::
 
 #### Implementors
 
-- [`Relr32`](../../../elf/index.md)
-- [`Relr64`](../../../elf/index.md)
+- [`Relr32`](../../../elf/index.md#relr32)
+- [`Relr64`](../../../elf/index.md#relr64)
 
 ## Functions
 

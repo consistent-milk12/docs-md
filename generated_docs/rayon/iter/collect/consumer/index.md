@@ -48,7 +48,7 @@ struct CollectConsumer<'c, T: Send> {
 
 - <span id="collectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, CollectReducer)` — [`CollectReducer`](#collectreducer)
 
-- <span id="collectconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../../plumbing/index.md)
+- <span id="collectconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../../plumbing/index.md#consumer)
 
 - <span id="collectconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -72,7 +72,7 @@ struct CollectConsumer<'c, T: Send> {
 
 - <span id="collectconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="collectconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../../plumbing/index.md)
+- <span id="collectconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../../plumbing/index.md#consumer)
 
 ### `CollectResult<'c, T>`
 
@@ -127,7 +127,7 @@ the elements will be dropped, unless its ownership is released before then.
 
 - <span id="collectresult-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="collectresult-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../../plumbing/index.md)
+- <span id="collectresult-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../../plumbing/index.md#folder)
 
 - <span id="collectresult-full"></span>`fn full(&self) -> bool`
 

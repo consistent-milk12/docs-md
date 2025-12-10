@@ -28,7 +28,7 @@ struct ListsHeader {
 
 - <span id="listsheader-size"></span>`fn size(self) -> u8`
 
-- <span id="listsheader-size-for-encoding"></span>`fn size_for_encoding(encoding: Encoding) -> u8` — [`Encoding`](../../index.md)
+- <span id="listsheader-size-for-encoding"></span>`fn size_for_encoding(encoding: Encoding) -> u8` — [`Encoding`](../../index.md#encoding)
 
 #### Trait Implementations
 

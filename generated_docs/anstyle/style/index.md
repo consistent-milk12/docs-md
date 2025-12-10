@@ -45,13 +45,13 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-new"></span>`const fn new() -> Self`
 
-- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
-- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
-- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
-- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 
 - <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
@@ -69,15 +69,15 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-type-output"></span>`type Output = Style`
 
-- <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 
 ##### `impl BitOrAssign for Style`
 
-- <span id="style-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md)
+- <span id="style-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md#effects)
 
 ##### `impl Clone for Style`
 
-- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md#style)
 
 ##### `impl Copy for Style`
 
@@ -87,7 +87,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Default for Style`
 
-- <span id="style-default"></span>`fn default() -> Style` — [`Style`](../index.md)
+- <span id="style-default"></span>`fn default() -> Style` — [`Style`](../index.md#style)
 
 ##### `impl Display for Style`
 
@@ -101,15 +101,15 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Ord for Style`
 
-- <span id="style-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](../index.md)
+- <span id="style-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](../index.md#style)
 
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md#style)
 
 ##### `impl PartialOrd for Style`
 
-- <span id="style-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](../index.md)
+- <span id="style-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](../index.md#style)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -117,11 +117,11 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-type-output"></span>`type Output = Style`
 
-- <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 
 ##### `impl SubAssign for Style`
 
-- <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md)
+- <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md#effects)
 
 ##### `impl ToString for Style`
 

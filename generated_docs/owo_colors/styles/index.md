@@ -52,7 +52,7 @@ with the addition of boldening it. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="bolddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="bolddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -108,7 +108,7 @@ with the addition of dimming it. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="dimdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="dimdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -164,7 +164,7 @@ with the addition of italics. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="italicdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="italicdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -220,7 +220,7 @@ while underlining it. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="underlinedisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="underlinedisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -276,7 +276,7 @@ while blinking. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="blinkdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="blinkdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -331,7 +331,7 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 
 #### Implementations
 
-- <span id="blinkfastdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="blinkfastdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -386,7 +386,7 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 
 #### Implementations
 
-- <span id="reverseddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="reverseddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -441,7 +441,7 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
 #### Implementations
 
-- <span id="hiddendisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="hiddendisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 
@@ -497,7 +497,7 @@ crossed out. Recommended to be constructed using
 
 #### Implementations
 
-- <span id="strikethroughdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md)
+- <span id="strikethroughdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
 #### Trait Implementations
 

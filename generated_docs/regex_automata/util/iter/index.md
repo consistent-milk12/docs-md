@@ -185,27 +185,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="searcher-new"></span>`fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../index.md), [`Searcher`](#searcher)
+- <span id="searcher-new"></span>`fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../index.md#input), [`Searcher`](#searcher)
 
-- <span id="searcher-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="searcher-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md#input)
 
-- <span id="searcher-advance-half"></span>`fn advance_half<F>(&mut self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
+- <span id="searcher-advance-half"></span>`fn advance_half<F>(&mut self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="searcher-advance"></span>`fn advance<F>(&mut self, finder: F) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="searcher-advance"></span>`fn advance<F>(&mut self, finder: F) -> Option<Match>` — [`Match`](../../index.md#match)
 
-- <span id="searcher-try-advance-half"></span>`fn try_advance_half<F>(&mut self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-try-advance-half"></span>`fn try_advance_half<F>(&mut self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md#halfmatch), [`MatchError`](../../index.md#matcherror)
 
-- <span id="searcher-try-advance"></span>`fn try_advance<F>(&mut self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-try-advance"></span>`fn try_advance<F>(&mut self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md#match), [`MatchError`](../../index.md#matcherror)
 
 - <span id="searcher-into-half-matches-iter"></span>`fn into_half_matches_iter<F>(self, finder: F) -> TryHalfMatchesIter<'h, F>` — [`TryHalfMatchesIter`](#tryhalfmatchesiter)
 
 - <span id="searcher-into-matches-iter"></span>`fn into_matches_iter<F>(self, finder: F) -> TryMatchesIter<'h, F>` — [`TryMatchesIter`](#trymatchesiter)
 
-- <span id="searcher-into-captures-iter"></span>`fn into_captures_iter<F>(self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../captures/index.md), [`TryCapturesIter`](#trycapturesiter)
+- <span id="searcher-into-captures-iter"></span>`fn into_captures_iter<F>(self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../captures/index.md#captures), [`TryCapturesIter`](#trycapturesiter)
 
-- <span id="searcher-handle-overlapping-empty-half-match"></span>`fn handle_overlapping_empty_half_match<F>(&mut self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-handle-overlapping-empty-half-match"></span>`fn handle_overlapping_empty_half_match<F>(&mut self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md#halfmatch), [`MatchError`](../../index.md#matcherror)
 
-- <span id="searcher-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match<F>(&mut self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match<F>(&mut self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md#match), [`MatchError`](../../index.md#matcherror)
 
 #### Trait Implementations
 
@@ -251,7 +251,7 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 - <span id="tryhalfmatchesiter-infallible"></span>`fn infallible(self) -> HalfMatchesIter<'h, F>` — [`HalfMatchesIter`](#halfmatchesiter)
 
-- <span id="tryhalfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="tryhalfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -271,7 +271,7 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 - <span id="tryhalfmatchesiter-type-item"></span>`type Item = Result<HalfMatch, MatchError>`
 
-- <span id="tryhalfmatchesiter-next"></span>`fn next(&mut self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="tryhalfmatchesiter-next"></span>`fn next(&mut self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md#halfmatch), [`MatchError`](../../index.md#matcherror)
 
 ### `HalfMatchesIter<'h, F>`
 
@@ -303,7 +303,7 @@ then calling `TryHalfMatchesIter::infallible`.
 
 #### Implementations
 
-- <span id="halfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="halfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -323,7 +323,7 @@ then calling `TryHalfMatchesIter::infallible`.
 
 - <span id="halfmatchesiter-type-item"></span>`type Item = HalfMatch`
 
-- <span id="halfmatchesiter-next"></span>`fn next(&mut self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
+- <span id="halfmatchesiter-next"></span>`fn next(&mut self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md#halfmatch)
 
 ### `TryMatchesIter<'h, F>`
 
@@ -359,7 +359,7 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 - <span id="trymatchesiter-infallible"></span>`fn infallible(self) -> MatchesIter<'h, F>` — [`MatchesIter`](#matchesiter)
 
-- <span id="trymatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="trymatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -379,7 +379,7 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 - <span id="trymatchesiter-type-item"></span>`type Item = Result<Match, MatchError>`
 
-- <span id="trymatchesiter-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="trymatchesiter-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md#match), [`MatchError`](../../index.md#matcherror)
 
 ### `MatchesIter<'h, F>`
 
@@ -410,7 +410,7 @@ then calling `TryMatchesIter::infallible`.
 
 #### Implementations
 
-- <span id="matchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="matchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -430,7 +430,7 @@ then calling `TryMatchesIter::infallible`.
 
 - <span id="matchesiter-type-item"></span>`type Item = Match`
 
-- <span id="matchesiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="matchesiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
 
 ### `TryCapturesIter<'h, F>`
 
@@ -485,7 +485,7 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 - <span id="trycapturesiter-type-item"></span>`type Item = Result<Captures, MatchError>`
 
-- <span id="trycapturesiter-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md), [`MatchError`](../../index.md)
+- <span id="trycapturesiter-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md#captures), [`MatchError`](../../index.md#matcherror)
 
 ### `CapturesIter<'h, F>`
 
@@ -533,5 +533,5 @@ calling `TryCapturesIter::infallible`.
 
 - <span id="capturesiter-type-item"></span>`type Item = Captures`
 
-- <span id="capturesiter-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../captures/index.md)
+- <span id="capturesiter-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../captures/index.md#captures)
 

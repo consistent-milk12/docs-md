@@ -45,9 +45,9 @@ struct SlimSSSE3<const BYTES: usize> {
 
 #### Implementations
 
-- <span id="slimssse3-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="slimssse3-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
-- <span id="slimssse3-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="slimssse3-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
 #### Trait Implementations
 
@@ -61,7 +61,7 @@ struct SlimSSSE3<const BYTES: usize> {
 
 ##### `impl SearcherT for SlimSSSE3<1>`
 
-- <span id="slimssse3-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
+- <span id="slimssse3-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md#match)
 
 ### `SlimAVX2<const BYTES: usize>`
 
@@ -76,9 +76,9 @@ struct SlimAVX2<const BYTES: usize> {
 
 #### Implementations
 
-- <span id="slimavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="slimavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
-- <span id="slimavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="slimavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
 #### Trait Implementations
 
@@ -92,7 +92,7 @@ struct SlimAVX2<const BYTES: usize> {
 
 ##### `impl SearcherT for SlimAVX2<1>`
 
-- <span id="slimavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
+- <span id="slimavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md#match)
 
 ### `FatAVX2<const BYTES: usize>`
 
@@ -106,9 +106,9 @@ struct FatAVX2<const BYTES: usize> {
 
 #### Implementations
 
-- <span id="fatavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="fatavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
-- <span id="fatavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
+- <span id="fatavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
 #### Trait Implementations
 
@@ -122,7 +122,7 @@ struct FatAVX2<const BYTES: usize> {
 
 ##### `impl SearcherT for FatAVX2<1>`
 
-- <span id="fatavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
+- <span id="fatavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md#match)
 
 ## Functions
 

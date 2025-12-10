@@ -98,7 +98,7 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 - <span id="chunkby-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkBy<'data, T, P>`
 
@@ -155,7 +155,7 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 - <span id="chunkbymut-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkByMut<'data, T, P>`
 

@@ -94,7 +94,7 @@ the size that was read.
 
 #### Implementors
 
-- [`ReadCacheRange`](../index.md)
+- [`ReadCacheRange`](../index.md#readcacherange)
 - `&'a ReadCache<R>`
 - `&'a [u8]`
 

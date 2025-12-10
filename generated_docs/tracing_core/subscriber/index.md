@@ -93,21 +93,21 @@ never being interested in any callsite, and dropping all spans and events.
 
 ##### `impl Subscriber for NoSubscriber`
 
-- <span id="nosubscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../metadata/index.md), [`Interest`](#interest)
+- <span id="nosubscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../metadata/index.md#metadata), [`Interest`](#interest)
 
-- <span id="nosubscriber-new-span"></span>`fn new_span(&self, _: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
+- <span id="nosubscriber-new-span"></span>`fn new_span(&self, _: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md#attributes), [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../event/index.md)
+- <span id="nosubscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../event/index.md#event)
 
-- <span id="nosubscriber-record"></span>`fn record(&self, _span: &span::Id, _values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
+- <span id="nosubscriber-record"></span>`fn record(&self, _span: &span::Id, _values: &span::Record<'_>)` — [`Id`](../span/index.md#id), [`Record`](../span/index.md#record)
 
-- <span id="nosubscriber-record-follows-from"></span>`fn record_follows_from(&self, _span: &span::Id, _follows: &span::Id)` — [`Id`](../span/index.md)
+- <span id="nosubscriber-record-follows-from"></span>`fn record_follows_from(&self, _span: &span::Id, _follows: &span::Id)` — [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md)
+- <span id="nosubscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md#metadata)
 
-- <span id="nosubscriber-enter"></span>`fn enter(&self, _span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="nosubscriber-enter"></span>`fn enter(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
 
-- <span id="nosubscriber-exit"></span>`fn exit(&self, _span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="nosubscriber-exit"></span>`fn exit(&self, _span: &span::Id)` — [`Id`](../span/index.md#id)
 
 ## Enums
 

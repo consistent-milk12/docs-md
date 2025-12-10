@@ -60,7 +60,7 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 ##### `impl<R: clone::Clone> Clone for DebugAbbrev<R>`
 
-- <span id="debugabbrev-clone"></span>`fn clone(&self) -> DebugAbbrev<R>` — [`DebugAbbrev`](../index.md)
+- <span id="debugabbrev-clone"></span>`fn clone(&self) -> DebugAbbrev<R>` — [`DebugAbbrev`](../index.md#debugabbrev)
 
 ##### `impl<R: marker::Copy> Copy for DebugAbbrev<R>`
 
@@ -70,11 +70,11 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 ##### `impl<R: default::Default> Default for DebugAbbrev<R>`
 
-- <span id="debugabbrev-default"></span>`fn default() -> DebugAbbrev<R>` — [`DebugAbbrev`](../index.md)
+- <span id="debugabbrev-default"></span>`fn default() -> DebugAbbrev<R>` — [`DebugAbbrev`](../index.md#debugabbrev)
 
 ##### `impl<R> Section for DebugAbbrev<R>`
 
-- <span id="debugabbrev-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugabbrev-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugabbrev-reader"></span>`fn reader(&self) -> &R`
 
@@ -94,11 +94,11 @@ A cache of previously parsed `Abbreviations`.
 
 - <span id="abbreviationscache-new"></span>`fn new() -> Self`
 
-- <span id="abbreviationscache-populate"></span>`fn populate<R: Reader>(&mut self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](../index.md), [`DebugAbbrev`](../index.md), [`DebugInfoUnitHeadersIter`](../index.md)
+- <span id="abbreviationscache-populate"></span>`fn populate<R: Reader>(&mut self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](../index.md#abbreviationscachestrategy), [`DebugAbbrev`](../index.md#debugabbrev), [`DebugInfoUnitHeadersIter`](../index.md#debuginfounitheadersiter)
 
-- <span id="abbreviationscache-set"></span>`fn set<R: Reader>(&mut self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../../index.md), [`Reader`](../index.md), [`Abbreviations`](../index.md)
+- <span id="abbreviationscache-set"></span>`fn set<R: Reader>(&mut self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../../index.md#debugabbrevoffset), [`Reader`](../index.md#reader), [`Abbreviations`](../index.md#abbreviations)
 
-- <span id="abbreviationscache-get"></span>`fn get<R: Reader>(&self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](../index.md), [`DebugAbbrevOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
+- <span id="abbreviationscache-get"></span>`fn get<R: Reader>(&self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](../index.md#debugabbrev), [`DebugAbbrevOffset`](../../index.md#debugabbrevoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`Abbreviations`](../index.md#abbreviations)
 
 #### Trait Implementations
 
@@ -108,7 +108,7 @@ A cache of previously parsed `Abbreviations`.
 
 ##### `impl Default for AbbreviationsCache`
 
-- <span id="abbreviationscache-default"></span>`fn default() -> AbbreviationsCache` — [`AbbreviationsCache`](../index.md)
+- <span id="abbreviationscache-default"></span>`fn default() -> AbbreviationsCache` — [`AbbreviationsCache`](../index.md#abbreviationscache)
 
 ### `Abbreviations`
 
@@ -129,19 +129,19 @@ method.
 
 #### Implementations
 
-- <span id="abbreviations-empty"></span>`fn empty() -> Abbreviations` — [`Abbreviations`](../index.md)
+- <span id="abbreviations-empty"></span>`fn empty() -> Abbreviations` — [`Abbreviations`](../index.md#abbreviations)
 
-- <span id="abbreviations-insert"></span>`fn insert(&mut self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](../index.md)
+- <span id="abbreviations-insert"></span>`fn insert(&mut self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](../index.md#abbreviation)
 
-- <span id="abbreviations-get"></span>`fn get(&self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](../index.md)
+- <span id="abbreviations-get"></span>`fn get(&self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](../index.md#abbreviation)
 
-- <span id="abbreviations-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Abbreviations>` — [`Result`](../../index.md), [`Abbreviations`](../index.md)
+- <span id="abbreviations-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Abbreviations>` — [`Result`](../../index.md#result), [`Abbreviations`](../index.md#abbreviations)
 
 #### Trait Implementations
 
 ##### `impl Clone for Abbreviations`
 
-- <span id="abbreviations-clone"></span>`fn clone(&self) -> Abbreviations` — [`Abbreviations`](../index.md)
+- <span id="abbreviations-clone"></span>`fn clone(&self) -> Abbreviations` — [`Abbreviations`](../index.md#abbreviations)
 
 ##### `impl Debug for Abbreviations`
 
@@ -149,7 +149,7 @@ method.
 
 ##### `impl Default for Abbreviations`
 
-- <span id="abbreviations-default"></span>`fn default() -> Abbreviations` — [`Abbreviations`](../index.md)
+- <span id="abbreviations-default"></span>`fn default() -> Abbreviations` — [`Abbreviations`](../index.md#abbreviations)
 
 ### `Abbreviation`
 
@@ -169,29 +169,29 @@ its code, tag type, whether it has children, and its set of attributes.
 
 #### Implementations
 
-- <span id="abbreviation-new"></span>`fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../../index.md), [`DwChildren`](../../index.md), [`Attributes`](#attributes), [`Abbreviation`](../index.md)
+- <span id="abbreviation-new"></span>`fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../../index.md#dwtag), [`DwChildren`](../../index.md#dwchildren), [`Attributes`](#attributes), [`Abbreviation`](../index.md#abbreviation)
 
 - <span id="abbreviation-code"></span>`fn code(&self) -> u64`
 
-- <span id="abbreviation-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../../index.md)
+- <span id="abbreviation-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../../index.md#dwtag)
 
 - <span id="abbreviation-has-children"></span>`fn has_children(&self) -> bool`
 
-- <span id="abbreviation-attributes"></span>`fn attributes(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md)
+- <span id="abbreviation-attributes"></span>`fn attributes(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md#attributespecification)
 
-- <span id="abbreviation-parse-tag"></span>`fn parse_tag<R: Reader>(input: &mut R) -> Result<constants::DwTag>` — [`Result`](../../index.md), [`DwTag`](../../index.md)
+- <span id="abbreviation-parse-tag"></span>`fn parse_tag<R: Reader>(input: &mut R) -> Result<constants::DwTag>` — [`Result`](../../index.md#result), [`DwTag`](../../index.md#dwtag)
 
-- <span id="abbreviation-parse-has-children"></span>`fn parse_has_children<R: Reader>(input: &mut R) -> Result<constants::DwChildren>` — [`Result`](../../index.md), [`DwChildren`](../../index.md)
+- <span id="abbreviation-parse-has-children"></span>`fn parse_has_children<R: Reader>(input: &mut R) -> Result<constants::DwChildren>` — [`Result`](../../index.md#result), [`DwChildren`](../../index.md#dwchildren)
 
-- <span id="abbreviation-parse-attributes"></span>`fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../../index.md), [`Attributes`](#attributes)
+- <span id="abbreviation-parse-attributes"></span>`fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../../index.md#result), [`Attributes`](#attributes)
 
-- <span id="abbreviation-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../../index.md), [`Abbreviation`](../index.md)
+- <span id="abbreviation-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../../index.md#result), [`Abbreviation`](../index.md#abbreviation)
 
 #### Trait Implementations
 
 ##### `impl Clone for Abbreviation`
 
-- <span id="abbreviation-clone"></span>`fn clone(&self) -> Abbreviation` — [`Abbreviation`](../index.md)
+- <span id="abbreviation-clone"></span>`fn clone(&self) -> Abbreviation` — [`Abbreviation`](../index.md#abbreviation)
 
 ##### `impl Debug for Abbreviation`
 
@@ -201,7 +201,7 @@ its code, tag type, whether it has children, and its set of attributes.
 
 ##### `impl PartialEq for Abbreviation`
 
-- <span id="abbreviation-eq"></span>`fn eq(&self, other: &Abbreviation) -> bool` — [`Abbreviation`](../index.md)
+- <span id="abbreviation-eq"></span>`fn eq(&self, other: &Abbreviation) -> bool` — [`Abbreviation`](../index.md#abbreviation)
 
 ##### `impl StructuralPartialEq for Abbreviation`
 
@@ -222,25 +222,25 @@ and form.
 
 #### Implementations
 
-- <span id="attributespecification-new"></span>`fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../../index.md), [`DwForm`](../../index.md), [`AttributeSpecification`](../index.md)
+- <span id="attributespecification-new"></span>`fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../../index.md#dwat), [`DwForm`](../../index.md#dwform), [`AttributeSpecification`](../index.md#attributespecification)
 
-- <span id="attributespecification-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../../index.md)
+- <span id="attributespecification-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../../index.md#dwat)
 
-- <span id="attributespecification-form"></span>`fn form(&self) -> constants::DwForm` — [`DwForm`](../../index.md)
+- <span id="attributespecification-form"></span>`fn form(&self) -> constants::DwForm` — [`DwForm`](../../index.md#dwform)
 
 - <span id="attributespecification-implicit-const-value"></span>`fn implicit_const_value(&self) -> Option<i64>`
 
-- <span id="attributespecification-size"></span>`fn size<R: Reader>(&self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](../index.md)
+- <span id="attributespecification-size"></span>`fn size<R: Reader>(&self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](../index.md#unitheader)
 
-- <span id="attributespecification-parse-form"></span>`fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../../index.md), [`DwForm`](../../index.md)
+- <span id="attributespecification-parse-form"></span>`fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../../index.md#result), [`DwForm`](../../index.md#dwform)
 
-- <span id="attributespecification-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../../index.md), [`AttributeSpecification`](../index.md)
+- <span id="attributespecification-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../../index.md#result), [`AttributeSpecification`](../index.md#attributespecification)
 
 #### Trait Implementations
 
 ##### `impl Clone for AttributeSpecification`
 
-- <span id="attributespecification-clone"></span>`fn clone(&self) -> AttributeSpecification` — [`AttributeSpecification`](../index.md)
+- <span id="attributespecification-clone"></span>`fn clone(&self) -> AttributeSpecification` — [`AttributeSpecification`](../index.md#attributespecification)
 
 ##### `impl Copy for AttributeSpecification`
 
@@ -256,7 +256,7 @@ and form.
 
 ##### `impl PartialEq for AttributeSpecification`
 
-- <span id="attributespecification-eq"></span>`fn eq(&self, other: &AttributeSpecification) -> bool` — [`AttributeSpecification`](../index.md)
+- <span id="attributespecification-eq"></span>`fn eq(&self, other: &AttributeSpecification) -> bool` — [`AttributeSpecification`](../index.md#attributespecification)
 
 ##### `impl StructuralPartialEq for AttributeSpecification`
 
@@ -293,7 +293,7 @@ The strategy to use for caching abbreviations.
 
 ##### `impl Clone for AbbreviationsCacheStrategy`
 
-- <span id="abbreviationscachestrategy-clone"></span>`fn clone(&self) -> AbbreviationsCacheStrategy` — [`AbbreviationsCacheStrategy`](../index.md)
+- <span id="abbreviationscachestrategy-clone"></span>`fn clone(&self) -> AbbreviationsCacheStrategy` — [`AbbreviationsCacheStrategy`](../index.md#abbreviationscachestrategy)
 
 ##### `impl Copy for AbbreviationsCacheStrategy`
 
@@ -305,7 +305,7 @@ The strategy to use for caching abbreviations.
 
 ##### `impl PartialEq for AbbreviationsCacheStrategy`
 
-- <span id="abbreviationscachestrategy-eq"></span>`fn eq(&self, other: &AbbreviationsCacheStrategy) -> bool` — [`AbbreviationsCacheStrategy`](../index.md)
+- <span id="abbreviationscachestrategy-eq"></span>`fn eq(&self, other: &AbbreviationsCacheStrategy) -> bool` — [`AbbreviationsCacheStrategy`](../index.md#abbreviationscachestrategy)
 
 ##### `impl StructuralPartialEq for AbbreviationsCacheStrategy`
 
@@ -329,7 +329,7 @@ A list of attributes found in an `Abbreviation`
 
 - <span id="attributes-new"></span>`fn new() -> Attributes` — [`Attributes`](#attributes)
 
-- <span id="attributes-push"></span>`fn push(&mut self, attr: AttributeSpecification)` — [`AttributeSpecification`](../index.md)
+- <span id="attributes-push"></span>`fn push(&mut self, attr: AttributeSpecification)` — [`AttributeSpecification`](../index.md#attributespecification)
 
 #### Trait Implementations
 
@@ -345,7 +345,7 @@ A list of attributes found in an `Abbreviation`
 
 - <span id="attributes-type-target"></span>`type Target = [AttributeSpecification]`
 
-- <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md)
+- <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md#attributespecification)
 
 ##### `impl Eq for Attributes`
 

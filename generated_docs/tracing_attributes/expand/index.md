@@ -54,7 +54,7 @@ struct AsyncInfo<'block> {
 
 - <span id="asyncinfo-from-fn"></span>`fn from_fn(input: &'block ItemFn) -> Option<Self>`
 
-- <span id="asyncinfo-gen-async"></span>`fn gen_async(self, args: InstrumentArgs, instrumented_function_name: &str) -> Result<proc_macro::TokenStream, syn::Error>` — [`InstrumentArgs`](../attr/index.md)
+- <span id="asyncinfo-gen-async"></span>`fn gen_async(self, args: InstrumentArgs, instrumented_function_name: &str) -> Result<proc_macro::TokenStream, syn::Error>` — [`InstrumentArgs`](../attr/index.md#instrumentargs)
 
 ### `IdentAndTypesRenamer<'a>`
 

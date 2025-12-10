@@ -65,13 +65,13 @@ perhaps more conveniently, with `PikeVM::config`.
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../../index.md#matchkind), [`Config`](#config)
 
-- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md#prefilter), [`Config`](#config)
 
-- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../../index.md#matchkind)
 
-- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md#prefilter)
 
 - <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
@@ -157,17 +157,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md#config), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md#config), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -257,21 +257,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="pikevm-new"></span>`fn new(pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="pikevm-new"></span>`fn new(pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="pikevm-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="pikevm-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="pikevm-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="pikevm-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="pikevm-always-match"></span>`fn always_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="pikevm-always-match"></span>`fn always_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
-- <span id="pikevm-never-match"></span>`fn never_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- <span id="pikevm-never-match"></span>`fn never_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md#builderror)
 
 - <span id="pikevm-config"></span>`fn config() -> Config` — [`Config`](#config)
 
 - <span id="pikevm-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- <span id="pikevm-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../../util/captures/index.md)
+- <span id="pikevm-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../../util/captures/index.md#captures)
 
 - <span id="pikevm-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
 
@@ -281,7 +281,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="pikevm-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
 
-- <span id="pikevm-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../nfa/index.md)
+- <span id="pikevm-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../nfa/index.md#nfa)
 
 #### Trait Implementations
 
@@ -336,7 +336,7 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 - <span id="findmatches-type-item"></span>`type Item = Match`
 
-- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../../index.md)
+- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../../index.md#match)
 
 ### `CapturesMatches<'r, 'c, 'h>`
 
@@ -383,7 +383,7 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 - <span id="capturesmatches-type-item"></span>`type Item = Captures`
 
-- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
+- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md#captures)
 
 ### `Cache`
 
@@ -570,9 +570,9 @@ was encapsulated well.
 
 - <span id="slottable-setup-search"></span>`fn setup_search(&mut self, captures_slot_len: usize)`
 
-- <span id="slottable-for-state"></span>`fn for_state(&mut self, sid: StateID) -> &mut [Option<NonMaxUsize>]` — [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md)
+- <span id="slottable-for-state"></span>`fn for_state(&mut self, sid: StateID) -> &mut [Option<NonMaxUsize>]` — [`StateID`](../../../util/primitives/index.md#stateid), [`NonMaxUsize`](../../../util/primitives/index.md#nonmaxusize)
 
-- <span id="slottable-all-absent"></span>`fn all_absent(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- <span id="slottable-all-absent"></span>`fn all_absent(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md#nonmaxusize)
 
 #### Trait Implementations
 

@@ -270,9 +270,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
 - <span id="regex-config"></span>`fn config() -> Config` — [`Config`](#config)
 
@@ -356,7 +356,7 @@ struct RegexInfo(alloc::sync::Arc<RegexInfoI>);
 
 - <span id="regexinfo-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="regexinfo-is-anchored-start"></span>`fn is_anchored_start(&self, input: &Input<'_>) -> bool` — [`Input`](../../index.md)
+- <span id="regexinfo-is-anchored-start"></span>`fn is_anchored_start(&self, input: &Input<'_>) -> bool` — [`Input`](../../index.md#input)
 
 - <span id="regexinfo-is-always-anchored-start"></span>`fn is_always_anchored_start(&self) -> bool`
 
@@ -364,7 +364,7 @@ struct RegexInfo(alloc::sync::Arc<RegexInfoI>);
 
 - <span id="regexinfo-captures-disabled"></span>`fn captures_disabled(&self) -> bool`
 
-- <span id="regexinfo-is-impossible"></span>`fn is_impossible(&self, input: &Input<'_>) -> bool` — [`Input`](../../index.md)
+- <span id="regexinfo-is-impossible"></span>`fn is_impossible(&self, input: &Input<'_>) -> bool` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -425,7 +425,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - <span id="findmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](#regex)
 
-- <span id="findmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="findmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -447,7 +447,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - <span id="findmatches-type-item"></span>`type Item = Match`
 
-- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
 
 - <span id="findmatches-count"></span>`fn count(self) -> usize`
 
@@ -481,7 +481,7 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 - <span id="capturesmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](#regex)
 
-- <span id="capturesmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="capturesmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -503,7 +503,7 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 - <span id="capturesmatches-type-item"></span>`type Item = Captures`
 
-- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../util/captures/index.md)
+- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../util/captures/index.md#captures)
 
 - <span id="capturesmatches-count"></span>`fn count(self) -> usize`
 
@@ -531,7 +531,7 @@ This iterator can be created with the `Regex::split` method.
 
 #### Implementations
 
-- <span id="split-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="split-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -553,7 +553,7 @@ This iterator can be created with the `Regex::split` method.
 
 - <span id="split-type-item"></span>`type Item = Span`
 
-- <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../../index.md#span)
 
 ### `SplitN<'r, 'h>`
 
@@ -580,7 +580,7 @@ This iterator can be created with the `Regex::splitn` method.
 
 #### Implementations
 
-- <span id="splitn-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="splitn-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md#input)
 
 #### Trait Implementations
 
@@ -602,7 +602,7 @@ This iterator can be created with the `Regex::splitn` method.
 
 - <span id="splitn-type-item"></span>`type Item = Span`
 
-- <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../../index.md#span)
 
 - <span id="splitn-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -740,15 +740,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md#matchkind), [`Config`](#config)
 
 - <span id="config-utf8-empty"></span>`fn utf8_empty(self, yes: bool) -> Config` — [`Config`](#config)
 
 - <span id="config-auto-prefilter"></span>`fn auto_prefilter(self, yes: bool) -> Config` — [`Config`](#config)
 
-- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md#prefilter), [`Config`](#config)
 
-- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md), [`Config`](#config)
+- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md#whichcaptures), [`Config`](#config)
 
 - <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
@@ -772,15 +772,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-backtrack"></span>`fn backtrack(self, yes: bool) -> Config` — [`Config`](#config)
 
-- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md#matchkind)
 
 - <span id="config-get-utf8-empty"></span>`fn get_utf8_empty(&self) -> bool`
 
 - <span id="config-get-auto-prefilter"></span>`fn get_auto_prefilter(&self) -> bool`
 
-- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md#prefilter)
 
-- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md)
+- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md#whichcaptures)
 
 - <span id="config-get-nfa-size-limit"></span>`fn get_nfa_size_limit(&self) -> Option<usize>`
 
@@ -922,17 +922,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md#config), [`Builder`](#builder)
 
 #### Trait Implementations
 

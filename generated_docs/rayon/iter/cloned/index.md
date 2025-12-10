@@ -46,11 +46,11 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 
 ##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
 
-- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="cloned-len"></span>`fn len(&self) -> usize`
 
-- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Cloned<I>`
 
@@ -66,7 +66,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 
 - <span id="cloned-type-item"></span>`type Item = T`
 
-- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -118,7 +118,7 @@ struct ClonedProducer<P> {
 
 - <span id="clonedproducer-type-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
 
-- <span id="clonedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="clonedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="clonedproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -152,9 +152,9 @@ struct ClonedConsumer<C> {
 
 - <span id="clonedconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="clonedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="clonedconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="clonedconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -178,7 +178,7 @@ struct ClonedConsumer<C> {
 
 - <span id="clonedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="clonedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `ClonedFolder<F>`
 
@@ -200,7 +200,7 @@ struct ClonedFolder<F> {
 
 - <span id="clonedfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="clonedfolder-complete"></span>`fn complete(self) -> <F as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="clonedfolder-complete"></span>`fn complete(self) -> <F as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="clonedfolder-full"></span>`fn full(&self) -> bool`
 

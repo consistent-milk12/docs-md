@@ -85,31 +85,31 @@ assert_eq!(no_ints.len(), 0);
 
 - <span id="arrayvec-try-append"></span>`fn try_append<'other>(&mut self, other: &'other mut Self) -> Option<&'other mut Self>`
 
-- <span id="arrayvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](../index.md)
+- <span id="arrayvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
+- <span id="arrayvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](../index.md)
+- <span id="arrayvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="arrayvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md#array)
 
 - <span id="arrayvec-capacity"></span>`fn capacity(&self) -> usize`
 
 - <span id="arrayvec-clear"></span>`fn clear(&mut self)`
 
-- <span id="arrayvec-drain"></span>`fn drain<R>(&mut self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](../index.md), [`Array`](../index.md)
+- <span id="arrayvec-drain"></span>`fn drain<R>(&mut self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](../index.md#arrayvecdrain), [`Array`](../index.md#array)
 
 - <span id="arrayvec-into-inner"></span>`fn into_inner(self) -> A`
 
-- <span id="arrayvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](../index.md)
+- <span id="arrayvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](../index.md#array)
 
 - <span id="arrayvec-fill"></span>`fn fill<I: IntoIterator<Item = <A as >::Item>>(&mut self, iter: I) -> <I as >::IntoIter`
 
 - <span id="arrayvec-from-array-len"></span>`fn from_array_len(data: A, len: usize) -> Self`
 
-- <span id="arrayvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](../index.md)
+- <span id="arrayvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
 - <span id="arrayvec-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -117,15 +117,15 @@ assert_eq!(no_ints.len(), 0);
 
 - <span id="arrayvec-new"></span>`fn new() -> Self`
 
-- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](../index.md)
+- <span id="arrayvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
+- <span id="arrayvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](../index.md#array)
 
-- <span id="arrayvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](../index.md)
+- <span id="arrayvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](../index.md#array)
 
 - <span id="arrayvec-resize-with"></span>`fn resize_with<F: FnMut() -> <A as >::Item>(&mut self, new_len: usize, f: F)`
 
@@ -137,9 +137,9 @@ assert_eq!(no_ints.len(), 0);
 
 - <span id="arrayvec-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
 
-- <span id="arrayvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](../index.md)
+- <span id="arrayvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](../index.md#arrayvecsplice)
 
-- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
+- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](../index.md#array)
 
 - <span id="arrayvec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
@@ -149,11 +149,11 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> AsMut for ArrayVec<A>`
 
-- <span id="arrayvec-as-mut"></span>`fn as_mut(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
+- <span id="arrayvec-as-mut"></span>`fn as_mut(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md#array)
 
 ##### `impl<A: Array> AsRef for ArrayVec<A>`
 
-- <span id="arrayvec-as-ref"></span>`fn as_ref(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="arrayvec-as-ref"></span>`fn as_ref(&self) -> &[<A as >::Item]` — [`Array`](../index.md#array)
 
 ##### `impl<A: Array> Binary for ArrayVec<A>`
 
@@ -285,7 +285,7 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 
 ##### `impl<'p, A, I> DoubleEndedIterator for ArrayVecSplice<'p, A, I>`
 
-- <span id="arrayvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
 ##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Drop for ArrayVecSplice<'p, A, I>`
 
@@ -309,7 +309,7 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 
 - <span id="arrayvecsplice-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="arrayvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
 - <span id="arrayvecsplice-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -328,7 +328,7 @@ fails.
 
 ##### `impl Clone for TryFromSliceError`
 
-- <span id="tryfromsliceerror-clone"></span>`fn clone(&self) -> TryFromSliceError` — [`TryFromSliceError`](../index.md)
+- <span id="tryfromsliceerror-clone"></span>`fn clone(&self) -> TryFromSliceError` — [`TryFromSliceError`](../index.md#tryfromsliceerror)
 
 ##### `impl Copy for TryFromSliceError`
 
@@ -360,7 +360,7 @@ Iterator for consuming an `ArrayVec` and returning owned elements.
 
 #### Implementations
 
-- <span id="arrayveciterator-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="arrayveciterator-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md#array)
 
 #### Trait Implementations
 
@@ -400,5 +400,5 @@ Iterator for consuming an `ArrayVec` and returning owned elements.
 
 - <span id="arrayveciterator-last"></span>`fn last(self) -> Option<<Self as >::Item>`
 
-- <span id="arrayveciterator-nth"></span>`fn nth(&mut self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="arrayveciterator-nth"></span>`fn nth(&mut self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 

@@ -71,7 +71,7 @@ Compile-time little endian byte order.
 
 ##### `impl Clone for LittleEndian`
 
-- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl Copy for LittleEndian`
 
@@ -81,7 +81,7 @@ Compile-time little endian byte order.
 
 ##### `impl Default for LittleEndian`
 
-- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl Endian for LittleEndian`
 
@@ -97,7 +97,7 @@ Compile-time little endian byte order.
 
 ##### `impl PartialEq for LittleEndian`
 
-- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -115,7 +115,7 @@ Compile-time big endian byte order.
 
 ##### `impl Clone for BigEndian`
 
-- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl Copy for BigEndian`
 
@@ -125,7 +125,7 @@ Compile-time big endian byte order.
 
 ##### `impl Default for BigEndian`
 
-- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl Endian for BigEndian`
 
@@ -141,7 +141,7 @@ Compile-time big endian byte order.
 
 ##### `impl PartialEq for BigEndian`
 
-- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -169,7 +169,7 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for U16Bytes<E>`
 
-- <span id="u16bytes-clone"></span>`fn clone(&self) -> U16Bytes<E>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-clone"></span>`fn clone(&self) -> U16Bytes<E>` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for U16Bytes<E>`
 
@@ -179,7 +179,7 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for U16Bytes<E>`
 
-- <span id="u16bytes-default"></span>`fn default() -> U16Bytes<E>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-default"></span>`fn default() -> U16Bytes<E>` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U16Bytes<E>`
 
@@ -189,15 +189,15 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for U16Bytes<E>`
 
-- <span id="u16bytes-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
 
-- <span id="u16bytes-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
 
-- <span id="u16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](../index.md#u16bytes)
 
 ##### `impl<E: Endian> Pod for U16Bytes<E>`
 
@@ -227,7 +227,7 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for U32Bytes<E>`
 
-- <span id="u32bytes-clone"></span>`fn clone(&self) -> U32Bytes<E>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-clone"></span>`fn clone(&self) -> U32Bytes<E>` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for U32Bytes<E>`
 
@@ -237,7 +237,7 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for U32Bytes<E>`
 
-- <span id="u32bytes-default"></span>`fn default() -> U32Bytes<E>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-default"></span>`fn default() -> U32Bytes<E>` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U32Bytes<E>`
 
@@ -247,15 +247,15 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for U32Bytes<E>`
 
-- <span id="u32bytes-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
 
-- <span id="u32bytes-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
 
-- <span id="u32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](../index.md#u32bytes)
 
 ##### `impl<E: Endian> Pod for U32Bytes<E>`
 
@@ -285,7 +285,7 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for U64Bytes<E>`
 
-- <span id="u64bytes-clone"></span>`fn clone(&self) -> U64Bytes<E>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-clone"></span>`fn clone(&self) -> U64Bytes<E>` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for U64Bytes<E>`
 
@@ -295,7 +295,7 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for U64Bytes<E>`
 
-- <span id="u64bytes-default"></span>`fn default() -> U64Bytes<E>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-default"></span>`fn default() -> U64Bytes<E>` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for U64Bytes<E>`
 
@@ -305,15 +305,15 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for U64Bytes<E>`
 
-- <span id="u64bytes-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
 
-- <span id="u64bytes-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
 
-- <span id="u64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](../index.md#u64bytes)
 
 ##### `impl<E: Endian> Pod for U64Bytes<E>`
 
@@ -343,7 +343,7 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for I16Bytes<E>`
 
-- <span id="i16bytes-clone"></span>`fn clone(&self) -> I16Bytes<E>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-clone"></span>`fn clone(&self) -> I16Bytes<E>` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for I16Bytes<E>`
 
@@ -353,7 +353,7 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for I16Bytes<E>`
 
-- <span id="i16bytes-default"></span>`fn default() -> I16Bytes<E>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-default"></span>`fn default() -> I16Bytes<E>` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I16Bytes<E>`
 
@@ -363,15 +363,15 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for I16Bytes<E>`
 
-- <span id="i16bytes-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
 
-- <span id="i16bytes-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
 
-- <span id="i16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](../index.md#i16bytes)
 
 ##### `impl<E: Endian> Pod for I16Bytes<E>`
 
@@ -401,7 +401,7 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for I32Bytes<E>`
 
-- <span id="i32bytes-clone"></span>`fn clone(&self) -> I32Bytes<E>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-clone"></span>`fn clone(&self) -> I32Bytes<E>` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for I32Bytes<E>`
 
@@ -411,7 +411,7 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for I32Bytes<E>`
 
-- <span id="i32bytes-default"></span>`fn default() -> I32Bytes<E>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-default"></span>`fn default() -> I32Bytes<E>` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I32Bytes<E>`
 
@@ -421,15 +421,15 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for I32Bytes<E>`
 
-- <span id="i32bytes-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
 
-- <span id="i32bytes-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
 
-- <span id="i32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](../index.md#i32bytes)
 
 ##### `impl<E: Endian> Pod for I32Bytes<E>`
 
@@ -459,7 +459,7 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: clone::Clone + Endian> Clone for I64Bytes<E>`
 
-- <span id="i64bytes-clone"></span>`fn clone(&self) -> I64Bytes<E>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-clone"></span>`fn clone(&self) -> I64Bytes<E>` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: marker::Copy + Endian> Copy for I64Bytes<E>`
 
@@ -469,7 +469,7 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: default::Default + Endian> Default for I64Bytes<E>`
 
-- <span id="i64bytes-default"></span>`fn default() -> I64Bytes<E>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-default"></span>`fn default() -> I64Bytes<E>` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: cmp::Eq + Endian> Eq for I64Bytes<E>`
 
@@ -479,15 +479,15 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 ##### `impl<E: cmp::Ord + Endian> Ord for I64Bytes<E>`
 
-- <span id="i64bytes-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
 
-- <span id="i64bytes-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
 
-- <span id="i64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](../index.md#i64bytes)
 
 ##### `impl<E: Endian> Pod for I64Bytes<E>`
 
@@ -522,7 +522,7 @@ An endianness that is selectable at run-time.
 
 ##### `impl Clone for Endianness`
 
-- <span id="endianness-clone"></span>`fn clone(&self) -> Endianness` — [`Endianness`](../index.md)
+- <span id="endianness-clone"></span>`fn clone(&self) -> Endianness` — [`Endianness`](../index.md#endianness)
 
 ##### `impl Copy for Endianness`
 
@@ -532,7 +532,7 @@ An endianness that is selectable at run-time.
 
 ##### `impl Default for Endianness`
 
-- <span id="endianness-default"></span>`fn default() -> Endianness` — [`Endianness`](../index.md)
+- <span id="endianness-default"></span>`fn default() -> Endianness` — [`Endianness`](../index.md#endianness)
 
 ##### `impl Endian for Endianness`
 
@@ -548,7 +548,7 @@ An endianness that is selectable at run-time.
 
 ##### `impl PartialEq for Endianness`
 
-- <span id="endianness-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](../index.md)
+- <span id="endianness-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](../index.md#endianness)
 
 ##### `impl StructuralPartialEq for Endianness`
 
@@ -687,9 +687,9 @@ This trait does not require that the endianness is known at compile time.
 
 #### Implementors
 
-- [`BigEndian`](../index.md)
-- [`Endianness`](../index.md)
-- [`LittleEndian`](../index.md)
+- [`BigEndian`](../index.md#bigendian)
+- [`Endianness`](../index.md#endianness)
+- [`LittleEndian`](../index.md#littleendian)
 
 ## Type Aliases
 

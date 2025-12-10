@@ -252,7 +252,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md#markdowncapture)
 
 ##### `impl Instrument for MarkdownCapture`
 
@@ -323,7 +323,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
 
 ##### `impl Debug for RenderConfig`
 
@@ -403,7 +403,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
 ##### `impl Debug for SourceConfig`
 
@@ -411,7 +411,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md#sourceconfig)
 
 ##### `impl Instrument for SourceConfig`
 
@@ -505,7 +505,7 @@ This struct is passed to all rendering components and provides:
 
 #### Implementations
 
-- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md), [`RenderConfig`](config/index.md)
+- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig)
 
 - <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
@@ -537,9 +537,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](config/index.md)
+- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](config/index.md#renderconfig)
 
-- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](render_shared/index.md)
+- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](render_shared/index.md#sourcepathconfig)
 
 ##### `impl ItemFilter for GeneratorContext<'_>`
 
@@ -551,7 +551,7 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
+- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
 - <span id="generatorcontext-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
@@ -588,7 +588,7 @@ struct DocLinkProcessor<'a> {
 }
 ```
 
-*Defined in `src/generator/doc_links.rs:416-429`*
+*Defined in `src/generator/doc_links.rs:418-431`*
 
 Processes doc comments to resolve intra-doc links to markdown links.
 
@@ -634,9 +634,9 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../linker/index.md)
+- <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
-- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md)
+- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -739,25 +739,25 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md)
+- <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md#rendercontext)
 
 - <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
-- <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](module/index.md)
+- <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](module/index.md#categorizeditems)
 
-- <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](module/index.md)
+- <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
-- <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
+- <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
-- <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
+- <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
 
-- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md), [`TocEntry`](toc/index.md)
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`TocEntry`](toc/index.md#tocentry)
 
-- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md), [`QuickRefEntry`](quick_ref/index.md)
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
 - <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
 
@@ -841,7 +841,7 @@ anchor link, and first-sentence summary.
 
 ##### `impl Clone for QuickRefEntry`
 
-- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md)
+- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
 ##### `impl Debug for QuickRefEntry`
 
@@ -886,13 +886,13 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
 
-- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](quick_ref/index.md)
+- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for QuickRefGenerator`
 
-- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md)
+- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
 ##### `impl Debug for QuickRefGenerator`
 
@@ -900,7 +900,7 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Default for QuickRefGenerator`
 
-- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md)
+- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md#quickrefgenerator)
 
 ##### `impl Instrument for QuickRefGenerator`
 
@@ -968,7 +968,7 @@ for nested navigation.
 
 ##### `impl Clone for TocEntry`
 
-- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md)
+- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md#tocentry)
 
 ##### `impl Debug for TocEntry`
 
@@ -1022,15 +1022,15 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
 
-- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](toc/index.md)
+- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](toc/index.md#tocentry)
 
-- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](toc/index.md)
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](toc/index.md#tocentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for TocGenerator`
 
-- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md)
+- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md#tocgenerator)
 
 ##### `impl Debug for TocGenerator`
 
@@ -1099,23 +1099,23 @@ generator.generate()?;
 
 #### Implementations
 
-- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md), [`RenderConfig`](config/index.md), [`Error`](../error/index.md)
+- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig), [`Error`](../error/index.md#error)
 
-- <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md)
+- <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
-- <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
+- <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md#error)
 
-- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
-- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`RenderConfig`](config/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`RenderConfig`](config/index.md#renderconfig), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
-- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
-- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
-- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
-- <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md#args), [`Error`](../error/index.md#error)
 
 #### Trait Implementations
 
@@ -1281,7 +1281,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Clone for ImplCategory`
 
-- <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md)
+- <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md#implcategory)
 
 ##### `impl Comparable for ImplCategory`
 
@@ -1315,7 +1315,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl PartialEq for ImplCategory`
 
-- <span id="implcategory-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](impl_category/index.md)
+- <span id="implcategory-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](impl_category/index.md#implcategory)
 
 ##### `impl PartialOrd for ImplCategory`
 
@@ -1387,8 +1387,8 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
 #### Implementors
 
-- [`GeneratorContext`](context/index.md)
-- [`SingleCrateView`](../multi_crate/context/index.md)
+- [`GeneratorContext`](context/index.md#generatorcontext)
+- [`SingleCrateView`](../multi_crate/context/index.md#singlecrateview)
 
 ### `ItemFilter`
 
@@ -1418,8 +1418,8 @@ Determines which items should be included in the generated documentation.
 
 #### Implementors
 
-- [`GeneratorContext`](context/index.md)
-- [`SingleCrateView`](../multi_crate/context/index.md)
+- [`GeneratorContext`](context/index.md#generatorcontext)
+- [`SingleCrateView`](../multi_crate/context/index.md#singlecrateview)
 
 ### `LinkResolver`
 
@@ -1449,8 +1449,8 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Implementors
 
-- [`GeneratorContext`](context/index.md)
-- [`SingleCrateView`](../multi_crate/context/index.md)
+- [`GeneratorContext`](context/index.md#generatorcontext)
+- [`SingleCrateView`](../multi_crate/context/index.md#singlecrateview)
 
 ### `RenderContext`
 

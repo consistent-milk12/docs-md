@@ -53,17 +53,17 @@ to inline calls into routines marked with
 
 #### Implementations
 
-- <span id="finder-new"></span>`unsafe fn new(needle: &[u8], pair: Pair) -> Finder<V>` — [`Pair`](../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-new"></span>`unsafe fn new(needle: &[u8], pair: Pair) -> Finder<V>` — [`Pair`](../../all/packedpair/index.md#pair), [`Finder`](#finder)
 
 - <span id="finder-find"></span>`unsafe fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
 - <span id="finder-find-prefilter"></span>`unsafe fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
-- <span id="finder-find-in-chunk"></span>`unsafe fn find_in_chunk(&self, needle: &[u8], cur: *const u8, end: *const u8, mask: <V as >::Mask) -> Option<usize>` — [`Vector`](../../../vector/index.md)
+- <span id="finder-find-in-chunk"></span>`unsafe fn find_in_chunk(&self, needle: &[u8], cur: *const u8, end: *const u8, mask: <V as >::Mask) -> Option<usize>` — [`Vector`](../../../vector/index.md#vector)
 
 - <span id="finder-find-prefilter-in-chunk"></span>`unsafe fn find_prefilter_in_chunk(&self, cur: *const u8) -> Option<usize>`
 
-- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../all/packedpair/index.md)
+- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../all/packedpair/index.md#pair)
 
 - <span id="finder-min-haystack-len"></span>`fn min_haystack_len(&self) -> usize`
 

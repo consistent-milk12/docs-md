@@ -86,7 +86,7 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 ##### `impl Default for Ctxt`
 
-- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](ctxt/index.md)
+- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](ctxt/index.md#ctxt)
 
 ##### `impl Drop for Ctxt`
 

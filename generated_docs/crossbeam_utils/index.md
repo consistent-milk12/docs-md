@@ -133,7 +133,7 @@ struct Queue<T> {
 
 #### Implementations
 
-- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
@@ -141,7 +141,7 @@ struct Queue<T> {
 
 ##### `impl<T: clone::Clone> Clone for CachePadded<T>`
 
-- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
 ##### `impl<T: marker::Copy> Copy for CachePadded<T>`
 
@@ -151,7 +151,7 @@ struct Queue<T> {
 
 ##### `impl<T: default::Default> Default for CachePadded<T>`
 
-- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
@@ -175,7 +175,7 @@ struct Queue<T> {
 
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md)
+- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
@@ -291,5 +291,5 @@ fn blocking_wait(ready: &AtomicBool) {
 
 ##### `impl Default for Backoff`
 
-- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](backoff/index.md)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](backoff/index.md#backoff)
 

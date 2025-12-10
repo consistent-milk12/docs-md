@@ -34,13 +34,13 @@ Returned by [`DataDirectories::resource_directory`](super::DataDirectories::reso
 
 - <span id="resourcedirectory-new"></span>`fn new(data: &'data [u8]) -> Self`
 
-- <span id="resourcedirectory-root"></span>`fn root(&self) -> Result<ResourceDirectoryTable<'data>>` — [`Result`](../../../index.md), [`ResourceDirectoryTable`](../index.md)
+- <span id="resourcedirectory-root"></span>`fn root(&self) -> Result<ResourceDirectoryTable<'data>>` — [`Result`](../../../index.md#result), [`ResourceDirectoryTable`](../index.md#resourcedirectorytable)
 
 #### Trait Implementations
 
 ##### `impl Clone for ResourceDirectory<'data>`
 
-- <span id="resourcedirectory-clone"></span>`fn clone(&self) -> ResourceDirectory<'data>` — [`ResourceDirectory`](../index.md)
+- <span id="resourcedirectory-clone"></span>`fn clone(&self) -> ResourceDirectory<'data>` — [`ResourceDirectory`](../index.md#resourcedirectory)
 
 ##### `impl Copy for ResourceDirectory<'data>`
 
@@ -73,13 +73,13 @@ A table of resource entries.
 
 #### Implementations
 
-- <span id="resourcedirectorytable-parse"></span>`fn parse(data: &'data [u8], offset: u32) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="resourcedirectorytable-parse"></span>`fn parse(data: &'data [u8], offset: u32) -> Result<Self>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for ResourceDirectoryTable<'data>`
 
-- <span id="resourcedirectorytable-clone"></span>`fn clone(&self) -> ResourceDirectoryTable<'data>` — [`ResourceDirectoryTable`](../index.md)
+- <span id="resourcedirectorytable-clone"></span>`fn clone(&self) -> ResourceDirectoryTable<'data>` — [`ResourceDirectoryTable`](../index.md#resourcedirectorytable)
 
 ##### `impl Debug for ResourceDirectoryTable<'data>`
 
@@ -99,17 +99,17 @@ A resource name.
 
 #### Implementations
 
-- <span id="resourcename-to-string-lossy"></span>`fn to_string_lossy(&self, directory: ResourceDirectory<'_>) -> Result<String>` — [`ResourceDirectory`](../index.md), [`Result`](../../../index.md)
+- <span id="resourcename-to-string-lossy"></span>`fn to_string_lossy(&self, directory: ResourceDirectory<'_>) -> Result<String>` — [`ResourceDirectory`](../index.md#resourcedirectory), [`Result`](../../../index.md#result)
 
-- <span id="resourcename-data"></span>`fn data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [U16Bytes<LE>]>` — [`ResourceDirectory`](../index.md), [`Result`](../../../index.md), [`U16Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
+- <span id="resourcename-data"></span>`fn data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [U16Bytes<LE>]>` — [`ResourceDirectory`](../index.md#resourcedirectory), [`Result`](../../../index.md#result), [`U16Bytes`](../../../index.md#u16bytes), [`LittleEndian`](../../../index.md#littleendian)
 
-- <span id="resourcename-raw-data"></span>`fn raw_data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [u8]>` — [`ResourceDirectory`](../index.md), [`Result`](../../../index.md)
+- <span id="resourcename-raw-data"></span>`fn raw_data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [u8]>` — [`ResourceDirectory`](../index.md#resourcedirectory), [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for ResourceName`
 
-- <span id="resourcename-clone"></span>`fn clone(&self) -> ResourceName` — [`ResourceName`](../index.md)
+- <span id="resourcename-clone"></span>`fn clone(&self) -> ResourceName` — [`ResourceName`](../index.md#resourcename)
 
 ##### `impl Copy for ResourceName`
 
@@ -144,15 +144,15 @@ Data associated with a resource directory entry.
 
 #### Implementations
 
-- <span id="resourcedirectoryentrydata-table"></span>`fn table(self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](../index.md)
+- <span id="resourcedirectoryentrydata-table"></span>`fn table(self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](../index.md#resourcedirectorytable)
 
-- <span id="resourcedirectoryentrydata-data"></span>`fn data(self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../../pe/index.md)
+- <span id="resourcedirectoryentrydata-data"></span>`fn data(self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../../pe/index.md#imageresourcedataentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for ResourceDirectoryEntryData<'data>`
 
-- <span id="resourcedirectoryentrydata-clone"></span>`fn clone(&self) -> ResourceDirectoryEntryData<'data>` — [`ResourceDirectoryEntryData`](../index.md)
+- <span id="resourcedirectoryentrydata-clone"></span>`fn clone(&self) -> ResourceDirectoryEntryData<'data>` — [`ResourceDirectoryEntryData`](../index.md#resourcedirectoryentrydata)
 
 ##### `impl Debug for ResourceDirectoryEntryData<'data>`
 
@@ -185,7 +185,7 @@ Can be either a string or a numeric ID.
 
 #### Implementations
 
-- <span id="resourcenameorid-name"></span>`fn name(self) -> Option<ResourceName>` — [`ResourceName`](../index.md)
+- <span id="resourcenameorid-name"></span>`fn name(self) -> Option<ResourceName>` — [`ResourceName`](../index.md#resourcename)
 
 - <span id="resourcenameorid-id"></span>`fn id(self) -> Option<u16>`
 

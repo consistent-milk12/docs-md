@@ -42,7 +42,7 @@ information to all errors.
 
 - <span id="file-create-new"></span>`fn create_new<P>(path: P) -> Result<Self, io::Error>`
 
-- <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](../open_options/index.md)
+- <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](../open_options/index.md#openoptions)
 
 - <span id="file-sync-all"></span>`fn sync_all(&self) -> Result<(), io::Error>`
 

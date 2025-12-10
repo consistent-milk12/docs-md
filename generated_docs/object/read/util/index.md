@@ -55,9 +55,9 @@ It has these important features:
 
 - <span id="bytes-skip"></span>`fn skip(&mut self, offset: usize) -> Result<(), ()>`
 
-- <span id="bytes-read-bytes"></span>`fn read_bytes(&mut self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
+- <span id="bytes-read-bytes"></span>`fn read_bytes(&mut self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md#bytes)
 
-- <span id="bytes-read-bytes-at"></span>`fn read_bytes_at(self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
+- <span id="bytes-read-bytes-at"></span>`fn read_bytes_at(self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md#bytes)
 
 - <span id="bytes-read"></span>`fn read<T: Pod>(&mut self) -> Result<&'data T, ()>`
 
@@ -79,7 +79,7 @@ It has these important features:
 
 ##### `impl Clone for Bytes<'data>`
 
-- <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'data>` — [`Bytes`](../index.md)
+- <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'data>` — [`Bytes`](../index.md#bytes)
 
 ##### `impl Copy for Bytes<'data>`
 
@@ -89,13 +89,13 @@ It has these important features:
 
 ##### `impl Default for Bytes<'data>`
 
-- <span id="bytes-default"></span>`fn default() -> Bytes<'data>` — [`Bytes`](../index.md)
+- <span id="bytes-default"></span>`fn default() -> Bytes<'data>` — [`Bytes`](../index.md#bytes)
 
 ##### `impl Eq for Bytes<'data>`
 
 ##### `impl PartialEq for Bytes<'data>`
 
-- <span id="bytes-eq"></span>`fn eq(&self, other: &Bytes<'data>) -> bool` — [`Bytes`](../index.md)
+- <span id="bytes-eq"></span>`fn eq(&self, other: &Bytes<'data>) -> bool` — [`Bytes`](../index.md#bytes)
 
 ##### `impl StructuralPartialEq for Bytes<'data>`
 
@@ -194,7 +194,7 @@ This is used by most file formats for strings such as section names and symbol n
 
 ##### `impl<'data, R> Clone for StringTable<'data, R>`
 
-- <span id="stringtable-clone"></span>`fn clone(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="stringtable-clone"></span>`fn clone(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md#stringtable)
 
 ##### `impl<'data, R> Copy for StringTable<'data, R>`
 

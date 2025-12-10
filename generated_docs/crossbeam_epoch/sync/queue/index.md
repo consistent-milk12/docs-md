@@ -38,17 +38,17 @@ struct Queue<T> {
 
 - <span id="queue-new"></span>`fn new() -> Queue<T>` — [`Queue`](#queue)
 
-- <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md), [`Node`](#node), [`Guard`](../../guard/index.md)
+- <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md#shared), [`Node`](#node), [`Guard`](../../guard/index.md#guard)
 
-- <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md)
+- <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md#guard)
 
-- <span id="queue-pop-internal"></span>`fn pop_internal(&self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
+- <span id="queue-pop-internal"></span>`fn pop_internal(&self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md#guard)
 
-- <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
+- <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md#guard)
 
-- <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
+- <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md#guard)
 
-- <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
+- <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md#guard)
 
 #### Trait Implementations
 
@@ -66,7 +66,7 @@ struct Queue<T> {
 
 - <span id="queue-type-init"></span>`type Init = T`
 
-- <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="queue-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -108,7 +108,7 @@ struct Node<T> {
 
 - <span id="node-type-init"></span>`type Init = T`
 
-- <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
 - <span id="node-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

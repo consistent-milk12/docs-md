@@ -22,7 +22,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../syscalls/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../../../io/index.md).
 
 
 
@@ -88,9 +88,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 - <span id="fdflags-type-bits"></span>`type Bits = u32`
 
-- <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
+- <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md#c-uint)
 
-- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../../ffi/index.md), [`FdFlags`](#fdflags)
+- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../../ffi/index.md#c-uint), [`FdFlags`](#fdflags)
 
 ##### `impl FromIterator for FdFlags`
 
@@ -156,7 +156,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
-`RWF_*` constants for use with [`preadv2`](../syscalls/index.md) and [`pwritev2`](../../../io/index.md).
+`RWF_*` constants for use with [`preadv2`](../../../io/index.md) and [`pwritev2`](../syscalls/index.md).
 
 
 
@@ -230,9 +230,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 - <span id="readwriteflags-type-bits"></span>`type Bits = u32`
 
-- <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
+- <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md#c-uint)
 
-- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../../ffi/index.md), [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../../ffi/index.md#c-uint), [`ReadWriteFlags`](#readwriteflags)
 
 ##### `impl FromIterator for ReadWriteFlags`
 
@@ -298,7 +298,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../syscalls/index.md).
+`O_*` constants for use with [`dup2`](../../../io/index.md).
 
 
 #### Implementations
@@ -363,9 +363,9 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 - <span id="dupflags-type-bits"></span>`type Bits = u32`
 
-- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
+- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md#c-uint)
 
-- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../../ffi/index.md), [`DupFlags`](#dupflags)
+- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../../ffi/index.md#c-uint), [`DupFlags`](#dupflags)
 
 ##### `impl FromIterator for DupFlags`
 

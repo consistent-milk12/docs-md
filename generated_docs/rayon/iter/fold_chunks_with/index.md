@@ -49,9 +49,9 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-len"></span>`fn len(&self) -> usize`
 
-- <span id="foldchunkswith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="foldchunkswith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for FoldChunksWith<I, U, F>`
 
@@ -67,7 +67,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-type-item"></span>`type Item = U`
 
-- <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="foldchunkswith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 

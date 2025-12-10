@@ -45,7 +45,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 ##### `impl Diag for MietteError`
 
-- <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for MietteError`
 

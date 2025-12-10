@@ -59,7 +59,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
@@ -97,9 +97,9 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 
 - <span id="skipanywhileconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="skipanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="skipanywhileconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="skipanywhileconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -123,7 +123,7 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 
 - <span id="skipanywhileconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="skipanywhileconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `SkipAnyWhileFolder<'p, C, P>`
 
@@ -147,7 +147,7 @@ struct SkipAnyWhileFolder<'p, C, P> {
 
 - <span id="skipanywhilefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="skipanywhilefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="skipanywhilefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="skipanywhilefolder-full"></span>`fn full(&self) -> bool`
 

@@ -108,7 +108,7 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl ReportHandler for DebugReportHandler`
 
-- <span id="debugreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="debugreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md#diagnostic)
 
 ### `GraphicalReportHandler`
 
@@ -184,7 +184,7 @@ printer.
 
 - <span id="graphicalreporthandler-with-show-related-as-nested"></span>`fn with_show_related_as_nested(self, show_related_as_nested: bool) -> Self`
 
-- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
+- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md#highlighter)
 
 - <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
@@ -208,7 +208,7 @@ printer.
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
-- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md#diagnostic)
 
 ### `Line`
 
@@ -225,17 +225,17 @@ struct Line {
 
 #### Implementations
 
-- <span id="line-span-line-only"></span>`fn span_line_only(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-line-only"></span>`fn span_line_only(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
-- <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
-- <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
-- <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
-- <span id="line-span-starts"></span>`fn span_starts(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-starts"></span>`fn span_starts(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
-- <span id="line-span-ends"></span>`fn span_ends(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-ends"></span>`fn span_ends(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
 #### Trait Implementations
 
@@ -267,7 +267,7 @@ struct FancySpan {
 
 #### Implementations
 
-- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../index.md)
+- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
 - <span id="fancyspan-style"></span>`fn style(&self) -> Style`
 
@@ -283,7 +283,7 @@ struct FancySpan {
 
 ##### `impl Clone for FancySpan`
 
-- <span id="fancyspan-clone"></span>`fn clone(&self) -> FancySpan` — [`FancySpan`](graphical/index.md)
+- <span id="fancyspan-clone"></span>`fn clone(&self) -> FancySpan` — [`FancySpan`](graphical/index.md#fancyspan)
 
 ##### `impl Debug for FancySpan`
 
@@ -327,7 +327,7 @@ struct JSONReportHandler;
 
 ##### `impl ReportHandler for JSONReportHandler`
 
-- <span id="jsonreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="jsonreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md#diagnostic)
 
 ### `Escape<'a>`
 
@@ -395,7 +395,7 @@ non-graphical environments, such as non-TTY output.
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
-- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md#diagnostic)
 
 ### `Line`
 
@@ -412,7 +412,7 @@ struct Line {
 
 #### Implementations
 
-- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../index.md), [`SpanAttach`](narratable/index.md)
+- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../index.md#sourcespan), [`SpanAttach`](narratable/index.md#spanattach)
 
 #### Trait Implementations
 
@@ -624,7 +624,7 @@ enum LinkStyle {
 
 ##### `impl Clone for LinkStyle`
 
-- <span id="linkstyle-clone"></span>`fn clone(&self) -> LinkStyle` — [`LinkStyle`](graphical/index.md)
+- <span id="linkstyle-clone"></span>`fn clone(&self) -> LinkStyle` — [`LinkStyle`](graphical/index.md#linkstyle)
 
 ##### `impl Copy for LinkStyle`
 
@@ -638,7 +638,7 @@ enum LinkStyle {
 
 ##### `impl PartialEq for LinkStyle`
 
-- <span id="linkstyle-eq"></span>`fn eq(&self, other: &LinkStyle) -> bool` — [`LinkStyle`](graphical/index.md)
+- <span id="linkstyle-eq"></span>`fn eq(&self, other: &LinkStyle) -> bool` — [`LinkStyle`](graphical/index.md#linkstyle)
 
 ##### `impl StructuralPartialEq for LinkStyle`
 
@@ -678,7 +678,7 @@ enum LabelRenderMode {
 
 ##### `impl PartialEq for LabelRenderMode`
 
-- <span id="labelrendermode-eq"></span>`fn eq(&self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](graphical/index.md)
+- <span id="labelrendermode-eq"></span>`fn eq(&self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](graphical/index.md#labelrendermode)
 
 ##### `impl StructuralPartialEq for LabelRenderMode`
 

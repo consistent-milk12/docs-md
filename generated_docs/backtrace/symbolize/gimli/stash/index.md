@@ -31,5 +31,5 @@ A simple arena allocator for byte buffers.
 
 - <span id="stash-allocate"></span>`fn allocate(&self, size: usize) -> &mut [u8]`
 
-- <span id="stash-cache-mmap"></span>`fn cache_mmap(&self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md)
+- <span id="stash-cache-mmap"></span>`fn cache_mmap(&self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md#mmap)
 

@@ -2,23 +2,26 @@
 
 ANSI Text Styling
 
-*A portmanteau of "ansi style"*
+_A portmanteau of "ansi style"_
 
 `anstyle` provides core types describing [ANSI styling escape
 codes](https://en.wikipedia.org/wiki/ANSI_escape_code) for interoperability
 between crates.
 
 Example use cases:
+
 - An argument parser allowing callers to define the colors used in the help-output without
   putting the text formatting crate in the public API
 - A style description parser that can work with any text formatting crate
 
 Priorities:
+
 1. API stability
 2. Low compile-time and binary-size overhead
 3. `const` friendly API for callers to statically define their stylesheet
 
 For integration with text styling crate, see:
+
 - [anstyle-ansi-term](https://docs.rs/anstyle-ansi-term)
 - [anstyle-crossterm](https://docs.rs/anstyle-crossterm)
 - [anstyle-owo-colors](https://docs.rs/anstyle-owo-colors)
@@ -26,15 +29,18 @@ For integration with text styling crate, see:
 - [anstyle-yansi](https://docs.rs/anstyle-yansi)
 
 User-styling parsers:
+
 - [anstyle-git](https://docs.rs/anstyle-git): Parse Git style descriptions
 - [anstyle-ls](https://docs.rs/anstyle-ls): Parse `LS_COLORS` style descriptions
 
 Convert to other formats
+
 - [anstream](https://docs.rs/anstream): A simple cross platform library for writing colored text to a terminal
 - [anstyle-roff](https://docs.rs/anstyle-roff): For converting to ROFF
 - [anstyle-syntect](https://docs.rs/anstyle-syntect): For working with syntax highlighting
 
 Utilities
+
 - [anstyle-lossy](https://docs.rs/anstyle-lossy): Convert between `anstyle::Color` types
 - [anstyle-parse](https://docs.rs/anstyle-parse): Parsing ANSI Style Escapes
 - [anstyle-wincon](https://docs.rs/anstyle-wincon): Styling legacy Microsoft terminals
@@ -42,6 +48,7 @@ Utilities
 # Examples
 
 The core type is [`Style`](#style):
+
 ```rust
 let style = anstyle::Style::new().bold();
 ```
@@ -77,30 +84,30 @@ let style = anstyle::Style::new().bold();
 
 ## Quick Reference
 
-| Item | Kind | Description |
-|------|------|-------------|
-| [`macros`](#macros) | mod |  |
-| [`color`](#color) | mod |  |
-| [`effect`](#effect) | mod |  |
-| [`reset`](#reset) | mod |  |
-| [`style`](#style) | mod |  |
-| [`Ansi256Color`](#ansi256color) | struct | 256 (8-bit) color support |
-| [`RgbColor`](#rgbcolor) | struct | 24-bit ANSI RGB color codes |
-| [`DisplayBuffer`](#displaybuffer) | struct |  |
-| [`NullFormatter`](#nullformatter) | struct |  |
-| [`Effects`](#effects) | struct | A set of text effects |
-| [`Metadata`](#metadata) | struct |  |
-| [`EffectsDisplay`](#effectsdisplay) | struct |  |
-| [`EffectIter`](#effectiter) | struct | Enumerate each enabled value in [`Effects`] |
-| [`EffectIndexIter`](#effectindexiter) | struct |  |
-| [`Reset`](#reset) | struct | Reset terminal formatting |
-| [`Style`](#style) | struct | ANSI Text styling |
-| [`StyleDisplay`](#styledisplay) | struct |  |
-| [`Color`](#color) | enum | Any ANSI color code scheme |
-| [`AnsiColor`](#ansicolor) | enum | Available 4-bit ANSI color palette codes |
-| [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity) | const |  |
-| [`METADATA`](#metadata) | const |  |
-| [`RESET`](#reset) | const |  |
+| Item                                                  | Kind   | Description                                 |
+| ----------------------------------------------------- | ------ | ------------------------------------------- |
+| [`macros`](#macros)                                   | mod    |                                             |
+| [`color`](#color)                                     | mod    |                                             |
+| [`effect`](#effect)                                   | mod    |                                             |
+| [`reset`](#reset)                                     | mod    |                                             |
+| [`style`](#style)                                     | mod    |                                             |
+| [`Ansi256Color`](#ansi256color)                       | struct | 256 (8-bit) color support                   |
+| [`RgbColor`](#rgbcolor)                               | struct | 24-bit ANSI RGB color codes                 |
+| [`DisplayBuffer`](#displaybuffer)                     | struct |                                             |
+| [`NullFormatter`](#nullformatter)                     | struct |                                             |
+| [`Effects`](#effects)                                 | struct | A set of text effects                       |
+| [`Metadata`](#metadata)                               | struct |                                             |
+| [`EffectsDisplay`](#effectsdisplay)                   | struct |                                             |
+| [`EffectIter`](#effectiter)                           | struct | Enumerate each enabled value in [`Effects`] |
+| [`EffectIndexIter`](#effectindexiter)                 | struct |                                             |
+| [`Reset`](#reset)                                     | struct | Reset terminal formatting                   |
+| [`Style`](#style)                                     | struct | ANSI Text styling                           |
+| [`StyleDisplay`](#styledisplay)                       | struct |                                             |
+| [`Color`](#color)                                     | enum   | Any ANSI color code scheme                  |
+| [`AnsiColor`](#ansicolor)                             | enum   | Available 4-bit ANSI color palette codes    |
+| [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity) | const  |                                             |
+| [`METADATA`](#metadata)                               | const  |                                             |
+| [`RESET`](#reset)                                     | const  |                                             |
 
 ## Modules
 
@@ -118,7 +125,7 @@ let style = anstyle::Style::new().bold();
 struct Ansi256Color(u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L352)*
+_Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L352)_
 
 256 (8-bit) color support
 
@@ -140,13 +147,13 @@ struct Ansi256Color(u8);
 
 - <span id="ansi256color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- <span id="ansi256color-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="ansi256color-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- <span id="ansi256color-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
-- <span id="ansi256color-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 #### Trait Implementations
 
@@ -186,7 +193,7 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L476)*
+_Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L476)_
 
 24-bit ANSI RGB color codes
 
@@ -204,13 +211,13 @@ struct RgbColor(u8, u8, u8);
 
 - <span id="rgbcolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- <span id="rgbcolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="rgbcolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- <span id="rgbcolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
-- <span id="rgbcolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 #### Trait Implementations
 
@@ -253,7 +260,7 @@ struct DisplayBuffer {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L571-L574)*
+_Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L571-L574)_
 
 #### Implementations
 
@@ -269,7 +276,7 @@ struct DisplayBuffer {
 
 ##### `impl Clone for DisplayBuffer`
 
-- <span id="displaybuffer-clone"></span>`fn clone(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="displaybuffer-clone"></span>`fn clone(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 ##### `impl Copy for DisplayBuffer`
 
@@ -279,7 +286,7 @@ struct DisplayBuffer {
 
 ##### `impl Default for DisplayBuffer`
 
-- <span id="displaybuffer-default"></span>`fn default() -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="displaybuffer-default"></span>`fn default() -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 ##### `impl Display for DisplayBuffer`
 
@@ -295,13 +302,13 @@ struct DisplayBuffer {
 struct NullFormatter(&'static str);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L635)*
+_Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L635)_
 
 #### Trait Implementations
 
 ##### `impl Clone for NullFormatter`
 
-- <span id="nullformatter-clone"></span>`fn clone(&self) -> NullFormatter` — [`NullFormatter`](color/index.md)
+- <span id="nullformatter-clone"></span>`fn clone(&self) -> NullFormatter` — [`NullFormatter`](color/index.md#nullformatter)
 
 ##### `impl Copy for NullFormatter`
 
@@ -311,7 +318,7 @@ struct NullFormatter(&'static str);
 
 ##### `impl Default for NullFormatter`
 
-- <span id="nullformatter-default"></span>`fn default() -> NullFormatter` — [`NullFormatter`](color/index.md)
+- <span id="nullformatter-default"></span>`fn default() -> NullFormatter` — [`NullFormatter`](color/index.md#nullformatter)
 
 ##### `impl Display for NullFormatter`
 
@@ -327,7 +334,7 @@ struct NullFormatter(&'static str);
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)_
 
 A set of text effects
 
@@ -381,7 +388,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 - <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](#effectiter)
 
-- <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
+- <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
 - <span id="effects-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
@@ -452,7 +459,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)_
 
 ### `EffectsDisplay`
 
@@ -460,13 +467,13 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)_
 
 #### Trait Implementations
 
 ##### `impl Clone for EffectsDisplay`
 
-- <span id="effectsdisplay-clone"></span>`fn clone(&self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+- <span id="effectsdisplay-clone"></span>`fn clone(&self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md#effectsdisplay)
 
 ##### `impl Copy for EffectsDisplay`
 
@@ -476,7 +483,7 @@ struct EffectsDisplay(Effects);
 
 ##### `impl Default for EffectsDisplay`
 
-- <span id="effectsdisplay-default"></span>`fn default() -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+- <span id="effectsdisplay-default"></span>`fn default() -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md#effectsdisplay)
 
 ##### `impl Display for EffectsDisplay`
 
@@ -495,7 +502,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)_
 
 Enumerate each enabled value in [`Effects`](#effects)
 
@@ -540,13 +547,13 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)_
 
 #### Trait Implementations
 
 ##### `impl Clone for EffectIndexIter`
 
-- <span id="effectindexiter-clone"></span>`fn clone(&self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
+- <span id="effectindexiter-clone"></span>`fn clone(&self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
 ##### `impl Debug for EffectIndexIter`
 
@@ -570,7 +577,7 @@ struct EffectIndexIter {
 
 ##### `impl PartialEq for EffectIndexIter`
 
-- <span id="effectindexiter-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md)
+- <span id="effectindexiter-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md#effectindexiter)
 
 ##### `impl StructuralPartialEq for EffectIndexIter`
 
@@ -580,7 +587,7 @@ struct EffectIndexIter {
 struct Reset;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L4)*
+_Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L4)_
 
 Reset terminal formatting
 
@@ -643,7 +650,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
+_Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)_
 
 ANSI Text styling
 
@@ -752,13 +759,13 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
+_Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)_
 
 #### Trait Implementations
 
 ##### `impl Clone for StyleDisplay`
 
-- <span id="styledisplay-clone"></span>`fn clone(&self) -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+- <span id="styledisplay-clone"></span>`fn clone(&self) -> StyleDisplay` — [`StyleDisplay`](style/index.md#styledisplay)
 
 ##### `impl Copy for StyleDisplay`
 
@@ -768,7 +775,7 @@ struct StyleDisplay(Style);
 
 ##### `impl Default for StyleDisplay`
 
-- <span id="styledisplay-default"></span>`fn default() -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+- <span id="styledisplay-default"></span>`fn default() -> StyleDisplay` — [`StyleDisplay`](style/index.md#styledisplay)
 
 ##### `impl Display for StyleDisplay`
 
@@ -790,7 +797,7 @@ enum Color {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L4-L17)*
+_Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L4-L17)_
 
 Any ANSI color code scheme
 
@@ -799,13 +806,12 @@ Any ANSI color code scheme
 - **`Ansi`**
 
   Available 4-bit ANSI color palette codes
-  
+
   The user's terminal defines the meaning of the each palette code.
 
 - **`Ansi256`**
 
   256 (8-bit) color support
-  
   - `0..16` are [`AnsiColor`](#ansicolor) palette codes
   - `0..232` map to [`RgbColor`](#rgbcolor) color values
   - `232..` map to [`RgbColor`](#rgbcolor) gray-scale values
@@ -887,7 +893,7 @@ enum AnsiColor {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L138-L186)*
+_Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L138-L186)_
 
 Available 4-bit ANSI color palette codes
 
@@ -969,15 +975,15 @@ The user's terminal defines the meaning of the each palette code.
 
 - <span id="ansicolor-as-fg-str"></span>`fn as_fg_str(&self) -> &'static str`
 
-- <span id="ansicolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="ansicolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
 - <span id="ansicolor-as-bg-str"></span>`fn as_bg_str(&self) -> &'static str`
 
-- <span id="ansicolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
-- <span id="ansicolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md#displaybuffer)
 
 - <span id="ansicolor-bright"></span>`fn bright(self, yes: bool) -> Self`
 
@@ -1018,23 +1024,25 @@ The user's terminal defines the meaning of the each palette code.
 ## Constants
 
 ### `DISPLAY_BUFFER_CAPACITY`
+
 ```rust
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L568)*
+_Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L568)_
 
 ### `METADATA`
+
 ```rust
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
+_Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)_
 
 ### `RESET`
+
 ```rust
 const RESET: &str;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L22)*
-
+_Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L22)_

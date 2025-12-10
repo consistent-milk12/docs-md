@@ -115,9 +115,9 @@ Convert to the intended resettable type
 
 #### Implementors
 
-- [`ArgAction`](../action/index.md)
+- [`ArgAction`](../action/index.md#argaction)
 - [`Resettable`](#resettable)
-- [`ValueHint`](../value_hint/index.md)
+- [`ValueHint`](../value_hint/index.md#valuehint)
 - `I`
 - `Option<&'static str>`
 - `Option<char>`

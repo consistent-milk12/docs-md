@@ -82,7 +82,7 @@ specific HIR representation.)
 
 - <span id="printer-new"></span>`fn new() -> Printer` — [`Printer`](#printer)
 
-- <span id="printer-print"></span>`fn print<W: fmt::Write>(&mut self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="printer-print"></span>`fn print<W: fmt::Write>(&mut self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../index.md#hir)
 
 #### Trait Implementations
 
@@ -122,9 +122,9 @@ struct Writer<W> {
 
 - <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
 
-- <span id="writer-visit-pre"></span>`fn visit_pre(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="writer-visit-pre"></span>`fn visit_pre(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md#hir)
 
-- <span id="writer-visit-post"></span>`fn visit_post(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="writer-visit-post"></span>`fn visit_post(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md#hir)
 
 - <span id="writer-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> fmt::Result`
 

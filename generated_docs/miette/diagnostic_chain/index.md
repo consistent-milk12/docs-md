@@ -29,7 +29,7 @@ Iterator of a chain of cause errors.
 
 #### Implementations
 
-- <span id="diagnosticchain-from-diagnostic"></span>`fn from_diagnostic(head: &'a dyn Diagnostic) -> Self` — [`Diagnostic`](../index.md)
+- <span id="diagnosticchain-from-diagnostic"></span>`fn from_diagnostic(head: &'a dyn Diagnostic) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
 - <span id="diagnosticchain-from-stderror"></span>`fn from_stderror(head: &'a dyn std::error::Error) -> Self`
 

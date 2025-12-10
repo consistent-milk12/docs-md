@@ -150,9 +150,9 @@ unreachable!()
 
 - <span id="dwarfsections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- <span id="dwarfsections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarfsections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md#dwarf)
 
-- <span id="dwarfsections-borrow-with-sup"></span>`fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarfsections-borrow-with-sup"></span>`fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md#dwarf)
 
 #### Trait Implementations
 
@@ -162,7 +162,7 @@ unreachable!()
 
 ##### `impl<T: default::Default> Default for DwarfSections<T>`
 
-- <span id="dwarfsections-default"></span>`fn default() -> DwarfSections<T>` — [`DwarfSections`](../index.md)
+- <span id="dwarfsections-default"></span>`fn default() -> DwarfSections<T>` — [`DwarfSections`](../index.md#dwarfsections)
 
 ### `Dwarf<R>`
 
@@ -263,13 +263,13 @@ All of the commonly used DWARF sections, and other common information.
 
 - <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
 
-- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](../index.md)
+- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](../index.md#dwarfsections)
 
-- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md#dwarf)
 
-- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](../index.md)
+- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](../index.md#dwarf)
 
-- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](../index.md)
+- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](../index.md#dwarf)
 
 #### Trait Implementations
 
@@ -279,7 +279,7 @@ All of the commonly used DWARF sections, and other common information.
 
 ##### `impl<R: default::Default> Default for Dwarf<R>`
 
-- <span id="dwarf-default"></span>`fn default() -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarf-default"></span>`fn default() -> Dwarf<R>` — [`Dwarf`](../index.md#dwarf)
 
 ### `DwarfPackageSections<T>`
 
@@ -384,7 +384,7 @@ unreachable!()
 
 - <span id="dwarfpackagesections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- <span id="dwarfpackagesections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../../index.md), [`DwarfPackage`](../index.md)
+- <span id="dwarfpackagesections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../../index.md#result), [`DwarfPackage`](../index.md#dwarfpackage)
 
 #### Trait Implementations
 
@@ -394,7 +394,7 @@ unreachable!()
 
 ##### `impl<T: default::Default> Default for DwarfPackageSections<T>`
 
-- <span id="dwarfpackagesections-default"></span>`fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](../index.md)
+- <span id="dwarfpackagesections-default"></span>`fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](../index.md#dwarfpackagesections)
 
 ### `DwarfPackage<R: Reader>`
 
@@ -479,17 +479,17 @@ The sections from a `.dwp` file, with parsed indices.
 
 - <span id="dwarfpackage-load"></span>`fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
 
-- <span id="dwarfpackage-from-sections"></span>`fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-from-sections"></span>`fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](../index.md#dwarfpackagesections), [`Result`](../../index.md#result)
 
-- <span id="dwarfpackage-find-cu"></span>`fn find_cu(&self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-find-cu"></span>`fn find_cu(&self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../../index.md#dwoid), [`Dwarf`](../index.md#dwarf), [`Result`](../../index.md#result)
 
-- <span id="dwarfpackage-find-tu"></span>`fn find_tu(&self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-find-tu"></span>`fn find_tu(&self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../../index.md#debugtypesignature), [`Dwarf`](../index.md#dwarf), [`Result`](../../index.md#result)
 
-- <span id="dwarfpackage-cu-sections"></span>`fn cu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-cu-sections"></span>`fn cu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md#dwarf), [`Result`](../../index.md#result)
 
-- <span id="dwarfpackage-tu-sections"></span>`fn tu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-tu-sections"></span>`fn tu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md#dwarf), [`Result`](../../index.md#result)
 
-- <span id="dwarfpackage-sections"></span>`fn sections(&self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-sections"></span>`fn sections(&self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator), [`Dwarf`](../index.md#dwarf), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
@@ -571,27 +571,27 @@ sections.
 
 #### Implementations
 
-- <span id="unit-new"></span>`fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Result`](../../index.md)
+- <span id="unit-new"></span>`fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](../index.md#dwarf), [`UnitHeader`](../index.md#unitheader), [`Result`](../../index.md#result)
 
-- <span id="unit-new-with-abbreviations"></span>`fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Abbreviations`](../index.md), [`Result`](../../index.md)
+- <span id="unit-new-with-abbreviations"></span>`fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](../index.md#dwarf), [`UnitHeader`](../index.md#unitheader), [`Abbreviations`](../index.md#abbreviations), [`Result`](../../index.md#result)
 
-- <span id="unit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](../index.md), [`UnitRef`](../index.md)
+- <span id="unit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](../index.md#dwarf), [`UnitRef`](../index.md#unitref)
 
-- <span id="unit-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="unit-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md#encoding)
 
-- <span id="unit-entry"></span>`fn entry(&self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
+- <span id="unit-entry"></span>`fn entry(&self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`DebuggingInformationEntry`](../index.md#debugginginformationentry)
 
-- <span id="unit-entries"></span>`fn entries(&self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](../index.md)
+- <span id="unit-entries"></span>`fn entries(&self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](../index.md#entriescursor)
 
-- <span id="unit-entries-at-offset"></span>`fn entries_at_offset(&self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
+- <span id="unit-entries-at-offset"></span>`fn entries_at_offset(&self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`EntriesCursor`](../index.md#entriescursor)
 
-- <span id="unit-entries-tree"></span>`fn entries_tree(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
+- <span id="unit-entries-tree"></span>`fn entries_tree(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`EntriesTree`](../index.md#entriestree)
 
-- <span id="unit-entries-raw"></span>`fn entries_raw(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
+- <span id="unit-entries-raw"></span>`fn entries_raw(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`EntriesRaw`](../index.md#entriesraw)
 
-- <span id="unit-copy-relocated-attributes"></span>`fn copy_relocated_attributes(&mut self, other: &Unit<R>)` — [`Unit`](../index.md)
+- <span id="unit-copy-relocated-attributes"></span>`fn copy_relocated_attributes(&mut self, other: &Unit<R>)` — [`Unit`](../index.md#unit)
 
-- <span id="unit-dwo-name"></span>`fn dwo_name(&self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../../index.md), [`AttributeValue`](../index.md)
+- <span id="unit-dwo-name"></span>`fn dwo_name(&self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../../index.md#result), [`AttributeValue`](../index.md#attributevalue)
 
 #### Trait Implementations
 
@@ -629,51 +629,51 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 #### Implementations
 
-- <span id="unitref-new"></span>`fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](../index.md), [`Unit`](../index.md)
+- <span id="unitref-new"></span>`fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](../index.md#dwarf), [`Unit`](../index.md#unit)
 
-- <span id="unitref-string-offset"></span>`fn string_offset(&self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
+- <span id="unitref-string-offset"></span>`fn string_offset(&self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../../index.md#debugstroffsetsindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`DebugStrOffset`](../../index.md#debugstroffset)
 
-- <span id="unitref-string"></span>`fn string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-string"></span>`fn string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md#debugstroffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="unitref-line-string"></span>`fn line_string(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-line-string"></span>`fn line_string(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md#debuglinestroffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="unitref-sup-string"></span>`fn sup_string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-sup-string"></span>`fn sup_string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md#debugstroffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="unitref-attr-string"></span>`fn attr_string(&self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-attr-string"></span>`fn attr_string(&self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result)
 
-- <span id="unitref-address"></span>`fn address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-address"></span>`fn address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md#debugaddrindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="unitref-attr-address"></span>`fn attr_address(&self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-attr-address"></span>`fn attr_address(&self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result)
 
-- <span id="unitref-ranges-offset-from-raw"></span>`fn ranges_offset_from_raw(&self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../../index.md), [`Reader`](../index.md), [`RangeListsOffset`](../../index.md)
+- <span id="unitref-ranges-offset-from-raw"></span>`fn ranges_offset_from_raw(&self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../../index.md#rawrangelistsoffset), [`Reader`](../index.md#reader), [`RangeListsOffset`](../../index.md#rangelistsoffset)
 
-- <span id="unitref-ranges-offset"></span>`fn ranges_offset(&self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
+- <span id="unitref-ranges-offset"></span>`fn ranges_offset(&self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../../index.md#debugrnglistsindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`RangeListsOffset`](../../index.md#rangelistsoffset)
 
-- <span id="unitref-ranges"></span>`fn ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+- <span id="unitref-ranges"></span>`fn ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md#rangelistsoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`RngListIter`](../index.md#rnglistiter)
 
-- <span id="unitref-raw-ranges"></span>`fn raw_ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
+- <span id="unitref-raw-ranges"></span>`fn raw_ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md#rangelistsoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`RawRngListIter`](../index.md#rawrnglistiter)
 
-- <span id="unitref-attr-ranges-offset"></span>`fn attr_ranges_offset(&self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="unitref-attr-ranges-offset"></span>`fn attr_ranges_offset(&self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result), [`RangeListsOffset`](../../index.md#rangelistsoffset), [`Reader`](../index.md#reader)
 
-- <span id="unitref-attr-ranges"></span>`fn attr_ranges(&self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+- <span id="unitref-attr-ranges"></span>`fn attr_ranges(&self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result), [`RngListIter`](../index.md#rnglistiter)
 
-- <span id="unitref-die-ranges"></span>`fn die_ranges(&self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
+- <span id="unitref-die-ranges"></span>`fn die_ranges(&self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](../index.md#debugginginformationentry), [`Result`](../../index.md#result), [`RangeIter`](../index.md#rangeiter)
 
-- <span id="unitref-unit-ranges"></span>`fn unit_ranges(&self) -> Result<RangeIter<R>>` — [`Result`](../../index.md), [`RangeIter`](../index.md)
+- <span id="unitref-unit-ranges"></span>`fn unit_ranges(&self) -> Result<RangeIter<R>>` — [`Result`](../../index.md#result), [`RangeIter`](../index.md#rangeiter)
 
-- <span id="unitref-locations-offset"></span>`fn locations_offset(&self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
+- <span id="unitref-locations-offset"></span>`fn locations_offset(&self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../../index.md#debugloclistsindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`LocationListsOffset`](../../index.md#locationlistsoffset)
 
-- <span id="unitref-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+- <span id="unitref-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md#locationlistsoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`LocListIter`](../index.md#loclistiter)
 
-- <span id="unitref-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
+- <span id="unitref-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md#locationlistsoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`RawLocListIter`](../index.md#rawloclistiter)
 
-- <span id="unitref-attr-locations-offset"></span>`fn attr_locations_offset(&self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="unitref-attr-locations-offset"></span>`fn attr_locations_offset(&self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result), [`LocationListsOffset`](../../index.md#locationlistsoffset), [`Reader`](../index.md#reader)
 
-- <span id="unitref-attr-locations"></span>`fn attr_locations(&self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+- <span id="unitref-attr-locations"></span>`fn attr_locations(&self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](../index.md#attributevalue), [`Result`](../../index.md#result), [`LocListIter`](../index.md#loclistiter)
 
-- <span id="unitref-macinfo"></span>`fn macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="unitref-macinfo"></span>`fn macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md#debugmacinfooffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`MacroIter`](../index.md#macroiter)
 
-- <span id="unitref-macros"></span>`fn macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="unitref-macros"></span>`fn macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md#debugmacrooffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`MacroIter`](../index.md#macroiter)
 
 #### Trait Implementations
 
@@ -711,7 +711,7 @@ Returned by `Dwarf::die_ranges` and `Dwarf::unit_ranges`.
 
 #### Implementations
 
-- <span id="rangeiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
+- <span id="rangeiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md#result), [`Range`](../index.md#range)
 
 #### Trait Implementations
 

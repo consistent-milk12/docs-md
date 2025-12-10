@@ -233,13 +233,13 @@ operations operate on the symbolic link.
 
 - <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
 
-- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](dent/index.md)
+- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
 #### Trait Implementations
 
 ##### `impl Clone for DirEntry`
 
-- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](dent/index.md)
+- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](dent/index.md#direntry)
 
 ##### `impl Debug for DirEntry`
 
@@ -293,7 +293,7 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](dent/index.md)
+- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](dent/index.md#direntry)
 
 - <span id="error-from-io"></span>`fn from_io(depth: usize, err: io::Error) -> Self`
 
@@ -551,19 +551,19 @@ The order of elements yielded by this iterator is unspecified.
 
 - <span id="intoiter-filter-entry"></span>`fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
-- <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](dent/index.md), [`Result`](#result)
+- <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](dent/index.md#direntry), [`Result`](#result)
 
-- <span id="intoiter-get-deferred-dir"></span>`fn get_deferred_dir(&mut self) -> Option<DirEntry>` — [`DirEntry`](dent/index.md)
+- <span id="intoiter-get-deferred-dir"></span>`fn get_deferred_dir(&mut self) -> Option<DirEntry>` — [`DirEntry`](dent/index.md#direntry)
 
-- <span id="intoiter-push"></span>`fn push(&mut self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](dent/index.md), [`Result`](#result)
+- <span id="intoiter-push"></span>`fn push(&mut self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](dent/index.md#direntry), [`Result`](#result)
 
 - <span id="intoiter-pop"></span>`fn pop(&mut self)`
 
-- <span id="intoiter-follow"></span>`fn follow(&self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](dent/index.md), [`Result`](#result)
+- <span id="intoiter-follow"></span>`fn follow(&self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](dent/index.md#direntry), [`Result`](#result)
 
 - <span id="intoiter-check-loop"></span>`fn check_loop<P: AsRef<Path>>(&self, child: P) -> Result<()>` — [`Result`](#result)
 
-- <span id="intoiter-is-same-file-system"></span>`fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](dent/index.md), [`Result`](#result)
+- <span id="intoiter-is-same-file-system"></span>`fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](dent/index.md#direntry), [`Result`](#result)
 
 - <span id="intoiter-skippable"></span>`fn skippable(&self) -> bool`
 
@@ -587,7 +587,7 @@ The order of elements yielded by this iterator is unspecified.
 
 - <span id="intoiter-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
 ### `Ancestor`
 
@@ -610,7 +610,7 @@ used to check for loops in the tree when traversing symlinks.
 
 #### Implementations
 
-- <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](dent/index.md), [`Ancestor`](#ancestor)
+- <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](dent/index.md#direntry), [`Ancestor`](#ancestor)
 
 - <span id="ancestor-is-same"></span>`fn is_same(&self, child: &Handle) -> io::Result<bool>`
 
@@ -678,7 +678,7 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - <span id="filterentry-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
+- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
 ## Enums
 
@@ -747,7 +747,7 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 - <span id="dirlist-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
+- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
 ## Traits
 
@@ -769,7 +769,7 @@ Unix-specific extension methods for `walkdir::DirEntry`
 
 #### Implementors
 
-- [`DirEntry`](dent/index.md)
+- [`DirEntry`](dent/index.md#direntry)
 
 ## Type Aliases
 

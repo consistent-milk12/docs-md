@@ -157,7 +157,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
+- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md#builderror)
 
 - <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
@@ -165,35 +165,35 @@ It is also possible to implement your own version of `try_find`. See the
 
 ##### `impl Automaton for NFA`
 
-- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
+- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md#anchored), [`StateID`](../../util/primitives/index.md#stateid), [`MatchError`](../../util/error/index.md#matcherror)
 
-- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md#anchored), [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
+- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../util/search/index.md#matchkind)
 
 - <span id="nfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
+- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md#patternid)
 
 - <span id="nfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
 - <span id="nfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md#stateid)
 
-- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md#stateid), [`PatternID`](../../util/primitives/index.md#patternid)
 
 - <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="nfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- <span id="nfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md#prefilter)
 
 ##### `impl Clone for NFA`
 
@@ -251,7 +251,7 @@ things from the raw binary encoding of the state.
 
 - <span id="state-const-max-sparse-transitions"></span>`const MAX_SPARSE_TRANSITIONS: usize`
 
-- <span id="state-remap"></span>`fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
+- <span id="state-remap"></span>`fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md#stateid), [`BuildError`](../../util/error/index.md#builderror)
 
 - <span id="state-len"></span>`fn len(alphabet_len: usize, is_match: bool, state: &[u32]) -> usize`
 
@@ -261,17 +261,17 @@ things from the raw binary encoding of the state.
 
 - <span id="state-match-len"></span>`fn match_len(alphabet_len: usize, state: &[u32]) -> usize`
 
-- <span id="state-match-pattern"></span>`fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../util/primitives/index.md#patternid)
 
 - <span id="state-read"></span>`fn read(alphabet_len: usize, is_match: bool, state: &'a [u32]) -> State<'a>` — [`State`](#state)
 
-- <span id="state-write"></span>`fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+- <span id="state-write"></span>`fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md#nfa), [`StateID`](../../util/primitives/index.md#stateid), [`State`](../noncontiguous/index.md#state), [`ByteClasses`](../../util/alphabet/index.md#byteclasses), [`BuildError`](../../util/error/index.md#builderror)
 
-- <span id="state-write-sparse-trans"></span>`fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+- <span id="state-write-sparse-trans"></span>`fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md#nfa), [`StateID`](../../util/primitives/index.md#stateid), [`ByteClasses`](../../util/alphabet/index.md#byteclasses), [`BuildError`](../../util/error/index.md#builderror)
 
-- <span id="state-write-dense-trans"></span>`fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+- <span id="state-write-dense-trans"></span>`fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md#nfa), [`StateID`](../../util/primitives/index.md#stateid), [`ByteClasses`](../../util/alphabet/index.md#byteclasses), [`BuildError`](../../util/error/index.md#builderror)
 
-- <span id="state-transitions"></span>`fn transitions(&self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md)
+- <span id="state-transitions"></span>`fn transitions(&self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md#stateid)
 
 #### Trait Implementations
 
@@ -305,11 +305,11 @@ their behavior is identical.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md#builderror)
 
-- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md), [`BuildError`](../../util/error/index.md)
+- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md#nfa), [`BuildError`](../../util/error/index.md#builderror)
 
-- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md#matchkind), [`Builder`](#builder)
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 

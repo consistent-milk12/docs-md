@@ -53,7 +53,7 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 
 - <span id="globalseed-init-slow"></span>`fn init_slow()`
 
-- <span id="globalseed-get"></span>`fn get(self) -> &'static SharedSeed` — [`SharedSeed`](../index.md)
+- <span id="globalseed-get"></span>`fn get(self) -> &'static SharedSeed` — [`SharedSeed`](../index.md#sharedseed)
 
 #### Trait Implementations
 

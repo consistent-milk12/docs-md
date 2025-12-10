@@ -57,7 +57,7 @@ The raw contents of the `.debug_ranges` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugRanges<R>`
 
-- <span id="debugranges-clone"></span>`fn clone(&self) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-clone"></span>`fn clone(&self) -> DebugRanges<R>` — [`DebugRanges`](../index.md#debugranges)
 
 ##### `impl<R: marker::Copy> Copy for DebugRanges<R>`
 
@@ -67,11 +67,11 @@ The raw contents of the `.debug_ranges` section.
 
 ##### `impl<R: default::Default> Default for DebugRanges<R>`
 
-- <span id="debugranges-default"></span>`fn default() -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-default"></span>`fn default() -> DebugRanges<R>` — [`DebugRanges`](../index.md#debugranges)
 
 ##### `impl<R> Section for DebugRanges<R>`
 
-- <span id="debugranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugranges-reader"></span>`fn reader(&self) -> &R`
 
@@ -96,7 +96,7 @@ The `DebugRngLists` struct represents the contents of the
 
 ##### `impl<R: clone::Clone> Clone for DebugRngLists<R>`
 
-- <span id="debugrnglists-clone"></span>`fn clone(&self) -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="debugrnglists-clone"></span>`fn clone(&self) -> DebugRngLists<R>` — [`DebugRngLists`](../index.md#debugrnglists)
 
 ##### `impl<R: marker::Copy> Copy for DebugRngLists<R>`
 
@@ -106,11 +106,11 @@ The `DebugRngLists` struct represents the contents of the
 
 ##### `impl<R: default::Default> Default for DebugRngLists<R>`
 
-- <span id="debugrnglists-default"></span>`fn default() -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="debugrnglists-default"></span>`fn default() -> DebugRngLists<R>` — [`DebugRngLists`](../index.md#debugrnglists)
 
 ##### `impl<R> Section for DebugRngLists<R>`
 
-- <span id="debugrnglists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugrnglists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugrnglists-reader"></span>`fn reader(&self) -> &R`
 
@@ -129,19 +129,19 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md), [`DebugRngLists`](../index.md), [`RangeLists`](../index.md)
+- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md#debugranges), [`DebugRngLists`](../index.md#debugrnglists), [`RangeLists`](../index.md#rangelists)
 
-- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md#debugranges)
 
-- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md)
+- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md#debugranges)
 
-- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md#debugrnglists)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone> Clone for RangeLists<R>`
 
-- <span id="rangelists-clone"></span>`fn clone(&self) -> RangeLists<R>` — [`RangeLists`](../index.md)
+- <span id="rangelists-clone"></span>`fn clone(&self) -> RangeLists<R>` — [`RangeLists`](../index.md#rangelists)
 
 ##### `impl<R: marker::Copy> Copy for RangeLists<R>`
 
@@ -151,7 +151,7 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 ##### `impl<R: default::Default> Default for RangeLists<R>`
 
-- <span id="rangelists-default"></span>`fn default() -> RangeLists<R>` — [`RangeLists`](../index.md)
+- <span id="rangelists-default"></span>`fn default() -> RangeLists<R>` — [`RangeLists`](../index.md#rangelists)
 
 ### `RawRngListIter<R: Reader>`
 
@@ -172,9 +172,9 @@ such as handling base addresses.
 
 #### Implementations
 
-- <span id="rawrnglistiter-new"></span>`fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`RawRngListIter`](../index.md)
+- <span id="rawrnglistiter-new"></span>`fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../../index.md#encoding), [`RangeListsFormat`](#rangelistsformat), [`RawRngListIter`](../index.md#rawrnglistiter)
 
-- <span id="rawrnglistiter-next"></span>`fn next(&mut self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../../index.md), [`RawRngListEntry`](../index.md), [`Reader`](../index.md)
+- <span id="rawrnglistiter-next"></span>`fn next(&mut self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../../index.md#result), [`RawRngListEntry`](../index.md#rawrnglistentry), [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
@@ -203,11 +203,11 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- <span id="rnglistiter-new"></span>`fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`RngListIter`](../index.md)
+- <span id="rnglistiter-new"></span>`fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](../index.md#rawrnglistiter), [`DebugAddr`](../index.md#debugaddr), [`DebugAddrBase`](../../index.md#debugaddrbase), [`Reader`](../index.md#reader), [`RngListIter`](../index.md#rnglistiter)
 
-- <span id="rnglistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="rnglistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md#debugaddrindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="rnglistiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
+- <span id="rnglistiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md#result), [`Range`](../index.md#range)
 
 #### Trait Implementations
 
@@ -244,7 +244,7 @@ A raw address range from the `.debug_ranges` section.
 
 - <span id="rawrange-is-base-address"></span>`fn is_base_address(&self, address_size: u8) -> bool`
 
-- <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../../index.md), [`RawRange`](#rawrange)
+- <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../../index.md#result), [`RawRange`](#rawrange)
 
 #### Trait Implementations
 
@@ -301,7 +301,7 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 
 ##### `impl Clone for Range`
 
-- <span id="range-clone"></span>`fn clone(&self) -> Range` — [`Range`](../index.md)
+- <span id="range-clone"></span>`fn clone(&self) -> Range` — [`Range`](../index.md#range)
 
 ##### `impl Copy for Range`
 
@@ -317,15 +317,15 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 
 ##### `impl Ord for Range`
 
-- <span id="range-cmp"></span>`fn cmp(&self, other: &Range) -> cmp::Ordering` — [`Range`](../index.md)
+- <span id="range-cmp"></span>`fn cmp(&self, other: &Range) -> cmp::Ordering` — [`Range`](../index.md#range)
 
 ##### `impl PartialEq for Range`
 
-- <span id="range-eq"></span>`fn eq(&self, other: &Range) -> bool` — [`Range`](../index.md)
+- <span id="range-eq"></span>`fn eq(&self, other: &Range) -> bool` — [`Range`](../index.md#range)
 
 ##### `impl PartialOrd for Range`
 
-- <span id="range-partial-cmp"></span>`fn partial_cmp(&self, other: &Range) -> option::Option<cmp::Ordering>` — [`Range`](../index.md)
+- <span id="range-partial-cmp"></span>`fn partial_cmp(&self, other: &Range) -> option::Option<cmp::Ordering>` — [`Range`](../index.md#range)
 
 ##### `impl StructuralPartialEq for Range`
 
@@ -449,13 +449,13 @@ A raw entry in .debug_rnglists
 
 #### Implementations
 
-- <span id="rawrnglistentry-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`Result`](../../index.md)
+- <span id="rawrnglistentry-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md#encoding), [`RangeListsFormat`](#rangelistsformat), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for RawRngListEntry<T>`
 
-- <span id="rawrnglistentry-clone"></span>`fn clone(&self) -> RawRngListEntry<T>` — [`RawRngListEntry`](../index.md)
+- <span id="rawrnglistentry-clone"></span>`fn clone(&self) -> RawRngListEntry<T>` — [`RawRngListEntry`](../index.md#rawrnglistentry)
 
 ##### `impl<T: fmt::Debug> Debug for RawRngListEntry<T>`
 

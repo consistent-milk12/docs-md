@@ -44,11 +44,11 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I> IndexedParallelIterator for StepBy<I>`
 
-- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="stepby-len"></span>`fn len(&self) -> usize`
 
-- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for StepBy<I>`
 
@@ -64,7 +64,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="stepby-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -118,7 +118,7 @@ struct StepByProducer<P> {
 
 - <span id="stepbyproducer-type-intoiter"></span>`type IntoIter = StepBy<<P as Producer>::IntoIter>`
 
-- <span id="stepbyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="stepbyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="stepbyproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

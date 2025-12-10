@@ -62,7 +62,7 @@ struct BarState {
 
 #### Implementations
 
-- <span id="barstate-new"></span>`fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md), [`AtomicPosition`](#atomicposition)
+- <span id="barstate-new"></span>`fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget), [`AtomicPosition`](#atomicposition)
 
 - <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
 
@@ -80,7 +80,7 @@ struct BarState {
 
 - <span id="barstate-set-tab-width"></span>`fn set_tab_width(&mut self, tab_width: usize)`
 
-- <span id="barstate-set-style"></span>`fn set_style(&mut self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
+- <span id="barstate-set-style"></span>`fn set_style(&mut self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md#progressstyle)
 
 - <span id="barstate-tick"></span>`fn tick(&mut self, now: Instant)`
 

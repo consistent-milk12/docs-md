@@ -31,7 +31,7 @@ Reset terminal formatting
 
 ##### `impl Clone for Reset`
 
-- <span id="reset-clone"></span>`fn clone(&self) -> Reset` — [`Reset`](../index.md)
+- <span id="reset-clone"></span>`fn clone(&self) -> Reset` — [`Reset`](../index.md#reset)
 
 ##### `impl Copy for Reset`
 
@@ -41,7 +41,7 @@ Reset terminal formatting
 
 ##### `impl Default for Reset`
 
-- <span id="reset-default"></span>`fn default() -> Reset` — [`Reset`](../index.md)
+- <span id="reset-default"></span>`fn default() -> Reset` — [`Reset`](../index.md#reset)
 
 ##### `impl Display for Reset`
 
@@ -55,15 +55,15 @@ Reset terminal formatting
 
 ##### `impl Ord for Reset`
 
-- <span id="reset-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](../index.md)
+- <span id="reset-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](../index.md#reset)
 
 ##### `impl PartialEq for Reset`
 
-- <span id="reset-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](../index.md)
+- <span id="reset-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](../index.md#reset)
 
 ##### `impl PartialOrd for Reset`
 
-- <span id="reset-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](../index.md)
+- <span id="reset-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](../index.md#reset)
 
 ##### `impl StructuralPartialEq for Reset`
 

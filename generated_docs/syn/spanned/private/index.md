@@ -22,6 +22,6 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`QSelf`](../../path/index.md)
+- [`QSelf`](../../path/index.md#qself)
 - `T`
 

@@ -61,7 +61,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 
 - <span id="tryfold-type-item"></span>`type Item = U`
 
-- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TryFold<I, U, ID, F>`
 
@@ -100,9 +100,9 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 - <span id="tryfoldconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="tryfoldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="tryfoldconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -126,7 +126,7 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 - <span id="tryfoldconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="tryfoldconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `TryFoldFolder<'r, C, U: Try, F>`
 
@@ -148,7 +148,7 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 
 - <span id="tryfoldfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="tryfoldfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="tryfoldfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="tryfoldfolder-full"></span>`fn full(&self) -> bool`
 
@@ -186,7 +186,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 #### Implementations
 
-- <span id="tryfoldwith-new"></span>`fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](../private/index.md)
+- <span id="tryfoldwith-new"></span>`fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](../private/index.md#try)
 
 #### Trait Implementations
 
@@ -212,7 +212,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 - <span id="tryfoldwith-type-item"></span>`type Item = U`
 
-- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TryFoldWith<I, U, F>`
 
@@ -250,9 +250,9 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 - <span id="tryfoldwithconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="tryfoldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="tryfoldwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="tryfoldwithconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -276,5 +276,5 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 - <span id="tryfoldwithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="tryfoldwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="tryfoldwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 

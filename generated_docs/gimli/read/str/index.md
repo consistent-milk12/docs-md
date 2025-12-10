@@ -35,7 +35,7 @@ found in the `.debug_str` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugStr<R>`
 
-- <span id="debugstr-clone"></span>`fn clone(&self) -> DebugStr<R>` — [`DebugStr`](../index.md)
+- <span id="debugstr-clone"></span>`fn clone(&self) -> DebugStr<R>` — [`DebugStr`](../index.md#debugstr)
 
 ##### `impl<R: marker::Copy> Copy for DebugStr<R>`
 
@@ -45,11 +45,11 @@ found in the `.debug_str` section.
 
 ##### `impl<R: default::Default> Default for DebugStr<R>`
 
-- <span id="debugstr-default"></span>`fn default() -> DebugStr<R>` — [`DebugStr`](../index.md)
+- <span id="debugstr-default"></span>`fn default() -> DebugStr<R>` — [`DebugStr`](../index.md#debugstr)
 
 ##### `impl<R> Section for DebugStr<R>`
 
-- <span id="debugstr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugstr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugstr-reader"></span>`fn reader(&self) -> &R`
 
@@ -67,13 +67,13 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md), [`DebugStrOffsetsBase`](../../index.md), [`Reader`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
+- <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md#format), [`DebugStrOffsetsBase`](../../index.md#debugstroffsetsbase), [`Reader`](../index.md#reader), [`DebugStrOffsetsIndex`](../../index.md#debugstroffsetsindex), [`Result`](../../index.md#result), [`DebugStrOffset`](../../index.md#debugstroffset)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone> Clone for DebugStrOffsets<R>`
 
-- <span id="debugstroffsets-clone"></span>`fn clone(&self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
+- <span id="debugstroffsets-clone"></span>`fn clone(&self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md#debugstroffsets)
 
 ##### `impl<R: marker::Copy> Copy for DebugStrOffsets<R>`
 
@@ -83,11 +83,11 @@ The raw contents of the `.debug_str_offsets` section.
 
 ##### `impl<R: default::Default> Default for DebugStrOffsets<R>`
 
-- <span id="debugstroffsets-default"></span>`fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
+- <span id="debugstroffsets-default"></span>`fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md#debugstroffsets)
 
 ##### `impl<R> Section for DebugStrOffsets<R>`
 
-- <span id="debugstroffsets-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugstroffsets-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugstroffsets-reader"></span>`fn reader(&self) -> &R`
 
@@ -112,7 +112,7 @@ found in the `.debug_line_str` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugLineStr<R>`
 
-- <span id="debuglinestr-clone"></span>`fn clone(&self) -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
+- <span id="debuglinestr-clone"></span>`fn clone(&self) -> DebugLineStr<R>` — [`DebugLineStr`](../index.md#debuglinestr)
 
 ##### `impl<R: marker::Copy> Copy for DebugLineStr<R>`
 
@@ -122,11 +122,11 @@ found in the `.debug_line_str` section.
 
 ##### `impl<R: default::Default> Default for DebugLineStr<R>`
 
-- <span id="debuglinestr-default"></span>`fn default() -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
+- <span id="debuglinestr-default"></span>`fn default() -> DebugLineStr<R>` — [`DebugLineStr`](../index.md#debuglinestr)
 
 ##### `impl<R> Section for DebugLineStr<R>`
 
-- <span id="debuglinestr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debuglinestr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debuglinestr-reader"></span>`fn reader(&self) -> &R`
 

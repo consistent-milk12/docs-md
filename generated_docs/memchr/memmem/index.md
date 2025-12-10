@@ -342,7 +342,7 @@ heuristic prefilters used to speed up certain searches.
 
 - <span id="finderbuilder-build-reverse"></span>`fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-- <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](searcher/index.md), [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](searcher/index.md#prefilterconfig), [`FinderBuilder`](#finderbuilder)
 
 #### Trait Implementations
 
@@ -417,7 +417,7 @@ useful.
 
 ##### `impl Clone for PrefilterConfig`
 
-- <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
+- <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md#prefilterconfig)
 
 ##### `impl Copy for PrefilterConfig`
 
@@ -427,7 +427,7 @@ useful.
 
 ##### `impl Default for PrefilterConfig`
 
-- <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
+- <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md#prefilterconfig)
 
 ## Functions
 

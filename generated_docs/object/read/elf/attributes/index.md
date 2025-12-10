@@ -41,17 +41,17 @@ and [`SectionHeader::gnu_attributes`](super::SectionHeader::gnu_attributes).
 
 #### Implementations
 
-- <span id="attributessection-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="attributessection-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
 - <span id="attributessection-version"></span>`fn version(&self) -> u8`
 
-- <span id="attributessection-subsections"></span>`fn subsections(&self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsectionIterator`](../index.md)
+- <span id="attributessection-subsections"></span>`fn subsections(&self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../../index.md#result), [`AttributesSubsectionIterator`](../index.md#attributessubsectioniterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
 
-- <span id="attributessection-clone"></span>`fn clone(&self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](../index.md)
+- <span id="attributessection-clone"></span>`fn clone(&self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](../index.md#attributessection)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
 
@@ -72,15 +72,15 @@ An iterator for the subsections in an [`AttributesSection`](../index.md).
 
 #### Implementations
 
-- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
+- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../../index.md#result), [`AttributesSubsection`](../index.md#attributessubsection)
 
-- <span id="attributessubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
+- <span id="attributessubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../../index.md#result), [`AttributesSubsection`](../index.md#attributessubsection)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](../index.md)
+- <span id="attributessubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](../index.md#attributessubsectioniterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
 
@@ -124,13 +124,13 @@ A subsection is identified by a vendor name.  It contains a series of
 
 - <span id="attributessubsection-vendor"></span>`fn vendor(&self) -> &'data [u8]`
 
-- <span id="attributessubsection-subsubsections"></span>`fn subsubsections(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
+- <span id="attributessubsection-subsubsections"></span>`fn subsubsections(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md#attributessubsubsectioniterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
 
-- <span id="attributessubsection-clone"></span>`fn clone(&self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](../index.md)
+- <span id="attributessubsection-clone"></span>`fn clone(&self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](../index.md#attributessubsection)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
 
@@ -151,15 +151,15 @@ An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 
 #### Implementations
 
-- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../../index.md#result), [`AttributesSubsubsection`](../index.md#attributessubsubsection)
 
-- <span id="attributessubsubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../../index.md#result), [`AttributesSubsubsection`](../index.md#attributessubsubsection)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
+- <span id="attributessubsubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md#attributessubsubsectioniterator)
 
 ##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
 
@@ -205,17 +205,17 @@ followed by a series of attributes.
 
 - <span id="attributessubsubsection-indices-data"></span>`fn indices_data(&self) -> &'data [u8]`
 
-- <span id="attributessubsubsection-indices"></span>`fn indices(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
+- <span id="attributessubsubsection-indices"></span>`fn indices(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md#attributeindexiterator)
 
 - <span id="attributessubsubsection-attributes-data"></span>`fn attributes_data(&self) -> &'data [u8]`
 
-- <span id="attributessubsubsection-attributes"></span>`fn attributes(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
+- <span id="attributessubsubsection-attributes"></span>`fn attributes(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md#attributereader)
 
 #### Trait Implementations
 
 ##### `impl Clone for AttributesSubsubsection<'data>`
 
-- <span id="attributessubsubsection-clone"></span>`fn clone(&self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsection-clone"></span>`fn clone(&self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](../index.md#attributessubsubsection)
 
 ##### `impl Debug for AttributesSubsubsection<'data>`
 
@@ -235,15 +235,15 @@ An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 
 #### Implementations
 
-- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Result<Option<u32>>` — [`Result`](../../../index.md)
+- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Result<Option<u32>>` — [`Result`](../../../index.md#result)
 
-- <span id="attributeindexiterator-parse"></span>`fn parse(&mut self) -> Result<u32>` — [`Result`](../../../index.md)
+- <span id="attributeindexiterator-parse"></span>`fn parse(&mut self) -> Result<u32>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for AttributeIndexIterator<'data>`
 
-- <span id="attributeindexiterator-clone"></span>`fn clone(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
+- <span id="attributeindexiterator-clone"></span>`fn clone(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md#attributeindexiterator)
 
 ##### `impl Debug for AttributeIndexIterator<'data>`
 
@@ -279,17 +279,17 @@ The parser relies on the caller to know the format of the data for each attribut
 
 #### Implementations
 
-- <span id="attributereader-read-tag"></span>`fn read_tag(&mut self) -> Result<Option<u64>>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-tag"></span>`fn read_tag(&mut self) -> Result<Option<u64>>` — [`Result`](../../../index.md#result)
 
-- <span id="attributereader-read-integer"></span>`fn read_integer(&mut self) -> Result<u64>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-integer"></span>`fn read_integer(&mut self) -> Result<u64>` — [`Result`](../../../index.md#result)
 
-- <span id="attributereader-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl Clone for AttributeReader<'data>`
 
-- <span id="attributereader-clone"></span>`fn clone(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
+- <span id="attributereader-clone"></span>`fn clone(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md#attributereader)
 
 ##### `impl Debug for AttributeReader<'data>`
 

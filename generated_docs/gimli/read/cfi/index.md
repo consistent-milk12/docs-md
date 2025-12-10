@@ -124,13 +124,13 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 - <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
-- <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md)
+- <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for DebugFrame<R>`
 
-- <span id="debugframe-clone"></span>`fn clone(&self) -> DebugFrame<R>` — [`DebugFrame`](../index.md)
+- <span id="debugframe-clone"></span>`fn clone(&self) -> DebugFrame<R>` — [`DebugFrame`](../index.md#debugframe)
 
 ##### `impl<R: marker::Copy + Reader> Copy for DebugFrame<R>`
 
@@ -142,11 +142,11 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
 
-- <span id="debugframe-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md)
+- <span id="debugframe-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md#debugframe)
 
 ##### `impl<R: Reader> Section for DebugFrame<R>`
 
-- <span id="debugframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugframe-reader"></span>`fn reader(&self) -> &R`
 
@@ -177,7 +177,7 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 ##### `impl<R: clone::Clone + Reader> Clone for EhFrameHdr<R>`
 
-- <span id="ehframehdr-clone"></span>`fn clone(&self) -> EhFrameHdr<R>` — [`EhFrameHdr`](../index.md)
+- <span id="ehframehdr-clone"></span>`fn clone(&self) -> EhFrameHdr<R>` — [`EhFrameHdr`](../index.md#ehframehdr)
 
 ##### `impl<R: marker::Copy + Reader> Copy for EhFrameHdr<R>`
 
@@ -189,11 +189,11 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
 
-- <span id="ehframehdr-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md)
+- <span id="ehframehdr-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md#ehframehdr)
 
 ##### `impl<R: Reader> Section for EhFrameHdr<R>`
 
-- <span id="ehframehdr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="ehframehdr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="ehframehdr-reader"></span>`fn reader(&self) -> &R`
 
@@ -218,15 +218,15 @@ struct ParsedEhFrameHdr<R: Reader> {
 
 #### Implementations
 
-- <span id="parsedehframehdr-eh-frame-ptr"></span>`fn eh_frame_ptr(&self) -> Pointer` — [`Pointer`](../index.md)
+- <span id="parsedehframehdr-eh-frame-ptr"></span>`fn eh_frame_ptr(&self) -> Pointer` — [`Pointer`](../index.md#pointer)
 
-- <span id="parsedehframehdr-table"></span>`fn table(&self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](../index.md)
+- <span id="parsedehframehdr-table"></span>`fn table(&self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](../index.md#ehhdrtable)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
 
-- <span id="parsedehframehdr-clone"></span>`fn clone(&self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](../index.md)
+- <span id="parsedehframehdr-clone"></span>`fn clone(&self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](../index.md#parsedehframehdr)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
 
@@ -254,9 +254,9 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 #### Implementations
 
-- <span id="ehhdrtableiter-next"></span>`fn next(&mut self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtableiter-next"></span>`fn next(&mut self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
 
-- <span id="ehhdrtableiter-nth"></span>`fn nth(&mut self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtableiter-nth"></span>`fn nth(&mut self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
 
 #### Trait Implementations
 
@@ -278,21 +278,21 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 
 #### Implementations
 
-- <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md), [`EhHdrTableIter`](../index.md)
+- <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md#baseaddresses), [`EhHdrTableIter`](../index.md#ehhdrtableiter)
 
-- <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
 
-- <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md), [`Result`](../../index.md), [`EhFrameOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md#pointer), [`Result`](../../index.md#result), [`EhFrameOffset`](../../index.md#ehframeoffset), [`Reader`](../index.md#reader)
 
-- <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
-- <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
+- <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
 #### Trait Implementations
 
 ##### `impl<'a, R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
-- <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md)
+- <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md#ehhdrtable)
 
 ##### `impl<'a, R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
@@ -325,13 +325,13 @@ for some discussion on the differences between `.debug_frame` and
 
 - <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
-- <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md)
+- <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for EhFrame<R>`
 
-- <span id="ehframe-clone"></span>`fn clone(&self) -> EhFrame<R>` — [`EhFrame`](../index.md)
+- <span id="ehframe-clone"></span>`fn clone(&self) -> EhFrame<R>` — [`EhFrame`](../index.md#ehframe)
 
 ##### `impl<R: marker::Copy + Reader> Copy for EhFrame<R>`
 
@@ -343,11 +343,11 @@ for some discussion on the differences between `.debug_frame` and
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
 
-- <span id="ehframe-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md)
+- <span id="ehframe-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md#ehframe)
 
 ##### `impl<R: Reader> Section for EhFrame<R>`
 
-- <span id="ehframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="ehframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="ehframe-reader"></span>`fn reader(&self) -> &R`
 
@@ -415,7 +415,7 @@ let _ = bases;
 
 ##### `impl Clone for BaseAddresses`
 
-- <span id="baseaddresses-clone"></span>`fn clone(&self) -> BaseAddresses` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-clone"></span>`fn clone(&self) -> BaseAddresses` — [`BaseAddresses`](../index.md#baseaddresses)
 
 ##### `impl Debug for BaseAddresses`
 
@@ -423,13 +423,13 @@ let _ = bases;
 
 ##### `impl Default for BaseAddresses`
 
-- <span id="baseaddresses-default"></span>`fn default() -> BaseAddresses` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-default"></span>`fn default() -> BaseAddresses` — [`BaseAddresses`](../index.md#baseaddresses)
 
 ##### `impl Eq for BaseAddresses`
 
 ##### `impl PartialEq for BaseAddresses`
 
-- <span id="baseaddresses-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md#baseaddresses)
 
 ##### `impl StructuralPartialEq for BaseAddresses`
 
@@ -475,7 +475,7 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 ##### `impl Clone for SectionBaseAddresses`
 
-- <span id="sectionbaseaddresses-clone"></span>`fn clone(&self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-clone"></span>`fn clone(&self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
 
 ##### `impl Debug for SectionBaseAddresses`
 
@@ -483,13 +483,13 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 ##### `impl Default for SectionBaseAddresses`
 
-- <span id="sectionbaseaddresses-default"></span>`fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-default"></span>`fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
 
 ##### `impl Eq for SectionBaseAddresses`
 
 ##### `impl PartialEq for SectionBaseAddresses`
 
-- <span id="sectionbaseaddresses-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md#sectionbaseaddresses)
 
 ##### `impl StructuralPartialEq for SectionBaseAddresses`
 
@@ -550,13 +550,13 @@ unreachable!()
 
 #### Implementations
 
-- <span id="cfientriesiter-next"></span>`fn next(&mut self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../../index.md), [`CieOrFde`](../index.md)
+- <span id="cfientriesiter-next"></span>`fn next(&mut self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../../index.md#result), [`CieOrFde`](../index.md#cieorfde)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
-- <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md)
+- <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md#cfientriesiter)
 
 ##### `impl<'bases, Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
@@ -616,13 +616,13 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 #### Implementations
 
-- <span id="augmentation-parse"></span>`fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Augmentation`](../index.md)
+- <span id="augmentation-parse"></span>`fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`Augmentation`](../index.md#augmentation)
 
 #### Trait Implementations
 
 ##### `impl Clone for Augmentation`
 
-- <span id="augmentation-clone"></span>`fn clone(&self) -> Augmentation` — [`Augmentation`](../index.md)
+- <span id="augmentation-clone"></span>`fn clone(&self) -> Augmentation` — [`Augmentation`](../index.md#augmentation)
 
 ##### `impl Copy for Augmentation`
 
@@ -632,13 +632,13 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 ##### `impl Default for Augmentation`
 
-- <span id="augmentation-default"></span>`fn default() -> Augmentation` — [`Augmentation`](../index.md)
+- <span id="augmentation-default"></span>`fn default() -> Augmentation` — [`Augmentation`](../index.md#augmentation)
 
 ##### `impl Eq for Augmentation`
 
 ##### `impl PartialEq for Augmentation`
 
-- <span id="augmentation-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md)
+- <span id="augmentation-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md#augmentation)
 
 ##### `impl StructuralPartialEq for Augmentation`
 
@@ -656,7 +656,7 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 
 #### Implementations
 
-- <span id="augmentationdata-parse"></span>`fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md), [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-parse"></span>`fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](../index.md#augmentation), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md#result), [`AugmentationData`](#augmentationdata)
 
 #### Trait Implementations
 
@@ -765,15 +765,15 @@ where
 
 #### Implementations
 
-- <span id="commoninformationentry-parse"></span>`fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-parse"></span>`fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`CommonInformationEntry`](../index.md#commoninformationentry)
 
-- <span id="commoninformationentry-parse-rest"></span>`fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-parse-rest"></span>`fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](../index.md#reader), [`Format`](../../index.md#format), [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`CommonInformationEntry`](../index.md#commoninformationentry)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for CommonInformationEntry<R, Offset>`
 
-- <span id="commoninformationentry-clone"></span>`fn clone(&self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-clone"></span>`fn clone(&self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](../index.md#commoninformationentry)
 
 ##### `impl<R, Offset> Debug for CommonInformationEntry<R, Offset>`
 
@@ -783,7 +783,7 @@ where
 
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
 
-- <span id="commoninformationentry-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md#commoninformationentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for CommonInformationEntry<R, Offset>`
 
@@ -812,21 +812,21 @@ Fully parsing this FDE requires first parsing its CIE.
 
 #### Implementations
 
-- <span id="partialframedescriptionentry-parse-partial"></span>`fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-parse-partial"></span>`fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
-- <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
-- <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
 
-- <span id="partialframedescriptionentry-cie-offset"></span>`fn cie_offset(&self) -> <Section as >::Offset` — [`UnwindSection`](../index.md)
+- <span id="partialframedescriptionentry-cie-offset"></span>`fn cie_offset(&self) -> <Section as >::Offset` — [`UnwindSection`](../index.md#unwindsection)
 
-- <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
 ##### `impl<'bases, Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
@@ -836,7 +836,7 @@ Fully parsing this FDE requires first parsing its CIE.
 
 ##### `impl<'bases, Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
@@ -905,19 +905,19 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- <span id="framedescriptionentry-parse-rest"></span>`fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-parse-rest"></span>`fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](../index.md#reader), [`Format`](../../index.md#format), [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
-- <span id="framedescriptionentry-parse-addresses"></span>`fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md)
+- <span id="framedescriptionentry-parse-addresses"></span>`fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](../index.md#commoninformationentry), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md#result)
 
-- <span id="framedescriptionentry-rows"></span>`fn rows<'a, 'ctx, Section, S>(&self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTable`](../index.md)
+- <span id="framedescriptionentry-rows"></span>`fn rows<'a, 'ctx, Section, S>(&self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTable`](../index.md#unwindtable)
 
-- <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
+- <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for FrameDescriptionEntry<R, Offset>`
 
-- <span id="framedescriptionentry-clone"></span>`fn clone(&self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-clone"></span>`fn clone(&self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
 ##### `impl<R, Offset> Debug for FrameDescriptionEntry<R, Offset>`
 
@@ -927,7 +927,7 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
 
-- <span id="framedescriptionentry-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for FrameDescriptionEntry<R, Offset>`
 
@@ -988,7 +988,7 @@ unreachable!()
 
 ##### `impl<T, S> Clone for UnwindContext<T, S>`
 
-- <span id="unwindcontext-clone"></span>`fn clone(&self) -> UnwindContext<T, S>` — [`UnwindContext`](../index.md)
+- <span id="unwindcontext-clone"></span>`fn clone(&self) -> UnwindContext<T, S>` — [`UnwindContext`](../index.md#unwindcontext)
 
 ##### `impl<T, S> Debug for UnwindContext<T, S>`
 
@@ -1002,7 +1002,7 @@ unreachable!()
 
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
 
-- <span id="unwindcontext-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md)
+- <span id="unwindcontext-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md#unwindcontext)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindContext<T, S>`
 
@@ -1086,17 +1086,17 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 #### Implementations
 
-- <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md), [`Result`](../../index.md)
+- <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry), [`Result`](../../index.md#result)
 
-- <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
-- <span id="unwindtable-new-for-cie"></span>`fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`CommonInformationEntry`](../index.md)
+- <span id="unwindtable-new-for-cie"></span>`fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`CommonInformationEntry`](../index.md#commoninformationentry)
 
-- <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md), [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
+- <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
 
-- <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
+- <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
 
-- <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md#callframeinstruction), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
@@ -1121,11 +1121,11 @@ where
 
 - <span id="registerrulemap-is-default"></span>`fn is_default(&self) -> bool`
 
-- <span id="registerrulemap-get"></span>`fn get(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
+- <span id="registerrulemap-get"></span>`fn get(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md#register), [`RegisterRule`](../index.md#registerrule)
 
-- <span id="registerrulemap-set"></span>`fn set(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
+- <span id="registerrulemap-set"></span>`fn set(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md#register), [`RegisterRule`](../index.md#registerrule), [`Result`](../../index.md#result)
 
-- <span id="registerrulemap-iter"></span>`fn iter(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="registerrulemap-iter"></span>`fn iter(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
 #### Trait Implementations
 
@@ -1167,7 +1167,7 @@ An unordered iterator for register rules.
 
 ##### `impl<'iter, T> Clone for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
 ##### `impl<'iter, T> Debug for RegisterRuleIter<'iter, T>`
 
@@ -1219,11 +1219,11 @@ the registers in the *previous* frame for a range of PC addresses.
 
 - <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
 
-- <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](../index.md)
+- <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](../index.md#cfarule)
 
-- <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
+- <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md#register), [`RegisterRule`](../index.md#registerrule)
 
-- <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
 #### Trait Implementations
 
@@ -1243,7 +1243,7 @@ the registers in the *previous* frame for a range of PC addresses.
 
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
 
-- <span id="unwindtablerow-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md)
+- <span id="unwindtablerow-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md#unwindtablerow)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindTableRow<T, S>`
 
@@ -1267,13 +1267,13 @@ Can be [used with
 
 #### Implementations
 
-- <span id="callframeinstructioniter-next"></span>`fn next(&mut self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../../index.md), [`CallFrameInstruction`](../index.md), [`Reader`](../index.md)
+- <span id="callframeinstructioniter-next"></span>`fn next(&mut self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../../index.md#result), [`CallFrameInstruction`](../index.md#callframeinstruction), [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
 ##### `impl<'a, R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
-- <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md)
+- <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md#callframeinstructioniter)
 
 ##### `impl<'a, R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
@@ -1329,13 +1329,13 @@ Ok(())
 
 #### Implementations
 
-- <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md), [`Expression`](../index.md)
+- <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md#result), [`Expression`](../index.md#expression)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
 
-- <span id="unwindexpression-clone"></span>`fn clone(&self) -> UnwindExpression<T>` — [`UnwindExpression`](../index.md)
+- <span id="unwindexpression-clone"></span>`fn clone(&self) -> UnwindExpression<T>` — [`UnwindExpression`](../index.md#unwindexpression)
 
 ##### `impl<T: marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
 
@@ -1347,7 +1347,7 @@ Ok(())
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
 
-- <span id="unwindexpression-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md)
+- <span id="unwindexpression-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md#unwindexpression)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for UnwindExpression<T>`
 
@@ -1408,7 +1408,7 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 ##### `impl<'bases, Section, R> Clone for CieOrFde<'bases, Section, R>`
 
-- <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md)
+- <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md#cieorfde)
 
 ##### `impl<'bases, Section, R> Debug for CieOrFde<'bases, Section, R>`
 
@@ -1418,7 +1418,7 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 ##### `impl<'bases, Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
-- <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md)
+- <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md#cieorfde)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
 
@@ -1456,7 +1456,7 @@ The canonical frame address (CFA) recovery rules.
 
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for CfaRule<T>`
 
-- <span id="cfarule-clone"></span>`fn clone(&self) -> CfaRule<T>` — [`CfaRule`](../index.md)
+- <span id="cfarule-clone"></span>`fn clone(&self) -> CfaRule<T>` — [`CfaRule`](../index.md#cfarule)
 
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
 
@@ -1470,7 +1470,7 @@ The canonical frame address (CFA) recovery rules.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
 
-- <span id="cfarule-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md)
+- <span id="cfarule-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md#cfarule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CfaRule<T>`
 
@@ -1553,7 +1553,7 @@ previous frame."
 
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
 
-- <span id="registerrule-clone"></span>`fn clone(&self) -> RegisterRule<T>` — [`RegisterRule`](../index.md)
+- <span id="registerrule-clone"></span>`fn clone(&self) -> RegisterRule<T>` — [`RegisterRule`](../index.md#registerrule)
 
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
 
@@ -1563,7 +1563,7 @@ previous frame."
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
 
-- <span id="registerrule-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md)
+- <span id="registerrule-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md#registerrule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for RegisterRule<T>`
 
@@ -1888,13 +1888,13 @@ A parsed call frame instruction.
 
 #### Implementations
 
-- <span id="callframeinstruction-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Vendor`](../../index.md), [`Result`](../../index.md), [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../../index.md#dwehpe), [`PointerEncodingParameters`](#pointerencodingparameters), [`Vendor`](../../index.md#vendor), [`Result`](../../index.md#result), [`CallFrameInstruction`](../index.md#callframeinstruction)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
 
-- <span id="callframeinstruction-clone"></span>`fn clone(&self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-clone"></span>`fn clone(&self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](../index.md#callframeinstruction)
 
 ##### `impl<T: fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
 
@@ -1904,7 +1904,7 @@ A parsed call frame instruction.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
 
-- <span id="callframeinstruction-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md#callframeinstruction)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CallFrameInstruction<T>`
 
@@ -1938,9 +1938,9 @@ A decoded pointer.
 
 #### Implementations
 
-- <span id="pointer-new"></span>`fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../../index.md), [`Pointer`](../index.md)
+- <span id="pointer-new"></span>`fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../../index.md#dwehpe), [`Pointer`](../index.md#pointer)
 
-- <span id="pointer-direct"></span>`fn direct(self) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="pointer-direct"></span>`fn direct(self) -> Result<u64>` — [`Result`](../../index.md#result)
 
 - <span id="pointer-pointer"></span>`fn pointer(self) -> u64`
 
@@ -1948,7 +1948,7 @@ A decoded pointer.
 
 ##### `impl Clone for Pointer`
 
-- <span id="pointer-clone"></span>`fn clone(&self) -> Pointer` — [`Pointer`](../index.md)
+- <span id="pointer-clone"></span>`fn clone(&self) -> Pointer` — [`Pointer`](../index.md#pointer)
 
 ##### `impl Copy for Pointer`
 
@@ -1964,7 +1964,7 @@ A decoded pointer.
 
 ##### `impl PartialEq for Pointer`
 
-- <span id="pointer-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](../index.md)
+- <span id="pointer-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](../index.md#pointer)
 
 ##### `impl StructuralPartialEq for Pointer`
 
@@ -1990,8 +1990,8 @@ An offset into an `UnwindSection`.
 
 #### Implementors
 
-- [`DebugFrameOffset`](../../index.md)
-- [`EhFrameOffset`](../../index.md)
+- [`DebugFrameOffset`](../../index.md#debugframeoffset)
+- [`EhFrameOffset`](../../index.md#ehframeoffset)
 
 ### `UnwindSection<R: Reader>`
 
@@ -2037,8 +2037,8 @@ A section holding unwind information: either `.debug_frame` or
 
 #### Implementors
 
-- [`DebugFrame`](../index.md)
-- [`EhFrame`](../index.md)
+- [`DebugFrame`](../index.md#debugframe)
+- [`EhFrame`](../index.md#ehframe)
 
 ### `UnwindContextStorage<T: ReaderOffset>`
 
@@ -2102,7 +2102,7 @@ unreachable!()
 
 #### Implementors
 
-- [`StoreOnHeap`](../../index.md)
+- [`StoreOnHeap`](../../index.md#storeonheap)
 
 ## Functions
 

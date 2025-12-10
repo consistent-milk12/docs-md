@@ -449,7 +449,7 @@ struct termios2 {
 
 ##### `impl Clone for termios2`
 
-- <span id="termios2-clone"></span>`fn clone(&self) -> termios2` — [`termios2`](../index.md)
+- <span id="termios2-clone"></span>`fn clone(&self) -> termios2` — [`termios2`](../index.md#termios2)
 
 ##### `impl Copy for termios2`
 

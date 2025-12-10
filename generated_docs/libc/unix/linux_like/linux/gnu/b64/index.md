@@ -878,7 +878,7 @@ struct sigset_t {
 
 ##### `impl Clone for sigset_t`
 
-- <span id="sigset-t-clone"></span>`fn clone(&self) -> sigset_t` — [`sigset_t`](../index.md)
+- <span id="sigset-t-clone"></span>`fn clone(&self) -> sigset_t` — [`sigset_t`](../index.md#sigset-t)
 
 ##### `impl Copy for sigset_t`
 
@@ -913,7 +913,7 @@ struct sysinfo {
 
 ##### `impl Clone for sysinfo`
 
-- <span id="sysinfo-clone"></span>`fn clone(&self) -> sysinfo` — [`sysinfo`](../index.md)
+- <span id="sysinfo-clone"></span>`fn clone(&self) -> sysinfo` — [`sysinfo`](../index.md#sysinfo)
 
 ##### `impl Copy for sysinfo`
 
@@ -945,7 +945,7 @@ struct msqid_ds {
 
 ##### `impl Clone for msqid_ds`
 
-- <span id="msqid-ds-clone"></span>`fn clone(&self) -> msqid_ds` — [`msqid_ds`](../index.md)
+- <span id="msqid-ds-clone"></span>`fn clone(&self) -> msqid_ds` — [`msqid_ds`](../index.md#msqid-ds)
 
 ##### `impl Copy for msqid_ds`
 
@@ -974,7 +974,7 @@ struct semid_ds {
 
 ##### `impl Clone for semid_ds`
 
-- <span id="semid-ds-clone"></span>`fn clone(&self) -> semid_ds` — [`semid_ds`](../index.md)
+- <span id="semid-ds-clone"></span>`fn clone(&self) -> semid_ds` — [`semid_ds`](../index.md#semid-ds)
 
 ##### `impl Copy for semid_ds`
 
@@ -1026,7 +1026,7 @@ struct timex {
 
 ##### `impl Clone for timex`
 
-- <span id="timex-clone"></span>`fn clone(&self) -> timex` — [`timex`](../index.md)
+- <span id="timex-clone"></span>`fn clone(&self) -> timex` — [`timex`](../index.md#timex)
 
 ##### `impl Copy for timex`
 
@@ -1159,9 +1159,9 @@ struct siginfo_t {
 
 #### Implementations
 
-- <span id="siginfo-t-si-addr"></span>`unsafe fn si_addr(&self) -> *mut c_void` — [`c_void`](../../../../../index.md)
+- <span id="siginfo-t-si-addr"></span>`unsafe fn si_addr(&self) -> *mut c_void` — [`c_void`](../../../../../index.md#c-void)
 
-- <span id="siginfo-t-si-value"></span>`unsafe fn si_value(&self) -> crate::sigval` — [`sigval`](../../../../../index.md)
+- <span id="siginfo-t-si-value"></span>`unsafe fn si_value(&self) -> crate::sigval` — [`sigval`](../../../../../index.md#sigval)
 
 #### Trait Implementations
 

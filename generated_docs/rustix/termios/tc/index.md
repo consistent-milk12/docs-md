@@ -82,7 +82,7 @@ On Linux, `Pid` values are also used to identify threads.
 
 ##### `impl Clone for Pid`
 
-- <span id="pid-clone"></span>`fn clone(&self) -> Pid` — [`Pid`](../../pid/index.md)
+- <span id="pid-clone"></span>`fn clone(&self) -> Pid` — [`Pid`](../../pid/index.md#pid)
 
 ##### `impl Copy for Pid`
 
@@ -114,7 +114,7 @@ On Linux, `Pid` values are also used to identify threads.
 
 ##### `impl PartialEq for Pid`
 
-- <span id="pid-eq"></span>`fn eq(&self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md)
+- <span id="pid-eq"></span>`fn eq(&self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md#pid)
 
 ##### `impl StructuralPartialEq for Pid`
 

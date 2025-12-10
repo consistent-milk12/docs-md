@@ -136,9 +136,9 @@ enum TokenStream {
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
@@ -203,7 +203,7 @@ enum TokenTreeIter {
 
 - <span id="tokentreeiter-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokentreeiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
+- <span id="tokentreeiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md#tokentree)
 
 - <span id="tokentreeiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -263,9 +263,9 @@ enum Group {
 
 #### Implementations
 
-- <span id="group-new"></span>`fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](../index.md), [`TokenStream`](#tokenstream)
+- <span id="group-new"></span>`fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](../index.md#delimiter), [`TokenStream`](#tokenstream)
 
-- <span id="group-delimiter"></span>`fn delimiter(&self) -> Delimiter` — [`Delimiter`](../index.md)
+- <span id="group-delimiter"></span>`fn delimiter(&self) -> Delimiter` — [`Delimiter`](../index.md#delimiter)
 
 - <span id="group-stream"></span>`fn stream(&self) -> TokenStream` — [`TokenStream`](#tokenstream)
 
@@ -303,7 +303,7 @@ enum Group {
 
 ##### `impl ToTokens for proc_macro2::Group`
 
-- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](../parse/index.md), [`TokenTree`](../index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](../parse/index.md#cursor), [`TokenTree`](../index.md#tokentree), [`Reject`](../parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Group`
 
@@ -481,7 +481,7 @@ enum Literal {
 
 ##### `impl ToTokens for proc_macro2::Literal`
 
-- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Literal`
 

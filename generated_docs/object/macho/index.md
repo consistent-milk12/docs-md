@@ -1509,17 +1509,17 @@ right after the theader.
 
 #### Implementations
 
-- <span id="machodyldcacheheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md)
+- <span id="machodyldcacheheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md#result)
 
-- <span id="machodyldcacheheader-parse-magic"></span>`fn parse_magic(&self) -> Result<(Architecture, E)>` — [`Result`](../index.md), [`Architecture`](../index.md)
+- <span id="machodyldcacheheader-parse-magic"></span>`fn parse_magic(&self) -> Result<(Architecture, E)>` — [`Result`](../index.md#result), [`Architecture`](../index.md#architecture)
 
-- <span id="machodyldcacheheader-mappings"></span>`fn mappings<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md), [`DyldCacheMappingSlice`](../read/macho/index.md)
+- <span id="machodyldcacheheader-mappings"></span>`fn mappings<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md#result), [`DyldCacheMappingSlice`](../read/macho/index.md#dyldcachemappingslice)
 
-- <span id="machodyldcacheheader-subcaches"></span>`fn subcaches<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md), [`DyldSubCacheSlice`](../read/macho/index.md)
+- <span id="machodyldcacheheader-subcaches"></span>`fn subcaches<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md#result), [`DyldSubCacheSlice`](../read/macho/index.md#dyldsubcacheslice)
 
 - <span id="machodyldcacheheader-symbols-subcache-uuid"></span>`fn symbols_subcache_uuid(&self, endian: E) -> Option<[u8; 16]>`
 
-- <span id="machodyldcacheheader-images"></span>`fn images<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
+- <span id="machodyldcacheheader-images"></span>`fn images<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md#result), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
 #### Trait Implementations
 
@@ -1586,7 +1586,7 @@ Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h
 
 #### Implementations
 
-- <span id="machodyldcachemappingandslideinfo-slide"></span>`fn slide<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md), [`DyldCacheSlideInfo`](../read/macho/index.md)
+- <span id="machodyldcachemappingandslideinfo-slide"></span>`fn slide<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md#result), [`DyldCacheSlideInfo`](../read/macho/index.md#dyldcacheslideinfo)
 
 #### Trait Implementations
 
@@ -1620,7 +1620,7 @@ Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
 #### Implementations
 
-- <span id="machodyldcacheimageinfo-path"></span>`fn path<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="machodyldcacheimageinfo-path"></span>`fn path<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md#result)
 
 #### Trait Implementations
 
@@ -1982,9 +1982,9 @@ struct FatArch32 {
 
 - <span id="fatarch32-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
 - <span id="fatarch32-align"></span>`fn align(&self) -> u32`
 
@@ -2053,9 +2053,9 @@ struct FatArch64 {
 
 - <span id="fatarch64-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
-- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md#fatarch)
 
 - <span id="fatarch64-align"></span>`fn align(&self) -> u32`
 
@@ -2143,17 +2143,17 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 - <span id="machomachheader32-magic"></span>`fn magic(&self) -> u32`
 
-- <span id="machomachheader32-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
 ##### `impl<E: Endian> Pod for MachHeader32<E>`
 
@@ -2244,17 +2244,17 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 - <span id="machomachheader64-magic"></span>`fn magic(&self) -> u32`
 
-- <span id="machomachheader64-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
-- <span id="machomachheader64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md#machheader)
 
 ##### `impl<E: Endian> Pod for MachHeader64<E>`
 
@@ -2452,29 +2452,29 @@ reflected in `cmdsize`.
 
 - <span id="machosegmentcommand32-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
-- <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
+- <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
-- <span id="machosegmentcommand32-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
 - <span id="machosegmentcommand32-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosegmentcommand32-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
 ### `SegmentCommand64<E: Endian>`
 
@@ -2571,29 +2571,29 @@ command and their size is reflected in `cmdsize`.
 
 - <span id="machosegmentcommand64-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
-- <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
+- <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
-- <span id="machosegmentcommand64-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
 - <span id="machosegmentcommand64-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosegmentcommand64-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
-- <span id="machosegmentcommand64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md#segment)
 
 ### `Section32<E: Endian>`
 
@@ -2687,19 +2687,19 @@ struct Section32<E: Endian> {
 
 - <span id="machosection32-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosection32-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
 ### `Section64<E: Endian>`
 
@@ -2798,19 +2798,19 @@ struct Section64<E: Endian> {
 
 - <span id="machosection64-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- <span id="machosection64-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
-- <span id="machosection64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md#section)
 
 ### `Fvmlib<E: Endian>`
 
@@ -3407,7 +3407,7 @@ struct SymtabCommand<E: Endian> {
 
 #### Implementations
 
-- <span id="machosymtabcommand-symbols"></span>`fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md), [`SymbolTable`](../read/macho/index.md)
+- <span id="machosymtabcommand-symbols"></span>`fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md#result), [`SymbolTable`](../read/macho/index.md#symboltable)
 
 #### Trait Implementations
 
@@ -4789,15 +4789,15 @@ struct Nlist32<E: Endian> {
 
 - <span id="machonlist32-type-endian"></span>`type Endian = Endian`
 
-- <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 
 - <span id="machonlist32-n-type"></span>`fn n_type(&self) -> u8`
 
 - <span id="machonlist32-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- <span id="machonlist32-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist32-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
 
 ##### `impl<E: Endian> Pod for Nlist32<E>`
 
@@ -4855,15 +4855,15 @@ struct Nlist64<E: Endian> {
 
 - <span id="machonlist64-type-endian"></span>`type Endian = Endian`
 
-- <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 
 - <span id="machonlist64-n-type"></span>`fn n_type(&self) -> u8`
 
 - <span id="machonlist64-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- <span id="machonlist64-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md#nlist)
 
-- <span id="machonlist64-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md#nlist)
 
 ##### `impl<E: Endian> Pod for Nlist64<E>`
 

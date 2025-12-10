@@ -245,7 +245,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="lookmatcher-matches-set-inline"></span>`fn matches_set_inline(&self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](#lookset)
 
-- <span id="lookmatcher-add-to-byteset"></span>`fn add_to_byteset(&self, look: Look, set: &mut crate::util::alphabet::ByteClassSet)` — [`Look`](#look), [`ByteClassSet`](../alphabet/index.md)
+- <span id="lookmatcher-add-to-byteset"></span>`fn add_to_byteset(&self, look: Look, set: &mut crate::util::alphabet::ByteClassSet)` — [`Look`](#look), [`ByteClassSet`](../alphabet/index.md#byteclassset)
 
 - <span id="lookmatcher-is-start"></span>`fn is_start(&self, _haystack: &[u8], at: usize) -> bool`
 

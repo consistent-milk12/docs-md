@@ -58,11 +58,11 @@ struct HeapBuffer {
 
 #### Implementations
 
-- <span id="heapbuffer-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
-- <span id="heapbuffer-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
-- <span id="heapbuffer-with-additional"></span>`fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-with-additional"></span>`fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
 - <span id="heapbuffer-capacity"></span>`fn capacity(&self) -> usize`
 

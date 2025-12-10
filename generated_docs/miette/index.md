@@ -1003,13 +1003,13 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
 
-- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](eyreish/error/index.md), [`ReportHandler`](#reporthandler)
+- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](eyreish/error/index.md#errorvtable), [`ReportHandler`](#reporthandler)
 
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
 
-- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](chain/index.md)
+- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](chain/index.md#chain)
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
@@ -1162,9 +1162,9 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
-- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md)
+- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md#graphicaltheme)
 
-- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md)
+- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md#highlighter)
 
 - <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
@@ -1848,7 +1848,7 @@ enum HighlighterOption {
 
 #### Implementations
 
-- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md), [`HighlighterOption`](handler/index.md)
+- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md#miettehighlighter), [`HighlighterOption`](handler/index.md#highlighteroption)
 
 #### Trait Implementations
 
@@ -1953,11 +1953,11 @@ Error Report Handler trait for customizing `miette::Report`
 
 #### Implementors
 
-- [`DebugReportHandler`](handlers/index.md)
-- [`GraphicalReportHandler`](handlers/index.md)
-- [`JSONReportHandler`](handlers/index.md)
+- [`DebugReportHandler`](handlers/index.md#debugreporthandler)
+- [`GraphicalReportHandler`](handlers/index.md#graphicalreporthandler)
+- [`JSONReportHandler`](handlers/index.md#jsonreporthandler)
 - [`MietteHandler`](#miettehandler)
-- [`NarratableReportHandler`](handlers/index.md)
+- [`NarratableReportHandler`](handlers/index.md#narratablereporthandler)
 
 ### `WrapErr<T, E>`
 
@@ -2213,16 +2213,16 @@ messages.
 
 #### Implementors
 
-- [`BoxedError`](eyreish/wrapper/index.md)
-- [`ContextError`](eyreish/error/index.md)
-- [`DiagnosticError`](eyreish/into_diagnostic/index.md)
-- [`DisplayError`](eyreish/wrapper/index.md)
+- [`BoxedError`](eyreish/wrapper/index.md#boxederror)
+- [`ContextError`](eyreish/error/index.md#contexterror)
+- [`DiagnosticError`](eyreish/into_diagnostic/index.md#diagnosticerror)
+- [`DisplayError`](eyreish/wrapper/index.md#displayerror)
 - [`InstallError`](#installerror)
-- [`MessageError`](eyreish/wrapper/index.md)
+- [`MessageError`](eyreish/wrapper/index.md#messageerror)
 - [`MietteDiagnostic`](#miettediagnostic)
 - [`MietteError`](#mietteerror)
-- [`Panic`](panic/index.md)
-- [`WithSourceCode`](eyreish/wrapper/index.md)
+- [`Panic`](panic/index.md#panic)
+- [`WithSourceCode`](eyreish/wrapper/index.md#withsourcecode)
 - `std::convert::Infallible`
 
 ### `SourceCode`

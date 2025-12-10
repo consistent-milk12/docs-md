@@ -60,7 +60,7 @@ one of the predefined ones using the methods below.
 
 ##### `impl Clone for GraphicalTheme`
 
-- <span id="graphicaltheme-clone"></span>`fn clone(&self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md)
+- <span id="graphicaltheme-clone"></span>`fn clone(&self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md#graphicaltheme)
 
 ##### `impl Debug for GraphicalTheme`
 
@@ -134,7 +134,7 @@ Styles for various parts of graphical rendering for the
 
 ##### `impl Clone for ThemeStyles`
 
-- <span id="themestyles-clone"></span>`fn clone(&self) -> ThemeStyles` — [`ThemeStyles`](../index.md)
+- <span id="themestyles-clone"></span>`fn clone(&self) -> ThemeStyles` — [`ThemeStyles`](../index.md#themestyles)
 
 ##### `impl Debug for ThemeStyles`
 
@@ -187,7 +187,7 @@ Characters to be used when drawing when using
 
 ##### `impl Clone for ThemeCharacters`
 
-- <span id="themecharacters-clone"></span>`fn clone(&self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-clone"></span>`fn clone(&self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md#themecharacters)
 
 ##### `impl Debug for ThemeCharacters`
 
@@ -199,7 +199,7 @@ Characters to be used when drawing when using
 
 ##### `impl PartialEq for ThemeCharacters`
 
-- <span id="themecharacters-eq"></span>`fn eq(&self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-eq"></span>`fn eq(&self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md#themecharacters)
 
 ##### `impl StructuralPartialEq for ThemeCharacters`
 

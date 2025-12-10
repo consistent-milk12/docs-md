@@ -58,6 +58,6 @@ A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::D
 
 #### Implementors
 
-- [`Dyn32`](../../../elf/index.md)
-- [`Dyn64`](../../../elf/index.md)
+- [`Dyn32`](../../../elf/index.md#dyn32)
+- [`Dyn64`](../../../elf/index.md#dyn64)
 

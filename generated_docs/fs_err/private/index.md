@@ -22,7 +22,7 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`File`](../index.md)
-- [`OpenOptions`](../open_options/index.md)
+- [`File`](../index.md#file)
+- [`OpenOptions`](../open_options/index.md#openoptions)
 - `std::path::Path`
 

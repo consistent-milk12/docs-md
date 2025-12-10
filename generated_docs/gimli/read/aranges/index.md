@@ -37,7 +37,7 @@ found in the `.debug_aranges` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugAranges<R>`
 
-- <span id="debugaranges-clone"></span>`fn clone(&self) -> DebugAranges<R>` — [`DebugAranges`](../index.md)
+- <span id="debugaranges-clone"></span>`fn clone(&self) -> DebugAranges<R>` — [`DebugAranges`](../index.md#debugaranges)
 
 ##### `impl<R: marker::Copy> Copy for DebugAranges<R>`
 
@@ -47,11 +47,11 @@ found in the `.debug_aranges` section.
 
 ##### `impl<R: default::Default> Default for DebugAranges<R>`
 
-- <span id="debugaranges-default"></span>`fn default() -> DebugAranges<R>` — [`DebugAranges`](../index.md)
+- <span id="debugaranges-default"></span>`fn default() -> DebugAranges<R>` — [`DebugAranges`](../index.md#debugaranges)
 
 ##### `impl<R> Section for DebugAranges<R>`
 
-- <span id="debugaranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugaranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugaranges-reader"></span>`fn reader(&self) -> &R`
 
@@ -70,13 +70,13 @@ An iterator over the headers of a `.debug_aranges` section.
 
 #### Implementations
 
-- <span id="arangeheaderiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeHeader<R>>>` — [`Result`](../../index.md), [`ArangeHeader`](../index.md)
+- <span id="arangeheaderiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeHeader<R>>>` — [`Result`](../../index.md#result), [`ArangeHeader`](../index.md#arangeheader)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for ArangeHeaderIter<R>`
 
-- <span id="arangeheaderiter-clone"></span>`fn clone(&self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](../index.md)
+- <span id="arangeheaderiter-clone"></span>`fn clone(&self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](../index.md#arangeheaderiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for ArangeHeaderIter<R>`
 
@@ -105,23 +105,23 @@ These entries all belong to a single unit.
 
 #### Implementations
 
-- <span id="arangeheader-parse"></span>`fn parse(input: &mut R, offset: DebugArangesOffset<Offset>) -> Result<Self>` — [`DebugArangesOffset`](../../index.md), [`Result`](../../index.md)
+- <span id="arangeheader-parse"></span>`fn parse(input: &mut R, offset: DebugArangesOffset<Offset>) -> Result<Self>` — [`DebugArangesOffset`](../../index.md#debugarangesoffset), [`Result`](../../index.md#result)
 
-- <span id="arangeheader-offset"></span>`fn offset(&self) -> DebugArangesOffset<Offset>` — [`DebugArangesOffset`](../../index.md)
+- <span id="arangeheader-offset"></span>`fn offset(&self) -> DebugArangesOffset<Offset>` — [`DebugArangesOffset`](../../index.md#debugarangesoffset)
 
 - <span id="arangeheader-length"></span>`fn length(&self) -> Offset`
 
-- <span id="arangeheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="arangeheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md#encoding)
 
-- <span id="arangeheader-debug-info-offset"></span>`fn debug_info_offset(&self) -> DebugInfoOffset<Offset>` — [`DebugInfoOffset`](../../index.md)
+- <span id="arangeheader-debug-info-offset"></span>`fn debug_info_offset(&self) -> DebugInfoOffset<Offset>` — [`DebugInfoOffset`](../../index.md#debuginfooffset)
 
-- <span id="arangeheader-entries"></span>`fn entries(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](../index.md)
+- <span id="arangeheader-entries"></span>`fn entries(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](../index.md#arangeentryiter)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for ArangeHeader<R, Offset>`
 
-- <span id="arangeheader-clone"></span>`fn clone(&self) -> ArangeHeader<R, Offset>` — [`ArangeHeader`](../index.md)
+- <span id="arangeheader-clone"></span>`fn clone(&self) -> ArangeHeader<R, Offset>` — [`ArangeHeader`](../index.md#arangeheader)
 
 ##### `impl<R, Offset> Debug for ArangeHeader<R, Offset>`
 
@@ -131,7 +131,7 @@ These entries all belong to a single unit.
 
 ##### `impl<R, Offset> PartialEq for ArangeHeader<R, Offset>`
 
-- <span id="arangeheader-eq"></span>`fn eq(&self, other: &ArangeHeader<R, Offset>) -> bool` — [`ArangeHeader`](../index.md)
+- <span id="arangeheader-eq"></span>`fn eq(&self, other: &ArangeHeader<R, Offset>) -> bool` — [`ArangeHeader`](../index.md#arangeheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for ArangeHeader<R, Offset>`
 
@@ -153,15 +153,15 @@ Can be [used with
 
 #### Implementations
 
-- <span id="arangeentryiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md), [`ArangeEntry`](../index.md)
+- <span id="arangeentryiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md#result), [`ArangeEntry`](../index.md#arangeentry)
 
-- <span id="arangeentryiter-next-raw"></span>`fn next_raw(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md), [`ArangeEntry`](../index.md)
+- <span id="arangeentryiter-next-raw"></span>`fn next_raw(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md#result), [`ArangeEntry`](../index.md#arangeentry)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for ArangeEntryIter<R>`
 
-- <span id="arangeentryiter-clone"></span>`fn clone(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](../index.md)
+- <span id="arangeentryiter-clone"></span>`fn clone(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](../index.md#arangeentryiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for ArangeEntryIter<R>`
 
@@ -182,19 +182,19 @@ A single parsed arange.
 
 #### Implementations
 
-- <span id="arangeentry-parse"></span>`fn parse<R: Reader>(input: &mut R, encoding: Encoding) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`Result`](../../index.md)
+- <span id="arangeentry-parse"></span>`fn parse<R: Reader>(input: &mut R, encoding: Encoding) -> Result<Option<Self>>` — [`Encoding`](../../index.md#encoding), [`Result`](../../index.md#result)
 
 - <span id="arangeentry-address"></span>`fn address(&self) -> u64`
 
 - <span id="arangeentry-length"></span>`fn length(&self) -> u64`
 
-- <span id="arangeentry-range"></span>`fn range(&self) -> Range` — [`Range`](../index.md)
+- <span id="arangeentry-range"></span>`fn range(&self) -> Range` — [`Range`](../index.md#range)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArangeEntry`
 
-- <span id="arangeentry-clone"></span>`fn clone(&self) -> ArangeEntry` — [`ArangeEntry`](../index.md)
+- <span id="arangeentry-clone"></span>`fn clone(&self) -> ArangeEntry` — [`ArangeEntry`](../index.md#arangeentry)
 
 ##### `impl Debug for ArangeEntry`
 
@@ -204,15 +204,15 @@ A single parsed arange.
 
 ##### `impl Ord for ArangeEntry`
 
-- <span id="arangeentry-cmp"></span>`fn cmp(&self, other: &ArangeEntry) -> cmp::Ordering` — [`ArangeEntry`](../index.md)
+- <span id="arangeentry-cmp"></span>`fn cmp(&self, other: &ArangeEntry) -> cmp::Ordering` — [`ArangeEntry`](../index.md#arangeentry)
 
 ##### `impl PartialEq for ArangeEntry`
 
-- <span id="arangeentry-eq"></span>`fn eq(&self, other: &ArangeEntry) -> bool` — [`ArangeEntry`](../index.md)
+- <span id="arangeentry-eq"></span>`fn eq(&self, other: &ArangeEntry) -> bool` — [`ArangeEntry`](../index.md#arangeentry)
 
 ##### `impl PartialOrd for ArangeEntry`
 
-- <span id="arangeentry-partial-cmp"></span>`fn partial_cmp(&self, other: &ArangeEntry) -> option::Option<cmp::Ordering>` — [`ArangeEntry`](../index.md)
+- <span id="arangeentry-partial-cmp"></span>`fn partial_cmp(&self, other: &ArangeEntry) -> option::Option<cmp::Ordering>` — [`ArangeEntry`](../index.md#arangeentry)
 
 ##### `impl StructuralPartialEq for ArangeEntry`
 

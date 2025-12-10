@@ -104,7 +104,7 @@ This struct is passed to all rendering components and provides:
 
 #### Implementations
 
-- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../../index.md), [`RenderConfig`](../config/index.md)
+- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../../index.md#args), [`RenderConfig`](../config/index.md#renderconfig)
 
 - <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
@@ -136,9 +136,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../config/index.md)
+- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../config/index.md#renderconfig)
 
-- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../render_shared/index.md)
+- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../render_shared/index.md#sourcepathconfig)
 
 ##### `impl ItemFilter for GeneratorContext<'_>`
 
@@ -150,7 +150,7 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
+- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md#linkregistry)
 
 - <span id="generatorcontext-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
@@ -225,7 +225,7 @@ Provides read-only access to the crate structure, items, and impl blocks.
 #### Implementors
 
 - [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../../multi_crate/context/index.md)
+- [`SingleCrateView`](../../multi_crate/context/index.md#singlecrateview)
 
 ### `ItemFilter`
 
@@ -256,7 +256,7 @@ Determines which items should be included in the generated documentation.
 #### Implementors
 
 - [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../../multi_crate/context/index.md)
+- [`SingleCrateView`](../../multi_crate/context/index.md#singlecrateview)
 
 ### `LinkResolver`
 
@@ -287,7 +287,7 @@ Handles intra-doc link resolution and markdown link generation.
 #### Implementors
 
 - [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../../multi_crate/context/index.md)
+- [`SingleCrateView`](../../multi_crate/context/index.md#singlecrateview)
 
 ### `RenderContext`
 

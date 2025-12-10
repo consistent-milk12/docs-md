@@ -59,7 +59,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for TakeAnyWhile<I, P>`
 
@@ -97,9 +97,9 @@ struct TakeAnyWhileConsumer<'p, C, P> {
 
 - <span id="takeanywhileconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="takeanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="takeanywhileconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanywhileconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="takeanywhileconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -123,7 +123,7 @@ struct TakeAnyWhileConsumer<'p, C, P> {
 
 - <span id="takeanywhileconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="takeanywhileconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="takeanywhileconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `TakeAnyWhileFolder<'p, C, P>`
 
@@ -147,7 +147,7 @@ struct TakeAnyWhileFolder<'p, C, P> {
 
 - <span id="takeanywhilefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="takeanywhilefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="takeanywhilefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="takeanywhilefolder-full"></span>`fn full(&self) -> bool`
 

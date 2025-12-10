@@ -187,7 +187,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="extractor-new"></span>`fn new() -> Extractor` — [`Extractor`](#extractor)
 
-- <span id="extractor-extract"></span>`fn extract(&self, hir: &Hir) -> Seq` — [`Hir`](../index.md), [`Seq`](#seq)
+- <span id="extractor-extract"></span>`fn extract(&self, hir: &Hir) -> Seq` — [`Hir`](../index.md#hir), [`Seq`](#seq)
 
 - <span id="extractor-kind"></span>`fn kind(&mut self, kind: ExtractKind) -> &mut Extractor` — [`ExtractKind`](#extractkind), [`Extractor`](#extractor)
 
@@ -203,15 +203,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="extractor-extract-alternation"></span>`fn extract_alternation<'a, I: Iterator<Item = &'a Hir>>(&self, it: I) -> Seq` — [`Seq`](#seq)
 
-- <span id="extractor-extract-repetition"></span>`fn extract_repetition(&self, rep: &hir::Repetition) -> Seq` — [`Repetition`](../index.md), [`Seq`](#seq)
+- <span id="extractor-extract-repetition"></span>`fn extract_repetition(&self, rep: &hir::Repetition) -> Seq` — [`Repetition`](../index.md#repetition), [`Seq`](#seq)
 
-- <span id="extractor-extract-class-unicode"></span>`fn extract_class_unicode(&self, cls: &hir::ClassUnicode) -> Seq` — [`ClassUnicode`](../index.md), [`Seq`](#seq)
+- <span id="extractor-extract-class-unicode"></span>`fn extract_class_unicode(&self, cls: &hir::ClassUnicode) -> Seq` — [`ClassUnicode`](../index.md#classunicode), [`Seq`](#seq)
 
-- <span id="extractor-extract-class-bytes"></span>`fn extract_class_bytes(&self, cls: &hir::ClassBytes) -> Seq` — [`ClassBytes`](../index.md), [`Seq`](#seq)
+- <span id="extractor-extract-class-bytes"></span>`fn extract_class_bytes(&self, cls: &hir::ClassBytes) -> Seq` — [`ClassBytes`](../index.md#classbytes), [`Seq`](#seq)
 
-- <span id="extractor-class-over-limit-unicode"></span>`fn class_over_limit_unicode(&self, cls: &hir::ClassUnicode) -> bool` — [`ClassUnicode`](../index.md)
+- <span id="extractor-class-over-limit-unicode"></span>`fn class_over_limit_unicode(&self, cls: &hir::ClassUnicode) -> bool` — [`ClassUnicode`](../index.md#classunicode)
 
-- <span id="extractor-class-over-limit-bytes"></span>`fn class_over_limit_bytes(&self, cls: &hir::ClassBytes) -> bool` — [`ClassBytes`](../index.md)
+- <span id="extractor-class-over-limit-bytes"></span>`fn class_over_limit_bytes(&self, cls: &hir::ClassBytes) -> bool` — [`ClassBytes`](../index.md#classbytes)
 
 - <span id="extractor-cross"></span>`fn cross(&self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](#seq)
 

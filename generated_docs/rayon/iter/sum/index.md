@@ -41,7 +41,7 @@ struct SumConsumer<S: Send> {
 
 - <span id="sumconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- <span id="sumconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="sumconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="sumconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -71,7 +71,7 @@ struct SumConsumer<S: Send> {
 
 - <span id="sumconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="sumconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="sumconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `SumFolder<S>`
 

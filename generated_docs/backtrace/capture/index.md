@@ -159,7 +159,7 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
+- <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md#symbolname)
 
 - <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 

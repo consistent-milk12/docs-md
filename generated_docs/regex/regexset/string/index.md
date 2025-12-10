@@ -153,17 +153,17 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../error/index.md)
+- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md#regexset), [`Error`](../../error/index.md#error)
 
-- <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](../../index.md)
+- <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](../../index.md#regexset)
 
 - <span id="regexset-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
 - <span id="regexset-is-match-at"></span>`fn is_match_at(&self, haystack: &str, start: usize) -> bool`
 
-- <span id="regexset-matches"></span>`fn matches(&self, haystack: &str) -> SetMatches` — [`SetMatches`](../../index.md)
+- <span id="regexset-matches"></span>`fn matches(&self, haystack: &str) -> SetMatches` — [`SetMatches`](../../index.md#setmatches)
 
-- <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](../../index.md)
+- <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](../../index.md#setmatches)
 
 - <span id="regexset-len"></span>`fn len(&self) -> usize`
 
@@ -175,7 +175,7 @@ alternate isn't always obvious to reason about.
 
 ##### `impl Clone for RegexSet`
 
-- <span id="regexset-clone"></span>`fn clone(&self) -> RegexSet` — [`RegexSet`](../../index.md)
+- <span id="regexset-clone"></span>`fn clone(&self) -> RegexSet` — [`RegexSet`](../../index.md#regexset)
 
 ##### `impl Debug for RegexSet`
 
@@ -207,13 +207,13 @@ Values of this type are constructed by `RegexSet::matches`.
 
 - <span id="setmatches-len"></span>`fn len(&self) -> usize`
 
-- <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](../../index.md)
+- <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](../../index.md#setmatchesiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for SetMatches`
 
-- <span id="setmatches-clone"></span>`fn clone(&self) -> SetMatches` — [`SetMatches`](../../index.md)
+- <span id="setmatches-clone"></span>`fn clone(&self) -> SetMatches` — [`SetMatches`](../../index.md#setmatches)
 
 ##### `impl Debug for SetMatches`
 
@@ -317,7 +317,7 @@ This iterator is created by the `SetMatches::iter` method.
 
 ##### `impl Clone for SetMatchesIter<'a>`
 
-- <span id="setmatchesiter-clone"></span>`fn clone(&self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](../../index.md)
+- <span id="setmatchesiter-clone"></span>`fn clone(&self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](../../index.md#setmatchesiter)
 
 ##### `impl Debug for SetMatchesIter<'a>`
 

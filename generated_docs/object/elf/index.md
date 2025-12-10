@@ -6073,31 +6073,31 @@ The header at the start of every 32-bit ELF file.
 
 - <span id="elffileheader32-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
 
-- <span id="elffileheader32-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader32-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader32-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
 ##### `impl<E: Endian> Pod for FileHeader32<E>`
 
@@ -6240,31 +6240,31 @@ The header at the start of every 64-bit ELF file.
 
 - <span id="elffileheader64-e-ident"></span>`fn e_ident(&self) -> &elf::Ident` — [`Ident`](#ident)
 
-- <span id="elffileheader64-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-type"></span>`fn e_type(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-machine"></span>`fn e_machine(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-version"></span>`fn e_version(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-entry"></span>`fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-phoff"></span>`fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-shoff"></span>`fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-flags"></span>`fn e_flags(&self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-ehsize"></span>`fn e_ehsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-phentsize"></span>`fn e_phentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-phnum"></span>`fn e_phnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-shentsize"></span>`fn e_shentsize(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-shnum"></span>`fn e_shnum(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
-- <span id="elffileheader64-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
+- <span id="elffileheader64-e-shstrndx"></span>`fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md#fileheader)
 
 ##### `impl<E: Endian> Pod for FileHeader64<E>`
 
@@ -6423,25 +6423,25 @@ Section header.
 
 - <span id="elfsectionheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsectionheader32-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader32-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader32-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
 ### `SectionHeader64<E: Endian>`
 
@@ -6534,25 +6534,25 @@ Section header.
 
 - <span id="elfsectionheader64-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
-- <span id="elfsectionheader64-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-type"></span>`fn sh_type(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-flags"></span>`fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-addr"></span>`fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-offset"></span>`fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-size"></span>`fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-link"></span>`fn sh_link(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-info"></span>`fn sh_info(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-addralign"></span>`fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
-- <span id="elfsectionheader64-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
+- <span id="elfsectionheader64-sh-entsize"></span>`fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md#sectionheader)
 
 ### `CompressionHeader32<E: Endian>`
 
@@ -6599,11 +6599,11 @@ changed in a future version.
 
 - <span id="elfcompressionheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfcompressionheader32-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader32-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader32-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader32-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader32-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader32-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
 ##### `impl<E: marker::Copy + Endian> Copy for CompressionHeader32<E>`
 
@@ -6667,11 +6667,11 @@ changed in a future version.
 
 - <span id="elfcompressionheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfcompressionheader64-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader64-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader64-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader64-ch-size"></span>`fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
-- <span id="elfcompressionheader64-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
+- <span id="elfcompressionheader64-ch-addralign"></span>`fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md#compressionheader)
 
 ##### `impl<E: marker::Copy + Endian> Copy for CompressionHeader64<E>`
 
@@ -6768,7 +6768,7 @@ Symbol table entry.
 
 - <span id="elfsym32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsym32-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym32-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
 
 - <span id="elfsym32-st-info"></span>`fn st_info(&self) -> u8`
 
@@ -6780,11 +6780,11 @@ Symbol table entry.
 
 - <span id="elfsym32-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
-- <span id="elfsym32-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym32-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym32-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym32-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym32-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym32-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
 ### `Sym64<E: Endian>`
 
@@ -6869,7 +6869,7 @@ Symbol table entry.
 
 - <span id="elfsym64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsym64-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym64-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md#sym)
 
 - <span id="elfsym64-st-info"></span>`fn st_info(&self) -> u8`
 
@@ -6881,11 +6881,11 @@ Symbol table entry.
 
 - <span id="elfsym64-st-visibility"></span>`fn st_visibility(&self) -> u8`
 
-- <span id="elfsym64-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym64-st-shndx"></span>`fn st_shndx(&self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym64-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym64-st-value"></span>`fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
-- <span id="elfsym64-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
+- <span id="elfsym64-st-size"></span>`fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md#sym)
 
 ### `Syminfo32<E: Endian>`
 
@@ -6990,7 +6990,7 @@ Relocation table entry without explicit addend.
 
 - <span id="rel32-r-type"></span>`fn r_type(&self, endian: E) -> u32`
 
-- <span id="rel32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md)
+- <span id="rel32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md#u32)
 
 - <span id="rel32-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u8)`
 
@@ -7016,13 +7016,13 @@ Relocation table entry without explicit addend.
 
 - <span id="elfrel32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrel32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
 ### `Rela32<E: Endian>`
 
@@ -7058,7 +7058,7 @@ Relocation table entry with explicit addend.
 
 - <span id="rela32-r-type"></span>`fn r_type(&self, endian: E) -> u32`
 
-- <span id="rela32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md)
+- <span id="rela32-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md#u32)
 
 - <span id="rela32-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u8)`
 
@@ -7084,15 +7084,15 @@ Relocation table entry with explicit addend.
 
 - <span id="elfrela32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrela32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela32-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela32-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela32-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela32-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
 ### `Rel64<E: Endian>`
 
@@ -7123,7 +7123,7 @@ Relocation table entry without explicit addend.
 
 - <span id="rel64-r-type"></span>`fn r_type(&self, endian: E) -> u32`
 
-- <span id="rel64-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md)
+- <span id="rel64-r-info"></span>`fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md#u64)
 
 - <span id="rel64-set-r-info"></span>`fn set_r_info(&mut self, endian: E, r_sym: u32, r_type: u32)`
 
@@ -7149,13 +7149,13 @@ Relocation table entry without explicit addend.
 
 - <span id="elfrel64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrel64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
-- <span id="elfrel64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
+- <span id="elfrel64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md#rel)
 
 ### `Rela64<E: Endian>`
 
@@ -7193,7 +7193,7 @@ Relocation table entry with explicit addend.
 
 - <span id="rela64-r-type"></span>`fn r_type(&self, endian: E, is_mips64el: bool) -> u32`
 
-- <span id="rela64-r-info"></span>`fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md)
+- <span id="rela64-r-info"></span>`fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md#u64)
 
 - <span id="rela64-set-r-info"></span>`fn set_r_info(&mut self, endian: E, is_mips64el: bool, r_sym: u32, r_type: u32)`
 
@@ -7219,15 +7219,15 @@ Relocation table entry with explicit addend.
 
 - <span id="elfrela64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrela64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela64-r-info"></span>`fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela64-r-addend"></span>`fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela64-r-sym"></span>`fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
-- <span id="elfrela64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
+- <span id="elfrela64-r-type"></span>`fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md#rela)
 
 ### `Relr32<E: Endian>`
 
@@ -7261,9 +7261,9 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 - <span id="elfrelr32-const-count"></span>`const COUNT: u8`
 
-- <span id="elfrelr32-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
+- <span id="elfrelr32-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
 
-- <span id="elfrelr32-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md)
+- <span id="elfrelr32-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
 
 ### `Relr64<E: Endian>`
 
@@ -7297,9 +7297,9 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 - <span id="elfrelr64-const-count"></span>`const COUNT: u8`
 
-- <span id="elfrelr64-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
+- <span id="elfrelr64-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md#relr)
 
-- <span id="elfrelr64-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md)
+- <span id="elfrelr64-next"></span>`fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md#relr)
 
 ### `ProgramHeader32<E: Endian>`
 
@@ -7376,21 +7376,21 @@ Program segment header.
 
 - <span id="elfprogramheader32-type-elf"></span>`type Elf = FileHeader32<Endian>`
 
-- <span id="elfprogramheader32-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader32-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader32-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
 ### `ProgramHeader64<E: Endian>`
 
@@ -7467,21 +7467,21 @@ Program segment header.
 
 - <span id="elfprogramheader64-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
-- <span id="elfprogramheader64-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-flags"></span>`fn p_flags(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-offset"></span>`fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-vaddr"></span>`fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-paddr"></span>`fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-filesz"></span>`fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-memsz"></span>`fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
-- <span id="elfprogramheader64-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
+- <span id="elfprogramheader64-p-align"></span>`fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md#programheader)
 
 ### `Dyn32<E: Endian>`
 
@@ -7524,9 +7524,9 @@ Dynamic section entry.
 
 - <span id="elfdyn32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfdyn32-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
+- <span id="elfdyn32-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
-- <span id="elfdyn32-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
+- <span id="elfdyn32-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
 ##### `impl<E: Endian> Pod for Dyn32<E>`
 
@@ -7571,9 +7571,9 @@ Dynamic section entry.
 
 - <span id="elfdyn64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfdyn64-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
+- <span id="elfdyn64-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
-- <span id="elfdyn64-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
+- <span id="elfdyn64-d-val"></span>`fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md#dyn)
 
 ##### `impl<E: Endian> Pod for Dyn64<E>`
 
@@ -7688,7 +7688,7 @@ Auxiliary version information.
 
 #### Implementations
 
-- <span id="elfverdaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
+- <span id="elfverdaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
 #### Trait Implementations
 
@@ -7744,7 +7744,7 @@ Version dependency.
 
 #### Implementations
 
-- <span id="elfverneed-file"></span>`fn file<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
+- <span id="elfverneed-file"></span>`fn file<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
 #### Trait Implementations
 
@@ -7800,7 +7800,7 @@ Auxiliary needed version information.
 
 #### Implementations
 
-- <span id="elfvernaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
+- <span id="elfvernaux-name"></span>`fn name<'data, R: ReadRef<'data>>(&self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md#stringtable), [`Result`](../index.md#result)
 
 #### Trait Implementations
 
@@ -7869,11 +7869,11 @@ A note consists of a header followed by a variable length name and descriptor.
 
 - <span id="elfnoteheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfnoteheader32-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader32-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader32-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader32-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader32-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader32-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
 ##### `impl<E: Endian> Pod for NoteHeader32<E>`
 
@@ -7928,11 +7928,11 @@ Note section entry header.
 
 - <span id="elfnoteheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfnoteheader64-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader64-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader64-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader64-n-descsz"></span>`fn n_descsz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
-- <span id="elfnoteheader64-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
+- <span id="elfnoteheader64-n-type"></span>`fn n_type(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md#noteheader)
 
 ##### `impl<E: Endian> Pod for NoteHeader64<E>`
 

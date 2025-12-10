@@ -100,7 +100,7 @@ impl Parse for GenericParam {
 
 - <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md#error)
 
 ### `CommaSeparated<'a>`
 
@@ -273,7 +273,7 @@ Ok(())
 
 ##### `impl Token for End`
 
-- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
+- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md#cursor)
 
 - <span id="end-display"></span>`fn display() -> &'static str`
 
@@ -309,7 +309,7 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 #### Implementors
 
 - [`End`](#end)
-- [`PeekFn`](../ext/private/index.md)
+- [`PeekFn`](../ext/private/index.md#peekfn)
 - `F`
 
 ## Functions

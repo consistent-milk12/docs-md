@@ -47,11 +47,11 @@ This struct is created by the `map()` method on [`ParallelIterator`](../index.md
 
 ##### `impl<I, F, R> IndexedParallelIterator for Map<I, F>`
 
-- <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="map-len"></span>`fn len(&self) -> usize`
 
-- <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Map<I, F>`
 
@@ -67,7 +67,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](../index.md
 
 - <span id="map-type-item"></span>`type Item = <F as FnOnce>::Output`
 
-- <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="map-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -120,7 +120,7 @@ struct MapProducer<'f, P, F> {
 
 - <span id="mapproducer-type-intoiter"></span>`type IntoIter = Map<<P as Producer>::IntoIter, &'f F>`
 
-- <span id="mapproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="mapproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="mapproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -155,9 +155,9 @@ struct MapConsumer<'f, C, F> {
 
 - <span id="mapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="mapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="mapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="mapconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="mapconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="mapconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -181,7 +181,7 @@ struct MapConsumer<'f, C, F> {
 
 - <span id="mapconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="mapconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="mapconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `MapFolder<'f, C, F>`
 
@@ -204,7 +204,7 @@ struct MapFolder<'f, C, F> {
 
 - <span id="mapfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="mapfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="mapfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="mapfolder-full"></span>`fn full(&self) -> bool`
 

@@ -136,7 +136,7 @@ struct Parameters {
 
 #### Implementations
 
-- <span id="parameters-new"></span>`fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md)
+- <span id="parameters-new"></span>`fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md#container)
 
 - <span id="parameters-type-name"></span>`fn type_name(&self) -> String`
 

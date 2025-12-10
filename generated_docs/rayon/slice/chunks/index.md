@@ -48,11 +48,11 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T: Sync> IndexedParallelIterator for Chunks<'_, T>`
 
-- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunks-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Chunks<'data, T>`
 
@@ -68,7 +68,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunks-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -121,7 +121,7 @@ struct ChunksProducer<'data, T: Sync> {
 
 - <span id="chunksproducer-type-intoiter"></span>`type IntoIter = Chunks<'data, T>`
 
-- <span id="chunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="chunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="chunksproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -157,11 +157,11 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T: Sync> IndexedParallelIterator for ChunksExact<'_, T>`
 
-- <span id="chunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksexact-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="chunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for ChunksExact<'data, T>`
 
@@ -177,7 +177,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunksexact-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -230,7 +230,7 @@ struct ChunksExactProducer<'data, T: Sync> {
 
 - <span id="chunksexactproducer-type-intoiter"></span>`type IntoIter = ChunksExact<'data, T>`
 
-- <span id="chunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="chunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="chunksexactproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -259,11 +259,11 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksMut<'_, T>`
 
-- <span id="chunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksmut-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="chunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for ChunksMut<'data, T>`
 
@@ -279,7 +279,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksmut-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -332,7 +332,7 @@ struct ChunksMutProducer<'data, T: Send> {
 
 - <span id="chunksmutproducer-type-intoiter"></span>`type IntoIter = ChunksMut<'data, T>`
 
-- <span id="chunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="chunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="chunksmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -368,11 +368,11 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksExactMut<'_, T>`
 
-- <span id="chunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksexactmut-len"></span>`fn len(&self) -> usize`
 
-- <span id="chunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="chunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for ChunksExactMut<'data, T>`
 
@@ -388,7 +388,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 - <span id="chunksexactmut-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="chunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="chunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -441,7 +441,7 @@ struct ChunksExactMutProducer<'data, T: Send> {
 
 - <span id="chunksexactmutproducer-type-intoiter"></span>`type IntoIter = ChunksExactMut<'data, T>`
 
-- <span id="chunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="chunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="chunksexactmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

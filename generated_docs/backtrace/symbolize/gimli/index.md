@@ -86,7 +86,7 @@ struct Mapping {
 
 - <span id="supermapping-new-debug"></span>`fn new_debug(original_path: &Path, path: PathBuf, crc: Option<u32>) -> Option<Mapping>` — [`Mapping`](#mapping)
 
-- <span id="supermapping-load-dwarf-package"></span>`fn load_dwarf_package<'data>(path: &Path, stash: &'data Stash) -> Option<Object<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md)
+- <span id="supermapping-load-dwarf-package"></span>`fn load_dwarf_package<'data>(path: &Path, stash: &'data Stash) -> Option<Object<'data>>` — [`Stash`](stash/index.md#stash), [`Object`](elf/index.md#object)
 
 ### `Context<'a>`
 
@@ -102,9 +102,9 @@ struct Context<'a> {
 
 #### Implementations
 
-- <span id="context-new"></span>`fn new(stash: &'data Stash, object: Object<'data>, sup: Option<Object<'data>>, dwp: Option<Object<'data>>) -> Option<Context<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md), [`Context`](#context)
+- <span id="context-new"></span>`fn new(stash: &'data Stash, object: Object<'data>, sup: Option<Object<'data>>, dwp: Option<Object<'data>>) -> Option<Context<'data>>` — [`Stash`](stash/index.md#stash), [`Object`](elf/index.md#object), [`Context`](#context)
 
-- <span id="context-find-frames"></span>`fn find_frames(&self, stash: &'data Stash, probe: u64) -> gimli::Result<addr2line::FrameIter<'_, EndianSlice<'data, Endian>>>` — [`Stash`](stash/index.md)
+- <span id="context-find-frames"></span>`fn find_frames(&self, stash: &'data Stash, probe: u64) -> gimli::Result<addr2line::FrameIter<'_, EndianSlice<'data, Endian>>>` — [`Stash`](stash/index.md#stash)
 
 ### `Cache`
 
@@ -143,7 +143,7 @@ struct Cache {
 
 - <span id="cache-avma-to-svma"></span>`fn avma_to_svma(&self, addr: *const u8) -> Option<(usize, *const u8)>`
 
-- <span id="cache-mapping-for-lib"></span>`fn mapping_for_lib<'a>(self: &'a mut Self, lib: usize) -> Option<(&'a mut Context<'a>, &'a Stash)>` — [`Context`](#context), [`Stash`](stash/index.md)
+- <span id="cache-mapping-for-lib"></span>`fn mapping_for_lib<'a>(self: &'a mut Self, lib: usize) -> Option<(&'a mut Context<'a>, &'a Stash)>` — [`Context`](#context), [`Stash`](stash/index.md#stash)
 
 #### Trait Implementations
 
@@ -244,11 +244,11 @@ enum Symbol<'a> {
 
 #### Implementations
 
-- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md#symbolname)
 
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../types/index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../types/index.md#bytesorwidestring)
 
 - <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 

@@ -179,9 +179,9 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
-- <span id="parser-parse-with-comments"></span>`fn parse_with_comments(&mut self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse-with-comments"></span>`fn parse_with_comments(&mut self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md#withcomments), [`Error`](../index.md#error)
 
 - <span id="parser-reset"></span>`fn reset(&self)`
 
@@ -234,7 +234,7 @@ work against the internal interface of the parser.
 
 - <span id="parseri-pattern"></span>`fn pattern(&self) -> &str`
 
-- <span id="parseri-error"></span>`fn error(&self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-error"></span>`fn error(&self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md#span), [`ErrorKind`](../index.md#errorkind), [`Error`](../index.md#error)
 
 - <span id="parseri-offset"></span>`fn offset(&self) -> usize`
 
@@ -242,9 +242,9 @@ work against the internal interface of the parser.
 
 - <span id="parseri-column"></span>`fn column(&self) -> usize`
 
-- <span id="parseri-next-capture-index"></span>`fn next_capture_index(&self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- <span id="parseri-next-capture-index"></span>`fn next_capture_index(&self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md#span), [`Error`](../index.md#error)
 
-- <span id="parseri-add-capture-name"></span>`fn add_capture_name(&self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
+- <span id="parseri-add-capture-name"></span>`fn add_capture_name(&self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md#capturename), [`Error`](../index.md#error)
 
 - <span id="parseri-ignore-whitespace"></span>`fn ignore_whitespace(&self) -> bool`
 
@@ -268,31 +268,31 @@ work against the internal interface of the parser.
 
 - <span id="parseri-is-eof"></span>`fn is_eof(&self) -> bool`
 
-- <span id="parseri-pos"></span>`fn pos(&self) -> Position` — [`Position`](../index.md)
+- <span id="parseri-pos"></span>`fn pos(&self) -> Position` — [`Position`](../index.md#position)
 
-- <span id="parseri-span"></span>`fn span(&self) -> Span` — [`Span`](../index.md)
+- <span id="parseri-span"></span>`fn span(&self) -> Span` — [`Span`](../index.md#span)
 
-- <span id="parseri-span-char"></span>`fn span_char(&self) -> Span` — [`Span`](../index.md)
+- <span id="parseri-span-char"></span>`fn span_char(&self) -> Span` — [`Span`](../index.md#span)
 
-- <span id="parseri-push-alternate"></span>`fn push_alternate(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-alternate"></span>`fn push_alternate(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
-- <span id="parseri-push-or-add-alternation"></span>`fn push_or_add_alternation(&self, concat: ast::Concat)` — [`Concat`](../index.md)
+- <span id="parseri-push-or-add-alternation"></span>`fn push_or_add_alternation(&self, concat: ast::Concat)` — [`Concat`](../index.md#concat)
 
-- <span id="parseri-push-group"></span>`fn push_group(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-group"></span>`fn push_group(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
-- <span id="parseri-pop-group"></span>`fn pop_group(&self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-group"></span>`fn pop_group(&self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
-- <span id="parseri-pop-group-end"></span>`fn pop_group_end(&self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md), [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-group-end"></span>`fn pop_group_end(&self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md#concat), [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
-- <span id="parseri-push-class-open"></span>`fn push_class_open(&self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-class-open"></span>`fn push_class_open(&self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md#classsetunion), [`Error`](../index.md#error)
 
-- <span id="parseri-pop-class"></span>`fn pop_class(&self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md), [`Either`](../../either/index.md), [`ClassBracketed`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-class"></span>`fn pop_class(&self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md#classsetunion), [`Either`](../../either/index.md#either), [`ClassBracketed`](../index.md#classbracketed), [`Error`](../index.md#error)
 
-- <span id="parseri-unclosed-class-error"></span>`fn unclosed_class_error(&self) -> ast::Error` — [`Error`](../index.md)
+- <span id="parseri-unclosed-class-error"></span>`fn unclosed_class_error(&self) -> ast::Error` — [`Error`](../index.md#error)
 
-- <span id="parseri-push-class-op"></span>`fn push_class_op(&self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md), [`ClassSetUnion`](../index.md)
+- <span id="parseri-push-class-op"></span>`fn push_class_op(&self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md#classsetbinaryopkind), [`ClassSetUnion`](../index.md#classsetunion)
 
-- <span id="parseri-pop-class-op"></span>`fn pop_class_op(&self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md)
+- <span id="parseri-pop-class-op"></span>`fn pop_class_op(&self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md#classset)
 
 #### Trait Implementations
 
@@ -332,9 +332,9 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 
 - <span id="nestlimiter-new"></span>`fn new(p: &'p ParserI<'s, P>) -> NestLimiter<'p, 's, P>` — [`ParserI`](#parseri), [`NestLimiter`](#nestlimiter)
 
-- <span id="nestlimiter-check"></span>`fn check(self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-check"></span>`fn check(self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-increment-depth"></span>`fn increment_depth(&mut self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-increment-depth"></span>`fn increment_depth(&mut self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md#span), [`Error`](../index.md#error)
 
 - <span id="nestlimiter-decrement-depth"></span>`fn decrement_depth(&mut self)`
 
@@ -350,19 +350,19 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 
 - <span id="nestlimiter-type-err"></span>`type Err = Error`
 
-- <span id="nestlimiter-finish"></span>`fn finish(self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md)
+- <span id="nestlimiter-finish"></span>`fn finish(self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md#classsetitem), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md#classsetitem), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md#classsetbinaryop), [`Error`](../index.md#error)
 
-- <span id="nestlimiter-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md#classsetbinaryop), [`Error`](../index.md#error)
 
 ## Enums
 
@@ -389,13 +389,13 @@ within a set character class.
 
 #### Implementations
 
-- <span id="primitive-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md)
+- <span id="primitive-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md#span)
 
-- <span id="primitive-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](../index.md)
+- <span id="primitive-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](../index.md#ast)
 
-- <span id="primitive-into-class-set-item"></span>`fn into_class_set_item<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-set-item"></span>`fn into_class_set_item<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md#classsetitem), [`Error`](../index.md#error)
 
-- <span id="primitive-into-class-literal"></span>`fn into_class_literal<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-literal"></span>`fn into_class_literal<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md#literal), [`Error`](../index.md#error)
 
 #### Trait Implementations
 

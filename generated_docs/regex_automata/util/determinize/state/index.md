@@ -151,15 +151,15 @@ simultaneously.
 
 - <span id="state-is-half-crlf"></span>`fn is_half_crlf(&self) -> bool`
 
-- <span id="state-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="state-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="state-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="state-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
 - <span id="state-match-len"></span>`fn match_len(&self) -> usize`
 
-- <span id="state-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md#patternid)
 
-- <span id="state-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
+- <span id="state-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md#patternid)
 
 - <span id="state-iter-nfa-state-ids"></span>`fn iter_nfa_state_ids<F: FnMut(StateID)>(&self, f: F)`
 
@@ -253,11 +253,11 @@ builder that collects NFA state IDs.
 
 - <span id="statebuildermatches-set-is-half-crlf"></span>`fn set_is_half_crlf(&mut self)`
 
-- <span id="statebuildermatches-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="statebuildermatches-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="statebuildermatches-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildermatches-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="statebuildermatches-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
+- <span id="statebuildermatches-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md#patternid)
 
 - <span id="statebuildermatches-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
@@ -299,13 +299,13 @@ that it can be reused to build the next state.
 
 - <span id="statebuildernfa-clear"></span>`fn clear(self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
 
-- <span id="statebuildernfa-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="statebuildernfa-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="statebuildernfa-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="statebuildernfa-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, sid: StateID)` — [`StateID`](../../primitives/index.md)
+- <span id="statebuildernfa-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, sid: StateID)` — [`StateID`](../../primitives/index.md#stateid)
 
 - <span id="statebuildernfa-as-bytes"></span>`fn as_bytes(&self) -> &[u8]`
 
@@ -395,15 +395,15 @@ previous NFA state ID.
 
 - <span id="repr-is-half-crlf"></span>`fn is_half_crlf(&self) -> bool`
 
-- <span id="repr-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="repr-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="repr-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="repr-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
 - <span id="repr-match-len"></span>`fn match_len(&self) -> usize`
 
-- <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
+- <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md#patternid)
 
-- <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
+- <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md#patternid)
 
 - <span id="repr-iter-match-pattern-ids"></span>`fn iter_match_pattern_ids<F: FnMut(PatternID)>(&self, f: F)`
 
@@ -445,19 +445,19 @@ permit valid combinations via Rust's linear typing.
 
 - <span id="reprvec-set-is-half-crlf"></span>`fn set_is_half_crlf(&mut self)`
 
-- <span id="reprvec-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="reprvec-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="reprvec-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="reprvec-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
-- <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
+- <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md#patternid)
 
 - <span id="reprvec-close-match-pattern-ids"></span>`fn close_match_pattern_ids(&mut self)`
 
-- <span id="reprvec-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, prev: &mut StateID, sid: StateID)` — [`StateID`](../../primitives/index.md)
+- <span id="reprvec-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, prev: &mut StateID, sid: StateID)` — [`StateID`](../../primitives/index.md#stateid)
 
 - <span id="reprvec-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 

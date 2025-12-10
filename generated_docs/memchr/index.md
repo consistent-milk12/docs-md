@@ -260,13 +260,13 @@ searched.
 
 #### Implementations
 
-- <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
+- <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md#memchr)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr<'h>`
 
-- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
+- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](memchr/index.md#memchr)
 
 ##### `impl Debug for Memchr<'h>`
 
@@ -321,13 +321,13 @@ searched.
 
 #### Implementations
 
-- <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
+- <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md#memchr2)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr2<'h>`
 
-- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
+- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md#memchr2)
 
 ##### `impl Debug for Memchr2<'h>`
 
@@ -381,13 +381,13 @@ searched.
 
 #### Implementations
 
-- <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
+- <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md#memchr3)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr3<'h>`
 
-- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
+- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md#memchr3)
 
 ##### `impl Debug for Memchr3<'h>`
 

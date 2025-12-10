@@ -130,7 +130,7 @@ Parallel iterator over the characters of a string
 
 - <span id="chars-type-item"></span>`type Item = char`
 
-- <span id="chars-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chars-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Chars<'ch>`
 
@@ -218,7 +218,7 @@ Parallel iterator over the characters of a string, with their positions
 
 - <span id="charindices-type-item"></span>`type Item = (usize, char)`
 
-- <span id="charindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="charindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for CharIndices<'ch>`
 
@@ -307,7 +307,7 @@ Parallel iterator over the bytes of a string
 
 - <span id="bytes-type-item"></span>`type Item = u8`
 
-- <span id="bytes-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="bytes-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Bytes<'ch>`
 
@@ -395,7 +395,7 @@ Parallel iterator over a string encoded as UTF-16
 
 - <span id="encodeutf16-type-item"></span>`type Item = u16`
 
-- <span id="encodeutf16-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="encodeutf16-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for EncodeUtf16<'ch>`
 
@@ -488,7 +488,7 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="split-type-item"></span>`type Item = &'ch str`
 
-- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Split<'ch, P>`
 
@@ -545,7 +545,7 @@ Parallel iterator over substrings separated by a pattern
 
 - <span id="splitinclusive-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SplitInclusive<'ch, P>`
 
@@ -602,7 +602,7 @@ Parallel iterator over substrings separated by a terminator pattern
 
 - <span id="splitterminator-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitterminator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitterminator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SplitTerminator<'ch, P>`
 
@@ -693,7 +693,7 @@ Parallel iterator over lines in a string
 
 - <span id="lines-type-item"></span>`type Item = &'ch str`
 
-- <span id="lines-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="lines-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Lines<'ch>`
 
@@ -743,7 +743,7 @@ Parallel iterator over substrings separated by whitespace
 
 - <span id="splitwhitespace-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitWhitespace<'ch>`
 
@@ -793,7 +793,7 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 - <span id="splitasciiwhitespace-type-item"></span>`type Item = &'ch str`
 
-- <span id="splitasciiwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitasciiwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for SplitAsciiWhitespace<'ch>`
 
@@ -846,7 +846,7 @@ Parallel iterator over substrings that match a pattern
 
 - <span id="matches-type-item"></span>`type Item = &'ch str`
 
-- <span id="matches-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="matches-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Matches<'ch, P>`
 
@@ -936,7 +936,7 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 - <span id="matchindices-type-item"></span>`type Item = (usize, &'ch str)`
 
-- <span id="matchindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="matchindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for MatchIndices<'ch, P>`
 

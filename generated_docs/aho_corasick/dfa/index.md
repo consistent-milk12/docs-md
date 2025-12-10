@@ -176,7 +176,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
@@ -184,35 +184,35 @@ It is also possible to implement your own version of `try_find`. See the
 
 ##### `impl Automaton for DFA`
 
-- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../util/search/index.md), [`StateID`](../util/primitives/index.md), [`MatchError`](../util/error/index.md)
+- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid), [`MatchError`](../util/error/index.md#matcherror)
 
-- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../util/search/index.md), [`StateID`](../util/primitives/index.md)
+- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../util/search/index.md#anchored), [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../util/search/index.md)
+- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../util/search/index.md#matchkind)
 
 - <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../util/primitives/index.md)
+- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../util/primitives/index.md#patternid)
 
 - <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
 - <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md#stateid)
 
-- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
+- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md#stateid), [`PatternID`](../util/primitives/index.md#patternid)
 
 - <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
+- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md#prefilter)
 
 ##### `impl Clone for DFA`
 
@@ -246,21 +246,21 @@ their behavior is identical.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
-- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
-- <span id="builder-finish-build-one-start"></span>`fn finish_build_one_start(&self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../util/search/index.md), [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
+- <span id="builder-finish-build-one-start"></span>`fn finish_build_one_start(&self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../util/search/index.md#anchored), [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
 
-- <span id="builder-finish-build-both-starts"></span>`fn finish_build_both_starts(&self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
+- <span id="builder-finish-build-both-starts"></span>`fn finish_build_both_starts(&self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
 
-- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../util/search/index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../util/search/index.md#matchkind), [`Builder`](#builder)
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 - <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- <span id="builder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut Builder` — [`StartKind`](../util/search/index.md), [`Builder`](#builder)
+- <span id="builder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut Builder` — [`StartKind`](../util/search/index.md#startkind), [`Builder`](#builder)
 
 - <span id="builder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 

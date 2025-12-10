@@ -54,7 +54,7 @@ struct TypeRenderer<'a> {
 }
 ```
 
-*Defined in `src/types.rs:65-71`*
+*Defined in `src/types.rs:66-72`*
 
 Type renderer for converting rustdoc types to Rust syntax strings.
 
@@ -107,9 +107,9 @@ let generics = renderer.render_generics(&params);
 
 - <span id="typerenderer-render-generic-param-def"></span>`fn render_generic_param_def(self, param: &GenericParamDef) -> Option<String>`
 
-- <span id="typerenderer-render-where-clause"></span>`fn render_where_clause(&self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
+- <span id="typerenderer-render-where-clause"></span>`fn render_where_clause(&self, where_predicates: &[WherePredicate]) -> String`
 
-- <span id="typerenderer-render-where-predicate"></span>`fn render_where_predicate(self, pred: &rustdoc_types::WherePredicate) -> String`
+- <span id="typerenderer-render-where-predicate"></span>`fn render_where_predicate(self, pred: &WherePredicate) -> String`
 
 - <span id="typerenderer-collect-linkable-types"></span>`fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
 

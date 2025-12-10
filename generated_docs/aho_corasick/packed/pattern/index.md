@@ -78,7 +78,7 @@ than once.
 
 - <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`MatchKind`](../api/index.md)
+- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`MatchKind`](../api/index.md#matchkind)
 
 - <span id="patterns-len"></span>`fn len(&self) -> usize`
 
@@ -90,11 +90,11 @@ than once.
 
 - <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](../api/index.md)
+- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](../api/index.md#matchkind)
 
-- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Pattern`](#pattern)
 
-- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Pattern`](#pattern)
 
 - <span id="patterns-iter"></span>`fn iter(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
@@ -145,7 +145,7 @@ this is iterating over.
 
 - <span id="patterniter-type-item"></span>`type Item = (PatternID, Pattern<'p>)`
 
-- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Pattern`](#pattern)
 
 ### `Pattern<'a>`
 

@@ -101,13 +101,13 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
+- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md#str)
 
-- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](../arg/index.md)
+- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](../arg/index.md#arg)
 
-- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](../arg/index.md)
+- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](../arg/index.md#arg)
 
-- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](../arg/index.md)
+- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](../arg/index.md#arg)
 
 - <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
@@ -119,9 +119,9 @@ let m = Command::new("My Program")
 
 - <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
-- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](../arg_group/index.md)
+- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](../arg_group/index.md#arggroup)
 
-- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](../arg_group/index.md)
+- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](../arg_group/index.md#arggroup)
 
 - <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](#command)
 
@@ -133,35 +133,35 @@ let m = Command::new("My Program")
 
 - <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
-- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../../error/kind/index.md), [`Error`](../../index.md)
+- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../../error/kind/index.md#errorkind), [`Error`](../../index.md#error)
 
-- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md#result), [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md#result), [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md#result), [`ArgMatches`](../../parser/matches/arg_matches/index.md#argmatches)
 
 - <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
 
 - <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
 
-- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md#styledstr)
 
-- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md#styledstr)
 
 - <span id="command-render-version"></span>`fn render_version(&self) -> String`
 
 - <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
 
-- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md#styledstr)
 
-- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](../styled_str/index.md)
+- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](../styled_str/index.md#styledstr)
 
 #### Trait Implementations
 
@@ -185,7 +185,7 @@ let m = Command::new("My Program")
 
 - <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md#id)
 
 ##### `impl ToString for Command`
 
@@ -271,7 +271,7 @@ trait AppExt: Extension { ... }
 #### Implementors
 
 - [`MaxTermWidth`](#maxtermwidth)
-- [`Styles`](../styling/index.md)
+- [`Styles`](../styling/index.md#styles)
 - [`TermWidth`](#termwidth)
 
 ## Functions

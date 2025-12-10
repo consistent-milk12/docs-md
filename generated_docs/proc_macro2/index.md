@@ -165,7 +165,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
-- <span id="tokenstream-new"></span>`fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](imp/index.md)
+- <span id="tokenstream-new"></span>`fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](imp/index.md#tokenstream)
 
 - <span id="tokenstream-new-fallback"></span>`fn _new_fallback(inner: fallback::TokenStream) -> Self`
 
@@ -211,7 +211,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 - <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](token_stream/index.md)
+- <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](token_stream/index.md#intoiter)
 
 ##### `impl Parse for proc_macro2::TokenStream`
 
@@ -223,9 +223,9 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
+- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
@@ -279,7 +279,7 @@ A region of source code, along with macro expansion information.
 
 #### Implementations
 
-- <span id="span-new"></span>`fn _new(inner: imp::Span) -> Self` — [`Span`](imp/index.md)
+- <span id="span-new"></span>`fn _new(inner: imp::Span) -> Self` — [`Span`](imp/index.md#span)
 
 - <span id="span-new-fallback"></span>`fn _new_fallback(inner: fallback::Span) -> Self`
 
@@ -328,7 +328,7 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 #### Implementations
 
-- <span id="group-new"></span>`fn _new(inner: imp::Group) -> Self` — [`Group`](imp/index.md)
+- <span id="group-new"></span>`fn _new(inner: imp::Group) -> Self` — [`Group`](imp/index.md#group)
 
 - <span id="group-new-fallback"></span>`fn _new_fallback(inner: fallback::Group) -> Self`
 
@@ -344,7 +344,7 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 - <span id="group-span-close"></span>`fn span_close(&self) -> Span` — [`Span`](#span)
 
-- <span id="group-delim-span"></span>`fn delim_span(&self) -> DelimSpan` — [`DelimSpan`](extra/index.md)
+- <span id="group-delim-span"></span>`fn delim_span(&self) -> DelimSpan` — [`DelimSpan`](extra/index.md#delimspan)
 
 - <span id="group-set-span"></span>`fn set_span(&mut self, span: Span)` — [`Span`](#span)
 
@@ -372,7 +372,7 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 ##### `impl ToTokens for proc_macro2::Group`
 
-- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](parse/index.md), [`TokenTree`](#tokentree), [`Reject`](parse/index.md)
+- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](parse/index.md#cursor), [`TokenTree`](#tokentree), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Group`
 
@@ -431,7 +431,7 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens for proc_macro2::Punct`
 
-- <span id="proc-macro2punct-ident-not-raw"></span>`fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
+- <span id="proc-macro2punct-ident-not-raw"></span>`fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Punct`
 
@@ -511,7 +511,7 @@ if ident_string.len() > 60 {
 
 #### Implementations
 
-- <span id="ident-new"></span>`fn _new(inner: imp::Ident) -> Self` — [`Ident`](imp/index.md)
+- <span id="ident-new"></span>`fn _new(inner: imp::Ident) -> Self` — [`Ident`](imp/index.md#ident)
 
 - <span id="ident-new-fallback"></span>`fn _new_fallback(inner: fallback::Ident) -> Self`
 
@@ -593,7 +593,7 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 #### Implementations
 
-- <span id="literal-new"></span>`fn _new(inner: imp::Literal) -> Self` — [`Literal`](imp/index.md)
+- <span id="literal-new"></span>`fn _new(inner: imp::Literal) -> Self` — [`Literal`](imp/index.md#literal)
 
 - <span id="literal-new-fallback"></span>`fn _new_fallback(inner: fallback::Literal) -> Self`
 
@@ -699,7 +699,7 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl ToTokens for proc_macro2::Literal`
 
-- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
+- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Literal`
 
@@ -776,7 +776,7 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl ToTokens for proc_macro2::TokenTree`
 
-- <span id="proc-macro2tokentree-cooked-string"></span>`fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
+- <span id="proc-macro2tokentree-cooked-string"></span>`fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::TokenTree`
 

@@ -71,7 +71,7 @@ struct Display<'a> {
 
 #### Implementations
 
-- <span id="crateattrdisplay-expand-shorthand"></span>`fn expand_shorthand(&mut self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md), [`ContainerKind`](../ast/index.md)
+- <span id="crateattrdisplay-expand-shorthand"></span>`fn expand_shorthand(&mut self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md#field), [`ContainerKind`](../ast/index.md#containerkind)
 
 #### Trait Implementations
 

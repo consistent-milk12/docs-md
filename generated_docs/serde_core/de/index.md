@@ -294,7 +294,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md#ignoredany)
 
 ##### `impl Copy for IgnoredAny`
 
@@ -304,11 +304,11 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default for IgnoredAny`
 
-- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md#ignoredany)
 
 ##### `impl Deserialize for IgnoredAny`
 
-- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md), [`Deserializer`](#deserializer)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md#ignoredany), [`Deserializer`](#deserializer)
 
 ##### `impl DeserializeOwned for IgnoredAny`
 
@@ -318,7 +318,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl PartialEq for IgnoredAny`
 
-- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md#ignoredany)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
@@ -384,7 +384,7 @@ The slice of names must not be empty.
 
 ##### `impl ToString for OneOf`
 
-- <span id="oneof-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
+- <span id="oneof-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md#string)
 
 ### `WithDecimalPoint`
 
@@ -402,7 +402,7 @@ struct WithDecimalPoint(f64);
 
 ##### `impl ToString for WithDecimalPoint`
 
-- <span id="withdecimalpoint-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
+- <span id="withdecimalpoint-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md#string)
 
 ## Enums
 
@@ -567,7 +567,7 @@ where
 
 ##### `impl ToString for Unexpected<'a>`
 
-- <span id="unexpected-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
+- <span id="unexpected-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md#string)
 
 ## Traits
 
@@ -637,7 +637,7 @@ type appropriate for a basic JSON data format.
 
 #### Implementors
 
-- [`Error`](value/index.md)
+- [`Error`](value/index.md#error)
 
 ### `Expected`
 
@@ -707,8 +707,8 @@ return Err(de::Error::invalid_type(
 
 #### Implementors
 
-- [`ExpectedInMap`](value/index.md)
-- [`ExpectedInSeq`](value/index.md)
+- [`ExpectedInMap`](value/index.md#expectedinmap)
+- [`ExpectedInSeq`](value/index.md#expectedinseq)
 - `&str`
 - `T`
 
@@ -757,51 +757,51 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
 #### Implementors
 
-- [`AtomicBool`](../lib/index.md)
-- [`AtomicI16`](../lib/index.md)
-- [`AtomicI32`](../lib/index.md)
-- [`AtomicI64`](../lib/index.md)
-- [`AtomicI8`](../lib/index.md)
-- [`AtomicIsize`](../lib/index.md)
-- [`AtomicU16`](../lib/index.md)
-- [`AtomicU32`](../lib/index.md)
-- [`AtomicU64`](../lib/index.md)
-- [`AtomicU8`](../lib/index.md)
-- [`AtomicUsize`](../lib/index.md)
-- [`BTreeMap`](../lib/index.md)
-- [`BTreeSet`](../lib/index.md)
-- [`BinaryHeap`](../lib/index.md)
-- [`Bound`](../lib/index.md)
-- [`Box`](../lib/index.md)
-- [`CString`](../lib/index.md)
-- [`Cell`](../lib/index.md)
-- [`Cow`](../lib/index.md)
-- [`Duration`](../lib/index.md)
-- [`Field`](impls/range/index.md)
-- [`Field`](impls/range_from/index.md)
-- [`Field`](impls/range_to/index.md)
-- [`HashMap`](../lib/index.md)
-- [`HashSet`](../lib/index.md)
-- [`IgnoredAny`](ignored_any/index.md)
-- [`LinkedList`](../lib/index.md)
-- [`Mutex`](../lib/index.md)
-- [`OsStringKind`](impls/index.md)
-- [`OsString`](../lib/index.md)
-- [`PathBuf`](../lib/index.md)
-- [`PhantomData`](../lib/index.md)
-- [`RangeFrom`](../lib/index.md)
-- [`RangeInclusive`](../lib/index.md)
-- [`RangeTo`](../lib/index.md)
-- [`Range`](../lib/index.md)
-- [`RefCell`](../lib/index.md)
-- [`Reverse`](../lib/index.md)
-- [`RwLock`](../lib/index.md)
-- [`Saturating`](../lib/index.md)
-- [`String`](../lib/index.md)
-- [`SystemTime`](../lib/index.md)
-- [`VecDeque`](../lib/index.md)
-- [`Vec`](../lib/index.md)
-- [`Wrapping`](../lib/index.md)
+- [`AtomicBool`](../lib/index.md#atomicbool)
+- [`AtomicI16`](../lib/index.md#atomici16)
+- [`AtomicI32`](../lib/index.md#atomici32)
+- [`AtomicI64`](../lib/index.md#atomici64)
+- [`AtomicI8`](../lib/index.md#atomici8)
+- [`AtomicIsize`](../lib/index.md#atomicisize)
+- [`AtomicU16`](../lib/index.md#atomicu16)
+- [`AtomicU32`](../lib/index.md#atomicu32)
+- [`AtomicU64`](../lib/index.md#atomicu64)
+- [`AtomicU8`](../lib/index.md#atomicu8)
+- [`AtomicUsize`](../lib/index.md#atomicusize)
+- [`BTreeMap`](../lib/index.md#btreemap)
+- [`BTreeSet`](../lib/index.md#btreeset)
+- [`BinaryHeap`](../lib/index.md#binaryheap)
+- [`Bound`](../lib/index.md#bound)
+- [`Box`](../lib/index.md#box)
+- [`CString`](../lib/index.md#cstring)
+- [`Cell`](../lib/index.md#cell)
+- [`Cow`](../lib/index.md#cow)
+- [`Duration`](../lib/index.md#duration)
+- [`Field`](impls/range/index.md#field)
+- [`Field`](impls/range_from/index.md#field)
+- [`Field`](impls/range_to/index.md#field)
+- [`HashMap`](../lib/index.md#hashmap)
+- [`HashSet`](../lib/index.md#hashset)
+- [`IgnoredAny`](ignored_any/index.md#ignoredany)
+- [`LinkedList`](../lib/index.md#linkedlist)
+- [`Mutex`](../lib/index.md#mutex)
+- [`OsStringKind`](impls/index.md#osstringkind)
+- [`OsString`](../lib/index.md#osstring)
+- [`PathBuf`](../lib/index.md#pathbuf)
+- [`PhantomData`](../lib/index.md#phantomdata)
+- [`RangeFrom`](../lib/index.md#rangefrom)
+- [`RangeInclusive`](../lib/index.md#rangeinclusive)
+- [`RangeTo`](../lib/index.md#rangeto)
+- [`Range`](../lib/index.md#range)
+- [`RefCell`](../lib/index.md#refcell)
+- [`Reverse`](../lib/index.md#reverse)
+- [`RwLock`](../lib/index.md#rwlock)
+- [`Saturating`](../lib/index.md#saturating)
+- [`String`](../lib/index.md#string)
+- [`SystemTime`](../lib/index.md#systemtime)
+- [`VecDeque`](../lib/index.md#vecdeque)
+- [`Vec`](../lib/index.md#vec)
+- [`Wrapping`](../lib/index.md#wrapping)
 - `&'a Path`
 - `&'a [u8]`
 - `&'a str`
@@ -1116,9 +1116,9 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 
 #### Implementors
 
-- [`PhantomData`](../lib/index.md)
-- [`SeedStructVariant`](value/private/index.md)
-- [`SeedTupleVariant`](value/private/index.md)
+- [`PhantomData`](../lib/index.md#phantomdata)
+- [`SeedStructVariant`](value/private/index.md#seedstructvariant)
+- [`SeedTupleVariant`](value/private/index.md#seedtuplevariant)
 
 ### `Deserializer<'de>`
 
@@ -1370,35 +1370,35 @@ a basic JSON `Deserializer`.
 
 #### Implementors
 
-- [`BoolDeserializer`](value/index.md)
-- [`BorrowedBytesDeserializer`](value/index.md)
-- [`BorrowedStrDeserializer`](value/index.md)
-- [`BytesDeserializer`](value/index.md)
-- [`CharDeserializer`](value/index.md)
-- [`CowStrDeserializer`](value/index.md)
-- [`EnumAccessDeserializer`](value/index.md)
-- [`F32Deserializer`](value/index.md)
-- [`F64Deserializer`](value/index.md)
-- [`I128Deserializer`](value/index.md)
-- [`I16Deserializer`](value/index.md)
-- [`I32Deserializer`](value/index.md)
-- [`I64Deserializer`](value/index.md)
-- [`I8Deserializer`](value/index.md)
-- [`IsizeDeserializer`](value/index.md)
-- [`MapAccessDeserializer`](value/index.md)
-- [`MapDeserializer`](value/index.md)
-- [`PairDeserializer`](value/index.md)
-- [`SeqAccessDeserializer`](value/index.md)
-- [`SeqDeserializer`](value/index.md)
-- [`StrDeserializer`](value/index.md)
-- [`StringDeserializer`](value/index.md)
-- [`U128Deserializer`](value/index.md)
-- [`U16Deserializer`](value/index.md)
-- [`U32Deserializer`](value/index.md)
-- [`U64Deserializer`](value/index.md)
-- [`U8Deserializer`](value/index.md)
-- [`UnitDeserializer`](value/index.md)
-- [`UsizeDeserializer`](value/index.md)
+- [`BoolDeserializer`](value/index.md#booldeserializer)
+- [`BorrowedBytesDeserializer`](value/index.md#borrowedbytesdeserializer)
+- [`BorrowedStrDeserializer`](value/index.md#borrowedstrdeserializer)
+- [`BytesDeserializer`](value/index.md#bytesdeserializer)
+- [`CharDeserializer`](value/index.md#chardeserializer)
+- [`CowStrDeserializer`](value/index.md#cowstrdeserializer)
+- [`EnumAccessDeserializer`](value/index.md#enumaccessdeserializer)
+- [`F32Deserializer`](value/index.md#f32deserializer)
+- [`F64Deserializer`](value/index.md#f64deserializer)
+- [`I128Deserializer`](value/index.md#i128deserializer)
+- [`I16Deserializer`](value/index.md#i16deserializer)
+- [`I32Deserializer`](value/index.md#i32deserializer)
+- [`I64Deserializer`](value/index.md#i64deserializer)
+- [`I8Deserializer`](value/index.md#i8deserializer)
+- [`IsizeDeserializer`](value/index.md#isizedeserializer)
+- [`MapAccessDeserializer`](value/index.md#mapaccessdeserializer)
+- [`MapDeserializer`](value/index.md#mapdeserializer)
+- [`PairDeserializer`](value/index.md#pairdeserializer)
+- [`SeqAccessDeserializer`](value/index.md#seqaccessdeserializer)
+- [`SeqDeserializer`](value/index.md#seqdeserializer)
+- [`StrDeserializer`](value/index.md#strdeserializer)
+- [`StringDeserializer`](value/index.md#stringdeserializer)
+- [`U128Deserializer`](value/index.md#u128deserializer)
+- [`U16Deserializer`](value/index.md#u16deserializer)
+- [`U32Deserializer`](value/index.md#u32deserializer)
+- [`U64Deserializer`](value/index.md#u64deserializer)
+- [`U8Deserializer`](value/index.md#u8deserializer)
+- [`UnitDeserializer`](value/index.md#unitdeserializer)
+- [`UsizeDeserializer`](value/index.md#usizedeserializer)
 
 ### `Visitor<'de>`
 
@@ -1570,26 +1570,26 @@ impl<'de> Visitor<'de> for LongString {
 
 #### Implementors
 
-- [`ArrayInPlaceVisitor`](impls/index.md)
-- [`ArrayVisitor`](impls/index.md)
-- [`BoolVisitor`](impls/index.md)
-- [`BytesVisitor`](impls/index.md)
-- [`CStringVisitor`](impls/index.md)
-- [`CharVisitor`](impls/index.md)
-- [`FromStrVisitor`](impls/index.md)
-- [`IgnoredAny`](ignored_any/index.md)
-- [`OptionVisitor`](impls/index.md)
-- [`OsStringVisitor`](impls/index.md)
-- [`PathBufVisitor`](impls/index.md)
-- [`PathVisitor`](impls/index.md)
-- [`PhantomDataVisitor`](impls/index.md)
-- [`RangeFromVisitor`](impls/range_from/index.md)
-- [`RangeToVisitor`](impls/range_to/index.md)
-- [`RangeVisitor`](impls/range/index.md)
-- [`StrVisitor`](impls/index.md)
-- [`StringInPlaceVisitor`](impls/index.md)
-- [`StringVisitor`](impls/index.md)
-- [`UnitVisitor`](impls/index.md)
+- [`ArrayInPlaceVisitor`](impls/index.md#arrayinplacevisitor)
+- [`ArrayVisitor`](impls/index.md#arrayvisitor)
+- [`BoolVisitor`](impls/index.md#boolvisitor)
+- [`BytesVisitor`](impls/index.md#bytesvisitor)
+- [`CStringVisitor`](impls/index.md#cstringvisitor)
+- [`CharVisitor`](impls/index.md#charvisitor)
+- [`FromStrVisitor`](impls/index.md#fromstrvisitor)
+- [`IgnoredAny`](ignored_any/index.md#ignoredany)
+- [`OptionVisitor`](impls/index.md#optionvisitor)
+- [`OsStringVisitor`](impls/index.md#osstringvisitor)
+- [`PathBufVisitor`](impls/index.md#pathbufvisitor)
+- [`PathVisitor`](impls/index.md#pathvisitor)
+- [`PhantomDataVisitor`](impls/index.md#phantomdatavisitor)
+- [`RangeFromVisitor`](impls/range_from/index.md#rangefromvisitor)
+- [`RangeToVisitor`](impls/range_to/index.md#rangetovisitor)
+- [`RangeVisitor`](impls/range/index.md#rangevisitor)
+- [`StrVisitor`](impls/index.md#strvisitor)
+- [`StringInPlaceVisitor`](impls/index.md#stringinplacevisitor)
+- [`StringVisitor`](impls/index.md#stringvisitor)
+- [`UnitVisitor`](impls/index.md#unitvisitor)
 
 ### `SeqAccess<'de>`
 
@@ -1638,9 +1638,9 @@ implementation of `SeqAccess` for a basic JSON data format.
 
 #### Implementors
 
-- [`MapDeserializer`](value/index.md)
-- [`PairVisitor`](value/index.md)
-- [`SeqDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md#mapdeserializer)
+- [`PairVisitor`](value/index.md#pairvisitor)
+- [`SeqDeserializer`](value/index.md#seqdeserializer)
 - `&mut A`
 
 ### `MapAccess<'de>`
@@ -1705,7 +1705,7 @@ implementation of `MapAccess` for a basic JSON data format.
 
 #### Implementors
 
-- [`MapDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md#mapdeserializer)
 - `&mut A`
 
 ### `EnumAccess<'de>`
@@ -1753,12 +1753,12 @@ implementation of `EnumAccess` for a basic JSON data format.
 
 #### Implementors
 
-- [`BorrowedStrDeserializer`](value/index.md)
-- [`CowStrDeserializer`](value/index.md)
-- [`MapAccessDeserializer`](value/index.md)
-- [`StrDeserializer`](value/index.md)
-- [`StringDeserializer`](value/index.md)
-- [`U32Deserializer`](value/index.md)
+- [`BorrowedStrDeserializer`](value/index.md#borrowedstrdeserializer)
+- [`CowStrDeserializer`](value/index.md#cowstrdeserializer)
+- [`MapAccessDeserializer`](value/index.md#mapaccessdeserializer)
+- [`StrDeserializer`](value/index.md#strdeserializer)
+- [`StringDeserializer`](value/index.md#stringdeserializer)
+- [`U32Deserializer`](value/index.md#u32deserializer)
 
 ### `VariantAccess<'de>`
 
@@ -1814,8 +1814,8 @@ implementation of `VariantAccess` for a basic JSON data format.
 
 #### Implementors
 
-- [`MapAsEnum`](value/private/index.md)
-- [`UnitOnly`](value/private/index.md)
+- [`MapAsEnum`](value/private/index.md#mapasenum)
+- [`UnitOnly`](value/private/index.md#unitonly)
 
 ### `IntoDeserializer<'de, E: Error>`
 
@@ -1868,41 +1868,41 @@ impl FromStr for Setting {
 
 #### Implementors
 
-- [`BTreeMap`](../lib/index.md)
-- [`BTreeSet`](../lib/index.md)
-- [`BoolDeserializer`](value/index.md)
-- [`BorrowedBytesDeserializer`](value/index.md)
-- [`BorrowedStrDeserializer`](value/index.md)
-- [`BytesDeserializer`](value/index.md)
-- [`CharDeserializer`](value/index.md)
-- [`CowStrDeserializer`](value/index.md)
-- [`Cow`](../lib/index.md)
-- [`EnumAccessDeserializer`](value/index.md)
-- [`F32Deserializer`](value/index.md)
-- [`F64Deserializer`](value/index.md)
-- [`HashMap`](../lib/index.md)
-- [`HashSet`](../lib/index.md)
-- [`I128Deserializer`](value/index.md)
-- [`I16Deserializer`](value/index.md)
-- [`I32Deserializer`](value/index.md)
-- [`I64Deserializer`](value/index.md)
-- [`I8Deserializer`](value/index.md)
-- [`IsizeDeserializer`](value/index.md)
-- [`MapAccessDeserializer`](value/index.md)
-- [`MapDeserializer`](value/index.md)
-- [`SeqAccessDeserializer`](value/index.md)
-- [`SeqDeserializer`](value/index.md)
-- [`StrDeserializer`](value/index.md)
-- [`StringDeserializer`](value/index.md)
-- [`String`](../lib/index.md)
-- [`U128Deserializer`](value/index.md)
-- [`U16Deserializer`](value/index.md)
-- [`U32Deserializer`](value/index.md)
-- [`U64Deserializer`](value/index.md)
-- [`U8Deserializer`](value/index.md)
-- [`UnitDeserializer`](value/index.md)
-- [`UsizeDeserializer`](value/index.md)
-- [`Vec`](../lib/index.md)
+- [`BTreeMap`](../lib/index.md#btreemap)
+- [`BTreeSet`](../lib/index.md#btreeset)
+- [`BoolDeserializer`](value/index.md#booldeserializer)
+- [`BorrowedBytesDeserializer`](value/index.md#borrowedbytesdeserializer)
+- [`BorrowedStrDeserializer`](value/index.md#borrowedstrdeserializer)
+- [`BytesDeserializer`](value/index.md#bytesdeserializer)
+- [`CharDeserializer`](value/index.md#chardeserializer)
+- [`CowStrDeserializer`](value/index.md#cowstrdeserializer)
+- [`Cow`](../lib/index.md#cow)
+- [`EnumAccessDeserializer`](value/index.md#enumaccessdeserializer)
+- [`F32Deserializer`](value/index.md#f32deserializer)
+- [`F64Deserializer`](value/index.md#f64deserializer)
+- [`HashMap`](../lib/index.md#hashmap)
+- [`HashSet`](../lib/index.md#hashset)
+- [`I128Deserializer`](value/index.md#i128deserializer)
+- [`I16Deserializer`](value/index.md#i16deserializer)
+- [`I32Deserializer`](value/index.md#i32deserializer)
+- [`I64Deserializer`](value/index.md#i64deserializer)
+- [`I8Deserializer`](value/index.md#i8deserializer)
+- [`IsizeDeserializer`](value/index.md#isizedeserializer)
+- [`MapAccessDeserializer`](value/index.md#mapaccessdeserializer)
+- [`MapDeserializer`](value/index.md#mapdeserializer)
+- [`SeqAccessDeserializer`](value/index.md#seqaccessdeserializer)
+- [`SeqDeserializer`](value/index.md#seqdeserializer)
+- [`StrDeserializer`](value/index.md#strdeserializer)
+- [`StringDeserializer`](value/index.md#stringdeserializer)
+- [`String`](../lib/index.md#string)
+- [`U128Deserializer`](value/index.md#u128deserializer)
+- [`U16Deserializer`](value/index.md#u16deserializer)
+- [`U32Deserializer`](value/index.md#u32deserializer)
+- [`U64Deserializer`](value/index.md#u64deserializer)
+- [`U8Deserializer`](value/index.md#u8deserializer)
+- [`UnitDeserializer`](value/index.md#unitdeserializer)
+- [`UsizeDeserializer`](value/index.md#usizedeserializer)
+- [`Vec`](../lib/index.md#vec)
 - `&'a [u8]`
 - `&'a str`
 - `()`

@@ -27,7 +27,7 @@ struct Adhoc;
 
 #### Implementations
 
-- <span id="adhoc-new"></span>`fn new<M>(self, message: M) -> Report` — [`Report`](../../index.md)
+- <span id="adhoc-new"></span>`fn new<M>(self, message: M) -> Report` — [`Report`](../../index.md#report)
 
 #### Trait Implementations
 
@@ -43,7 +43,7 @@ struct Trait;
 
 #### Implementations
 
-- <span id="trait-new"></span>`fn new<E>(self, error: E) -> Report` — [`Report`](../../index.md)
+- <span id="trait-new"></span>`fn new<E>(self, error: E) -> Report` — [`Report`](../../index.md#report)
 
 #### Trait Implementations
 
@@ -59,7 +59,7 @@ struct Boxed;
 
 #### Implementations
 
-- <span id="boxed-new"></span>`fn new(self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
+- <span id="boxed-new"></span>`fn new(self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md#diagnostic), [`Report`](../../index.md#report)
 
 #### Trait Implementations
 

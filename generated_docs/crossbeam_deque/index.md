@@ -146,19 +146,19 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](deque/index.md)
+- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](deque/index.md#injector)
 
 - <span id="injector-push"></span>`fn push(&self, task: T)`
 
-- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md)
+- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
-- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
 - <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -244,21 +244,21 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - <span id="stealer-len"></span>`fn len(&self) -> usize`
 
-- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md)
+- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
-- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
-- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
+- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Stealer<T>`
 
-- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](deque/index.md)
+- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](deque/index.md#stealer)
 
 ##### `impl<T> Debug for Stealer<T>`
 
@@ -356,11 +356,11 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](deque/index.md)
+- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](deque/index.md#worker)
 
-- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](deque/index.md)
+- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](deque/index.md#worker)
 
-- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](deque/index.md)
+- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](deque/index.md#stealer)
 
 - <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
 
@@ -453,13 +453,13 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - <span id="steal-success"></span>`fn success(self) -> Option<T>`
 
-- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](deque/index.md)
+- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for Steal<T>`
 
-- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](deque/index.md)
+- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
 ##### `impl<T: marker::Copy> Copy for Steal<T>`
 
@@ -471,11 +471,11 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 ##### `impl<T> FromIterator for Steal<T>`
 
-- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](deque/index.md)
+- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`
 
-- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](deque/index.md)
+- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](deque/index.md#steal)
 
 ##### `impl<T> Pointable for Steal<T>`
 

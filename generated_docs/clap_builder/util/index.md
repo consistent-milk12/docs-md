@@ -76,7 +76,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
-- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../builder/str/index.md)
+- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../builder/str/index.md#str)
 
 #### Trait Implementations
 
@@ -86,7 +86,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Clone for Id`
 
-- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](id/index.md)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](id/index.md#id)
 
 ##### `impl Debug for Id`
 
@@ -94,7 +94,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Default for Id`
 
-- <span id="id-default"></span>`fn default() -> Id` — [`Id`](id/index.md)
+- <span id="id-default"></span>`fn default() -> Id` — [`Id`](id/index.md#id)
 
 ##### `impl Display for Id`
 
@@ -110,23 +110,23 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](id/index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](id/index.md#id)
 
 ##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../builder/resettable/index.md), [`Id`](id/index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](../builder/resettable/index.md#resettable), [`Id`](id/index.md#id)
 
 ##### `impl Ord for Id`
 
-- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](id/index.md)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](id/index.md#id)
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](id/index.md)
+- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](id/index.md#id)
 
 ##### `impl PartialOrd for Id`
 
-- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](id/index.md)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](id/index.md#id)
 
 ##### `impl StructuralPartialEq for Id`
 

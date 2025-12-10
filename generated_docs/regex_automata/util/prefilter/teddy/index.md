@@ -57,7 +57,7 @@ struct Teddy {
 
 #### Implementations
 
-- <span id="teddy-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Teddy>` — [`MatchKind`](../../../index.md), [`Teddy`](#teddy)
+- <span id="teddy-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Teddy>` — [`MatchKind`](../../../index.md#matchkind), [`Teddy`](#teddy)
 
 #### Trait Implementations
 
@@ -71,9 +71,9 @@ struct Teddy {
 
 ##### `impl PrefilterI for Teddy`
 
-- <span id="teddy-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="teddy-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="teddy-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="teddy-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 

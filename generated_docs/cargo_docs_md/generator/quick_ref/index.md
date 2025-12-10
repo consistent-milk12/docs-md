@@ -169,7 +169,7 @@ kinds, and first-sentence descriptions.
 fn extract_summary(docs: Option<&str>) -> String
 ```
 
-*Defined in `src/generator/quick_ref.rs:143-185`*
+*Defined in `src/generator/quick_ref.rs:146-186`*
 
 Extract the first sentence from a documentation string.
 
@@ -204,7 +204,7 @@ assert_eq!(
 fn try_extract_sentence(text: &str) -> Option<String>
 ```
 
-*Defined in `src/generator/quick_ref.rs:197-229`*
+*Defined in `src/generator/quick_ref.rs:198-230`*
 
 Try to extract a complete first sentence from text.
 
@@ -218,7 +218,7 @@ or version number) is found, otherwise `None`.
 const ABBREVIATIONS: &[&str];
 ```
 
-*Defined in `src/generator/quick_ref.rs:188-191`*
+*Defined in `src/generator/quick_ref.rs:189-192`*
 
 Common abbreviations that shouldn't end sentences.
 

@@ -53,9 +53,9 @@ struct AtomicI128 {
 
 - <span id="atomici128-optimistic-read"></span>`fn optimistic_read(&self) -> i128`
 
-- <span id="atomici128-read"></span>`fn read(&self, _guard: &SeqLockWriteGuard<'static>) -> i128` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- <span id="atomici128-read"></span>`fn read(&self, _guard: &SeqLockWriteGuard<'static>) -> i128` — [`SeqLockWriteGuard`](seq_lock/index.md#seqlockwriteguard)
 
-- <span id="atomici128-write"></span>`fn write(&self, val: i128, _guard: &SeqLockWriteGuard<'static>)` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- <span id="atomici128-write"></span>`fn write(&self, val: i128, _guard: &SeqLockWriteGuard<'static>)` — [`SeqLockWriteGuard`](seq_lock/index.md#seqlockwriteguard)
 
 #### Trait Implementations
 
@@ -79,9 +79,9 @@ struct AtomicU128 {
 
 - <span id="atomicu128-optimistic-read"></span>`fn optimistic_read(&self) -> u128`
 
-- <span id="atomicu128-read"></span>`fn read(&self, _guard: &SeqLockWriteGuard<'static>) -> u128` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- <span id="atomicu128-read"></span>`fn read(&self, _guard: &SeqLockWriteGuard<'static>) -> u128` — [`SeqLockWriteGuard`](seq_lock/index.md#seqlockwriteguard)
 
-- <span id="atomicu128-write"></span>`fn write(&self, val: u128, _guard: &SeqLockWriteGuard<'static>)` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- <span id="atomicu128-write"></span>`fn write(&self, val: u128, _guard: &SeqLockWriteGuard<'static>)` — [`SeqLockWriteGuard`](seq_lock/index.md#seqlockwriteguard)
 
 #### Trait Implementations
 

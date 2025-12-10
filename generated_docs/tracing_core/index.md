@@ -202,37 +202,37 @@ struct Dispatch {
 
 - <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
 
-- <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](dispatcher/index.md)
+- <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](dispatcher/index.md#registrar)
 
-- <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md)
+- <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md#weakdispatch)
 
-- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md)
+- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md#subscriber)
 
-- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md), [`Interest`](subscriber/index.md)
+- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md#metadata), [`Interest`](subscriber/index.md#interest)
 
-- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md)
+- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md), [`Id`](span/index.md)
+- <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md#attributes), [`Id`](span/index.md#id)
 
-- <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md), [`Record`](span/index.md)
+- <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md#id), [`Record`](span/index.md#record)
 
-- <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md)
+- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md#metadata)
 
-- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](event/index.md)
+- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](event/index.md#event)
 
-- <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](span/index.md)
+- <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](span/index.md)
+- <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](span/index.md#id)
 
-- <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](span/index.md)
+- <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](span/index.md#current)
 
 - <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
@@ -242,7 +242,7 @@ struct Dispatch {
 
 ##### `impl Clone for Dispatch`
 
-- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](dispatcher/index.md)
+- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](dispatcher/index.md#dispatch)
 
 ##### `impl Debug for Dispatch`
 
@@ -282,25 +282,25 @@ two key differences:
 
 #### Implementations
 
-- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
-- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
-- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
-- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
-- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md)
+- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md#visit)
 
-- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](field/index.md)
+- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](field/index.md#iter)
 
-- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](metadata/index.md)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](metadata/index.md#metadata)
 
 - <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
 - <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
-- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](span/index.md)
+- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](span/index.md#id)
 
 #### Trait Implementations
 
@@ -330,7 +330,7 @@ and use the key for that name for all other accesses.
 
 #### Implementations
 
-- <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
+- <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
 - <span id="field-name"></span>`fn name(&self) -> &'static str`
 
@@ -522,7 +522,7 @@ recorded in.
 
 ##### `impl Clone for Level`
 
-- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](metadata/index.md)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](metadata/index.md#level)
 
 ##### `impl Copy for Level`
 
@@ -540,7 +540,7 @@ recorded in.
 
 - <span id="level-type-err"></span>`type Err = ParseLevelError`
 
-- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md)
+- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md#parselevelerror)
 
 ##### `impl Hash for Level`
 
@@ -552,19 +552,19 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md#level)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](metadata/index.md#level)
 
 ##### `impl StructuralPartialEq for Level`
 
@@ -608,9 +608,9 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-const-trace"></span>`const TRACE: LevelFilter`
 
-- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md)
+- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md#level)
 
-- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](metadata/index.md)
+- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](metadata/index.md#level)
 
 - <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
 
@@ -626,13 +626,13 @@ and `LevelFilter`s interact.
 
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
-- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md)
+- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](metadata/index.md)
+- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 ##### `impl Copy for LevelFilter`
 
@@ -662,19 +662,19 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md#levelfilter)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
@@ -788,11 +788,11 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md), [`FieldSet`](field/index.md), [`Kind`](metadata/index.md)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md#level), [`FieldSet`](field/index.md#fieldset), [`Kind`](metadata/index.md#kind)
 
-- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md)
+- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md#fieldset)
 
-- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](metadata/index.md)
+- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](metadata/index.md#level)
 
 - <span id="metadata-name"></span>`fn name(&self) -> &'static str`
 
@@ -804,7 +804,7 @@ of `Metadata`'s other fields is checked in debug builds.
 
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
-- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
+- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
 
@@ -858,7 +858,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl Clone for Kind`
 
-- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](metadata/index.md)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](metadata/index.md#kind)
 
 ##### `impl Debug for Kind`
 
@@ -868,7 +868,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl PartialEq for Kind`
 
-- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](metadata/index.md)
+- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](metadata/index.md#kind)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -901,13 +901,13 @@ in order to determine whether that span should be enabled or disabled.
 
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
 
-- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md)
+- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md#interest)
 
 #### Trait Implementations
 
 ##### `impl Clone for Interest`
 
-- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](subscriber/index.md)
+- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](subscriber/index.md#interest)
 
 ##### `impl Debug for Interest`
 
@@ -943,7 +943,7 @@ callsites.
 
 #### Implementors
 
-- [`DefaultCallsite`](callsite/index.md)
+- [`DefaultCallsite`](callsite/index.md#defaultcallsite)
 
 ### `Subscriber`
 
@@ -1096,7 +1096,7 @@ The following methods are likely of interest:
 
 #### Implementors
 
-- [`NoSubscriber`](subscriber/index.md)
+- [`NoSubscriber`](subscriber/index.md#nosubscriber)
 - `alloc::boxed::Box<S>`
 - `alloc::sync::Arc<S>`
 

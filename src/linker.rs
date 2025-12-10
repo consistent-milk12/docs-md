@@ -642,12 +642,13 @@ impl LinkRegistry {
 
         // Determine the link destination:
         // - Same file: use an anchor (#name)
-        // - Different file: use the relative path
+        // - Different file: use the relative path with anchor
         let link = if target_path == from_path {
-            // Convert name to normalized anchor format
+            // Same file: use anchor only
             format!("#{}", slugify_anchor(name))
         } else {
-            relative_path
+            // Different file: append anchor to path
+            format!("{}#{}", relative_path, slugify_anchor(name))
         };
 
         // Format as markdown link with backticks around the name

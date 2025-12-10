@@ -154,7 +154,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 - <span id="wordseparator-new"></span>`const fn new() -> Self`
 
-- <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md)
+- <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md#word)
 
 #### Trait Implementations
 

@@ -68,9 +68,9 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
-- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../handlers/index.md)
+- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../handlers/index.md#graphicaltheme)
 
-- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
+- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md#highlighter)
 
 - <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
@@ -94,7 +94,7 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
-- <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](../index.md)
+- <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](../index.md#rgbcolors)
 
 - <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
@@ -108,7 +108,7 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
-- <span id="miettehandleropts-build"></span>`fn build(self) -> MietteHandler` — [`MietteHandler`](../index.md)
+- <span id="miettehandleropts-build"></span>`fn build(self) -> MietteHandler` — [`MietteHandler`](../index.md#miettehandler)
 
 - <span id="miettehandleropts-is-graphical"></span>`fn is_graphical(&self) -> bool`
 
@@ -120,7 +120,7 @@ miette::set_hook(Box::new(|_| {
 
 ##### `impl Clone for MietteHandlerOpts`
 
-- <span id="miettehandleropts-clone"></span>`fn clone(&self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
+- <span id="miettehandleropts-clone"></span>`fn clone(&self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md#miettehandleropts)
 
 ##### `impl Debug for MietteHandlerOpts`
 
@@ -128,7 +128,7 @@ miette::set_hook(Box::new(|_| {
 
 ##### `impl Default for MietteHandlerOpts`
 
-- <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
+- <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md#miettehandleropts)
 
 ##### `impl OwoColorize for MietteHandlerOpts`
 
@@ -169,7 +169,7 @@ printer.
 
 ##### `impl ReportHandler for MietteHandler`
 
-- <span id="miettehandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="miettehandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md#diagnostic)
 
 ## Enums
 
@@ -205,7 +205,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Clone for RgbColors`
 
-- <span id="rgbcolors-clone"></span>`fn clone(&self) -> RgbColors` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-clone"></span>`fn clone(&self) -> RgbColors` — [`RgbColors`](../index.md#rgbcolors)
 
 ##### `impl Copy for RgbColors`
 
@@ -215,7 +215,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Default for RgbColors`
 
-- <span id="rgbcolors-default"></span>`fn default() -> RgbColors` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-default"></span>`fn default() -> RgbColors` — [`RgbColors`](../index.md#rgbcolors)
 
 ##### `impl Eq for RgbColors`
 
@@ -223,7 +223,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl PartialEq for RgbColors`
 
-- <span id="rgbcolors-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](../index.md#rgbcolors)
 
 ##### `impl StructuralPartialEq for RgbColors`
 
@@ -240,7 +240,7 @@ enum HighlighterOption {
 
 #### Implementations
 
-- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](../highlighters/index.md), [`HighlighterOption`](#highlighteroption)
+- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](../highlighters/index.md#miettehighlighter), [`HighlighterOption`](#highlighteroption)
 
 #### Trait Implementations
 

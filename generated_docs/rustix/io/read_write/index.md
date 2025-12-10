@@ -68,7 +68,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
-`RWF_*` constants for use with [`preadv2`](../../backend/io/syscalls/index.md) and [`pwritev2`](../index.md).
+`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
 
 
 
@@ -104,7 +104,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 - <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
-- <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](../../backend/io/types/index.md)
+- <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](../../backend/io/types/index.md#readwriteflags)
 
 ##### `impl BitOrAssign for ReadWriteFlags`
 
@@ -122,7 +122,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Clone for ReadWriteFlags`
 
-- <span id="readwriteflags-clone"></span>`fn clone(&self) -> ReadWriteFlags` — [`ReadWriteFlags`](../../backend/io/types/index.md)
+- <span id="readwriteflags-clone"></span>`fn clone(&self) -> ReadWriteFlags` — [`ReadWriteFlags`](../../backend/io/types/index.md#readwriteflags)
 
 ##### `impl Copy for ReadWriteFlags`
 
@@ -142,9 +142,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 - <span id="readwriteflags-type-bits"></span>`type Bits = u32`
 
-- <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
-- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md), [`ReadWriteFlags`](../../backend/io/types/index.md)
+- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md#c-uint), [`ReadWriteFlags`](../../backend/io/types/index.md#readwriteflags)
 
 ##### `impl FromIterator for ReadWriteFlags`
 
@@ -178,7 +178,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for ReadWriteFlags`
 
-- <span id="readwriteflags-eq"></span>`fn eq(&self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](../../backend/io/types/index.md)
+- <span id="readwriteflags-eq"></span>`fn eq(&self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](../../backend/io/types/index.md#readwriteflags)
 
 ##### `impl PublicFlags for ReadWriteFlags`
 

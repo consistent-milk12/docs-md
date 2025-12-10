@@ -116,7 +116,7 @@ This is intended to be small enough to pass by value.
 
 ##### `impl Clone for Encoding`
 
-- <span id="encoding-clone"></span>`fn clone(&self) -> Encoding` — [`Encoding`](../index.md)
+- <span id="encoding-clone"></span>`fn clone(&self) -> Encoding` — [`Encoding`](../index.md#encoding)
 
 ##### `impl Copy for Encoding`
 
@@ -132,7 +132,7 @@ This is intended to be small enough to pass by value.
 
 ##### `impl PartialEq for Encoding`
 
-- <span id="encoding-eq"></span>`fn eq(&self, other: &Encoding) -> bool` — [`Encoding`](../index.md)
+- <span id="encoding-eq"></span>`fn eq(&self, other: &Encoding) -> bool` — [`Encoding`](../index.md#encoding)
 
 ##### `impl StructuralPartialEq for Encoding`
 
@@ -179,7 +179,7 @@ Encoding parameters for a line number program.
 
 ##### `impl Clone for LineEncoding`
 
-- <span id="lineencoding-clone"></span>`fn clone(&self) -> LineEncoding` — [`LineEncoding`](../index.md)
+- <span id="lineencoding-clone"></span>`fn clone(&self) -> LineEncoding` — [`LineEncoding`](../index.md#lineencoding)
 
 ##### `impl Copy for LineEncoding`
 
@@ -199,7 +199,7 @@ Encoding parameters for a line number program.
 
 ##### `impl PartialEq for LineEncoding`
 
-- <span id="lineencoding-eq"></span>`fn eq(&self, other: &LineEncoding) -> bool` — [`LineEncoding`](../index.md)
+- <span id="lineencoding-eq"></span>`fn eq(&self, other: &LineEncoding) -> bool` — [`LineEncoding`](../index.md#lineencoding)
 
 ##### `impl StructuralPartialEq for LineEncoding`
 
@@ -218,13 +218,13 @@ a ULEB128, but supported architectures need 16 bits at most.
 
 #### Implementations
 
-- <span id="cratecommonregister-from-u64"></span>`fn from_u64(x: u64) -> Result<Register>` — [`Result`](../index.md), [`Register`](../index.md)
+- <span id="cratecommonregister-from-u64"></span>`fn from_u64(x: u64) -> Result<Register>` — [`Result`](../index.md#result), [`Register`](../index.md#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for Register`
 
-- <span id="register-clone"></span>`fn clone(&self) -> Register` — [`Register`](../index.md)
+- <span id="register-clone"></span>`fn clone(&self) -> Register` — [`Register`](../index.md#register)
 
 ##### `impl Copy for Register`
 
@@ -240,15 +240,15 @@ a ULEB128, but supported architectures need 16 bits at most.
 
 ##### `impl Ord for Register`
 
-- <span id="register-cmp"></span>`fn cmp(&self, other: &Register) -> cmp::Ordering` — [`Register`](../index.md)
+- <span id="register-cmp"></span>`fn cmp(&self, other: &Register) -> cmp::Ordering` — [`Register`](../index.md#register)
 
 ##### `impl PartialEq for Register`
 
-- <span id="register-eq"></span>`fn eq(&self, other: &Register) -> bool` — [`Register`](../index.md)
+- <span id="register-eq"></span>`fn eq(&self, other: &Register) -> bool` — [`Register`](../index.md#register)
 
 ##### `impl PartialOrd for Register`
 
-- <span id="register-partial-cmp"></span>`fn partial_cmp(&self, other: &Register) -> option::Option<cmp::Ordering>` — [`Register`](../index.md)
+- <span id="register-partial-cmp"></span>`fn partial_cmp(&self, other: &Register) -> option::Option<cmp::Ordering>` — [`Register`](../index.md#register)
 
 ##### `impl StructuralPartialEq for Register`
 
@@ -266,7 +266,7 @@ An offset into the `.debug_abbrev` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugAbbrevOffset<T>`
 
-- <span id="debugabbrevoffset-clone"></span>`fn clone(&self) -> DebugAbbrevOffset<T>` — [`DebugAbbrevOffset`](../index.md)
+- <span id="debugabbrevoffset-clone"></span>`fn clone(&self) -> DebugAbbrevOffset<T>` — [`DebugAbbrevOffset`](../index.md#debugabbrevoffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugAbbrevOffset<T>`
 
@@ -282,7 +282,7 @@ An offset into the `.debug_abbrev` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAbbrevOffset<T>`
 
-- <span id="debugabbrevoffset-eq"></span>`fn eq(&self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](../index.md)
+- <span id="debugabbrevoffset-eq"></span>`fn eq(&self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](../index.md#debugabbrevoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAbbrevOffset<T>`
 
@@ -300,7 +300,7 @@ An offset into the `.debug_addr` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugAddrOffset<T>`
 
-- <span id="debugaddroffset-clone"></span>`fn clone(&self) -> DebugAddrOffset<T>` — [`DebugAddrOffset`](../index.md)
+- <span id="debugaddroffset-clone"></span>`fn clone(&self) -> DebugAddrOffset<T>` — [`DebugAddrOffset`](../index.md#debugaddroffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrOffset<T>`
 
@@ -312,7 +312,7 @@ An offset into the `.debug_addr` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrOffset<T>`
 
-- <span id="debugaddroffset-eq"></span>`fn eq(&self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](../index.md)
+- <span id="debugaddroffset-eq"></span>`fn eq(&self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](../index.md#debugaddroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrOffset<T>`
 
@@ -330,7 +330,7 @@ An offset to a set of entries in the `.debug_addr` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugAddrBase<T>`
 
-- <span id="debugaddrbase-clone"></span>`fn clone(&self) -> DebugAddrBase<T>` — [`DebugAddrBase`](../index.md)
+- <span id="debugaddrbase-clone"></span>`fn clone(&self) -> DebugAddrBase<T>` — [`DebugAddrBase`](../index.md#debugaddrbase)
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrBase<T>`
 
@@ -342,7 +342,7 @@ An offset to a set of entries in the `.debug_addr` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrBase<T>`
 
-- <span id="debugaddrbase-eq"></span>`fn eq(&self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](../index.md)
+- <span id="debugaddrbase-eq"></span>`fn eq(&self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](../index.md#debugaddrbase)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrBase<T>`
 
@@ -360,7 +360,7 @@ An index into a set of addresses in the `.debug_addr` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugAddrIndex<T>`
 
-- <span id="debugaddrindex-clone"></span>`fn clone(&self) -> DebugAddrIndex<T>` — [`DebugAddrIndex`](../index.md)
+- <span id="debugaddrindex-clone"></span>`fn clone(&self) -> DebugAddrIndex<T>` — [`DebugAddrIndex`](../index.md#debugaddrindex)
 
 ##### `impl<T: marker::Copy> Copy for DebugAddrIndex<T>`
 
@@ -372,7 +372,7 @@ An index into a set of addresses in the `.debug_addr` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrIndex<T>`
 
-- <span id="debugaddrindex-eq"></span>`fn eq(&self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](../index.md)
+- <span id="debugaddrindex-eq"></span>`fn eq(&self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](../index.md#debugaddrindex)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrIndex<T>`
 
@@ -390,7 +390,7 @@ An offset into the `.debug_aranges` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugArangesOffset<T>`
 
-- <span id="debugarangesoffset-clone"></span>`fn clone(&self) -> DebugArangesOffset<T>` — [`DebugArangesOffset`](../index.md)
+- <span id="debugarangesoffset-clone"></span>`fn clone(&self) -> DebugArangesOffset<T>` — [`DebugArangesOffset`](../index.md#debugarangesoffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugArangesOffset<T>`
 
@@ -402,7 +402,7 @@ An offset into the `.debug_aranges` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugArangesOffset<T>`
 
-- <span id="debugarangesoffset-eq"></span>`fn eq(&self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](../index.md)
+- <span id="debugarangesoffset-eq"></span>`fn eq(&self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](../index.md#debugarangesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugArangesOffset<T>`
 
@@ -418,13 +418,13 @@ An offset into the `.debug_info` section.
 
 #### Implementations
 
-- <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md), [`UnitOffset`](../index.md)
+- <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md#unitheader), [`UnitOffset`](../index.md#unitoffset)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-clone"></span>`fn clone(&self) -> DebugInfoOffset<T>` — [`DebugInfoOffset`](../index.md)
+- <span id="debuginfooffset-clone"></span>`fn clone(&self) -> DebugInfoOffset<T>` — [`DebugInfoOffset`](../index.md#debuginfooffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugInfoOffset<T>`
 
@@ -440,15 +440,15 @@ An offset into the `.debug_info` section.
 
 ##### `impl<T: cmp::Ord> Ord for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-cmp"></span>`fn cmp(&self, other: &DebugInfoOffset<T>) -> cmp::Ordering` — [`DebugInfoOffset`](../index.md)
+- <span id="debuginfooffset-cmp"></span>`fn cmp(&self, other: &DebugInfoOffset<T>) -> cmp::Ordering` — [`DebugInfoOffset`](../index.md#debuginfooffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-eq"></span>`fn eq(&self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](../index.md)
+- <span id="debuginfooffset-eq"></span>`fn eq(&self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](../index.md#debuginfooffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for DebugInfoOffset<T>`
 
-- <span id="debuginfooffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugInfoOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugInfoOffset`](../index.md)
+- <span id="debuginfooffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugInfoOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugInfoOffset`](../index.md#debuginfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugInfoOffset<T>`
 
@@ -466,7 +466,7 @@ An offset into the `.debug_line` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugLineOffset<T>`
 
-- <span id="debuglineoffset-clone"></span>`fn clone(&self) -> DebugLineOffset<T>` — [`DebugLineOffset`](../index.md)
+- <span id="debuglineoffset-clone"></span>`fn clone(&self) -> DebugLineOffset<T>` — [`DebugLineOffset`](../index.md#debuglineoffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugLineOffset<T>`
 
@@ -478,7 +478,7 @@ An offset into the `.debug_line` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineOffset<T>`
 
-- <span id="debuglineoffset-eq"></span>`fn eq(&self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](../index.md)
+- <span id="debuglineoffset-eq"></span>`fn eq(&self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](../index.md#debuglineoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineOffset<T>`
 
@@ -496,7 +496,7 @@ An offset into the `.debug_line_str` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugLineStrOffset<T>`
 
-- <span id="debuglinestroffset-clone"></span>`fn clone(&self) -> DebugLineStrOffset<T>` — [`DebugLineStrOffset`](../index.md)
+- <span id="debuglinestroffset-clone"></span>`fn clone(&self) -> DebugLineStrOffset<T>` — [`DebugLineStrOffset`](../index.md#debuglinestroffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugLineStrOffset<T>`
 
@@ -508,7 +508,7 @@ An offset into the `.debug_line_str` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineStrOffset<T>`
 
-- <span id="debuglinestroffset-eq"></span>`fn eq(&self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](../index.md)
+- <span id="debuglinestroffset-eq"></span>`fn eq(&self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](../index.md#debuglinestroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineStrOffset<T>`
 
@@ -527,7 +527,7 @@ depending on the version of the unit the offset was contained in.
 
 ##### `impl<T: clone::Clone> Clone for LocationListsOffset<T>`
 
-- <span id="locationlistsoffset-clone"></span>`fn clone(&self) -> LocationListsOffset<T>` — [`LocationListsOffset`](../index.md)
+- <span id="locationlistsoffset-clone"></span>`fn clone(&self) -> LocationListsOffset<T>` — [`LocationListsOffset`](../index.md#locationlistsoffset)
 
 ##### `impl<T: marker::Copy> Copy for LocationListsOffset<T>`
 
@@ -543,7 +543,7 @@ depending on the version of the unit the offset was contained in.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for LocationListsOffset<T>`
 
-- <span id="locationlistsoffset-eq"></span>`fn eq(&self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](../index.md)
+- <span id="locationlistsoffset-eq"></span>`fn eq(&self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](../index.md#locationlistsoffset)
 
 ##### `impl<T> StructuralPartialEq for LocationListsOffset<T>`
 
@@ -559,13 +559,13 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 
 #### Implementations
 
-- <span id="cratecommondebugloclistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](../index.md), [`DwarfFileType`](../index.md), [`DebugLocListsBase`](../index.md)
+- <span id="cratecommondebugloclistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugLocListsBase`](../index.md#debugloclistsbase)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for DebugLocListsBase<T>`
 
-- <span id="debugloclistsbase-clone"></span>`fn clone(&self) -> DebugLocListsBase<T>` — [`DebugLocListsBase`](../index.md)
+- <span id="debugloclistsbase-clone"></span>`fn clone(&self) -> DebugLocListsBase<T>` — [`DebugLocListsBase`](../index.md#debugloclistsbase)
 
 ##### `impl<T: marker::Copy> Copy for DebugLocListsBase<T>`
 
@@ -577,7 +577,7 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsBase<T>`
 
-- <span id="debugloclistsbase-eq"></span>`fn eq(&self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](../index.md)
+- <span id="debugloclistsbase-eq"></span>`fn eq(&self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](../index.md#debugloclistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsBase<T>`
 
@@ -595,7 +595,7 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugLocListsIndex<T>`
 
-- <span id="debugloclistsindex-clone"></span>`fn clone(&self) -> DebugLocListsIndex<T>` — [`DebugLocListsIndex`](../index.md)
+- <span id="debugloclistsindex-clone"></span>`fn clone(&self) -> DebugLocListsIndex<T>` — [`DebugLocListsIndex`](../index.md#debugloclistsindex)
 
 ##### `impl<T: marker::Copy> Copy for DebugLocListsIndex<T>`
 
@@ -607,7 +607,7 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsIndex<T>`
 
-- <span id="debugloclistsindex-eq"></span>`fn eq(&self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](../index.md)
+- <span id="debugloclistsindex-eq"></span>`fn eq(&self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](../index.md#debugloclistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsIndex<T>`
 
@@ -625,7 +625,7 @@ An offset into the `.debug_macinfo` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugMacinfoOffset<T>`
 
-- <span id="debugmacinfooffset-clone"></span>`fn clone(&self) -> DebugMacinfoOffset<T>` — [`DebugMacinfoOffset`](../index.md)
+- <span id="debugmacinfooffset-clone"></span>`fn clone(&self) -> DebugMacinfoOffset<T>` — [`DebugMacinfoOffset`](../index.md#debugmacinfooffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugMacinfoOffset<T>`
 
@@ -641,7 +641,7 @@ An offset into the `.debug_macinfo` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacinfoOffset<T>`
 
-- <span id="debugmacinfooffset-eq"></span>`fn eq(&self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](../index.md)
+- <span id="debugmacinfooffset-eq"></span>`fn eq(&self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](../index.md#debugmacinfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacinfoOffset<T>`
 
@@ -659,7 +659,7 @@ An offset into the `.debug_macro` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugMacroOffset<T>`
 
-- <span id="debugmacrooffset-clone"></span>`fn clone(&self) -> DebugMacroOffset<T>` — [`DebugMacroOffset`](../index.md)
+- <span id="debugmacrooffset-clone"></span>`fn clone(&self) -> DebugMacroOffset<T>` — [`DebugMacroOffset`](../index.md#debugmacrooffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugMacroOffset<T>`
 
@@ -675,7 +675,7 @@ An offset into the `.debug_macro` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacroOffset<T>`
 
-- <span id="debugmacrooffset-eq"></span>`fn eq(&self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](../index.md)
+- <span id="debugmacrooffset-eq"></span>`fn eq(&self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](../index.md#debugmacrooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacroOffset<T>`
 
@@ -697,7 +697,7 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 
 ##### `impl<T: clone::Clone> Clone for RawRangeListsOffset<T>`
 
-- <span id="rawrangelistsoffset-clone"></span>`fn clone(&self) -> RawRangeListsOffset<T>` — [`RawRangeListsOffset`](../index.md)
+- <span id="rawrangelistsoffset-clone"></span>`fn clone(&self) -> RawRangeListsOffset<T>` — [`RawRangeListsOffset`](../index.md#rawrangelistsoffset)
 
 ##### `impl<T: marker::Copy> Copy for RawRangeListsOffset<T>`
 
@@ -713,7 +713,7 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 
 ##### `impl<T: cmp::PartialEq> PartialEq for RawRangeListsOffset<T>`
 
-- <span id="rawrangelistsoffset-eq"></span>`fn eq(&self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](../index.md)
+- <span id="rawrangelistsoffset-eq"></span>`fn eq(&self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](../index.md#rawrangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RawRangeListsOffset<T>`
 
@@ -732,7 +732,7 @@ depending on the version of the unit the offset was contained in.
 
 ##### `impl<T: clone::Clone> Clone for RangeListsOffset<T>`
 
-- <span id="rangelistsoffset-clone"></span>`fn clone(&self) -> RangeListsOffset<T>` — [`RangeListsOffset`](../index.md)
+- <span id="rangelistsoffset-clone"></span>`fn clone(&self) -> RangeListsOffset<T>` — [`RangeListsOffset`](../index.md#rangelistsoffset)
 
 ##### `impl<T: marker::Copy> Copy for RangeListsOffset<T>`
 
@@ -748,7 +748,7 @@ depending on the version of the unit the offset was contained in.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for RangeListsOffset<T>`
 
-- <span id="rangelistsoffset-eq"></span>`fn eq(&self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](../index.md)
+- <span id="rangelistsoffset-eq"></span>`fn eq(&self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](../index.md#rangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RangeListsOffset<T>`
 
@@ -764,13 +764,13 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 
 #### Implementations
 
-- <span id="cratecommondebugrnglistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](../index.md), [`DwarfFileType`](../index.md), [`DebugRngListsBase`](../index.md)
+- <span id="cratecommondebugrnglistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugRngListsBase`](../index.md#debugrnglistsbase)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for DebugRngListsBase<T>`
 
-- <span id="debugrnglistsbase-clone"></span>`fn clone(&self) -> DebugRngListsBase<T>` — [`DebugRngListsBase`](../index.md)
+- <span id="debugrnglistsbase-clone"></span>`fn clone(&self) -> DebugRngListsBase<T>` — [`DebugRngListsBase`](../index.md#debugrnglistsbase)
 
 ##### `impl<T: marker::Copy> Copy for DebugRngListsBase<T>`
 
@@ -782,7 +782,7 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsBase<T>`
 
-- <span id="debugrnglistsbase-eq"></span>`fn eq(&self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](../index.md)
+- <span id="debugrnglistsbase-eq"></span>`fn eq(&self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](../index.md#debugrnglistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsBase<T>`
 
@@ -800,7 +800,7 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugRngListsIndex<T>`
 
-- <span id="debugrnglistsindex-clone"></span>`fn clone(&self) -> DebugRngListsIndex<T>` — [`DebugRngListsIndex`](../index.md)
+- <span id="debugrnglistsindex-clone"></span>`fn clone(&self) -> DebugRngListsIndex<T>` — [`DebugRngListsIndex`](../index.md#debugrnglistsindex)
 
 ##### `impl<T: marker::Copy> Copy for DebugRngListsIndex<T>`
 
@@ -812,7 +812,7 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsIndex<T>`
 
-- <span id="debugrnglistsindex-eq"></span>`fn eq(&self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](../index.md)
+- <span id="debugrnglistsindex-eq"></span>`fn eq(&self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](../index.md#debugrnglistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsIndex<T>`
 
@@ -830,7 +830,7 @@ An offset into the `.debug_str` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugStrOffset<T>`
 
-- <span id="debugstroffset-clone"></span>`fn clone(&self) -> DebugStrOffset<T>` — [`DebugStrOffset`](../index.md)
+- <span id="debugstroffset-clone"></span>`fn clone(&self) -> DebugStrOffset<T>` — [`DebugStrOffset`](../index.md#debugstroffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugStrOffset<T>`
 
@@ -842,7 +842,7 @@ An offset into the `.debug_str` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffset<T>`
 
-- <span id="debugstroffset-eq"></span>`fn eq(&self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](../index.md)
+- <span id="debugstroffset-eq"></span>`fn eq(&self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](../index.md#debugstroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffset<T>`
 
@@ -858,13 +858,13 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 
 #### Implementations
 
-- <span id="cratecommondebugstroffsetsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](../index.md), [`DwarfFileType`](../index.md), [`DebugStrOffsetsBase`](../index.md)
+- <span id="cratecommondebugstroffsetsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugStrOffsetsBase`](../index.md#debugstroffsetsbase)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for DebugStrOffsetsBase<T>`
 
-- <span id="debugstroffsetsbase-clone"></span>`fn clone(&self) -> DebugStrOffsetsBase<T>` — [`DebugStrOffsetsBase`](../index.md)
+- <span id="debugstroffsetsbase-clone"></span>`fn clone(&self) -> DebugStrOffsetsBase<T>` — [`DebugStrOffsetsBase`](../index.md#debugstroffsetsbase)
 
 ##### `impl<T: marker::Copy> Copy for DebugStrOffsetsBase<T>`
 
@@ -876,7 +876,7 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsBase<T>`
 
-- <span id="debugstroffsetsbase-eq"></span>`fn eq(&self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](../index.md)
+- <span id="debugstroffsetsbase-eq"></span>`fn eq(&self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](../index.md#debugstroffsetsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsBase<T>`
 
@@ -894,7 +894,7 @@ An index into a set of entries in the `.debug_str_offsets` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugStrOffsetsIndex<T>`
 
-- <span id="debugstroffsetsindex-clone"></span>`fn clone(&self) -> DebugStrOffsetsIndex<T>` — [`DebugStrOffsetsIndex`](../index.md)
+- <span id="debugstroffsetsindex-clone"></span>`fn clone(&self) -> DebugStrOffsetsIndex<T>` — [`DebugStrOffsetsIndex`](../index.md#debugstroffsetsindex)
 
 ##### `impl<T: marker::Copy> Copy for DebugStrOffsetsIndex<T>`
 
@@ -906,7 +906,7 @@ An index into a set of entries in the `.debug_str_offsets` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsIndex<T>`
 
-- <span id="debugstroffsetsindex-eq"></span>`fn eq(&self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](../index.md)
+- <span id="debugstroffsetsindex-eq"></span>`fn eq(&self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](../index.md#debugstroffsetsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsIndex<T>`
 
@@ -922,13 +922,13 @@ An offset into the `.debug_types` section.
 
 #### Implementations
 
-- <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md), [`UnitOffset`](../index.md)
+- <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md#unitheader), [`UnitOffset`](../index.md#unitoffset)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-clone"></span>`fn clone(&self) -> DebugTypesOffset<T>` — [`DebugTypesOffset`](../index.md)
+- <span id="debugtypesoffset-clone"></span>`fn clone(&self) -> DebugTypesOffset<T>` — [`DebugTypesOffset`](../index.md#debugtypesoffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugTypesOffset<T>`
 
@@ -944,15 +944,15 @@ An offset into the `.debug_types` section.
 
 ##### `impl<T: cmp::Ord> Ord for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-cmp"></span>`fn cmp(&self, other: &DebugTypesOffset<T>) -> cmp::Ordering` — [`DebugTypesOffset`](../index.md)
+- <span id="debugtypesoffset-cmp"></span>`fn cmp(&self, other: &DebugTypesOffset<T>) -> cmp::Ordering` — [`DebugTypesOffset`](../index.md#debugtypesoffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-eq"></span>`fn eq(&self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](../index.md)
+- <span id="debugtypesoffset-eq"></span>`fn eq(&self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](../index.md#debugtypesoffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for DebugTypesOffset<T>`
 
-- <span id="debugtypesoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugTypesOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugTypesOffset`](../index.md)
+- <span id="debugtypesoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugTypesOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugTypesOffset`](../index.md#debugtypesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugTypesOffset<T>`
 
@@ -970,7 +970,7 @@ A type signature as used in the `.debug_types` section.
 
 ##### `impl Clone for DebugTypeSignature`
 
-- <span id="debugtypesignature-clone"></span>`fn clone(&self) -> DebugTypeSignature` — [`DebugTypeSignature`](../index.md)
+- <span id="debugtypesignature-clone"></span>`fn clone(&self) -> DebugTypeSignature` — [`DebugTypeSignature`](../index.md#debugtypesignature)
 
 ##### `impl Copy for DebugTypeSignature`
 
@@ -986,7 +986,7 @@ A type signature as used in the `.debug_types` section.
 
 ##### `impl PartialEq for DebugTypeSignature`
 
-- <span id="debugtypesignature-eq"></span>`fn eq(&self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](../index.md)
+- <span id="debugtypesignature-eq"></span>`fn eq(&self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](../index.md#debugtypesignature)
 
 ##### `impl StructuralPartialEq for DebugTypeSignature`
 
@@ -1004,7 +1004,7 @@ An offset into the `.debug_frame` section.
 
 ##### `impl<T: clone::Clone> Clone for DebugFrameOffset<T>`
 
-- <span id="debugframeoffset-clone"></span>`fn clone(&self) -> DebugFrameOffset<T>` — [`DebugFrameOffset`](../index.md)
+- <span id="debugframeoffset-clone"></span>`fn clone(&self) -> DebugFrameOffset<T>` — [`DebugFrameOffset`](../index.md#debugframeoffset)
 
 ##### `impl<T: marker::Copy> Copy for DebugFrameOffset<T>`
 
@@ -1020,7 +1020,7 @@ An offset into the `.debug_frame` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugFrameOffset<T>`
 
-- <span id="debugframeoffset-eq"></span>`fn eq(&self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](../index.md)
+- <span id="debugframeoffset-eq"></span>`fn eq(&self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](../index.md#debugframeoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugFrameOffset<T>`
 
@@ -1042,7 +1042,7 @@ An offset into the `.eh_frame` section.
 
 ##### `impl<T: clone::Clone> Clone for EhFrameOffset<T>`
 
-- <span id="ehframeoffset-clone"></span>`fn clone(&self) -> EhFrameOffset<T>` — [`EhFrameOffset`](../index.md)
+- <span id="ehframeoffset-clone"></span>`fn clone(&self) -> EhFrameOffset<T>` — [`EhFrameOffset`](../index.md#ehframeoffset)
 
 ##### `impl<T: marker::Copy> Copy for EhFrameOffset<T>`
 
@@ -1058,7 +1058,7 @@ An offset into the `.eh_frame` section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for EhFrameOffset<T>`
 
-- <span id="ehframeoffset-eq"></span>`fn eq(&self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](../index.md)
+- <span id="ehframeoffset-eq"></span>`fn eq(&self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](../index.md#ehframeoffset)
 
 ##### `impl<T> StructuralPartialEq for EhFrameOffset<T>`
 
@@ -1081,7 +1081,7 @@ split DWARF and linking a split compilation unit back together.
 
 ##### `impl Clone for DwoId`
 
-- <span id="dwoid-clone"></span>`fn clone(&self) -> DwoId` — [`DwoId`](../index.md)
+- <span id="dwoid-clone"></span>`fn clone(&self) -> DwoId` — [`DwoId`](../index.md#dwoid)
 
 ##### `impl Copy for DwoId`
 
@@ -1097,7 +1097,7 @@ split DWARF and linking a split compilation unit back together.
 
 ##### `impl PartialEq for DwoId`
 
-- <span id="dwoid-eq"></span>`fn eq(&self, other: &DwoId) -> bool` — [`DwoId`](../index.md)
+- <span id="dwoid-eq"></span>`fn eq(&self, other: &DwoId) -> bool` — [`DwoId`](../index.md#dwoid)
 
 ##### `impl StructuralPartialEq for DwoId`
 
@@ -1136,7 +1136,7 @@ Whether the format of a compilation unit is 32- or 64-bit.
 
 ##### `impl Clone for Format`
 
-- <span id="format-clone"></span>`fn clone(&self) -> Format` — [`Format`](../index.md)
+- <span id="format-clone"></span>`fn clone(&self) -> Format` — [`Format`](../index.md#format)
 
 ##### `impl Copy for Format`
 
@@ -1152,7 +1152,7 @@ Whether the format of a compilation unit is 32- or 64-bit.
 
 ##### `impl PartialEq for Format`
 
-- <span id="format-eq"></span>`fn eq(&self, other: &Format) -> bool` — [`Format`](../index.md)
+- <span id="format-eq"></span>`fn eq(&self, other: &Format) -> bool` — [`Format`](../index.md#format)
 
 ##### `impl StructuralPartialEq for Format`
 
@@ -1183,7 +1183,7 @@ Which vendor extensions to support.
 
 ##### `impl Clone for Vendor`
 
-- <span id="vendor-clone"></span>`fn clone(&self) -> Vendor` — [`Vendor`](../index.md)
+- <span id="vendor-clone"></span>`fn clone(&self) -> Vendor` — [`Vendor`](../index.md#vendor)
 
 ##### `impl Copy for Vendor`
 
@@ -1195,7 +1195,7 @@ Which vendor extensions to support.
 
 ##### `impl PartialEq for Vendor`
 
-- <span id="vendor-eq"></span>`fn eq(&self, other: &Vendor) -> bool` — [`Vendor`](../index.md)
+- <span id="vendor-eq"></span>`fn eq(&self, other: &Vendor) -> bool` — [`Vendor`](../index.md#vendor)
 
 ##### `impl StructuralPartialEq for Vendor`
 
@@ -1224,15 +1224,15 @@ An offset into the `.debug_info` or `.debug_types` sections.
 
 #### Implementations
 
-- <span id="unitsectionoffset-as-debug-info-offset"></span>`fn as_debug_info_offset(&self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](../index.md)
+- <span id="unitsectionoffset-as-debug-info-offset"></span>`fn as_debug_info_offset(&self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](../index.md#debuginfooffset)
 
-- <span id="unitsectionoffset-as-debug-types-offset"></span>`fn as_debug_types_offset(&self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](../index.md)
+- <span id="unitsectionoffset-as-debug-types-offset"></span>`fn as_debug_types_offset(&self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](../index.md#debugtypesoffset)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-clone"></span>`fn clone(&self) -> UnitSectionOffset<T>` — [`UnitSectionOffset`](../index.md)
+- <span id="unitsectionoffset-clone"></span>`fn clone(&self) -> UnitSectionOffset<T>` — [`UnitSectionOffset`](../index.md#unitsectionoffset)
 
 ##### `impl<T: marker::Copy> Copy for UnitSectionOffset<T>`
 
@@ -1248,15 +1248,15 @@ An offset into the `.debug_info` or `.debug_types` sections.
 
 ##### `impl<T: cmp::Ord> Ord for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-cmp"></span>`fn cmp(&self, other: &UnitSectionOffset<T>) -> cmp::Ordering` — [`UnitSectionOffset`](../index.md)
+- <span id="unitsectionoffset-cmp"></span>`fn cmp(&self, other: &UnitSectionOffset<T>) -> cmp::Ordering` — [`UnitSectionOffset`](../index.md#unitsectionoffset)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-eq"></span>`fn eq(&self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](../index.md)
+- <span id="unitsectionoffset-eq"></span>`fn eq(&self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](../index.md#unitsectionoffset)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for UnitSectionOffset<T>`
 
-- <span id="unitsectionoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitSectionOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitSectionOffset`](../index.md)
+- <span id="unitsectionoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitSectionOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitSectionOffset`](../index.md#unitsectionoffset)
 
 ##### `impl<T> StructuralPartialEq for UnitSectionOffset<T>`
 
@@ -1397,7 +1397,7 @@ An identifier for a DWARF section.
 
 ##### `impl Clone for SectionId`
 
-- <span id="sectionid-clone"></span>`fn clone(&self) -> SectionId` — [`SectionId`](../index.md)
+- <span id="sectionid-clone"></span>`fn clone(&self) -> SectionId` — [`SectionId`](../index.md#sectionid)
 
 ##### `impl Copy for SectionId`
 
@@ -1413,15 +1413,15 @@ An identifier for a DWARF section.
 
 ##### `impl Ord for SectionId`
 
-- <span id="sectionid-cmp"></span>`fn cmp(&self, other: &SectionId) -> cmp::Ordering` — [`SectionId`](../index.md)
+- <span id="sectionid-cmp"></span>`fn cmp(&self, other: &SectionId) -> cmp::Ordering` — [`SectionId`](../index.md#sectionid)
 
 ##### `impl PartialEq for SectionId`
 
-- <span id="sectionid-eq"></span>`fn eq(&self, other: &SectionId) -> bool` — [`SectionId`](../index.md)
+- <span id="sectionid-eq"></span>`fn eq(&self, other: &SectionId) -> bool` — [`SectionId`](../index.md#sectionid)
 
 ##### `impl PartialOrd for SectionId`
 
-- <span id="sectionid-partial-cmp"></span>`fn partial_cmp(&self, other: &SectionId) -> option::Option<cmp::Ordering>` — [`SectionId`](../index.md)
+- <span id="sectionid-partial-cmp"></span>`fn partial_cmp(&self, other: &SectionId) -> option::Option<cmp::Ordering>` — [`SectionId`](../index.md#sectionid)
 
 ##### `impl StructuralPartialEq for SectionId`
 
@@ -1453,7 +1453,7 @@ which files DWARF sections should be loaded from.
 
 ##### `impl Clone for DwarfFileType`
 
-- <span id="dwarffiletype-clone"></span>`fn clone(&self) -> DwarfFileType` — [`DwarfFileType`](../index.md)
+- <span id="dwarffiletype-clone"></span>`fn clone(&self) -> DwarfFileType` — [`DwarfFileType`](../index.md#dwarffiletype)
 
 ##### `impl Copy for DwarfFileType`
 
@@ -1469,7 +1469,7 @@ which files DWARF sections should be loaded from.
 
 ##### `impl PartialEq for DwarfFileType`
 
-- <span id="dwarffiletype-eq"></span>`fn eq(&self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](../index.md)
+- <span id="dwarffiletype-eq"></span>`fn eq(&self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](../index.md#dwarffiletype)
 
 ##### `impl StructuralPartialEq for DwarfFileType`
 

@@ -89,19 +89,19 @@ Represents a JSON key/value type.
 
 - <span id="map-clear"></span>`fn clear(&mut self)`
 
-- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
+- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md#value)
 
 - <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
-- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
+- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md#value)
 
-- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
+- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md#value)
 
-- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
+- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md#value)
 
-- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
+- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md#value)
 
-- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
+- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md#value)
 
 - <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
 
@@ -229,7 +229,7 @@ Represents a JSON key/value type.
 
 - <span id="cratemapmap-type-err"></span>`type Err = Error`
 
-- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
+- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
 ##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
@@ -239,11 +239,11 @@ Represents a JSON key/value type.
 
 - <span id="map-type-output"></span>`type Output = Value`
 
-- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../value/index.md)
+- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../value/index.md#value)
 
 ##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
+- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../value/index.md#value)
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
@@ -283,7 +283,7 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
 - <span id="vacantentry-key"></span>`fn key(&self) -> &String`
 
-- <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
 ### `OccupiedEntry<'a>`
 
@@ -301,17 +301,17 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
 - <span id="occupiedentry-key"></span>`fn key(&self) -> &String`
 
-- <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../value/index.md)
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../value/index.md#value)
 
-- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../value/index.md)
+- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../value/index.md#value)
 
-- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../value/index.md)
+- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
-- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../value/index.md)
+- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../value/index.md#value)
 
-- <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../value/index.md)
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../value/index.md#value)
 
-- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../value/index.md)
+- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../value/index.md#value)
 
 ### `Iter<'a>`
 
@@ -664,9 +664,9 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 
 - <span id="entry-key"></span>`fn key(&self) -> &String`
 
-- <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md)
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
-- <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
+- <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
 - <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 

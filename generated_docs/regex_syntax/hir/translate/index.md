@@ -132,7 +132,7 @@ A `Translator` can be configured in more detail via a
 
 - <span id="translator-new"></span>`fn new() -> Translator` — [`Translator`](#translator)
 
-- <span id="translator-translate"></span>`fn translate(&mut self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translator-translate"></span>`fn translate(&mut self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md#ast), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
 #### Trait Implementations
 
@@ -176,45 +176,45 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 
 - <span id="translatori-pop"></span>`fn pop(&self) -> Option<HirFrame>` — [`HirFrame`](#hirframe)
 
-- <span id="translatori-pop-concat-expr"></span>`fn pop_concat_expr(&self) -> Option<Hir>` — [`Hir`](../index.md)
+- <span id="translatori-pop-concat-expr"></span>`fn pop_concat_expr(&self) -> Option<Hir>` — [`Hir`](../index.md#hir)
 
-- <span id="translatori-pop-alt-expr"></span>`fn pop_alt_expr(&self) -> Option<Hir>` — [`Hir`](../index.md)
+- <span id="translatori-pop-alt-expr"></span>`fn pop_alt_expr(&self) -> Option<Hir>` — [`Hir`](../index.md#hir)
 
-- <span id="translatori-error"></span>`fn error(&self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+- <span id="translatori-error"></span>`fn error(&self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md#span), [`ErrorKind`](../index.md#errorkind), [`Error`](../index.md#error)
 
 - <span id="translatori-flags"></span>`fn flags(&self) -> Flags` — [`Flags`](#flags)
 
-- <span id="translatori-set-flags"></span>`fn set_flags(&self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+- <span id="translatori-set-flags"></span>`fn set_flags(&self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md#flags)
 
-- <span id="translatori-ast-literal-to-scalar"></span>`fn ast_literal_to_scalar(&self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Either`](../../either/index.md), [`Error`](../index.md)
+- <span id="translatori-ast-literal-to-scalar"></span>`fn ast_literal_to_scalar(&self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md#literal), [`Either`](../../either/index.md#either), [`Error`](../index.md#error)
 
-- <span id="translatori-case-fold-char"></span>`fn case_fold_char(&self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-case-fold-char"></span>`fn case_fold_char(&self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-dot"></span>`fn hir_dot(&self, span: Span) -> core::result::Result<Hir, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-dot"></span>`fn hir_dot(&self, span: Span) -> core::result::Result<Hir, crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-assertion"></span>`fn hir_assertion(&self, asst: &ast::Assertion) -> core::result::Result<Hir, crate::hir::Error>` — [`Assertion`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-assertion"></span>`fn hir_assertion(&self, asst: &ast::Assertion) -> core::result::Result<Hir, crate::hir::Error>` — [`Assertion`](../../ast/index.md#assertion), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-capture"></span>`fn hir_capture(&self, group: &ast::Group, expr: Hir) -> Hir` — [`Group`](../../ast/index.md), [`Hir`](../index.md)
+- <span id="translatori-hir-capture"></span>`fn hir_capture(&self, group: &ast::Group, expr: Hir) -> Hir` — [`Group`](../../ast/index.md#group), [`Hir`](../index.md#hir)
 
-- <span id="translatori-hir-repetition"></span>`fn hir_repetition(&self, rep: &ast::Repetition, expr: Hir) -> Hir` — [`Repetition`](../../ast/index.md), [`Hir`](../index.md)
+- <span id="translatori-hir-repetition"></span>`fn hir_repetition(&self, rep: &ast::Repetition, expr: Hir) -> Hir` — [`Repetition`](../../ast/index.md#repetition), [`Hir`](../index.md#hir)
 
-- <span id="translatori-hir-unicode-class"></span>`fn hir_unicode_class(&self, ast_class: &ast::ClassUnicode) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassUnicode`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-hir-unicode-class"></span>`fn hir_unicode_class(&self, ast_class: &ast::ClassUnicode) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassUnicode`](../../ast/index.md#classunicode), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-ascii-unicode-class"></span>`fn hir_ascii_unicode_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-ascii-unicode-class"></span>`fn hir_ascii_unicode_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md#classascii), [`ClassUnicode`](../index.md#classunicode), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-ascii-byte-class"></span>`fn hir_ascii_byte_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-ascii-byte-class"></span>`fn hir_ascii_byte_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md#classascii), [`ClassBytes`](../index.md#classbytes), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-perl-unicode-class"></span>`fn hir_perl_unicode_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-perl-unicode-class"></span>`fn hir_perl_unicode_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md#classperl), [`ClassUnicode`](../index.md#classunicode), [`Error`](../index.md#error)
 
-- <span id="translatori-hir-perl-byte-class"></span>`fn hir_perl_byte_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-perl-byte-class"></span>`fn hir_perl_byte_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md#classperl), [`ClassBytes`](../index.md#classbytes), [`Error`](../index.md#error)
 
-- <span id="translatori-convert-unicode-class-error"></span>`fn convert_unicode_class_error(&self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../../unicode/index.md)
+- <span id="translatori-convert-unicode-class-error"></span>`fn convert_unicode_class_error(&self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`ClassUnicode`](../index.md#classunicode), [`Error`](../../unicode/index.md#error)
 
-- <span id="translatori-unicode-fold-and-negate"></span>`fn unicode_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-unicode-fold-and-negate"></span>`fn unicode_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`ClassUnicode`](../index.md#classunicode), [`Error`](../index.md#error)
 
-- <span id="translatori-bytes-fold-and-negate"></span>`fn bytes_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassBytes) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-bytes-fold-and-negate"></span>`fn bytes_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassBytes) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`ClassBytes`](../index.md#classbytes), [`Error`](../index.md#error)
 
-- <span id="translatori-class-literal-byte"></span>`fn class_literal_byte(&self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-class-literal-byte"></span>`fn class_literal_byte(&self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md#literal), [`Error`](../index.md#error)
 
 #### Trait Implementations
 
@@ -232,23 +232,23 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 
 - <span id="translatori-type-err"></span>`type Err = Error`
 
-- <span id="translatori-finish"></span>`fn finish(self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-finish"></span>`fn finish(self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md#ast), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md#ast), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> core::result::Result<(), crate::hir::Error>` — [`Error`](../index.md)
+- <span id="translatori-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> core::result::Result<(), crate::hir::Error>` — [`Error`](../index.md#error)
 
-- <span id="translatori-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md#classsetitem), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md#classsetitem), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md#classsetbinaryop), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md#classsetbinaryop), [`Error`](../index.md#error)
 
-- <span id="translatori-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md#classsetbinaryop), [`Error`](../index.md#error)
 
 ### `Flags`
 
@@ -273,7 +273,7 @@ present but enabled.
 
 #### Implementations
 
-- <span id="flags-from-ast"></span>`fn from_ast(ast: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+- <span id="flags-from-ast"></span>`fn from_ast(ast: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md#flags)
 
 - <span id="flags-merge"></span>`fn merge(&mut self, previous: &Flags)` — [`Flags`](#flags)
 
@@ -405,11 +405,11 @@ traversing the Ast itself.
 
 #### Implementations
 
-- <span id="hirframe-unwrap-expr"></span>`fn unwrap_expr(self) -> Hir` — [`Hir`](../index.md)
+- <span id="hirframe-unwrap-expr"></span>`fn unwrap_expr(self) -> Hir` — [`Hir`](../index.md#hir)
 
-- <span id="hirframe-unwrap-class-unicode"></span>`fn unwrap_class_unicode(self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md)
+- <span id="hirframe-unwrap-class-unicode"></span>`fn unwrap_class_unicode(self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md#classunicode)
 
-- <span id="hirframe-unwrap-class-bytes"></span>`fn unwrap_class_bytes(self) -> hir::ClassBytes` — [`ClassBytes`](../index.md)
+- <span id="hirframe-unwrap-class-bytes"></span>`fn unwrap_class_bytes(self) -> hir::ClassBytes` — [`ClassBytes`](../index.md#classbytes)
 
 - <span id="hirframe-unwrap-repetition"></span>`fn unwrap_repetition(self)`
 

@@ -78,7 +78,7 @@ An iterator over function frames.
 
 - <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`f64`](#f64)
 
-- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`VecDeque`](#vecdeque), [`CStr`](#cstr), [`CStr`](#cstr), [`crate_root`](../crate_root/index.md), [`CString`](#cstring), [`lib`](#lib), [`f64`](#f64)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`VecDeque`](#vecdeque), [`CStr`](#cstr), [`CStr`](#cstr), [`crate_root`](../crate_root/index.md#crate-root), [`CString`](#cstring), [`lib`](#lib), [`f64`](#f64)
 
 - <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`PhantomData`](#phantomdata), [`lib`](#lib), [`Cow`](#cow), [`net`](#net)
 
@@ -103,7 +103,7 @@ struct VecDeque<R: gimli::Reader> {
 
 - <span id="resunit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, sections: &'a gimli::Dwarf<R>) -> gimli::UnitRef<'a, R>` — [`CStr`](#cstr)
 
-- <span id="resunit-dwarf-and-unit"></span>`fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`PhantomData`](#phantomdata), [`Visitor`](../de/index.md), [`net`](#net), [`lib`](#lib), [`I8Deserializer`](../de/value/index.md), [`CStr`](#cstr)
+- <span id="resunit-dwarf-and-unit"></span>`fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`PhantomData`](#phantomdata), [`Visitor`](../de/index.md#visitor), [`net`](#net), [`lib`](#lib), [`I8Deserializer`](../de/value/index.md#i8deserializer), [`CStr`](#cstr)
 
 - <span id="resunit-parse-lines"></span>`fn parse_lines(&self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`net`](#net)
 
@@ -144,13 +144,13 @@ struct CStr<R: gimli::Reader> {
 
 #### Implementations
 
-- <span id="function-parse"></span>`fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`RangeTo`](#rangeto), [`result`](#result), [`Visitor`](../de/index.md), [`PhantomData`](#phantomdata), [`net`](#net)
+- <span id="function-parse"></span>`fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`RangeTo`](#rangeto), [`result`](#result), [`Visitor`](../de/index.md#visitor), [`PhantomData`](#phantomdata), [`net`](#net)
 
 - <span id="function-parse-children"></span>`fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
 - <span id="function-skip"></span>`fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
-- <span id="function-find-inlined-functions"></span>`fn find_inlined_functions(&self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`crate_root`](../crate_root/index.md), [`CString`](#cstring)
+- <span id="function-find-inlined-functions"></span>`fn find_inlined_functions(&self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`crate_root`](../crate_root/index.md#crate-root), [`CString`](#cstring)
 
 ### `Write<'ctx, R>`
 

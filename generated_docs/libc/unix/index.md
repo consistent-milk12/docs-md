@@ -3271,7 +3271,7 @@ struct group {
 
 ##### `impl Clone for group`
 
-- <span id="group-clone"></span>`fn clone(&self) -> group` — [`group`](../index.md)
+- <span id="group-clone"></span>`fn clone(&self) -> group` — [`group`](../index.md#group)
 
 ##### `impl Copy for group`
 
@@ -3294,7 +3294,7 @@ struct utimbuf {
 
 ##### `impl Clone for utimbuf`
 
-- <span id="utimbuf-clone"></span>`fn clone(&self) -> utimbuf` — [`utimbuf`](../index.md)
+- <span id="utimbuf-clone"></span>`fn clone(&self) -> utimbuf` — [`utimbuf`](../index.md#utimbuf)
 
 ##### `impl Copy for utimbuf`
 
@@ -3317,7 +3317,7 @@ struct timeval {
 
 ##### `impl Clone for timeval`
 
-- <span id="timeval-clone"></span>`fn clone(&self) -> timeval` — [`timeval`](../index.md)
+- <span id="timeval-clone"></span>`fn clone(&self) -> timeval` — [`timeval`](../index.md#timeval)
 
 ##### `impl Copy for timeval`
 
@@ -3340,7 +3340,7 @@ struct rlimit {
 
 ##### `impl Clone for rlimit`
 
-- <span id="rlimit-clone"></span>`fn clone(&self) -> rlimit` — [`rlimit`](../index.md)
+- <span id="rlimit-clone"></span>`fn clone(&self) -> rlimit` — [`rlimit`](../index.md#rlimit)
 
 ##### `impl Copy for rlimit`
 
@@ -3377,7 +3377,7 @@ struct rusage {
 
 ##### `impl Clone for rusage`
 
-- <span id="rusage-clone"></span>`fn clone(&self) -> rusage` — [`rusage`](../index.md)
+- <span id="rusage-clone"></span>`fn clone(&self) -> rusage` — [`rusage`](../index.md#rusage)
 
 ##### `impl Copy for rusage`
 
@@ -3400,7 +3400,7 @@ struct ipv6_mreq {
 
 ##### `impl Clone for ipv6_mreq`
 
-- <span id="ipv6-mreq-clone"></span>`fn clone(&self) -> ipv6_mreq` — [`ipv6_mreq`](../index.md)
+- <span id="ipv6-mreq-clone"></span>`fn clone(&self) -> ipv6_mreq` — [`ipv6_mreq`](../index.md#ipv6-mreq)
 
 ##### `impl Copy for ipv6_mreq`
 
@@ -3426,7 +3426,7 @@ struct hostent {
 
 ##### `impl Clone for hostent`
 
-- <span id="hostent-clone"></span>`fn clone(&self) -> hostent` — [`hostent`](../index.md)
+- <span id="hostent-clone"></span>`fn clone(&self) -> hostent` — [`hostent`](../index.md#hostent)
 
 ##### `impl Copy for hostent`
 
@@ -3449,7 +3449,7 @@ struct iovec {
 
 ##### `impl Clone for iovec`
 
-- <span id="iovec-clone"></span>`fn clone(&self) -> iovec` — [`iovec`](../index.md)
+- <span id="iovec-clone"></span>`fn clone(&self) -> iovec` — [`iovec`](../index.md#iovec)
 
 ##### `impl Copy for iovec`
 
@@ -3473,7 +3473,7 @@ struct pollfd {
 
 ##### `impl Clone for pollfd`
 
-- <span id="pollfd-clone"></span>`fn clone(&self) -> pollfd` — [`pollfd`](../index.md)
+- <span id="pollfd-clone"></span>`fn clone(&self) -> pollfd` — [`pollfd`](../index.md#pollfd)
 
 ##### `impl Copy for pollfd`
 
@@ -3498,7 +3498,7 @@ struct winsize {
 
 ##### `impl Clone for winsize`
 
-- <span id="winsize-clone"></span>`fn clone(&self) -> winsize` — [`winsize`](../index.md)
+- <span id="winsize-clone"></span>`fn clone(&self) -> winsize` — [`winsize`](../index.md#winsize)
 
 ##### `impl Copy for winsize`
 
@@ -3521,7 +3521,7 @@ struct linger {
 
 ##### `impl Clone for linger`
 
-- <span id="linger-clone"></span>`fn clone(&self) -> linger` — [`linger`](../index.md)
+- <span id="linger-clone"></span>`fn clone(&self) -> linger` — [`linger`](../index.md#linger)
 
 ##### `impl Copy for linger`
 
@@ -3543,7 +3543,7 @@ struct sigval {
 
 ##### `impl Clone for sigval`
 
-- <span id="sigval-clone"></span>`fn clone(&self) -> sigval` — [`sigval`](../index.md)
+- <span id="sigval-clone"></span>`fn clone(&self) -> sigval` — [`sigval`](../index.md#sigval)
 
 ##### `impl Copy for sigval`
 
@@ -3566,7 +3566,7 @@ struct itimerval {
 
 ##### `impl Clone for itimerval`
 
-- <span id="itimerval-clone"></span>`fn clone(&self) -> itimerval` — [`itimerval`](../index.md)
+- <span id="itimerval-clone"></span>`fn clone(&self) -> itimerval` — [`itimerval`](../index.md#itimerval)
 
 ##### `impl Copy for itimerval`
 
@@ -3591,7 +3591,7 @@ struct tms {
 
 ##### `impl Clone for tms`
 
-- <span id="tms-clone"></span>`fn clone(&self) -> tms` — [`tms`](../index.md)
+- <span id="tms-clone"></span>`fn clone(&self) -> tms` — [`tms`](../index.md#tms)
 
 ##### `impl Copy for tms`
 
@@ -3616,7 +3616,7 @@ struct servent {
 
 ##### `impl Clone for servent`
 
-- <span id="servent-clone"></span>`fn clone(&self) -> servent` — [`servent`](../index.md)
+- <span id="servent-clone"></span>`fn clone(&self) -> servent` — [`servent`](../index.md#servent)
 
 ##### `impl Copy for servent`
 
@@ -3640,7 +3640,7 @@ struct protoent {
 
 ##### `impl Clone for protoent`
 
-- <span id="protoent-clone"></span>`fn clone(&self) -> protoent` — [`protoent`](../index.md)
+- <span id="protoent-clone"></span>`fn clone(&self) -> protoent` — [`protoent`](../index.md#protoent)
 
 ##### `impl Copy for protoent`
 
@@ -3662,7 +3662,7 @@ struct in6_addr {
 
 ##### `impl Clone for in6_addr`
 
-- <span id="in6-addr-clone"></span>`fn clone(&self) -> in6_addr` — [`in6_addr`](../index.md)
+- <span id="in6-addr-clone"></span>`fn clone(&self) -> in6_addr` — [`in6_addr`](../index.md#in6-addr)
 
 ##### `impl Copy for in6_addr`
 
@@ -4503,7 +4503,7 @@ enum DIR {
 
 ##### `impl Clone for DIR`
 
-- <span id="dir-clone"></span>`fn clone(&self) -> DIR` — [`DIR`](../index.md)
+- <span id="dir-clone"></span>`fn clone(&self) -> DIR` — [`DIR`](../index.md#dir)
 
 ##### `impl Copy for DIR`
 
@@ -4524,7 +4524,7 @@ enum FILE {
 
 ##### `impl Clone for FILE`
 
-- <span id="file-clone"></span>`fn clone(&self) -> FILE` — [`FILE`](../index.md)
+- <span id="file-clone"></span>`fn clone(&self) -> FILE` — [`FILE`](../index.md#file)
 
 ##### `impl Copy for FILE`
 

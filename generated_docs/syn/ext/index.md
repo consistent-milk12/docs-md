@@ -50,7 +50,7 @@ is implemented only for `proc_macro2::Ident`.
 
 #### Implementors
 
-- [`Ident`](../ident/index.md)
+- [`Ident`](../ident/index.md#ident)
 
 ### `TokenStreamExt`
 

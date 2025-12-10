@@ -172,17 +172,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="prefilter-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
 - <span id="prefilter-from-choice"></span>`fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](#choice), [`Prefilter`](#prefilter)
 
-- <span id="prefilter-from-hir-prefix"></span>`fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-from-hir-prefix"></span>`fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
-- <span id="prefilter-from-hirs-prefix"></span>`fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-from-hirs-prefix"></span>`fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
-- <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md#span)
 
-- <span id="prefilter-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="prefilter-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md#span)
 
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -243,7 +243,7 @@ features enabled.
 
 #### Implementations
 
-- <span id="choice-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md), [`Choice`](#choice)
+- <span id="choice-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md#matchkind), [`Choice`](#choice)
 
 #### Trait Implementations
 
@@ -293,13 +293,13 @@ and to an enum, then it's likely this trait could be removed.
 
 #### Implementors
 
-- [`AhoCorasick`](aho_corasick/index.md)
-- [`ByteSet`](byteset/index.md)
-- [`Memchr2`](memchr/index.md)
-- [`Memchr3`](memchr/index.md)
-- [`Memchr`](memchr/index.md)
-- [`Memmem`](memmem/index.md)
-- [`Teddy`](teddy/index.md)
+- [`AhoCorasick`](aho_corasick/index.md#ahocorasick)
+- [`ByteSet`](byteset/index.md#byteset)
+- [`Memchr2`](memchr/index.md#memchr2)
+- [`Memchr3`](memchr/index.md#memchr3)
+- [`Memchr`](memchr/index.md#memchr)
+- [`Memmem`](memmem/index.md#memmem)
+- [`Teddy`](teddy/index.md#teddy)
 - `alloc::sync::Arc<P>`
 
 ## Functions

@@ -77,7 +77,7 @@ struct Functions<R: gimli::Reader> {
 
 - <span id="functions-find-address"></span>`fn find_address(&self, probe: u64) -> Option<usize>`
 
-- <span id="functions-parse-inlined-functions"></span>`fn parse_inlined_functions(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<(), gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
+- <span id="functions-parse-inlined-functions"></span>`fn parse_inlined_functions(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<(), gimli::Error>` — [`DebugFile`](../index.md#debugfile), [`Context`](../index.md#context)
 
 ### `FunctionAddress`
 
@@ -117,7 +117,7 @@ struct LazyFunction<R: gimli::Reader> {
 
 - <span id="lazyfunction-new"></span>`fn new(dw_die_offset: gimli::UnitOffset<<R as >::Offset>) -> Self`
 
-- <span id="lazyfunction-borrow"></span>`fn borrow(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<&Function<R>, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md), [`Function`](#function)
+- <span id="lazyfunction-borrow"></span>`fn borrow(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<&Function<R>, gimli::Error>` — [`DebugFile`](../index.md#debugfile), [`Context`](../index.md#context), [`Function`](#function)
 
 ### `Function<R: gimli::Reader>`
 
@@ -144,7 +144,7 @@ struct Function<R: gimli::Reader> {
 
 #### Implementations
 
-- <span id="function-parse"></span>`fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
+- <span id="function-parse"></span>`fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`DebugFile`](../index.md#debugfile), [`Context`](../index.md#context)
 
 - <span id="function-parse-children"></span>`fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
 

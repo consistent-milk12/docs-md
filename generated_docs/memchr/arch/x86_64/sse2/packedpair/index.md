@@ -39,9 +39,9 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../all/packedpair/index.md#pair), [`Finder`](#finder)
 
-- <span id="finder-with-pair-impl"></span>`unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-with-pair-impl"></span>`unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../all/packedpair/index.md#pair), [`Finder`](#finder)
 
 - <span id="finder-is-available"></span>`fn is_available() -> bool`
 
@@ -53,7 +53,7 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 - <span id="finder-find-prefilter-impl"></span>`unsafe fn find_prefilter_impl(&self, haystack: &[u8]) -> Option<usize>`
 
-- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../../all/packedpair/index.md)
+- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../../all/packedpair/index.md#pair)
 
 - <span id="finder-min-haystack-len"></span>`fn min_haystack_len(&self) -> usize`
 

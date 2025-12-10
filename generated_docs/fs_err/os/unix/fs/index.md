@@ -41,7 +41,7 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Implementors
 
-- [`File`](../../../index.md)
+- [`File`](../../../index.md#file)
 
 ### `OpenOptionsExt`
 
@@ -68,7 +68,7 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Implementors
 
-- [`OpenOptions`](../../../open_options/index.md)
+- [`OpenOptions`](../../../open_options/index.md#openoptions)
 
 ## Functions
 

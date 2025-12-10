@@ -45,13 +45,13 @@
 
 *Defined in [`libc-0.2.178/src/macros.rs:9-62`](../../../.source_1765210505/libc-0.2.178/src/macros.rs#L9-L62)*
 
-A macro for defining #[`cfg`](../../rustversion/index.md) if-else statements.
+A macro for defining #[`cfg`](../../rustversion/expand/index.md) if-else statements.
 
 This is similar to the `if/elif` C preprocessor macro by allowing definition
 of a cascade of `#[cfg]` cases, emitting the implementation which matches
 first.
 
-This allows you to conveniently provide a long list #[`cfg`](../../rustversion/index.md)'d blocks of code
+This allows you to conveniently provide a long list #[`cfg`](../../rustversion/expand/index.md)'d blocks of code
 without having to rewrite each clause multiple times.
 
 ### `prelude!`

@@ -447,7 +447,7 @@ let u: &[_] = &v;
 ```
 
 In Rust, it's more common to pass slices as arguments rather than vectors
-when you just want to provide read access. The same goes for `String` and
+when you just want to provide read access. The same goes for [`String`](#string) and
 `&str`.
 
 # Capacity and reallocation

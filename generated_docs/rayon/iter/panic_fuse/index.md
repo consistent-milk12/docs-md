@@ -50,11 +50,11 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../i
 
 ##### `impl<I> IndexedParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="panicfuse-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="panicfuse-len"></span>`fn len(&self) -> usize`
 
-- <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for PanicFuse<I>`
 
@@ -70,7 +70,7 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../i
 
 - <span id="panicfuse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="panicfuse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -163,7 +163,7 @@ struct PanicFuseProducer<'a, P> {
 
 - <span id="panicfuseproducer-type-intoiter"></span>`type IntoIter = PanicFuseIter<'a, <P as Producer>::IntoIter>`
 
-- <span id="panicfuseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="panicfuseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="panicfuseproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -247,9 +247,9 @@ struct PanicFuseConsumer<'a, C> {
 
 - <span id="panicfuseconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="panicfuseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="panicfuseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="panicfuseconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="panicfuseconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="panicfuseconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -273,7 +273,7 @@ struct PanicFuseConsumer<'a, C> {
 
 - <span id="panicfuseconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="panicfuseconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="panicfuseconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `PanicFuseFolder<'a, C>`
 
@@ -296,7 +296,7 @@ struct PanicFuseFolder<'a, C> {
 
 - <span id="panicfusefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="panicfusefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="panicfusefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="panicfusefolder-full"></span>`fn full(&self) -> bool`
 

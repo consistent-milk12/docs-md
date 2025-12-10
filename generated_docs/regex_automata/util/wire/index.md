@@ -255,9 +255,9 @@ configurations.
 
 - <span id="deserializeerror-arithmetic-overflow"></span>`fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- <span id="deserializeerror-pattern-id-error"></span>`fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-pattern-id-error"></span>`fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../primitives/index.md#patterniderror), [`DeserializeError`](#deserializeerror)
 
-- <span id="deserializeerror-state-id-error"></span>`fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-state-id-error"></span>`fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../primitives/index.md#stateiderror), [`DeserializeError`](#deserializeerror)
 
 #### Trait Implementations
 

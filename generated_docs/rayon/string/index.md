@@ -54,7 +54,7 @@ but keeps the total capacity.
 
 - <span id="drain-type-item"></span>`type Item = char`
 
-- <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Drain<'a>`
 

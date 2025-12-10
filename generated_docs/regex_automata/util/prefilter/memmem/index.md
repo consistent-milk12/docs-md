@@ -24,7 +24,7 @@ struct Memmem {
 
 #### Implementations
 
-- <span id="memmem-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memmem>` — [`MatchKind`](../../../index.md), [`Memmem`](#memmem)
+- <span id="memmem-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memmem>` — [`MatchKind`](../../../index.md#matchkind), [`Memmem`](#memmem)
 
 #### Trait Implementations
 
@@ -38,9 +38,9 @@ struct Memmem {
 
 ##### `impl PrefilterI for Memmem`
 
-- <span id="memmem-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memmem-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="memmem-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memmem-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="memmem-memory-usage"></span>`fn memory_usage(&self) -> usize`
 

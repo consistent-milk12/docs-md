@@ -148,7 +148,7 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 #### Implementations
 
-- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](atomic/index.md)
+- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](atomic/index.md#atomic)
 
 #### Trait Implementations
 
@@ -170,7 +170,7 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 - <span id="atomic-type-init"></span>`type Init = T`
 
-- <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="atomic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -221,7 +221,7 @@ The error returned on failed compare-and-swap operation.
 
 - <span id="compareexchangeerror-type-init"></span>`type Init = T`
 
-- <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="compareexchangeerror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -249,11 +249,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](atomic/index.md)
+- <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](atomic/index.md#owned)
 
 - <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
-- <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](atomic/index.md)
+- <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](atomic/index.md#owned)
 
 #### Trait Implementations
 
@@ -293,7 +293,7 @@ least significant bits of the address.
 
 - <span id="owned-type-init"></span>`type Init = T`
 
-- <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="owned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -369,7 +369,7 @@ least significant bits of the address.
 
 - <span id="shared-type-init"></span>`type Init = T`
 
-- <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="shared-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -399,7 +399,7 @@ An epoch-based garbage collector.
 
 - <span id="collector-new"></span>`fn new() -> Self`
 
-- <span id="collector-register"></span>`fn register(&self) -> LocalHandle` — [`LocalHandle`](collector/index.md)
+- <span id="collector-register"></span>`fn register(&self) -> LocalHandle` — [`LocalHandle`](collector/index.md#localhandle)
 
 #### Trait Implementations
 
@@ -419,7 +419,7 @@ An epoch-based garbage collector.
 
 ##### `impl PartialEq for Collector`
 
-- <span id="collector-eq"></span>`fn eq(&self, rhs: &Collector) -> bool` — [`Collector`](collector/index.md)
+- <span id="collector-eq"></span>`fn eq(&self, rhs: &Collector) -> bool` — [`Collector`](collector/index.md#collector)
 
 ##### `impl Pointable for Collector`
 
@@ -427,7 +427,7 @@ An epoch-based garbage collector.
 
 - <span id="collector-type-init"></span>`type Init = T`
 
-- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="collector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -453,11 +453,11 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](guard/index.md)
+- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](guard/index.md#guard)
 
 - <span id="localhandle-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
-- <span id="localhandle-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](collector/index.md)
+- <span id="localhandle-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](collector/index.md#collector)
 
 #### Trait Implementations
 
@@ -475,7 +475,7 @@ A handle to a garbage collector.
 
 - <span id="localhandle-type-init"></span>`type Init = T`
 
-- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="localhandle-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -559,7 +559,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-defer-unchecked"></span>`unsafe fn defer_unchecked<F, R>(&self, f: F)`
 
-- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](atomic/index.md)
+- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](atomic/index.md#shared)
 
 - <span id="guard-flush"></span>`fn flush(&self)`
 
@@ -567,7 +567,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-repin-after"></span>`fn repin_after<F, R>(&mut self, f: F) -> R`
 
-- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](collector/index.md)
+- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](collector/index.md#collector)
 
 #### Trait Implementations
 
@@ -585,7 +585,7 @@ assert!(!epoch::is_pinned());
 
 - <span id="guard-type-init"></span>`type Init = T`
 
-- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
 - <span id="guard-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -712,8 +712,8 @@ A trait for either `Owned` or `Shared` pointers.
 
 #### Implementors
 
-- [`Owned`](atomic/index.md)
-- [`Shared`](atomic/index.md)
+- [`Owned`](atomic/index.md#owned)
+- [`Shared`](atomic/index.md#shared)
 
 ## Functions
 

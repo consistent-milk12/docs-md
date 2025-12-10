@@ -61,23 +61,23 @@ A labeled [`SourceSpan`](../index.md).
 
 #### Implementations
 
-- <span id="labeledspan-new"></span>`const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](../index.md)
+- <span id="labeledspan-new"></span>`const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](../index.md#byteoffset)
 
-- <span id="labeledspan-new-with-span"></span>`fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md)
+- <span id="labeledspan-new-with-span"></span>`fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
-- <span id="labeledspan-new-primary-with-span"></span>`fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md)
+- <span id="labeledspan-new-primary-with-span"></span>`fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
 - <span id="labeledspan-set-label"></span>`fn set_label(&mut self, label: Option<String>)`
 
-- <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](../index.md)
+- <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
-- <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](../index.md)
+- <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](../index.md#byteoffset)
 
-- <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md)
+- <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
 - <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
 
-- <span id="labeledspan-inner"></span>`const fn inner(&self) -> &SourceSpan` — [`SourceSpan`](../index.md)
+- <span id="labeledspan-inner"></span>`const fn inner(&self) -> &SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
 - <span id="labeledspan-offset"></span>`const fn offset(&self) -> usize`
 
@@ -91,7 +91,7 @@ A labeled [`SourceSpan`](../index.md).
 
 ##### `impl Clone for LabeledSpan`
 
-- <span id="labeledspan-clone"></span>`fn clone(&self) -> LabeledSpan` — [`LabeledSpan`](../index.md)
+- <span id="labeledspan-clone"></span>`fn clone(&self) -> LabeledSpan` — [`LabeledSpan`](../index.md#labeledspan)
 
 ##### `impl Debug for LabeledSpan`
 
@@ -103,7 +103,7 @@ A labeled [`SourceSpan`](../index.md).
 
 ##### `impl PartialEq for LabeledSpan`
 
-- <span id="labeledspan-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](../index.md)
+- <span id="labeledspan-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](../index.md#labeledspan)
 
 ##### `impl StructuralPartialEq for LabeledSpan`
 
@@ -127,9 +127,9 @@ Basic implementation of the [`SpanContents`](../index.md) trait, for convenience
 
 #### Implementations
 
-- <span id="miettespancontents-new"></span>`const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md), [`MietteSpanContents`](../index.md)
+- <span id="miettespancontents-new"></span>`const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md#sourcespan), [`MietteSpanContents`](../index.md#miettespancontents)
 
-- <span id="miettespancontents-new-named"></span>`const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md), [`MietteSpanContents`](../index.md)
+- <span id="miettespancontents-new-named"></span>`const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](../index.md#sourcespan), [`MietteSpanContents`](../index.md#miettespancontents)
 
 - <span id="miettespancontents-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
@@ -137,7 +137,7 @@ Basic implementation of the [`SpanContents`](../index.md) trait, for convenience
 
 ##### `impl Clone for MietteSpanContents<'a>`
 
-- <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](../index.md)
+- <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](../index.md#miettespancontents)
 
 ##### `impl Debug for MietteSpanContents<'a>`
 
@@ -149,7 +149,7 @@ Basic implementation of the [`SpanContents`](../index.md) trait, for convenience
 
 - <span id="miettespancontents-data"></span>`fn data(&self) -> &'a [u8]`
 
-- <span id="miettespancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](../index.md)
+- <span id="miettespancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
 - <span id="miettespancontents-line"></span>`fn line(&self) -> usize`
 
@@ -186,7 +186,7 @@ Span within a [`SourceCode`](../index.md)
 
 #### Implementations
 
-- <span id="sourcespan-new"></span>`const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](../index.md)
+- <span id="sourcespan-new"></span>`const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](../index.md#sourceoffset)
 
 - <span id="sourcespan-offset"></span>`const fn offset(&self) -> usize`
 
@@ -198,7 +198,7 @@ Span within a [`SourceCode`](../index.md)
 
 ##### `impl Clone for SourceSpan`
 
-- <span id="sourcespan-clone"></span>`fn clone(&self) -> SourceSpan` — [`SourceSpan`](../index.md)
+- <span id="sourcespan-clone"></span>`fn clone(&self) -> SourceSpan` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl Copy for SourceSpan`
 
@@ -214,17 +214,17 @@ Span within a [`SourceCode`](../index.md)
 
 ##### `impl Ord for SourceSpan`
 
-- <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](../index.md)
+- <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl OwoColorize for SourceSpan`
 
 ##### `impl PartialEq for SourceSpan`
 
-- <span id="sourcespan-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](../index.md)
+- <span id="sourcespan-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl PartialOrd for SourceSpan`
 
-- <span id="sourcespan-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](../index.md)
+- <span id="sourcespan-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](../index.md#sourcespan)
 
 ##### `impl StructuralPartialEq for SourceSpan`
 
@@ -240,17 +240,17 @@ Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a 
 
 #### Implementations
 
-- <span id="sourceoffset-offset"></span>`const fn offset(&self) -> ByteOffset` — [`ByteOffset`](../index.md)
+- <span id="sourceoffset-offset"></span>`const fn offset(&self) -> ByteOffset` — [`ByteOffset`](../index.md#byteoffset)
 
 - <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
 
-- <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](../index.md)
+- <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](../index.md#mietteerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for SourceOffset`
 
-- <span id="sourceoffset-clone"></span>`fn clone(&self) -> SourceOffset` — [`SourceOffset`](../index.md)
+- <span id="sourceoffset-clone"></span>`fn clone(&self) -> SourceOffset` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl Copy for SourceOffset`
 
@@ -266,17 +266,17 @@ Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a 
 
 ##### `impl Ord for SourceOffset`
 
-- <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](../index.md)
+- <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl OwoColorize for SourceOffset`
 
 ##### `impl PartialEq for SourceOffset`
 
-- <span id="sourceoffset-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](../index.md)
+- <span id="sourceoffset-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl PartialOrd for SourceOffset`
 
-- <span id="sourceoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](../index.md)
+- <span id="sourceoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](../index.md#sourceoffset)
 
 ##### `impl StructuralPartialEq for SourceOffset`
 
@@ -317,7 +317,7 @@ enum Severity {
 
 ##### `impl Clone for Severity`
 
-- <span id="severity-clone"></span>`fn clone(&self) -> Severity` — [`Severity`](../index.md)
+- <span id="severity-clone"></span>`fn clone(&self) -> Severity` — [`Severity`](../index.md#severity)
 
 ##### `impl Copy for Severity`
 
@@ -327,23 +327,23 @@ enum Severity {
 
 ##### `impl Default for Severity`
 
-- <span id="severity-default"></span>`fn default() -> Severity` — [`Severity`](../index.md)
+- <span id="severity-default"></span>`fn default() -> Severity` — [`Severity`](../index.md#severity)
 
 ##### `impl Eq for Severity`
 
 ##### `impl Ord for Severity`
 
-- <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](../index.md)
+- <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](../index.md#severity)
 
 ##### `impl OwoColorize for Severity`
 
 ##### `impl PartialEq for Severity`
 
-- <span id="severity-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](../index.md)
+- <span id="severity-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](../index.md#severity)
 
 ##### `impl PartialOrd for Severity`
 
-- <span id="severity-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](../index.md)
+- <span id="severity-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](../index.md#severity)
 
 ##### `impl StructuralPartialEq for Severity`
 
@@ -397,16 +397,16 @@ messages.
 
 #### Implementors
 
-- [`BoxedError`](../eyreish/wrapper/index.md)
-- [`ContextError`](../eyreish/error/index.md)
-- [`DiagnosticError`](../eyreish/into_diagnostic/index.md)
-- [`DisplayError`](../eyreish/wrapper/index.md)
-- [`InstallError`](../index.md)
-- [`MessageError`](../eyreish/wrapper/index.md)
-- [`MietteDiagnostic`](../index.md)
-- [`MietteError`](../index.md)
-- [`Panic`](../panic/index.md)
-- [`WithSourceCode`](../eyreish/wrapper/index.md)
+- [`BoxedError`](../eyreish/wrapper/index.md#boxederror)
+- [`ContextError`](../eyreish/error/index.md#contexterror)
+- [`DiagnosticError`](../eyreish/into_diagnostic/index.md#diagnosticerror)
+- [`DisplayError`](../eyreish/wrapper/index.md#displayerror)
+- [`InstallError`](../index.md#installerror)
+- [`MessageError`](../eyreish/wrapper/index.md#messageerror)
+- [`MietteDiagnostic`](../index.md#miettediagnostic)
+- [`MietteError`](../index.md#mietteerror)
+- [`Panic`](../panic/index.md#panic)
+- [`WithSourceCode`](../eyreish/wrapper/index.md#withsourcecode)
 - `std::convert::Infallible`
 
 ### `SourceCode`
@@ -435,7 +435,7 @@ gigabytes or larger in size.
 
 #### Implementors
 
-- [`NamedSource`](../index.md)
+- [`NamedSource`](../index.md#namedsource)
 - `&[u8]`
 - `&str`
 - `String`
@@ -491,7 +491,7 @@ Includes line and column information to optimize highlight calculations.
 
 #### Implementors
 
-- [`MietteSpanContents`](../index.md)
+- [`MietteSpanContents`](../index.md#miettespancontents)
 
 ## Type Aliases
 

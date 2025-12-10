@@ -59,7 +59,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-type-item"></span>`type Item = usize`
 
-- <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Positions<I, P>`
 
@@ -101,9 +101,9 @@ struct PositionsConsumer<'p, C, P> {
 
 - <span id="positionsconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="positionsconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="positionsconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="positionsconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="positionsconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="positionsconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -143,7 +143,7 @@ struct PositionsFolder<'p, F, P> {
 
 - <span id="positionsfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- <span id="positionsfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="positionsfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="positionsfolder-full"></span>`fn full(&self) -> bool`
 

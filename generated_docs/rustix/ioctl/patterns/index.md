@@ -49,11 +49,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - <span id="noarg-const-is-mutating"></span>`const IS_MUTATING: bool`
 
-- <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md)
+- <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
 - <span id="noarg-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="noarg-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md), [`Result`](../../io/errno/index.md), [`Ioctl`](../index.md)
+- <span id="noarg-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md#ioctloutput), [`Result`](../../io/errno/index.md#result), [`Ioctl`](../index.md#ioctl)
 
 ### `Getter<const OPCODE: super::Opcode, Output>`
 
@@ -96,11 +96,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - <span id="getter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
-- <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md)
+- <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
 - <span id="getter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="getter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md), [`Result`](../../io/errno/index.md), [`Ioctl`](../index.md)
+- <span id="getter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md#ioctloutput), [`Result`](../../io/errno/index.md#result), [`Ioctl`](../index.md#ioctl)
 
 ### `Setter<const OPCODE: super::Opcode, Input>`
 
@@ -143,11 +143,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - <span id="setter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
-- <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md)
+- <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
 - <span id="setter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="setter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md), [`Result`](../../io/errno/index.md), [`Ioctl`](../index.md)
+- <span id="setter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md#ioctloutput), [`Result`](../../io/errno/index.md#result), [`Ioctl`](../index.md#ioctl)
 
 ### `Updater<'a, const OPCODE: super::Opcode, Value>`
 
@@ -186,11 +186,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - <span id="updater-const-is-mutating"></span>`const IS_MUTATING: bool`
 
-- <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md)
+- <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
 - <span id="updater-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="updater-output-from-ptr"></span>`unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](../index.md), [`Result`](../../io/errno/index.md)
+- <span id="updater-output-from-ptr"></span>`unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](../index.md#ioctloutput), [`Result`](../../io/errno/index.md#result)
 
 ### `IntegerSetter<const OPCODE: super::Opcode>`
 
@@ -230,9 +230,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - <span id="integersetter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
-- <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md)
+- <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
 - <span id="integersetter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="integersetter-output-from-ptr"></span>`unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md), [`Result`](../../io/errno/index.md), [`Ioctl`](../index.md)
+- <span id="integersetter-output-from-ptr"></span>`unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](../index.md#ioctloutput), [`Result`](../../io/errno/index.md#result), [`Ioctl`](../index.md#ioctl)
 

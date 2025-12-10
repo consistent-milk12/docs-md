@@ -74,19 +74,19 @@ generation across crates.
 
 #### Implementations
 
-- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../collection/index.md), [`Args`](../../index.md), [`RenderConfig`](../../generator/config/index.md)
+- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../collection/index.md#cratecollection), [`Args`](../../index.md#args), [`RenderConfig`](../../generator/config/index.md#renderconfig)
 
 - <span id="multicratecontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
-- <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../../generator/render_shared/index.md)
+- <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../../generator/render_shared/index.md#sourcepathconfig)
 
-- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../collection/index.md)
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../collection/index.md#cratecollection)
 
-- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](../collection/index.md)
+- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](../collection/index.md#cratecollection)
 
-- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md)
+- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md#unifiedlinkregistry)
 
-- <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md)
+- <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md#args)
 
 - <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](#singlecrateview)
 
@@ -135,7 +135,7 @@ struct SingleCrateView<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:279-304`*
+*Defined in `src/multi_crate/context.rs:278-303`*
 
 View of a single crate within multi-crate context.
 
@@ -181,7 +181,7 @@ allows existing rendering code to work with minimal changes.
 
 #### Implementations
 
-- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../registry/index.md), [`Args`](../../index.md), [`MultiCrateContext`](#multicratecontext)
+- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../registry/index.md#unifiedlinkregistry), [`Args`](../../index.md#args), [`MultiCrateContext`](#multicratecontext)
 
 - <span id="singlecrateview-build-impl-map"></span>`fn build_impl_map(&mut self)`
 
@@ -193,9 +193,9 @@ allows existing rendering code to work with minimal changes.
 
 - <span id="singlecrateview-krate"></span>`const fn krate(&self) -> &Crate`
 
-- <span id="singlecrateview-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md)
+- <span id="singlecrateview-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md#unifiedlinkregistry)
 
-- <span id="singlecrateview-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md)
+- <span id="singlecrateview-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md#args)
 
 - <span id="singlecrateview-get-impls"></span>`fn get_impls(&self, id: Id) -> Option<&Vec<&'a Impl>>`
 
@@ -259,9 +259,9 @@ allows existing rendering code to work with minimal changes.
 
 - <span id="singlecrateview-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="singlecrateview-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../../generator/config/index.md)
+- <span id="singlecrateview-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../../generator/config/index.md#renderconfig)
 
-- <span id="singlecrateview-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../../generator/render_shared/index.md)
+- <span id="singlecrateview-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../../generator/render_shared/index.md#sourcepathconfig)
 
 ##### `impl ItemFilter for SingleCrateView<'_>`
 
@@ -273,7 +273,7 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl LinkResolver for SingleCrateView<'_>`
 
-- <span id="singlecrateview-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
+- <span id="singlecrateview-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md#linkregistry)
 
 - <span id="singlecrateview-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 

@@ -195,37 +195,37 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
+- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md#builderror)
 
-- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
+- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md#builderror)
 
 - <span id="nfa-always-match"></span>`fn always_match() -> NFA` — [`NFA`](#nfa)
 
 - <span id="nfa-never-match"></span>`fn never_match() -> NFA` — [`NFA`](#nfa)
 
-- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](../compiler/index.md)
+- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](../compiler/index.md#config)
 
-- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](../compiler/index.md)
+- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](../compiler/index.md#compiler)
 
 - <span id="nfa-patterns"></span>`fn patterns(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
 - <span id="nfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="nfa-start-anchored"></span>`fn start_anchored(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="nfa-start-anchored"></span>`fn start_anchored(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="nfa-start-unanchored"></span>`fn start_unanchored(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="nfa-start-unanchored"></span>`fn start_unanchored(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md#patternid), [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="nfa-byte-class-set"></span>`fn byte_class_set(&self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md)
+- <span id="nfa-byte-class-set"></span>`fn byte_class_set(&self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md#byteclassset)
 
-- <span id="nfa-byte-classes"></span>`fn byte_classes(&self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- <span id="nfa-byte-classes"></span>`fn byte_classes(&self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md#byteclasses)
 
-- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md#stateid), [`State`](#state)
 
 - <span id="nfa-states"></span>`fn states(&self) -> &[State]` — [`State`](#state)
 
-- <span id="nfa-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
+- <span id="nfa-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md#groupinfo)
 
 - <span id="nfa-has-capture"></span>`fn has_capture(&self) -> bool`
 
@@ -237,11 +237,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="nfa-is-always-start-anchored"></span>`fn is_always_start_anchored(&self) -> bool`
 
-- <span id="nfa-look-matcher"></span>`fn look_matcher(&self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- <span id="nfa-look-matcher"></span>`fn look_matcher(&self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md#lookmatcher)
 
-- <span id="nfa-look-set-any"></span>`fn look_set_any(&self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
+- <span id="nfa-look-set-any"></span>`fn look_set_any(&self) -> LookSet` — [`LookSet`](../../../util/look/index.md#lookset)
 
-- <span id="nfa-look-set-prefix-any"></span>`fn look_set_prefix_any(&self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
+- <span id="nfa-look-set-prefix-any"></span>`fn look_set_prefix_any(&self) -> LookSet` — [`LookSet`](../../../util/look/index.md#lookset)
 
 - <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -391,21 +391,21 @@ get its own module.)
 
 - <span id="inner-into-nfa"></span>`fn into_nfa(self) -> NFA` — [`NFA`](#nfa)
 
-- <span id="inner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
+- <span id="inner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md#groupinfo)
 
-- <span id="inner-add"></span>`fn add(&mut self, state: State) -> StateID` — [`State`](#state), [`StateID`](../../../util/primitives/index.md)
+- <span id="inner-add"></span>`fn add(&mut self, state: State) -> StateID` — [`State`](#state), [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="inner-set-starts"></span>`fn set_starts(&mut self, start_anchored: StateID, start_unanchored: StateID, start_pattern: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
+- <span id="inner-set-starts"></span>`fn set_starts(&mut self, start_anchored: StateID, start_unanchored: StateID, start_pattern: &[StateID])` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 - <span id="inner-set-utf8"></span>`fn set_utf8(&mut self, yes: bool)`
 
 - <span id="inner-set-reverse"></span>`fn set_reverse(&mut self, yes: bool)`
 
-- <span id="inner-set-look-matcher"></span>`fn set_look_matcher(&mut self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md)
+- <span id="inner-set-look-matcher"></span>`fn set_look_matcher(&mut self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md#lookmatcher)
 
-- <span id="inner-set-captures"></span>`fn set_captures(&mut self, captures: &[Vec<Option<Arc<str>>>]) -> Result<(), GroupInfoError>` — [`GroupInfoError`](../../../util/captures/index.md)
+- <span id="inner-set-captures"></span>`fn set_captures(&mut self, captures: &[Vec<Option<Arc<str>>>]) -> Result<(), GroupInfoError>` — [`GroupInfoError`](../../../util/captures/index.md#groupinfoerror)
 
-- <span id="inner-remap"></span>`fn remap(&mut self, old_to_new: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
+- <span id="inner-remap"></span>`fn remap(&mut self, old_to_new: &[StateID])` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 #### Trait Implementations
 
@@ -443,11 +443,11 @@ corresponding transition.
 
 #### Implementations
 
-- <span id="sparsetransitions-matches"></span>`fn matches(&self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- <span id="sparsetransitions-matches"></span>`fn matches(&self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="sparsetransitions-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="sparsetransitions-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md#unit), [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="sparsetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- <span id="sparsetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 #### Trait Implementations
 
@@ -497,11 +497,11 @@ usually requires (much) more heap memory.
 
 #### Implementations
 
-- <span id="densetransitions-matches"></span>`fn matches(&self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- <span id="densetransitions-matches"></span>`fn matches(&self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="densetransitions-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="densetransitions-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md#unit), [`StateID`](../../../util/primitives/index.md#stateid)
 
-- <span id="densetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- <span id="densetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 - <span id="densetransitions-iter"></span>`fn iter(&self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](#transition)
 
@@ -558,7 +558,7 @@ falls in the inclusive range of bytes specified.
 
 - <span id="transition-matches"></span>`fn matches(&self, haystack: &[u8], at: usize) -> bool`
 
-- <span id="transition-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md)
+- <span id="transition-matches-unit"></span>`fn matches_unit(&self, unit: alphabet::Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md#unit)
 
 - <span id="transition-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> bool`
 
@@ -632,7 +632,7 @@ this pattern iterator was created.
 
 - <span id="patterniter-type-item"></span>`type Item = PatternID`
 
-- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md#patternid)
 
 ## Enums
 
@@ -782,7 +782,7 @@ need to do some kind of analysis on the NFA.
 
 - <span id="state-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="state-remap"></span>`fn remap(&mut self, remap: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
+- <span id="state-remap"></span>`fn remap(&mut self, remap: &[StateID])` — [`StateID`](../../../util/primitives/index.md#stateid)
 
 #### Trait Implementations
 

@@ -26,7 +26,7 @@ struct DiagnosticSource(syn::Member);
 
 - <span id="diagnosticsource-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- <span id="diagnosticsource-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="diagnosticsource-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md#diagnosticdef)
 
 - <span id="diagnosticsource-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 

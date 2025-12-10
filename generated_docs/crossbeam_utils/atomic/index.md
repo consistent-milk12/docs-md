@@ -71,7 +71,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
+- <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md#atomiccell)
 
 - <span id="atomiccell-into-inner"></span>`fn into_inner(self) -> T`
 
@@ -91,7 +91,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
+- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md#atomiccell)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 

@@ -142,9 +142,9 @@ clones which means it largely acts as a handle.
 
 - <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](#term)
 
-- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../utils/index.md), [`Term`](#term)
+- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../utils/index.md#style), [`Term`](#term)
 
-- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](../utils/index.md)
+- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](../utils/index.md#style)
 
 - <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](#termtarget)
 
@@ -152,9 +152,9 @@ clones which means it largely acts as a handle.
 
 - <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
-- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../kb/index.md)
+- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../kb/index.md#key)
 
-- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../kb/index.md)
+- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../kb/index.md#key)
 
 - <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 

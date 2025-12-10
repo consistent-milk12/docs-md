@@ -58,7 +58,7 @@ The raw contents of the `.debug_loc` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugLoc<R>`
 
-- <span id="debugloc-clone"></span>`fn clone(&self) -> DebugLoc<R>` — [`DebugLoc`](../index.md)
+- <span id="debugloc-clone"></span>`fn clone(&self) -> DebugLoc<R>` — [`DebugLoc`](../index.md#debugloc)
 
 ##### `impl<R: marker::Copy> Copy for DebugLoc<R>`
 
@@ -68,11 +68,11 @@ The raw contents of the `.debug_loc` section.
 
 ##### `impl<R: default::Default> Default for DebugLoc<R>`
 
-- <span id="debugloc-default"></span>`fn default() -> DebugLoc<R>` — [`DebugLoc`](../index.md)
+- <span id="debugloc-default"></span>`fn default() -> DebugLoc<R>` — [`DebugLoc`](../index.md#debugloc)
 
 ##### `impl<R> Section for DebugLoc<R>`
 
-- <span id="debugloc-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugloc-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugloc-reader"></span>`fn reader(&self) -> &R`
 
@@ -97,7 +97,7 @@ found in the `.debug_loclists` section.
 
 ##### `impl<R: clone::Clone> Clone for DebugLocLists<R>`
 
-- <span id="debugloclists-clone"></span>`fn clone(&self) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
+- <span id="debugloclists-clone"></span>`fn clone(&self) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md#debugloclists)
 
 ##### `impl<R: marker::Copy> Copy for DebugLocLists<R>`
 
@@ -107,11 +107,11 @@ found in the `.debug_loclists` section.
 
 ##### `impl<R: default::Default> Default for DebugLocLists<R>`
 
-- <span id="debugloclists-default"></span>`fn default() -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
+- <span id="debugloclists-default"></span>`fn default() -> DebugLocLists<R>` — [`DebugLocLists`](../index.md#debugloclists)
 
 ##### `impl<R> Section for DebugLocLists<R>`
 
-- <span id="debugloclists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugloclists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugloclists-reader"></span>`fn reader(&self) -> &R`
 
@@ -130,13 +130,13 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- <span id="locationlists-new"></span>`fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](../index.md), [`DebugLocLists`](../index.md), [`LocationLists`](../index.md)
+- <span id="locationlists-new"></span>`fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](../index.md#debugloc), [`DebugLocLists`](../index.md#debugloclists), [`LocationLists`](../index.md#locationlists)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone> Clone for LocationLists<R>`
 
-- <span id="locationlists-clone"></span>`fn clone(&self) -> LocationLists<R>` — [`LocationLists`](../index.md)
+- <span id="locationlists-clone"></span>`fn clone(&self) -> LocationLists<R>` — [`LocationLists`](../index.md#locationlists)
 
 ##### `impl<R: marker::Copy> Copy for LocationLists<R>`
 
@@ -146,7 +146,7 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 ##### `impl<R: default::Default> Default for LocationLists<R>`
 
-- <span id="locationlists-default"></span>`fn default() -> LocationLists<R>` — [`LocationLists`](../index.md)
+- <span id="locationlists-default"></span>`fn default() -> LocationLists<R>` — [`LocationLists`](../index.md#locationlists)
 
 ### `RawLocListIter<R: Reader>`
 
@@ -167,9 +167,9 @@ such as handling base addresses.
 
 #### Implementations
 
-- <span id="rawloclistiter-new"></span>`fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`RawLocListIter`](../index.md)
+- <span id="rawloclistiter-new"></span>`fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../../index.md#encoding), [`LocListsFormat`](#loclistsformat), [`RawLocListIter`](../index.md#rawloclistiter)
 
-- <span id="rawloclistiter-next"></span>`fn next(&mut self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../../index.md), [`RawLocListEntry`](../index.md)
+- <span id="rawloclistiter-next"></span>`fn next(&mut self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../../index.md#result), [`RawLocListEntry`](../index.md#rawloclistentry)
 
 #### Trait Implementations
 
@@ -198,11 +198,11 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- <span id="loclistiter-new"></span>`fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`LocListIter`](../index.md)
+- <span id="loclistiter-new"></span>`fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](../index.md#rawloclistiter), [`DebugAddr`](../index.md#debugaddr), [`DebugAddrBase`](../../index.md#debugaddrbase), [`Reader`](../index.md#reader), [`LocListIter`](../index.md#loclistiter)
 
-- <span id="loclistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="loclistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md#debugaddrindex), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
-- <span id="loclistiter-next"></span>`fn next(&mut self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../../index.md), [`LocationListEntry`](../index.md)
+- <span id="loclistiter-next"></span>`fn next(&mut self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../../index.md#result), [`LocationListEntry`](../index.md#locationlistentry)
 
 #### Trait Implementations
 
@@ -237,7 +237,7 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
 ##### `impl<R: clone::Clone + Reader> Clone for LocationListEntry<R>`
 
-- <span id="locationlistentry-clone"></span>`fn clone(&self) -> LocationListEntry<R>` — [`LocationListEntry`](../index.md)
+- <span id="locationlistentry-clone"></span>`fn clone(&self) -> LocationListEntry<R>` — [`LocationListEntry`](../index.md#locationlistentry)
 
 ##### `impl<R: marker::Copy + Reader> Copy for LocationListEntry<R>`
 
@@ -253,7 +253,7 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
 
-- <span id="locationlistentry-eq"></span>`fn eq(&self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](../index.md)
+- <span id="locationlistentry-eq"></span>`fn eq(&self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](../index.md#locationlistentry)
 
 ##### `impl<R: Reader> StructuralPartialEq for LocationListEntry<R>`
 
@@ -391,13 +391,13 @@ A raw entry in .debug_loclists.
 
 #### Implementations
 
-- <span id="rawloclistentry-parse"></span>`fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`Result`](../../index.md)
+- <span id="rawloclistentry-parse"></span>`fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md#encoding), [`LocListsFormat`](#loclistsformat), [`Result`](../../index.md#result)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for RawLocListEntry<R>`
 
-- <span id="rawloclistentry-clone"></span>`fn clone(&self) -> RawLocListEntry<R>` — [`RawLocListEntry`](../index.md)
+- <span id="rawloclistentry-clone"></span>`fn clone(&self) -> RawLocListEntry<R>` — [`RawLocListEntry`](../index.md#rawloclistentry)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for RawLocListEntry<R>`
 

@@ -48,7 +48,7 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
-- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../zip/index.md), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../index.md)
+- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../zip/index.md#zip), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../index.md#intoparalleliterator)
 
 #### Trait Implementations
 
@@ -74,7 +74,7 @@ Iterator adaptor for [the `repeat()` function].
 
 - <span id="repeat-type-item"></span>`type Item = T`
 
-- <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
@@ -153,9 +153,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IndexedParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="repeatn-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="repeatn-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="repeatn-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 - <span id="repeatn-len"></span>`fn len(&self) -> usize`
 
@@ -173,7 +173,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 - <span id="repeatn-type-item"></span>`type Item = T`
 
-- <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="repeatn-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -262,7 +262,7 @@ Producer for `RepeatN`.
 
 - <span id="repeatnproducer-type-intoiter"></span>`type IntoIter = RepeatNProducer<T>`
 
-- <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="repeatnproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

@@ -51,7 +51,7 @@ working with to make it easier to manipulate.
 
 - <span id="slicevec-clear"></span>`fn clear(&mut self)`
 
-- <span id="slicevec-drain"></span>`fn drain<'p, R: RangeBounds<usize>>(self: &'p mut Self, range: R) -> SliceVecDrain<'p, 's, T>` — [`SliceVecDrain`](../index.md)
+- <span id="slicevec-drain"></span>`fn drain<'p, R: RangeBounds<usize>>(self: &'p mut Self, range: R) -> SliceVecDrain<'p, 's, T>` — [`SliceVecDrain`](../index.md#slicevecdrain)
 
 - <span id="slicevec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[T])`
 
@@ -79,7 +79,7 @@ working with to make it easier to manipulate.
 
 - <span id="slicevec-set-len"></span>`fn set_len(&mut self, new_len: usize)`
 
-- <span id="slicevec-split-off"></span>`fn split_off<'a>(self: &'a mut Self, at: usize) -> SliceVec<'s, T>` — [`SliceVec`](../index.md)
+- <span id="slicevec-split-off"></span>`fn split_off<'a>(self: &'a mut Self, at: usize) -> SliceVec<'s, T>` — [`SliceVec`](../index.md#slicevec)
 
 - <span id="slicevec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> T`
 

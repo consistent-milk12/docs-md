@@ -37,11 +37,11 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 
 #### Implementations
 
-- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](../index.md#colorchoice)
 
 - <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
 
-- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](../index.md)
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](../index.md#colorchoice)
 
 - <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
 
@@ -59,7 +59,7 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 
 - <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
 
-- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](../index.md)
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](../index.md#colorchoice)
 
 #### Trait Implementations
 

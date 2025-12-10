@@ -53,7 +53,7 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](definitions/index.md)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](definitions/index.md#action)
 
 ##### `impl Copy for Action`
 
@@ -63,13 +63,13 @@ enum Action {
 
 ##### `impl Default for Action`
 
-- <span id="action-default"></span>`fn default() -> Action` — [`Action`](definitions/index.md)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](definitions/index.md#action)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](definitions/index.md)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](definitions/index.md#action)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -102,7 +102,7 @@ enum State {
 
 ##### `impl Clone for State`
 
-- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](definitions/index.md)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](definitions/index.md#state)
 
 ##### `impl Copy for State`
 
@@ -112,13 +112,13 @@ enum State {
 
 ##### `impl Default for State`
 
-- <span id="state-default"></span>`fn default() -> State` — [`State`](definitions/index.md)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](definitions/index.md#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](definitions/index.md)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](definitions/index.md#state)
 
 ##### `impl StructuralPartialEq for State`
 

@@ -44,25 +44,25 @@ to [`crate::FileKind::CoffImport`](../../../index.md).
 
 #### Implementations
 
-- <span id="importfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="importfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md#result)
 
-- <span id="importfile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
+- <span id="importfile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
-- <span id="importfile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
+- <span id="importfile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md#subarchitecture)
 
 - <span id="importfile-symbol"></span>`fn symbol(&self) -> &'data [u8]`
 
 - <span id="importfile-dll"></span>`fn dll(&self) -> &'data [u8]`
 
-- <span id="importfile-import"></span>`fn import(&self) -> ImportName<'data>` — [`ImportName`](../index.md)
+- <span id="importfile-import"></span>`fn import(&self) -> ImportName<'data>` — [`ImportName`](../index.md#importname)
 
-- <span id="importfile-import-type"></span>`fn import_type(&self) -> ImportType` — [`ImportType`](../index.md)
+- <span id="importfile-import-type"></span>`fn import_type(&self) -> ImportType` — [`ImportType`](../index.md#importtype)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImportFile<'data>`
 
-- <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](../index.md)
+- <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](../index.md#importfile)
 
 ##### `impl Debug for ImportFile<'data>`
 
@@ -94,7 +94,7 @@ The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
 ##### `impl Clone for ImportObjectData<'data>`
 
-- <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](../index.md)
+- <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](../index.md#importobjectdata)
 
 ##### `impl Debug for ImportObjectData<'data>`
 
@@ -129,7 +129,7 @@ The name or ordinal to import from a DLL.
 
 ##### `impl Clone for ImportName<'data>`
 
-- <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](../index.md)
+- <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](../index.md#importname)
 
 ##### `impl Copy for ImportName<'data>`
 
@@ -141,7 +141,7 @@ The name or ordinal to import from a DLL.
 
 ##### `impl PartialEq for ImportName<'data>`
 
-- <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](../index.md)
+- <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](../index.md#importname)
 
 ##### `impl StructuralPartialEq for ImportName<'data>`
 
@@ -177,7 +177,7 @@ The kind of import symbol.
 
 ##### `impl Clone for ImportType`
 
-- <span id="importtype-clone"></span>`fn clone(&self) -> ImportType` — [`ImportType`](../index.md)
+- <span id="importtype-clone"></span>`fn clone(&self) -> ImportType` — [`ImportType`](../index.md#importtype)
 
 ##### `impl Copy for ImportType`
 
@@ -193,7 +193,7 @@ The kind of import symbol.
 
 ##### `impl PartialEq for ImportType`
 
-- <span id="importtype-eq"></span>`fn eq(&self, other: &ImportType) -> bool` — [`ImportType`](../index.md)
+- <span id="importtype-eq"></span>`fn eq(&self, other: &ImportType) -> bool` — [`ImportType`](../index.md#importtype)
 
 ##### `impl StructuralPartialEq for ImportType`
 

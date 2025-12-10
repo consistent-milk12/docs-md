@@ -25,14 +25,14 @@ trait Sealed { ... }
 
 #### Implementors
 
-- [`A0`](../index.md)
-- [`A1`](../index.md)
-- [`A2`](../index.md)
-- [`A3`](../index.md)
-- [`A4`](../index.md)
-- [`A5`](../index.md)
-- [`ArgReg`](../index.md)
-- [`R0`](../index.md)
-- [`RetReg`](../index.md)
-- [`SyscallNumber`](../index.md)
+- [`A0`](../index.md#a0)
+- [`A1`](../index.md#a1)
+- [`A2`](../index.md#a2)
+- [`A3`](../index.md#a3)
+- [`A4`](../index.md#a4)
+- [`A5`](../index.md#a5)
+- [`ArgReg`](../index.md#argreg)
+- [`R0`](../index.md#r0)
+- [`RetReg`](../index.md#retreg)
+- [`SyscallNumber`](../index.md#syscallnumber)
 

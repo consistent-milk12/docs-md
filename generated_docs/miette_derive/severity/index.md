@@ -23,7 +23,7 @@ struct Severity(syn::Ident);
 
 #### Implementations
 
-- <span id="severity-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="severity-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md#diagnosticdef)
 
 - <span id="severity-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 

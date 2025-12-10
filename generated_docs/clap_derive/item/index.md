@@ -82,25 +82,25 @@ struct Item {
 
 - <span id="item-from-value-enum"></span>`fn from_value_enum(input: &DeriveInput, name: Name) -> Result<Self, syn::Error>` — [`Name`](#name)
 
-- <span id="item-from-subcommand-variant"></span>`fn from_subcommand_variant(variant: &Variant, struct_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle)
+- <span id="item-from-subcommand-variant"></span>`fn from_subcommand_variant(variant: &Variant, struct_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle)
 
-- <span id="item-from-value-enum-variant"></span>`fn from_value_enum_variant(variant: &Variant, argument_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle)
+- <span id="item-from-value-enum-variant"></span>`fn from_value_enum_variant(variant: &Variant, argument_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle)
 
-- <span id="item-from-args-field"></span>`fn from_args_field(field: &Field, struct_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle)
+- <span id="item-from-args-field"></span>`fn from_args_field(field: &Field, struct_casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>) -> Result<Self, syn::Error>` — [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle)
 
-- <span id="item-new"></span>`fn new(name: Name, ident: Ident, ty: Option<Type>, casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>, kind: Sp<Kind>) -> Self` — [`Name`](#name), [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle), [`Kind`](#kind)
+- <span id="item-new"></span>`fn new(name: Name, ident: Ident, ty: Option<Type>, casing: Sp<CasingStyle>, env_casing: Sp<CasingStyle>, kind: Sp<Kind>) -> Self` — [`Name`](#name), [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle), [`Kind`](#kind)
 
-- <span id="item-push-method"></span>`fn push_method(&mut self, kind: AttrKind, name: Ident, arg: impl ToTokens)` — [`AttrKind`](../attr/index.md)
+- <span id="item-push-method"></span>`fn push_method(&mut self, kind: AttrKind, name: Ident, arg: impl ToTokens)` — [`AttrKind`](../attr/index.md#attrkind)
 
-- <span id="item-push-method"></span>`fn push_method_(&mut self, kind: AttrKind, name: Ident, arg: TokenStream)` — [`AttrKind`](../attr/index.md)
+- <span id="item-push-method"></span>`fn push_method_(&mut self, kind: AttrKind, name: Ident, arg: TokenStream)` — [`AttrKind`](../attr/index.md#attrkind)
 
-- <span id="item-infer-kind"></span>`fn infer_kind(&mut self, attrs: &[ClapAttr]) -> Result<(), syn::Error>` — [`ClapAttr`](../attr/index.md)
+- <span id="item-infer-kind"></span>`fn infer_kind(&mut self, attrs: &[ClapAttr]) -> Result<(), syn::Error>` — [`ClapAttr`](../attr/index.md#clapattr)
 
-- <span id="item-push-attrs"></span>`fn push_attrs(&mut self, attrs: &[ClapAttr]) -> Result<(), syn::Error>` — [`ClapAttr`](../attr/index.md)
+- <span id="item-push-attrs"></span>`fn push_attrs(&mut self, attrs: &[ClapAttr]) -> Result<(), syn::Error>` — [`ClapAttr`](../attr/index.md#clapattr)
 
 - <span id="item-push-doc-comment"></span>`fn push_doc_comment(&mut self, attrs: &[Attribute], short_name: &str, long_name: Option<&str>)`
 
-- <span id="item-set-kind"></span>`fn set_kind(&mut self, kind: Sp<Kind>) -> Result<(), syn::Error>` — [`Sp`](../utils/spanned/index.md), [`Kind`](#kind)
+- <span id="item-set-kind"></span>`fn set_kind(&mut self, kind: Sp<Kind>) -> Result<(), syn::Error>` — [`Sp`](../utils/spanned/index.md#sp), [`Kind`](#kind)
 
 - <span id="item-find-default-method"></span>`fn find_default_method(&self) -> Option<&Method>` — [`Method`](#method)
 
@@ -130,13 +130,13 @@ struct Item {
 
 - <span id="item-action"></span>`fn action(&self, field_type: &Type) -> Method` — [`Method`](#method)
 
-- <span id="item-kind"></span>`fn kind(&self) -> Sp<Kind>` — [`Sp`](../utils/spanned/index.md), [`Kind`](#kind)
+- <span id="item-kind"></span>`fn kind(&self) -> Sp<Kind>` — [`Sp`](../utils/spanned/index.md#sp), [`Kind`](#kind)
 
 - <span id="item-is-positional"></span>`fn is_positional(&self) -> bool`
 
-- <span id="item-casing"></span>`fn casing(&self) -> Sp<CasingStyle>` — [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle)
+- <span id="item-casing"></span>`fn casing(&self) -> Sp<CasingStyle>` — [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle)
 
-- <span id="item-env-casing"></span>`fn env_casing(&self) -> Sp<CasingStyle>` — [`Sp`](../utils/spanned/index.md), [`CasingStyle`](#casingstyle)
+- <span id="item-env-casing"></span>`fn env_casing(&self) -> Sp<CasingStyle>` — [`Sp`](../utils/spanned/index.md#sp), [`CasingStyle`](#casingstyle)
 
 - <span id="item-has-explicit-methods"></span>`fn has_explicit_methods(&self) -> bool`
 
@@ -196,7 +196,7 @@ struct Deprecation {
 
 #### Implementations
 
-- <span id="deprecation-attribute"></span>`fn attribute(version: &'static str, old: AttrKind, new: AttrKind, span: Span) -> Self` — [`AttrKind`](../attr/index.md)
+- <span id="deprecation-attribute"></span>`fn attribute(version: &'static str, old: AttrKind, new: AttrKind, span: Span) -> Self` — [`AttrKind`](../attr/index.md#attrkind)
 
 #### Trait Implementations
 
@@ -281,9 +281,9 @@ enum Kind {
 
 - <span id="kind-name"></span>`fn name(&self) -> &'static str`
 
-- <span id="kind-attr-kind"></span>`fn attr_kind(&self) -> AttrKind` — [`AttrKind`](../attr/index.md)
+- <span id="kind-attr-kind"></span>`fn attr_kind(&self) -> AttrKind` — [`AttrKind`](../attr/index.md#attrkind)
 
-- <span id="kind-ty"></span>`fn ty(&self) -> Option<&Sp<Ty>>` — [`Sp`](../utils/spanned/index.md), [`Ty`](../utils/ty/index.md)
+- <span id="kind-ty"></span>`fn ty(&self) -> Option<&Sp<Ty>>` — [`Sp`](../utils/spanned/index.md#sp), [`Ty`](../utils/ty/index.md#ty)
 
 #### Trait Implementations
 
@@ -346,7 +346,7 @@ Defines the casing for the attributes long representation.
 
 #### Implementations
 
-- <span id="casingstyle-from-lit"></span>`fn from_lit(name: &LitStr) -> Result<Sp<Self>, syn::Error>` — [`Sp`](../utils/spanned/index.md)
+- <span id="casingstyle-from-lit"></span>`fn from_lit(name: &LitStr) -> Result<Sp<Self>, syn::Error>` — [`Sp`](../utils/spanned/index.md#sp)
 
 #### Trait Implementations
 

@@ -632,11 +632,11 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-const-size"></span>`const SIZE: usize`
 
-- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
-- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
-- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
@@ -648,19 +648,19 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
-- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
-- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
-- <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md)
+- <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md#patterniditer)
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternID`
 
-- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl Copy for PatternID`
 
@@ -670,7 +670,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Default for PatternID`
 
-- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl Eq for PatternID`
 
@@ -682,23 +682,23 @@ re-exported at the crate root due to how common it is.
 
 - <span id="t-type-output"></span>`type Output = T`
 
-- <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md)
+- <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl<T> IndexMut for [T]`
 
-- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md)
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl Ord for PatternID`
 
-- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
+- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -978,11 +978,11 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](util/primitives/index.md), [`HalfMatch`](#halfmatch)
+- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](util/primitives/index.md#patternid), [`HalfMatch`](#halfmatch)
 
 - <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](#halfmatch)
 
-- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 - <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
@@ -1046,11 +1046,11 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](#match)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md#patternid), [`Match`](#match)
 
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
@@ -1167,11 +1167,11 @@ assert!(set.is_empty());
 
 - <span id="patternset-clear"></span>`fn clear(&mut self)`
 
-- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
-- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md#patternid)
 
-- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](util/primitives/index.md), [`PatternSetInsertError`](#patternsetinserterror)
+- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternSetInsertError`](#patternsetinserterror)
 
 - <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -1269,7 +1269,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl DoubleEndedIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 
 ##### `impl IntoIterator for PatternSetIter<'a>`
 
@@ -1283,7 +1283,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 - <span id="patternsetiter-type-item"></span>`type Item = PatternID`
 
-- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 
 - <span id="patternsetiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -1520,7 +1520,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
-- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 
 #### Trait Implementations
 

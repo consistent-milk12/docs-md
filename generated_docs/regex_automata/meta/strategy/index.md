@@ -60,25 +60,25 @@ struct Pre<P> {
 
 ##### `impl<P: PrefilterI> Strategy for Pre<P>`
 
-- <span id="pre-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="pre-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="pre-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
+- <span id="pre-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="pre-reset-cache"></span>`fn reset_cache(&self, _cache: &mut Cache)` — [`Cache`](../regex/index.md)
+- <span id="pre-reset-cache"></span>`fn reset_cache(&self, _cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
 - <span id="pre-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
 - <span id="pre-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="pre-search"></span>`fn search(&self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="pre-search"></span>`fn search(&self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="pre-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="pre-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="pre-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="pre-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="pre-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="pre-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="pre-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="pre-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
 
 ### `Core`
 
@@ -100,17 +100,17 @@ struct Core {
 
 #### Implementations
 
-- <span id="core-new"></span>`fn new(info: RegexInfo, pre: Option<Prefilter>, hirs: &[&Hir]) -> Result<Core, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`Core`](#core), [`BuildError`](../error/index.md)
+- <span id="core-new"></span>`fn new(info: RegexInfo, pre: Option<Prefilter>, hirs: &[&Hir]) -> Result<Core, BuildError>` — [`RegexInfo`](../regex/index.md#regexinfo), [`Prefilter`](../../util/prefilter/index.md#prefilter), [`Core`](#core), [`BuildError`](../error/index.md#builderror)
 
-- <span id="core-try-search-mayfail"></span>`fn try_search_mayfail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Result<Option<Match>, RetryFailError>>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="core-try-search-mayfail"></span>`fn try_search_mayfail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Result<Option<Match>, RetryFailError>>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match), [`RetryFailError`](../error/index.md#retryfailerror)
 
-- <span id="core-search-nofail"></span>`fn search_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="core-search-nofail"></span>`fn search_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="core-search-half-nofail"></span>`fn search_half_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="core-search-half-nofail"></span>`fn search_half_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="core-search-slots-nofail"></span>`fn search_slots_nofail(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="core-search-slots-nofail"></span>`fn search_slots_nofail(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="core-is-match-nofail"></span>`fn is_match_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="core-is-match-nofail"></span>`fn is_match_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
 - <span id="core-is-capture-search-needed"></span>`fn is_capture_search_needed(&self, slots_len: usize) -> bool`
 
@@ -122,25 +122,25 @@ struct Core {
 
 ##### `impl Strategy for Core`
 
-- <span id="core-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="core-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="core-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
+- <span id="core-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="core-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
+- <span id="core-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
 - <span id="core-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
 - <span id="core-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="core-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="core-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="core-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="core-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="core-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="core-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="core-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="core-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="core-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="core-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
 
 ### `ReverseAnchored`
 
@@ -156,7 +156,7 @@ struct ReverseAnchored {
 
 - <span id="reverseanchored-new"></span>`fn new(core: Core) -> Result<ReverseAnchored, Core>` — [`Core`](#core), [`ReverseAnchored`](#reverseanchored)
 
-- <span id="reverseanchored-try-search-half-anchored-rev"></span>`fn try_search_half_anchored_rev(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reverseanchored-try-search-half-anchored-rev"></span>`fn try_search_half_anchored_rev(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryFailError`](../error/index.md#retryfailerror)
 
 #### Trait Implementations
 
@@ -166,25 +166,25 @@ struct ReverseAnchored {
 
 ##### `impl Strategy for ReverseAnchored`
 
-- <span id="reverseanchored-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reverseanchored-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reverseanchored-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
+- <span id="reverseanchored-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseanchored-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
+- <span id="reverseanchored-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
 - <span id="reverseanchored-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
 - <span id="reverseanchored-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reverseanchored-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reverseanchored-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reverseanchored-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reverseanchored-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reverseanchored-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="reverseanchored-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reverseanchored-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="reverseanchored-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reverseanchored-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reverseanchored-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
 
 ### `ReverseSuffix`
 
@@ -201,11 +201,11 @@ struct ReverseSuffix {
 
 - <span id="reversesuffix-new"></span>`fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseSuffix, Core>` — [`Core`](#core), [`ReverseSuffix`](#reversesuffix)
 
-- <span id="reversesuffix-try-search-half-start"></span>`fn try_search_half_start(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-start"></span>`fn try_search_half_start(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryError`](../error/index.md#retryerror)
 
-- <span id="reversesuffix-try-search-half-fwd"></span>`fn try_search_half_fwd(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-fwd"></span>`fn try_search_half_fwd(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryFailError`](../error/index.md#retryfailerror)
 
-- <span id="reversesuffix-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryError`](../error/index.md#retryerror)
 
 #### Trait Implementations
 
@@ -215,25 +215,25 @@ struct ReverseSuffix {
 
 ##### `impl Strategy for ReverseSuffix`
 
-- <span id="reversesuffix-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reversesuffix-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reversesuffix-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
+- <span id="reversesuffix-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reversesuffix-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
+- <span id="reversesuffix-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
 - <span id="reversesuffix-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
 - <span id="reversesuffix-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reversesuffix-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reversesuffix-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reversesuffix-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reversesuffix-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reversesuffix-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="reversesuffix-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reversesuffix-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="reversesuffix-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reversesuffix-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reversesuffix-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
 
 ### `ReverseInner`
 
@@ -253,11 +253,11 @@ struct ReverseInner {
 
 - <span id="reverseinner-new"></span>`fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseInner, Core>` — [`Core`](#core), [`ReverseInner`](#reverseinner)
 
-- <span id="reverseinner-try-search-full"></span>`fn try_search_full(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reverseinner-try-search-full"></span>`fn try_search_full(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, RetryError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match), [`RetryError`](../error/index.md#retryerror)
 
-- <span id="reverseinner-try-search-half-fwd-stopat"></span>`fn try_search_half_fwd_stopat(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reverseinner-try-search-half-fwd-stopat"></span>`fn try_search_half_fwd_stopat(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryFailError`](../error/index.md#retryfailerror)
 
-- <span id="reverseinner-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reverseinner-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch), [`RetryError`](../error/index.md#retryerror)
 
 #### Trait Implementations
 
@@ -267,25 +267,25 @@ struct ReverseInner {
 
 ##### `impl Strategy for ReverseInner`
 
-- <span id="reverseinner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reverseinner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md#groupinfo)
 
-- <span id="reverseinner-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
+- <span id="reverseinner-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md#cache)
 
-- <span id="reverseinner-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
+- <span id="reverseinner-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md#cache)
 
 - <span id="reverseinner-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
 - <span id="reverseinner-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="reverseinner-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reverseinner-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`Match`](../../index.md#match)
 
-- <span id="reverseinner-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reverseinner-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`HalfMatch`](../../index.md#halfmatch)
 
-- <span id="reverseinner-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
+- <span id="reverseinner-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input)
 
-- <span id="reverseinner-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- <span id="reverseinner-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`NonMaxUsize`](../../util/primitives/index.md#nonmaxusize), [`PatternID`](../../util/primitives/index.md#patternid)
 
-- <span id="reverseinner-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reverseinner-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md#cache), [`Input`](../../index.md#input), [`PatternSet`](../../index.md#patternset)
 
 ## Traits
 

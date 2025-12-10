@@ -44,25 +44,25 @@ two key differences:
 
 #### Implementations
 
-- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md#id), [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md#id), [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
-- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
 
-- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](../field/index.md)
+- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](../field/index.md#iter)
 
-- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
 
 - <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
 - <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
-- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](../span/index.md)
+- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](../span/index.md#id)
 
 #### Trait Implementations
 

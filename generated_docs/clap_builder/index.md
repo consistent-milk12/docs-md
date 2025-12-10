@@ -190,13 +190,13 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](builder/str/index.md)
+- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](builder/str/index.md#str)
 
-- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](builder/arg/index.md)
+- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](builder/arg/index.md#arg)
 
-- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](builder/arg/index.md)
+- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](builder/arg/index.md#arg)
 
-- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](builder/arg/index.md)
+- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](builder/arg/index.md#arg)
 
 - <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
@@ -208,55 +208,55 @@ let m = Command::new("My Program")
 
 - <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
-- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
+- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](builder/arg_group/index.md#arggroup)
 
-- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
+- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](builder/arg_group/index.md#arggroup)
 
-- <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](builder/command/index.md)
+- <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](builder/command/index.md#command)
 
 - <span id="command-subcommand-internal"></span>`fn subcommand_internal(self, subcmd: Self) -> Self`
 
 - <span id="command-subcommands"></span>`fn subcommands(self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](builder/command/index.md)
+- <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](builder/command/index.md#command)
 
 - <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
-- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](error/kind/index.md), [`Error`](#error)
+- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](error/kind/index.md#errorkind), [`Error`](#error)
 
-- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](error/index.md#result), [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md#result), [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
-- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md#result), [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
 - <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
 
 - <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
 
-- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md#styledstr)
 
-- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md#styledstr)
 
 - <span id="command-render-version"></span>`fn render_version(&self) -> String`
 
 - <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
 
-- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md#styledstr)
 
-- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](builder/styled_str/index.md#styledstr)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](builder/command/index.md)
+- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](builder/command/index.md#command)
 
 ##### `impl Debug for Command`
 
@@ -274,7 +274,7 @@ let m = Command::new("My Program")
 
 - <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md#id)
 
 ##### `impl ToString for Command`
 
@@ -349,31 +349,31 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- <span id="arg-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arg-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arg-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arg-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arg-short"></span>`fn short(self, s: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- <span id="arg-short"></span>`fn short(self, s: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable)
 
-- <span id="arg-long"></span>`fn long(self, l: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- <span id="arg-long"></span>`fn long(self, l: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Str`](builder/str/index.md#str)
 
-- <span id="arg-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- <span id="arg-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Str`](builder/str/index.md#str)
 
-- <span id="arg-short-alias"></span>`fn short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- <span id="arg-short-alias"></span>`fn short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable)
 
-- <span id="arg-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md)
+- <span id="arg-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md#str)
 
 - <span id="arg-short-aliases"></span>`fn short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-visible-alias"></span>`fn visible_alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- <span id="arg-visible-alias"></span>`fn visible_alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Str`](builder/str/index.md#str)
 
-- <span id="arg-visible-short-alias"></span>`fn visible_short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- <span id="arg-visible-short-alias"></span>`fn visible_short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable)
 
-- <span id="arg-visible-aliases"></span>`fn visible_aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md)
+- <span id="arg-visible-aliases"></span>`fn visible_aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md#str)
 
 - <span id="arg-visible-short-aliases"></span>`fn visible_short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-index"></span>`fn index(self, idx: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- <span id="arg-index"></span>`fn index(self, idx: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable)
 
 - <span id="arg-trailing-var-arg"></span>`fn trailing_var_arg(self, yes: bool) -> Self`
 
@@ -381,23 +381,23 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 - <span id="arg-required"></span>`fn required(self, yes: bool) -> Self`
 
-- <span id="arg-requires"></span>`fn requires(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Id`](util/id/index.md)
+- <span id="arg-requires"></span>`fn requires(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Id`](util/id/index.md#id)
 
 - <span id="arg-exclusive"></span>`fn exclusive(self, yes: bool) -> Self`
 
 - <span id="arg-global"></span>`fn global(self, yes: bool) -> Self`
 
-- <span id="arg-is-set"></span>`fn is_set(&self, s: ArgSettings) -> bool` — [`ArgSettings`](builder/arg_settings/index.md)
+- <span id="arg-is-set"></span>`fn is_set(&self, s: ArgSettings) -> bool` — [`ArgSettings`](builder/arg_settings/index.md#argsettings)
 
-- <span id="arg-setting"></span>`fn setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](builder/arg_settings/index.md)
+- <span id="arg-setting"></span>`fn setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](builder/arg_settings/index.md#argsettings)
 
-- <span id="arg-unset-setting"></span>`fn unset_setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](builder/arg_settings/index.md)
+- <span id="arg-unset-setting"></span>`fn unset_setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](builder/arg_settings/index.md#argsettings)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](builder/arg/index.md)
+- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](builder/arg/index.md#arg)
 
 ##### `impl Debug for Arg`
 
@@ -405,7 +405,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Default for Arg`
 
-- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](builder/arg/index.md)
+- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](builder/arg/index.md#arg)
 
 ##### `impl Display for Arg`
 
@@ -415,11 +415,11 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Ord for Arg`
 
-- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](builder/arg/index.md)
+- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](builder/arg/index.md#arg)
 
 ##### `impl PartialEq for Arg`
 
-- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](builder/arg/index.md)
+- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](builder/arg/index.md#arg)
 
 ##### `impl PartialOrd for Arg`
 
@@ -509,15 +509,15 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Id`](util/id/index.md)
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](util/id/index.md)
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](util/id/index.md#id)
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
@@ -525,19 +525,19 @@ assert_eq!(matches
 
 - <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
 
-- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Id`](util/id/index.md)
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Id`](util/id/index.md)
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/resettable/index.md#intoresettable), [`Id`](util/id/index.md#id)
 
-- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md)
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](util/id/index.md#id)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md#arggroup)
 
 ##### `impl Debug for ArgGroup`
 
@@ -545,13 +545,13 @@ assert_eq!(matches
 
 ##### `impl Default for ArgGroup`
 
-- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md#arggroup)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](builder/arg_group/index.md)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](builder/arg_group/index.md#arggroup)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 
@@ -623,37 +623,37 @@ if matches.contains_id("out") {
 
 - <span id="argmatches-get-flag"></span>`fn get_flag(&self, id: &str) -> bool`
 
-- <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](parser/matches/arg_matches/index.md#valuesref)
 
-- <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md#occurrencesref)
 
-- <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](parser/matches/arg_matches/index.md#rawvalues)
 
-- <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](parser/matches/arg_matches/index.md#rawoccurrences)
 
 - <span id="argmatches-remove-one"></span>`fn remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<T>`
 
-- <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](parser/matches/arg_matches/index.md#values)
 
-- <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](parser/matches/arg_matches/index.md#occurrences)
 
 - <span id="argmatches-contains-id"></span>`fn contains_id(&self, id: &str) -> bool`
 
-- <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](parser/matches/arg_matches/index.md#idsref)
 
 - <span id="argmatches-args-present"></span>`fn args_present(&self) -> bool`
 
-- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](parser/matches/value_source/index.md)
+- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](parser/matches/value_source/index.md#valuesource)
 
 - <span id="argmatches-index-of"></span>`fn index_of(&self, id: &str) -> Option<usize>`
 
-- <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](parser/matches/arg_matches/index.md#indices)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
 ##### `impl Debug for ArgMatches`
 
@@ -661,13 +661,13 @@ if matches.contains_id("out") {
 
 ##### `impl Default for ArgMatches`
 
-- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](parser/matches/arg_matches/index.md#argmatches)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -697,7 +697,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
-- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](builder/str/index.md)
+- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](builder/str/index.md#str)
 
 #### Trait Implementations
 
@@ -707,7 +707,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Clone for Id`
 
-- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](util/id/index.md)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](util/id/index.md#id)
 
 ##### `impl Debug for Id`
 
@@ -715,7 +715,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Default for Id`
 
-- <span id="id-default"></span>`fn default() -> Id` — [`Id`](util/id/index.md)
+- <span id="id-default"></span>`fn default() -> Id` — [`Id`](util/id/index.md#id)
 
 ##### `impl Display for Id`
 
@@ -731,23 +731,23 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md#id)
 
 ##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](builder/resettable/index.md), [`Id`](util/id/index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Id>` — [`Resettable`](builder/resettable/index.md#resettable), [`Id`](util/id/index.md#id)
 
 ##### `impl Ord for Id`
 
-- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](util/id/index.md)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](util/id/index.md#id)
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](util/id/index.md)
+- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](util/id/index.md#id)
 
 ##### `impl PartialOrd for Id`
 
-- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](util/id/index.md)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](util/id/index.md#id)
 
 ##### `impl StructuralPartialEq for Id`
 
@@ -1143,23 +1143,23 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
-- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](builder/range/index.md)
+- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](builder/range/index.md#valuerange)
 
-- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](builder/range/index.md)
+- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](builder/range/index.md#valuerange)
 
 - <span id="argaction-default-value"></span>`fn default_value(&self) -> Option<&'static std::ffi::OsStr>`
 
 - <span id="argaction-default-missing-value"></span>`fn default_missing_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](builder/value_parser/index.md)
+- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](builder/value_parser/index.md#valueparser)
 
-- <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](util/any_value/index.md)
+- <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](util/any_value/index.md#anyvalueid)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgAction`
 
-- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](builder/action/index.md)
+- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](builder/action/index.md#argaction)
 
 ##### `impl Debug for ArgAction`
 
@@ -1167,7 +1167,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl IntoResettable for Option<crate::builder::ArgAction>`
 
-- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](builder/resettable/index.md), [`ArgAction`](builder/action/index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](builder/resettable/index.md#resettable), [`ArgAction`](builder/action/index.md#argaction)
 
 ### `ValueHint`
 
@@ -1284,7 +1284,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](builder/value_hint/index.md)
+- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](builder/value_hint/index.md#valuehint)
 
 ##### `impl Copy for ValueHint`
 
@@ -1294,7 +1294,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Default for ValueHint`
 
-- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](builder/value_hint/index.md)
+- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](builder/value_hint/index.md#valuehint)
 
 ##### `impl Eq for ValueHint`
 
@@ -1310,11 +1310,11 @@ Overview of which hints are supported by which shell:
 
 ##### `impl IntoResettable for Option<crate::builder::ValueHint>`
 
-- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](builder/resettable/index.md), [`ValueHint`](builder/value_hint/index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](builder/resettable/index.md#resettable), [`ValueHint`](builder/value_hint/index.md#valuehint)
 
 ##### `impl PartialEq for ValueHint`
 
-- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](builder/value_hint/index.md)
+- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](builder/value_hint/index.md#valuehint)
 
 ##### `impl StructuralPartialEq for ValueHint`
 
@@ -1390,13 +1390,13 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md)
+- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md#possiblevalue)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](util/color/index.md)
+- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](util/color/index.md#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
@@ -1406,7 +1406,7 @@ Represents the color preferences for program output
 
 ##### `impl Default for ColorChoice`
 
-- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](util/color/index.md)
+- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](util/color/index.md#colorchoice)
 
 ##### `impl Display for ColorChoice`
 
@@ -1422,7 +1422,7 @@ Represents the color preferences for program output
 
 ##### `impl PartialEq for ColorChoice`
 
-- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](util/color/index.md)
+- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](util/color/index.md#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
@@ -1434,7 +1434,7 @@ Represents the color preferences for program output
 
 - <span id="colorchoice-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md)
+- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md#possiblevalue)
 
 ## Traits
 
@@ -1685,7 +1685,7 @@ When deriving [`Parser`](derive/index.md), a field whose type implements `ValueE
 
 #### Implementors
 
-- [`ColorChoice`](util/color/index.md)
+- [`ColorChoice`](util/color/index.md#colorchoice)
 
 ## Type Aliases
 

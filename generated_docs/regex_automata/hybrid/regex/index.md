@@ -114,9 +114,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
 - <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
@@ -173,7 +173,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - <span id="findmatches-type-item"></span>`type Item = Match`
 
-- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
 
 ### `Cache`
 
@@ -208,17 +208,17 @@ panics or incorrect results.
 
 - <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](#regex)
 
-- <span id="cache-forward"></span>`fn forward(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md)
+- <span id="cache-forward"></span>`fn forward(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
-- <span id="cache-reverse"></span>`fn reverse(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md)
+- <span id="cache-reverse"></span>`fn reverse(&mut self) -> &dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
-- <span id="cache-forward-mut"></span>`fn forward_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md)
+- <span id="cache-forward-mut"></span>`fn forward_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
-- <span id="cache-reverse-mut"></span>`fn reverse_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md)
+- <span id="cache-reverse-mut"></span>`fn reverse_mut(&mut self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md#cache)
 
-- <span id="cache-as-parts"></span>`fn as_parts(&self) -> (&dfa::Cache, &dfa::Cache)` — [`Cache`](../dfa/index.md)
+- <span id="cache-as-parts"></span>`fn as_parts(&self) -> (&dfa::Cache, &dfa::Cache)` — [`Cache`](../dfa/index.md#cache)
 
-- <span id="cache-as-parts-mut"></span>`fn as_parts_mut(&mut self) -> (&mut dfa::Cache, &mut dfa::Cache)` — [`Cache`](../dfa/index.md)
+- <span id="cache-as-parts-mut"></span>`fn as_parts_mut(&mut self) -> (&mut dfa::Cache, &mut dfa::Cache)` — [`Cache`](../dfa/index.md#cache)
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -302,17 +302,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md#builderror)
 
-- <span id="builder-build-from-dfas"></span>`fn build_from_dfas(&self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md), [`Regex`](#regex)
+- <span id="builder-build-from-dfas"></span>`fn build_from_dfas(&self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md#dfa), [`Regex`](#regex)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md#config), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md#config), [`Builder`](#builder)
 
-- <span id="builder-dfa"></span>`fn dfa(&mut self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md), [`Builder`](#builder)
+- <span id="builder-dfa"></span>`fn dfa(&mut self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md#config), [`Builder`](#builder)
 
 #### Trait Implementations
 

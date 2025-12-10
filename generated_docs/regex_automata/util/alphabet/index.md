@@ -210,9 +210,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="byteclasses-singletons"></span>`fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- <span id="byteclasses-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md)
+- <span id="byteclasses-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md#deserializeerror)
 
-- <span id="byteclasses-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="byteclasses-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
 - <span id="byteclasses-write-to-len"></span>`fn write_to_len(&self) -> usize`
 
@@ -492,9 +492,9 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 
 - <span id="byteset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="byteset-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md)
+- <span id="byteset-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md#deserializeerror)
 
-- <span id="byteset-write-to"></span>`fn write_to<E: crate::util::wire::Endian>(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="byteset-write-to"></span>`fn write_to<E: crate::util::wire::Endian>(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
 - <span id="byteset-write-to-len"></span>`fn write_to_len(&self) -> usize`
 

@@ -49,7 +49,7 @@ struct BlocksCallback<S, C> {
 
 - <span id="blockscallback-type-output"></span>`type Output = <C as Consumer>::Result`
 
-- <span id="blockscallback-callback"></span>`fn callback<P: Producer<Item = T>>(self, producer: P) -> <Self as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="blockscallback-callback"></span>`fn callback<P: Producer<Item = T>>(self, producer: P) -> <Self as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ### `ExponentialBlocks<I>`
 
@@ -95,7 +95,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 - <span id="exponentialblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ExponentialBlocks<I>`
 
@@ -156,7 +156,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 - <span id="uniformblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for UniformBlocks<I>`
 

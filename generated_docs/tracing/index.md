@@ -1018,23 +1018,23 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
+- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md#span)
 
-- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
+- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md#span)
 
-- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](span/index.md)
+- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md#id), [`Metadata`](#metadata), [`Span`](span/index.md#span)
 
-- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
+- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md#span)
 
-- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](span/index.md)
+- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](span/index.md#span)
 
-- <span id="span-current"></span>`fn current() -> Span` — [`Span`](span/index.md)
+- <span id="span-current"></span>`fn current() -> Span` — [`Span`](span/index.md#span)
 
-- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](dispatcher/index.md), [`Span`](span/index.md)
+- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md#attributes), [`Dispatch`](dispatcher/index.md#dispatch), [`Span`](span/index.md#span)
 
-- <span id="span-enter"></span>`fn enter(&self) -> Entered<'_>` — [`Entered`](span/index.md)
+- <span id="span-enter"></span>`fn enter(&self) -> Entered<'_>` — [`Entered`](span/index.md#entered)
 
-- <span id="span-entered"></span>`fn entered(self) -> EnteredSpan` — [`EnteredSpan`](span/index.md)
+- <span id="span-entered"></span>`fn entered(self) -> EnteredSpan` — [`EnteredSpan`](span/index.md#enteredspan)
 
 - <span id="span-or-current"></span>`fn or_current(self) -> Self`
 
@@ -1054,19 +1054,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 - <span id="span-is-none"></span>`fn is_none(&self) -> bool`
 
-- <span id="span-follows-from"></span>`fn follows_from(&self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](span/index.md)
+- <span id="span-follows-from"></span>`fn follows_from(&self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](span/index.md#id)
 
-- <span id="span-id"></span>`fn id(&self) -> Option<Id>` — [`Id`](span/index.md)
+- <span id="span-id"></span>`fn id(&self) -> Option<Id>` — [`Id`](span/index.md#id)
 
 - <span id="span-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](#metadata)
 
-- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](dispatcher/index.md)
+- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md#id), [`Dispatch`](dispatcher/index.md#dispatch)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](span/index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](span/index.md#span)
 
 ##### `impl Debug for Span`
 

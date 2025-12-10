@@ -654,9 +654,9 @@ Whether memory allocation errors should return an error or abort.
 
 #### Implementations
 
-- <span id="fallibility-capacity-overflow"></span>`fn capacity_overflow(self) -> TryReserveError` — [`TryReserveError`](../index.md)
+- <span id="fallibility-capacity-overflow"></span>`fn capacity_overflow(self) -> TryReserveError` — [`TryReserveError`](../index.md#tryreserveerror)
 
-- <span id="fallibility-alloc-err"></span>`fn alloc_err(self, layout: Layout) -> TryReserveError` — [`TryReserveError`](../index.md)
+- <span id="fallibility-alloc-err"></span>`fn alloc_err(self, layout: Layout) -> TryReserveError` — [`TryReserveError`](../index.md#tryreserveerror)
 
 #### Trait Implementations
 

@@ -58,7 +58,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../i
 
 - <span id="whilesome-type-item"></span>`type Item = T`
 
-- <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for WhileSome<I>`
 
@@ -95,9 +95,9 @@ struct WhileSomeConsumer<'f, C> {
 
 - <span id="whilesomeconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="whilesomeconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="whilesomeconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="whilesomeconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="whilesomeconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="whilesomeconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -121,7 +121,7 @@ struct WhileSomeConsumer<'f, C> {
 
 - <span id="whilesomeconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="whilesomeconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="whilesomeconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `WhileSomeFolder<'f, C>`
 
@@ -144,7 +144,7 @@ struct WhileSomeFolder<'f, C> {
 
 - <span id="whilesomefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="whilesomefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="whilesomefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="whilesomefolder-full"></span>`fn full(&self) -> bool`
 

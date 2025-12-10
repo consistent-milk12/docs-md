@@ -200,7 +200,7 @@ struct Registry {
 
 #### Implementations
 
-- <span id="registry-new"></span>`fn new<S>(builder: ThreadPoolBuilder<S>) -> Result<Arc<Self>, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPoolBuildError`](../index.md)
+- <span id="registry-new"></span>`fn new<S>(builder: ThreadPoolBuilder<S>) -> Result<Arc<Self>, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md#threadpoolbuilder), [`ThreadPoolBuildError`](../index.md#threadpoolbuilderror)
 
 - <span id="registry-current"></span>`fn current() -> Arc<Registry>` — [`Registry`](#registry)
 
@@ -216,15 +216,15 @@ struct Registry {
 
 - <span id="registry-wait-until-primed"></span>`fn wait_until_primed(&self)`
 
-- <span id="registry-inject-or-push"></span>`fn inject_or_push(&self, job_ref: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject-or-push"></span>`fn inject_or_push(&self, job_ref: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
-- <span id="registry-inject"></span>`fn inject(&self, injected_job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject"></span>`fn inject(&self, injected_job: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
 - <span id="registry-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
 
-- <span id="registry-pop-injected-job"></span>`fn pop_injected_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="registry-pop-injected-job"></span>`fn pop_injected_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
-- <span id="registry-inject-broadcast"></span>`fn inject_broadcast(&self, injected_jobs: impl ExactSizeIterator<Item = JobRef>)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject-broadcast"></span>`fn inject_broadcast(&self, injected_jobs: impl ExactSizeIterator<Item = JobRef>)` — [`JobRef`](../job/index.md#jobref)
 
 - <span id="registry-in-worker"></span>`fn in_worker<OP, R>(&self, op: OP) -> R`
 
@@ -373,7 +373,7 @@ struct ThreadInfo {
 
 #### Implementations
 
-- <span id="threadinfo-new"></span>`fn new(stealer: Stealer<JobRef>) -> ThreadInfo` — [`JobRef`](../job/index.md), [`ThreadInfo`](#threadinfo)
+- <span id="threadinfo-new"></span>`fn new(stealer: Stealer<JobRef>) -> ThreadInfo` — [`JobRef`](../job/index.md#jobref), [`ThreadInfo`](#threadinfo)
 
 #### Trait Implementations
 
@@ -434,31 +434,31 @@ struct WorkerThread {
 
 - <span id="workerthread-index"></span>`fn index(&self) -> usize`
 
-- <span id="workerthread-push"></span>`unsafe fn push(&self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-push"></span>`unsafe fn push(&self, job: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
-- <span id="workerthread-push-fifo"></span>`unsafe fn push_fifo(&self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-push-fifo"></span>`unsafe fn push_fifo(&self, job: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
 - <span id="workerthread-local-deque-is-empty"></span>`fn local_deque_is_empty(&self) -> bool`
 
-- <span id="workerthread-take-local-job"></span>`fn take_local_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-take-local-job"></span>`fn take_local_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
 - <span id="workerthread-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
 
 - <span id="workerthread-wait-until"></span>`unsafe fn wait_until<L: AsCoreLatch + ?Sized>(&self, latch: &L)`
 
-- <span id="workerthread-wait-until-cold"></span>`unsafe fn wait_until_cold(&self, latch: &CoreLatch)` — [`CoreLatch`](../latch/index.md)
+- <span id="workerthread-wait-until-cold"></span>`unsafe fn wait_until_cold(&self, latch: &CoreLatch)` — [`CoreLatch`](../latch/index.md#corelatch)
 
 - <span id="workerthread-wait-until-out-of-work"></span>`unsafe fn wait_until_out_of_work(&self)`
 
-- <span id="workerthread-find-work"></span>`fn find_work(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-find-work"></span>`fn find_work(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
-- <span id="workerthread-yield-now"></span>`fn yield_now(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
+- <span id="workerthread-yield-now"></span>`fn yield_now(&self) -> Yield` — [`Yield`](../thread_pool/index.md#yield)
 
-- <span id="workerthread-yield-local"></span>`fn yield_local(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
+- <span id="workerthread-yield-local"></span>`fn yield_local(&self) -> Yield` — [`Yield`](../thread_pool/index.md#yield)
 
-- <span id="workerthread-execute"></span>`unsafe fn execute(&self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-execute"></span>`unsafe fn execute(&self, job: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
-- <span id="workerthread-steal"></span>`fn steal(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-steal"></span>`fn steal(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
 #### Trait Implementations
 

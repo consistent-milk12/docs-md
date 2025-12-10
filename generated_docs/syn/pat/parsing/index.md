@@ -64,9 +64,9 @@ enum PatRangeBound {
 
 #### Implementations
 
-- <span id="patrangebound-into-expr"></span>`fn into_expr(self) -> Box<Expr>` — [`Expr`](../../expr/index.md)
+- <span id="patrangebound-into-expr"></span>`fn into_expr(self) -> Box<Expr>` — [`Expr`](../../expr/index.md#expr)
 
-- <span id="patrangebound-into-pat"></span>`fn into_pat(self) -> Pat` — [`Pat`](../index.md)
+- <span id="patrangebound-into-pat"></span>`fn into_pat(self) -> Pat` — [`Pat`](../index.md#pat)
 
 ## Functions
 

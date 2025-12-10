@@ -46,21 +46,21 @@ struct FixupContext {
 
 - <span id="fixupcontext-new-condition"></span>`fn new_condition() -> Self`
 
-- <span id="fixupcontext-leftmost-subexpression-with-operator"></span>`fn leftmost_subexpression_with_operator(self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-with-operator"></span>`fn leftmost_subexpression_with_operator(self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-leftmost-subexpression-with-dot"></span>`fn leftmost_subexpression_with_dot(self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-with-dot"></span>`fn leftmost_subexpression_with_dot(self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-leftmost-subexpression-precedence"></span>`fn leftmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-precedence"></span>`fn leftmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-rightmost-subexpression"></span>`fn rightmost_subexpression(self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression"></span>`fn rightmost_subexpression(self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-rightmost-subexpression-fixup"></span>`fn rightmost_subexpression_fixup(self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression-fixup"></span>`fn rightmost_subexpression_fixup(self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-rightmost-subexpression-precedence"></span>`fn rightmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression-precedence"></span>`fn rightmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
-- <span id="fixupcontext-parenthesize"></span>`fn parenthesize(self, expr: &Expr) -> bool` — [`Expr`](../expr/index.md)
+- <span id="fixupcontext-parenthesize"></span>`fn parenthesize(self, expr: &Expr) -> bool` — [`Expr`](../expr/index.md#expr)
 
-- <span id="fixupcontext-precedence"></span>`fn precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-precedence"></span>`fn precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
 #### Trait Implementations
 

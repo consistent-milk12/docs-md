@@ -42,7 +42,7 @@ struct Parser<'cmd> {
 
 #### Implementations
 
-- <span id="parser-new"></span>`fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../builder/command/index.md)
+- <span id="parser-new"></span>`fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../builder/command/index.md#command)
 
 ### `PendingArg`
 

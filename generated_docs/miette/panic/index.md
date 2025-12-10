@@ -33,7 +33,7 @@ struct Panic(String);
 
 ##### `impl Diag for Panic`
 
-- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md#report)
 
 ##### `impl Diagnostic for Panic`
 

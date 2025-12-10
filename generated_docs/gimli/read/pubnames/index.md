@@ -32,15 +32,15 @@ A single parsed pubname.
 
 - <span id="pubnamesentry-name"></span>`fn name(&self) -> &R`
 
-- <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md#debuginfooffset), [`Reader`](../index.md#reader)
 
-- <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntry<R>`
 
-- <span id="pubnamesentry-clone"></span>`fn clone(&self) -> PubNamesEntry<R>` — [`PubNamesEntry`](../index.md)
+- <span id="pubnamesentry-clone"></span>`fn clone(&self) -> PubNamesEntry<R>` — [`PubNamesEntry`](../index.md#pubnamesentry)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntry<R>`
 
@@ -48,7 +48,7 @@ A single parsed pubname.
 
 ##### `impl<R: Reader> PubStuffEntry for PubNamesEntry<R>`
 
-- <span id="pubnamesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
+- <span id="pubnamesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader), [`DebugInfoOffset`](../../index.md#debuginfooffset)
 
 ### `DebugPubNames<R: Reader>`
 
@@ -69,7 +69,7 @@ found in the `.debug_pubnames` section.
 
 ##### `impl<R: clone::Clone + Reader> Clone for DebugPubNames<R>`
 
-- <span id="debugpubnames-clone"></span>`fn clone(&self) -> DebugPubNames<R>` — [`DebugPubNames`](../index.md)
+- <span id="debugpubnames-clone"></span>`fn clone(&self) -> DebugPubNames<R>` — [`DebugPubNames`](../index.md#debugpubnames)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for DebugPubNames<R>`
 
@@ -77,7 +77,7 @@ found in the `.debug_pubnames` section.
 
 ##### `impl<R: Reader> Section for DebugPubNames<R>`
 
-- <span id="debugpubnames-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugpubnames-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md#sectionid)
 
 - <span id="debugpubnames-reader"></span>`fn reader(&self) -> &R`
 
@@ -96,13 +96,13 @@ Can be [used with
 
 #### Implementations
 
-- <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../../index.md), [`PubNamesEntry`](../index.md)
+- <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../../index.md#result), [`PubNamesEntry`](../index.md#pubnamesentry)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntryIter<R>`
 
-- <span id="pubnamesentryiter-clone"></span>`fn clone(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
+- <span id="pubnamesentryiter-clone"></span>`fn clone(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md#pubnamesentryiter)
 
 ##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntryIter<R>`
 

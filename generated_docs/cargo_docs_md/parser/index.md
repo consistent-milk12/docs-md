@@ -73,11 +73,11 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- <span id="parser-parse-json"></span>`fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-json"></span>`fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
-- <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
-- <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
 #### Trait Implementations
 

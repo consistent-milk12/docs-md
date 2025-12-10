@@ -85,7 +85,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Clone for Global`
 
-- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](global/index.md)
+- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](global/index.md#global)
 
 ##### `impl Copy for Global`
 
@@ -95,7 +95,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Default for Global`
 
-- <span id="global-default"></span>`fn default() -> Global` — [`Global`](global/index.md)
+- <span id="global-default"></span>`fn default() -> Global` — [`Global`](global/index.md#global)
 
 ### `AllocError`
 
@@ -234,6 +234,6 @@ following conditions must hold:
 
 #### Implementors
 
-- [`Global`](global/index.md)
+- [`Global`](global/index.md#global)
 - `&A`
 

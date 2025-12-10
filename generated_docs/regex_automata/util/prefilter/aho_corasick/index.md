@@ -24,7 +24,7 @@ struct AhoCorasick {
 
 #### Implementations
 
-- <span id="ahocorasick-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<AhoCorasick>` — [`MatchKind`](../../../index.md), [`AhoCorasick`](#ahocorasick)
+- <span id="ahocorasick-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<AhoCorasick>` — [`MatchKind`](../../../index.md#matchkind), [`AhoCorasick`](#ahocorasick)
 
 #### Trait Implementations
 
@@ -38,9 +38,9 @@ struct AhoCorasick {
 
 ##### `impl PrefilterI for AhoCorasick`
 
-- <span id="ahocorasick-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="ahocorasick-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
-- <span id="ahocorasick-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="ahocorasick-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md#span)
 
 - <span id="ahocorasick-memory-usage"></span>`fn memory_usage(&self) -> usize`
 

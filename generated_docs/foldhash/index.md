@@ -194,9 +194,9 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 #### Implementations
 
-- <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
+- <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
 
-- <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
+- <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
 
 - <span id="sharedseed-from-u64"></span>`const fn from_u64(seed: u64) -> Self`
 
@@ -204,7 +204,7 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 ##### `impl Clone for SharedSeed`
 
-- <span id="sharedseed-clone"></span>`fn clone(&self) -> SharedSeed` — [`SharedSeed`](seed/index.md)
+- <span id="sharedseed-clone"></span>`fn clone(&self) -> SharedSeed` — [`SharedSeed`](seed/index.md#sharedseed)
 
 ##### `impl Debug for SharedSeed`
 

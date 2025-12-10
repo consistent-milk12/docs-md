@@ -95,7 +95,7 @@ expression.
 
 ##### `impl<R, Offset> Clone for Piece<R, Offset>`
 
-- <span id="piece-clone"></span>`fn clone(&self) -> Piece<R, Offset>` — [`Piece`](../index.md)
+- <span id="piece-clone"></span>`fn clone(&self) -> Piece<R, Offset>` — [`Piece`](../index.md#piece)
 
 ##### `impl<R, Offset> Copy for Piece<R, Offset>`
 
@@ -105,7 +105,7 @@ expression.
 
 ##### `impl<R, Offset> PartialEq for Piece<R, Offset>`
 
-- <span id="piece-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md)
+- <span id="piece-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md#piece)
 
 ##### `impl<R, Offset> StructuralPartialEq for Piece<R, Offset>`
 
@@ -121,15 +121,15 @@ The bytecode for a DWARF expression or location description.
 
 #### Implementations
 
-- <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../../index.md), [`Evaluation`](../index.md)
+- <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../../index.md#encoding), [`Evaluation`](../index.md#evaluation)
 
-- <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../../index.md), [`OperationIter`](../index.md)
+- <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../../index.md#encoding), [`OperationIter`](../index.md#operationiter)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for Expression<R>`
 
-- <span id="expression-clone"></span>`fn clone(&self) -> Expression<R>` — [`Expression`](../index.md)
+- <span id="expression-clone"></span>`fn clone(&self) -> Expression<R>` — [`Expression`](../index.md#expression)
 
 ##### `impl<R: marker::Copy + Reader> Copy for Expression<R>`
 
@@ -145,7 +145,7 @@ The bytecode for a DWARF expression or location description.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for Expression<R>`
 
-- <span id="expression-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](../index.md)
+- <span id="expression-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](../index.md#expression)
 
 ##### `impl<R: Reader> StructuralPartialEq for Expression<R>`
 
@@ -164,15 +164,15 @@ An iterator for the operations in an expression.
 
 #### Implementations
 
-- <span id="operationiter-next"></span>`fn next(&mut self) -> Result<Option<Operation<R>>>` — [`Result`](../../index.md), [`Operation`](../index.md)
+- <span id="operationiter-next"></span>`fn next(&mut self) -> Result<Option<Operation<R>>>` — [`Result`](../../index.md#result), [`Operation`](../index.md#operation)
 
-- <span id="operationiter-offset-from"></span>`fn offset_from(&self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](../index.md), [`Reader`](../index.md)
+- <span id="operationiter-offset-from"></span>`fn offset_from(&self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](../index.md#expression), [`Reader`](../index.md#reader)
 
 #### Trait Implementations
 
 ##### `impl<R: clone::Clone + Reader> Clone for OperationIter<R>`
 
-- <span id="operationiter-clone"></span>`fn clone(&self) -> OperationIter<R>` — [`OperationIter`](../index.md)
+- <span id="operationiter-clone"></span>`fn clone(&self) -> OperationIter<R>` — [`OperationIter`](../index.md#operationiter)
 
 ##### `impl<R: marker::Copy + Reader> Copy for OperationIter<R>`
 
@@ -249,9 +249,9 @@ println!("{:?}", result);
 
 #### Implementations
 
-- <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md)
+- <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md#encoding)
 
-- <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](../index.md)
+- <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](../index.md#piece)
 
 #### Trait Implementations
 
@@ -289,7 +289,7 @@ relative to the section.
 
 ##### `impl<T: clone::Clone> Clone for DieReference<T>`
 
-- <span id="diereference-clone"></span>`fn clone(&self) -> DieReference<T>` — [`DieReference`](../index.md)
+- <span id="diereference-clone"></span>`fn clone(&self) -> DieReference<T>` — [`DieReference`](../index.md#diereference)
 
 ##### `impl<T: marker::Copy> Copy for DieReference<T>`
 
@@ -301,7 +301,7 @@ relative to the section.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DieReference<T>`
 
-- <span id="diereference-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md)
+- <span id="diereference-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md#diereference)
 
 ##### `impl<T> StructuralPartialEq for DieReference<T>`
 
@@ -711,13 +711,13 @@ using `Operation::Deref`.
 
 #### Implementations
 
-- <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../../index.md), [`Result`](../../index.md), [`Operation`](../index.md)
+- <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../../index.md#encoding), [`Result`](../../index.md#result), [`Operation`](../index.md#operation)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for Operation<R, Offset>`
 
-- <span id="operation-clone"></span>`fn clone(&self) -> Operation<R, Offset>` — [`Operation`](../index.md)
+- <span id="operation-clone"></span>`fn clone(&self) -> Operation<R, Offset>` — [`Operation`](../index.md#operation)
 
 ##### `impl<R, Offset> Copy for Operation<R, Offset>`
 
@@ -729,7 +729,7 @@ using `Operation::Deref`.
 
 ##### `impl<R, Offset> PartialEq for Operation<R, Offset>`
 
-- <span id="operation-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md)
+- <span id="operation-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md#operation)
 
 ##### `impl<R, Offset> StructuralPartialEq for Operation<R, Offset>`
 
@@ -820,7 +820,7 @@ A single location of a piece of the result of a DWARF expression.
 
 ##### `impl<R, Offset> Clone for Location<R, Offset>`
 
-- <span id="location-clone"></span>`fn clone(&self) -> Location<R, Offset>` — [`Location`](../index.md)
+- <span id="location-clone"></span>`fn clone(&self) -> Location<R, Offset>` — [`Location`](../index.md#location)
 
 ##### `impl<R, Offset> Copy for Location<R, Offset>`
 
@@ -830,7 +830,7 @@ A single location of a piece of the result of a DWARF expression.
 
 ##### `impl<R, Offset> PartialEq for Location<R, Offset>`
 
-- <span id="location-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md)
+- <span id="location-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md#location)
 
 ##### `impl<R, Offset> StructuralPartialEq for Location<R, Offset>`
 
@@ -1011,7 +1011,7 @@ to continue, as described by the variant.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
 
-- <span id="evaluationresult-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md)
+- <span id="evaluationresult-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md#evaluationresult)
 
 ##### `impl<R: Reader> StructuralPartialEq for EvaluationResult<R>`
 
@@ -1077,7 +1077,7 @@ println!("{:?}", result);
 
 #### Implementors
 
-- [`StoreOnHeap`](../../index.md)
+- [`StoreOnHeap`](../../index.md#storeonheap)
 
 ## Functions
 

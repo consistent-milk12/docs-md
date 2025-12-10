@@ -58,7 +58,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](../ind
 
 - <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for SkipAny<I>`
 
@@ -95,9 +95,9 @@ struct SkipAnyConsumer<'f, C> {
 
 - <span id="skipanyconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="skipanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="skipanyconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="skipanyconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -121,7 +121,7 @@ struct SkipAnyConsumer<'f, C> {
 
 - <span id="skipanyconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="skipanyconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `SkipAnyFolder<'f, C>`
 
@@ -144,7 +144,7 @@ struct SkipAnyFolder<'f, C> {
 
 - <span id="skipanyfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="skipanyfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="skipanyfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="skipanyfolder-full"></span>`fn full(&self) -> bool`
 

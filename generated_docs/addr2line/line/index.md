@@ -92,9 +92,9 @@ struct Lines {
 
 - <span id="lines-ranges"></span>`fn ranges(&self) -> impl Iterator<Item = gimli::Range> + '_`
 
-- <span id="lines-row-location"></span>`fn row_location(&self, row: &LineRow) -> Location<'_>` — [`LineRow`](#linerow), [`Location`](../frame/index.md)
+- <span id="lines-row-location"></span>`fn row_location(&self, row: &LineRow) -> Location<'_>` — [`LineRow`](#linerow), [`Location`](../frame/index.md#location)
 
-- <span id="lines-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../frame/index.md)
+- <span id="lines-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../frame/index.md#location)
 
 - <span id="lines-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64) -> Result<LineLocationRangeIter<'_>, gimli::Error>` — [`LineLocationRangeIter`](#linelocationrangeiter)
 
@@ -125,7 +125,7 @@ struct LineLocationRangeIter<'ctx> {
 
 - <span id="linelocationrangeiter-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
-- <span id="linelocationrangeiter-next"></span>`fn next(&mut self) -> Option<(u64, u64, Location<'ctx>)>` — [`Location`](../frame/index.md)
+- <span id="linelocationrangeiter-next"></span>`fn next(&mut self) -> Option<(u64, u64, Location<'ctx>)>` — [`Location`](../frame/index.md#location)
 
 ## Functions
 

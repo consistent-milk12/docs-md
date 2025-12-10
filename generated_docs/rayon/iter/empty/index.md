@@ -39,11 +39,11 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T: Send> IndexedParallelIterator for Empty<T>`
 
-- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="empty-len"></span>`fn len(&self) -> usize`
 
-- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Empty<T>`
 
@@ -59,7 +59,7 @@ Iterator adaptor for [the `empty()` function].
 
 - <span id="empty-type-item"></span>`type Item = T`
 
-- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="empty-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -111,7 +111,7 @@ Private empty producer
 
 - <span id="emptyproducer-type-intoiter"></span>`type IntoIter = Empty<T>`
 
-- <span id="emptyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="emptyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="emptyproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

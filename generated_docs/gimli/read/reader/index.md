@@ -33,7 +33,7 @@ all readers. If values are not unique then errors may point to the wrong reader.
 
 ##### `impl Clone for ReaderOffsetId`
 
-- <span id="readeroffsetid-clone"></span>`fn clone(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
+- <span id="readeroffsetid-clone"></span>`fn clone(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md#readeroffsetid)
 
 ##### `impl Copy for ReaderOffsetId`
 
@@ -45,7 +45,7 @@ all readers. If values are not unique then errors may point to the wrong reader.
 
 ##### `impl PartialEq for ReaderOffsetId`
 
-- <span id="readeroffsetid-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md)
+- <span id="readeroffsetid-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md#readeroffsetid)
 
 ##### `impl StructuralPartialEq for ReaderOffsetId`
 
@@ -344,6 +344,6 @@ thread safe or not.
 
 #### Implementors
 
-- [`EndianSlice`](../index.md)
-- [`RelocateReader`](../index.md)
+- [`EndianSlice`](../index.md#endianslice)
+- [`RelocateReader`](../index.md#relocatereader)
 

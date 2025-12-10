@@ -55,7 +55,7 @@ allowing for multiple types of colors to be used at runtime.
 
 ##### `impl Clone for DynColors`
 
-- <span id="dyncolors-clone"></span>`fn clone(&self) -> DynColors` — [`DynColors`](../index.md)
+- <span id="dyncolors-clone"></span>`fn clone(&self) -> DynColors` — [`DynColors`](../index.md#dyncolors)
 
 ##### `impl Copy for DynColors`
 
@@ -85,7 +85,7 @@ allowing for multiple types of colors to be used at runtime.
 
 ##### `impl PartialEq for DynColors`
 
-- <span id="dyncolors-eq"></span>`fn eq(&self, other: &DynColors) -> bool` — [`DynColors`](../index.md)
+- <span id="dyncolors-eq"></span>`fn eq(&self, other: &DynColors) -> bool` — [`DynColors`](../index.md#dyncolors)
 
 ##### `impl StructuralPartialEq for DynColors`
 

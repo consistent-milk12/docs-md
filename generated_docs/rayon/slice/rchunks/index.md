@@ -48,11 +48,11 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunks<'_, T>`
 
-- <span id="rchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunks-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="rchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for RChunks<'data, T>`
 
@@ -68,7 +68,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunks-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -121,7 +121,7 @@ struct RChunksProducer<'data, T: Sync> {
 
 - <span id="rchunksproducer-type-intoiter"></span>`type IntoIter = RChunks<'data, T>`
 
-- <span id="rchunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="rchunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="rchunksproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -157,11 +157,11 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunksExact<'_, T>`
 
-- <span id="rchunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksexact-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="rchunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for RChunksExact<'data, T>`
 
@@ -177,7 +177,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 - <span id="rchunksexact-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -230,7 +230,7 @@ struct RChunksExactProducer<'data, T: Sync> {
 
 - <span id="rchunksexactproducer-type-intoiter"></span>`type IntoIter = RChunksExact<'data, T>`
 
-- <span id="rchunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="rchunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="rchunksexactproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -259,11 +259,11 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<T: Send> IndexedParallelIterator for RChunksMut<'_, T>`
 
-- <span id="rchunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksmut-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="rchunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for RChunksMut<'data, T>`
 
@@ -279,7 +279,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksmut-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -332,7 +332,7 @@ struct RChunksMutProducer<'data, T: Send> {
 
 - <span id="rchunksmutproducer-type-intoiter"></span>`type IntoIter = RChunksMut<'data, T>`
 
-- <span id="rchunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="rchunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="rchunksmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
@@ -368,11 +368,11 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<'data, T: Send + 'data> IndexedParallelIterator for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksexactmut-len"></span>`fn len(&self) -> usize`
 
-- <span id="rchunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- <span id="rchunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for RChunksExactMut<'data, T>`
 
@@ -388,7 +388,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 - <span id="rchunksexactmut-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="rchunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -441,7 +441,7 @@ struct RChunksExactMutProducer<'data, T: Send> {
 
 - <span id="rchunksexactmutproducer-type-intoiter"></span>`type IntoIter = RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
+- <span id="rchunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
 - <span id="rchunksexactmutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

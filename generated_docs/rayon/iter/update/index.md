@@ -50,11 +50,11 @@ This struct is created by the `update()` method on [`ParallelIterator`](../index
 
 ##### `impl<I, F> IndexedParallelIterator for Update<I, F>`
 
-- <span id="update-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="update-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="update-len"></span>`fn len(&self) -> usize`
 
-- <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
 ##### `impl<T> IntoEither for Update<I, F>`
 
@@ -70,7 +70,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](../index
 
 - <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="update-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
@@ -123,7 +123,7 @@ struct UpdateProducer<'f, P, F> {
 
 - <span id="updateproducer-type-intoiter"></span>`type IntoIter = UpdateSeq<<P as Producer>::IntoIter, &'f F>`
 
-- <span id="updateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="updateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
 - <span id="updateproducer-min-len"></span>`fn min_len(&self) -> usize`
 
@@ -158,9 +158,9 @@ struct UpdateConsumer<'f, C, F> {
 
 - <span id="updateconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- <span id="updateconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="updateconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
-- <span id="updateconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="updateconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="updateconsumer-full"></span>`fn full(&self) -> bool`
 
@@ -184,7 +184,7 @@ struct UpdateConsumer<'f, C, F> {
 
 - <span id="updateconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- <span id="updateconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="updateconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md#consumer)
 
 ### `UpdateFolder<'f, C, F>`
 
@@ -207,7 +207,7 @@ struct UpdateFolder<'f, C, F> {
 
 - <span id="updatefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- <span id="updatefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="updatefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md#folder)
 
 - <span id="updatefolder-full"></span>`fn full(&self) -> bool`
 

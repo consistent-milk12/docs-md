@@ -56,7 +56,7 @@ struct AutoHelp<'cmd, 'writer> {
 
 #### Implementations
 
-- <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md), [`Command`](../../builder/command/index.md), [`Usage`](../usage/index.md)
+- <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Command`](../../builder/command/index.md#command), [`Usage`](../usage/index.md#usage)
 
 - <span id="autohelp-write-help"></span>`fn write_help(&mut self)`
 
@@ -82,9 +82,9 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 
 #### Implementations
 
-- <span id="helptemplate-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md), [`Command`](../../builder/command/index.md), [`Usage`](../usage/index.md)
+- <span id="helptemplate-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md#styledstr), [`Command`](../../builder/command/index.md#command), [`Usage`](../usage/index.md#usage)
 
-- <span id="helptemplate-term-w"></span>`fn term_w(cmd: &'cmd Command) -> usize` — [`Command`](../../builder/command/index.md)
+- <span id="helptemplate-term-w"></span>`fn term_w(cmd: &'cmd Command) -> usize` — [`Command`](../../builder/command/index.md#command)
 
 - <span id="helptemplate-write-templated-help"></span>`fn write_templated_help(&mut self, template: &str)`
 

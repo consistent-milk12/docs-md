@@ -53,8 +53,8 @@ trait TrivialDrop { ... }
 
 #### Implementors
 
-- [`PrivateIterMut`](../punctuated/index.md)
-- [`PrivateIter`](../punctuated/index.md)
+- [`PrivateIterMut`](../punctuated/index.md#privateitermut)
+- [`PrivateIter`](../punctuated/index.md#privateiter)
 - `iter::Empty<T>`
 - `option::IntoIter<&T>`
 - `option::IntoIter<&mut T>`
