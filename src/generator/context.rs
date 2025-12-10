@@ -242,8 +242,11 @@ impl<'a> GeneratorContext<'a> {
         for (type_id, item) in &krate.index {
             let impl_ids: &[Id] = match &item.inner {
                 ItemEnum::Struct(s) => &s.impls,
+
                 ItemEnum::Enum(e) => &e.impls,
+
                 ItemEnum::Union(u) => &u.impls,
+
                 _ => continue,
             };
 
@@ -336,6 +339,7 @@ impl<'a> GeneratorContext<'a> {
             ids.sort_by(|a, b| {
                 let path_a = krate.paths.get(a).map(|p| &p.path);
                 let path_b = krate.paths.get(b).map(|p| &p.path);
+
                 path_a.cmp(&path_b)
             });
         }

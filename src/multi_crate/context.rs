@@ -156,25 +156,24 @@ impl<'a> MultiCrateContext<'a> {
                     }
 
                     // Get the target type path
-                    if let Some(type_path) = Self::get_impl_target_path(impl_block) {
-                        // Extract the target crate name (first segment)
-                        if let Some(target_crate) = type_path.split("::").next() {
-                            // Skip if targeting same crate (not cross-crate)
-                            if target_crate == source_crate {
-                                continue;
-                            }
+                    if let Some(type_path) = Self::get_impl_target_path(impl_block)
+                        && let Some(target_crate) = type_path.split("::").next()
+                    {
+                        // Skip if targeting same crate (not cross-crate)
+                        if target_crate == source_crate {
+                            continue;
+                        }
 
-                            // Only add if target crate is in our collection
-                            if let Some(type_map) = result.get_mut(target_crate) {
-                                // Extract the type name (last segment)
-                                let type_name = type_path
-                                    .split("::")
-                                    .last()
-                                    .unwrap_or(&type_path)
-                                    .to_string();
+                        // Only add if target crate is in our collection
+                        if let Some(type_map) = result.get_mut(target_crate) {
+                            // Extract the type name (last segment)
+                            let type_name = type_path
+                                .split("::")
+                                .last()
+                                .unwrap_or(&type_path)
+                                .to_string();
 
-                                type_map.entry(type_name).or_default().push(impl_block);
-                            }
+                            type_map.entry(type_name).or_default().push(impl_block);
                         }
                     }
                 }
@@ -484,13 +483,11 @@ impl<'a> SingleCrateView<'a> {
 
         // Scan the source crate for impl blocks targeting this ID
         for item in source_krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner {
-                // Check if this impl targets our type using existing helper
-                if let Some(target_id) = Self::get_impl_target_id_from_type(&impl_block.for_)
-                    && target_id == id
-                {
-                    result.push(impl_block);
-                }
+            if let ItemEnum::Impl(impl_block) = &item.inner
+                && let Some(target_id) = Self::get_impl_target_id_from_type(&impl_block.for_)
+                && target_id == id
+            {
+                result.push(impl_block);
             }
         }
 
@@ -723,21 +720,21 @@ impl<'a> SingleCrateView<'a> {
                 continue;
             }
 
-            result.push_str(&docs[last_end..match_start]);
+            _ = write!(result, "{}", &docs[last_end..match_start]);
             last_end = match_end;
 
             let link_text = &caps[1];
 
             // Try to resolve via registry
             if let Some(link) = self.resolve_plain_link(link_text, current_file) {
-                result.push_str(&link);
+                _ = write!(result, "{link}");
             } else {
                 // Unresolved - keep as plain text
                 _ = write!(result, "[{link_text}]");
             }
         }
 
-        result.push_str(&docs[last_end..]);
+        _ = write!(result, "{}", &docs[last_end..]);
         result
     }
 
@@ -910,11 +907,11 @@ impl<'a> SingleCrateView<'a> {
             // 2. Explicitly looks like an external reference (contains "::")
             //
             // This prevents accidental cross-crate linking for common names like "Error"
-            if resolved_crate == self.crate_name || Self::looks_like_external_reference(link_text) {
+            if (resolved_crate == self.crate_name || Self::looks_like_external_reference(link_text))
                 // Use build_link_to_id to follow re-exports to the original definition
-                if let Some(link) = self.build_link_to_id(id, current_file, link_text, None) {
-                    return Some(link);
-                }
+                && let Some(link) = self.build_link_to_id(id, current_file, link_text, None)
+            {
+                return Some(link);
             }
         }
 
@@ -960,6 +957,7 @@ impl<'a> SingleCrateView<'a> {
             // Item exists but no anchor - link to page without anchor
             return Some(format!("[`{link_text}`]()"));
         }
+
         // Unknown item - return None (renders as inline code)
         None
     }

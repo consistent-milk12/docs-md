@@ -349,9 +349,7 @@ impl UnifiedLinkRegistry {
                     if let Some(target_id) = use_item.id
                         && !self.contains(crate_name, target_id)
                     {
-                        self.register_item(
-                            crate_name, target_id, export_name, &file_path, kind,
-                        );
+                        self.register_item(crate_name, target_id, export_name, &file_path, kind);
                     }
 
                     // For ALL re-exports, store the source path so we can

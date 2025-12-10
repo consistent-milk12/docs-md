@@ -33,10 +33,11 @@
 //! return owned strings.
 
 use std::borrow::Cow;
+use std::fmt::Write;
 
 use rustdoc_types::{
     AssocItemConstraint, AssocItemConstraintKind, Crate, GenericArg, GenericArgs, GenericBound,
-    GenericParamDef, GenericParamDefKind, Id, Term, TraitBoundModifier, Type,
+    GenericParamDef, GenericParamDefKind, Id, Term, TraitBoundModifier, Type, WherePredicate,
 };
 
 use crate::generator::render_shared::sanitize_path;
@@ -130,15 +131,19 @@ impl<'a> TypeRenderer<'a> {
             // Named type path like `Vec<T>` or `std::collections::HashMap<K, V>`
             Type::ResolvedPath(path) => {
                 let sanitized = sanitize_path(&path.path);
+
                 // If no generic args and no sanitization needed, borrow the path directly
                 if path.args.is_none() && matches!(sanitized, Cow::Borrowed(_)) {
                     return Cow::Borrowed(&path.path);
                 }
+
                 let mut result = sanitized.into_owned();
+
                 // Append generic arguments if present
                 if let Some(args) = &path.args {
                     result.push_str(&self.render_generic_args(args));
                 }
+
                 Cow::Owned(result)
             },
 
@@ -148,18 +153,22 @@ impl<'a> TypeRenderer<'a> {
                     .traits
                     .iter()
                     .map(|pt| {
-                        let sanitized = sanitize_path(&pt.trait_.path);
+                        let sanitized: Cow<'_, str> = sanitize_path(&pt.trait_.path);
+
                         if pt.trait_.args.is_none() {
                             sanitized.into_owned()
                         } else {
                             let mut s = sanitized.into_owned();
+
                             if let Some(args) = &pt.trait_.args {
                                 s.push_str(&self.render_generic_args(args));
                             }
+
                             s
                         }
                     })
                     .collect();
+
                 Cow::Owned(format!("dyn {}", traits.join(" + ")))
             },
 
@@ -177,10 +186,12 @@ impl<'a> TypeRenderer<'a> {
                     .iter()
                     .map(|(_, t)| self.render_type(t))
                     .collect();
+
                 // Render return type if present
                 let ret = fp.sig.output.as_ref().map_or_else(String::new, |output| {
                     format!(" -> {}", self.render_type(output))
                 });
+
                 Cow::Owned(format!("fn({}){}", params.join(", "), ret))
             },
 
@@ -210,6 +221,7 @@ impl<'a> TypeRenderer<'a> {
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
+
                 Cow::Owned(format!("impl {}", bound_strs.join(" + ")))
             },
 
@@ -234,6 +246,7 @@ impl<'a> TypeRenderer<'a> {
                     .as_ref()
                     .map(|l| format!("{l} "))
                     .unwrap_or_default();
+
                 // Optional mut keyword
                 let mutability = if *is_mutable { "mut " } else { "" };
                 Cow::Owned(format!("&{lt}{mutability}{}", self.render_type(type_)))
@@ -246,7 +259,8 @@ impl<'a> TypeRenderer<'a> {
                 trait_,
                 ..
             } => {
-                let self_ty = self.render_type(self_type);
+                let self_ty: Cow<'_, str> = self.render_type(self_type);
+
                 Cow::Owned(trait_.as_ref().map_or_else(
                     || format!("{self_ty}::{name}"),
                     |trait_path| {
@@ -384,6 +398,7 @@ impl<'a> TypeRenderer<'a> {
                 trait_, modifier, ..
             } => {
                 let sanitized = sanitize_path(&trait_.path);
+
                 // Simple case: no modifier, no generic args, no sanitization - borrow directly
                 if matches!(modifier, TraitBoundModifier::None)
                     && trait_.args.is_none()
@@ -395,7 +410,9 @@ impl<'a> TypeRenderer<'a> {
                 // Handle bound modifiers
                 let modifier_str = match modifier {
                     TraitBoundModifier::None => "",
+
                     TraitBoundModifier::Maybe => "?", // ?Sized
+
                     TraitBoundModifier::MaybeConst => "~const ", // ~const Trait
                 };
 
@@ -470,8 +487,7 @@ impl<'a> TypeRenderer<'a> {
 
                 // Add outlives bounds if present
                 if !outlives.is_empty() {
-                    result.push_str(": ");
-                    result.push_str(&outlives.join(" + "));
+                    _ = write!(result, ": {}", outlives.join(" + "));
                 }
 
                 Some(result)
@@ -496,8 +512,8 @@ impl<'a> TypeRenderer<'a> {
                         .iter()
                         .map(|b| self.render_generic_bound(b))
                         .collect();
-                    result.push_str(": ");
-                    result.push_str(&bound_strs.join(" + "));
+
+                    _ = write!(result, ": {}", bound_strs.join(" + "));
                 }
 
                 Some(result)
@@ -530,10 +546,7 @@ impl<'a> TypeRenderer<'a> {
     ///     U: Send
     /// ```
     #[must_use]
-    pub fn render_where_clause(
-        &self,
-        where_predicates: &[rustdoc_types::WherePredicate],
-    ) -> String {
+    pub fn render_where_clause(&self, where_predicates: &[WherePredicate]) -> String {
         if where_predicates.is_empty() {
             return String::new();
         }
@@ -554,10 +567,10 @@ impl<'a> TypeRenderer<'a> {
     /// - Bound: `T: Clone + Send`
     /// - Lifetime: `'a: 'b + 'c`
     /// - Equality: `<T as Iterator>::Item = u32`
-    fn render_where_predicate(self, pred: &rustdoc_types::WherePredicate) -> String {
+    fn render_where_predicate(self, pred: &WherePredicate) -> String {
         match pred {
             // Type bound predicate: `T: Clone + Send`
-            rustdoc_types::WherePredicate::BoundPredicate { type_, bounds, .. } => {
+            WherePredicate::BoundPredicate { type_, bounds, .. } => {
                 let bound_strs: Vec<Cow<str>> = bounds
                     .iter()
                     .map(|b| self.render_generic_bound(b))
@@ -567,12 +580,12 @@ impl<'a> TypeRenderer<'a> {
             },
 
             // Lifetime predicate: `'a: 'b + 'c`
-            rustdoc_types::WherePredicate::LifetimePredicate { lifetime, outlives } => {
+            WherePredicate::LifetimePredicate { lifetime, outlives } => {
                 format!("{lifetime}: {}", outlives.join(" + "))
             },
 
             // Equality predicate: `<T as Trait>::Item = SomeType`
-            rustdoc_types::WherePredicate::EqPredicate { lhs, rhs } => {
+            WherePredicate::EqPredicate { lhs, rhs } => {
                 format!("{} = {}", self.render_type(lhs), self.render_term(rhs))
             },
         }
@@ -697,20 +710,24 @@ impl<'a> TypeRenderer<'a> {
                         self.collect_types_recursive(ty, result);
                     }
                 }
+
                 for constraint in constraints {
                     if let AssocItemConstraintKind::Equality(Term::Type(ty)) = &constraint.binding {
                         self.collect_types_recursive(ty, result);
                     }
                 }
             },
+
             GenericArgs::Parenthesized { inputs, output } => {
                 for input in inputs {
                     self.collect_types_recursive(input, result);
                 }
+
                 if let Some(output) = output {
                     self.collect_types_recursive(output, result);
                 }
             },
+
             GenericArgs::ReturnTypeNotation => {},
         }
     }

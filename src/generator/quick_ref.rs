@@ -94,9 +94,12 @@ impl QuickRefGenerator {
         }
 
         let mut md = String::new();
-        md.push_str("## Quick Reference\n\n");
-        md.push_str("| Item | Kind | Description |\n");
-        md.push_str("|------|------|-------------|\n");
+        _ = write!(
+            md,
+            "## Quick Reference\n\n\
+             | Item | Kind | Description |\n\
+             |------|------|-------------|\n"
+        );
 
         for entry in entries {
             // Escape pipe characters in summary to prevent table breakage
@@ -170,9 +173,7 @@ pub fn extract_summary(docs: Option<&str>) -> String {
 
         // Check if we've found a sentence end
         if let Some(sentence) = try_extract_sentence(&collected) {
-            return sentence
-                .trim_end_matches([',', ';', ':'])
-                .to_string();
+            return sentence.trim_end_matches([',', ';', ':']).to_string();
         }
     }
 
@@ -457,7 +458,9 @@ mod tests {
     #[test]
     fn extract_summary_wrapped_sentence() {
         assert_eq!(
-            extract_summary(Some("A long sentence that\nspans multiple lines. More text.")),
+            extract_summary(Some(
+                "A long sentence that\nspans multiple lines. More text."
+            )),
             "A long sentence that spans multiple lines."
         );
     }
@@ -497,9 +500,6 @@ mod tests {
     #[test]
     fn extract_summary_preserves_single_sentence_behavior() {
         // Ensure single-line behavior is unchanged
-        assert_eq!(
-            extract_summary(Some("Short. More.")),
-            "Short."
-        );
+        assert_eq!(extract_summary(Some("Short. More.")), "Short.");
     }
 }

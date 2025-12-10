@@ -22,18 +22,18 @@
 //! - **Flat**: All markdown files in a single directory with `module__submodule.md` naming
 //! - **Nested**: Directory hierarchy mirroring module structure with `module/index.md` files
 
+#[cfg(feature = "source-parsing")]
+use std::path::Path;
 use std::path::PathBuf;
 use std::process::Command;
 
 #[cfg(feature = "source-parsing")]
-use std::path::Path;
-#[cfg(feature = "source-parsing")]
 use Internals::CollectSourcesArgs;
-#[cfg(feature = "source-parsing")]
-use Internals::source::find_source_dir;
 use Internals::generator::{Generator, RenderConfig, SourceConfig};
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
+#[cfg(feature = "source-parsing")]
+use Internals::source::find_source_dir;
 use Internals::{Cargo, Command as CliCommand, DocsArgs, GenerateArgs};
 use cargo_docs_md as Internals;
 #[cfg(feature = "trace")]

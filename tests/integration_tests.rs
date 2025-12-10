@@ -18,8 +18,8 @@
 
 use std::path::{Path, PathBuf};
 
-use cargo_docs_md::generator::config::RenderConfig;
 use cargo_docs_md::generator::Generator;
+use cargo_docs_md::generator::config::RenderConfig;
 use cargo_docs_md::linker::LinkRegistry;
 use cargo_docs_md::parser::Parser;
 use cargo_docs_md::{CliOutputFormat, MarkdownCapture};

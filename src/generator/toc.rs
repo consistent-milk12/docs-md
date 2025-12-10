@@ -122,7 +122,7 @@ impl TocGenerator {
         }
 
         let mut md = String::new();
-        md.push_str("## Contents\n\n");
+        _ = write!(md, "## Contents\n\n");
 
         for entry in entries {
             Self::render_entry(&mut md, entry, 0);
