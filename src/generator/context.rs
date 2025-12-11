@@ -23,7 +23,7 @@ use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 
 use crate::Args;
 use crate::generator::config::RenderConfig;
-use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
+use crate::generator::doc_links::{DocLinkProcessor, DocLinkUtils};
 use crate::generator::render_shared::SourcePathConfig;
 use crate::linker::LinkRegistry;
 
@@ -407,7 +407,7 @@ impl LinkResolver for GeneratorContext<'_> {
         let name = item.name.as_deref().unwrap_or("");
 
         // Strip duplicate title if docs start with "# name"
-        let docs = strip_duplicate_title(docs, name);
+        let docs = DocLinkUtils::strip_duplicate_title(docs, name);
 
         // Use pre-built index for efficiency (avoids rebuilding for each item)
         let processor = DocLinkProcessor::with_index(

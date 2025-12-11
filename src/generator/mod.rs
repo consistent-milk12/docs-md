@@ -56,10 +56,7 @@ pub use capture::MarkdownCapture;
 pub mod config;
 pub use config::{RenderConfig, SourceConfig};
 pub use context::{GeneratorContext, ItemAccess, ItemFilter, LinkResolver, RenderContext};
-pub use doc_links::{
-    DocLinkProcessor, convert_html_links, convert_path_reference_links, strip_duplicate_title,
-    strip_reference_definitions,
-};
+pub use doc_links::{DocLinkProcessor, DocLinkUtils};
 use flat::FlatGenerator;
 use fs_err as fs;
 pub use impl_category::ImplCategory;

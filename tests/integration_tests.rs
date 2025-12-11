@@ -772,16 +772,22 @@ fn test_method_anchors_present_in_output() {
 
 #[test]
 fn test_method_anchor_format() {
-    use cargo_docs_md::linker::method_anchor;
+    use cargo_docs_md::linker::AnchorUtils;
 
     // Test that method_anchor produces expected format
-    assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
-    assert_eq!(method_anchor("Vec", "push"), "vec-push");
-    assert_eq!(method_anchor("Option", "unwrap_or"), "option-unwrap-or");
+    assert_eq!(AnchorUtils::method_anchor("HashMap", "new"), "hashmap-new");
+    assert_eq!(AnchorUtils::method_anchor("Vec", "push"), "vec-push");
+    assert_eq!(
+        AnchorUtils::method_anchor("Option", "unwrap_or"),
+        "option-unwrap-or"
+    );
 
     // Test with generics stripped by slugify_anchor (angle brackets removed)
-    assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
-    assert_eq!(method_anchor("HashMap<K, V>", "insert"), "hashmap-insert");
+    assert_eq!(AnchorUtils::method_anchor("Vec<T>", "push"), "vec-push");
+    assert_eq!(
+        AnchorUtils::method_anchor("HashMap<K, V>", "insert"),
+        "hashmap-insert"
+    );
 }
 
 #[test]

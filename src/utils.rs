@@ -22,7 +22,7 @@
 /// # Examples
 ///
 /// ```
-/// use docs_md::utils::PathUtils;
+/// use cargo_docs_md::utils::PathUtils;
 ///
 /// // Extract the short name from a qualified path
 /// assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
@@ -39,7 +39,7 @@ impl PathUtils {
     /// # Examples
     ///
     /// ```
-    /// use docs_md::utils::PathUtils;
+    /// use cargo_docs_md::utils::PathUtils;
     ///
     /// assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
     /// assert_eq!(PathUtils::short_name("std::collections::HashMap"), "HashMap");
@@ -68,7 +68,10 @@ mod tests {
     #[test]
     fn short_name_qualified_path() {
         assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
-        assert_eq!(PathUtils::short_name("std::collections::HashMap"), "HashMap");
+        assert_eq!(
+            PathUtils::short_name("std::collections::HashMap"),
+            "HashMap"
+        );
         assert_eq!(PathUtils::short_name("tokio::sync::mpsc::Sender"), "Sender");
     }
 

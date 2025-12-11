@@ -14,7 +14,7 @@ use std::path::Path;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Span, StructKind, VariantKind, Visibility};
 
 use crate::generator::context::RenderContext;
-use crate::linker::{AssocItemKind, assoc_item_anchor, method_anchor};
+use crate::linker::{AnchorUtils, AssocItemKind};
 use crate::types::TypeRenderer;
 
 // =============================================================================
@@ -138,10 +138,10 @@ impl RendererUtils {
     /// # Examples
     ///
     /// ```
-    /// use cargo_docs_md::generator::render_shared::sanitize_path;
+    /// use cargo_docs_md::generator::render_shared::RendererUtils;
     ///
-    /// assert_eq!(sanitize_path("$crate::clone::Clone"), "clone::Clone");
-    /// assert_eq!(sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
+    /// assert_eq!(RendererUtils::sanitize_path("$crate::clone::Clone"), "clone::Clone");
+    /// assert_eq!(RendererUtils::sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
     /// ```
     #[must_use]
     pub fn sanitize_path(path: &str) -> Cow<'_, str> {
@@ -164,12 +164,12 @@ impl RendererUtils {
     /// # Examples
     ///
     /// ```
-    /// use cargo_docs_md::generator::render_shared::sanitize_self_param;
+    /// use cargo_docs_md::generator::render_shared::RendererUtils;
     ///
-    /// assert_eq!(sanitize_self_param("self: &Self"), "&self");
-    /// assert_eq!(sanitize_self_param("self: &mut Self"), "&mut self");
-    /// assert_eq!(sanitize_self_param("self: Self"), "self");
-    /// assert_eq!(sanitize_self_param("x: i32"), "x: i32");
+    /// assert_eq!(RendererUtils::sanitize_self_param("self: &Self"), "&self");
+    /// assert_eq!(RendererUtils::sanitize_self_param("self: &mut Self"), "&mut self");
+    /// assert_eq!(RendererUtils::sanitize_self_param("self: Self"), "self");
+    /// assert_eq!(RendererUtils::sanitize_self_param("x: i32"), "x: i32");
     /// ```
     #[must_use]
     pub fn sanitize_self_param(param: &str) -> Cow<'_, str> {
@@ -833,7 +833,11 @@ impl RendererInternals {
                     ItemEnum::AssocConst { type_, .. } => {
                         // Add anchor for associated constants if parent type is known
                         if let Some(type_name) = parent_type_name {
-                            let anchor = assoc_item_anchor(type_name, name, AssocItemKind::Const);
+                            let anchor = AnchorUtils::assoc_item_anchor(
+                                type_name,
+                                name,
+                                AssocItemKind::Const,
+                            );
                             _ = writeln!(
                                 md,
                                 "- <span id=\"{anchor}\"></span>`const {name}: {}`\n",
@@ -854,7 +858,7 @@ impl RendererInternals {
                             .map(|tn| {
                                 format!(
                                     "<span id=\"{}\"></span>",
-                                    assoc_item_anchor(tn, name, AssocItemKind::Type)
+                                    AnchorUtils::assoc_item_anchor(tn, name, AssocItemKind::Type)
                                 )
                             })
                             .unwrap_or_default();
@@ -958,7 +962,12 @@ impl RendererInternals {
 
         // Add anchor for deep linking if parent type is known
         let anchor_span = parent_type_name
-            .map(|tn| format!("<span id=\"{}\"></span>", method_anchor(tn, name)))
+            .map(|tn| {
+                format!(
+                    "<span id=\"{}\"></span>",
+                    AnchorUtils::method_anchor(tn, name)
+                )
+            })
             .unwrap_or_default();
 
         _ = write!(
@@ -996,9 +1005,9 @@ impl RendererInternals {
     /// # Example
     ///
     /// ```
-    /// use cargo_docs_md::generator::render_shared::render_collapsible_start;
+    /// use cargo_docs_md::generator::render_shared::RendererInternals;
     ///
-    /// let start = render_collapsible_start("Derived Traits (9 implementations)");
+    /// let start = RendererInternals::render_collapsible_start("Derived Traits (9 implementations)");
     /// assert!(start.contains("<details>"));
     /// assert!(start.contains("<summary>Derived Traits (9 implementations)</summary>"));
     /// ```
@@ -1014,9 +1023,9 @@ impl RendererInternals {
     /// # Example
     ///
     /// ```
-    /// use cargo_docs_md::generator::render_shared::render_collapsible_end;
+    /// use cargo_docs_md::generator::render_shared::RendererInternals;
     ///
-    /// assert_eq!(render_collapsible_end(), "\n</details>\n\n");
+    /// assert_eq!(RendererInternals::render_collapsible_end(), "\n</details>\n\n");
     /// ```
     #[must_use]
     pub const fn render_collapsible_end() -> &'static str {

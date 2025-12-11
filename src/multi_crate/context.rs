@@ -15,13 +15,10 @@ use tracing::{debug, instrument, trace};
 
 use crate::Args;
 use crate::generator::config::RenderConfig;
-use crate::generator::doc_links::{
-    convert_html_links, convert_path_reference_links, strip_duplicate_title,
-    strip_reference_definitions, unhide_code_lines,
-};
+use crate::generator::doc_links::DocLinkUtils;
 use crate::generator::render_shared::SourcePathConfig;
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
-use crate::linker::{LinkRegistry, item_has_anchor, slugify_anchor};
+use crate::linker::{AnchorUtils, LinkRegistry};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 use crate::utils::PathUtils;
 
@@ -787,9 +784,9 @@ impl<'a> SingleCrateView<'a> {
 
         if is_same_file {
             // Item is on the current page
-            if item_has_anchor(path_info.kind) {
+            if AnchorUtils::item_has_anchor(path_info.kind) {
                 // Has a heading - create anchor link
-                let anchor = slugify_anchor(link_text);
+                let anchor = AnchorUtils::slugify_anchor(link_text);
                 tracing::trace!(
                     anchor = %anchor,
                     kind = ?path_info.kind,
@@ -949,8 +946,11 @@ impl<'a> SingleCrateView<'a> {
         if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name)
             && let Some(path_info) = self.krate.paths.get(&id)
         {
-            if item_has_anchor(path_info.kind) {
-                return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
+            if AnchorUtils::item_has_anchor(path_info.kind) {
+                return Some(format!(
+                    "[`{link_text}`](#{})",
+                    AnchorUtils::slugify_anchor(link_text)
+                ));
             }
 
             // Item exists but no anchor - link to page without anchor
@@ -1480,7 +1480,9 @@ impl<'a> SingleCrateView<'a> {
         // ─────────────────────────────────────────────────────────────────────
         // Convert anchor to slug format (lowercase, hyphens for special chars)
         // "http_status_as_error" → "#http_status_as_error"
-        let anchor_suffix = anchor.map_or_else(String::new, |a| format!("#{}", slugify_anchor(a)));
+        let anchor_suffix = anchor.map_or_else(String::new, |a| {
+            format!("#{}", AnchorUtils::slugify_anchor(a))
+        });
 
         // ─────────────────────────────────────────────────────────────────────
         // Step 4: Assemble the final markdown link
@@ -1492,7 +1494,7 @@ impl<'a> SingleCrateView<'a> {
                 anchor_suffix
             } else {
                 // Turn display name into anchor: "ConfigBuilder" → "#configbuilder"
-                format!("#{}", slugify_anchor(display_name))
+                format!("#{}", AnchorUtils::slugify_anchor(display_name))
             };
             format!("[`{display_name}`]({anchor})")
         } else {
@@ -1650,17 +1652,17 @@ impl LinkResolver for SingleCrateView<'_> {
         let name = item.name.as_deref().unwrap_or("");
 
         // Strip duplicate title if docs start with "# name"
-        let docs = strip_duplicate_title(docs, name);
+        let docs = DocLinkUtils::strip_duplicate_title(docs, name);
 
         // Strip reference definitions first to prevent mangled output
-        let stripped = strip_reference_definitions(docs);
+        let stripped = DocLinkUtils::strip_reference_definitions(docs);
 
         // Unhide rustdoc hidden lines and add `rust` to bare code fences
-        let unhidden = unhide_code_lines(&stripped);
+        let unhidden = DocLinkUtils::unhide_code_lines(&stripped);
 
         // Convert HTML and path reference links
-        let html_processed = convert_html_links(&unhidden);
-        let path_processed = convert_path_reference_links(&html_processed);
+        let html_processed = DocLinkUtils::convert_html_links(&unhidden);
+        let path_processed = DocLinkUtils::convert_path_reference_links(&html_processed);
 
         // Process backtick links [`Name`]
         let backtick_processed =
@@ -1691,11 +1693,11 @@ impl LinkResolver for SingleCrateView<'_> {
         // Compute relative path using the same logic as build_markdown_link
         let relative_path = if current_local == target_path.as_str() {
             // Same file - just use anchor
-            format!("#{}", slugify_anchor(display_name))
+            format!("#{}", AnchorUtils::slugify_anchor(display_name))
         } else {
             // Different file - compute relative path within crate and append anchor
             let path = LinkRegistry::compute_relative_path(current_local, target_path);
-            format!("{}#{}", path, slugify_anchor(display_name))
+            format!("{}#{}", path, AnchorUtils::slugify_anchor(display_name))
         };
 
         Some(format!("[`{display_name}`]({relative_path})"))

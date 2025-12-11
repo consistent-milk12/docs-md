@@ -13,7 +13,7 @@ use crate::generator::context::RenderContext;
 use crate::generator::items::ItemRenderer;
 use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
 use crate::generator::toc::{TocEntry, TocGenerator};
-use crate::linker::slugify_anchor;
+use crate::linker::AnchorUtils;
 
 /// Renders a module to markdown.
 ///
@@ -435,7 +435,10 @@ impl<'a> ModuleRenderer<'a> {
                 .iter()
                 .filter_map(|(_, item)| {
                     let name = item.name.as_deref()?;
-                    Some(TocEntry::new(format!("`{name}`"), slugify_anchor(name)))
+                    Some(TocEntry::new(
+                        format!("`{name}`"),
+                        AnchorUtils::slugify_anchor(name),
+                    ))
                 })
                 .collect()
         }
@@ -447,7 +450,10 @@ impl<'a> ModuleRenderer<'a> {
                 .iter()
                 .filter_map(|item| {
                     let name = item.name.as_deref()?;
-                    Some(TocEntry::new(format!("`{name}`"), slugify_anchor(name)))
+                    Some(TocEntry::new(
+                        format!("`{name}`"),
+                        AnchorUtils::slugify_anchor(name),
+                    ))
                 })
                 .collect()
         }
@@ -543,7 +549,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "mod",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     self.get_item_summary(item, **id),
                 ));
             }
@@ -554,7 +560,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "struct",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     self.get_item_summary(item, **id),
                 ));
             }
@@ -565,7 +571,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "enum",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     self.get_item_summary(item, **id),
                 ));
             }
@@ -576,7 +582,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "trait",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     self.get_item_summary(item, **id),
                 ));
             }
@@ -589,7 +595,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "fn",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     extract_summary(item.docs.as_deref()),
                 ));
             }
@@ -600,7 +606,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "macro",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     extract_summary(item.docs.as_deref()),
                 ));
             }
@@ -611,7 +617,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "const",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     extract_summary(item.docs.as_deref()),
                 ));
             }
@@ -622,7 +628,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "type",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     extract_summary(item.docs.as_deref()),
                 ));
             }
@@ -634,7 +640,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "union",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     self.get_item_summary(item, **id),
                 ));
             }
@@ -646,7 +652,7 @@ impl<'a> ModuleRenderer<'a> {
                 entries.push(QuickRefEntry::new(
                     name,
                     "static",
-                    slugify_anchor(name),
+                    AnchorUtils::slugify_anchor(name),
                     extract_summary(item.docs.as_deref()),
                 ));
             }

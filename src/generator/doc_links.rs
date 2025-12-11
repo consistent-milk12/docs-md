@@ -24,7 +24,7 @@ use std::sync::LazyLock;
 use regex::Regex;
 use rustdoc_types::{Crate, Id, ItemKind};
 
-use crate::linker::{LinkRegistry, item_has_anchor, method_anchor};
+use crate::linker::{AnchorUtils, LinkRegistry};
 use crate::utils::PathUtils;
 
 // =============================================================================
@@ -209,187 +209,6 @@ static METHOD_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
 // Standalone Functions
 // =============================================================================
 
-/// Convert HTML-style rustdoc links to markdown anchors.
-///
-/// Transforms links like:
-/// - `(enum.NumberPrefix.html)` -> `(#numberprefix)`
-/// - `(struct.Foo.html#method.bar)` -> `(#foo-bar)` (type-method anchor)
-///
-/// This is useful for multi-crate documentation where the full processor
-/// context may not be available.
-#[must_use]
-pub fn convert_html_links(docs: &str) -> String {
-    replace_with_regex(docs, &HTML_LINK_RE, |caps| {
-        let item_name = &caps[2];
-
-        // If there's a method/variant anchor part, create a method anchor
-        caps.get(4).map_or_else(
-            || format!("(#{})", item_name.to_lowercase()),
-            |method_match| {
-                let method_name = method_match.as_str();
-                let anchor = method_anchor(item_name, method_name);
-                format!("(#{anchor})")
-            },
-        )
-    })
-}
-
-/// Strip duplicate title from documentation.
-///
-/// Some crate/module docs start with `# title` which duplicates the generated
-/// `# Crate 'name'` or `# Module 'name'` heading.
-///
-/// # Arguments
-///
-/// * `docs` - The documentation string to process
-/// * `item_name` - The name of the crate or module being documented
-///
-/// # Returns
-///
-/// The docs with the leading title removed if it matches the item name,
-/// otherwise the original docs unchanged.
-#[must_use]
-pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
-    let Some(first_line) = docs.lines().next() else {
-        return docs;
-    };
-
-    let Some(title) = first_line.strip_prefix("# ") else {
-        return docs;
-    };
-
-    // Normalize the title:
-    // - Remove backticks (e.g., `clap_builder` -> clap_builder)
-    // - Replace spaces with underscores (e.g., "Serde JSON" -> "serde_json")
-    // - Replace hyphens with underscores (e.g., "my-crate" -> "my_crate")
-    // - Lowercase for comparison
-    let normalized_title = title
-        .trim()
-        .replace('`', "")
-        .replace(['-', ' '], "_")
-        .to_lowercase();
-
-    let normalized_name = item_name.replace('-', "_").to_lowercase();
-
-    if normalized_title == normalized_name {
-        // Skip the first line and any following blank lines
-        docs[first_line.len()..].trim_start_matches('\n')
-    } else {
-        docs
-    }
-}
-
-/// Strip markdown reference definition lines.
-///
-/// Removes lines like `[`Name`]: path::to::item` which are no longer needed
-/// after intra-doc links are processed.
-pub fn strip_reference_definitions(docs: &str) -> String {
-    REFERENCE_DEF_RE.replace_all(docs, "").to_string()
-}
-
-/// Unhide rustdoc hidden lines in code blocks and add language identifiers.
-///
-/// This function performs two transformations on code blocks:
-/// 1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-///    but compiled. We remove the prefix to show the full example.
-/// 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-///    examples are Rust code.
-#[must_use]
-pub fn unhide_code_lines(docs: &str) -> String {
-    let mut result = String::with_capacity(docs.len());
-    let mut in_code_block = false;
-    let mut fence: Option<&str> = None;
-
-    for line in docs.lines() {
-        let trimmed = line.trim_start();
-
-        // Track code block boundaries
-        if let Some(f) = detect_fence(trimmed) {
-            if in_code_block && fence.is_some_and(|open| trimmed.starts_with(open)) {
-                // Closing fence
-                in_code_block = false;
-                fence = None;
-                _ = write!(result, "{line}");
-            } else if !in_code_block {
-                // Opening fence - check if it needs a language identifier
-                in_code_block = true;
-                fence = Some(f);
-
-                // Add `rust` to bare fences (``` or ~~~)
-                let leading_ws = &line[..line.len() - trimmed.len()];
-                if trimmed == "```" || trimmed == "~~~" {
-                    _ = write!(result, "{leading_ws}");
-                    _ = write!(result, "{trimmed}");
-                    _ = write!(result, "rust");
-                } else {
-                    _ = write!(result, "{line}");
-                }
-            } else {
-                // Nested fence (different style) - just pass through
-                _ = write!(result, "{line}");
-            }
-
-            _ = writeln!(result);
-            continue;
-        }
-
-        if in_code_block {
-            let leading_ws = &line[..line.len() - trimmed.len()];
-
-            if trimmed == "#" {
-                // Just "#" becomes empty line (newline added below)
-            } else if let Some(rest) = trimmed.strip_prefix("# ") {
-                // "# code" becomes "code"
-                _ = write!(result, "{leading_ws}{rest}");
-            } else {
-                _ = write!(result, "{line}");
-            }
-        } else {
-            _ = write!(result, "{line}");
-        }
-        result.push('\n');
-    }
-
-    // Remove trailing newline if original didn't have one
-    if !docs.ends_with('\n') && result.ends_with('\n') {
-        result.pop();
-    }
-
-    result
-}
-
-/// Detect a code fence and return the fence string.
-fn detect_fence(trimmed: &str) -> Option<&'static str> {
-    if trimmed.starts_with("```") {
-        Some("```")
-    } else if trimmed.starts_with("~~~") {
-        Some("~~~")
-    } else {
-        None
-    }
-}
-
-/// Convert path-style reference links to inline code.
-///
-/// Transforms: `[``ProgressTracker``][crate::style::ProgressTracker]`
-/// Into: `` `ProgressTracker` ``
-///
-/// Without full link resolution context, we can't create valid anchors,
-/// so we preserve the display text as inline code.
-#[must_use]
-pub fn convert_path_reference_links(docs: &str) -> String {
-    replace_with_regex(docs, &PATH_REF_LINK_RE, |caps| {
-        let display_text = &caps[1];
-
-        // Don't double-wrap in backticks
-        if display_text.starts_with('`') && display_text.ends_with('`') {
-            display_text.to_string()
-        } else {
-            format!("`{display_text}`")
-        }
-    })
-}
-
 // =============================================================================
 // DocLinkProcessor
 // =============================================================================
@@ -490,10 +309,10 @@ impl<'a> DocLinkProcessor<'a> {
     #[must_use]
     pub fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
         // Step 1: Strip reference definitions first
-        let stripped = strip_reference_definitions(docs);
+        let stripped = DocLinkUtils::strip_reference_definitions(docs);
 
         // Step 2: Unhide rustdoc hidden lines in code blocks and add `rust` to bare fences
-        let unhidden = unhide_code_lines(&stripped);
+        let unhidden = DocLinkUtils::unhide_code_lines(&stripped);
 
         // Step 3: Process all link types (with code block protection)
         let processed = self.process_links_protected(&unhidden, item_links);
@@ -506,7 +325,6 @@ impl<'a> DocLinkProcessor<'a> {
     fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
         let mut result = String::with_capacity(docs.len());
         let mut current_pos = 0;
-        let _bytes = docs.as_bytes();
 
         // Track code block state
         let mut in_code_block = false;
@@ -517,7 +335,7 @@ impl<'a> DocLinkProcessor<'a> {
 
             // Check for code fence
             let trimmed = line.trim_start();
-            if let Some(f) = detect_fence(trimmed) {
+            if let Some(f) = DocLinkUtils::detect_fence(trimmed) {
                 if in_code_block {
                     // Check if this closes the current block
                     if let Some(open_fence) = fence
@@ -538,14 +356,18 @@ impl<'a> DocLinkProcessor<'a> {
             } else {
                 // Outside code block - process links
                 let processed = self.process_line(line, item_links);
+
                 _ = write!(result, "{processed}");
             }
 
             // Add newline if not at end
             current_pos = line_end;
+
             if current_pos < docs.len() {
-                result.push('\n');
-                current_pos += 1; // Skip the newline character
+                _ = writeln!(result);
+
+                // Skip the newline character
+                current_pos += 1;
             }
         }
 
@@ -554,9 +376,11 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process a single line for all link types.
     fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String {
-        // Skip lines that look like reference definitions (backup check)
+        // Preserve reference definition lines unchanged (they're needed for markdown parsers)
+        // FIX: Previously returned empty string which dropped these lines entirely,
+        // breaking all reference-style links like [text][`Foo`]
         if line.trim_start().starts_with("[`") && line.contains("]:") {
-            return String::new();
+            return line.to_string();
         }
 
         // Process in order of specificity (most specific patterns first)
@@ -571,7 +395,7 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process reference-style links `[display text][`Span`]`.
     fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
-        replace_with_regex(text, &REFERENCE_LINK_RE, |caps| {
+        DocLinkUtils::replace_with_regex(text, &REFERENCE_LINK_RE, |caps| {
             let display_text = &caps[1];
             let ref_key = &caps[2];
 
@@ -584,7 +408,7 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process path reference links `[text][crate::path::Item]`.
     fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
-        replace_with_regex(text, &PATH_REF_LINK_RE, |caps| {
+        DocLinkUtils::replace_with_regex(text, &PATH_REF_LINK_RE, |caps| {
             let display_text = &caps[1];
             let rust_path = &caps[2];
 
@@ -605,7 +429,7 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process method links `[``Type::method``]`.
     fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
-        replace_with_regex_checked(text, &METHOD_LINK_RE, |caps, rest| {
+        DocLinkUtils::replace_with_regex_checked(text, &METHOD_LINK_RE, |caps, rest| {
             // Skip if already a markdown link
             if rest.starts_with('(') {
                 return caps[0].to_string();
@@ -626,7 +450,7 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process backtick links `[`Name`]`.
     fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
-        replace_with_regex_checked(text, &BACKTICK_LINK_RE, |caps, rest| {
+        DocLinkUtils::replace_with_regex_checked(text, &BACKTICK_LINK_RE, |caps, rest| {
             // Skip if already a markdown link
             if rest.starts_with('(') {
                 return caps[0].to_string();
@@ -639,7 +463,7 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Process plain links `[name]`.
     fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
-        replace_with_regex_checked(text, &PLAIN_LINK_RE, |caps, rest| {
+        DocLinkUtils::replace_with_regex_checked(text, &PLAIN_LINK_RE, |caps, rest| {
             // Skip if already a markdown link
             if matches!(rest.chars().next(), Some('(' | '[')) {
                 return caps[0].to_string();
@@ -670,7 +494,7 @@ impl<'a> DocLinkProcessor<'a> {
         text: &str,
         item_links: &HashMap<String, Id>,
     ) -> String {
-        replace_with_regex(text, &HTML_LINK_RE, |caps| {
+        DocLinkUtils::replace_with_regex(text, &HTML_LINK_RE, |caps| {
             let item_kind = &caps[1]; // struct, enum, trait, etc.
             let item_name = &caps[2];
 
@@ -680,7 +504,7 @@ impl<'a> DocLinkProcessor<'a> {
 
                 // Try to resolve the type first
                 if let Some(url) = self.resolve_html_link_to_url(item_name, item_kind, item_links) {
-                    let anchor = method_anchor(item_name, method_name);
+                    let anchor = AnchorUtils::method_anchor(item_name, method_name);
 
                     if url.is_empty() {
                         // Item on current page - just use anchor
@@ -692,7 +516,7 @@ impl<'a> DocLinkProcessor<'a> {
                 }
 
                 // Can't resolve type - use simple method anchor (assume same page)
-                let anchor = method_anchor(item_name, method_name);
+                let anchor = AnchorUtils::method_anchor(item_name, method_name);
                 return format!("(#{anchor})");
             }
 
@@ -724,9 +548,11 @@ impl<'a> DocLinkProcessor<'a> {
                 if path == self.current_file {
                     // Only create anchor if item has a heading
                     if let Some(path_info) = self.krate.paths.get(id)
-                        && item_has_anchor(path_info.kind)
+                        && AnchorUtils::item_has_anchor(path_info.kind)
                     {
-                        return Some(format!("#{}", item_name.to_lowercase()));
+                        //  FIX: Use slugify_anchor for consistent anchor generation
+                        //     "my_type" → "my-type" to match heading anchors
+                        return Some(format!("#{}", AnchorUtils::slugify_anchor(item_name)));
                     }
 
                     // Item on page but no anchor - link to page without anchor
@@ -754,9 +580,10 @@ impl<'a> DocLinkProcessor<'a> {
                     if path == self.current_file {
                         // Only create anchor if item has a heading
                         if let Some(path_info) = self.krate.paths.get(id)
-                            && item_has_anchor(path_info.kind)
+                            && AnchorUtils::item_has_anchor(path_info.kind)
                         {
-                            return Some(format!("#{}", item_name.to_lowercase()));
+                            //  FIX: Use slugify_anchor for consistent anchor generation
+                            return Some(format!("#{}", AnchorUtils::slugify_anchor(item_name)));
                         }
 
                         // Item on page but no anchor - link to page without anchor
@@ -834,7 +661,7 @@ impl<'a> DocLinkProcessor<'a> {
             }
 
             if !result.is_empty() {
-                result.push('\n');
+                _ = writeln!(result);
             }
 
             _ = write!(result, "{line}");
@@ -902,11 +729,12 @@ impl<'a> DocLinkProcessor<'a> {
             if path == self.current_file {
                 // Get the item name for anchor generation
                 if let Some(name) = self.link_registry.get_name(id) {
-                    return Some(format!("#{}", crate::linker::slugify_anchor(name)));
+                    return Some(format!("#{}", AnchorUtils::slugify_anchor(name)));
                 }
             }
 
             let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+
             return Some(relative);
         }
 
@@ -1008,7 +836,7 @@ impl<'a> DocLinkProcessor<'a> {
         let display = format!("{type_name}::{method_name}");
 
         // Use the short type name for anchor generation
-        let anchor = method_anchor(short_type, method_name);
+        let anchor = AnchorUtils::method_anchor(short_type, method_name);
 
         // Check if type is on the same page - just use anchor
         if type_path == self.current_file {
@@ -1072,11 +900,13 @@ impl<'a> DocLinkProcessor<'a> {
 
             // Check if target is on the same page - use anchor instead of relative path
             if path == self.current_file {
-                let anchor = crate::linker::slugify_anchor(clean_name);
+                let anchor = AnchorUtils::slugify_anchor(clean_name);
+
                 return Some(format!("[`{clean_name}`](#{anchor})"));
             }
 
             let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+
             return Some(format!("[`{clean_name}`]({relative})"));
         }
 
@@ -1101,52 +931,238 @@ impl<'a> DocLinkProcessor<'a> {
     }
 }
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
+/// Utility functions for document links
+pub struct DocLinkUtils;
 
-/// Replace regex matches using a closure.
-fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String
-where
-    F: Fn(&regex::Captures<'_>) -> String,
-{
-    let mut result = String::with_capacity(text.len());
-    let mut last_end = 0;
+impl DocLinkUtils {
+    /// Convert HTML-style rustdoc links to markdown anchors.
+    ///
+    /// Transforms links like:
+    /// - `(enum.NumberPrefix.html)` -> `(#numberprefix)`
+    /// - `(struct.Foo.html#method.bar)` -> `(#foo-bar)` (type-method anchor)
+    ///
+    /// This is useful for multi-crate documentation where the full processor
+    /// context may not be available.
+    #[must_use]
+    pub fn convert_html_links(docs: &str) -> String {
+        Self::replace_with_regex(docs, &HTML_LINK_RE, |caps| {
+            let item_name = &caps[2];
 
-    for caps in re.captures_iter(text) {
-        let m = caps.get(0).unwrap();
-        _ = write!(result, "{}", &text[last_end..m.start()]);
-        _ = write!(result, "{}", &replacer(&caps));
+            // If there's a method/variant anchor part, create a method anchor
+            caps.get(4).map_or_else(
+                || format!("(#{})", item_name.to_lowercase()),
+                |method_match| {
+                    let method_name = method_match.as_str();
+                    let anchor = AnchorUtils::method_anchor(item_name, method_name);
 
-        last_end = m.end();
+                    format!("(#{anchor})")
+                },
+            )
+        })
     }
 
-    _ = write!(result, "{}", &text[last_end..]);
+    /// Strip duplicate title from documentation.
+    ///
+    /// Some crate/module docs start with `# title` which duplicates the generated
+    /// `# Crate 'name'` or `# Module 'name'` heading.
+    ///
+    /// # Arguments
+    ///
+    /// * `docs` - The documentation string to process
+    /// * `item_name` - The name of the crate or module being documented
+    ///
+    /// # Returns
+    ///
+    /// The docs with the leading title removed if it matches the item name,
+    /// otherwise the original docs unchanged.
+    #[must_use]
+    pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
+        let Some(first_line) = docs.lines().next() else {
+            return docs;
+        };
 
-    result
-}
+        let Some(title) = first_line.strip_prefix("# ") else {
+            return docs;
+        };
 
-/// Replace regex matches with access to the text after the match.
-fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String
-where
-    F: Fn(&regex::Captures<'_>, &str) -> String,
-{
-    let mut result = String::with_capacity(text.len());
-    let mut last_end = 0;
+        // Normalize the title:
+        // - Remove backticks (e.g., `clap_builder` -> clap_builder)
+        // - Replace spaces with underscores (e.g., "Serde JSON" -> "serde_json")
+        // - Replace hyphens with underscores (e.g., "my-crate" -> "my_crate")
+        // - Lowercase for comparison
+        let normalized_title = title
+            .trim()
+            .replace('`', "")
+            .replace(['-', ' '], "_")
+            .to_lowercase();
 
-    for caps in re.captures_iter(text) {
-        let m = caps.get(0).unwrap();
-        _ = write!(result, "{}", &text[last_end..m.start()]);
+        let normalized_name = item_name.replace('-', "_").to_lowercase();
 
-        let rest = &text[m.end()..];
-        _ = write!(result, "{}", &replacer(&caps, rest));
-
-        last_end = m.end();
+        if normalized_title == normalized_name {
+            // Skip the first line and any following blank lines
+            docs[first_line.len()..].trim_start_matches('\n')
+        } else {
+            docs
+        }
     }
 
-    _ = write!(result, "{}", &text[last_end..]);
+    /// Strip markdown reference definition lines.
+    ///
+    /// Removes lines like `[`Name`]: path::to::item` which are no longer needed
+    /// after intra-doc links are processed.
+    pub fn strip_reference_definitions(docs: &str) -> String {
+        REFERENCE_DEF_RE.replace_all(docs, "").to_string()
+    }
 
-    result
+    /// Unhide rustdoc hidden lines in code blocks and add language identifiers.
+    ///
+    /// This function performs two transformations on code blocks:
+    /// 1. Lines starting with `# ` inside code blocks are hidden in rustdoc
+    ///    but compiled. We remove the prefix to show the full example.
+    /// 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
+    ///    examples are Rust code.
+    #[must_use]
+    pub fn unhide_code_lines(docs: &str) -> String {
+        let mut result = String::with_capacity(docs.len());
+        let mut in_code_block = false;
+        let mut fence: Option<&str> = None;
+
+        for line in docs.lines() {
+            let trimmed = line.trim_start();
+
+            // Track code block boundaries
+            if let Some(f) = Self::detect_fence(trimmed) {
+                if in_code_block && fence.is_some_and(|open| trimmed.starts_with(open)) {
+                    // Closing fence
+                    in_code_block = false;
+                    fence = None;
+
+                    _ = write!(result, "{line}");
+                } else if !in_code_block {
+                    // Opening fence - check if it needs a language identifier
+                    in_code_block = true;
+                    fence = Some(f);
+
+                    // Add `rust` to bare fences (``` or ~~~)
+                    let leading_ws = &line[..line.len() - trimmed.len()];
+
+                    if trimmed == "```" || trimmed == "~~~" {
+                        _ = write!(result, "{leading_ws}");
+                        _ = write!(result, "{trimmed}");
+                        _ = write!(result, "rust");
+                    } else {
+                        _ = write!(result, "{line}");
+                    }
+                } else {
+                    // Nested fence (different style) - just pass through
+                    _ = write!(result, "{line}");
+                }
+
+                _ = writeln!(result);
+                continue;
+            }
+
+            if in_code_block {
+                let leading_ws = &line[..line.len() - trimmed.len()];
+
+                if trimmed == "#" {
+                    // Just "#" becomes empty line (newline added below)
+                } else if let Some(rest) = trimmed.strip_prefix("# ") {
+                    // "# code" becomes "code"
+                    _ = write!(result, "{leading_ws}{rest}");
+                } else {
+                    _ = write!(result, "{line}");
+                }
+            } else {
+                _ = write!(result, "{line}");
+            }
+
+            _ = writeln!(result);
+        }
+
+        // Remove trailing newline if original didn't have one
+        if !docs.ends_with('\n') && result.ends_with('\n') {
+            result.pop();
+        }
+
+        result
+    }
+
+    /// Detect a code fence and return the fence string.
+    fn detect_fence(trimmed: &str) -> Option<&'static str> {
+        if trimmed.starts_with("```") {
+            Some("```")
+        } else if trimmed.starts_with("~~~") {
+            Some("~~~")
+        } else {
+            None
+        }
+    }
+
+    /// Convert path-style reference links to inline code.
+    ///
+    /// Transforms: `[``ProgressTracker``][crate::style::ProgressTracker]`
+    /// Into: `` `ProgressTracker` ``
+    ///
+    /// Without full link resolution context, we can't create valid anchors,
+    /// so we preserve the display text as inline code.
+    #[must_use]
+    pub fn convert_path_reference_links(docs: &str) -> String {
+        Self::replace_with_regex(docs, &PATH_REF_LINK_RE, |caps| {
+            let display_text = &caps[1];
+
+            // Don't double-wrap in backticks
+            if display_text.starts_with('`') && display_text.ends_with('`') {
+                display_text.to_string()
+            } else {
+                format!("`{display_text}`")
+            }
+        })
+    }
+
+    /// Replace regex matches using a closure.
+    fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String
+    where
+        F: Fn(&regex::Captures<'_>) -> String,
+    {
+        let mut result = String::with_capacity(text.len());
+        let mut last_end = 0;
+
+        for caps in re.captures_iter(text) {
+            let m = caps.get(0).unwrap();
+            _ = write!(result, "{}", &text[last_end..m.start()]);
+            _ = write!(result, "{}", &replacer(&caps));
+
+            last_end = m.end();
+        }
+
+        _ = write!(result, "{}", &text[last_end..]);
+
+        result
+    }
+
+    /// Replace regex matches with access to the text after the match.
+    fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String
+    where
+        F: Fn(&regex::Captures<'_>, &str) -> String,
+    {
+        let mut result = String::with_capacity(text.len());
+        let mut last_end = 0;
+
+        for caps in re.captures_iter(text) {
+            let m = caps.get(0).unwrap();
+            _ = write!(result, "{}", &text[last_end..m.start()]);
+
+            let rest = &text[m.end()..];
+            _ = write!(result, "{}", &replacer(&caps, rest));
+
+            last_end = m.end();
+        }
+
+        _ = write!(result, "{}", &text[last_end..]);
+
+        result
+    }
 }
 
 // =============================================================================
@@ -1155,23 +1171,23 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::DocLinkUtils;
 
     #[test]
     fn test_convert_html_links() {
         // Type-level links get anchors
         assert_eq!(
-            convert_html_links("See (enum.Foo.html) for details"),
+            DocLinkUtils::convert_html_links("See (enum.Foo.html) for details"),
             "See (#foo) for details"
         );
         // Method-level links now get method anchors (typename-methodname)
         assert_eq!(
-            convert_html_links("Call (struct.Bar.html#method.new)"),
+            DocLinkUtils::convert_html_links("Call (struct.Bar.html#method.new)"),
             "Call (#bar-new)"
         );
         // Verify method anchors work with different types
         assert_eq!(
-            convert_html_links("Use (struct.HashMap.html#method.insert)"),
+            DocLinkUtils::convert_html_links("Use (struct.HashMap.html#method.insert)"),
             "Use (#hashmap-insert)"
         );
     }
@@ -1180,56 +1196,62 @@ mod tests {
     fn test_strip_duplicate_title() {
         let docs = "# my_crate\n\nThis is the description.";
         assert_eq!(
-            strip_duplicate_title(docs, "my_crate"),
+            DocLinkUtils::strip_duplicate_title(docs, "my_crate"),
             "This is the description."
         );
 
         // Different title - keep it
         let docs2 = "# Introduction\n\nThis is the description.";
-        assert_eq!(strip_duplicate_title(docs2, "my_crate"), docs2);
+        assert_eq!(
+            DocLinkUtils::strip_duplicate_title(docs2, "my_crate"),
+            docs2
+        );
 
         // Backticks around title (e.g., # `clap_builder`)
         let docs3 = "# `clap_builder`\n\nBuilder implementation.";
         assert_eq!(
-            strip_duplicate_title(docs3, "clap_builder"),
+            DocLinkUtils::strip_duplicate_title(docs3, "clap_builder"),
             "Builder implementation."
         );
 
         // Spaced title (e.g., # Serde JSON -> serde_json)
         let docs4 = "# Serde JSON\n\nJSON serialization.";
         assert_eq!(
-            strip_duplicate_title(docs4, "serde_json"),
+            DocLinkUtils::strip_duplicate_title(docs4, "serde_json"),
             "JSON serialization."
         );
 
         // Hyphenated name
         let docs5 = "# my-crate\n\nDescription.";
-        assert_eq!(strip_duplicate_title(docs5, "my_crate"), "Description.");
+        assert_eq!(
+            DocLinkUtils::strip_duplicate_title(docs5, "my_crate"),
+            "Description."
+        );
     }
 
     #[test]
     fn test_strip_reference_definitions() {
         // Backtick-style reference definitions
         let docs = "See [`Foo`] for details.\n\n[`Foo`]: crate::Foo";
-        let result = strip_reference_definitions(docs);
+        let result = DocLinkUtils::strip_reference_definitions(docs);
         assert!(result.contains("See [`Foo`]"));
         assert!(!result.contains("[`Foo`]: crate::Foo"));
 
         // Plain reference definitions (no backticks)
         let docs2 = "Use [value] here.\n\n[value]: crate::value::Value";
-        let result2 = strip_reference_definitions(docs2);
+        let result2 = DocLinkUtils::strip_reference_definitions(docs2);
         assert!(result2.contains("Use [value]"));
         assert!(!result2.contains("[value]: crate::value::Value"));
 
         // Reference definitions with anchors
         let docs3 = "See [from_str](#from-str) docs.\n\n[from_str](#from-str): crate::de::from_str";
-        let result3 = strip_reference_definitions(docs3);
+        let result3 = DocLinkUtils::strip_reference_definitions(docs3);
         assert!(result3.contains("See [from_str](#from-str)"));
         assert!(!result3.contains("[from_str](#from-str): crate::de::from_str"));
 
         // Multiple reference definitions
         let docs4 = "Content.\n\n[a]: path::a\n[b]: path::b\n[`c`]: path::c";
-        let result4 = strip_reference_definitions(docs4);
+        let result4 = DocLinkUtils::strip_reference_definitions(docs4);
         assert_eq!(result4.trim(), "Content.");
     }
 
@@ -1237,14 +1259,14 @@ mod tests {
     fn test_convert_path_reference_links() {
         // Path references become inline code (can't create valid anchors without context)
         let docs = "[`Tracker`][crate::style::Tracker] is useful";
-        let result = convert_path_reference_links(docs);
+        let result = DocLinkUtils::convert_path_reference_links(docs);
         assert_eq!(result, "`Tracker` is useful");
     }
 
     #[test]
     fn test_unhide_code_lines_strips_hidden_prefix() {
         let docs = "```\n# #[cfg(feature = \"test\")]\n# {\nuse foo::bar;\n# }\n```";
-        let result = unhide_code_lines(docs);
+        let result = DocLinkUtils::unhide_code_lines(docs);
         assert_eq!(
             result,
             "```rust\n#[cfg(feature = \"test\")]\n{\nuse foo::bar;\n}\n```"
@@ -1254,21 +1276,21 @@ mod tests {
     #[test]
     fn test_unhide_code_lines_adds_rust_to_bare_fence() {
         let docs = "```\nlet x = 1;\n```";
-        let result = unhide_code_lines(docs);
+        let result = DocLinkUtils::unhide_code_lines(docs);
         assert_eq!(result, "```rust\nlet x = 1;\n```");
     }
 
     #[test]
     fn test_unhide_code_lines_preserves_existing_language() {
         let docs = "```python\nprint('hello')\n```";
-        let result = unhide_code_lines(docs);
+        let result = DocLinkUtils::unhide_code_lines(docs);
         assert_eq!(result, "```python\nprint('hello')\n```");
     }
 
     #[test]
     fn test_unhide_code_lines_handles_tilde_fence() {
         let docs = "~~~\ncode\n~~~";
-        let result = unhide_code_lines(docs);
+        let result = DocLinkUtils::unhide_code_lines(docs);
         assert_eq!(result, "~~~rust\ncode\n~~~");
     }
 
@@ -1276,7 +1298,7 @@ mod tests {
     fn test_unhide_code_lines_lone_hash() {
         // A lone # becomes an empty line
         let docs = "```\n#\nlet x = 1;\n```";
-        let result = unhide_code_lines(docs);
+        let result = DocLinkUtils::unhide_code_lines(docs);
         assert_eq!(result, "```rust\n\nlet x = 1;\n```");
     }
 
@@ -1288,15 +1310,15 @@ mod tests {
     fn test_convert_html_links_method_anchor_format() {
         // Method anchors use typename-methodname format
         assert_eq!(
-            convert_html_links("(struct.Vec.html#method.push)"),
+            DocLinkUtils::convert_html_links("(struct.Vec.html#method.push)"),
             "(#vec-push)"
         );
         assert_eq!(
-            convert_html_links("(enum.Option.html#method.unwrap)"),
+            DocLinkUtils::convert_html_links("(enum.Option.html#method.unwrap)"),
             "(#option-unwrap)"
         );
         assert_eq!(
-            convert_html_links("(trait.Iterator.html#method.next)"),
+            DocLinkUtils::convert_html_links("(trait.Iterator.html#method.next)"),
             "(#iterator-next)"
         );
     }
@@ -1305,7 +1327,7 @@ mod tests {
     fn test_convert_html_links_mixed_content() {
         // Mixed type and method links in same text
         let docs = "See (struct.Foo.html) and (struct.Foo.html#method.bar)";
-        let result = convert_html_links(docs);
+        let result = DocLinkUtils::convert_html_links(docs);
         assert_eq!(result, "See (#foo) and (#foo-bar)");
     }
 
@@ -1313,7 +1335,7 @@ mod tests {
     fn test_convert_html_links_preserves_surrounding_text() {
         // Note: underscores in method names are converted to hyphens by slugify_anchor
         let docs = "Call `x.(struct.Type.html#method.do_thing)` for effect.";
-        let result = convert_html_links(docs);
+        let result = DocLinkUtils::convert_html_links(docs);
         assert_eq!(result, "Call `x.(#type-do-thing)` for effect.");
     }
 }

@@ -6,7 +6,7 @@
 //!
 //! These benchmarks measure:
 //! - JSON parsing (standard vs simd-json)
-//! - `slugify_anchor`: Anchor slug generation (ASCII fast path vs Unicode)
+//! - `AnchorUtils::slugify_anchor`: Anchor slug generation (ASCII fast path vs Unicode)
 //! - Registry lookups: Zero-allocation hashbrown `raw_entry` API
 //! - Type rendering: String allocations
 //! - Path computation: Cross-crate link resolution
@@ -84,11 +84,11 @@ mod json_parsing {
 }
 
 // =============================================================================
-// slugify_anchor Benchmarks
+// AnchorUtils::slugify_anchor Benchmarks
 // =============================================================================
 
 mod slugify {
-    use cargo_docs_md::slugify_anchor;
+    use cargo_docs_md::AnchorUtils;
 
     use super::black_box;
 
@@ -105,37 +105,37 @@ mod slugify {
 
     #[divan::bench]
     fn ascii_simple() -> String {
-        slugify_anchor(black_box(ASCII_SIMPLE))
+        AnchorUtils::slugify_anchor(black_box(ASCII_SIMPLE))
     }
 
     #[divan::bench]
     fn ascii_generic() -> String {
-        slugify_anchor(black_box(ASCII_GENERIC))
+        AnchorUtils::slugify_anchor(black_box(ASCII_GENERIC))
     }
 
     #[divan::bench]
     fn ascii_nested_generic() -> String {
-        slugify_anchor(black_box(ASCII_NESTED))
+        AnchorUtils::slugify_anchor(black_box(ASCII_NESTED))
     }
 
     #[divan::bench]
     fn ascii_underscores() -> String {
-        slugify_anchor(black_box(ASCII_UNDERSCORES))
+        AnchorUtils::slugify_anchor(black_box(ASCII_UNDERSCORES))
     }
 
     #[divan::bench]
     fn ascii_complex() -> String {
-        slugify_anchor(black_box(ASCII_COMPLEX))
+        AnchorUtils::slugify_anchor(black_box(ASCII_COMPLEX))
     }
 
     #[divan::bench]
     fn ascii_backticks() -> String {
-        slugify_anchor(black_box(ASCII_BACKTICKS))
+        AnchorUtils::slugify_anchor(black_box(ASCII_BACKTICKS))
     }
 
     #[divan::bench]
     fn unicode_nfc() -> String {
-        slugify_anchor(black_box(UNICODE))
+        AnchorUtils::slugify_anchor(black_box(UNICODE))
     }
 }
 

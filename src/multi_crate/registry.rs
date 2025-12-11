@@ -31,7 +31,7 @@ use rustdoc_types::{Crate, Id, ItemEnum, ItemKind, Visibility};
 use tracing::instrument;
 
 use super::{CrateCollection, RUST_PATH_SEP};
-use crate::linker::{LinkRegistry, slugify_anchor};
+use crate::linker::{AnchorUtils, LinkRegistry};
 
 /// Compact string type for memory-efficient storage.
 /// Strings ≤24 bytes are stored inline (no heap allocation).
@@ -624,7 +624,7 @@ impl UnifiedLinkRegistry {
 
         // Check if same file - use anchor instead
         if from_full == to_full {
-            let anchor = slugify_anchor(name);
+            let anchor = AnchorUtils::slugify_anchor(name);
             return Some(format!("[`{name}`](#{anchor})"));
         }
 
@@ -659,7 +659,7 @@ impl UnifiedLinkRegistry {
     #[must_use]
     pub fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String> {
         let name = self.get_name(crate_name, id)?;
-        Some(format!("#{}", slugify_anchor(name)))
+        Some(format!("#{}", AnchorUtils::slugify_anchor(name)))
     }
 
     /// Check if an item exists in the registry.

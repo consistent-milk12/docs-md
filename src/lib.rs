@@ -25,7 +25,7 @@ pub mod types;
 pub mod utils;
 
 pub use crate::generator::{Generator, MarkdownCapture, RenderConfig, SourceConfig};
-pub use crate::linker::{LinkRegistry, slugify_anchor};
+pub use crate::linker::{AnchorUtils, LinkRegistry};
 #[cfg(feature = "trace")]
 use crate::logger::LogLevel;
 pub use crate::multi_crate::{

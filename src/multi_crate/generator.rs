@@ -14,11 +14,10 @@ use rayon::prelude::*;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, StructKind};
 use tracing::{debug, info, info_span, instrument};
 
-use crate::Args;
 use crate::error::Error;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::config::RenderConfig;
-use crate::generator::impls::{is_blanket_impl, is_generic_type};
+use crate::generator::impls::ImplUtils;
 use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
 use crate::generator::render_shared::{CategorizedTraitItems, RendererInternals, TraitRenderer};
 use crate::generator::toc::{TocEntry, TocGenerator};
@@ -28,6 +27,7 @@ use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
 use crate::multi_crate::{CrateCollection, MultiCrateContext};
 use crate::types::TypeRenderer;
+use crate::{AnchorUtils, Args};
 
 // ============================================================================
 // Core Types
@@ -76,7 +76,7 @@ struct CategorizedItems<'a> {
 
 impl<'a> CategorizedItems<'a> {
     /// Create empty categorized items collection.
-    fn new() -> Self {
+    const fn new() -> Self {
         Self {
             modules: Vec::new(),
             structs: Vec::new(),
@@ -90,7 +90,7 @@ impl<'a> CategorizedItems<'a> {
     }
 
     /// Check if all categories are empty.
-    fn is_empty(&self) -> bool {
+    const fn is_empty(&self) -> bool {
         self.modules.is_empty()
             && self.structs.is_empty()
             && self.enums.is_empty()
@@ -190,6 +190,8 @@ impl<'a> CategorizedItems<'a> {
     }
 
     /// Build a TOC section for items without IDs.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     fn build_section(
         items: &[&Item],
         section: &str,
@@ -209,7 +211,9 @@ impl<'a> CategorizedItems<'a> {
                 } else {
                     format!("`{name}`")
                 };
-                TocEntry::new(display, name.to_lowercase())
+                // Use slugify_anchor for consistent anchor generation
+                // e.g., "my_type" → "my-type" to match heading anchors
+                TocEntry::new(display, AnchorUtils::slugify_anchor(name))
             })
             .collect();
 
@@ -217,6 +221,8 @@ impl<'a> CategorizedItems<'a> {
     }
 
     /// Build a TOC section for items with IDs.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     fn build_section_with_ids(
         items: &[(&Id, &Item)],
         section: &str,
@@ -230,7 +236,8 @@ impl<'a> CategorizedItems<'a> {
             .iter()
             .map(|(_, item)| {
                 let name = Self::get_item_name(item);
-                TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                // Use slugify_anchor for consistent anchor generation
+                TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
             })
             .collect();
 
@@ -258,10 +265,12 @@ impl<'a> CategorizedItems<'a> {
     }
 
     /// Add quick ref entries for items without IDs.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     fn add_quick_ref_entries(
         entries: &mut Vec<QuickRefEntry>,
         items: &[&Item],
-        kind: &str,
+        kind: &'static str,
         is_macro: bool,
     ) {
         for item in items {
@@ -272,25 +281,34 @@ impl<'a> CategorizedItems<'a> {
             } else {
                 name.to_string()
             };
+            // Use slugify_anchor for consistent anchor generation
             entries.push(QuickRefEntry::new(
                 display_name,
                 kind,
-                name.to_lowercase(),
+                AnchorUtils::slugify_anchor(name),
                 summary,
             ));
         }
     }
 
     /// Add quick ref entries for items with IDs.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     fn add_quick_ref_entries_with_ids(
         entries: &mut Vec<QuickRefEntry>,
         items: &[(&Id, &Item)],
-        kind: &str,
+        kind: &'static str,
     ) {
         for (_, item) in items {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, kind, name.to_lowercase(), summary));
+            // Use slugify_anchor for consistent anchor generation
+            entries.push(QuickRefEntry::new(
+                name,
+                kind,
+                AnchorUtils::slugify_anchor(name),
+                summary,
+            ));
         }
     }
 
@@ -1145,6 +1163,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Build TOC entries from categorized module items.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     #[expect(
         clippy::too_many_arguments,
         reason = "Matches categorization structure"
@@ -1167,7 +1187,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|item| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Modules", "modules", children));
@@ -1179,7 +1199,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|(_, item)| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Structs", "structs", children));
@@ -1191,7 +1211,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|(_, item)| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Enums", "enums", children));
@@ -1203,7 +1223,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|(_, item)| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Traits", "traits", children));
@@ -1215,7 +1235,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|item| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Functions", "functions", children));
@@ -1227,7 +1247,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|item| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children(
@@ -1243,7 +1263,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|item| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Constants", "constants", children));
@@ -1255,7 +1275,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .iter()
                 .map(|item| {
                     let name = Self::get_item_name(item);
-                    TocEntry::new(format!("`{name}!`"), name.to_lowercase())
+                    TocEntry::new(format!("`{name}!`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
             entries.push(TocEntry::with_children("Macros", "macros", children));
@@ -1265,6 +1285,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Build Quick Reference entries from categorized module items.
+    ///
+    /// Uses `slugify_anchor()` for anchor generation to match heading anchors.
     #[expect(
         clippy::too_many_arguments,
         reason = "Matches categorization structure"
@@ -1285,89 +1307,67 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         for item in modules {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "mod",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "mod", anchor, summary));
         }
 
         // Structs
         for (_, item) in structs {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "struct",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "struct", anchor, summary));
         }
 
         // Enums
         for (_, item) in enums {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "enum",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "enum", anchor, summary));
         }
 
         // Traits
         for (_, item) in traits {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "trait",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "trait", anchor, summary));
         }
 
         // Functions
         for item in functions {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "fn", name.to_lowercase(), summary));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "fn", anchor, summary));
         }
 
         // Type aliases
         for item in types {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "type",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "type", anchor, summary));
         }
 
         // Constants
         for item in constants {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(
-                name,
-                "const",
-                name.to_lowercase(),
-                summary,
-            ));
+            let anchor = AnchorUtils::slugify_anchor(name);
+            entries.push(QuickRefEntry::new(name, "const", anchor, summary));
         }
 
         // Macros
         for item in macros {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
+            let anchor = AnchorUtils::slugify_anchor(name);
             entries.push(QuickRefEntry::new(
                 format!("{name}!"),
                 "macro",
-                name.to_lowercase(),
+                anchor,
                 summary,
             ));
         }
@@ -1919,7 +1919,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let mut trait_impls: Vec<_> = trait_impls
             .into_iter()
             .filter(|i| !i.is_synthetic)
-            .filter(|i| include_blanket || !is_blanket_impl(i))
+            .filter(|i| include_blanket || !ImplUtils::is_blanket_impl(i))
             .collect();
 
         // Sort trait impls by trait name + generics for deterministic output
@@ -1974,7 +1974,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     // Only show generic parameters if the `for_` type is itself generic.
                     // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
                     // if the original blanket impl was defined as `impl<T> Trait for T`.
-                    let generics = if is_generic_type(&impl_block.for_) {
+                    let generics = if ImplUtils::is_generic_type(&impl_block.for_) {
                         type_renderer.render_generics(&impl_block.generics.params)
                     } else {
                         String::new()
