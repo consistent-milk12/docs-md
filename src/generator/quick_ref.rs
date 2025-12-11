@@ -169,7 +169,8 @@ pub fn extract_summary(docs: Option<&str>) -> String {
         if !collected.is_empty() {
             collected.push(' ');
         }
-        collected.push_str(trimmed);
+
+        _ = write!(collected, "{trimmed}");
 
         // Check if we've found a sentence end
         if let Some(sentence) = try_extract_sentence(&collected) {

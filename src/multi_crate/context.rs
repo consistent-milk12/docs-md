@@ -639,7 +639,7 @@ impl<'a> SingleCrateView<'a> {
                 continue;
             }
 
-            result.push_str(&docs[last_end..match_start]);
+            _ = write!(result, "{}", &docs[last_end..match_start]);
             last_end = match_end;
 
             let link_text = &caps[1];
@@ -658,20 +658,22 @@ impl<'a> SingleCrateView<'a> {
                     resolved = %resolved,
                     "Resolved backtick link"
                 );
+
                 resolved_count += 1;
-                result.push_str(&resolved);
+                _ = write!(result, "{}", &resolved);
             } else {
                 tracing::trace!(
                     link_text = %link_text,
                     "Could not resolve backtick link, keeping as inline code"
                 );
                 unresolved_count += 1;
+
                 // Couldn't resolve - convert to plain inline code
                 _ = write!(result, "`{link_text}`");
             }
         }
 
-        result.push_str(&docs[last_end..]);
+        _ = write!(result, "{}", &docs[last_end..]);
 
         if resolved_count > 0 || unresolved_count > 0 {
             tracing::trace!(
@@ -704,6 +706,7 @@ impl<'a> SingleCrateView<'a> {
 
             // Check if followed by ( or [ (already a link)
             let next_char = docs[match_end..].chars().next();
+
             if matches!(next_char, Some('(' | '[')) {
                 continue;
             }
@@ -711,6 +714,7 @@ impl<'a> SingleCrateView<'a> {
             // Check if inside inline code (count backticks before match)
             let before = &docs[..match_start];
             let backtick_count = before.chars().filter(|&c| c == '`').count();
+
             if backtick_count % 2 == 1 {
                 // Odd number of backticks means we're inside inline code
                 continue;

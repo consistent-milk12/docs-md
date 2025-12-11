@@ -22,7 +22,7 @@
 use std::borrow::Cow;
 use std::fmt::Write;
 
-use rustdoc_types::{GenericArg, GenericArgs, Id, Impl, Item, Type};
+use rustdoc_types::{AssocItemConstraintKind, GenericArg, GenericArgs, Id, Impl, Item, Term, Type};
 
 use crate::generator::context::RenderContext;
 use crate::generator::render_shared::{RendererInternals, RendererUtils};
@@ -415,9 +415,11 @@ impl<'a> ImplRenderer<'a> {
             .as_ref()
             .map(|t| {
                 let mut name = RendererUtils::sanitize_path(&t.path).into_owned();
+
                 if let Some(args) = &t.args {
-                    name.push_str(&self.render_generic_args_for_impl(args));
+                    _ = write!(name, "{}", &self.render_generic_args_for_impl(args));
                 }
+
                 name
             })
             .unwrap_or_default();
@@ -431,8 +433,8 @@ impl<'a> ImplRenderer<'a> {
         } else {
             String::new()
         };
-        let for_type = self.type_renderer.render_type(&impl_block.for_);
 
+        let for_type = self.type_renderer.render_type(&impl_block.for_);
         let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
         let negative_str = if impl_block.is_negative { "!" } else { "" };
 
@@ -484,10 +486,13 @@ impl<'a> ImplRenderer<'a> {
                     .iter()
                     .map(|a| match a {
                         GenericArg::Lifetime(lt) => Cow::Borrowed(lt.as_str()),
+
                         GenericArg::Type(ty) => self.type_renderer.render_type(ty),
+
                         GenericArg::Const(c) => {
                             Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
                         },
+
                         GenericArg::Infer => Cow::Borrowed("_"),
                     })
                     .collect();
@@ -500,20 +505,24 @@ impl<'a> ImplRenderer<'a> {
                         .unwrap_or_default();
 
                     match &c.binding {
-                        rustdoc_types::AssocItemConstraintKind::Equality(term) => {
+                        AssocItemConstraintKind::Equality(term) => {
                             let term_str = match term {
-                                rustdoc_types::Term::Type(ty) => self.type_renderer.render_type(ty),
-                                rustdoc_types::Term::Constant(c) => {
+                                Term::Type(ty) => self.type_renderer.render_type(ty),
+
+                                Term::Constant(c) => {
                                     Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
                                 },
                             };
+
                             Cow::Owned(format!("{}{constraint_args} = {term_str}", c.name))
                         },
-                        rustdoc_types::AssocItemConstraintKind::Constraint(bounds) => {
+
+                        AssocItemConstraintKind::Constraint(bounds) => {
                             let bound_strs: Vec<Cow<str>> = bounds
                                 .iter()
                                 .map(|b| self.type_renderer.render_generic_bound(b))
                                 .collect();
+
                             Cow::Owned(format!(
                                 "{}{constraint_args}: {}",
                                 c.name,

@@ -8,7 +8,7 @@ use std::fmt::Write;
 use std::path::Path;
 use std::sync::Arc;
 
-use fs_err as fs;
+use fs_err as FsErr;
 use indicatif::{ProgressBar, ProgressStyle};
 use rayon::prelude::*;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, StructKind};
@@ -211,6 +211,7 @@ impl<'a> CategorizedItems<'a> {
                 } else {
                     format!("`{name}`")
                 };
+
                 // Use slugify_anchor for consistent anchor generation
                 // e.g., "my_type" → "my-type" to match heading anchors
                 TocEntry::new(display, AnchorUtils::slugify_anchor(name))
@@ -276,11 +277,13 @@ impl<'a> CategorizedItems<'a> {
         for item in items {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
+
             let display_name = if is_macro {
                 format!("{name}!")
             } else {
                 name.to_string()
             };
+
             // Use slugify_anchor for consistent anchor generation
             entries.push(QuickRefEntry::new(
                 display_name,
@@ -302,6 +305,7 @@ impl<'a> CategorizedItems<'a> {
         for (_, item) in items {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
+
             // Use slugify_anchor for consistent anchor generation
             entries.push(QuickRefEntry::new(
                 name,
@@ -428,13 +432,14 @@ impl<'a> MultiCrateGenerator<'a> {
         info!("Starting multi-crate documentation generation");
 
         // Create output directory
-        fs::create_dir_all(&self.args.output).map_err(Error::CreateDir)?;
+        FsErr::create_dir_all(&self.args.output).map_err(Error::CreateDir)?;
+
         debug!(path = %self.args.output.display(), "Created output directory");
 
         // Pre-create crate directories to avoid race conditions in parallel generation
         for crate_name in self.ctx.crates().names() {
             let crate_dir = self.args.output.join(crate_name);
-            fs::create_dir_all(&crate_dir).map_err(Error::CreateDir)?;
+            FsErr::create_dir_all(&crate_dir).map_err(Error::CreateDir)?;
         }
 
         // Count total modules across all crates for progress bar
@@ -610,7 +615,7 @@ impl<'a> MultiCrateGenerator<'a> {
         let content = renderer.render(root_item);
 
         let index_path = crate_dir.join("index.md");
-        fs::write(&index_path, content).map_err(Error::FileWrite)?;
+        FsErr::write(&index_path, content).map_err(Error::FileWrite)?;
         progress.inc(1);
 
         // Generate submodules
@@ -641,7 +646,7 @@ impl<'a> MultiCrateGenerator<'a> {
 
         // Create module directory
         let module_dir = parent_dir.join(name);
-        fs::create_dir_all(&module_dir).map_err(Error::CreateDir)?;
+        FsErr::create_dir_all(&module_dir).map_err(Error::CreateDir)?;
 
         // Build module path for file and breadcrumbs
         let mut current_path = module_path;
@@ -663,7 +668,7 @@ impl<'a> MultiCrateGenerator<'a> {
 
         // Write index.md
         let file_path_on_disk = module_dir.join("index.md");
-        fs::write(&file_path_on_disk, content).map_err(Error::FileWrite)?;
+        FsErr::write(&file_path_on_disk, content).map_err(Error::FileWrite)?;
         progress.inc(1);
 
         // Recurse into child modules
@@ -954,6 +959,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             } else {
                 _ = writeln!(md, "*This crate has no public items to document.*");
             }
+
             return;
         }
 
@@ -963,8 +969,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let toc_entries = Self::build_toc_entries(
             &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
         );
+
         if let Some(toc) = toc_gen.generate(&toc_entries) {
-            md.push_str(&toc);
+            _ = write!(md, "{}", &toc);
         }
 
         // === Quick Reference (if enabled) ===
@@ -972,9 +979,11 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let quick_ref_entries = Self::build_quick_ref_entries(
                 &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
             );
+
             if !quick_ref_entries.is_empty() {
                 let quick_ref_gen = QuickRefGenerator::new();
-                md.push_str(&quick_ref_gen.generate(&quick_ref_entries));
+
+                _ = write!(md, "{}", &quick_ref_gen.generate(&quick_ref_entries));
             }
         }
 
@@ -1190,6 +1199,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Modules", "modules", children));
         }
 
@@ -1214,6 +1224,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Enums", "enums", children));
         }
 
@@ -1226,6 +1237,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Traits", "traits", children));
         }
 
@@ -1238,6 +1250,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Functions", "functions", children));
         }
 
@@ -1250,6 +1263,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children(
                 "Type Aliases",
                 "type-aliases",
@@ -1266,6 +1280,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Constants", "constants", children));
         }
 
@@ -1278,6 +1293,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     TocEntry::new(format!("`{name}!`"), AnchorUtils::slugify_anchor(name))
                 })
                 .collect();
+
             entries.push(TocEntry::with_children("Macros", "macros", children));
         }
 
@@ -1308,6 +1324,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "mod", anchor, summary));
         }
 
@@ -1316,6 +1333,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "struct", anchor, summary));
         }
 
@@ -1324,6 +1342,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "enum", anchor, summary));
         }
 
@@ -1332,6 +1351,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "trait", anchor, summary));
         }
 
@@ -1340,6 +1360,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "fn", anchor, summary));
         }
 
@@ -1348,6 +1369,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "type", anchor, summary));
         }
 
@@ -1356,6 +1378,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(name, "const", anchor, summary));
         }
 
@@ -1364,6 +1387,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             let anchor = AnchorUtils::slugify_anchor(name);
+
             entries.push(QuickRefEntry::new(
                 format!("{name}!"),
                 "macro",

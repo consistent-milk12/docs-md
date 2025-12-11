@@ -101,8 +101,8 @@ impl<'a> ModuleRenderer<'a> {
 
         // === Documentation Section ===
         if let Some(docs) = self.process_docs(item) {
-            md.push_str(&docs);
-            md.push_str("\n\n");
+            _ = write!(md, "{}", &docs);
+            _ = write!(md, "\n\n");
         }
 
         // === Module Contents ===
@@ -114,7 +114,7 @@ impl<'a> ModuleRenderer<'a> {
             let toc_gen = TocGenerator::new(config.toc_threshold);
             let toc_entries = Self::build_toc_entries(&categorized);
             if let Some(toc) = toc_gen.generate(&toc_entries) {
-                md.push_str(&toc);
+                _ = write!(md, "{}", &toc);
             }
 
             // === Quick Reference (if enabled) ===
@@ -122,7 +122,7 @@ impl<'a> ModuleRenderer<'a> {
                 let quick_ref_entries = self.build_quick_ref_entries(&categorized);
                 if !quick_ref_entries.is_empty() {
                     let quick_ref_gen = QuickRefGenerator::new();
-                    md.push_str(&quick_ref_gen.generate(&quick_ref_entries));
+                    _ = write!(md, "{}", &quick_ref_gen.generate(&quick_ref_entries));
                 }
             }
 
@@ -377,7 +377,7 @@ impl<'a> ModuleRenderer<'a> {
     /// [type alias definition]
     /// ```
     fn render_types_section(&self, md: &mut String, items: &CategorizedItems) {
-        md.push_str("## Types\n\n");
+        _ = write!(md, "## Types\n\n");
 
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
 
@@ -408,8 +408,10 @@ impl<'a> ModuleRenderer<'a> {
             return;
         }
 
-        md.push_str("## Statics\n\n");
+        _ = write!(md, "## Statics\n\n");
+
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
         for static_item in statics {
             renderer.render_static(md, static_item);
         }
