@@ -559,6 +559,7 @@ impl<'a> ImplRenderer<'a> {
                     .as_ref()
                     .map(|t| format!(" -> {}", self.type_renderer.render_type(t)))
                     .unwrap_or_default();
+
                 format!(
                     "({}){ret}",
                     input_strs

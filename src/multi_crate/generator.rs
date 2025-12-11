@@ -67,10 +67,12 @@ struct CategorizedItems<'a> {
     modules: Vec<&'a Item>,
     structs: Vec<(&'a Id, &'a Item)>,
     enums: Vec<(&'a Id, &'a Item)>,
+    unions: Vec<(&'a Id, &'a Item)>,
     traits: Vec<(&'a Id, &'a Item)>,
     functions: Vec<&'a Item>,
     types: Vec<&'a Item>,
     constants: Vec<&'a Item>,
+    statics: Vec<&'a Item>,
     macros: Vec<&'a Item>,
 }
 
@@ -81,10 +83,12 @@ impl<'a> CategorizedItems<'a> {
             modules: Vec::new(),
             structs: Vec::new(),
             enums: Vec::new(),
+            unions: Vec::new(),
             traits: Vec::new(),
             functions: Vec::new(),
             types: Vec::new(),
             constants: Vec::new(),
+            statics: Vec::new(),
             macros: Vec::new(),
         }
     }
@@ -94,10 +98,12 @@ impl<'a> CategorizedItems<'a> {
         self.modules.is_empty()
             && self.structs.is_empty()
             && self.enums.is_empty()
+            && self.unions.is_empty()
             && self.traits.is_empty()
             && self.functions.is_empty()
             && self.types.is_empty()
             && self.constants.is_empty()
+            && self.statics.is_empty()
             && self.macros.is_empty()
     }
 
@@ -107,10 +113,12 @@ impl<'a> CategorizedItems<'a> {
             ItemEnum::Module(_) => self.modules.push(item),
             ItemEnum::Struct(_) => self.structs.push((id, item)),
             ItemEnum::Enum(_) => self.enums.push((id, item)),
+            ItemEnum::Union(_) => self.unions.push((id, item)),
             ItemEnum::Trait(_) => self.traits.push((id, item)),
             ItemEnum::Function(_) => self.functions.push(item),
             ItemEnum::TypeAlias(_) => self.types.push(item),
             ItemEnum::Constant { .. } => self.constants.push(item),
+            ItemEnum::Static(_) => self.statics.push(item),
             ItemEnum::Macro(_) | ItemEnum::ProcMacro(_) => self.macros.push(item),
             _ => {},
         }
@@ -126,10 +134,12 @@ impl<'a> CategorizedItems<'a> {
             ItemEnum::Module(_) => self.modules.push(use_item),
             ItemEnum::Struct(_) => self.structs.push((id, use_item)),
             ItemEnum::Enum(_) => self.enums.push((id, use_item)),
+            ItemEnum::Union(_) => self.unions.push((id, use_item)),
             ItemEnum::Trait(_) => self.traits.push((id, use_item)),
             ItemEnum::Function(_) => self.functions.push(use_item),
             ItemEnum::TypeAlias(_) => self.types.push(use_item),
             ItemEnum::Constant { .. } => self.constants.push(use_item),
+            ItemEnum::Static(_) => self.statics.push(use_item),
             ItemEnum::Macro(_) | ItemEnum::ProcMacro(_) => self.macros.push(use_item),
             _ => {},
         }
@@ -138,7 +148,7 @@ impl<'a> CategorizedItems<'a> {
     /// Build TOC entries from categorized items.
     ///
     /// Preserves the standard rustdoc section order:
-    /// Modules → Structs → Enums → Traits → Functions → Type Aliases → Constants → Macros
+    /// Modules → Structs → Enums → Unions → Traits → Functions → Type Aliases → Constants → Statics → Macros
     fn build_toc_entries(&self) -> Vec<TocEntry> {
         let mut entries = Vec::new();
 
@@ -161,6 +171,11 @@ impl<'a> CategorizedItems<'a> {
             entries.push(e);
         }
 
+        // Unions (items with IDs)
+        if let Some(e) = Self::build_section_with_ids(&self.unions, "Unions", "unions") {
+            entries.push(e);
+        }
+
         // Traits (items with IDs)
         if let Some(e) = Self::build_section_with_ids(&self.traits, "Traits", "traits") {
             entries.push(e);
@@ -178,6 +193,11 @@ impl<'a> CategorizedItems<'a> {
 
         // Constants (simple items)
         if let Some(e) = Self::build_section(&self.constants, "Constants", "constants", false) {
+            entries.push(e);
+        }
+
+        // Statics (simple items)
+        if let Some(e) = Self::build_section(&self.statics, "Statics", "statics", false) {
             entries.push(e);
         }
 
@@ -248,7 +268,7 @@ impl<'a> CategorizedItems<'a> {
     /// Build Quick Reference entries from categorized items.
     ///
     /// Preserves the standard rustdoc section order:
-    /// Modules → Structs → Enums → Traits → Functions → Type Aliases → Constants → Macros
+    /// Modules → Structs → Enums → Unions → Traits → Functions → Type Aliases → Constants → Statics → Macros
     fn build_quick_ref_entries(&self) -> Vec<QuickRefEntry> {
         let mut entries = Vec::new();
 
@@ -256,10 +276,12 @@ impl<'a> CategorizedItems<'a> {
         Self::add_quick_ref_entries(&mut entries, &self.modules, "mod", false);
         Self::add_quick_ref_entries_with_ids(&mut entries, &self.structs, "struct");
         Self::add_quick_ref_entries_with_ids(&mut entries, &self.enums, "enum");
+        Self::add_quick_ref_entries_with_ids(&mut entries, &self.unions, "union");
         Self::add_quick_ref_entries_with_ids(&mut entries, &self.traits, "trait");
         Self::add_quick_ref_entries(&mut entries, &self.functions, "fn", false);
         Self::add_quick_ref_entries(&mut entries, &self.types, "type", false);
         Self::add_quick_ref_entries(&mut entries, &self.constants, "const", false);
+        Self::add_quick_ref_entries(&mut entries, &self.statics, "static", false);
         Self::add_quick_ref_entries(&mut entries, &self.macros, "macro", true);
 
         entries
