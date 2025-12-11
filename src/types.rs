@@ -108,12 +108,8 @@ impl<'a> TypeRenderer<'a> {
     ///
     /// Returns `Cow::Borrowed` when possible (no args, no sanitization needed),
     /// preserving the zero-allocation fast path for simple types.
-    fn render_path_with_args<'p>(
-        &self,
-        path: &'p str,
-        args: Option<&GenericArgs>,
-    ) -> Cow<'p, str> {
-        let sanitized = RendererUtils::sanitize_path(path);
+    fn render_path_with_args<'p>(self, path: &'p str, args: Option<&GenericArgs>) -> Cow<'p, str> {
+        let sanitized: Cow<'_, str> = RendererUtils::sanitize_path(path);
 
         // Fast path: no args and no sanitization needed
         if args.is_none() && matches!(sanitized, Cow::Borrowed(_)) {
@@ -121,28 +117,34 @@ impl<'a> TypeRenderer<'a> {
         }
 
         // Slow path: need to allocate
-        let mut result = sanitized.into_owned();
+        let mut result: String = sanitized.into_owned();
+
         if let Some(args) = args {
-            result.push_str(&self.render_generic_args(args));
+            _ = write!(result, "{}", &self.render_generic_args(args));
         }
+
         Cow::Owned(result)
     }
 
     /// Render bounds joined with " + " directly to a buffer.
     ///
     /// Avoids intermediate Vec allocation.
-    fn write_bounds_joined(&self, out: &mut String, bounds: &[GenericBound]) {
+    fn write_bounds_joined(self, out: &mut String, bounds: &[GenericBound]) {
         let mut first = true;
+
         for bound in bounds {
-            let rendered = self.render_generic_bound(bound);
+            let rendered: Cow<'_, str> = self.render_generic_bound(bound);
+
             // Skip empty bounds (Use bounds render to "")
             if rendered.is_empty() {
                 continue;
             }
+
             if !first {
-                out.push_str(" + ");
+                _ = write!(out, " + ");
             }
-            out.push_str(&rendered);
+
+            _ = write!(out, "{}", &rendered);
             first = false;
         }
     }
@@ -150,16 +152,18 @@ impl<'a> TypeRenderer<'a> {
     /// Write multiple rendered types separated by a delimiter.
     ///
     /// Avoids intermediate Vec allocation.
-    fn write_types_joined<'t, I>(&self, out: &mut String, types: I, sep: &str)
+    fn write_types_joined<'t, I>(self, out: &mut String, types: I, sep: &str)
     where
         I: Iterator<Item = &'t Type>,
     {
         let mut first = true;
+
         for ty in types {
             if !first {
-                out.push_str(sep);
+                _ = write!(out, "{sep}");
             }
-            out.push_str(&self.render_type(ty));
+
+            _ = write!(out, "{}", &self.render_type(ty));
             first = false;
         }
     }
@@ -217,7 +221,7 @@ impl<'a> TypeRenderer<'a> {
                             let mut s = sanitized.into_owned();
 
                             if let Some(args) = &pt.trait_.args {
-                                s.push_str(&self.render_generic_args(args));
+                                _ = write!(s, "{}", &self.render_generic_args(args));
                             }
 
                             s
@@ -236,16 +240,13 @@ impl<'a> TypeRenderer<'a> {
             // Function pointer: `fn(A, B) -> C`
             Type::FunctionPointer(fp) => {
                 let mut result = String::from("fn(");
-                self.write_types_joined(
-                    &mut result,
-                    fp.sig.inputs.iter().map(|(_, t)| t),
-                    ", ",
-                );
-                result.push(')');
+                self.write_types_joined(&mut result, fp.sig.inputs.iter().map(|(_, t)| t), ", ");
+
+                _ = write!(result, ")");
 
                 if let Some(output) = &fp.sig.output {
-                    result.push_str(" -> ");
-                    result.push_str(&self.render_type(output));
+                    _ = write!(result, " -> ");
+                    _ = write!(result, "{}", &self.render_type(output));
                 }
 
                 Cow::Owned(result)
@@ -259,7 +260,8 @@ impl<'a> TypeRenderer<'a> {
 
                 let mut result = String::from("(");
                 self.write_types_joined(&mut result, types.iter(), ", ");
-                result.push(')');
+                _ = write!(result, ")");
+
                 Cow::Owned(result)
             },
 
@@ -278,6 +280,7 @@ impl<'a> TypeRenderer<'a> {
             Type::ImplTrait(bounds) => {
                 let mut result = String::from("impl ");
                 self.write_bounds_joined(&mut result, bounds);
+
                 Cow::Owned(result)
             },
 
@@ -321,6 +324,7 @@ impl<'a> TypeRenderer<'a> {
                     || format!("{self_ty}::{name}"),
                     |trait_path| {
                         let sanitized_trait = RendererUtils::sanitize_path(&trait_path.path);
+
                         format!("<{self_ty} as {sanitized_trait}>::{name}")
                     },
                 ))
@@ -360,11 +364,11 @@ impl<'a> TypeRenderer<'a> {
             GenericArgs::Parenthesized { inputs, output } => {
                 let mut result = String::from("(");
                 self.write_types_joined(&mut result, inputs.iter(), ", ");
-                result.push(')');
+                _ = write!(result, ")");
 
                 if let Some(out) = output {
-                    result.push_str(" -> ");
-                    result.push_str(&self.render_type(out));
+                    _ = write!(result, " -> ");
+                    _ = write!(result, "{}", &self.render_type(out));
                 }
 
                 result
@@ -475,7 +479,7 @@ impl<'a> TypeRenderer<'a> {
                 let mut result = format!("{modifier_str}{sanitized}");
 
                 if let Some(args) = &trait_.args {
-                    result.push_str(&self.render_generic_args(args));
+                    _ = write!(result, "{}", &self.render_generic_args(args));
                 }
 
                 Cow::Owned(result)
@@ -563,7 +567,7 @@ impl<'a> TypeRenderer<'a> {
 
                 // Add trait bounds if present
                 if !bounds.is_empty() {
-                    result.push_str(": ");
+                    _ = write!(result, ": ");
                     self.write_bounds_joined(&mut result, bounds);
                 }
 
@@ -624,6 +628,7 @@ impl<'a> TypeRenderer<'a> {
             WherePredicate::BoundPredicate { type_, bounds, .. } => {
                 let mut result = format!("{}: ", self.render_type(type_));
                 self.write_bounds_joined(&mut result, bounds);
+
                 result
             },
 
@@ -656,8 +661,9 @@ impl<'a> TypeRenderer<'a> {
     /// - Inferred types (`_`)
     #[must_use]
     pub fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)> {
-        let mut result = Vec::new();
+        let mut result: Vec<(String, Id)> = Vec::new();
         self.collect_types_recursive(ty, &mut result);
+
         result
     }
 
@@ -728,8 +734,10 @@ impl<'a> TypeRenderer<'a> {
                 self_type, trait_, ..
             } => {
                 self.collect_types_recursive(self_type, result);
+
                 if let Some(t) = trait_ {
                     let name = PathUtils::short_name(&t.path);
+
                     result.push((name.to_string(), t.id));
                 }
             },
