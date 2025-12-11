@@ -25,6 +25,7 @@ use regex::Regex;
 use rustdoc_types::{Crate, Id, ItemKind};
 
 use crate::linker::{LinkRegistry, item_has_anchor, method_anchor};
+use crate::utils::PathUtils;
 
 // =============================================================================
 // Static Regex Patterns (compiled once, reused everywhere)
@@ -870,10 +871,10 @@ impl<'a> DocLinkProcessor<'a> {
 
         // Strategy 2: Short name match in item_links
         // Handles cases where doc uses qualified path but item_links has unqualified key
-        let short_name = link_text.rsplit("::").next().unwrap_or(link_text);
+        let short_name = PathUtils::short_name(link_text);
 
         for (key, id) in item_links {
-            if key.rsplit("::").next() == Some(short_name)
+            if PathUtils::short_name(key) == short_name
                 && let Some(url) = self.get_url_for_id(*id)
             {
                 return Some(url);
@@ -995,20 +996,18 @@ impl<'a> DocLinkProcessor<'a> {
         item_links: &HashMap<String, Id>,
     ) -> Option<String> {
         // Try to find the type
-        // Using rsplit().next() is more efficient than split().last()
+        let short_type = PathUtils::short_name(type_name);
         let type_id = item_links.get(type_name).or_else(|| {
-            let short_type = type_name.rsplit("::").next().unwrap_or(type_name);
             item_links
                 .iter()
-                .find(|(k, _)| k.rsplit("::").next() == Some(short_type))
+                .find(|(k, _)| PathUtils::short_name(k) == short_type)
                 .map(|(_, id)| id)
         })?;
 
         let type_path = self.link_registry.get_path(*type_id)?;
         let display = format!("{type_name}::{method_name}");
 
-        // Extract the short type name for anchor generation
-        let short_type = type_name.rsplit("::").next().unwrap_or(type_name);
+        // Use the short type name for anchor generation
         let anchor = method_anchor(short_type, method_name);
 
         // Check if type is on the same page - just use anchor
@@ -1037,10 +1036,10 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Strategy 2: Short name match in item_links
-        let short_name = link_text.rsplit("::").next().unwrap_or(link_text);
+        let short_name = PathUtils::short_name(link_text);
 
         for (key, id) in item_links {
-            if key.rsplit("::").next() == Some(short_name)
+            if PathUtils::short_name(key) == short_name
                 && let Some(md_link) = self.create_link_for_id(*id, short_name)
             {
                 return md_link;
@@ -1069,7 +1068,7 @@ impl<'a> DocLinkProcessor<'a> {
 
         // Fallback: try to get path and compute relative link
         if let Some(path) = self.link_registry.get_path(id) {
-            let clean_name = display_name.rsplit("::").next().unwrap_or(display_name);
+            let clean_name = PathUtils::short_name(display_name);
 
             // Check if target is on the same page - use anchor instead of relative path
             if path == self.current_file {
@@ -1097,7 +1096,7 @@ impl<'a> DocLinkProcessor<'a> {
         display_name: &str,
     ) -> Option<String> {
         let url = Self::get_docs_rs_url(path_info)?;
-        let clean_name = display_name.rsplit("::").next().unwrap_or(display_name);
+        let clean_name = PathUtils::short_name(display_name);
         Some(format!("[`{clean_name}`]({url})"))
     }
 }

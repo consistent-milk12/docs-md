@@ -28,7 +28,7 @@ use std::hash::{Hash, Hasher};
 
 use compact_str::CompactString;
 use rustdoc_types::{Crate, Id, ItemEnum, ItemKind, Visibility};
-use tracing::{debug, instrument, trace};
+use tracing::instrument;
 
 use super::{CrateCollection, RUST_PATH_SEP};
 use crate::linker::{LinkRegistry, slugify_anchor};
@@ -129,7 +129,8 @@ impl UnifiedLinkRegistry {
     #[must_use]
     #[instrument(skip(crates), fields(crate_count = crates.names().len()))]
     pub fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self {
-        debug!(?primary_crate, "Building unified link registry");
+        #[cfg(feature = "trace")]
+        tracing::debug!(?primary_crate, "Building unified link registry");
 
         let mut registry = Self {
             primary_crate: primary_crate.map(Str::from),
@@ -138,11 +139,14 @@ impl UnifiedLinkRegistry {
 
         // Register all items from each crate
         for (crate_name, krate) in crates.iter() {
-            trace!(crate_name, "Registering crate items");
+            #[cfg(feature = "trace")]
+            tracing::trace!(crate_name, "Registering crate items");
+
             registry.register_crate(crate_name, krate);
         }
 
-        debug!(
+        #[cfg(feature = "trace")]
+        tracing::debug!(
             item_count = registry.item_paths.len(),
             name_count = registry.name_index.len(),
             "Registry build complete"
@@ -395,7 +399,9 @@ impl UnifiedLinkRegistry {
             .from_hash(hash, |k| keys_match(k, &borrowed))
             .map(|(_, v)| v);
 
-        trace!(found = result.is_some(), "Path lookup");
+        #[cfg(feature = "trace")]
+        tracing::trace!(found = result.is_some(), "Path lookup");
+
         result
     }
 
@@ -464,7 +470,9 @@ impl UnifiedLinkRegistry {
         let candidates = self.name_index.get(name)?;
 
         if candidates.is_empty() {
-            trace!("No candidates found");
+            #[cfg(feature = "trace")]
+            tracing::trace!("No candidates found");
+
             return None;
         }
 
@@ -480,13 +488,17 @@ impl UnifiedLinkRegistry {
                 .iter()
                 .find(|(_, _, kind)| *kind == ItemKind::Module)
             {
-                trace!(resolved_crate = %crate_name, "Resolved to current crate (module)");
+                #[cfg(feature = "trace")]
+                tracing::trace!(resolved_crate = %crate_name, "Resolved to current crate (module)");
+
                 return Some(((*crate_name).clone(), *id));
             }
 
             // Otherwise take first match from current crate
             let (crate_name, id, _) = current_crate_candidates[0];
-            trace!(resolved_crate = %crate_name, "Resolved to current crate");
+
+            #[cfg(feature = "trace")]
+            tracing::trace!(resolved_crate = %crate_name, "Resolved to current crate");
 
             return Some((crate_name.clone(), *id));
         }
@@ -504,13 +516,17 @@ impl UnifiedLinkRegistry {
                     .iter()
                     .find(|(_, _, kind)| *kind == ItemKind::Module)
                 {
-                    trace!(resolved_crate = %crate_name, "Resolved to primary crate (module)");
+                    #[cfg(feature = "trace")]
+                    tracing::trace!(resolved_crate = %crate_name, "Resolved to primary crate (module)");
+
                     return Some(((*crate_name).clone(), *id));
                 }
 
                 // Otherwise take first match from primary crate
                 let (crate_name, id, _) = primary_candidates[0];
-                trace!(resolved_crate = %crate_name, "Resolved to primary crate");
+
+                #[cfg(feature = "trace")]
+                tracing::trace!(resolved_crate = %crate_name, "Resolved to primary crate");
 
                 return Some((crate_name.clone(), *id));
             }
@@ -521,15 +537,19 @@ impl UnifiedLinkRegistry {
             .iter()
             .find(|(_, _, kind)| *kind == ItemKind::Module)
         {
-            trace!(resolved_crate = %crate_name, "Resolved to module");
+            #[cfg(feature = "trace")]
+            tracing::trace!(resolved_crate = %crate_name, "Resolved to module");
             return Some((crate_name.clone(), *id));
         }
 
         let result = candidates.first().map(|(c, id, _)| (c.clone(), *id));
-        trace!(
+
+        #[cfg(feature = "trace")]
+        tracing::trace!(
             resolved_crate = ?result.as_ref().map(|(c, _)| c),
             "Resolved to first match"
         );
+
         result
     }
 

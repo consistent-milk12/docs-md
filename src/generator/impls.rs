@@ -25,11 +25,9 @@ use std::fmt::Write;
 use rustdoc_types::{Id, Impl, Item, Type};
 
 use crate::generator::context::RenderContext;
-use crate::generator::render_shared::{
-    impl_sort_key, render_collapsible_end, render_collapsible_start, render_impl_items,
-    sanitize_path,
-};
+use crate::generator::render_shared::{RendererInternals, RendererUtils};
 use crate::types::TypeRenderer;
+use crate::utils::PathUtils;
 
 /// Blanket trait implementations to filter from output.
 ///
@@ -116,12 +114,7 @@ pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
     };
 
     // Extract the trait name (last segment of the path)
-    // Using rsplit().next() is more efficient than split().last()
-    let trait_name = trait_ref
-        .path
-        .rsplit("::")
-        .next()
-        .unwrap_or(&trait_ref.path);
+    let trait_name = PathUtils::short_name(&trait_ref.path);
 
     TRIVIAL_DERIVE_TRAITS.contains(&trait_name)
 }
@@ -132,8 +125,7 @@ pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
 #[must_use]
 pub fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str> {
     // Extract just the trait name if it's a full path
-    // Using rsplit().next() is more efficient than split().last()
-    let name = trait_name.rsplit("::").next().unwrap_or(trait_name);
+    let name = PathUtils::short_name(trait_name);
 
     TRIVIAL_DERIVE_DESCRIPTIONS
         .iter()
@@ -304,14 +296,15 @@ impl<'a> ImplRenderer<'a> {
 
         // Sort trait impls by trait name + generics for deterministic output
         trait_impls.sort_by(|a: &&&Impl, b: &&&Impl| {
-            let key_a = impl_sort_key(a, &self.type_renderer);
-            let key_b = impl_sort_key(b, &self.type_renderer);
+            let key_a = RendererInternals::impl_sort_key(a, &self.type_renderer);
+            let key_b = RendererInternals::impl_sort_key(b, &self.type_renderer);
             key_a.cmp(&key_b)
         });
 
         // Deduplicate trait impls with the same signature
         trait_impls.dedup_by(|a, b| {
-            impl_sort_key(a, &self.type_renderer) == impl_sort_key(b, &self.type_renderer)
+            RendererInternals::impl_sort_key(a, &self.type_renderer)
+                == RendererInternals::impl_sort_key(b, &self.type_renderer)
         });
 
         // === Inherent Implementations ===
@@ -373,7 +366,11 @@ impl<'a> ImplRenderer<'a> {
         let count = impls.len();
         let summary = format!("Derived Traits ({count} implementations)");
 
-        _ = write!(md, "{}", render_collapsible_start(&summary));
+        _ = write!(
+            md,
+            "{}",
+            RendererInternals::render_collapsible_start(&summary)
+        );
 
         // Render as a summary table
         _ = write!(
@@ -395,7 +392,7 @@ impl<'a> ImplRenderer<'a> {
             }
         }
 
-        _ = write!(md, "{}", render_collapsible_end());
+        _ = write!(md, "{}", RendererInternals::render_collapsible_end());
     }
 
     /// Render a single trait implementation block.
@@ -410,7 +407,7 @@ impl<'a> ImplRenderer<'a> {
             .trait_
             .as_ref()
             .map(|t| {
-                let mut name = sanitize_path(&t.path).into_owned();
+                let mut name = RendererUtils::sanitize_path(&t.path).into_owned();
                 if let Some(args) = &t.args {
                     name.push_str(&self.render_generic_args_for_impl(args));
                 }
@@ -456,7 +453,7 @@ impl<'a> ImplRenderer<'a> {
         // Extract the type name for method anchor generation
         let type_name = self.type_renderer.render_type(&impl_block.for_);
 
-        render_impl_items(
+        RendererInternals::render_impl_items(
             md,
             impl_block,
             krate,

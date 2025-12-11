@@ -10,13 +10,7 @@ use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::generator::context::RenderContext;
 use crate::generator::impls::ImplRenderer;
-use crate::generator::render_shared::{
-    CategorizedTraitItems, TraitRenderer, append_docs, render_constant_definition,
-    render_enum_definition, render_enum_variants_docs, render_function_definition,
-    render_macro_heading, render_source_location, render_static_definition,
-    render_struct_definition, render_struct_fields, render_type_alias_definition,
-    render_union_definition, render_union_fields,
-};
+use crate::generator::render_shared::{CategorizedTraitItems, RendererInternals, TraitRenderer};
 use crate::types::TypeRenderer;
 
 /// Renders individual Rust items to markdown.
@@ -76,7 +70,8 @@ impl<'a> ItemRenderer<'a> {
     fn maybe_render_source_location(&self, item: &Item) -> String {
         if self.ctx.render_config().include_source.source_locations {
             let source_config = self.ctx.source_path_config_for_file(self.current_file);
-            render_source_location(item.span.as_ref(), source_config.as_ref())
+
+            RendererInternals::render_source_location(item.span.as_ref(), source_config.as_ref())
         } else {
             String::new()
         }
@@ -144,22 +139,26 @@ impl<'a> ItemRenderer<'a> {
 
         if let ItemEnum::Struct(s) = &actual_item.inner {
             // Struct definition (heading + code block)
-            render_struct_definition(md, name, s, krate, &self.type_renderer);
+            RendererInternals::render_struct_definition(md, name, s, krate, &self.type_renderer);
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         // Documentation (from actual item, not the Use item)
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
 
         // Fields documentation
         if let ItemEnum::Struct(s) = &actual_item.inner
             && let StructKind::Plain { fields, .. } = &s.kind
         {
-            render_struct_fields(md, fields, krate, &self.type_renderer, |field| {
-                self.process_docs(field)
-            });
+            RendererInternals::render_struct_fields(
+                md,
+                fields,
+                krate,
+                &self.type_renderer,
+                |field| self.process_docs(field),
+            );
         }
 
         // Implementations
@@ -203,18 +202,20 @@ impl<'a> ItemRenderer<'a> {
 
         if let ItemEnum::Enum(e) = &actual_item.inner {
             // Enum definition (heading + code block with variants)
-            render_enum_definition(md, name, e, krate, &self.type_renderer);
+            RendererInternals::render_enum_definition(md, name, e, krate, &self.type_renderer);
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         // Documentation (from actual item, not the Use item)
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
 
         // Variants documentation
         if let ItemEnum::Enum(e) = &actual_item.inner {
-            render_enum_variants_docs(md, &e.variants, krate, |variant| self.process_docs(variant));
+            RendererInternals::render_enum_variants_docs(md, &e.variants, krate, |variant| {
+                self.process_docs(variant)
+            });
         }
 
         // Implementations
@@ -260,7 +261,7 @@ impl<'a> ItemRenderer<'a> {
             _ = writeln!(md, "{}", &self.maybe_render_source_location(actual_item));
 
             // Documentation
-            append_docs(md, self.process_docs(actual_item));
+            RendererInternals::append_docs(md, self.process_docs(actual_item));
 
             // Categorize trait items
             let items = CategorizedTraitItems::categorize_trait_items(&t.items, krate);
@@ -397,7 +398,7 @@ impl<'a> ItemRenderer<'a> {
         };
 
         if let ItemEnum::Function(f) = &actual_item.inner {
-            render_function_definition(md, name, f, &self.type_renderer);
+            RendererInternals::render_function_definition(md, name, f, &self.type_renderer);
 
             // Add type links for function signature types
             self.render_function_type_links(md, f);
@@ -407,7 +408,7 @@ impl<'a> ItemRenderer<'a> {
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         // Documentation
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render linked types used in a function signature.
@@ -479,12 +480,12 @@ impl<'a> ItemRenderer<'a> {
             return;
         };
 
-        render_macro_heading(md, name);
+        RendererInternals::render_macro_heading(md, name);
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render a constant definition to markdown.
@@ -507,13 +508,19 @@ impl<'a> ItemRenderer<'a> {
         };
 
         if let ItemEnum::Constant { type_, const_ } = &actual_item.inner {
-            render_constant_definition(md, name, type_, const_, &self.type_renderer);
+            RendererInternals::render_constant_definition(
+                md,
+                name,
+                type_,
+                const_,
+                &self.type_renderer,
+            );
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render a type alias to markdown.
@@ -533,13 +540,13 @@ impl<'a> ItemRenderer<'a> {
         };
 
         if let ItemEnum::TypeAlias(ta) = &actual_item.inner {
-            render_type_alias_definition(md, name, ta, &self.type_renderer);
+            RendererInternals::render_type_alias_definition(md, name, ta, &self.type_renderer);
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render a union definition to markdown.
@@ -577,20 +584,24 @@ impl<'a> ItemRenderer<'a> {
 
         if let ItemEnum::Union(u) = &actual_item.inner {
             // Union definition (heading + code block)
-            render_union_definition(md, name, u, krate, &self.type_renderer);
+            RendererInternals::render_union_definition(md, name, u, krate, &self.type_renderer);
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         // Documentation (from actual item, not the Use item)
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
 
         // Fields documentation
         if let ItemEnum::Union(u) = &actual_item.inner {
-            render_union_fields(md, &u.fields, krate, &self.type_renderer, |field| {
-                self.process_docs(field)
-            });
+            RendererInternals::render_union_fields(
+                md,
+                &u.fields,
+                krate,
+                &self.type_renderer,
+                |field| self.process_docs(field),
+            );
         }
 
         // Implementations
@@ -621,12 +632,12 @@ impl<'a> ItemRenderer<'a> {
         };
 
         if let ItemEnum::Static(s) = &actual_item.inner {
-            render_static_definition(md, name, s, &self.type_renderer);
+            RendererInternals::render_static_definition(md, name, s, &self.type_renderer);
         }
 
         // Source location (if enabled)
         _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
-        append_docs(md, self.process_docs(actual_item));
+        RendererInternals::append_docs(md, self.process_docs(actual_item));
     }
 }

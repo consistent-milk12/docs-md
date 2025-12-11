@@ -23,6 +23,7 @@ use crate::generator::render_shared::SourcePathConfig;
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::linker::{LinkRegistry, item_has_anchor, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
+use crate::utils::PathUtils;
 
 /// Regex for backtick code links: [`Name`] not followed by ( or [
 static BACKTICK_LINK_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[`([^`]+)`\]").unwrap());
@@ -388,12 +389,10 @@ impl<'a> SingleCrateView<'a> {
     /// Generate a sort key for impl blocks.
     fn impl_sort_key(impl_block: &Impl) -> (u8, String) {
         // Extract trait name from the path (last segment)
-        // Using rsplit().next() is more efficient than split().last()
         let trait_name: String = impl_block
             .trait_
             .as_ref()
-            .and_then(|p| p.path.rsplit("::").next())
-            .unwrap_or("")
+            .map_or("", |p| PathUtils::short_name(&p.path))
             .to_string();
 
         let priority = if impl_block.trait_.is_none() {
@@ -1248,7 +1247,7 @@ impl<'a> SingleCrateView<'a> {
 
         // Step 2: Get just the type name (we'll search for this in the registry)
         // "config::ConfigBuilder" → "ConfigBuilder"
-        let type_name = type_path.rsplit("::").next()?;
+        let type_name = PathUtils::short_name(type_path);
 
         // Step 3: Look up the type in our cross-crate registry
         // This finds which crate owns "ConfigBuilder" and what file it's in

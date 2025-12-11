@@ -22,6 +22,7 @@ pub mod parser;
 #[cfg(feature = "source-parsing")]
 pub mod source;
 pub mod types;
+pub mod utils;
 
 pub use crate::generator::{Generator, MarkdownCapture, RenderConfig, SourceConfig};
 pub use crate::linker::{LinkRegistry, slugify_anchor};

@@ -40,7 +40,8 @@ use rustdoc_types::{
     GenericParamDef, GenericParamDefKind, Id, Term, TraitBoundModifier, Type, WherePredicate,
 };
 
-use crate::generator::render_shared::sanitize_path;
+use crate::generator::render_shared::RendererUtils;
+use crate::utils::PathUtils;
 
 /// Type renderer for converting rustdoc types to Rust syntax strings.
 ///
@@ -99,6 +100,74 @@ impl<'a> TypeRenderer<'a> {
         }
     }
 
+    // ========================================================================
+    // Helper Methods
+    // ========================================================================
+
+    /// Render a sanitized path with optional generic arguments.
+    ///
+    /// Returns `Cow::Borrowed` when possible (no args, no sanitization needed),
+    /// preserving the zero-allocation fast path for simple types.
+    fn render_path_with_args<'p>(
+        &self,
+        path: &'p str,
+        args: Option<&GenericArgs>,
+    ) -> Cow<'p, str> {
+        let sanitized = RendererUtils::sanitize_path(path);
+
+        // Fast path: no args and no sanitization needed
+        if args.is_none() && matches!(sanitized, Cow::Borrowed(_)) {
+            return Cow::Borrowed(path);
+        }
+
+        // Slow path: need to allocate
+        let mut result = sanitized.into_owned();
+        if let Some(args) = args {
+            result.push_str(&self.render_generic_args(args));
+        }
+        Cow::Owned(result)
+    }
+
+    /// Render bounds joined with " + " directly to a buffer.
+    ///
+    /// Avoids intermediate Vec allocation.
+    fn write_bounds_joined(&self, out: &mut String, bounds: &[GenericBound]) {
+        let mut first = true;
+        for bound in bounds {
+            let rendered = self.render_generic_bound(bound);
+            // Skip empty bounds (Use bounds render to "")
+            if rendered.is_empty() {
+                continue;
+            }
+            if !first {
+                out.push_str(" + ");
+            }
+            out.push_str(&rendered);
+            first = false;
+        }
+    }
+
+    /// Write multiple rendered types separated by a delimiter.
+    ///
+    /// Avoids intermediate Vec allocation.
+    fn write_types_joined<'t, I>(&self, out: &mut String, types: I, sep: &str)
+    where
+        I: Iterator<Item = &'t Type>,
+    {
+        let mut first = true;
+        for ty in types {
+            if !first {
+                out.push_str(sep);
+            }
+            out.push_str(&self.render_type(ty));
+            first = false;
+        }
+    }
+
+    // ========================================================================
+    // Main Type Rendering
+    // ========================================================================
+
     /// Render a rustdoc `Type` to its Rust syntax string representation.
     ///
     /// This is the main entry point for type rendering. It handles all variants
@@ -130,21 +199,8 @@ impl<'a> TypeRenderer<'a> {
         match ty {
             // Named type path like `Vec<T>` or `std::collections::HashMap<K, V>`
             Type::ResolvedPath(path) => {
-                let sanitized = sanitize_path(&path.path);
-
-                // If no generic args and no sanitization needed, borrow the path directly
-                if path.args.is_none() && matches!(sanitized, Cow::Borrowed(_)) {
-                    return Cow::Borrowed(&path.path);
-                }
-
-                let mut result = sanitized.into_owned();
-
-                // Append generic arguments if present
-                if let Some(args) = &path.args {
-                    result.push_str(&self.render_generic_args(args));
-                }
-
-                Cow::Owned(result)
+                // Use helper which preserves fast path
+                self.render_path_with_args(&path.path, path.args.as_deref())
             },
 
             // Trait object: `dyn Trait + OtherTrait`
@@ -153,7 +209,7 @@ impl<'a> TypeRenderer<'a> {
                     .traits
                     .iter()
                     .map(|pt| {
-                        let sanitized: Cow<'_, str> = sanitize_path(&pt.trait_.path);
+                        let sanitized: Cow<'_, str> = RendererUtils::sanitize_path(&pt.trait_.path);
 
                         if pt.trait_.args.is_none() {
                             sanitized.into_owned()
@@ -179,20 +235,20 @@ impl<'a> TypeRenderer<'a> {
 
             // Function pointer: `fn(A, B) -> C`
             Type::FunctionPointer(fp) => {
-                // Render parameter types (we ignore parameter names for brevity)
-                let params: Vec<Cow<str>> = fp
-                    .sig
-                    .inputs
-                    .iter()
-                    .map(|(_, t)| self.render_type(t))
-                    .collect();
+                let mut result = String::from("fn(");
+                self.write_types_joined(
+                    &mut result,
+                    fp.sig.inputs.iter().map(|(_, t)| t),
+                    ", ",
+                );
+                result.push(')');
 
-                // Render return type if present
-                let ret = fp.sig.output.as_ref().map_or_else(String::new, |output| {
-                    format!(" -> {}", self.render_type(output))
-                });
+                if let Some(output) = &fp.sig.output {
+                    result.push_str(" -> ");
+                    result.push_str(&self.render_type(output));
+                }
 
-                Cow::Owned(format!("fn({}){}", params.join(", "), ret))
+                Cow::Owned(result)
             },
 
             // Tuple type: `(A, B, C)` or unit `()`
@@ -200,8 +256,11 @@ impl<'a> TypeRenderer<'a> {
                 if types.is_empty() {
                     return Cow::Borrowed("()");
                 }
-                let inner: Vec<Cow<str>> = types.iter().map(|t| self.render_type(t)).collect();
-                Cow::Owned(format!("({})", inner.join(", ")))
+
+                let mut result = String::from("(");
+                self.write_types_joined(&mut result, types.iter(), ", ");
+                result.push(')');
+                Cow::Owned(result)
             },
 
             // Slice type: `[T]`
@@ -217,12 +276,9 @@ impl<'a> TypeRenderer<'a> {
 
             // Impl trait in return position: `impl Iterator<Item = T>`
             Type::ImplTrait(bounds) => {
-                let bound_strs: Vec<Cow<str>> = bounds
-                    .iter()
-                    .map(|b| self.render_generic_bound(b))
-                    .collect();
-
-                Cow::Owned(format!("impl {}", bound_strs.join(" + ")))
+                let mut result = String::from("impl ");
+                self.write_bounds_joined(&mut result, bounds);
+                Cow::Owned(result)
             },
 
             // Inferred type: `_` (placeholder in turbofish)
@@ -264,7 +320,7 @@ impl<'a> TypeRenderer<'a> {
                 Cow::Owned(trait_.as_ref().map_or_else(
                     || format!("{self_ty}::{name}"),
                     |trait_path| {
-                        let sanitized_trait = sanitize_path(&trait_path.path);
+                        let sanitized_trait = RendererUtils::sanitize_path(&trait_path.path);
                         format!("<{self_ty} as {sanitized_trait}>::{name}")
                     },
                 ))
@@ -302,14 +358,16 @@ impl<'a> TypeRenderer<'a> {
 
             // Parenthesized syntax for Fn traits: `Fn(A, B) -> C`
             GenericArgs::Parenthesized { inputs, output } => {
-                let input_strs: Vec<Cow<str>> =
-                    inputs.iter().map(|t| self.render_type(t)).collect();
-                let ret = output
-                    .as_ref()
-                    .map(|t| format!(" -> {}", self.render_type(t)))
-                    .unwrap_or_default();
+                let mut result = String::from("(");
+                self.write_types_joined(&mut result, inputs.iter(), ", ");
+                result.push(')');
 
-                format!("({}){}", input_strs.join(", "), ret)
+                if let Some(out) = output {
+                    result.push_str(" -> ");
+                    result.push_str(&self.render_type(out));
+                }
+
+                result
             },
 
             // Return type notation (experimental feature)
@@ -361,12 +419,9 @@ impl<'a> TypeRenderer<'a> {
 
             // Bound constraint: `Item: SomeTrait + OtherTrait`
             AssocItemConstraintKind::Constraint(bounds) => {
-                let bound_strs: Vec<Cow<str>> = bounds
-                    .iter()
-                    .map(|b| self.render_generic_bound(b))
-                    .collect();
-
-                format!("{}{args}: {}", constraint.name, bound_strs.join(" + "))
+                let mut result = format!("{}{args}: ", constraint.name);
+                self.write_bounds_joined(&mut result, bounds);
+                result
             },
         }
     }
@@ -397,7 +452,7 @@ impl<'a> TypeRenderer<'a> {
             GenericBound::TraitBound {
                 trait_, modifier, ..
             } => {
-                let sanitized = sanitize_path(&trait_.path);
+                let sanitized = RendererUtils::sanitize_path(&trait_.path);
 
                 // Simple case: no modifier, no generic args, no sanitization - borrow directly
                 if matches!(modifier, TraitBoundModifier::None)
@@ -508,12 +563,8 @@ impl<'a> TypeRenderer<'a> {
 
                 // Add trait bounds if present
                 if !bounds.is_empty() {
-                    let bound_strs: Vec<Cow<str>> = bounds
-                        .iter()
-                        .map(|b| self.render_generic_bound(b))
-                        .collect();
-
-                    _ = write!(result, ": {}", bound_strs.join(" + "));
+                    result.push_str(": ");
+                    self.write_bounds_joined(&mut result, bounds);
                 }
 
                 Some(result)
@@ -571,12 +622,9 @@ impl<'a> TypeRenderer<'a> {
         match pred {
             // Type bound predicate: `T: Clone + Send`
             WherePredicate::BoundPredicate { type_, bounds, .. } => {
-                let bound_strs: Vec<Cow<str>> = bounds
-                    .iter()
-                    .map(|b| self.render_generic_bound(b))
-                    .collect();
-
-                format!("{}: {}", self.render_type(type_), bound_strs.join(" + "))
+                let mut result = format!("{}: ", self.render_type(type_));
+                self.write_bounds_joined(&mut result, bounds);
+                result
             },
 
             // Lifetime predicate: `'a: 'b + 'c`
@@ -618,8 +666,7 @@ impl<'a> TypeRenderer<'a> {
         match ty {
             Type::ResolvedPath(path) => {
                 // Extract the simple name (last segment of the path)
-                // Using rsplit().next() is more efficient than split().last()
-                let name = path.path.rsplit("::").next().unwrap_or(&path.path);
+                let name = PathUtils::short_name(&path.path);
                 result.push((name.to_string(), path.id));
 
                 // Also collect from generic arguments
@@ -630,12 +677,7 @@ impl<'a> TypeRenderer<'a> {
 
             Type::DynTrait(dyn_trait) => {
                 for pt in &dyn_trait.traits {
-                    let name = pt
-                        .trait_
-                        .path
-                        .rsplit("::")
-                        .next()
-                        .unwrap_or(&pt.trait_.path);
+                    let name = PathUtils::short_name(&pt.trait_.path);
                     result.push((name.to_string(), pt.trait_.id));
 
                     if let Some(args) = &pt.trait_.args {
@@ -672,7 +714,7 @@ impl<'a> TypeRenderer<'a> {
             Type::ImplTrait(bounds) => {
                 for bound in bounds {
                     if let GenericBound::TraitBound { trait_, .. } = bound {
-                        let name = trait_.path.rsplit("::").next().unwrap_or(&trait_.path);
+                        let name = PathUtils::short_name(&trait_.path);
                         result.push((name.to_string(), trait_.id));
 
                         if let Some(args) = &trait_.args {
@@ -687,7 +729,7 @@ impl<'a> TypeRenderer<'a> {
             } => {
                 self.collect_types_recursive(self_type, result);
                 if let Some(t) = trait_ {
-                    let name = t.path.rsplit("::").next().unwrap_or(&t.path);
+                    let name = PathUtils::short_name(&t.path);
                     result.push((name.to_string(), t.id));
                 }
             },
