@@ -1,242 +1,102 @@
-A CLI tool that converts Rust's rustdoc JSON output into readable, per-module markdown files.
+# cargo-docs-md
 
-I wanted something that mirrors how rustdoc actually organizes things: one file per module, with working cross-references between them. So that I could just have docs I can grep through, and have all docs of all of my dependencies in one place locally. Opening up a browser is a hassle and I just end up browsing other sites instead. Especially as a neovim user it's quite annoying to switch between a browser and terminal. I also forget things very quickly so I am extremely dependent on docs to remember how stuff work.
+Turn rustdoc JSON into markdown you can actually navigate.
 
-By default, all items (including private ones) are documented. Use `--exclude-private` to only include public items. This ensures maximum detail from rustdoc JSON files, though it may cause broken links if private items are later excluded.
+Point it at your crate and get a directory of interlinked markdown files — click through modules, jump across crate boundaries, and go straight to source code. Your code and all your dependencies, documented and searchable in one place.
 
-## What It Does
+The [`generated_docs/`](generated_docs/) folder in this repo has 88 crates, 1,200+ markdown files, and 24,000+ searchable items generated from this tool's own dependency tree. Checkout the added docs and source code directly in repo to see how well it currently works (or not!).
 
-- Generates one markdown file per module (not one giant blob)
-- Creates working links between modules and items
-- Adds breadcrumb navigation at the top of each file (e.g., `crate / module / submodule`)
-- Supports both flat (`module.md`) and nested (`module/index.md`) output formats
-- Handles multi-crate workspaces with cross-crate linking
-- Properly renders `pub use` re-exports with their documentation
-- Shows cross-crate trait implementations (impls from dependencies appear on your types)
-- Filters common blanket impls (From, Into, Any, etc.) by default (`--include-blanket-impls` to show)
-- Generates mdBook-compatible `SUMMARY.md` files
-- Produces a `search_index.json` for client-side search (only includes rendered items)
-- Includes all items by default—use `--exclude-private` to limit to public items only (affects links, search index, and SUMMARY.md)
-- Source location links: Shows where each item is defined with clickable links to source files (requires `source-parsing` feature)
+## Current Features
 
-**Example output:** The [`generated_docs/`](generated_docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
+**Clickable everything.** Each file has breadcrumb navigation at the top. References to types, traits, and functions link to their definitions — even across crates. For example, `regex_automata` docs link directly to `regex_syntax::hir::Hir`.
+
+```text
+*[cargo_docs_md](../index.md) / [generator](index.md) / [context](context/index.md)*
+```
+
+**Source locations.** Every item shows where it's defined. Click through to the exact file and line.
+
+```markdown
+*Defined in `src/generator/context.rs:135-168`*
+```
+
+**Search index.** A `search_index.json` with every documented item — name, path, kind, and file location.
 
 ## Installation
 
-You'll need Rust (nightly toolchain too because rustdoc-types is still unstable) installed. Then:
+Requires Rust nightly (rustdoc JSON is unstable):
 
 ```bash
-# Install from crates.io
+rustup toolchain install nightly
 cargo install cargo-docs-md
-
-# Or direct install from git
-cargo install --git https://github.com/consistent-milk12/docs-md
-
-# Or clone and install locally
-git clone https://github.com/consistent-milk12/docs-md
-cd docs-md
-cargo install --path .
 ```
-
-Or just run it directly with `cargo run --`.
 
 ## Usage
 
-### Quick Start (One Command)
-
-The easiest way to generate docs—builds rustdoc JSON and generates markdown in one step:
-
 ```bash
-# Generate docs for your project and all dependencies
 cargo docs-md docs
-
-# With options
-cargo docs-md docs --primary-crate my_crate    # Prioritize your crate for links
-cargo docs-md docs --clean                      # Full rebuild (cargo clean first)
-cargo docs-md docs --exclude-private            # Only include public items
-cargo docs-md docs -- --all-features            # Pass args to cargo doc
 ```
 
-This requires the nightly toolchain (`rustup toolchain install nightly`).
+That's it. Builds rustdoc JSON and generates markdown in one step.
 
-**Defaults:** Nested format is used by default. The `docs` subcommand also generates `SUMMARY.md` + `search_index.json` by default. Use `--format flat`, `--no-mdbook`, or `--no-search-index` to change this.
+```bash
+cargo docs-md docs --primary-crate my_crate   # prioritize your crate for link resolution
+cargo docs-md docs --exclude-private          # public items only
+cargo docs-md docs --clean                    # full rebuild (cargo clean first)
+```
 
-### Manual Two-Step Process
+### Source file collection
 
-If you need more control, you can run the steps separately:
+To make source links work for dependencies, collect their source files first:
 
-**Step 1: Generate rustdoc JSON**
+```bash
+cargo docs-md collect-sources   # copies sources to .source_{timestamp}/
+cargo docs-md docs              # auto-detects and links to them
+```
+
+This snapshots dependency sources at their exact versions, so links stay valid even after updates.
+
+### More options
+
+| Flag | Effect |
+|------|--------|
+| `--format flat` | All markdown files in one directory |
+| `--no-mdbook` | Skip `SUMMARY.md` generation |
+| `--no-search-index` | Skip `search_index.json` |
+| `--include-blanket-impls` | Include `From`, `Into`, `Any`, etc. |
+
+For manual control, generate rustdoc JSON yourself:
 
 ```bash
 RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc
+cargo docs-md --dir target/doc/ -o docs/
 ```
 
-This creates JSON files in `target/doc/`. Each crate gets its own `{crate_name}.json` file.
+## How it works
 
-**Step 2: Generate Markdown**
+Reads rustdoc JSON and walks the module tree. For each module, collects all items, renders their docs, and resolves cross-reference links using rustdoc's link map.
 
-_Single crate:_
+Multi-crate workspaces get a unified link registry that tracks items across all crates. When the same name exists in multiple places, it resolves by checking: local crate first, then primary crate (if set), then any module match, then first available.
+
+## Known limitations
+
+- **No standard library links.** References to `Vec`, `String`, `Drop`, etc. can't link to std docs since they're not in the generated output. They may incorrectly resolve to a same-named item in your dependencies.
+
+- **Nightly only.** Rustdoc JSON is unstable and requires the nightly toolchain. The format can change between Rust versions.
+
+- **Ambiguous names.** When multiple crates export the same name, the resolver picks one based on priority rules. This is usually correct, but occasionally produces unexpected links.
+
+- **Private item links.** By default, private items are documented. If you later regenerate with `--exclude-private`, links pointing to those items will break.
+
+## Development
 
 ```bash
-# Nested format (directory per module) - default
-cargo docs-md --path target/doc/my_crate.json -o generated_docs/
-
-# Flat format (all files in one directory)
-cargo docs-md --path target/doc/my_crate.json -o generated_docs/ --format flat
-
-# Exclude private items (public only)
-cargo docs-md --path target/doc/my_crate.json -o generated_docs/ --exclude-private
+just help         # all commands
+just test         # run tests
+just lint         # clippy (pedantic + nursery)
+just docs         # full rebuild
 ```
-
-_Multiple crates (workspace or with dependencies):_
-
-Multi-crate mode always uses a nested structure (one directory per crate), regardless of `--format`.
-
-```bash
-# Basic multi-crate generation
-cargo docs-md --dir target/doc/ -o generated_docs/
-
-# With mdBook support (generates SUMMARY.md)
-cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook
-
-# With search index
-cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index
-
-# Prioritize your crate for ambiguous links
-cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook --primary-crate my_crate
-```
-
-### Development Scripts
-
-For development, use `just` (install with `cargo install just`):
-
-```bash
-# Documentation
-just docs         # Full docs (clean + build + rustdoc + generate)
-just regen        # Regenerate generated_docs/ (quick, no cargo clean)
-just quick        # Quick rebuild docs/ for mdbook
-
-# Testing
-just test         # Run all tests
-just test-lib     # Run unit tests only
-just test-int     # Run integration tests only
-just test-filter PATTERN  # Run tests matching pattern
-
-# Development
-just build        # Build debug binary (with source-parsing feature)
-just release      # Build release binary
-just check        # Quick cargo check
-just lint         # Run clippy (pedantic + nursery)
-just errors       # Build and show only errors/warnings
-just bench        # Run benchmarks
-just clean        # Remove docs/ and cargo clean
-
-just help         # Show all available commands
-```
-
-The scripts include helpful error messages if the nightly toolchain is missing.
-
-### Python Utility Scripts
-
-The `scripts/` directory contains Python utilities for debugging and inspecting rustdoc JSON and generated output:
-
-```bash
-# List all available scripts with descriptions
-python3 scripts/index.py
-
-# Get help for a specific script
-python3 scripts/index.py <script_name>
-
-# Run a script directly
-python3 scripts/<script_name>.py --help
-```
-
-**Available scripts:**
-
-| Script                    | Description                                                           |
-| ------------------------- | --------------------------------------------------------------------- |
-| `inspect_impl.py`         | Inspect impl blocks for a specific type in rustdoc JSON               |
-| `find_blanket_impls.py`   | Find blanket impls (`impl<T> Trait for T`) in rustdoc JSON            |
-| `dump_type_info.py`       | Dump detailed type information from rustdoc JSON                      |
-| `check_generated_docs.py` | Check generated markdown for issues (duplicate anchors, broken links) |
-
-**Examples:**
-
-```bash
-# Inspect all impls for a type
-python3 scripts/inspect_impl.py target/doc/my_crate.json MyStruct
-
-# Filter by trait name
-python3 scripts/inspect_impl.py target/doc/my_crate.json MyStruct --trait Clone -v
-
-# Check generated docs for problems
-python3 scripts/check_generated_docs.py generated_docs/
-python3 scripts/check_generated_docs.py generated_docs/ --file my_crate/module/index.md
-
-# Find blanket impls in a crate
-python3 scripts/find_blanket_impls.py target/doc/my_crate.json --limit 50
-```
-
-### Source Location Links
-
-When built with the `source-parsing` feature, each item shows a "Defined in" link pointing to the source file and line numbers:
-
-```markdown
-_Defined in [`serde-1.0.228/src/lib.rs:10-25`](../../.source_xxx/serde-1.0.228/src/lib.rs#L10-L25)_
-```
-
-**Setup:**
-
-1. First, collect dependency sources to a local directory:
-
-   ```bash
-   cargo docs-md collect-sources
-   ```
-
-   This creates a `.source_{timestamp}/` directory with copies of all dependency source files.
-
-2. Generate docs (the tool auto-detects the `.source_*` directory):
-   ```bash
-   cargo docs-md docs
-   ```
-
-The links are relative to the generated markdown files and use GitHub-compatible line number fragments (`#L10-L25`). This keeps your home directory path private while providing clickable source navigation.
-
-## How It Works
-
-The tool reads rustdoc's JSON format (defined by the `rustdoc-types` crate) and walks through the module tree. For each module, it:
-
-1. **Collects items** - Structs, enums, traits, functions, constants, macros, type aliases, and re-exports (`pub use`)
-2. **Renders documentation** - Converts the doc comments (already markdown) and adds item signatures
-3. **Processes links** - Rustdoc JSON includes a `links` map that tells us what `[SomeType]` should point to. We resolve these to relative file paths.
-4. **Handles impl blocks** - Gathers trait implementations and inherent methods for each type
-
-For multi-crate mode, there's a `UnifiedLinkRegistry` that tracks items across all crates and resolves cross-crate references. When there's ambiguity (multiple crates have an item with the same name), it prefers: local crate → primary crate (if specified) → modules over other items → first match.
-
-## What's In Development
-
-Lots of boilerplate AI generated code was added in the last two commits. This will probably take a lot of time to clean up than manually writing on my own, but I don't really have enough time on hand to work on so many of these types on my own.
-
-The heavy lifting is done by:
-
-- `rustdoc-types` - The official rustdoc JSON schema
-- `clap` - CLI argument parsing
-- `serde` / `serde_json` - JSON handling
-- `regex` - Processing doc links
-- `miette` - Nice error messages
-- `indicatif` - Progress bars
-- `rayon` - Parallel multi-crate generation
-- `hashbrown` - High-performance hash maps with raw_entry API for zero-allocation lookups
-- `unicode-normalization` - NFC normalization for anchor slugification
-- `compact_str` - Inline strings (≤24 bytes without heap allocation)
-- `tracing` - Structured logging (compiled out in release builds via `release_max_level_info`)
-
-## Contributing
-
-Issues and PRs welcome. The codebase should be FULLY DOCUMENTED (should not build if not, due to the `#![deny(missing_docs)]` lint in root lib.rs). Each module has a `//!` header explaining what it does, and public functions have doc comments.
 
 ## License
 
 MIT
-
-This was mostly developed for personal use. If it's useful to you too, that's great. If you find bugs or have ideas, let me know.
