@@ -13,12 +13,12 @@ incremental decoder.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`is_word_byte`](#is_word_byte) | fn | Returns true if and only if the given byte is considered a word character. |
+| [`is_word_byte`](#is-word-byte) | fn | Returns true if and only if the given byte is considered a word character. |
 | [`decode`](#decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
-| [`decode_last`](#decode_last) | fn | Decodes the last UTF-8 encoded codepoint from the given byte slice. |
+| [`decode_last`](#decode-last) | fn | Decodes the last UTF-8 encoded codepoint from the given byte slice. |
 | [`len`](#len) | fn | Given a UTF-8 leading byte, this returns the total number of code units in the following encoded codepoint. |
-| [`is_boundary`](#is_boundary) | fn | Returns true if and only if the given offset in the given bytes falls on a valid UTF-8 encoded codepoint boundary. |
-| [`is_leading_or_invalid_byte`](#is_leading_or_invalid_byte) | fn | Returns true if and only if the given byte is either a valid leading UTF-8 byte, or is otherwise an invalid byte that can never appear anywhere in a valid UTF-8 sequence. |
+| [`is_boundary`](#is-boundary) | fn | Returns true if and only if the given offset in the given bytes falls on a valid UTF-8 encoded codepoint boundary. |
+| [`is_leading_or_invalid_byte`](#is-leading-or-invalid-byte) | fn | Returns true if and only if the given byte is either a valid leading UTF-8 byte, or is otherwise an invalid byte that can never appear anywhere in a valid UTF-8 sequence. |
 
 ## Functions
 

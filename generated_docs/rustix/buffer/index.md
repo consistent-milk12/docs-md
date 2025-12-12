@@ -13,7 +13,7 @@ Utilities for functions that return data via buffers.
 | [`private`](#private) | mod |  |
 | [`SpareCapacity`](#sparecapacity) | struct | A type that implements [`Buffer`] by appending to a `Vec`, up to its capacity. |
 | [`Buffer`](#buffer) | trait | A memory buffer that may be uninitialized. |
-| [`spare_capacity`](#spare_capacity) | fn | Construct an [`SpareCapacity`], which implements [`Buffer`]. |
+| [`spare_capacity`](#spare-capacity) | fn | Construct an [`SpareCapacity`], which implements [`Buffer`]. |
 
 ## Modules
 
@@ -39,11 +39,11 @@ have some non-empty spare capacity.
 
 #### Trait Implementations
 
-##### `impl<'a, T> Buffer for SpareCapacity<'a, T>`
+##### `impl<T> Buffer for SpareCapacity<'a, T>`
 
-##### `impl<'a, T> Sealed for SpareCapacity<'a, T>`
+##### `impl<T> Sealed for SpareCapacity<'a, T>`
 
-- <span id="sparecapacity-type-output"></span>`type Output = usize`
+- <span id="sparecapacity-sealed-type-output"></span>`type Output = usize`
 
 - <span id="sparecapacity-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
 

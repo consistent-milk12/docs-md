@@ -58,7 +58,7 @@ implement `name`. For example [`String`](../../clap_builder/index.md). Or if you
 
 - <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](../index.md#namedsource)
 
-##### `impl<D> OwoColorize for NamedSource<S>`
+##### `impl OwoColorize for NamedSource<S>`
 
 ##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 

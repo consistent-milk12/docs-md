@@ -15,7 +15,7 @@ functionality.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`WordSplitter`](#wordsplitter) | enum | The `WordSplitter` enum describes where words can be split. |
-| [`split_words`](#split_words) | fn | Split words into smaller words according to the split points given by `word_splitter`. |
+| [`split_words`](#split-words) | fn | Split words into smaller words according to the split points given by `word_splitter`. |
 
 ## Enums
 

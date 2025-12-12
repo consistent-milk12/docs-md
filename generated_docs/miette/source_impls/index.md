@@ -10,7 +10,7 @@ Default trait implementations for [`SourceCode`](../index.md).
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`context_info`](#context_info) | fn |  |
+| [`context_info`](#context-info) | fn |  |
 
 ## Functions
 

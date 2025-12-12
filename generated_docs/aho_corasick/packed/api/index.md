@@ -16,7 +16,7 @@
   - [`ForceAlgorithm`](#forcealgorithm)
   - [`SearchKind`](#searchkind)
 - [Constants](#constants)
-  - [`PATTERN_LIMIT`](#pattern_limit)
+  - [`PATTERN_LIMIT`](#pattern-limit)
 
 ## Quick Reference
 
@@ -29,7 +29,7 @@
 | [`MatchKind`](#matchkind) | enum | A knob for controlling the match semantics of a packed multiple string searcher. |
 | [`ForceAlgorithm`](#forcealgorithm) | enum | An internal option for forcing the use of a particular packed algorithm. |
 | [`SearchKind`](#searchkind) | enum |  |
-| [`PATTERN_LIMIT`](#pattern_limit) | const | This is a limit placed on the total number of patterns we're willing to try and match at once. |
+| [`PATTERN_LIMIT`](#pattern-limit) | const | This is a limit placed on the total number of patterns we're willing to try and match at once. |
 
 ## Structs
 
@@ -300,15 +300,15 @@ searched.
 
 ##### `impl IntoIterator for FindIter<'s, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'s, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = Match`
+- <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../util/search/index.md#match)
 

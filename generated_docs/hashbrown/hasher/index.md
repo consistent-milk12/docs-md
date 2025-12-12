@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`DefaultHashBuilder`](#defaulthashbuilder) | struct | Default hash builder for the `S` type parameter of [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
 | [`DefaultHasher`](#defaulthasher) | struct | Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
-| [`forward_writes!`](#forward_writes) | macro |  |
+| [`forward_writes!`](#forward-writes) | macro |  |
 
 ## Structs
 
@@ -35,7 +35,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-buildhasher-type-hasher"></span>`type Hasher = DefaultHasher`
 
 - <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 

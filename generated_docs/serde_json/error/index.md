@@ -16,9 +16,9 @@ When serializing or deserializing JSON goes wrong.
   - [`Category`](#category)
   - [`ErrorCode`](#errorcode)
 - [Functions](#functions)
-  - [`make_error`](#make_error)
-  - [`parse_line_col`](#parse_line_col)
-  - [`starts_with_digit`](#starts_with_digit)
+  - [`make_error`](#make-error)
+  - [`parse_line_col`](#parse-line-col)
+  - [`starts_with_digit`](#starts-with-digit)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 
@@ -31,9 +31,9 @@ When serializing or deserializing JSON goes wrong.
 | [`JsonUnexpected`](#jsonunexpected) | struct |  |
 | [`Category`](#category) | enum | Categorizes the cause of a `serde_json::Error`. |
 | [`ErrorCode`](#errorcode) | enum |  |
-| [`make_error`](#make_error) | fn |  |
-| [`parse_line_col`](#parse_line_col) | fn |  |
-| [`starts_with_digit`](#starts_with_digit) | fn |  |
+| [`make_error`](#make-error) | fn |  |
+| [`parse_line_col`](#parse-line-col) | fn |  |
+| [`starts_with_digit`](#starts-with-digit) | fn |  |
 | [`Result`](#result) | type | Alias for a `Result` with the error type `serde_json::Error`. |
 
 ## Structs
@@ -93,7 +93,7 @@ deserializing JSON data.
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 

@@ -15,7 +15,7 @@ want unrecognized values to create undefined behavior.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Errno`](#errno) | struct |  |
-| [`retry_on_intr`](#retry_on_intr) | fn | Call `f` until it either succeeds or fails other than [`Errno::INTR`]. |
+| [`retry_on_intr`](#retry-on-intr) | fn | Call `f` until it either succeeds or fails other than [`Errno::INTR`]. |
 | [`Result`](#result) | type | A specialized [`Result`] type for `rustix` APIs. |
 
 ## Structs
@@ -30,7 +30,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References

@@ -10,4 +10,11 @@ SourceCode/
 !source_docs/**
 .cargo
 !SourceParsingDesign.md
-.source_*
+
+# WARNING: The line below is commented out to showcase the full features of the tool, when you are using it
+# this will be automatically added to your .gitignore. You will get a local copy of your
+# dependencies source dode frozen at the versions you were using.
+# This is helpful because the markdowns now contain direct source span reference links to the exact
+# file where the specific item is defined in. And you will be able to jump between a .md and .rs
+# file using them.
+# .source_*

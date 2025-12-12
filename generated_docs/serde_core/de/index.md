@@ -121,7 +121,7 @@ One example is `OsStr`.
 
 - [Modules](#modules)
   - [`value`](#value)
-  - [`ignored_any`](#ignored_any)
+  - [`ignored_any`](#ignored-any)
   - [`impls`](#impls)
 - [Structs](#structs)
   - [`IgnoredAny`](#ignoredany)
@@ -143,14 +143,14 @@ One example is `OsStr`.
   - [`VariantAccess`](#variantaccess)
   - [`IntoDeserializer`](#intodeserializer)
 - [Macros](#macros)
-  - [`declare_error_trait!`](#declare_error_trait)
+  - [`declare_error_trait!`](#declare-error-trait)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` trait. |
-| [`ignored_any`](#ignored_any) | mod |  |
+| [`ignored_any`](#ignored-any) | mod |  |
 | [`impls`](#impls) | mod |  |
 | [`IgnoredAny`](#ignoredany) | struct |  |
 | [`OneOf`](#oneof) | struct | Used in error messages. |
@@ -168,7 +168,7 @@ One example is `OsStr`.
 | [`EnumAccess`](#enumaccess) | trait | Provides a `Visitor` access to the data of an enum in the input. |
 | [`VariantAccess`](#variantaccess) | trait | `VariantAccess` is a visitor that is created by the `Deserializer` and passed to the `Deserialize` to deserialize the content of a particular enum variant. |
 | [`IntoDeserializer`](#intodeserializer) | trait | Converts an existing value into a `Deserializer` from which other values can be deserialized. |
-| [`declare_error_trait!`](#declare_error_trait) | macro |  |
+| [`declare_error_trait!`](#declare-error-trait) | macro |  |
 
 ## Modules
 
@@ -324,7 +324,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Visitor for IgnoredAny`
 
-- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
+- <span id="ignoredany-visitor-type-value"></span>`type Value = IgnoredAny`
 
 - <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

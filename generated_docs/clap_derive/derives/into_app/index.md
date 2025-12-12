@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`gen_for_struct`](#gen_for_struct) | fn |  |
-| [`gen_for_enum`](#gen_for_enum) | fn |  |
+| [`gen_for_struct`](#gen-for-struct) | fn |  |
+| [`gen_for_enum`](#gen-for-enum) | fn |  |
 
 ## Functions
 

@@ -12,7 +12,7 @@ Fixed size parameters list with optional subparameters.
 |------|------|-------------|
 | [`Params`](#params) | struct |  |
 | [`ParamsIter`](#paramsiter) | struct | Immutable subparameter iterator. |
-| [`MAX_PARAMS`](#max_params) | const |  |
+| [`MAX_PARAMS`](#max-params) | const |  |
 
 ## Structs
 
@@ -86,9 +86,9 @@ struct Params {
 
 ##### `impl IntoIterator for &'a Params`
 
-- <span id="a-params-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
+- <span id="a-params-intoiterator-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
 
-- <span id="a-params-type-item"></span>`type Item = &'a [u16]`
+- <span id="a-params-intoiterator-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="a-params-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -119,15 +119,15 @@ Immutable subparameter iterator.
 
 ##### `impl IntoIterator for ParamsIter<'a>`
 
-- <span id="paramsiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="paramsiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="paramsiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="paramsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ParamsIter<'a>`
 
-- <span id="paramsiter-type-item"></span>`type Item = &'a [u16]`
+- <span id="paramsiter-iterator-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -49,11 +49,11 @@ and [`SectionHeader::gnu_attributes`](super::SectionHeader::gnu_attributes).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
 
 - <span id="attributessection-clone"></span>`fn clone(&self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](../index.md#attributessection)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
 
 - <span id="attributessection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -78,25 +78,25 @@ An iterator for the subsections in an [`AttributesSection`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
 
 - <span id="attributessubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](../index.md#attributessubsectioniterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
 
 - <span id="attributessubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for AttributesSubsectionIterator<'data, Elf>`
+##### `impl IntoIterator for AttributesSubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributessubsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributessubsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="attributessubsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributessubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for AttributesSubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
+- <span id="attributessubsectioniterator-iterator-type-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
 
 - <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -128,11 +128,11 @@ A subsection is identified by a vendor name.  It contains a series of
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
 
 - <span id="attributessubsection-clone"></span>`fn clone(&self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](../index.md#attributessubsection)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
 
 - <span id="attributessubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -157,25 +157,25 @@ An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
 
 - <span id="attributessubsubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md#attributessubsubsectioniterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
 
 - <span id="attributessubsubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributessubsubsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributessubsubsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="attributessubsubsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributessubsubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
+- <span id="attributessubsubsectioniterator-iterator-type-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
 
 - <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -251,15 +251,15 @@ An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 
 ##### `impl IntoIterator for AttributeIndexIterator<'data>`
 
-- <span id="attributeindexiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributeindexiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributeindexiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="attributeindexiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributeindexiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for AttributeIndexIterator<'data>`
 
-- <span id="attributeindexiterator-type-item"></span>`type Item = Result<u32, Error>`
+- <span id="attributeindexiterator-iterator-type-item"></span>`type Item = Result<u32, Error>`
 
 - <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

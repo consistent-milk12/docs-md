@@ -9,11 +9,11 @@
 - [Structs](#structs)
   - [`fields`](#fields)
   - [`skip`](#skip)
-  - [`skip_all`](#skip_all)
+  - [`skip_all`](#skip-all)
   - [`level`](#level)
   - [`target`](#target)
   - [`parent`](#parent)
-  - [`follows_from`](#follows_from)
+  - [`follows_from`](#follows-from)
   - [`name`](#name)
   - [`err`](#err)
   - [`ret`](#ret)
@@ -24,11 +24,11 @@
 |------|------|-------------|
 | [`fields`](#fields) | struct |  |
 | [`skip`](#skip) | struct |  |
-| [`skip_all`](#skip_all) | struct |  |
+| [`skip_all`](#skip-all) | struct |  |
 | [`level`](#level) | struct |  |
 | [`target`](#target) | struct |  |
 | [`parent`](#parent) | struct |  |
-| [`follows_from`](#follows_from) | struct |  |
+| [`follows_from`](#follows-from) | struct |  |
 | [`name`](#name) | struct |  |
 | [`err`](#err) | struct |  |
 | [`ret`](#ret) | struct |  |

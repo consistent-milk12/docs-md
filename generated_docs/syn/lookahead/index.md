@@ -16,7 +16,7 @@
   - [`Peek`](#peek)
 - [Functions](#functions)
   - [`new`](#new)
-  - [`peek_impl`](#peek_impl)
+  - [`peek_impl`](#peek-impl)
 
 ## Quick Reference
 
@@ -28,7 +28,7 @@
 | [`TokenMarker`](#tokenmarker) | enum |  |
 | [`Peek`](#peek) | trait | Types that can be parsed by looking at just one token. |
 | [`new`](#new) | fn |  |
-| [`peek_impl`](#peek_impl) | fn |  |
+| [`peek_impl`](#peek-impl) | fn |  |
 
 ## Structs
 

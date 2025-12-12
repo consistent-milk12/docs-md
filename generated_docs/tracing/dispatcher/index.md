@@ -133,9 +133,9 @@ instrumentation.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`with_default`](#with_default) | mod |  |
+| [`with_default`](#with-default) | mod |  |
 | [`DefaultGuard`](#defaultguard) | trait |  |
-| [`set_default`](#set_default) | type |  |
+| [`set_default`](#set-default) | type |  |
 
 ## Modules
 
@@ -161,5 +161,11 @@ requiring that all impls of `Automaton` do so, which would be not great.
 
 ## Type Aliases
 
-*Defined in [`tracing-0.1.43/src/dispatcher.rs:128`](../../../.source_1765210505/tracing-0.1.43/src/dispatcher.rs#L128)*
+### `set_default<T>`
+
+```rust
+type set_default<T> = alloc::vec::IntoIter<T>;
+```
+
+*Defined in [`addr2line-0.25.1/src/lib.rs:61`](../../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L61)*
 

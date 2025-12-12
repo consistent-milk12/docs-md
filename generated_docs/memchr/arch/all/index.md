@@ -18,10 +18,10 @@ specialized architecture dependent routines are unavailable.
   - [`shiftor`](#shiftor)
   - [`twoway`](#twoway)
 - [Functions](#functions)
-  - [`is_prefix`](#is_prefix)
-  - [`is_suffix`](#is_suffix)
-  - [`is_equal`](#is_equal)
-  - [`is_equal_raw`](#is_equal_raw)
+  - [`is_prefix`](#is-prefix)
+  - [`is_suffix`](#is-suffix)
+  - [`is_equal`](#is-equal)
+  - [`is_equal_raw`](#is-equal-raw)
 
 ## Quick Reference
 
@@ -32,10 +32,10 @@ specialized architecture dependent routines are unavailable.
 | [`rabinkarp`](#rabinkarp) | mod | An implementation of the [Rabin-Karp substring search algorithm][rabinkarp]. |
 | [`shiftor`](#shiftor) | mod | An implementation of the [Shift-Or substring search algorithm][shiftor]. |
 | [`twoway`](#twoway) | mod | An implementation of the [Two-Way substring search algorithm][two-way]. |
-| [`is_prefix`](#is_prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
-| [`is_suffix`](#is_suffix) | fn | Returns true if and only if `needle` is a suffix of `haystack`. |
-| [`is_equal`](#is_equal) | fn | Compare corresponding bytes in `x` and `y` for equality. |
-| [`is_equal_raw`](#is_equal_raw) | fn | Compare `n` bytes at the given pointers for equality. |
+| [`is_prefix`](#is-prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
+| [`is_suffix`](#is-suffix) | fn | Returns true if and only if `needle` is a suffix of `haystack`. |
+| [`is_equal`](#is-equal) | fn | Compare corresponding bytes in `x` and `y` for equality. |
+| [`is_equal_raw`](#is-equal-raw) | fn | Compare `n` bytes at the given pointers for equality. |
 
 ## Modules
 

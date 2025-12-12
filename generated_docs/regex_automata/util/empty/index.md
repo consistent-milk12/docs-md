@@ -162,9 +162,9 @@ crate handles that case just fine too.)
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`skip_splits_fwd`](#skip_splits_fwd) | fn |  |
-| [`skip_splits_rev`](#skip_splits_rev) | fn |  |
-| [`skip_splits`](#skip_splits) | fn |  |
+| [`skip_splits_fwd`](#skip-splits-fwd) | fn |  |
+| [`skip_splits_rev`](#skip-splits-rev) | fn |  |
+| [`skip_splits`](#skip-splits) | fn |  |
 
 ## Functions
 

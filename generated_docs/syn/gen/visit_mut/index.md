@@ -97,193 +97,193 @@ fn main() {
 - [Traits](#traits)
   - [`VisitMut`](#visitmut)
 - [Functions](#functions)
-  - [`visit_abi_mut`](#visit_abi_mut)
-  - [`visit_angle_bracketed_generic_arguments_mut`](#visit_angle_bracketed_generic_arguments_mut)
-  - [`visit_arm_mut`](#visit_arm_mut)
-  - [`visit_assoc_const_mut`](#visit_assoc_const_mut)
-  - [`visit_assoc_type_mut`](#visit_assoc_type_mut)
-  - [`visit_attr_style_mut`](#visit_attr_style_mut)
-  - [`visit_attribute_mut`](#visit_attribute_mut)
-  - [`visit_bare_fn_arg_mut`](#visit_bare_fn_arg_mut)
-  - [`visit_bare_variadic_mut`](#visit_bare_variadic_mut)
-  - [`visit_bin_op_mut`](#visit_bin_op_mut)
-  - [`visit_block_mut`](#visit_block_mut)
-  - [`visit_bound_lifetimes_mut`](#visit_bound_lifetimes_mut)
-  - [`visit_captured_param_mut`](#visit_captured_param_mut)
-  - [`visit_const_param_mut`](#visit_const_param_mut)
-  - [`visit_constraint_mut`](#visit_constraint_mut)
-  - [`visit_data_mut`](#visit_data_mut)
-  - [`visit_data_enum_mut`](#visit_data_enum_mut)
-  - [`visit_data_struct_mut`](#visit_data_struct_mut)
-  - [`visit_data_union_mut`](#visit_data_union_mut)
-  - [`visit_derive_input_mut`](#visit_derive_input_mut)
-  - [`visit_expr_mut`](#visit_expr_mut)
-  - [`visit_expr_array_mut`](#visit_expr_array_mut)
-  - [`visit_expr_assign_mut`](#visit_expr_assign_mut)
-  - [`visit_expr_async_mut`](#visit_expr_async_mut)
-  - [`visit_expr_await_mut`](#visit_expr_await_mut)
-  - [`visit_expr_binary_mut`](#visit_expr_binary_mut)
-  - [`visit_expr_block_mut`](#visit_expr_block_mut)
-  - [`visit_expr_break_mut`](#visit_expr_break_mut)
-  - [`visit_expr_call_mut`](#visit_expr_call_mut)
-  - [`visit_expr_cast_mut`](#visit_expr_cast_mut)
-  - [`visit_expr_closure_mut`](#visit_expr_closure_mut)
-  - [`visit_expr_const_mut`](#visit_expr_const_mut)
-  - [`visit_expr_continue_mut`](#visit_expr_continue_mut)
-  - [`visit_expr_field_mut`](#visit_expr_field_mut)
-  - [`visit_expr_for_loop_mut`](#visit_expr_for_loop_mut)
-  - [`visit_expr_group_mut`](#visit_expr_group_mut)
-  - [`visit_expr_if_mut`](#visit_expr_if_mut)
-  - [`visit_expr_index_mut`](#visit_expr_index_mut)
-  - [`visit_expr_infer_mut`](#visit_expr_infer_mut)
-  - [`visit_expr_let_mut`](#visit_expr_let_mut)
-  - [`visit_expr_lit_mut`](#visit_expr_lit_mut)
-  - [`visit_expr_loop_mut`](#visit_expr_loop_mut)
-  - [`visit_expr_macro_mut`](#visit_expr_macro_mut)
-  - [`visit_expr_match_mut`](#visit_expr_match_mut)
-  - [`visit_expr_method_call_mut`](#visit_expr_method_call_mut)
-  - [`visit_expr_paren_mut`](#visit_expr_paren_mut)
-  - [`visit_expr_path_mut`](#visit_expr_path_mut)
-  - [`visit_expr_range_mut`](#visit_expr_range_mut)
-  - [`visit_expr_raw_addr_mut`](#visit_expr_raw_addr_mut)
-  - [`visit_expr_reference_mut`](#visit_expr_reference_mut)
-  - [`visit_expr_repeat_mut`](#visit_expr_repeat_mut)
-  - [`visit_expr_return_mut`](#visit_expr_return_mut)
-  - [`visit_expr_struct_mut`](#visit_expr_struct_mut)
-  - [`visit_expr_try_mut`](#visit_expr_try_mut)
-  - [`visit_expr_try_block_mut`](#visit_expr_try_block_mut)
-  - [`visit_expr_tuple_mut`](#visit_expr_tuple_mut)
-  - [`visit_expr_unary_mut`](#visit_expr_unary_mut)
-  - [`visit_expr_unsafe_mut`](#visit_expr_unsafe_mut)
-  - [`visit_expr_while_mut`](#visit_expr_while_mut)
-  - [`visit_expr_yield_mut`](#visit_expr_yield_mut)
-  - [`visit_field_mut`](#visit_field_mut)
-  - [`visit_field_mutability_mut`](#visit_field_mutability_mut)
-  - [`visit_field_pat_mut`](#visit_field_pat_mut)
-  - [`visit_field_value_mut`](#visit_field_value_mut)
-  - [`visit_fields_mut`](#visit_fields_mut)
-  - [`visit_fields_named_mut`](#visit_fields_named_mut)
-  - [`visit_fields_unnamed_mut`](#visit_fields_unnamed_mut)
-  - [`visit_file_mut`](#visit_file_mut)
-  - [`visit_fn_arg_mut`](#visit_fn_arg_mut)
-  - [`visit_foreign_item_mut`](#visit_foreign_item_mut)
-  - [`visit_foreign_item_fn_mut`](#visit_foreign_item_fn_mut)
-  - [`visit_foreign_item_macro_mut`](#visit_foreign_item_macro_mut)
-  - [`visit_foreign_item_static_mut`](#visit_foreign_item_static_mut)
-  - [`visit_foreign_item_type_mut`](#visit_foreign_item_type_mut)
-  - [`visit_generic_argument_mut`](#visit_generic_argument_mut)
-  - [`visit_generic_param_mut`](#visit_generic_param_mut)
-  - [`visit_generics_mut`](#visit_generics_mut)
-  - [`visit_ident_mut`](#visit_ident_mut)
-  - [`visit_impl_item_mut`](#visit_impl_item_mut)
-  - [`visit_impl_item_const_mut`](#visit_impl_item_const_mut)
-  - [`visit_impl_item_fn_mut`](#visit_impl_item_fn_mut)
-  - [`visit_impl_item_macro_mut`](#visit_impl_item_macro_mut)
-  - [`visit_impl_item_type_mut`](#visit_impl_item_type_mut)
-  - [`visit_impl_restriction_mut`](#visit_impl_restriction_mut)
-  - [`visit_index_mut`](#visit_index_mut)
-  - [`visit_item_mut`](#visit_item_mut)
-  - [`visit_item_const_mut`](#visit_item_const_mut)
-  - [`visit_item_enum_mut`](#visit_item_enum_mut)
-  - [`visit_item_extern_crate_mut`](#visit_item_extern_crate_mut)
-  - [`visit_item_fn_mut`](#visit_item_fn_mut)
-  - [`visit_item_foreign_mod_mut`](#visit_item_foreign_mod_mut)
-  - [`visit_item_impl_mut`](#visit_item_impl_mut)
-  - [`visit_item_macro_mut`](#visit_item_macro_mut)
-  - [`visit_item_mod_mut`](#visit_item_mod_mut)
-  - [`visit_item_static_mut`](#visit_item_static_mut)
-  - [`visit_item_struct_mut`](#visit_item_struct_mut)
-  - [`visit_item_trait_mut`](#visit_item_trait_mut)
-  - [`visit_item_trait_alias_mut`](#visit_item_trait_alias_mut)
-  - [`visit_item_type_mut`](#visit_item_type_mut)
-  - [`visit_item_union_mut`](#visit_item_union_mut)
-  - [`visit_item_use_mut`](#visit_item_use_mut)
-  - [`visit_label_mut`](#visit_label_mut)
-  - [`visit_lifetime_mut`](#visit_lifetime_mut)
-  - [`visit_lifetime_param_mut`](#visit_lifetime_param_mut)
-  - [`visit_lit_mut`](#visit_lit_mut)
-  - [`visit_lit_bool_mut`](#visit_lit_bool_mut)
-  - [`visit_lit_byte_mut`](#visit_lit_byte_mut)
-  - [`visit_lit_byte_str_mut`](#visit_lit_byte_str_mut)
-  - [`visit_lit_cstr_mut`](#visit_lit_cstr_mut)
-  - [`visit_lit_char_mut`](#visit_lit_char_mut)
-  - [`visit_lit_float_mut`](#visit_lit_float_mut)
-  - [`visit_lit_int_mut`](#visit_lit_int_mut)
-  - [`visit_lit_str_mut`](#visit_lit_str_mut)
-  - [`visit_local_mut`](#visit_local_mut)
-  - [`visit_local_init_mut`](#visit_local_init_mut)
-  - [`visit_macro_mut`](#visit_macro_mut)
-  - [`visit_macro_delimiter_mut`](#visit_macro_delimiter_mut)
-  - [`visit_member_mut`](#visit_member_mut)
-  - [`visit_meta_mut`](#visit_meta_mut)
-  - [`visit_meta_list_mut`](#visit_meta_list_mut)
-  - [`visit_meta_name_value_mut`](#visit_meta_name_value_mut)
-  - [`visit_parenthesized_generic_arguments_mut`](#visit_parenthesized_generic_arguments_mut)
-  - [`visit_pat_mut`](#visit_pat_mut)
-  - [`visit_pat_ident_mut`](#visit_pat_ident_mut)
-  - [`visit_pat_or_mut`](#visit_pat_or_mut)
-  - [`visit_pat_paren_mut`](#visit_pat_paren_mut)
-  - [`visit_pat_reference_mut`](#visit_pat_reference_mut)
-  - [`visit_pat_rest_mut`](#visit_pat_rest_mut)
-  - [`visit_pat_slice_mut`](#visit_pat_slice_mut)
-  - [`visit_pat_struct_mut`](#visit_pat_struct_mut)
-  - [`visit_pat_tuple_mut`](#visit_pat_tuple_mut)
-  - [`visit_pat_tuple_struct_mut`](#visit_pat_tuple_struct_mut)
-  - [`visit_pat_type_mut`](#visit_pat_type_mut)
-  - [`visit_pat_wild_mut`](#visit_pat_wild_mut)
-  - [`visit_path_mut`](#visit_path_mut)
-  - [`visit_path_arguments_mut`](#visit_path_arguments_mut)
-  - [`visit_path_segment_mut`](#visit_path_segment_mut)
-  - [`visit_pointer_mutability_mut`](#visit_pointer_mutability_mut)
-  - [`visit_precise_capture_mut`](#visit_precise_capture_mut)
-  - [`visit_predicate_lifetime_mut`](#visit_predicate_lifetime_mut)
-  - [`visit_predicate_type_mut`](#visit_predicate_type_mut)
-  - [`visit_qself_mut`](#visit_qself_mut)
-  - [`visit_range_limits_mut`](#visit_range_limits_mut)
-  - [`visit_receiver_mut`](#visit_receiver_mut)
-  - [`visit_return_type_mut`](#visit_return_type_mut)
-  - [`visit_signature_mut`](#visit_signature_mut)
-  - [`visit_span_mut`](#visit_span_mut)
-  - [`visit_static_mutability_mut`](#visit_static_mutability_mut)
-  - [`visit_stmt_mut`](#visit_stmt_mut)
-  - [`visit_stmt_macro_mut`](#visit_stmt_macro_mut)
-  - [`visit_trait_bound_mut`](#visit_trait_bound_mut)
-  - [`visit_trait_bound_modifier_mut`](#visit_trait_bound_modifier_mut)
-  - [`visit_trait_item_mut`](#visit_trait_item_mut)
-  - [`visit_trait_item_const_mut`](#visit_trait_item_const_mut)
-  - [`visit_trait_item_fn_mut`](#visit_trait_item_fn_mut)
-  - [`visit_trait_item_macro_mut`](#visit_trait_item_macro_mut)
-  - [`visit_trait_item_type_mut`](#visit_trait_item_type_mut)
-  - [`visit_type_mut`](#visit_type_mut)
-  - [`visit_type_array_mut`](#visit_type_array_mut)
-  - [`visit_type_bare_fn_mut`](#visit_type_bare_fn_mut)
-  - [`visit_type_group_mut`](#visit_type_group_mut)
-  - [`visit_type_impl_trait_mut`](#visit_type_impl_trait_mut)
-  - [`visit_type_infer_mut`](#visit_type_infer_mut)
-  - [`visit_type_macro_mut`](#visit_type_macro_mut)
-  - [`visit_type_never_mut`](#visit_type_never_mut)
-  - [`visit_type_param_mut`](#visit_type_param_mut)
-  - [`visit_type_param_bound_mut`](#visit_type_param_bound_mut)
-  - [`visit_type_paren_mut`](#visit_type_paren_mut)
-  - [`visit_type_path_mut`](#visit_type_path_mut)
-  - [`visit_type_ptr_mut`](#visit_type_ptr_mut)
-  - [`visit_type_reference_mut`](#visit_type_reference_mut)
-  - [`visit_type_slice_mut`](#visit_type_slice_mut)
-  - [`visit_type_trait_object_mut`](#visit_type_trait_object_mut)
-  - [`visit_type_tuple_mut`](#visit_type_tuple_mut)
-  - [`visit_un_op_mut`](#visit_un_op_mut)
-  - [`visit_use_glob_mut`](#visit_use_glob_mut)
-  - [`visit_use_group_mut`](#visit_use_group_mut)
-  - [`visit_use_name_mut`](#visit_use_name_mut)
-  - [`visit_use_path_mut`](#visit_use_path_mut)
-  - [`visit_use_rename_mut`](#visit_use_rename_mut)
-  - [`visit_use_tree_mut`](#visit_use_tree_mut)
-  - [`visit_variadic_mut`](#visit_variadic_mut)
-  - [`visit_variant_mut`](#visit_variant_mut)
-  - [`visit_vis_restricted_mut`](#visit_vis_restricted_mut)
-  - [`visit_visibility_mut`](#visit_visibility_mut)
-  - [`visit_where_clause_mut`](#visit_where_clause_mut)
-  - [`visit_where_predicate_mut`](#visit_where_predicate_mut)
+  - [`visit_abi_mut`](#visit-abi-mut)
+  - [`visit_angle_bracketed_generic_arguments_mut`](#visit-angle-bracketed-generic-arguments-mut)
+  - [`visit_arm_mut`](#visit-arm-mut)
+  - [`visit_assoc_const_mut`](#visit-assoc-const-mut)
+  - [`visit_assoc_type_mut`](#visit-assoc-type-mut)
+  - [`visit_attr_style_mut`](#visit-attr-style-mut)
+  - [`visit_attribute_mut`](#visit-attribute-mut)
+  - [`visit_bare_fn_arg_mut`](#visit-bare-fn-arg-mut)
+  - [`visit_bare_variadic_mut`](#visit-bare-variadic-mut)
+  - [`visit_bin_op_mut`](#visit-bin-op-mut)
+  - [`visit_block_mut`](#visit-block-mut)
+  - [`visit_bound_lifetimes_mut`](#visit-bound-lifetimes-mut)
+  - [`visit_captured_param_mut`](#visit-captured-param-mut)
+  - [`visit_const_param_mut`](#visit-const-param-mut)
+  - [`visit_constraint_mut`](#visit-constraint-mut)
+  - [`visit_data_mut`](#visit-data-mut)
+  - [`visit_data_enum_mut`](#visit-data-enum-mut)
+  - [`visit_data_struct_mut`](#visit-data-struct-mut)
+  - [`visit_data_union_mut`](#visit-data-union-mut)
+  - [`visit_derive_input_mut`](#visit-derive-input-mut)
+  - [`visit_expr_mut`](#visit-expr-mut)
+  - [`visit_expr_array_mut`](#visit-expr-array-mut)
+  - [`visit_expr_assign_mut`](#visit-expr-assign-mut)
+  - [`visit_expr_async_mut`](#visit-expr-async-mut)
+  - [`visit_expr_await_mut`](#visit-expr-await-mut)
+  - [`visit_expr_binary_mut`](#visit-expr-binary-mut)
+  - [`visit_expr_block_mut`](#visit-expr-block-mut)
+  - [`visit_expr_break_mut`](#visit-expr-break-mut)
+  - [`visit_expr_call_mut`](#visit-expr-call-mut)
+  - [`visit_expr_cast_mut`](#visit-expr-cast-mut)
+  - [`visit_expr_closure_mut`](#visit-expr-closure-mut)
+  - [`visit_expr_const_mut`](#visit-expr-const-mut)
+  - [`visit_expr_continue_mut`](#visit-expr-continue-mut)
+  - [`visit_expr_field_mut`](#visit-expr-field-mut)
+  - [`visit_expr_for_loop_mut`](#visit-expr-for-loop-mut)
+  - [`visit_expr_group_mut`](#visit-expr-group-mut)
+  - [`visit_expr_if_mut`](#visit-expr-if-mut)
+  - [`visit_expr_index_mut`](#visit-expr-index-mut)
+  - [`visit_expr_infer_mut`](#visit-expr-infer-mut)
+  - [`visit_expr_let_mut`](#visit-expr-let-mut)
+  - [`visit_expr_lit_mut`](#visit-expr-lit-mut)
+  - [`visit_expr_loop_mut`](#visit-expr-loop-mut)
+  - [`visit_expr_macro_mut`](#visit-expr-macro-mut)
+  - [`visit_expr_match_mut`](#visit-expr-match-mut)
+  - [`visit_expr_method_call_mut`](#visit-expr-method-call-mut)
+  - [`visit_expr_paren_mut`](#visit-expr-paren-mut)
+  - [`visit_expr_path_mut`](#visit-expr-path-mut)
+  - [`visit_expr_range_mut`](#visit-expr-range-mut)
+  - [`visit_expr_raw_addr_mut`](#visit-expr-raw-addr-mut)
+  - [`visit_expr_reference_mut`](#visit-expr-reference-mut)
+  - [`visit_expr_repeat_mut`](#visit-expr-repeat-mut)
+  - [`visit_expr_return_mut`](#visit-expr-return-mut)
+  - [`visit_expr_struct_mut`](#visit-expr-struct-mut)
+  - [`visit_expr_try_mut`](#visit-expr-try-mut)
+  - [`visit_expr_try_block_mut`](#visit-expr-try-block-mut)
+  - [`visit_expr_tuple_mut`](#visit-expr-tuple-mut)
+  - [`visit_expr_unary_mut`](#visit-expr-unary-mut)
+  - [`visit_expr_unsafe_mut`](#visit-expr-unsafe-mut)
+  - [`visit_expr_while_mut`](#visit-expr-while-mut)
+  - [`visit_expr_yield_mut`](#visit-expr-yield-mut)
+  - [`visit_field_mut`](#visit-field-mut)
+  - [`visit_field_mutability_mut`](#visit-field-mutability-mut)
+  - [`visit_field_pat_mut`](#visit-field-pat-mut)
+  - [`visit_field_value_mut`](#visit-field-value-mut)
+  - [`visit_fields_mut`](#visit-fields-mut)
+  - [`visit_fields_named_mut`](#visit-fields-named-mut)
+  - [`visit_fields_unnamed_mut`](#visit-fields-unnamed-mut)
+  - [`visit_file_mut`](#visit-file-mut)
+  - [`visit_fn_arg_mut`](#visit-fn-arg-mut)
+  - [`visit_foreign_item_mut`](#visit-foreign-item-mut)
+  - [`visit_foreign_item_fn_mut`](#visit-foreign-item-fn-mut)
+  - [`visit_foreign_item_macro_mut`](#visit-foreign-item-macro-mut)
+  - [`visit_foreign_item_static_mut`](#visit-foreign-item-static-mut)
+  - [`visit_foreign_item_type_mut`](#visit-foreign-item-type-mut)
+  - [`visit_generic_argument_mut`](#visit-generic-argument-mut)
+  - [`visit_generic_param_mut`](#visit-generic-param-mut)
+  - [`visit_generics_mut`](#visit-generics-mut)
+  - [`visit_ident_mut`](#visit-ident-mut)
+  - [`visit_impl_item_mut`](#visit-impl-item-mut)
+  - [`visit_impl_item_const_mut`](#visit-impl-item-const-mut)
+  - [`visit_impl_item_fn_mut`](#visit-impl-item-fn-mut)
+  - [`visit_impl_item_macro_mut`](#visit-impl-item-macro-mut)
+  - [`visit_impl_item_type_mut`](#visit-impl-item-type-mut)
+  - [`visit_impl_restriction_mut`](#visit-impl-restriction-mut)
+  - [`visit_index_mut`](#visit-index-mut)
+  - [`visit_item_mut`](#visit-item-mut)
+  - [`visit_item_const_mut`](#visit-item-const-mut)
+  - [`visit_item_enum_mut`](#visit-item-enum-mut)
+  - [`visit_item_extern_crate_mut`](#visit-item-extern-crate-mut)
+  - [`visit_item_fn_mut`](#visit-item-fn-mut)
+  - [`visit_item_foreign_mod_mut`](#visit-item-foreign-mod-mut)
+  - [`visit_item_impl_mut`](#visit-item-impl-mut)
+  - [`visit_item_macro_mut`](#visit-item-macro-mut)
+  - [`visit_item_mod_mut`](#visit-item-mod-mut)
+  - [`visit_item_static_mut`](#visit-item-static-mut)
+  - [`visit_item_struct_mut`](#visit-item-struct-mut)
+  - [`visit_item_trait_mut`](#visit-item-trait-mut)
+  - [`visit_item_trait_alias_mut`](#visit-item-trait-alias-mut)
+  - [`visit_item_type_mut`](#visit-item-type-mut)
+  - [`visit_item_union_mut`](#visit-item-union-mut)
+  - [`visit_item_use_mut`](#visit-item-use-mut)
+  - [`visit_label_mut`](#visit-label-mut)
+  - [`visit_lifetime_mut`](#visit-lifetime-mut)
+  - [`visit_lifetime_param_mut`](#visit-lifetime-param-mut)
+  - [`visit_lit_mut`](#visit-lit-mut)
+  - [`visit_lit_bool_mut`](#visit-lit-bool-mut)
+  - [`visit_lit_byte_mut`](#visit-lit-byte-mut)
+  - [`visit_lit_byte_str_mut`](#visit-lit-byte-str-mut)
+  - [`visit_lit_cstr_mut`](#visit-lit-cstr-mut)
+  - [`visit_lit_char_mut`](#visit-lit-char-mut)
+  - [`visit_lit_float_mut`](#visit-lit-float-mut)
+  - [`visit_lit_int_mut`](#visit-lit-int-mut)
+  - [`visit_lit_str_mut`](#visit-lit-str-mut)
+  - [`visit_local_mut`](#visit-local-mut)
+  - [`visit_local_init_mut`](#visit-local-init-mut)
+  - [`visit_macro_mut`](#visit-macro-mut)
+  - [`visit_macro_delimiter_mut`](#visit-macro-delimiter-mut)
+  - [`visit_member_mut`](#visit-member-mut)
+  - [`visit_meta_mut`](#visit-meta-mut)
+  - [`visit_meta_list_mut`](#visit-meta-list-mut)
+  - [`visit_meta_name_value_mut`](#visit-meta-name-value-mut)
+  - [`visit_parenthesized_generic_arguments_mut`](#visit-parenthesized-generic-arguments-mut)
+  - [`visit_pat_mut`](#visit-pat-mut)
+  - [`visit_pat_ident_mut`](#visit-pat-ident-mut)
+  - [`visit_pat_or_mut`](#visit-pat-or-mut)
+  - [`visit_pat_paren_mut`](#visit-pat-paren-mut)
+  - [`visit_pat_reference_mut`](#visit-pat-reference-mut)
+  - [`visit_pat_rest_mut`](#visit-pat-rest-mut)
+  - [`visit_pat_slice_mut`](#visit-pat-slice-mut)
+  - [`visit_pat_struct_mut`](#visit-pat-struct-mut)
+  - [`visit_pat_tuple_mut`](#visit-pat-tuple-mut)
+  - [`visit_pat_tuple_struct_mut`](#visit-pat-tuple-struct-mut)
+  - [`visit_pat_type_mut`](#visit-pat-type-mut)
+  - [`visit_pat_wild_mut`](#visit-pat-wild-mut)
+  - [`visit_path_mut`](#visit-path-mut)
+  - [`visit_path_arguments_mut`](#visit-path-arguments-mut)
+  - [`visit_path_segment_mut`](#visit-path-segment-mut)
+  - [`visit_pointer_mutability_mut`](#visit-pointer-mutability-mut)
+  - [`visit_precise_capture_mut`](#visit-precise-capture-mut)
+  - [`visit_predicate_lifetime_mut`](#visit-predicate-lifetime-mut)
+  - [`visit_predicate_type_mut`](#visit-predicate-type-mut)
+  - [`visit_qself_mut`](#visit-qself-mut)
+  - [`visit_range_limits_mut`](#visit-range-limits-mut)
+  - [`visit_receiver_mut`](#visit-receiver-mut)
+  - [`visit_return_type_mut`](#visit-return-type-mut)
+  - [`visit_signature_mut`](#visit-signature-mut)
+  - [`visit_span_mut`](#visit-span-mut)
+  - [`visit_static_mutability_mut`](#visit-static-mutability-mut)
+  - [`visit_stmt_mut`](#visit-stmt-mut)
+  - [`visit_stmt_macro_mut`](#visit-stmt-macro-mut)
+  - [`visit_trait_bound_mut`](#visit-trait-bound-mut)
+  - [`visit_trait_bound_modifier_mut`](#visit-trait-bound-modifier-mut)
+  - [`visit_trait_item_mut`](#visit-trait-item-mut)
+  - [`visit_trait_item_const_mut`](#visit-trait-item-const-mut)
+  - [`visit_trait_item_fn_mut`](#visit-trait-item-fn-mut)
+  - [`visit_trait_item_macro_mut`](#visit-trait-item-macro-mut)
+  - [`visit_trait_item_type_mut`](#visit-trait-item-type-mut)
+  - [`visit_type_mut`](#visit-type-mut)
+  - [`visit_type_array_mut`](#visit-type-array-mut)
+  - [`visit_type_bare_fn_mut`](#visit-type-bare-fn-mut)
+  - [`visit_type_group_mut`](#visit-type-group-mut)
+  - [`visit_type_impl_trait_mut`](#visit-type-impl-trait-mut)
+  - [`visit_type_infer_mut`](#visit-type-infer-mut)
+  - [`visit_type_macro_mut`](#visit-type-macro-mut)
+  - [`visit_type_never_mut`](#visit-type-never-mut)
+  - [`visit_type_param_mut`](#visit-type-param-mut)
+  - [`visit_type_param_bound_mut`](#visit-type-param-bound-mut)
+  - [`visit_type_paren_mut`](#visit-type-paren-mut)
+  - [`visit_type_path_mut`](#visit-type-path-mut)
+  - [`visit_type_ptr_mut`](#visit-type-ptr-mut)
+  - [`visit_type_reference_mut`](#visit-type-reference-mut)
+  - [`visit_type_slice_mut`](#visit-type-slice-mut)
+  - [`visit_type_trait_object_mut`](#visit-type-trait-object-mut)
+  - [`visit_type_tuple_mut`](#visit-type-tuple-mut)
+  - [`visit_un_op_mut`](#visit-un-op-mut)
+  - [`visit_use_glob_mut`](#visit-use-glob-mut)
+  - [`visit_use_group_mut`](#visit-use-group-mut)
+  - [`visit_use_name_mut`](#visit-use-name-mut)
+  - [`visit_use_path_mut`](#visit-use-path-mut)
+  - [`visit_use_rename_mut`](#visit-use-rename-mut)
+  - [`visit_use_tree_mut`](#visit-use-tree-mut)
+  - [`visit_variadic_mut`](#visit-variadic-mut)
+  - [`visit_variant_mut`](#visit-variant-mut)
+  - [`visit_vis_restricted_mut`](#visit-vis-restricted-mut)
+  - [`visit_visibility_mut`](#visit-visibility-mut)
+  - [`visit_where_clause_mut`](#visit-where-clause-mut)
+  - [`visit_where_predicate_mut`](#visit-where-predicate-mut)
 - [Macros](#macros)
   - [`full!`](#full)
   - [`skip!`](#skip)
@@ -293,193 +293,193 @@ fn main() {
 | Item | Kind | Description |
 |------|------|-------------|
 | [`VisitMut`](#visitmut) | trait | Syntax tree traversal to mutate an exclusive borrow of a syntax tree in place. |
-| [`visit_abi_mut`](#visit_abi_mut) | fn |  |
-| [`visit_angle_bracketed_generic_arguments_mut`](#visit_angle_bracketed_generic_arguments_mut) | fn |  |
-| [`visit_arm_mut`](#visit_arm_mut) | fn |  |
-| [`visit_assoc_const_mut`](#visit_assoc_const_mut) | fn |  |
-| [`visit_assoc_type_mut`](#visit_assoc_type_mut) | fn |  |
-| [`visit_attr_style_mut`](#visit_attr_style_mut) | fn |  |
-| [`visit_attribute_mut`](#visit_attribute_mut) | fn |  |
-| [`visit_bare_fn_arg_mut`](#visit_bare_fn_arg_mut) | fn |  |
-| [`visit_bare_variadic_mut`](#visit_bare_variadic_mut) | fn |  |
-| [`visit_bin_op_mut`](#visit_bin_op_mut) | fn |  |
-| [`visit_block_mut`](#visit_block_mut) | fn |  |
-| [`visit_bound_lifetimes_mut`](#visit_bound_lifetimes_mut) | fn |  |
-| [`visit_captured_param_mut`](#visit_captured_param_mut) | fn |  |
-| [`visit_const_param_mut`](#visit_const_param_mut) | fn |  |
-| [`visit_constraint_mut`](#visit_constraint_mut) | fn |  |
-| [`visit_data_mut`](#visit_data_mut) | fn |  |
-| [`visit_data_enum_mut`](#visit_data_enum_mut) | fn |  |
-| [`visit_data_struct_mut`](#visit_data_struct_mut) | fn |  |
-| [`visit_data_union_mut`](#visit_data_union_mut) | fn |  |
-| [`visit_derive_input_mut`](#visit_derive_input_mut) | fn |  |
-| [`visit_expr_mut`](#visit_expr_mut) | fn |  |
-| [`visit_expr_array_mut`](#visit_expr_array_mut) | fn |  |
-| [`visit_expr_assign_mut`](#visit_expr_assign_mut) | fn |  |
-| [`visit_expr_async_mut`](#visit_expr_async_mut) | fn |  |
-| [`visit_expr_await_mut`](#visit_expr_await_mut) | fn |  |
-| [`visit_expr_binary_mut`](#visit_expr_binary_mut) | fn |  |
-| [`visit_expr_block_mut`](#visit_expr_block_mut) | fn |  |
-| [`visit_expr_break_mut`](#visit_expr_break_mut) | fn |  |
-| [`visit_expr_call_mut`](#visit_expr_call_mut) | fn |  |
-| [`visit_expr_cast_mut`](#visit_expr_cast_mut) | fn |  |
-| [`visit_expr_closure_mut`](#visit_expr_closure_mut) | fn |  |
-| [`visit_expr_const_mut`](#visit_expr_const_mut) | fn |  |
-| [`visit_expr_continue_mut`](#visit_expr_continue_mut) | fn |  |
-| [`visit_expr_field_mut`](#visit_expr_field_mut) | fn |  |
-| [`visit_expr_for_loop_mut`](#visit_expr_for_loop_mut) | fn |  |
-| [`visit_expr_group_mut`](#visit_expr_group_mut) | fn |  |
-| [`visit_expr_if_mut`](#visit_expr_if_mut) | fn |  |
-| [`visit_expr_index_mut`](#visit_expr_index_mut) | fn |  |
-| [`visit_expr_infer_mut`](#visit_expr_infer_mut) | fn |  |
-| [`visit_expr_let_mut`](#visit_expr_let_mut) | fn |  |
-| [`visit_expr_lit_mut`](#visit_expr_lit_mut) | fn |  |
-| [`visit_expr_loop_mut`](#visit_expr_loop_mut) | fn |  |
-| [`visit_expr_macro_mut`](#visit_expr_macro_mut) | fn |  |
-| [`visit_expr_match_mut`](#visit_expr_match_mut) | fn |  |
-| [`visit_expr_method_call_mut`](#visit_expr_method_call_mut) | fn |  |
-| [`visit_expr_paren_mut`](#visit_expr_paren_mut) | fn |  |
-| [`visit_expr_path_mut`](#visit_expr_path_mut) | fn |  |
-| [`visit_expr_range_mut`](#visit_expr_range_mut) | fn |  |
-| [`visit_expr_raw_addr_mut`](#visit_expr_raw_addr_mut) | fn |  |
-| [`visit_expr_reference_mut`](#visit_expr_reference_mut) | fn |  |
-| [`visit_expr_repeat_mut`](#visit_expr_repeat_mut) | fn |  |
-| [`visit_expr_return_mut`](#visit_expr_return_mut) | fn |  |
-| [`visit_expr_struct_mut`](#visit_expr_struct_mut) | fn |  |
-| [`visit_expr_try_mut`](#visit_expr_try_mut) | fn |  |
-| [`visit_expr_try_block_mut`](#visit_expr_try_block_mut) | fn |  |
-| [`visit_expr_tuple_mut`](#visit_expr_tuple_mut) | fn |  |
-| [`visit_expr_unary_mut`](#visit_expr_unary_mut) | fn |  |
-| [`visit_expr_unsafe_mut`](#visit_expr_unsafe_mut) | fn |  |
-| [`visit_expr_while_mut`](#visit_expr_while_mut) | fn |  |
-| [`visit_expr_yield_mut`](#visit_expr_yield_mut) | fn |  |
-| [`visit_field_mut`](#visit_field_mut) | fn |  |
-| [`visit_field_mutability_mut`](#visit_field_mutability_mut) | fn |  |
-| [`visit_field_pat_mut`](#visit_field_pat_mut) | fn |  |
-| [`visit_field_value_mut`](#visit_field_value_mut) | fn |  |
-| [`visit_fields_mut`](#visit_fields_mut) | fn |  |
-| [`visit_fields_named_mut`](#visit_fields_named_mut) | fn |  |
-| [`visit_fields_unnamed_mut`](#visit_fields_unnamed_mut) | fn |  |
-| [`visit_file_mut`](#visit_file_mut) | fn |  |
-| [`visit_fn_arg_mut`](#visit_fn_arg_mut) | fn |  |
-| [`visit_foreign_item_mut`](#visit_foreign_item_mut) | fn |  |
-| [`visit_foreign_item_fn_mut`](#visit_foreign_item_fn_mut) | fn |  |
-| [`visit_foreign_item_macro_mut`](#visit_foreign_item_macro_mut) | fn |  |
-| [`visit_foreign_item_static_mut`](#visit_foreign_item_static_mut) | fn |  |
-| [`visit_foreign_item_type_mut`](#visit_foreign_item_type_mut) | fn |  |
-| [`visit_generic_argument_mut`](#visit_generic_argument_mut) | fn |  |
-| [`visit_generic_param_mut`](#visit_generic_param_mut) | fn |  |
-| [`visit_generics_mut`](#visit_generics_mut) | fn |  |
-| [`visit_ident_mut`](#visit_ident_mut) | fn |  |
-| [`visit_impl_item_mut`](#visit_impl_item_mut) | fn |  |
-| [`visit_impl_item_const_mut`](#visit_impl_item_const_mut) | fn |  |
-| [`visit_impl_item_fn_mut`](#visit_impl_item_fn_mut) | fn |  |
-| [`visit_impl_item_macro_mut`](#visit_impl_item_macro_mut) | fn |  |
-| [`visit_impl_item_type_mut`](#visit_impl_item_type_mut) | fn |  |
-| [`visit_impl_restriction_mut`](#visit_impl_restriction_mut) | fn |  |
-| [`visit_index_mut`](#visit_index_mut) | fn |  |
-| [`visit_item_mut`](#visit_item_mut) | fn |  |
-| [`visit_item_const_mut`](#visit_item_const_mut) | fn |  |
-| [`visit_item_enum_mut`](#visit_item_enum_mut) | fn |  |
-| [`visit_item_extern_crate_mut`](#visit_item_extern_crate_mut) | fn |  |
-| [`visit_item_fn_mut`](#visit_item_fn_mut) | fn |  |
-| [`visit_item_foreign_mod_mut`](#visit_item_foreign_mod_mut) | fn |  |
-| [`visit_item_impl_mut`](#visit_item_impl_mut) | fn |  |
-| [`visit_item_macro_mut`](#visit_item_macro_mut) | fn |  |
-| [`visit_item_mod_mut`](#visit_item_mod_mut) | fn |  |
-| [`visit_item_static_mut`](#visit_item_static_mut) | fn |  |
-| [`visit_item_struct_mut`](#visit_item_struct_mut) | fn |  |
-| [`visit_item_trait_mut`](#visit_item_trait_mut) | fn |  |
-| [`visit_item_trait_alias_mut`](#visit_item_trait_alias_mut) | fn |  |
-| [`visit_item_type_mut`](#visit_item_type_mut) | fn |  |
-| [`visit_item_union_mut`](#visit_item_union_mut) | fn |  |
-| [`visit_item_use_mut`](#visit_item_use_mut) | fn |  |
-| [`visit_label_mut`](#visit_label_mut) | fn |  |
-| [`visit_lifetime_mut`](#visit_lifetime_mut) | fn |  |
-| [`visit_lifetime_param_mut`](#visit_lifetime_param_mut) | fn |  |
-| [`visit_lit_mut`](#visit_lit_mut) | fn |  |
-| [`visit_lit_bool_mut`](#visit_lit_bool_mut) | fn |  |
-| [`visit_lit_byte_mut`](#visit_lit_byte_mut) | fn |  |
-| [`visit_lit_byte_str_mut`](#visit_lit_byte_str_mut) | fn |  |
-| [`visit_lit_cstr_mut`](#visit_lit_cstr_mut) | fn |  |
-| [`visit_lit_char_mut`](#visit_lit_char_mut) | fn |  |
-| [`visit_lit_float_mut`](#visit_lit_float_mut) | fn |  |
-| [`visit_lit_int_mut`](#visit_lit_int_mut) | fn |  |
-| [`visit_lit_str_mut`](#visit_lit_str_mut) | fn |  |
-| [`visit_local_mut`](#visit_local_mut) | fn |  |
-| [`visit_local_init_mut`](#visit_local_init_mut) | fn |  |
-| [`visit_macro_mut`](#visit_macro_mut) | fn |  |
-| [`visit_macro_delimiter_mut`](#visit_macro_delimiter_mut) | fn |  |
-| [`visit_member_mut`](#visit_member_mut) | fn |  |
-| [`visit_meta_mut`](#visit_meta_mut) | fn |  |
-| [`visit_meta_list_mut`](#visit_meta_list_mut) | fn |  |
-| [`visit_meta_name_value_mut`](#visit_meta_name_value_mut) | fn |  |
-| [`visit_parenthesized_generic_arguments_mut`](#visit_parenthesized_generic_arguments_mut) | fn |  |
-| [`visit_pat_mut`](#visit_pat_mut) | fn |  |
-| [`visit_pat_ident_mut`](#visit_pat_ident_mut) | fn |  |
-| [`visit_pat_or_mut`](#visit_pat_or_mut) | fn |  |
-| [`visit_pat_paren_mut`](#visit_pat_paren_mut) | fn |  |
-| [`visit_pat_reference_mut`](#visit_pat_reference_mut) | fn |  |
-| [`visit_pat_rest_mut`](#visit_pat_rest_mut) | fn |  |
-| [`visit_pat_slice_mut`](#visit_pat_slice_mut) | fn |  |
-| [`visit_pat_struct_mut`](#visit_pat_struct_mut) | fn |  |
-| [`visit_pat_tuple_mut`](#visit_pat_tuple_mut) | fn |  |
-| [`visit_pat_tuple_struct_mut`](#visit_pat_tuple_struct_mut) | fn |  |
-| [`visit_pat_type_mut`](#visit_pat_type_mut) | fn |  |
-| [`visit_pat_wild_mut`](#visit_pat_wild_mut) | fn |  |
-| [`visit_path_mut`](#visit_path_mut) | fn |  |
-| [`visit_path_arguments_mut`](#visit_path_arguments_mut) | fn |  |
-| [`visit_path_segment_mut`](#visit_path_segment_mut) | fn |  |
-| [`visit_pointer_mutability_mut`](#visit_pointer_mutability_mut) | fn |  |
-| [`visit_precise_capture_mut`](#visit_precise_capture_mut) | fn |  |
-| [`visit_predicate_lifetime_mut`](#visit_predicate_lifetime_mut) | fn |  |
-| [`visit_predicate_type_mut`](#visit_predicate_type_mut) | fn |  |
-| [`visit_qself_mut`](#visit_qself_mut) | fn |  |
-| [`visit_range_limits_mut`](#visit_range_limits_mut) | fn |  |
-| [`visit_receiver_mut`](#visit_receiver_mut) | fn |  |
-| [`visit_return_type_mut`](#visit_return_type_mut) | fn |  |
-| [`visit_signature_mut`](#visit_signature_mut) | fn |  |
-| [`visit_span_mut`](#visit_span_mut) | fn |  |
-| [`visit_static_mutability_mut`](#visit_static_mutability_mut) | fn |  |
-| [`visit_stmt_mut`](#visit_stmt_mut) | fn |  |
-| [`visit_stmt_macro_mut`](#visit_stmt_macro_mut) | fn |  |
-| [`visit_trait_bound_mut`](#visit_trait_bound_mut) | fn |  |
-| [`visit_trait_bound_modifier_mut`](#visit_trait_bound_modifier_mut) | fn |  |
-| [`visit_trait_item_mut`](#visit_trait_item_mut) | fn |  |
-| [`visit_trait_item_const_mut`](#visit_trait_item_const_mut) | fn |  |
-| [`visit_trait_item_fn_mut`](#visit_trait_item_fn_mut) | fn |  |
-| [`visit_trait_item_macro_mut`](#visit_trait_item_macro_mut) | fn |  |
-| [`visit_trait_item_type_mut`](#visit_trait_item_type_mut) | fn |  |
-| [`visit_type_mut`](#visit_type_mut) | fn |  |
-| [`visit_type_array_mut`](#visit_type_array_mut) | fn |  |
-| [`visit_type_bare_fn_mut`](#visit_type_bare_fn_mut) | fn |  |
-| [`visit_type_group_mut`](#visit_type_group_mut) | fn |  |
-| [`visit_type_impl_trait_mut`](#visit_type_impl_trait_mut) | fn |  |
-| [`visit_type_infer_mut`](#visit_type_infer_mut) | fn |  |
-| [`visit_type_macro_mut`](#visit_type_macro_mut) | fn |  |
-| [`visit_type_never_mut`](#visit_type_never_mut) | fn |  |
-| [`visit_type_param_mut`](#visit_type_param_mut) | fn |  |
-| [`visit_type_param_bound_mut`](#visit_type_param_bound_mut) | fn |  |
-| [`visit_type_paren_mut`](#visit_type_paren_mut) | fn |  |
-| [`visit_type_path_mut`](#visit_type_path_mut) | fn |  |
-| [`visit_type_ptr_mut`](#visit_type_ptr_mut) | fn |  |
-| [`visit_type_reference_mut`](#visit_type_reference_mut) | fn |  |
-| [`visit_type_slice_mut`](#visit_type_slice_mut) | fn |  |
-| [`visit_type_trait_object_mut`](#visit_type_trait_object_mut) | fn |  |
-| [`visit_type_tuple_mut`](#visit_type_tuple_mut) | fn |  |
-| [`visit_un_op_mut`](#visit_un_op_mut) | fn |  |
-| [`visit_use_glob_mut`](#visit_use_glob_mut) | fn |  |
-| [`visit_use_group_mut`](#visit_use_group_mut) | fn |  |
-| [`visit_use_name_mut`](#visit_use_name_mut) | fn |  |
-| [`visit_use_path_mut`](#visit_use_path_mut) | fn |  |
-| [`visit_use_rename_mut`](#visit_use_rename_mut) | fn |  |
-| [`visit_use_tree_mut`](#visit_use_tree_mut) | fn |  |
-| [`visit_variadic_mut`](#visit_variadic_mut) | fn |  |
-| [`visit_variant_mut`](#visit_variant_mut) | fn |  |
-| [`visit_vis_restricted_mut`](#visit_vis_restricted_mut) | fn |  |
-| [`visit_visibility_mut`](#visit_visibility_mut) | fn |  |
-| [`visit_where_clause_mut`](#visit_where_clause_mut) | fn |  |
-| [`visit_where_predicate_mut`](#visit_where_predicate_mut) | fn |  |
+| [`visit_abi_mut`](#visit-abi-mut) | fn |  |
+| [`visit_angle_bracketed_generic_arguments_mut`](#visit-angle-bracketed-generic-arguments-mut) | fn |  |
+| [`visit_arm_mut`](#visit-arm-mut) | fn |  |
+| [`visit_assoc_const_mut`](#visit-assoc-const-mut) | fn |  |
+| [`visit_assoc_type_mut`](#visit-assoc-type-mut) | fn |  |
+| [`visit_attr_style_mut`](#visit-attr-style-mut) | fn |  |
+| [`visit_attribute_mut`](#visit-attribute-mut) | fn |  |
+| [`visit_bare_fn_arg_mut`](#visit-bare-fn-arg-mut) | fn |  |
+| [`visit_bare_variadic_mut`](#visit-bare-variadic-mut) | fn |  |
+| [`visit_bin_op_mut`](#visit-bin-op-mut) | fn |  |
+| [`visit_block_mut`](#visit-block-mut) | fn |  |
+| [`visit_bound_lifetimes_mut`](#visit-bound-lifetimes-mut) | fn |  |
+| [`visit_captured_param_mut`](#visit-captured-param-mut) | fn |  |
+| [`visit_const_param_mut`](#visit-const-param-mut) | fn |  |
+| [`visit_constraint_mut`](#visit-constraint-mut) | fn |  |
+| [`visit_data_mut`](#visit-data-mut) | fn |  |
+| [`visit_data_enum_mut`](#visit-data-enum-mut) | fn |  |
+| [`visit_data_struct_mut`](#visit-data-struct-mut) | fn |  |
+| [`visit_data_union_mut`](#visit-data-union-mut) | fn |  |
+| [`visit_derive_input_mut`](#visit-derive-input-mut) | fn |  |
+| [`visit_expr_mut`](#visit-expr-mut) | fn |  |
+| [`visit_expr_array_mut`](#visit-expr-array-mut) | fn |  |
+| [`visit_expr_assign_mut`](#visit-expr-assign-mut) | fn |  |
+| [`visit_expr_async_mut`](#visit-expr-async-mut) | fn |  |
+| [`visit_expr_await_mut`](#visit-expr-await-mut) | fn |  |
+| [`visit_expr_binary_mut`](#visit-expr-binary-mut) | fn |  |
+| [`visit_expr_block_mut`](#visit-expr-block-mut) | fn |  |
+| [`visit_expr_break_mut`](#visit-expr-break-mut) | fn |  |
+| [`visit_expr_call_mut`](#visit-expr-call-mut) | fn |  |
+| [`visit_expr_cast_mut`](#visit-expr-cast-mut) | fn |  |
+| [`visit_expr_closure_mut`](#visit-expr-closure-mut) | fn |  |
+| [`visit_expr_const_mut`](#visit-expr-const-mut) | fn |  |
+| [`visit_expr_continue_mut`](#visit-expr-continue-mut) | fn |  |
+| [`visit_expr_field_mut`](#visit-expr-field-mut) | fn |  |
+| [`visit_expr_for_loop_mut`](#visit-expr-for-loop-mut) | fn |  |
+| [`visit_expr_group_mut`](#visit-expr-group-mut) | fn |  |
+| [`visit_expr_if_mut`](#visit-expr-if-mut) | fn |  |
+| [`visit_expr_index_mut`](#visit-expr-index-mut) | fn |  |
+| [`visit_expr_infer_mut`](#visit-expr-infer-mut) | fn |  |
+| [`visit_expr_let_mut`](#visit-expr-let-mut) | fn |  |
+| [`visit_expr_lit_mut`](#visit-expr-lit-mut) | fn |  |
+| [`visit_expr_loop_mut`](#visit-expr-loop-mut) | fn |  |
+| [`visit_expr_macro_mut`](#visit-expr-macro-mut) | fn |  |
+| [`visit_expr_match_mut`](#visit-expr-match-mut) | fn |  |
+| [`visit_expr_method_call_mut`](#visit-expr-method-call-mut) | fn |  |
+| [`visit_expr_paren_mut`](#visit-expr-paren-mut) | fn |  |
+| [`visit_expr_path_mut`](#visit-expr-path-mut) | fn |  |
+| [`visit_expr_range_mut`](#visit-expr-range-mut) | fn |  |
+| [`visit_expr_raw_addr_mut`](#visit-expr-raw-addr-mut) | fn |  |
+| [`visit_expr_reference_mut`](#visit-expr-reference-mut) | fn |  |
+| [`visit_expr_repeat_mut`](#visit-expr-repeat-mut) | fn |  |
+| [`visit_expr_return_mut`](#visit-expr-return-mut) | fn |  |
+| [`visit_expr_struct_mut`](#visit-expr-struct-mut) | fn |  |
+| [`visit_expr_try_mut`](#visit-expr-try-mut) | fn |  |
+| [`visit_expr_try_block_mut`](#visit-expr-try-block-mut) | fn |  |
+| [`visit_expr_tuple_mut`](#visit-expr-tuple-mut) | fn |  |
+| [`visit_expr_unary_mut`](#visit-expr-unary-mut) | fn |  |
+| [`visit_expr_unsafe_mut`](#visit-expr-unsafe-mut) | fn |  |
+| [`visit_expr_while_mut`](#visit-expr-while-mut) | fn |  |
+| [`visit_expr_yield_mut`](#visit-expr-yield-mut) | fn |  |
+| [`visit_field_mut`](#visit-field-mut) | fn |  |
+| [`visit_field_mutability_mut`](#visit-field-mutability-mut) | fn |  |
+| [`visit_field_pat_mut`](#visit-field-pat-mut) | fn |  |
+| [`visit_field_value_mut`](#visit-field-value-mut) | fn |  |
+| [`visit_fields_mut`](#visit-fields-mut) | fn |  |
+| [`visit_fields_named_mut`](#visit-fields-named-mut) | fn |  |
+| [`visit_fields_unnamed_mut`](#visit-fields-unnamed-mut) | fn |  |
+| [`visit_file_mut`](#visit-file-mut) | fn |  |
+| [`visit_fn_arg_mut`](#visit-fn-arg-mut) | fn |  |
+| [`visit_foreign_item_mut`](#visit-foreign-item-mut) | fn |  |
+| [`visit_foreign_item_fn_mut`](#visit-foreign-item-fn-mut) | fn |  |
+| [`visit_foreign_item_macro_mut`](#visit-foreign-item-macro-mut) | fn |  |
+| [`visit_foreign_item_static_mut`](#visit-foreign-item-static-mut) | fn |  |
+| [`visit_foreign_item_type_mut`](#visit-foreign-item-type-mut) | fn |  |
+| [`visit_generic_argument_mut`](#visit-generic-argument-mut) | fn |  |
+| [`visit_generic_param_mut`](#visit-generic-param-mut) | fn |  |
+| [`visit_generics_mut`](#visit-generics-mut) | fn |  |
+| [`visit_ident_mut`](#visit-ident-mut) | fn |  |
+| [`visit_impl_item_mut`](#visit-impl-item-mut) | fn |  |
+| [`visit_impl_item_const_mut`](#visit-impl-item-const-mut) | fn |  |
+| [`visit_impl_item_fn_mut`](#visit-impl-item-fn-mut) | fn |  |
+| [`visit_impl_item_macro_mut`](#visit-impl-item-macro-mut) | fn |  |
+| [`visit_impl_item_type_mut`](#visit-impl-item-type-mut) | fn |  |
+| [`visit_impl_restriction_mut`](#visit-impl-restriction-mut) | fn |  |
+| [`visit_index_mut`](#visit-index-mut) | fn |  |
+| [`visit_item_mut`](#visit-item-mut) | fn |  |
+| [`visit_item_const_mut`](#visit-item-const-mut) | fn |  |
+| [`visit_item_enum_mut`](#visit-item-enum-mut) | fn |  |
+| [`visit_item_extern_crate_mut`](#visit-item-extern-crate-mut) | fn |  |
+| [`visit_item_fn_mut`](#visit-item-fn-mut) | fn |  |
+| [`visit_item_foreign_mod_mut`](#visit-item-foreign-mod-mut) | fn |  |
+| [`visit_item_impl_mut`](#visit-item-impl-mut) | fn |  |
+| [`visit_item_macro_mut`](#visit-item-macro-mut) | fn |  |
+| [`visit_item_mod_mut`](#visit-item-mod-mut) | fn |  |
+| [`visit_item_static_mut`](#visit-item-static-mut) | fn |  |
+| [`visit_item_struct_mut`](#visit-item-struct-mut) | fn |  |
+| [`visit_item_trait_mut`](#visit-item-trait-mut) | fn |  |
+| [`visit_item_trait_alias_mut`](#visit-item-trait-alias-mut) | fn |  |
+| [`visit_item_type_mut`](#visit-item-type-mut) | fn |  |
+| [`visit_item_union_mut`](#visit-item-union-mut) | fn |  |
+| [`visit_item_use_mut`](#visit-item-use-mut) | fn |  |
+| [`visit_label_mut`](#visit-label-mut) | fn |  |
+| [`visit_lifetime_mut`](#visit-lifetime-mut) | fn |  |
+| [`visit_lifetime_param_mut`](#visit-lifetime-param-mut) | fn |  |
+| [`visit_lit_mut`](#visit-lit-mut) | fn |  |
+| [`visit_lit_bool_mut`](#visit-lit-bool-mut) | fn |  |
+| [`visit_lit_byte_mut`](#visit-lit-byte-mut) | fn |  |
+| [`visit_lit_byte_str_mut`](#visit-lit-byte-str-mut) | fn |  |
+| [`visit_lit_cstr_mut`](#visit-lit-cstr-mut) | fn |  |
+| [`visit_lit_char_mut`](#visit-lit-char-mut) | fn |  |
+| [`visit_lit_float_mut`](#visit-lit-float-mut) | fn |  |
+| [`visit_lit_int_mut`](#visit-lit-int-mut) | fn |  |
+| [`visit_lit_str_mut`](#visit-lit-str-mut) | fn |  |
+| [`visit_local_mut`](#visit-local-mut) | fn |  |
+| [`visit_local_init_mut`](#visit-local-init-mut) | fn |  |
+| [`visit_macro_mut`](#visit-macro-mut) | fn |  |
+| [`visit_macro_delimiter_mut`](#visit-macro-delimiter-mut) | fn |  |
+| [`visit_member_mut`](#visit-member-mut) | fn |  |
+| [`visit_meta_mut`](#visit-meta-mut) | fn |  |
+| [`visit_meta_list_mut`](#visit-meta-list-mut) | fn |  |
+| [`visit_meta_name_value_mut`](#visit-meta-name-value-mut) | fn |  |
+| [`visit_parenthesized_generic_arguments_mut`](#visit-parenthesized-generic-arguments-mut) | fn |  |
+| [`visit_pat_mut`](#visit-pat-mut) | fn |  |
+| [`visit_pat_ident_mut`](#visit-pat-ident-mut) | fn |  |
+| [`visit_pat_or_mut`](#visit-pat-or-mut) | fn |  |
+| [`visit_pat_paren_mut`](#visit-pat-paren-mut) | fn |  |
+| [`visit_pat_reference_mut`](#visit-pat-reference-mut) | fn |  |
+| [`visit_pat_rest_mut`](#visit-pat-rest-mut) | fn |  |
+| [`visit_pat_slice_mut`](#visit-pat-slice-mut) | fn |  |
+| [`visit_pat_struct_mut`](#visit-pat-struct-mut) | fn |  |
+| [`visit_pat_tuple_mut`](#visit-pat-tuple-mut) | fn |  |
+| [`visit_pat_tuple_struct_mut`](#visit-pat-tuple-struct-mut) | fn |  |
+| [`visit_pat_type_mut`](#visit-pat-type-mut) | fn |  |
+| [`visit_pat_wild_mut`](#visit-pat-wild-mut) | fn |  |
+| [`visit_path_mut`](#visit-path-mut) | fn |  |
+| [`visit_path_arguments_mut`](#visit-path-arguments-mut) | fn |  |
+| [`visit_path_segment_mut`](#visit-path-segment-mut) | fn |  |
+| [`visit_pointer_mutability_mut`](#visit-pointer-mutability-mut) | fn |  |
+| [`visit_precise_capture_mut`](#visit-precise-capture-mut) | fn |  |
+| [`visit_predicate_lifetime_mut`](#visit-predicate-lifetime-mut) | fn |  |
+| [`visit_predicate_type_mut`](#visit-predicate-type-mut) | fn |  |
+| [`visit_qself_mut`](#visit-qself-mut) | fn |  |
+| [`visit_range_limits_mut`](#visit-range-limits-mut) | fn |  |
+| [`visit_receiver_mut`](#visit-receiver-mut) | fn |  |
+| [`visit_return_type_mut`](#visit-return-type-mut) | fn |  |
+| [`visit_signature_mut`](#visit-signature-mut) | fn |  |
+| [`visit_span_mut`](#visit-span-mut) | fn |  |
+| [`visit_static_mutability_mut`](#visit-static-mutability-mut) | fn |  |
+| [`visit_stmt_mut`](#visit-stmt-mut) | fn |  |
+| [`visit_stmt_macro_mut`](#visit-stmt-macro-mut) | fn |  |
+| [`visit_trait_bound_mut`](#visit-trait-bound-mut) | fn |  |
+| [`visit_trait_bound_modifier_mut`](#visit-trait-bound-modifier-mut) | fn |  |
+| [`visit_trait_item_mut`](#visit-trait-item-mut) | fn |  |
+| [`visit_trait_item_const_mut`](#visit-trait-item-const-mut) | fn |  |
+| [`visit_trait_item_fn_mut`](#visit-trait-item-fn-mut) | fn |  |
+| [`visit_trait_item_macro_mut`](#visit-trait-item-macro-mut) | fn |  |
+| [`visit_trait_item_type_mut`](#visit-trait-item-type-mut) | fn |  |
+| [`visit_type_mut`](#visit-type-mut) | fn |  |
+| [`visit_type_array_mut`](#visit-type-array-mut) | fn |  |
+| [`visit_type_bare_fn_mut`](#visit-type-bare-fn-mut) | fn |  |
+| [`visit_type_group_mut`](#visit-type-group-mut) | fn |  |
+| [`visit_type_impl_trait_mut`](#visit-type-impl-trait-mut) | fn |  |
+| [`visit_type_infer_mut`](#visit-type-infer-mut) | fn |  |
+| [`visit_type_macro_mut`](#visit-type-macro-mut) | fn |  |
+| [`visit_type_never_mut`](#visit-type-never-mut) | fn |  |
+| [`visit_type_param_mut`](#visit-type-param-mut) | fn |  |
+| [`visit_type_param_bound_mut`](#visit-type-param-bound-mut) | fn |  |
+| [`visit_type_paren_mut`](#visit-type-paren-mut) | fn |  |
+| [`visit_type_path_mut`](#visit-type-path-mut) | fn |  |
+| [`visit_type_ptr_mut`](#visit-type-ptr-mut) | fn |  |
+| [`visit_type_reference_mut`](#visit-type-reference-mut) | fn |  |
+| [`visit_type_slice_mut`](#visit-type-slice-mut) | fn |  |
+| [`visit_type_trait_object_mut`](#visit-type-trait-object-mut) | fn |  |
+| [`visit_type_tuple_mut`](#visit-type-tuple-mut) | fn |  |
+| [`visit_un_op_mut`](#visit-un-op-mut) | fn |  |
+| [`visit_use_glob_mut`](#visit-use-glob-mut) | fn |  |
+| [`visit_use_group_mut`](#visit-use-group-mut) | fn |  |
+| [`visit_use_name_mut`](#visit-use-name-mut) | fn |  |
+| [`visit_use_path_mut`](#visit-use-path-mut) | fn |  |
+| [`visit_use_rename_mut`](#visit-use-rename-mut) | fn |  |
+| [`visit_use_tree_mut`](#visit-use-tree-mut) | fn |  |
+| [`visit_variadic_mut`](#visit-variadic-mut) | fn |  |
+| [`visit_variant_mut`](#visit-variant-mut) | fn |  |
+| [`visit_vis_restricted_mut`](#visit-vis-restricted-mut) | fn |  |
+| [`visit_visibility_mut`](#visit-visibility-mut) | fn |  |
+| [`visit_where_clause_mut`](#visit-where-clause-mut) | fn |  |
+| [`visit_where_predicate_mut`](#visit-where-predicate-mut) | fn |  |
 | [`full!`](#full) | macro |  |
 | [`skip!`](#skip) | macro |  |
 

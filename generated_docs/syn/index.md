@@ -244,8 +244,8 @@ are available.
   - [`bigint`](#bigint)
   - [`buffer`](#buffer)
   - [`classify`](#classify)
-  - [`custom_keyword`](#custom_keyword)
-  - [`custom_punctuation`](#custom_punctuation)
+  - [`custom_keyword`](#custom-keyword)
+  - [`custom_punctuation`](#custom-punctuation)
   - [`data`](#data)
   - [`derive`](#derive)
   - [`drops`](#drops)
@@ -264,8 +264,8 @@ are available.
   - [`meta`](#meta)
   - [`op`](#op)
   - [`parse`](#parse)
-  - [`parse_macro_input`](#parse_macro_input)
-  - [`parse_quote`](#parse_quote)
+  - [`parse_macro_input`](#parse-macro-input)
+  - [`parse_quote`](#parse-quote)
   - [`pat`](#pat)
   - [`path`](#path)
   - [`precedence`](#precedence)
@@ -282,7 +282,7 @@ are available.
   - [`verbatim`](#verbatim)
   - [`whitespace`](#whitespace)
   - [`gen`](#gen)
-  - [`visit_mut`](#visit_mut)
+  - [`visit_mut`](#visit-mut)
 - [Structs](#structs)
   - [`Attribute`](#attribute)
   - [`MetaList`](#metalist)
@@ -482,8 +482,8 @@ are available.
 - [Functions](#functions)
   - [`parse`](#parse)
   - [`parse2`](#parse2)
-  - [`parse_str`](#parse_str)
-  - [`parse_file`](#parse_file)
+  - [`parse_str`](#parse-str)
+  - [`parse_file`](#parse-file)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 - [Macros](#macros)
@@ -491,11 +491,11 @@ are available.
   - [`braced!`](#braced)
   - [`bracketed!`](#bracketed)
   - [`Token!`](#token)
-  - [`custom_keyword!`](#custom_keyword)
-  - [`custom_punctuation!`](#custom_punctuation)
-  - [`parse_macro_input!`](#parse_macro_input)
-  - [`parse_quote!`](#parse_quote)
-  - [`parse_quote_spanned!`](#parse_quote_spanned)
+  - [`custom_keyword!`](#custom-keyword)
+  - [`custom_punctuation!`](#custom-punctuation)
+  - [`parse_macro_input!`](#parse-macro-input)
+  - [`parse_quote!`](#parse-quote)
+  - [`parse_quote_spanned!`](#parse-quote-spanned)
 
 ## Quick Reference
 
@@ -508,8 +508,8 @@ are available.
 | [`bigint`](#bigint) | mod |  |
 | [`buffer`](#buffer) | mod | A stably addressed token buffer supporting efficient traversal based on a cheaply copyable cursor. |
 | [`classify`](#classify) | mod |  |
-| [`custom_keyword`](#custom_keyword) | mod |  |
-| [`custom_punctuation`](#custom_punctuation) | mod |  |
+| [`custom_keyword`](#custom-keyword) | mod |  |
+| [`custom_punctuation`](#custom-punctuation) | mod |  |
 | [`data`](#data) | mod |  |
 | [`derive`](#derive) | mod |  |
 | [`drops`](#drops) | mod |  |
@@ -528,8 +528,8 @@ are available.
 | [`meta`](#meta) | mod | Facility for interpreting structured content inside of an `Attribute`. |
 | [`op`](#op) | mod |  |
 | [`parse`](#parse) | mod | Parsing interface for parsing a token stream into a syntax tree node. |
-| [`parse_macro_input`](#parse_macro_input) | mod |  |
-| [`parse_quote`](#parse_quote) | mod |  |
+| [`parse_macro_input`](#parse-macro-input) | mod |  |
+| [`parse_quote`](#parse-quote) | mod |  |
 | [`pat`](#pat) | mod |  |
 | [`path`](#path) | mod |  |
 | [`precedence`](#precedence) | mod |  |
@@ -546,7 +546,7 @@ are available.
 | [`verbatim`](#verbatim) | mod |  |
 | [`whitespace`](#whitespace) | mod |  |
 | [`gen`](#gen) | mod |  |
-| [`visit_mut`](#visit_mut) | mod |  |
+| [`visit_mut`](#visit-mut) | mod |  |
 | [`Attribute`](#attribute) | struct |  |
 | [`MetaList`](#metalist) | struct |  |
 | [`MetaNameValue`](#metanamevalue) | struct |  |
@@ -743,18 +743,18 @@ are available.
 | [`Type`](#type) | enum |  |
 | [`parse`](#parse) | fn | Parse tokens of source code into the chosen syntax tree node. |
 | [`parse2`](#parse2) | fn | Parse a proc-macro2 token stream into the chosen syntax tree node. |
-| [`parse_str`](#parse_str) | fn | Parse a string of Rust code into the chosen syntax tree node. |
-| [`parse_file`](#parse_file) | fn | Parse the content of a file of Rust code. |
+| [`parse_str`](#parse-str) | fn | Parse a string of Rust code into the chosen syntax tree node. |
+| [`parse_file`](#parse-file) | fn | Parse the content of a file of Rust code. |
 | [`Result`](#result) | type |  |
 | [`parenthesized!`](#parenthesized) | macro | Parse a set of parentheses and expose their content to subsequent parsers. |
 | [`braced!`](#braced) | macro | Parse a set of curly braces and expose their content to subsequent parsers. |
 | [`bracketed!`](#bracketed) | macro | Parse a set of square brackets and expose their content to subsequent parsers. |
 | [`Token!`](#token) | macro | A type-macro that expands to the name of the Rust type representation of a given token. |
-| [`custom_keyword!`](#custom_keyword) | macro | Define a type that supports parsing and printing a given identifier as if it were a keyword. |
-| [`custom_punctuation!`](#custom_punctuation) | macro | Define a type that supports parsing and printing a multi-character symbol as if it were a punctuation token. |
-| [`parse_macro_input!`](#parse_macro_input) | macro | Parse the input TokenStream of a macro, triggering a compile error if the tokens fail to parse. |
-| [`parse_quote!`](#parse_quote) | macro | Quasi-quotation macro that accepts input like the [`quote!`] macro but uses type inference to figure out a return type for those tokens. |
-| [`parse_quote_spanned!`](#parse_quote_spanned) | macro | This macro is [`parse_quote!`] + [`quote_spanned!`][quote::quote_spanned]. |
+| [`custom_keyword!`](#custom-keyword) | macro | Define a type that supports parsing and printing a given identifier as if it were a keyword. |
+| [`custom_punctuation!`](#custom-punctuation) | macro | Define a type that supports parsing and printing a multi-character symbol as if it were a punctuation token. |
+| [`parse_macro_input!`](#parse-macro-input) | macro | Parse the input TokenStream of a macro, triggering a compile error if the tokens fail to parse. |
+| [`parse_quote!`](#parse-quote) | macro | Quasi-quotation macro that accepts input like the [`quote!`] macro but uses type inference to figure out a return type for those tokens. |
+| [`parse_quote_spanned!`](#parse-quote-spanned) | macro | This macro is [`parse_quote!`] + [`quote_spanned!`][quote::quote_spanned]. |
 
 ## Modules
 
@@ -1636,9 +1636,9 @@ mod expand {
 
 ##### `impl IntoIterator for Error`
 
-- <span id="error-type-item"></span>`type Item = Error`
+- <span id="error-intoiterator-type-item"></span>`type Item = Error`
 
-- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="error-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -9827,9 +9827,9 @@ This type is a [syntax tree enum].
 
 ##### `impl IntoIterator for Fields`
 
-- <span id="fields-type-item"></span>`type Item = Field`
+- <span id="fields-intoiterator-type-item"></span>`type Item = Field`
 
-- <span id="fields-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
+- <span id="fields-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
 
 - <span id="fields-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -12486,7 +12486,15 @@ run().unwrap();
 
 ## Type Aliases
 
-*Defined in [`syn-2.0.111/src/lib.rs:365`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L365)*
+### `Result<T>`
+
+```rust
+type Result<T> = std::result::Result<T, Error>;
+```
+
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../.source_1765210505/syn-2.0.111/src/error.rs#L15)*
+
+The result of a Syn parser.
 
 ## Macros
 

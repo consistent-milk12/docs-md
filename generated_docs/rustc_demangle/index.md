@@ -39,12 +39,12 @@ assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
   - [`DemangleStyle`](#demanglestyle)
 - [Functions](#functions)
   - [`demangle`](#demangle)
-  - [`try_demangle`](#try_demangle)
-  - [`is_symbol_like`](#is_symbol_like)
-  - [`is_ascii_alphanumeric`](#is_ascii_alphanumeric)
-  - [`is_ascii_punctuation`](#is_ascii_punctuation)
+  - [`try_demangle`](#try-demangle)
+  - [`is_symbol_like`](#is-symbol-like)
+  - [`is_ascii_alphanumeric`](#is-ascii-alphanumeric)
+  - [`is_ascii_punctuation`](#is-ascii-punctuation)
 - [Constants](#constants)
-  - [`MAX_SIZE`](#max_size)
+  - [`MAX_SIZE`](#max-size)
 
 ## Quick Reference
 
@@ -58,11 +58,11 @@ assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
 | [`SizeLimitedFmtAdapter`](#sizelimitedfmtadapter) | struct |  |
 | [`DemangleStyle`](#demanglestyle) | enum |  |
 | [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
-| [`try_demangle`](#try_demangle) | fn | The same as `demangle`, except return an `Err` if the string does not appear to be a Rust symbol, rather than "demangling" the given string as a no-op. |
-| [`is_symbol_like`](#is_symbol_like) | fn |  |
-| [`is_ascii_alphanumeric`](#is_ascii_alphanumeric) | fn |  |
-| [`is_ascii_punctuation`](#is_ascii_punctuation) | fn |  |
-| [`MAX_SIZE`](#max_size) | const |  |
+| [`try_demangle`](#try-demangle) | fn | The same as `demangle`, except return an `Err` if the string does not appear to be a Rust symbol, rather than "demangling" the given string as a no-op. |
+| [`is_symbol_like`](#is-symbol-like) | fn |  |
+| [`is_ascii_alphanumeric`](#is-ascii-alphanumeric) | fn |  |
+| [`is_ascii_punctuation`](#is-ascii-punctuation) | fn |  |
+| [`MAX_SIZE`](#max-size) | const |  |
 
 ## Modules
 

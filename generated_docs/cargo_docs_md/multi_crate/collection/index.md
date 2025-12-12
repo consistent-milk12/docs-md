@@ -92,9 +92,9 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-type-init"></span>`type Init = T`
+- <span id="cratecollection-pointable-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

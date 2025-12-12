@@ -11,8 +11,8 @@
 | [`Patterns`](#patterns) | struct | A non-empty collection of non-empty patterns to search for. |
 | [`PatternIter`](#patterniter) | struct | An iterator over the patterns in the `Patterns` collection. |
 | [`Pattern`](#pattern) | struct | A pattern that is used in packed searching. |
-| [`is_prefix`](#is_prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
-| [`is_equal_raw`](#is_equal_raw) | fn | Compare `n` bytes at the given pointers for equality. |
+| [`is_prefix`](#is-prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
+| [`is_equal_raw`](#is-equal-raw) | fn | Compare `n` bytes at the given pointers for equality. |
 
 ## Structs
 
@@ -135,15 +135,15 @@ this is iterating over.
 
 ##### `impl IntoIterator for PatternIter<'p>`
 
-- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternIter<'p>`
 
-- <span id="patterniter-type-item"></span>`type Item = (PatternID, Pattern<'p>)`
+- <span id="patterniter-iterator-type-item"></span>`type Item = (PatternID, Pattern<'p>)`
 
 - <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Pattern`](#pattern)
 

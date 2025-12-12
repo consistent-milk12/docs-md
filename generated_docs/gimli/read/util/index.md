@@ -59,7 +59,7 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-deref-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
 - <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md#arraylike)
 
@@ -77,9 +77,9 @@ struct ArrayVec<A: ArrayLike> {
 
 - <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<P, T> Receiver for ArrayVec<A>`
+##### `impl Receiver for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = T`
+- <span id="arrayvec-receiver-type-target"></span>`type Target = T`
 
 ## Traits
 

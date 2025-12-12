@@ -68,7 +68,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 *Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
-`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
+`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../index.md).
 
 
 
@@ -92,7 +92,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitAnd for ReadWriteFlags`
 
-- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-bitand-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -102,7 +102,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitOr for ReadWriteFlags`
 
-- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-bitor-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](../../backend/io/types/index.md#readwriteflags)
 
@@ -112,7 +112,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitXor for ReadWriteFlags`
 
-- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-bitxor-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -138,9 +138,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Flags for ReadWriteFlags`
 
-- <span id="readwriteflags-const-flags"></span>`const FLAGS: &'static [Flag<ReadWriteFlags>]`
+- <span id="readwriteflags-flags-const-flags"></span>`const FLAGS: &'static [Flag<ReadWriteFlags>]`
 
-- <span id="readwriteflags-type-bits"></span>`type Bits = u32`
+- <span id="readwriteflags-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -156,9 +156,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl IntoIterator for ReadWriteFlags`
 
-- <span id="readwriteflags-type-item"></span>`type Item = ReadWriteFlags`
+- <span id="readwriteflags-intoiterator-type-item"></span>`type Item = ReadWriteFlags`
 
-- <span id="readwriteflags-type-intoiter"></span>`type IntoIter = Iter<ReadWriteFlags>`
+- <span id="readwriteflags-intoiterator-type-intoiter"></span>`type IntoIter = Iter<ReadWriteFlags>`
 
 - <span id="readwriteflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -168,7 +168,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Not for ReadWriteFlags`
 
-- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-not-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-not"></span>`fn not(self) -> Self`
 
@@ -182,15 +182,15 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PublicFlags for ReadWriteFlags`
 
-- <span id="readwriteflags-type-primitive"></span>`type Primitive = u32`
+- <span id="readwriteflags-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="readwriteflags-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="readwriteflags-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for ReadWriteFlags`
 
 ##### `impl Sub for ReadWriteFlags`
 
-- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-sub-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-sub"></span>`fn sub(self, other: Self) -> Self`
 

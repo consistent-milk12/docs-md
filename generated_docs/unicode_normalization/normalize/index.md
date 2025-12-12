@@ -9,58 +9,58 @@ Functions for computing canonical and compatible decompositions for Unicode char
 ## Contents
 
 - [Functions](#functions)
-  - [`decompose_canonical`](#decompose_canonical)
-  - [`decompose_compatible`](#decompose_compatible)
-  - [`decompose_cjk_compat_variants`](#decompose_cjk_compat_variants)
+  - [`decompose_canonical`](#decompose-canonical)
+  - [`decompose_compatible`](#decompose-compatible)
+  - [`decompose_cjk_compat_variants`](#decompose-cjk-compat-variants)
   - [`decompose`](#decompose)
   - [`compose`](#compose)
-  - [`is_hangul_syllable`](#is_hangul_syllable)
-  - [`decompose_hangul`](#decompose_hangul)
-  - [`hangul_decomposition_length`](#hangul_decomposition_length)
-  - [`compose_hangul`](#compose_hangul)
+  - [`is_hangul_syllable`](#is-hangul-syllable)
+  - [`decompose_hangul`](#decompose-hangul)
+  - [`hangul_decomposition_length`](#hangul-decomposition-length)
+  - [`compose_hangul`](#compose-hangul)
 - [Constants](#constants)
-  - [`S_BASE`](#s_base)
-  - [`L_BASE`](#l_base)
-  - [`V_BASE`](#v_base)
-  - [`T_BASE`](#t_base)
-  - [`L_COUNT`](#l_count)
-  - [`V_COUNT`](#v_count)
-  - [`T_COUNT`](#t_count)
-  - [`N_COUNT`](#n_count)
-  - [`S_COUNT`](#s_count)
-  - [`S_LAST`](#s_last)
-  - [`L_LAST`](#l_last)
-  - [`V_LAST`](#v_last)
-  - [`T_LAST`](#t_last)
-  - [`T_FIRST`](#t_first)
+  - [`S_BASE`](#s-base)
+  - [`L_BASE`](#l-base)
+  - [`V_BASE`](#v-base)
+  - [`T_BASE`](#t-base)
+  - [`L_COUNT`](#l-count)
+  - [`V_COUNT`](#v-count)
+  - [`T_COUNT`](#t-count)
+  - [`N_COUNT`](#n-count)
+  - [`S_COUNT`](#s-count)
+  - [`S_LAST`](#s-last)
+  - [`L_LAST`](#l-last)
+  - [`V_LAST`](#v-last)
+  - [`T_LAST`](#t-last)
+  - [`T_FIRST`](#t-first)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`decompose_canonical`](#decompose_canonical) | fn | Compute canonical Unicode decomposition for character. |
-| [`decompose_compatible`](#decompose_compatible) | fn | Compute canonical or compatible Unicode decomposition for character. |
-| [`decompose_cjk_compat_variants`](#decompose_cjk_compat_variants) | fn | Compute standard-variation decomposition for character. |
+| [`decompose_canonical`](#decompose-canonical) | fn | Compute canonical Unicode decomposition for character. |
+| [`decompose_compatible`](#decompose-compatible) | fn | Compute canonical or compatible Unicode decomposition for character. |
+| [`decompose_cjk_compat_variants`](#decompose-cjk-compat-variants) | fn | Compute standard-variation decomposition for character. |
 | [`decompose`](#decompose) | fn |  |
 | [`compose`](#compose) | fn | Compose two characters into a single character, if possible. |
-| [`is_hangul_syllable`](#is_hangul_syllable) | fn |  |
-| [`decompose_hangul`](#decompose_hangul) | fn |  |
-| [`hangul_decomposition_length`](#hangul_decomposition_length) | fn |  |
-| [`compose_hangul`](#compose_hangul) | fn |  |
-| [`S_BASE`](#s_base) | const |  |
-| [`L_BASE`](#l_base) | const |  |
-| [`V_BASE`](#v_base) | const |  |
-| [`T_BASE`](#t_base) | const |  |
-| [`L_COUNT`](#l_count) | const |  |
-| [`V_COUNT`](#v_count) | const |  |
-| [`T_COUNT`](#t_count) | const |  |
-| [`N_COUNT`](#n_count) | const |  |
-| [`S_COUNT`](#s_count) | const |  |
-| [`S_LAST`](#s_last) | const |  |
-| [`L_LAST`](#l_last) | const |  |
-| [`V_LAST`](#v_last) | const |  |
-| [`T_LAST`](#t_last) | const |  |
-| [`T_FIRST`](#t_first) | const |  |
+| [`is_hangul_syllable`](#is-hangul-syllable) | fn |  |
+| [`decompose_hangul`](#decompose-hangul) | fn |  |
+| [`hangul_decomposition_length`](#hangul-decomposition-length) | fn |  |
+| [`compose_hangul`](#compose-hangul) | fn |  |
+| [`S_BASE`](#s-base) | const |  |
+| [`L_BASE`](#l-base) | const |  |
+| [`V_BASE`](#v-base) | const |  |
+| [`T_BASE`](#t-base) | const |  |
+| [`L_COUNT`](#l-count) | const |  |
+| [`V_COUNT`](#v-count) | const |  |
+| [`T_COUNT`](#t-count) | const |  |
+| [`N_COUNT`](#n-count) | const |  |
+| [`S_COUNT`](#s-count) | const |  |
+| [`S_LAST`](#s-last) | const |  |
+| [`L_LAST`](#l-last) | const |  |
+| [`V_LAST`](#v-last) | const |  |
+| [`T_LAST`](#t-last) | const |  |
+| [`T_FIRST`](#t-first) | const |  |
 
 ## Functions
 

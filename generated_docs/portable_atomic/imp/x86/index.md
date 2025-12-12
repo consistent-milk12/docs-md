@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ptr_modifier!`](#ptr_modifier) | macro |  |
-| [`atomic_int!`](#atomic_int) | macro |  |
-| [`atomic_bit_opts!`](#atomic_bit_opts) | macro |  |
+| [`ptr_modifier!`](#ptr-modifier) | macro |  |
+| [`atomic_int!`](#atomic-int) | macro |  |
+| [`atomic_bit_opts!`](#atomic-bit-opts) | macro |  |
 
 ## Macros
 

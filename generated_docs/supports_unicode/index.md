@@ -29,9 +29,9 @@ This crate requires rustc 1.70.0 or later.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Stream`](#stream) | enum | possible stream sources |
-| [`is_a_tty`](#is_a_tty) | fn |  |
+| [`is_a_tty`](#is-a-tty) | fn |  |
 | [`on`](#on) | fn | Returns true if `stream` is a TTY or the current terminal [supports_unicode]. |
-| [`supports_unicode`](#supports_unicode) | fn | Returns true if the current terminal, detected through various environment variables, is known to support unicode rendering. |
+| [`supports_unicode`](#supports-unicode) | fn | Returns true if the current terminal, detected through various environment variables, is known to support unicode rendering. |
 
 ## Enums
 

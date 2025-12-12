@@ -100,15 +100,15 @@ A fallible iterator for the descriptors in the import data directory.
 
 ##### `impl IntoIterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="importdescriptoriterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="importdescriptoriterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="importdescriptoriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="importdescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-type-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
+- <span id="importdescriptoriterator-iterator-type-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
 
 - <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -212,15 +212,15 @@ A fallible iterator for the descriptors in the delay-load data directory.
 
 ##### `impl IntoIterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="delayloaddescriptoriterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="delayloaddescriptoriterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="delayloaddescriptoriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="delayloaddescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
+- <span id="delayloaddescriptoriterator-iterator-type-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
 
 - <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

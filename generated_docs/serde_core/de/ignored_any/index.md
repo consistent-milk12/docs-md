@@ -158,7 +158,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Visitor for IgnoredAny`
 
-- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
+- <span id="ignoredany-visitor-type-value"></span>`type Value = IgnoredAny`
 
 - <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

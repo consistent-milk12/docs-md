@@ -246,14 +246,14 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 ## Contents
 
 - [Modules](#modules)
-  - [`draw_target`](#draw_target)
+  - [`draw_target`](#draw-target)
   - [`format`](#format)
   - [`iter`](#iter)
   - [`multi`](#multi)
-  - [`progress_bar`](#progress_bar)
+  - [`progress_bar`](#progress-bar)
   - [`state`](#state)
   - [`style`](#style)
-  - [`term_like`](#term_like)
+  - [`term_like`](#term-like)
 - [Structs](#structs)
   - [`ProgressDrawTarget`](#progressdrawtarget)
   - [`BinaryBytes`](#binarybytes)
@@ -280,14 +280,14 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`draw_target`](#draw_target) | mod |  |
+| [`draw_target`](#draw-target) | mod |  |
 | [`format`](#format) | mod |  |
 | [`iter`](#iter) | mod |  |
 | [`multi`](#multi) | mod |  |
-| [`progress_bar`](#progress_bar) | mod |  |
+| [`progress_bar`](#progress-bar) | mod |  |
 | [`state`](#state) | mod |  |
 | [`style`](#style) | mod |  |
-| [`term_like`](#term_like) | mod |  |
+| [`term_like`](#term-like) | mod |  |
 | [`ProgressDrawTarget`](#progressdrawtarget) | struct |  |
 | [`BinaryBytes`](#binarybytes) | struct |  |
 | [`DecimalBytes`](#decimalbytes) | struct |  |
@@ -632,21 +632,21 @@ Wraps an iterator to display its progress.
 
 ##### `impl<T: FusedIterator> FusedIterator for ProgressBarIter<T>`
 
-##### `impl<I> IntoIterator for ProgressBarIter<T>`
+##### `impl IntoIterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="progressbariter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="progressbariter-type-intoiter"></span>`type IntoIter = I`
+- <span id="progressbariter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="progressbariter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<S, T: Iterator<Item = S>> Iterator for ProgressBarIter<T>`
+##### `impl<T: Iterator<Item = S>> Iterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-type-item"></span>`type Item = S`
+- <span id="progressbariter-iterator-type-item"></span>`type Item = S`
 
 - <span id="progressbariter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<S, T> ProgressIterator for ProgressBarIter<T>`
+##### `impl<T> ProgressIterator for ProgressBarIter<T>`
 
 - <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](progress_bar/index.md#progressbar), [`ProgressBarIter`](iter/index.md#progressbariter)
 

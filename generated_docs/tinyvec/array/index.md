@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`const_generic_impl`](#const_generic_impl) | mod |  |
+| [`const_generic_impl`](#const-generic-impl) | mod |  |
 | [`Array`](#array) | trait | A trait for types that are an array. |
 
 ## Modules

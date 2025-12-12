@@ -10,7 +10,7 @@ Functionality for wrapping text into columns.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`wrap_columns`](#wrap_columns) | fn | Wrap text into columns with a given total width. |
+| [`wrap_columns`](#wrap-columns) | fn | Wrap text into columns with a given total width. |
 
 ## Functions
 

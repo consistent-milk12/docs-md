@@ -374,12 +374,6 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
-
-- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
-
-- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
-
 - <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 
 - <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../dispatcher/index.md#defaultguard)
@@ -391,6 +385,12 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
 
 - <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md#defaultguard), [`DefaultGuard`](../dispatcher/index.md#defaultguard), [`Record`](#record)
+
+- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
+
+- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
+
+- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
 ### `Span`
 
@@ -635,7 +635,7 @@ This is returned by the `Span::entered` function.
 
 ##### `impl Deref for EnteredSpan`
 
-- <span id="enteredspan-type-target"></span>`type Target = Span`
+- <span id="enteredspan-deref-type-target"></span>`type Target = Span`
 
 - <span id="enteredspan-deref"></span>`fn deref(&self) -> &Span` — [`Span`](#span)
 
@@ -647,7 +647,7 @@ This is returned by the `Span::entered` function.
 
 ##### `impl Receiver for EnteredSpan`
 
-- <span id="enteredspan-type-target"></span>`type Target = T`
+- <span id="enteredspan-receiver-type-target"></span>`type Target = T`
 
 ##### `impl WithSubscriber for EnteredSpan`
 
@@ -708,7 +708,11 @@ Trait implemented by types which have a span `Id`.
 
 ## Functions
 
-*Defined in [`tracing-0.1.43/src/span.rs:321`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L321)*
+### `Attributes`
+
+```rust
+fn Attributes(self) -> Result<U, <U as TryFrom>::Error>
+```
 
 ## Constants
 

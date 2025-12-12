@@ -7,13 +7,13 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`byte_range`](#byte_range)
+  - [`byte_range`](#byte-range)
   - [`start`](#start)
   - [`end`](#end)
   - [`line`](#line)
   - [`column`](#column)
   - [`file`](#file)
-  - [`local_file`](#local_file)
+  - [`local_file`](#local-file)
   - [`join`](#join)
   - [`subspan`](#subspan)
 
@@ -21,13 +21,13 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`byte_range`](#byte_range) | fn |  |
+| [`byte_range`](#byte-range) | fn |  |
 | [`start`](#start) | fn |  |
 | [`end`](#end) | fn |  |
 | [`line`](#line) | fn |  |
 | [`column`](#column) | fn |  |
 | [`file`](#file) | fn |  |
-| [`local_file`](#local_file) | fn |  |
+| [`local_file`](#local-file) | fn |  |
 | [`join`](#join) | fn |  |
 | [`subspan`](#subspan) | fn |  |
 

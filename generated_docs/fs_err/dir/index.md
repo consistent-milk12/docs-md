@@ -11,7 +11,7 @@
 | [`unix`](#unix) | mod |  |
 | [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more helpful information to all errors. |
 | [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more helpful information to all errors. |
-| [`read_dir`](#read_dir) | fn | Returns an iterator over the entries within a directory. |
+| [`read_dir`](#read-dir) | fn | Returns an iterator over the entries within a directory. |
 
 ## Modules
 
@@ -45,15 +45,15 @@ This struct is created via `fs_err::read_dir`.
 
 ##### `impl IntoIterator for ReadDir`
 
-- <span id="readdir-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="readdir-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="readdir-type-intoiter"></span>`type IntoIter = I`
+- <span id="readdir-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
-- <span id="readdir-type-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="readdir-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
 - <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -63,7 +63,7 @@ check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelItera
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [`split`](splitter/index.md) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -93,53 +93,53 @@ because `ParallelIterator` is **not object-safe**.
   - [`enumerate`](#enumerate)
   - [`extend`](#extend)
   - [`filter`](#filter)
-  - [`filter_map`](#filter_map)
+  - [`filter_map`](#filter-map)
   - [`find`](#find)
-  - [`find_first_last`](#find_first_last)
-  - [`flat_map`](#flat_map)
-  - [`flat_map_iter`](#flat_map_iter)
+  - [`find_first_last`](#find-first-last)
+  - [`flat_map`](#flat-map)
+  - [`flat_map_iter`](#flat-map-iter)
   - [`flatten`](#flatten)
-  - [`flatten_iter`](#flatten_iter)
+  - [`flatten_iter`](#flatten-iter)
   - [`fold`](#fold)
-  - [`fold_chunks`](#fold_chunks)
-  - [`fold_chunks_with`](#fold_chunks_with)
-  - [`for_each`](#for_each)
-  - [`from_par_iter`](#from_par_iter)
+  - [`fold_chunks`](#fold-chunks)
+  - [`fold_chunks_with`](#fold-chunks-with)
+  - [`for_each`](#for-each)
+  - [`from_par_iter`](#from-par-iter)
   - [`inspect`](#inspect)
   - [`interleave`](#interleave)
-  - [`interleave_shortest`](#interleave_shortest)
+  - [`interleave_shortest`](#interleave-shortest)
   - [`intersperse`](#intersperse)
   - [`len`](#len)
   - [`map`](#map)
-  - [`map_with`](#map_with)
+  - [`map_with`](#map-with)
   - [`multizip`](#multizip)
   - [`noop`](#noop)
   - [`once`](#once)
-  - [`panic_fuse`](#panic_fuse)
-  - [`par_bridge`](#par_bridge)
+  - [`panic_fuse`](#panic-fuse)
+  - [`par_bridge`](#par-bridge)
   - [`positions`](#positions)
   - [`product`](#product)
   - [`reduce`](#reduce)
   - [`repeat`](#repeat)
   - [`rev`](#rev)
   - [`skip`](#skip)
-  - [`skip_any`](#skip_any)
-  - [`skip_any_while`](#skip_any_while)
+  - [`skip_any`](#skip-any)
+  - [`skip_any_while`](#skip-any-while)
   - [`splitter`](#splitter)
-  - [`step_by`](#step_by)
+  - [`step_by`](#step-by)
   - [`sum`](#sum)
   - [`take`](#take)
-  - [`take_any`](#take_any)
-  - [`take_any_while`](#take_any_while)
-  - [`try_fold`](#try_fold)
-  - [`try_reduce`](#try_reduce)
-  - [`try_reduce_with`](#try_reduce_with)
+  - [`take_any`](#take-any)
+  - [`take_any_while`](#take-any-while)
+  - [`try_fold`](#try-fold)
+  - [`try_reduce`](#try-reduce)
+  - [`try_reduce_with`](#try-reduce-with)
   - [`unzip`](#unzip)
   - [`update`](#update)
-  - [`walk_tree`](#walk_tree)
-  - [`while_some`](#while_some)
+  - [`walk_tree`](#walk-tree)
+  - [`while_some`](#while-some)
   - [`zip`](#zip)
-  - [`zip_eq`](#zip_eq)
+  - [`zip_eq`](#zip-eq)
   - [`private`](#private)
 - [Structs](#structs)
   - [`ExponentialBlocks`](#exponentialblocks)
@@ -209,11 +209,11 @@ because `ParallelIterator` is **not object-safe**.
   - [`empty`](#empty)
   - [`once`](#once)
   - [`repeat`](#repeat)
-  - [`repeat_n`](#repeat_n)
+  - [`repeat_n`](#repeat-n)
   - [`split`](#split)
-  - [`walk_tree`](#walk_tree)
-  - [`walk_tree_postfix`](#walk_tree_postfix)
-  - [`walk_tree_prefix`](#walk_tree_prefix)
+  - [`walk_tree`](#walk-tree)
+  - [`walk_tree_postfix`](#walk-tree-postfix)
+  - [`walk_tree_prefix`](#walk-tree-prefix)
   - [`repeatn`](#repeatn)
 
 ## Quick Reference
@@ -231,53 +231,53 @@ because `ParallelIterator` is **not object-safe**.
 | [`enumerate`](#enumerate) | mod |  |
 | [`extend`](#extend) | mod |  |
 | [`filter`](#filter) | mod |  |
-| [`filter_map`](#filter_map) | mod |  |
+| [`filter_map`](#filter-map) | mod |  |
 | [`find`](#find) | mod |  |
-| [`find_first_last`](#find_first_last) | mod |  |
-| [`flat_map`](#flat_map) | mod |  |
-| [`flat_map_iter`](#flat_map_iter) | mod |  |
+| [`find_first_last`](#find-first-last) | mod |  |
+| [`flat_map`](#flat-map) | mod |  |
+| [`flat_map_iter`](#flat-map-iter) | mod |  |
 | [`flatten`](#flatten) | mod |  |
-| [`flatten_iter`](#flatten_iter) | mod |  |
+| [`flatten_iter`](#flatten-iter) | mod |  |
 | [`fold`](#fold) | mod |  |
-| [`fold_chunks`](#fold_chunks) | mod |  |
-| [`fold_chunks_with`](#fold_chunks_with) | mod |  |
-| [`for_each`](#for_each) | mod |  |
-| [`from_par_iter`](#from_par_iter) | mod |  |
+| [`fold_chunks`](#fold-chunks) | mod |  |
+| [`fold_chunks_with`](#fold-chunks-with) | mod |  |
+| [`for_each`](#for-each) | mod |  |
+| [`from_par_iter`](#from-par-iter) | mod |  |
 | [`inspect`](#inspect) | mod |  |
 | [`interleave`](#interleave) | mod |  |
-| [`interleave_shortest`](#interleave_shortest) | mod |  |
+| [`interleave_shortest`](#interleave-shortest) | mod |  |
 | [`intersperse`](#intersperse) | mod |  |
 | [`len`](#len) | mod |  |
 | [`map`](#map) | mod |  |
-| [`map_with`](#map_with) | mod |  |
+| [`map_with`](#map-with) | mod |  |
 | [`multizip`](#multizip) | mod |  |
 | [`noop`](#noop) | mod |  |
 | [`once`](#once) | mod |  |
-| [`panic_fuse`](#panic_fuse) | mod |  |
-| [`par_bridge`](#par_bridge) | mod |  |
+| [`panic_fuse`](#panic-fuse) | mod |  |
+| [`par_bridge`](#par-bridge) | mod |  |
 | [`positions`](#positions) | mod |  |
 | [`product`](#product) | mod |  |
 | [`reduce`](#reduce) | mod |  |
 | [`repeat`](#repeat) | mod |  |
 | [`rev`](#rev) | mod |  |
 | [`skip`](#skip) | mod |  |
-| [`skip_any`](#skip_any) | mod |  |
-| [`skip_any_while`](#skip_any_while) | mod |  |
+| [`skip_any`](#skip-any) | mod |  |
+| [`skip_any_while`](#skip-any-while) | mod |  |
 | [`splitter`](#splitter) | mod |  |
-| [`step_by`](#step_by) | mod |  |
+| [`step_by`](#step-by) | mod |  |
 | [`sum`](#sum) | mod |  |
 | [`take`](#take) | mod |  |
-| [`take_any`](#take_any) | mod |  |
-| [`take_any_while`](#take_any_while) | mod |  |
-| [`try_fold`](#try_fold) | mod |  |
-| [`try_reduce`](#try_reduce) | mod |  |
-| [`try_reduce_with`](#try_reduce_with) | mod |  |
+| [`take_any`](#take-any) | mod |  |
+| [`take_any_while`](#take-any-while) | mod |  |
+| [`try_fold`](#try-fold) | mod |  |
+| [`try_reduce`](#try-reduce) | mod |  |
+| [`try_reduce_with`](#try-reduce-with) | mod |  |
 | [`unzip`](#unzip) | mod |  |
 | [`update`](#update) | mod |  |
-| [`walk_tree`](#walk_tree) | mod |  |
-| [`while_some`](#while_some) | mod |  |
+| [`walk_tree`](#walk-tree) | mod |  |
+| [`while_some`](#while-some) | mod |  |
 | [`zip`](#zip) | mod |  |
-| [`zip_eq`](#zip_eq) | mod |  |
+| [`zip_eq`](#zip-eq) | mod |  |
 | [`private`](#private) | mod | We hide the `Try` trait in a private module, as it's only meant to be a stable clone of the standard library's `Try` trait, as yet unstable. |
 | [`ExponentialBlocks`](#exponentialblocks) | struct |  |
 | [`UniformBlocks`](#uniformblocks) | struct |  |
@@ -344,11 +344,11 @@ because `ParallelIterator` is **not object-safe**.
 | [`empty`](#empty) | fn |  |
 | [`once`](#once) | fn |  |
 | [`repeat`](#repeat) | fn |  |
-| [`repeat_n`](#repeat_n) | fn |  |
+| [`repeat_n`](#repeat-n) | fn |  |
 | [`split`](#split) | fn |  |
-| [`walk_tree`](#walk_tree) | fn |  |
-| [`walk_tree_postfix`](#walk_tree_postfix) | fn |  |
-| [`walk_tree_prefix`](#walk_tree_prefix) | fn |  |
+| [`walk_tree`](#walk-tree) | fn |  |
+| [`walk_tree_postfix`](#walk-tree-postfix) | fn |  |
+| [`walk_tree_prefix`](#walk-tree-prefix) | fn |  |
 | [`repeatn`](#repeatn) | fn |  |
 
 ## Modules
@@ -445,27 +445,27 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 - <span id="exponentialblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for ExponentialBlocks<I>`
+##### `impl IntoEither for ExponentialBlocks<I>`
 
-##### `impl<T> IntoParallelIterator for ExponentialBlocks<I>`
+##### `impl IntoParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-type-iter"></span>`type Iter = T`
+- <span id="exponentialblocks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="exponentialblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="exponentialblocks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="exponentialblocks-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for ExponentialBlocks<I>`
+##### `impl Pointable for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-const-align"></span>`const ALIGN: usize`
+- <span id="exponentialblocks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="exponentialblocks-type-init"></span>`type Init = T`
+- <span id="exponentialblocks-pointable-type-init"></span>`type Init = T`
 
 - <span id="exponentialblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -506,27 +506,27 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 - <span id="uniformblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for UniformBlocks<I>`
+##### `impl IntoEither for UniformBlocks<I>`
 
-##### `impl<T> IntoParallelIterator for UniformBlocks<I>`
+##### `impl IntoParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-type-iter"></span>`type Iter = T`
+- <span id="uniformblocks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="uniformblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="uniformblocks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="uniformblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="uniformblocks-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for UniformBlocks<I>`
+##### `impl Pointable for UniformBlocks<I>`
 
-- <span id="uniformblocks-const-align"></span>`const ALIGN: usize`
+- <span id="uniformblocks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="uniformblocks-type-init"></span>`type Init = T`
+- <span id="uniformblocks-pointable-type-init"></span>`type Init = T`
 
 - <span id="uniformblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -573,29 +573,29 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 - <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Chain<A, B>`
+##### `impl IntoEither for Chain<A, B>`
 
-##### `impl<T> IntoParallelIterator for Chain<A, B>`
+##### `impl IntoParallelIterator for Chain<A, B>`
 
-- <span id="chain-type-iter"></span>`type Iter = T`
+- <span id="chain-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
-- <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
+- <span id="chain-paralleliterator-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
 - <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Chain<A, B>`
+##### `impl Pointable for Chain<A, B>`
 
-- <span id="chain-const-align"></span>`const ALIGN: usize`
+- <span id="chain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chain-type-init"></span>`type Init = T`
+- <span id="chain-pointable-type-init"></span>`type Init = T`
 
 - <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -643,29 +643,29 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 - <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Chunks<I>`
+##### `impl IntoEither for Chunks<I>`
 
-##### `impl<T> IntoParallelIterator for Chunks<I>`
+##### `impl IntoParallelIterator for Chunks<I>`
 
-- <span id="chunks-type-iter"></span>`type Iter = T`
+- <span id="chunks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
-- <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
+- <span id="chunks-paralleliterator-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
 - <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Chunks<I>`
+##### `impl Pointable for Chunks<I>`
 
-- <span id="chunks-const-align"></span>`const ALIGN: usize`
+- <span id="chunks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunks-type-init"></span>`type Init = T`
+- <span id="chunks-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -704,7 +704,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
+##### `impl<I> IndexedParallelIterator for Cloned<I>`
 
 - <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -712,29 +712,29 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 - <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Cloned<I>`
+##### `impl IntoEither for Cloned<I>`
 
-##### `impl<T> IntoParallelIterator for Cloned<I>`
+##### `impl IntoParallelIterator for Cloned<I>`
 
-- <span id="cloned-type-iter"></span>`type Iter = T`
+- <span id="cloned-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="cloned-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="cloned-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
+##### `impl<I> ParallelIterator for Cloned<I>`
 
-- <span id="cloned-type-item"></span>`type Item = T`
+- <span id="cloned-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Cloned<I>`
+##### `impl Pointable for Cloned<I>`
 
-- <span id="cloned-const-align"></span>`const ALIGN: usize`
+- <span id="cloned-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cloned-type-init"></span>`type Init = T`
+- <span id="cloned-pointable-type-init"></span>`type Init = T`
 
 - <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -773,7 +773,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T, I> IndexedParallelIterator for Copied<I>`
+##### `impl<I> IndexedParallelIterator for Copied<I>`
 
 - <span id="copied-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -781,29 +781,29 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 - <span id="copied-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Copied<I>`
+##### `impl IntoEither for Copied<I>`
 
-##### `impl<T> IntoParallelIterator for Copied<I>`
+##### `impl IntoParallelIterator for Copied<I>`
 
-- <span id="copied-type-iter"></span>`type Iter = T`
+- <span id="copied-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="copied-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="copied-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="copied-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, T, I> ParallelIterator for Copied<I>`
+##### `impl<I> ParallelIterator for Copied<I>`
 
-- <span id="copied-type-item"></span>`type Item = T`
+- <span id="copied-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="copied-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Copied<I>`
+##### `impl Pointable for Copied<I>`
 
-- <span id="copied-const-align"></span>`const ALIGN: usize`
+- <span id="copied-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="copied-type-init"></span>`type Init = T`
+- <span id="copied-pointable-type-init"></span>`type Init = T`
 
 - <span id="copied-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -848,15 +848,15 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> IntoParallelIterator for Empty<T>`
 
-- <span id="empty-type-iter"></span>`type Iter = T`
+- <span id="empty-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="empty-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="empty-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
-- <span id="empty-type-item"></span>`type Item = T`
+- <span id="empty-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -864,9 +864,9 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> Pointable for Empty<T>`
 
-- <span id="empty-const-align"></span>`const ALIGN: usize`
+- <span id="empty-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="empty-type-init"></span>`type Init = T`
+- <span id="empty-pointable-type-init"></span>`type Init = T`
 
 - <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -912,29 +912,29 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Enumerate<I>`
+##### `impl IntoEither for Enumerate<I>`
 
-##### `impl<T> IntoParallelIterator for Enumerate<I>`
+##### `impl IntoParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-type-iter"></span>`type Iter = T`
+- <span id="enumerate-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="enumerate-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="enumerate-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
+- <span id="enumerate-paralleliterator-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
 - <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="enumerate-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Enumerate<I>`
+##### `impl Pointable for Enumerate<I>`
 
-- <span id="enumerate-const-align"></span>`const ALIGN: usize`
+- <span id="enumerate-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerate-type-init"></span>`type Init = T`
+- <span id="enumerate-pointable-type-init"></span>`type Init = T`
 
 - <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -973,27 +973,27 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 - <span id="filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Filter<I, P>`
+##### `impl IntoEither for Filter<I, P>`
 
-##### `impl<T> IntoParallelIterator for Filter<I, P>`
+##### `impl IntoParallelIterator for Filter<I, P>`
 
-- <span id="filter-type-iter"></span>`type Iter = T`
+- <span id="filter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="filter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Filter<I, P>`
 
-- <span id="filter-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="filter-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Filter<I, P>`
+##### `impl Pointable for Filter<I, P>`
 
-- <span id="filter-const-align"></span>`const ALIGN: usize`
+- <span id="filter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filter-type-init"></span>`type Init = T`
+- <span id="filter-pointable-type-init"></span>`type Init = T`
 
 - <span id="filter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1032,27 +1032,27 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 - <span id="filtermap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FilterMap<I, P>`
+##### `impl IntoEither for FilterMap<I, P>`
 
-##### `impl<T> IntoParallelIterator for FilterMap<I, P>`
+##### `impl IntoParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-type-iter"></span>`type Iter = T`
+- <span id="filtermap-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="filtermap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filtermap-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filtermap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, P, R> ParallelIterator for FilterMap<I, P>`
+##### `impl<I, P> ParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-type-item"></span>`type Item = R`
+- <span id="filtermap-paralleliterator-type-item"></span>`type Item = R`
 
 - <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FilterMap<I, P>`
+##### `impl Pointable for FilterMap<I, P>`
 
-- <span id="filtermap-const-align"></span>`const ALIGN: usize`
+- <span id="filtermap-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filtermap-type-init"></span>`type Init = T`
+- <span id="filtermap-pointable-type-init"></span>`type Init = T`
 
 - <span id="filtermap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1091,27 +1091,27 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 - <span id="flatmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FlatMap<I, F>`
+##### `impl IntoEither for FlatMap<I, F>`
 
-##### `impl<T> IntoParallelIterator for FlatMap<I, F>`
+##### `impl IntoParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-type-iter"></span>`type Iter = T`
+- <span id="flatmap-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="flatmap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatmap-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatmap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, F, PI> ParallelIterator for FlatMap<I, F>`
+##### `impl<I, F> ParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
+- <span id="flatmap-paralleliterator-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
 - <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FlatMap<I, F>`
+##### `impl Pointable for FlatMap<I, F>`
 
-- <span id="flatmap-const-align"></span>`const ALIGN: usize`
+- <span id="flatmap-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmap-type-init"></span>`type Init = T`
+- <span id="flatmap-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1150,27 +1150,27 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 - <span id="flatmapiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FlatMapIter<I, F>`
+##### `impl IntoEither for FlatMapIter<I, F>`
 
-##### `impl<T> IntoParallelIterator for FlatMapIter<I, F>`
+##### `impl IntoParallelIterator for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-type-iter"></span>`type Iter = T`
+- <span id="flatmapiter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="flatmapiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatmapiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatmapiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, F, SI> ParallelIterator for FlatMapIter<I, F>`
+##### `impl<I, F> ParallelIterator for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-type-item"></span>`type Item = <SI as IntoIterator>::Item`
+- <span id="flatmapiter-paralleliterator-type-item"></span>`type Item = <SI as IntoIterator>::Item`
 
 - <span id="flatmapiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FlatMapIter<I, F>`
+##### `impl Pointable for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-const-align"></span>`const ALIGN: usize`
+- <span id="flatmapiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmapiter-type-init"></span>`type Init = T`
+- <span id="flatmapiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatmapiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1208,27 +1208,27 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Flatten<I>`
+##### `impl IntoEither for Flatten<I>`
 
-##### `impl<T> IntoParallelIterator for Flatten<I>`
+##### `impl IntoParallelIterator for Flatten<I>`
 
-- <span id="flatten-type-iter"></span>`type Iter = T`
+- <span id="flatten-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="flatten-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatten-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatten-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Flatten<I>`
 
-- <span id="flatten-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
+- <span id="flatten-paralleliterator-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
 - <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Flatten<I>`
+##### `impl Pointable for Flatten<I>`
 
-- <span id="flatten-const-align"></span>`const ALIGN: usize`
+- <span id="flatten-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatten-type-init"></span>`type Init = T`
+- <span id="flatten-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatten-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1266,27 +1266,27 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 - <span id="flatteniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FlattenIter<I>`
+##### `impl IntoEither for FlattenIter<I>`
 
-##### `impl<T> IntoParallelIterator for FlattenIter<I>`
+##### `impl IntoParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-type-iter"></span>`type Iter = T`
+- <span id="flatteniter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="flatteniter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatteniter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatteniter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
+- <span id="flatteniter-paralleliterator-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
 - <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FlattenIter<I>`
+##### `impl Pointable for FlattenIter<I>`
 
-- <span id="flatteniter-const-align"></span>`const ALIGN: usize`
+- <span id="flatteniter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatteniter-type-init"></span>`type Init = T`
+- <span id="flatteniter-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatteniter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1326,27 +1326,27 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 - <span id="fold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Fold<I, ID, F>`
+##### `impl IntoEither for Fold<I, ID, F>`
 
-##### `impl<T> IntoParallelIterator for Fold<I, ID, F>`
+##### `impl IntoParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-type-iter"></span>`type Iter = T`
+- <span id="fold-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="fold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="fold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="fold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<U, I, ID, F> ParallelIterator for Fold<I, ID, F>`
+##### `impl<I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-type-item"></span>`type Item = U`
+- <span id="fold-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Fold<I, ID, F>`
+##### `impl Pointable for Fold<I, ID, F>`
 
-- <span id="fold-const-align"></span>`const ALIGN: usize`
+- <span id="fold-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="fold-type-init"></span>`type Init = T`
+- <span id="fold-pointable-type-init"></span>`type Init = T`
 
 - <span id="fold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1386,27 +1386,27 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 - <span id="foldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FoldWith<I, U, F>`
+##### `impl IntoEither for FoldWith<I, U, F>`
 
-##### `impl<T> IntoParallelIterator for FoldWith<I, U, F>`
+##### `impl IntoParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-type-iter"></span>`type Iter = T`
+- <span id="foldwith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-type-item"></span>`type Item = U`
+- <span id="foldwith-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FoldWith<I, U, F>`
+##### `impl Pointable for FoldWith<I, U, F>`
 
-- <span id="foldwith-const-align"></span>`const ALIGN: usize`
+- <span id="foldwith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwith-type-init"></span>`type Init = T`
+- <span id="foldwith-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1449,7 +1449,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I, ID, U, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
+##### `impl<I, ID, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
 
 - <span id="foldchunks-len"></span>`fn len(&self) -> usize`
 
@@ -1457,29 +1457,29 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for FoldChunks<I, ID, F>`
+##### `impl IntoEither for FoldChunks<I, ID, F>`
 
-##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
+##### `impl IntoParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-type-iter"></span>`type Iter = T`
+- <span id="foldchunks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
+##### `impl<I, ID, F> ParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-type-item"></span>`type Item = U`
+- <span id="foldchunks-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="foldchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for FoldChunks<I, ID, F>`
+##### `impl Pointable for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-const-align"></span>`const ALIGN: usize`
+- <span id="foldchunks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunks-type-init"></span>`type Init = T`
+- <span id="foldchunks-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1530,29 +1530,29 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for FoldChunksWith<I, U, F>`
+##### `impl IntoEither for FoldChunksWith<I, U, F>`
 
-##### `impl<T> IntoParallelIterator for FoldChunksWith<I, U, F>`
+##### `impl IntoParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-type-iter"></span>`type Iter = T`
+- <span id="foldchunkswith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunkswith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunkswith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunkswith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, U, F> ParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-type-item"></span>`type Item = U`
+- <span id="foldchunkswith-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="foldchunkswith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for FoldChunksWith<I, U, F>`
+##### `impl Pointable for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-const-align"></span>`const ALIGN: usize`
+- <span id="foldchunkswith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunkswith-type-init"></span>`type Init = T`
+- <span id="foldchunkswith-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldchunkswith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1601,29 +1601,29 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 - <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Inspect<I, F>`
+##### `impl IntoEither for Inspect<I, F>`
 
-##### `impl<T> IntoParallelIterator for Inspect<I, F>`
+##### `impl IntoParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-type-iter"></span>`type Iter = T`
+- <span id="inspect-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="inspect-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="inspect-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="inspect-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="inspect-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="inspect-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Inspect<I, F>`
+##### `impl Pointable for Inspect<I, F>`
 
-- <span id="inspect-const-align"></span>`const ALIGN: usize`
+- <span id="inspect-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspect-type-init"></span>`type Init = T`
+- <span id="inspect-pointable-type-init"></span>`type Init = T`
 
 - <span id="inspect-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1671,29 +1671,29 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 - <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Interleave<I, J>`
+##### `impl IntoEither for Interleave<I, J>`
 
-##### `impl<T> IntoParallelIterator for Interleave<I, J>`
+##### `impl IntoParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-type-iter"></span>`type Iter = T`
+- <span id="interleave-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="interleave-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleave-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleave-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleave-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleave-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Interleave<I, J>`
+##### `impl Pointable for Interleave<I, J>`
 
-- <span id="interleave-const-align"></span>`const ALIGN: usize`
+- <span id="interleave-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleave-type-init"></span>`type Init = T`
+- <span id="interleave-pointable-type-init"></span>`type Init = T`
 
 - <span id="interleave-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1743,29 +1743,29 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for InterleaveShortest<I, J>`
+##### `impl IntoEither for InterleaveShortest<I, J>`
 
-##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
+##### `impl IntoParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-type-iter"></span>`type Iter = T`
+- <span id="interleaveshortest-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="interleaveshortest-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleaveshortest-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleaveshortest-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="interleaveshortest-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for InterleaveShortest<I, J>`
+##### `impl Pointable for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-const-align"></span>`const ALIGN: usize`
+- <span id="interleaveshortest-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleaveshortest-type-init"></span>`type Init = T`
+- <span id="interleaveshortest-pointable-type-init"></span>`type Init = T`
 
 - <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1815,29 +1815,29 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Intersperse<I>`
+##### `impl IntoEither for Intersperse<I>`
 
-##### `impl<T> IntoParallelIterator for Intersperse<I>`
+##### `impl IntoParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-type-iter"></span>`type Iter = T`
+- <span id="intersperse-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intersperse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intersperse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intersperse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="intersperse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="intersperse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Intersperse<I>`
+##### `impl Pointable for Intersperse<I>`
 
-- <span id="intersperse-const-align"></span>`const ALIGN: usize`
+- <span id="intersperse-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperse-type-init"></span>`type Init = T`
+- <span id="intersperse-pointable-type-init"></span>`type Init = T`
 
 - <span id="intersperse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1884,29 +1884,29 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 - <span id="maxlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for MaxLen<I>`
+##### `impl IntoEither for MaxLen<I>`
 
-##### `impl<T> IntoParallelIterator for MaxLen<I>`
+##### `impl IntoParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-type-iter"></span>`type Iter = T`
+- <span id="maxlen-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="maxlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="maxlen-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="maxlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="maxlen-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="maxlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for MaxLen<I>`
+##### `impl Pointable for MaxLen<I>`
 
-- <span id="maxlen-const-align"></span>`const ALIGN: usize`
+- <span id="maxlen-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="maxlen-type-init"></span>`type Init = T`
+- <span id="maxlen-pointable-type-init"></span>`type Init = T`
 
 - <span id="maxlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1953,29 +1953,29 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 - <span id="minlen-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for MinLen<I>`
+##### `impl IntoEither for MinLen<I>`
 
-##### `impl<T> IntoParallelIterator for MinLen<I>`
+##### `impl IntoParallelIterator for MinLen<I>`
 
-- <span id="minlen-type-iter"></span>`type Iter = T`
+- <span id="minlen-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="minlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="minlen-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="minlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MinLen<I>`
 
-- <span id="minlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="minlen-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="minlen-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for MinLen<I>`
+##### `impl Pointable for MinLen<I>`
 
-- <span id="minlen-const-align"></span>`const ALIGN: usize`
+- <span id="minlen-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="minlen-type-init"></span>`type Init = T`
+- <span id="minlen-pointable-type-init"></span>`type Init = T`
 
 - <span id="minlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2015,7 +2015,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I, F, R> IndexedParallelIterator for Map<I, F>`
+##### `impl<I, F> IndexedParallelIterator for Map<I, F>`
 
 - <span id="map-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2023,29 +2023,29 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 - <span id="map-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Map<I, F>`
+##### `impl IntoEither for Map<I, F>`
 
-##### `impl<T> IntoParallelIterator for Map<I, F>`
+##### `impl IntoParallelIterator for Map<I, F>`
 
-- <span id="map-type-iter"></span>`type Iter = T`
+- <span id="map-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="map-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="map-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="map-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, F, R> ParallelIterator for Map<I, F>`
+##### `impl<I, F> ParallelIterator for Map<I, F>`
 
-- <span id="map-type-item"></span>`type Item = <F as FnOnce>::Output`
+- <span id="map-paralleliterator-type-item"></span>`type Item = <F as FnOnce>::Output`
 
 - <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="map-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Map<I, F>`
+##### `impl Pointable for Map<I, F>`
 
-- <span id="map-const-align"></span>`const ALIGN: usize`
+- <span id="map-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="map-type-init"></span>`type Init = T`
+- <span id="map-pointable-type-init"></span>`type Init = T`
 
 - <span id="map-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2086,7 +2086,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I, INIT, T, F, R> IndexedParallelIterator for MapInit<I, INIT, F>`
+##### `impl<I, INIT, F> IndexedParallelIterator for MapInit<I, INIT, F>`
 
 - <span id="mapinit-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2094,29 +2094,29 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 - <span id="mapinit-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for MapInit<I, INIT, F>`
+##### `impl IntoEither for MapInit<I, INIT, F>`
 
-##### `impl<T> IntoParallelIterator for MapInit<I, INIT, F>`
+##### `impl IntoParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-type-iter"></span>`type Iter = T`
+- <span id="mapinit-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="mapinit-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="mapinit-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="mapinit-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, INIT, T, F, R> ParallelIterator for MapInit<I, INIT, F>`
+##### `impl<I, INIT, F> ParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-type-item"></span>`type Item = R`
+- <span id="mapinit-paralleliterator-type-item"></span>`type Item = R`
 
 - <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="mapinit-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for MapInit<I, INIT, F>`
+##### `impl Pointable for MapInit<I, INIT, F>`
 
-- <span id="mapinit-const-align"></span>`const ALIGN: usize`
+- <span id="mapinit-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapinit-type-init"></span>`type Init = T`
+- <span id="mapinit-pointable-type-init"></span>`type Init = T`
 
 - <span id="mapinit-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2157,7 +2157,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 - <span id="mapwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I, T, F, R> IndexedParallelIterator for MapWith<I, T, F>`
+##### `impl<I, T, F> IndexedParallelIterator for MapWith<I, T, F>`
 
 - <span id="mapwith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2169,15 +2169,15 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 ##### `impl<T> IntoParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-type-iter"></span>`type Iter = T`
+- <span id="mapwith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="mapwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="mapwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="mapwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, T, F, R> ParallelIterator for MapWith<I, T, F>`
+##### `impl<I, T, F> ParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-type-item"></span>`type Item = R`
+- <span id="mapwith-paralleliterator-type-item"></span>`type Item = R`
 
 - <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2185,9 +2185,9 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 ##### `impl<T> Pointable for MapWith<I, T, F>`
 
-- <span id="mapwith-const-align"></span>`const ALIGN: usize`
+- <span id="mapwith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapwith-type-init"></span>`type Init = T`
+- <span id="mapwith-pointable-type-init"></span>`type Init = T`
 
 - <span id="mapwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2304,15 +2304,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> IntoParallelIterator for MultiZip<T>`
 
-- <span id="multizip-type-iter"></span>`type Iter = T`
+- <span id="multizip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="multizip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="multizip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
+- <span id="multizip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
 - <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2320,9 +2320,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
-- <span id="multizip-const-align"></span>`const ALIGN: usize`
+- <span id="multizip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multizip-type-init"></span>`type Init = T`
+- <span id="multizip-pointable-type-init"></span>`type Init = T`
 
 - <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2367,15 +2367,15 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> IntoParallelIterator for Once<T>`
 
-- <span id="once-type-iter"></span>`type Iter = T`
+- <span id="once-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="once-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="once-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
-- <span id="once-type-item"></span>`type Item = T`
+- <span id="once-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2383,9 +2383,9 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> Pointable for Once<T>`
 
-- <span id="once-const-align"></span>`const ALIGN: usize`
+- <span id="once-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="once-type-init"></span>`type Init = T`
+- <span id="once-pointable-type-init"></span>`type Init = T`
 
 - <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2433,29 +2433,29 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 
 - <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for PanicFuse<I>`
+##### `impl IntoEither for PanicFuse<I>`
 
-##### `impl<T> IntoParallelIterator for PanicFuse<I>`
+##### `impl IntoParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-type-iter"></span>`type Iter = T`
+- <span id="panicfuse-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="panicfuse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="panicfuse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="panicfuse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="panicfuse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="panicfuse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for PanicFuse<I>`
+##### `impl Pointable for PanicFuse<I>`
 
-- <span id="panicfuse-const-align"></span>`const ALIGN: usize`
+- <span id="panicfuse-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuse-type-init"></span>`type Init = T`
+- <span id="panicfuse-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfuse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2490,27 +2490,27 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for IterBridge<Iter>`
+##### `impl IntoEither for IterBridge<Iter>`
 
-##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
+##### `impl IntoParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-type-iter"></span>`type Iter = T`
+- <span id="iterbridge-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iterbridge-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iterbridge-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
+- <span id="iterbridge-paralleliterator-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
 - <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for IterBridge<Iter>`
+##### `impl Pointable for IterBridge<Iter>`
 
-- <span id="iterbridge-const-align"></span>`const ALIGN: usize`
+- <span id="iterbridge-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterbridge-type-init"></span>`type Init = T`
+- <span id="iterbridge-pointable-type-init"></span>`type Init = T`
 
 - <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2551,27 +2551,27 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Positions<I, P>`
+##### `impl IntoEither for Positions<I, P>`
 
-##### `impl<T> IntoParallelIterator for Positions<I, P>`
+##### `impl IntoParallelIterator for Positions<I, P>`
 
-- <span id="positions-type-iter"></span>`type Iter = T`
+- <span id="positions-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="positions-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="positions-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="positions-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
-- <span id="positions-type-item"></span>`type Item = usize`
+- <span id="positions-paralleliterator-type-item"></span>`type Item = usize`
 
 - <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Positions<I, P>`
+##### `impl Pointable for Positions<I, P>`
 
-- <span id="positions-const-align"></span>`const ALIGN: usize`
+- <span id="positions-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="positions-type-init"></span>`type Init = T`
+- <span id="positions-pointable-type-init"></span>`type Init = T`
 
 - <span id="positions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2614,23 +2614,23 @@ Iterator adaptor for [the `repeat()` function].
 
 ##### `impl<T> IntoParallelIterator for Repeat<T>`
 
-- <span id="repeat-type-iter"></span>`type Iter = T`
+- <span id="repeat-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="repeat-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeat-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeat-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for Repeat<T>`
 
-- <span id="repeat-type-item"></span>`type Item = T`
+- <span id="repeat-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
-- <span id="repeat-const-align"></span>`const ALIGN: usize`
+- <span id="repeat-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeat-type-init"></span>`type Init = T`
+- <span id="repeat-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2675,15 +2675,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IntoParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-type-iter"></span>`type Iter = T`
+- <span id="repeatn-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="repeatn-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeatn-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeatn-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-type-item"></span>`type Item = T`
+- <span id="repeatn-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
@@ -2691,9 +2691,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> Pointable for RepeatN<T>`
 
-- <span id="repeatn-const-align"></span>`const ALIGN: usize`
+- <span id="repeatn-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatn-type-init"></span>`type Init = T`
+- <span id="repeatn-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeatn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2739,29 +2739,29 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 - <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Rev<I>`
+##### `impl IntoEither for Rev<I>`
 
-##### `impl<T> IntoParallelIterator for Rev<I>`
+##### `impl IntoParallelIterator for Rev<I>`
 
-- <span id="rev-type-iter"></span>`type Iter = T`
+- <span id="rev-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="rev-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rev-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rev-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Rev<I>`
 
-- <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="rev-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="rev-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Rev<I>`
+##### `impl Pointable for Rev<I>`
 
-- <span id="rev-const-align"></span>`const ALIGN: usize`
+- <span id="rev-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="rev-type-init"></span>`type Init = T`
+- <span id="rev-pointable-type-init"></span>`type Init = T`
 
 - <span id="rev-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2808,29 +2808,29 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 - <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Skip<I>`
+##### `impl IntoEither for Skip<I>`
 
-##### `impl<T> IntoParallelIterator for Skip<I>`
+##### `impl IntoParallelIterator for Skip<I>`
 
-- <span id="skip-type-iter"></span>`type Iter = T`
+- <span id="skip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="skip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Skip<I>`
 
-- <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skip-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="skip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Skip<I>`
+##### `impl Pointable for Skip<I>`
 
-- <span id="skip-const-align"></span>`const ALIGN: usize`
+- <span id="skip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skip-type-init"></span>`type Init = T`
+- <span id="skip-pointable-type-init"></span>`type Init = T`
 
 - <span id="skip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2869,27 +2869,27 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 - <span id="skipany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for SkipAny<I>`
+##### `impl IntoEither for SkipAny<I>`
 
-##### `impl<T> IntoParallelIterator for SkipAny<I>`
+##### `impl IntoParallelIterator for SkipAny<I>`
 
-- <span id="skipany-type-iter"></span>`type Iter = T`
+- <span id="skipany-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="skipany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for SkipAny<I>`
 
-- <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for SkipAny<I>`
+##### `impl Pointable for SkipAny<I>`
 
-- <span id="skipany-const-align"></span>`const ALIGN: usize`
+- <span id="skipany-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipany-type-init"></span>`type Init = T`
+- <span id="skipany-pointable-type-init"></span>`type Init = T`
 
 - <span id="skipany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2929,27 +2929,27 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 - <span id="skipanywhile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for SkipAnyWhile<I, P>`
+##### `impl IntoEither for SkipAnyWhile<I, P>`
 
-##### `impl<T> IntoParallelIterator for SkipAnyWhile<I, P>`
+##### `impl IntoParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-type-iter"></span>`type Iter = T`
+- <span id="skipanywhile-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="skipanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipanywhile-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipanywhile-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for SkipAnyWhile<I, P>`
+##### `impl Pointable for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-const-align"></span>`const ALIGN: usize`
+- <span id="skipanywhile-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanywhile-type-init"></span>`type Init = T`
+- <span id="skipanywhile-pointable-type-init"></span>`type Init = T`
 
 - <span id="skipanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2983,27 +2983,27 @@ This struct is created by the [`split()`](splitter/index.md) function.
 
 - <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Split<D, S>`
+##### `impl IntoEither for Split<D, S>`
 
-##### `impl<T> IntoParallelIterator for Split<D, S>`
+##### `impl IntoParallelIterator for Split<D, S>`
 
-- <span id="split-type-iter"></span>`type Iter = T`
+- <span id="split-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="split-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
-- <span id="split-type-item"></span>`type Item = D`
+- <span id="split-paralleliterator-type-item"></span>`type Item = D`
 
 - <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Split<D, S>`
+##### `impl Pointable for Split<D, S>`
 
-- <span id="split-const-align"></span>`const ALIGN: usize`
+- <span id="split-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="split-type-init"></span>`type Init = T`
+- <span id="split-pointable-type-init"></span>`type Init = T`
 
 - <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3050,29 +3050,29 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 - <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for StepBy<I>`
+##### `impl IntoEither for StepBy<I>`
 
-##### `impl<T> IntoParallelIterator for StepBy<I>`
+##### `impl IntoParallelIterator for StepBy<I>`
 
-- <span id="stepby-type-iter"></span>`type Iter = T`
+- <span id="stepby-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="stepby-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="stepby-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="stepby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for StepBy<I>`
 
-- <span id="stepby-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="stepby-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="stepby-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for StepBy<I>`
+##### `impl Pointable for StepBy<I>`
 
-- <span id="stepby-const-align"></span>`const ALIGN: usize`
+- <span id="stepby-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="stepby-type-init"></span>`type Init = T`
+- <span id="stepby-pointable-type-init"></span>`type Init = T`
 
 - <span id="stepby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3119,29 +3119,29 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 - <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Take<I>`
+##### `impl IntoEither for Take<I>`
 
-##### `impl<T> IntoParallelIterator for Take<I>`
+##### `impl IntoParallelIterator for Take<I>`
 
-- <span id="take-type-iter"></span>`type Iter = T`
+- <span id="take-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="take-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="take-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
-- <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="take-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Take<I>`
+##### `impl Pointable for Take<I>`
 
-- <span id="take-const-align"></span>`const ALIGN: usize`
+- <span id="take-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="take-type-init"></span>`type Init = T`
+- <span id="take-pointable-type-init"></span>`type Init = T`
 
 - <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3180,27 +3180,27 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 - <span id="takeany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TakeAny<I>`
+##### `impl IntoEither for TakeAny<I>`
 
-##### `impl<T> IntoParallelIterator for TakeAny<I>`
+##### `impl IntoParallelIterator for TakeAny<I>`
 
-- <span id="takeany-type-iter"></span>`type Iter = T`
+- <span id="takeany-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="takeany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for TakeAny<I>`
 
-- <span id="takeany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for TakeAny<I>`
+##### `impl Pointable for TakeAny<I>`
 
-- <span id="takeany-const-align"></span>`const ALIGN: usize`
+- <span id="takeany-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeany-type-init"></span>`type Init = T`
+- <span id="takeany-pointable-type-init"></span>`type Init = T`
 
 - <span id="takeany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3240,27 +3240,27 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 - <span id="takeanywhile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TakeAnyWhile<I, P>`
+##### `impl IntoEither for TakeAnyWhile<I, P>`
 
-##### `impl<T> IntoParallelIterator for TakeAnyWhile<I, P>`
+##### `impl IntoParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-type-iter"></span>`type Iter = T`
+- <span id="takeanywhile-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="takeanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeanywhile-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeanywhile-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for TakeAnyWhile<I, P>`
+##### `impl Pointable for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-const-align"></span>`const ALIGN: usize`
+- <span id="takeanywhile-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanywhile-type-init"></span>`type Init = T`
+- <span id="takeanywhile-pointable-type-init"></span>`type Init = T`
 
 - <span id="takeanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3301,27 +3301,27 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 - <span id="tryfold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TryFold<I, U, ID, F>`
+##### `impl IntoEither for TryFold<I, U, ID, F>`
 
-##### `impl<T> IntoParallelIterator for TryFold<I, U, ID, F>`
+##### `impl IntoParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-type-iter"></span>`type Iter = T`
+- <span id="tryfold-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="tryfold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-type-item"></span>`type Item = U`
+- <span id="tryfold-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for TryFold<I, U, ID, F>`
+##### `impl Pointable for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-const-align"></span>`const ALIGN: usize`
+- <span id="tryfold-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfold-type-init"></span>`type Init = T`
+- <span id="tryfold-pointable-type-init"></span>`type Init = T`
 
 - <span id="tryfold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3361,27 +3361,27 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 - <span id="tryfoldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TryFoldWith<I, U, F>`
+##### `impl IntoEither for TryFoldWith<I, U, F>`
 
-##### `impl<T> IntoParallelIterator for TryFoldWith<I, U, F>`
+##### `impl IntoParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-type-iter"></span>`type Iter = T`
+- <span id="tryfoldwith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="tryfoldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfoldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfoldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-type-item"></span>`type Item = U`
+- <span id="tryfoldwith-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for TryFoldWith<I, U, F>`
+##### `impl Pointable for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-const-align"></span>`const ALIGN: usize`
+- <span id="tryfoldwith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldwith-type-init"></span>`type Init = T`
+- <span id="tryfoldwith-pointable-type-init"></span>`type Init = T`
 
 - <span id="tryfoldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3430,29 +3430,29 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 - <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Update<I, F>`
+##### `impl IntoEither for Update<I, F>`
 
-##### `impl<T> IntoParallelIterator for Update<I, F>`
+##### `impl IntoParallelIterator for Update<I, F>`
 
-- <span id="update-type-iter"></span>`type Iter = T`
+- <span id="update-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="update-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="update-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="update-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Update<I, F>`
 
-- <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="update-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="update-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Update<I, F>`
+##### `impl Pointable for Update<I, F>`
 
-- <span id="update-const-align"></span>`const ALIGN: usize`
+- <span id="update-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="update-type-init"></span>`type Init = T`
+- <span id="update-pointable-type-init"></span>`type Init = T`
 
 - <span id="update-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3479,27 +3479,27 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 - <span id="walktree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTree<S, B>`
+##### `impl IntoEither for WalkTree<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTree<S, B>`
+##### `impl IntoParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-type-iter"></span>`type Iter = T`
+- <span id="walktree-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktree-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktree-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktree-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTree<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-type-item"></span>`type Item = S`
+- <span id="walktree-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTree<S, B>`
+##### `impl Pointable for WalkTree<S, B>`
 
-- <span id="walktree-const-align"></span>`const ALIGN: usize`
+- <span id="walktree-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktree-type-init"></span>`type Init = T`
+- <span id="walktree-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktree-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3529,27 +3529,27 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 - <span id="walktreepostfix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePostfix<S, B>`
+##### `impl IntoEither for WalkTreePostfix<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTreePostfix<S, B>`
+##### `impl IntoParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-type-iter"></span>`type Iter = T`
+- <span id="walktreepostfix-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktreepostfix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreepostfix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreepostfix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTreePostfix<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-type-item"></span>`type Item = S`
+- <span id="walktreepostfix-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTreePostfix<S, B>`
+##### `impl Pointable for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-const-align"></span>`const ALIGN: usize`
+- <span id="walktreepostfix-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreepostfix-type-init"></span>`type Init = T`
+- <span id="walktreepostfix-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreepostfix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3579,27 +3579,27 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 - <span id="walktreeprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePrefix<S, B>`
+##### `impl IntoEither for WalkTreePrefix<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTreePrefix<S, B>`
+##### `impl IntoParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-type-iter"></span>`type Iter = T`
+- <span id="walktreeprefix-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktreeprefix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreeprefix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreeprefix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTreePrefix<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-type-item"></span>`type Item = S`
+- <span id="walktreeprefix-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTreePrefix<S, B>`
+##### `impl Pointable for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-const-align"></span>`const ALIGN: usize`
+- <span id="walktreeprefix-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreeprefix-type-init"></span>`type Init = T`
+- <span id="walktreeprefix-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreeprefix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3639,27 +3639,27 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 - <span id="whilesome-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WhileSome<I>`
+##### `impl IntoEither for WhileSome<I>`
 
-##### `impl<T> IntoParallelIterator for WhileSome<I>`
+##### `impl IntoParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-type-iter"></span>`type Iter = T`
+- <span id="whilesome-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="whilesome-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="whilesome-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="whilesome-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, T> ParallelIterator for WhileSome<I>`
+##### `impl<I> ParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-type-item"></span>`type Item = T`
+- <span id="whilesome-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WhileSome<I>`
+##### `impl Pointable for WhileSome<I>`
 
-- <span id="whilesome-const-align"></span>`const ALIGN: usize`
+- <span id="whilesome-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="whilesome-type-init"></span>`type Init = T`
+- <span id="whilesome-pointable-type-init"></span>`type Init = T`
 
 - <span id="whilesome-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3707,29 +3707,29 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Zip<A, B>`
+##### `impl IntoEither for Zip<A, B>`
 
-##### `impl<T> IntoParallelIterator for Zip<A, B>`
+##### `impl IntoParallelIterator for Zip<A, B>`
 
-- <span id="zip-type-iter"></span>`type Iter = T`
+- <span id="zip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="zip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
-- <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Zip<A, B>`
+##### `impl Pointable for Zip<A, B>`
 
-- <span id="zip-const-align"></span>`const ALIGN: usize`
+- <span id="zip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="zip-type-init"></span>`type Init = T`
+- <span id="zip-pointable-type-init"></span>`type Init = T`
 
 - <span id="zip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3778,29 +3778,29 @@ see its documentation for more information.
 
 - <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for ZipEq<A, B>`
+##### `impl IntoEither for ZipEq<A, B>`
 
-##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
+##### `impl IntoParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-type-iter"></span>`type Iter = T`
+- <span id="zipeq-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="zipeq-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zipeq-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zipeq-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md#consumer)
 
 - <span id="zipeq-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for ZipEq<A, B>`
+##### `impl Pointable for ZipEq<A, B>`
 
-- <span id="zipeq-const-align"></span>`const ALIGN: usize`
+- <span id="zipeq-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipeq-type-init"></span>`type Init = T`
+- <span id="zipeq-pointable-type-init"></span>`type Init = T`
 
 - <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -4842,21 +4842,507 @@ Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrain
 
 ## Functions
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:168`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L168)*
+### `empty`
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:187`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L187)*
+```rust
+fn empty<T: Send>() -> Empty<T>
+```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:191`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L191)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:191`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L191)*
+Creates a parallel iterator that produces nothing.
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:196`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L196)*
+This admits no parallelism on its own, but it could be used for code that
+deals with generic parallel iterators.
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+# Examples
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+```rust
+use rayon::prelude::*;
+use rayon::iter::empty;
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+let pi = (0..1234).into_par_iter()
+    .chain(empty())
+    .chain(1234..10_000);
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:212`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L212)*
+assert_eq!(pi.count(), 10_000);
+```
+
+### `once`
+
+```rust
+fn once<T: Send>(item: T) -> Once<T>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L24-L26)*
+
+Creates a parallel iterator that produces an element exactly once.
+
+This admits no parallelism on its own, but it could be chained to existing
+parallel iterators to extend their contents, or otherwise used for any code
+that deals with generic parallel iterators.
+
+# Examples
+
+```rust
+use rayon::prelude::*;
+use rayon::iter::once;
+
+let pi = (0..1234).into_par_iter()
+    .chain(once(-1))
+    .chain(1234..10_000);
+
+assert_eq!(pi.clone().count(), 10_001);
+assert_eq!(pi.clone().filter(|&x| x < 0).count(), 1);
+assert_eq!(pi.position_any(|x| x < 0), Some(1234));
+```
+
+### `repeat`
+
+```rust
+fn repeat<T: Clone + Send>(element: T) -> Repeat<T>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
+
+Creates a parallel iterator that endlessly repeats `element` (by
+cloning it). Note that this iterator has "infinite" length, so
+typically you would want to use `zip` or `take` or some other
+means to shorten it, or consider using
+[the `repeat_n()` function] instead.
+
+# Examples
+
+```rust
+use rayon::prelude::*;
+use rayon::iter::repeat;
+let x: Vec<(i32, i32)> = repeat(22).zip(0..3).collect();
+assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
+```
+
+### `repeat_n`
+
+```rust
+fn repeat_n<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
+
+Creates a parallel iterator that produces `n` repeats of `element`
+(by cloning it).
+
+# Examples
+
+```rust
+use rayon::prelude::*;
+use rayon::iter::repeat_n;
+let x: Vec<(i32, i32)> = repeat_n(22, 3).zip(0..3).collect();
+assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
+```
+
+### `split`
+
+```rust
+fn split<D, S>(data: D, splitter: S) -> Split<D, S>
+where
+    D: Send,
+    S: Fn(D) -> (D, Option<D>) + Sync
+```
+
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../.source_1765210505/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
+
+The `split` function takes arbitrary data and a closure that knows how to
+split it, and turns this into a `ParallelIterator`.
+
+# Examples
+
+As a simple example, Rayon can recursively split ranges of indices
+
+```rust
+use rayon::iter;
+use rayon::prelude::*;
+use std::ops::Range;
+
+
+// We define a range of indices as follows
+type Range1D = Range<usize>;
+
+// Splitting it in two can be done like this
+fn split_range1(r: Range1D) -> (Range1D, Option<Range1D>) {
+    // We are mathematically unable to split the range if there is only
+    // one point inside of it, but we could stop splitting before that.
+    if r.end - r.start <= 1 { return (r, None); }
+
+    // Here, our range is considered large enough to be splittable
+    let midpoint = r.start + (r.end - r.start) / 2;
+    (r.start..midpoint, Some(midpoint..r.end))
+}
+
+// By using iter::split, Rayon will split the range until it has enough work
+// to feed the CPU cores, then give us the resulting sub-ranges
+iter::split(0..4096, split_range1).for_each(|sub_range| {
+    // As our initial range had a power-of-two size, the final sub-ranges
+    // should have power-of-two sizes too
+    assert!((sub_range.end - sub_range.start).is_power_of_two());
+});
+```
+
+This recursive splitting can be extended to two or three dimensions,
+to reproduce a classic "block-wise" parallelization scheme of graphics and
+numerical simulations:
+
+```rust
+use rayon::iter;
+use rayon::prelude::*;
+use std::ops::Range;
+type Range1D = Range<usize>;
+fn split_range1(r: Range1D) -> (Range1D, Option<Range1D>) {
+    if r.end - r.start <= 1 { return (r, None); }
+    let midpoint = r.start + (r.end - r.start) / 2;
+    (r.start..midpoint, Some(midpoint..r.end))
+}
+
+// A two-dimensional range of indices can be built out of two 1D ones
+struct Range2D {
+    // Range of horizontal indices
+    pub rx: Range1D,
+
+    // Range of vertical indices
+    pub ry: Range1D,
+}
+
+// We want to recursively split them by the largest dimension until we have
+// enough sub-ranges to feed our mighty multi-core CPU. This function
+// carries out one such split.
+fn split_range2(r2: Range2D) -> (Range2D, Option<Range2D>) {
+    // Decide on which axis (horizontal/vertical) the range should be split
+    let width = r2.rx.end - r2.rx.start;
+    let height = r2.ry.end - r2.ry.start;
+    if width >= height {
+        // This is a wide range, split it on the horizontal axis
+        let (split_rx, ry) = (split_range1(r2.rx), r2.ry);
+        let out1 = Range2D {
+            rx: split_rx.0,
+            ry: ry.clone(),
+        };
+        let out2 = split_rx.1.map(|rx| Range2D { rx, ry });
+        (out1, out2)
+    } else {
+        // This is a tall range, split it on the vertical axis
+        let (rx, split_ry) = (r2.rx, split_range1(r2.ry));
+        let out1 = Range2D {
+            rx: rx.clone(),
+            ry: split_ry.0,
+        };
+        let out2 = split_ry.1.map(|ry| Range2D { rx, ry, });
+        (out1, out2)
+    }
+}
+
+// Again, rayon can handle the recursive splitting for us
+let range = Range2D { rx: 0..800, ry: 0..600 };
+iter::split(range, split_range2).for_each(|sub_range| {
+    // If the sub-ranges were indeed split by the largest dimension, then
+    // if no dimension was twice larger than the other initially, this
+    // property will remain true in the final sub-ranges.
+    let width = sub_range.rx.end - sub_range.rx.start;
+    let height = sub_range.ry.end - sub_range.ry.start;
+    assert!((width / 2 <= height) && (height / 2 <= width));
+});
+```
+
+
+### `walk_tree`
+
+```rust
+fn walk_tree<S, B, I>(root: S, children_of: B) -> WalkTree<S, B>
+where
+    S: Send,
+    B: Fn(&S) -> I + Send + Sync,
+    I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
+
+Create a tree like parallel iterator from an initial root node.
+The `children_of` function should take a node and iterate on all of its child nodes.
+The best parallelization is obtained when the tree is balanced
+but we should also be able to handle harder cases.
+
+# Ordering
+
+This function does not guarantee any ordering but will
+use whatever algorithm is thought to achieve the fastest traversal.
+See also [`walk_tree_prefix`](walk_tree/index.md) which guarantees a
+prefix order and [`walk_tree_postfix`](walk_tree/index.md) which guarantees a postfix order.
+
+# Example
+
+```text
+     4
+    / \
+   /   \
+  2     3
+       / \
+      1   2
+```
+
+```rust
+use rayon::iter::walk_tree;
+use rayon::prelude::*;
+
+let par_iter = walk_tree(4, |&e| {
+    if e <= 2 {
+        Vec::new()
+    } else {
+        vec![e / 2, e / 2 + 1]
+    }
+});
+assert_eq!(par_iter.sum::<u32>(), 12);
+```
+
+### `walk_tree_postfix`
+
+```rust
+fn walk_tree_postfix<S, B, I>(root: S, children_of: B) -> WalkTreePostfix<S, B>
+where
+    S: Send,
+    B: Fn(&S) -> I + Send + Sync,
+    I: IntoIterator<Item = S>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
+
+Create a tree like postfix parallel iterator from an initial root node.
+The `children_of` function should take a node and iterate on all of its child nodes.
+The best parallelization is obtained when the tree is balanced
+but we should also be able to handle harder cases.
+
+# Ordering
+
+This function guarantees a postfix ordering. See also [`walk_tree_prefix`](walk_tree/index.md) which guarantees a
+prefix order. If you don't care about ordering, you should use [`walk_tree`](walk_tree/index.md), which will use
+whatever is believed to be fastest.
+
+Between siblings, children are reduced in order -- that is first children are reduced first.
+
+For example a perfect binary tree of 7 nodes will reduced in the following order:
+
+```text
+     a
+    / \
+   /   \
+  b     c
+ / \   / \
+d   e f   g
+
+reduced as d,e,b,f,g,c,a
+
+```
+
+# Example
+
+```text
+     4
+    / \
+   /   \
+  2     3
+       / \
+      1   2
+```
+
+```rust
+use rayon::iter::walk_tree_postfix;
+use rayon::prelude::*;
+
+let par_iter = walk_tree_postfix(4, |&e| {
+    if e <= 2 {
+        Vec::new()
+    } else {
+        vec![e / 2, e / 2 + 1]
+    }
+});
+assert_eq!(par_iter.sum::<u32>(), 12);
+```
+
+# Example
+
+```rust
+use rayon::prelude::*;
+use rayon::iter::walk_tree_postfix;
+
+struct Node {
+    content: u32,
+    left: Option<Box<Node>>,
+    right: Option<Box<Node>>,
+}
+
+// Here we loop on the following tree:
+//
+//       10
+//      /  \
+//     /    \
+//    3     14
+//            \
+//             \
+//              18
+
+let root = Node {
+    content: 10,
+    left: Some(Box::new(Node {
+        content: 3,
+        left: None,
+        right: None,
+    })),
+    right: Some(Box::new(Node {
+        content: 14,
+        left: None,
+        right: Some(Box::new(Node {
+            content: 18,
+            left: None,
+            right: None,
+        })),
+    })),
+};
+
+let mut v: Vec<u32> = walk_tree_postfix(&root, |r| {
+    r.left
+        .as_ref()
+        .into_iter()
+        .chain(r.right.as_ref())
+        .map(|n| &**n)
+})
+.map(|node| node.content)
+.collect();
+assert_eq!(v, vec![3, 18, 14, 10]);
+```
+
+
+### `walk_tree_prefix`
+
+```rust
+fn walk_tree_prefix<S, B, I>(root: S, children_of: B) -> WalkTreePrefix<S, B>
+where
+    S: Send,
+    B: Fn(&S) -> I + Send + Sync,
+    I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
+
+Create a tree-like prefix parallel iterator from an initial root node.
+The `children_of` function should take a node and return an iterator over its child nodes.
+The best parallelization is obtained when the tree is balanced
+but we should also be able to handle harder cases.
+
+# Ordering
+
+This function guarantees a prefix ordering. See also [`walk_tree_postfix`](walk_tree/index.md),
+which guarantees a postfix order.
+If you don't care about ordering, you should use [`walk_tree`](walk_tree/index.md),
+which will use whatever is believed to be fastest.
+For example a perfect binary tree of 7 nodes will reduced in the following order:
+
+```text
+     a
+    / \
+   /   \
+  b     c
+ / \   / \
+d   e f   g
+
+reduced as a,b,d,e,c,f,g
+
+```
+
+# Example
+
+```text
+     4
+    / \
+   /   \
+  2     3
+       / \
+      1   2
+```
+
+```rust
+use rayon::iter::walk_tree_prefix;
+use rayon::prelude::*;
+
+let par_iter = walk_tree_prefix(4, |&e| {
+    if e <= 2 {
+        Vec::new()
+    } else {
+        vec![e / 2, e / 2 + 1]
+    }
+});
+assert_eq!(par_iter.sum::<u32>(), 12);
+```
+
+# Example
+
+```rust
+use rayon::prelude::*;
+use rayon::iter::walk_tree_prefix;
+
+struct Node {
+    content: u32,
+    left: Option<Box<Node>>,
+    right: Option<Box<Node>>,
+}
+
+// Here we loop on the following tree:
+//
+//       10
+//      /  \
+//     /    \
+//    3     14
+//            \
+//             \
+//              18
+
+let root = Node {
+    content: 10,
+    left: Some(Box::new(Node {
+        content: 3,
+        left: None,
+        right: None,
+    })),
+    right: Some(Box::new(Node {
+        content: 14,
+        left: None,
+        right: Some(Box::new(Node {
+            content: 18,
+            left: None,
+            right: None,
+        })),
+    })),
+};
+
+let mut v: Vec<u32> = walk_tree_prefix(&root, |r| {
+    r.left
+        .as_ref()
+        .into_iter()
+        .chain(r.right.as_ref())
+        .map(|n| &**n)
+})
+.map(|node| node.content)
+.collect();
+assert_eq!(v, vec![10, 3, 14, 18]);
+```
+
+
+### `repeatn`
+
+```rust
+fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
+```
+
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
+
+Creates a parallel iterator that produces `n` repeats of `element`
+(by cloning it).
+
+Deprecated in favor of [`repeat_n`](repeat/index.md) for consistency with the standard library.
 

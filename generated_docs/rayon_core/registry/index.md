@@ -19,14 +19,14 @@
 - [Traits](#traits)
   - [`ThreadSpawn`](#threadspawn)
 - [Functions](#functions)
-  - [`global_registry`](#global_registry)
-  - [`init_global_registry`](#init_global_registry)
-  - [`set_global_registry`](#set_global_registry)
-  - [`default_global_registry`](#default_global_registry)
-  - [`main_loop`](#main_loop)
-  - [`in_worker`](#in_worker)
+  - [`global_registry`](#global-registry)
+  - [`init_global_registry`](#init-global-registry)
+  - [`set_global_registry`](#set-global-registry)
+  - [`default_global_registry`](#default-global-registry)
+  - [`main_loop`](#main-loop)
+  - [`in_worker`](#in-worker)
 - [Constants](#constants)
-  - [`WORKER_THREAD_STATE`](#worker_thread_state)
+  - [`WORKER_THREAD_STATE`](#worker-thread-state)
 
 ## Quick Reference
 
@@ -42,13 +42,13 @@
 | [`WorkerThread`](#workerthread) | struct |  |
 | [`XorShift64Star`](#xorshift64star) | struct | [xorshift*] is a fast pseudorandom number generator which will even tolerate weak seeding, as long as it's not zero. |
 | [`ThreadSpawn`](#threadspawn) | trait | Generalized trait for spawning a thread in the `Registry`. |
-| [`global_registry`](#global_registry) | fn | Starts the worker threads (if that has not already happened). |
-| [`init_global_registry`](#init_global_registry) | fn | Starts the worker threads (if that has not already happened) with the given builder. |
-| [`set_global_registry`](#set_global_registry) | fn | Starts the worker threads (if that has not already happened) by creating a registry with the given callback. |
-| [`default_global_registry`](#default_global_registry) | fn |  |
-| [`main_loop`](#main_loop) | fn |  |
-| [`in_worker`](#in_worker) | fn | If already in a worker-thread, just execute `op`. |
-| [`WORKER_THREAD_STATE`](#worker_thread_state) | const |  |
+| [`global_registry`](#global-registry) | fn | Starts the worker threads (if that has not already happened). |
+| [`init_global_registry`](#init-global-registry) | fn | Starts the worker threads (if that has not already happened) with the given builder. |
+| [`set_global_registry`](#set-global-registry) | fn | Starts the worker threads (if that has not already happened) by creating a registry with the given callback. |
+| [`default_global_registry`](#default-global-registry) | fn |  |
+| [`main_loop`](#main-loop) | fn |  |
+| [`in_worker`](#in-worker) | fn | If already in a worker-thread, just execute `op`. |
+| [`WORKER_THREAD_STATE`](#worker-thread-state) | const |  |
 
 ## Structs
 
@@ -87,9 +87,9 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 ##### `impl Pointable for ThreadBuilder`
 
-- <span id="threadbuilder-const-align"></span>`const ALIGN: usize`
+- <span id="threadbuilder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadbuilder-type-init"></span>`type Init = T`
+- <span id="threadbuilder-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -124,9 +124,9 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl Pointable for DefaultSpawn`
 
-- <span id="defaultspawn-const-align"></span>`const ALIGN: usize`
+- <span id="defaultspawn-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="defaultspawn-type-init"></span>`type Init = T`
+- <span id="defaultspawn-pointable-type-init"></span>`type Init = T`
 
 - <span id="defaultspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -163,11 +163,11 @@ but we don't actually want to expose these details in the API.
 
 - <span id="customspawn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for CustomSpawn<F>`
+##### `impl Pointable for CustomSpawn<F>`
 
-- <span id="customspawn-const-align"></span>`const ALIGN: usize`
+- <span id="customspawn-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="customspawn-type-init"></span>`type Init = T`
+- <span id="customspawn-pointable-type-init"></span>`type Init = T`
 
 - <span id="customspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -242,9 +242,9 @@ struct Registry {
 
 ##### `impl Pointable for Registry`
 
-- <span id="registry-const-align"></span>`const ALIGN: usize`
+- <span id="registry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="registry-type-init"></span>`type Init = T`
+- <span id="registry-pointable-type-init"></span>`type Init = T`
 
 - <span id="registry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -270,9 +270,9 @@ struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 
 ##### `impl Pointable for Terminator<'a>`
 
-- <span id="terminator-const-align"></span>`const ALIGN: usize`
+- <span id="terminator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="terminator-type-init"></span>`type Init = T`
+- <span id="terminator-pointable-type-init"></span>`type Init = T`
 
 - <span id="terminator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -320,9 +320,9 @@ struct RegistryId {
 
 ##### `impl Pointable for RegistryId`
 
-- <span id="registryid-const-align"></span>`const ALIGN: usize`
+- <span id="registryid-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="registryid-type-init"></span>`type Init = T`
+- <span id="registryid-pointable-type-init"></span>`type Init = T`
 
 - <span id="registryid-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -379,9 +379,9 @@ struct ThreadInfo {
 
 ##### `impl Pointable for ThreadInfo`
 
-- <span id="threadinfo-const-align"></span>`const ALIGN: usize`
+- <span id="threadinfo-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadinfo-type-init"></span>`type Init = T`
+- <span id="threadinfo-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadinfo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -468,9 +468,9 @@ struct WorkerThread {
 
 ##### `impl Pointable for WorkerThread`
 
-- <span id="workerthread-const-align"></span>`const ALIGN: usize`
+- <span id="workerthread-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="workerthread-type-init"></span>`type Init = T`
+- <span id="workerthread-pointable-type-init"></span>`type Init = T`
 
 - <span id="workerthread-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -506,9 +506,9 @@ even tolerate weak seeding, as long as it's not zero.
 
 ##### `impl Pointable for XorShift64Star`
 
-- <span id="xorshift64star-const-align"></span>`const ALIGN: usize`
+- <span id="xorshift64star-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="xorshift64star-type-init"></span>`type Init = T`
+- <span id="xorshift64star-pointable-type-init"></span>`type Init = T`
 
 - <span id="xorshift64star-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

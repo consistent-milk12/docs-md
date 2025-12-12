@@ -17,12 +17,12 @@ and [`in_place_scope()`](#in-place-scope) functions. These are a more flexible a
   - [`ScopePtr`](#scopeptr)
 - [Functions](#functions)
   - [`scope`](#scope)
-  - [`scope_fifo`](#scope_fifo)
-  - [`in_place_scope`](#in_place_scope)
-  - [`do_in_place_scope`](#do_in_place_scope)
-  - [`get_in_place_thread_registry`](#get_in_place_thread_registry)
-  - [`in_place_scope_fifo`](#in_place_scope_fifo)
-  - [`do_in_place_scope_fifo`](#do_in_place_scope_fifo)
+  - [`scope_fifo`](#scope-fifo)
+  - [`in_place_scope`](#in-place-scope)
+  - [`do_in_place_scope`](#do-in-place-scope)
+  - [`get_in_place_thread_registry`](#get-in-place-thread-registry)
+  - [`in_place_scope_fifo`](#in-place-scope-fifo)
+  - [`do_in_place_scope_fifo`](#do-in-place-scope-fifo)
 
 ## Quick Reference
 
@@ -33,12 +33,12 @@ and [`in_place_scope()`](#in-place-scope) functions. These are a more flexible a
 | [`ScopeBase`](#scopebase) | struct |  |
 | [`ScopePtr`](#scopeptr) | struct | Used to capture a scope `&Self` pointer in jobs, without faking a lifetime. |
 | [`scope`](#scope) | fn | Creates a "fork-join" scope `s` and invokes the closure with a reference to `s`. |
-| [`scope_fifo`](#scope_fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
-| [`in_place_scope`](#in_place_scope) | fn | Creates a "fork-join" scope `s` and invokes the closure with a reference to `s`. |
-| [`do_in_place_scope`](#do_in_place_scope) | fn |  |
-| [`get_in_place_thread_registry`](#get_in_place_thread_registry) | fn |  |
-| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
-| [`do_in_place_scope_fifo`](#do_in_place_scope_fifo) | fn |  |
+| [`scope_fifo`](#scope-fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
+| [`in_place_scope`](#in-place-scope) | fn | Creates a "fork-join" scope `s` and invokes the closure with a reference to `s`. |
+| [`do_in_place_scope`](#do-in-place-scope) | fn |  |
+| [`get_in_place_thread_registry`](#get-in-place-thread-registry) | fn |  |
+| [`in_place_scope_fifo`](#in-place-scope-fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
+| [`do_in_place_scope_fifo`](#do-in-place-scope-fifo) | fn |  |
 
 ## Structs
 
@@ -71,9 +71,9 @@ See [`scope()`](#scope) for more information.
 
 ##### `impl Pointable for Scope<'scope>`
 
-- <span id="scope-const-align"></span>`const ALIGN: usize`
+- <span id="scope-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scope-type-init"></span>`type Init = T`
+- <span id="scope-pointable-type-init"></span>`type Init = T`
 
 - <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -114,9 +114,9 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
 
-- <span id="scopefifo-const-align"></span>`const ALIGN: usize`
+- <span id="scopefifo-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scopefifo-type-init"></span>`type Init = T`
+- <span id="scopefifo-pointable-type-init"></span>`type Init = T`
 
 - <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -184,9 +184,9 @@ struct ScopeBase<'scope> {
 
 ##### `impl Pointable for ScopeBase<'scope>`
 
-- <span id="scopebase-const-align"></span>`const ALIGN: usize`
+- <span id="scopebase-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scopebase-type-init"></span>`type Init = T`
+- <span id="scopebase-pointable-type-init"></span>`type Init = T`
 
 - <span id="scopebase-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -217,9 +217,9 @@ scope jobs that are guaranteed to execute before the scope ends.
 
 ##### `impl<T> Pointable for ScopePtr<T>`
 
-- <span id="scopeptr-const-align"></span>`const ALIGN: usize`
+- <span id="scopeptr-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scopeptr-type-init"></span>`type Init = T`
+- <span id="scopeptr-pointable-type-init"></span>`type Init = T`
 
 - <span id="scopeptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

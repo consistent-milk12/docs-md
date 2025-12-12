@@ -15,10 +15,10 @@ See the `rustix::backend` module documentation for details.
 - [Functions](#functions)
   - [`tcgetwinsize`](#tcgetwinsize)
   - [`tcgetattr`](#tcgetattr)
-  - [`tcgetattr_fallback`](#tcgetattr_fallback)
+  - [`tcgetattr_fallback`](#tcgetattr-fallback)
   - [`tcgetpgrp`](#tcgetpgrp)
   - [`tcsetattr`](#tcsetattr)
-  - [`tcsetattr_fallback`](#tcsetattr_fallback)
+  - [`tcsetattr_fallback`](#tcsetattr-fallback)
   - [`tcsendbreak`](#tcsendbreak)
   - [`tcdrain`](#tcdrain)
   - [`tcflush`](#tcflush)
@@ -26,9 +26,9 @@ See the `rustix::backend` module documentation for details.
   - [`tcgetsid`](#tcgetsid)
   - [`tcsetwinsize`](#tcsetwinsize)
   - [`tcsetpgrp`](#tcsetpgrp)
-  - [`set_speed`](#set_speed)
-  - [`set_output_speed`](#set_output_speed)
-  - [`set_input_speed`](#set_input_speed)
+  - [`set_speed`](#set-speed)
+  - [`set_output_speed`](#set-output-speed)
+  - [`set_input_speed`](#set-input-speed)
   - [`cfmakeraw`](#cfmakeraw)
   - [`isatty`](#isatty)
 
@@ -38,10 +38,10 @@ See the `rustix::backend` module documentation for details.
 |------|------|-------------|
 | [`tcgetwinsize`](#tcgetwinsize) | fn |  |
 | [`tcgetattr`](#tcgetattr) | fn |  |
-| [`tcgetattr_fallback`](#tcgetattr_fallback) | fn | Implement `tcgetattr` using the old `TCGETS` ioctl. |
+| [`tcgetattr_fallback`](#tcgetattr-fallback) | fn | Implement `tcgetattr` using the old `TCGETS` ioctl. |
 | [`tcgetpgrp`](#tcgetpgrp) | fn |  |
 | [`tcsetattr`](#tcsetattr) | fn |  |
-| [`tcsetattr_fallback`](#tcsetattr_fallback) | fn | Implement `tcsetattr` using the old `TCSETS` ioctl. |
+| [`tcsetattr_fallback`](#tcsetattr-fallback) | fn | Implement `tcsetattr` using the old `TCSETS` ioctl. |
 | [`tcsendbreak`](#tcsendbreak) | fn |  |
 | [`tcdrain`](#tcdrain) | fn |  |
 | [`tcflush`](#tcflush) | fn |  |
@@ -49,9 +49,9 @@ See the `rustix::backend` module documentation for details.
 | [`tcgetsid`](#tcgetsid) | fn |  |
 | [`tcsetwinsize`](#tcsetwinsize) | fn |  |
 | [`tcsetpgrp`](#tcsetpgrp) | fn |  |
-| [`set_speed`](#set_speed) | fn | A wrapper around a conceptual `cfsetspeed` which handles an arbitrary integer speed value. |
-| [`set_output_speed`](#set_output_speed) | fn | A wrapper around a conceptual `cfsetospeed` which handles an arbitrary integer speed value. |
-| [`set_input_speed`](#set_input_speed) | fn | A wrapper around a conceptual `cfsetispeed` which handles an arbitrary integer speed value. |
+| [`set_speed`](#set-speed) | fn | A wrapper around a conceptual `cfsetspeed` which handles an arbitrary integer speed value. |
+| [`set_output_speed`](#set-output-speed) | fn | A wrapper around a conceptual `cfsetospeed` which handles an arbitrary integer speed value. |
+| [`set_input_speed`](#set-input-speed) | fn | A wrapper around a conceptual `cfsetispeed` which handles an arbitrary integer speed value. |
 | [`cfmakeraw`](#cfmakeraw) | fn |  |
 | [`isatty`](#isatty) | fn |  |
 

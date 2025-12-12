@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`MemberOrString`](#memberorstring) | enum |  |
-| [`gen_all_variants_with`](#gen_all_variants_with) | fn |  |
-| [`gen_unused_pat`](#gen_unused_pat) | fn |  |
-| [`gen_fields_pat`](#gen_fields_pat) | fn | Goes in the slot `let Self #pat = self;` or `match self { Self #pat => ... |
-| [`display_pat_members`](#display_pat_members) | fn | The returned tokens go in the slot `let Self #pat = self;` or `match self { Self #pat => ... |
+| [`gen_all_variants_with`](#gen-all-variants-with) | fn |  |
+| [`gen_unused_pat`](#gen-unused-pat) | fn |  |
+| [`gen_fields_pat`](#gen-fields-pat) | fn | Goes in the slot `let Self #pat = self;` or `match self { Self #pat => ... |
+| [`display_pat_members`](#display-pat-members) | fn | The returned tokens go in the slot `let Self #pat = self;` or `match self { Self #pat => ... |
 
 ## Enums
 

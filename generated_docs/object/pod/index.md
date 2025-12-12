@@ -13,38 +13,38 @@ This module should be replaced once rust provides safe transmutes.
 - [Traits](#traits)
   - [`Pod`](#pod)
 - [Functions](#functions)
-  - [`from_bytes`](#from_bytes)
-  - [`from_bytes_mut`](#from_bytes_mut)
-  - [`slice_from_bytes`](#slice_from_bytes)
-  - [`slice_from_bytes_mut`](#slice_from_bytes_mut)
-  - [`slice_from_all_bytes`](#slice_from_all_bytes)
-  - [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut)
-  - [`bytes_of`](#bytes_of)
-  - [`bytes_of_mut`](#bytes_of_mut)
-  - [`bytes_of_slice`](#bytes_of_slice)
-  - [`bytes_of_slice_mut`](#bytes_of_slice_mut)
+  - [`from_bytes`](#from-bytes)
+  - [`from_bytes_mut`](#from-bytes-mut)
+  - [`slice_from_bytes`](#slice-from-bytes)
+  - [`slice_from_bytes_mut`](#slice-from-bytes-mut)
+  - [`slice_from_all_bytes`](#slice-from-all-bytes)
+  - [`slice_from_all_bytes_mut`](#slice-from-all-bytes-mut)
+  - [`bytes_of`](#bytes-of)
+  - [`bytes_of_mut`](#bytes-of-mut)
+  - [`bytes_of_slice`](#bytes-of-slice)
+  - [`bytes_of_slice_mut`](#bytes-of-slice-mut)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 - [Macros](#macros)
-  - [`unsafe_impl_pod!`](#unsafe_impl_pod)
+  - [`unsafe_impl_pod!`](#unsafe-impl-pod)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Pod`](#pod) | trait | A trait for types that can safely be converted from and to byte slices. |
-| [`from_bytes`](#from_bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
-| [`from_bytes_mut`](#from_bytes_mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
-| [`slice_from_bytes`](#slice_from_bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
-| [`slice_from_bytes_mut`](#slice_from_bytes_mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
-| [`slice_from_all_bytes`](#slice_from_all_bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
-| [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
-| [`bytes_of`](#bytes_of) | fn | Cast a `Pod` type to a byte slice. |
-| [`bytes_of_mut`](#bytes_of_mut) | fn | Cast a `Pod` type to a mutable byte slice. |
-| [`bytes_of_slice`](#bytes_of_slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
-| [`bytes_of_slice_mut`](#bytes_of_slice_mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
+| [`from_bytes`](#from-bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
+| [`from_bytes_mut`](#from-bytes-mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
+| [`slice_from_bytes`](#slice-from-bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_bytes_mut`](#slice-from-bytes-mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes`](#slice-from-all-bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes_mut`](#slice-from-all-bytes-mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`bytes_of`](#bytes-of) | fn | Cast a `Pod` type to a byte slice. |
+| [`bytes_of_mut`](#bytes-of-mut) | fn | Cast a `Pod` type to a mutable byte slice. |
+| [`bytes_of_slice`](#bytes-of-slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
+| [`bytes_of_slice_mut`](#bytes-of-slice-mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
 | [`Result`](#result) | type |  |
-| [`unsafe_impl_pod!`](#unsafe_impl_pod) | macro |  |
+| [`unsafe_impl_pod!`](#unsafe-impl-pod) | macro |  |
 
 ## Traits
 

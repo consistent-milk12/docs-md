@@ -14,8 +14,8 @@
 - [Enums](#enums)
   - [`State`](#state)
 - [Functions](#functions)
-  - [`find_ansi_code_exclusive`](#find_ansi_code_exclusive)
-  - [`strip_ansi_codes`](#strip_ansi_codes)
+  - [`find_ansi_code_exclusive`](#find-ansi-code-exclusive)
+  - [`strip_ansi_codes`](#strip-ansi-codes)
 
 ## Quick Reference
 
@@ -26,8 +26,8 @@
 | [`WithoutAnsi`](#withoutansi) | struct | A wrapper struct that implements [`core::fmt::Display`], only displaying non-ansi parts. |
 | [`AnsiCodeIterator`](#ansicodeiterator) | struct | An iterator over ansi codes in a string. |
 | [`State`](#state) | enum |  |
-| [`find_ansi_code_exclusive`](#find_ansi_code_exclusive) | fn |  |
-| [`strip_ansi_codes`](#strip_ansi_codes) | fn | Helper function to strip ansi codes. |
+| [`find_ansi_code_exclusive`](#find-ansi-code-exclusive) | fn |  |
+| [`strip_ansi_codes`](#strip-ansi-codes) | fn | Helper function to strip ansi codes. |
 
 ## Structs
 
@@ -56,15 +56,15 @@ struct Matches<'a> {
 
 ##### `impl IntoIterator for Matches<'a>`
 
-- <span id="matches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matches-type-intoiter"></span>`type IntoIter = I`
+- <span id="matches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Matches<'a>`
 
-- <span id="matches-type-item"></span>`type Item = Match<'a>`
+- <span id="matches-iterator-type-item"></span>`type Item = Match<'a>`
 
 - <span id="matches-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -100,7 +100,7 @@ struct WithoutAnsi<'a> {
 
 *Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L206-L208)*
 
-A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -151,15 +151,15 @@ ansi codes or string values.
 
 ##### `impl IntoIterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="ansicodeiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="ansicodeiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="ansicodeiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="ansicodeiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-type-item"></span>`type Item = (&'a str, bool)`
+- <span id="ansicodeiterator-iterator-type-item"></span>`type Item = (&'a str, bool)`
 
 - <span id="ansicodeiterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
 

@@ -663,15 +663,15 @@ state.
 
 ##### `impl IntoIterator for SparseTransitionIter<'a>`
 
-- <span id="sparsetransitioniter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sparsetransitioniter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sparsetransitioniter-type-intoiter"></span>`type IntoIter = I`
+- <span id="sparsetransitioniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sparsetransitioniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SparseTransitionIter<'a>`
 
-- <span id="sparsetransitioniter-type-item"></span>`type Item = (u8, u8, Transition)`
+- <span id="sparsetransitioniter-iterator-type-item"></span>`type Item = (u8, u8, Transition)`
 
 - <span id="sparsetransitioniter-next"></span>`fn next(&mut self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
 
@@ -1007,15 +1007,15 @@ to get the actual NFA slot index.
 
 ##### `impl IntoIterator for SlotsIter`
 
-- <span id="slotsiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="slotsiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="slotsiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="slotsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="slotsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SlotsIter`
 
-- <span id="slotsiter-type-item"></span>`type Item = usize`
+- <span id="slotsiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="slotsiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

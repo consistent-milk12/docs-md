@@ -81,9 +81,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializemap-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializemap-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
 
@@ -93,9 +93,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializeseq-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializeseq-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -103,9 +103,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializestruct-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializestruct-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
@@ -113,9 +113,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializestructvariant-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializestructvariant-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
@@ -123,9 +123,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializetuple-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializetuple-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -133,9 +133,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializetuplestruct-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializetuplestruct-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -143,9 +143,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
-- <span id="impossible-type-ok"></span>`type Ok = Ok`
+- <span id="impossible-serializetuplevariant-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-type-error"></span>`type Error = Error`
+- <span id="impossible-serializetuplevariant-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 

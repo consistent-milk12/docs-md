@@ -9,12 +9,12 @@
 - [Structs](#structs)
   - [`FmtArguments`](#fmtarguments)
 - [Functions](#functions)
-  - [`explicit_named_args`](#explicit_named_args)
-  - [`try_explicit_named_args`](#try_explicit_named_args)
-  - [`fallback_explicit_named_args`](#fallback_explicit_named_args)
-  - [`is_syn_full`](#is_syn_full)
-  - [`take_int`](#take_int)
-  - [`take_ident`](#take_ident)
+  - [`explicit_named_args`](#explicit-named-args)
+  - [`try_explicit_named_args`](#try-explicit-named-args)
+  - [`fallback_explicit_named_args`](#fallback-explicit-named-args)
+  - [`is_syn_full`](#is-syn-full)
+  - [`take_int`](#take-int)
+  - [`take_ident`](#take-ident)
   - [`between`](#between)
 
 ## Quick Reference
@@ -22,12 +22,12 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`FmtArguments`](#fmtarguments) | struct |  |
-| [`explicit_named_args`](#explicit_named_args) | fn |  |
-| [`try_explicit_named_args`](#try_explicit_named_args) | fn |  |
-| [`fallback_explicit_named_args`](#fallback_explicit_named_args) | fn |  |
-| [`is_syn_full`](#is_syn_full) | fn |  |
-| [`take_int`](#take_int) | fn |  |
-| [`take_ident`](#take_ident) | fn |  |
+| [`explicit_named_args`](#explicit-named-args) | fn |  |
+| [`try_explicit_named_args`](#try-explicit-named-args) | fn |  |
+| [`fallback_explicit_named_args`](#fallback-explicit-named-args) | fn |  |
+| [`is_syn_full`](#is-syn-full) | fn |  |
+| [`take_int`](#take-int) | fn |  |
+| [`take_ident`](#take-ident) | fn |  |
 | [`between`](#between) | fn |  |
 
 ## Structs

@@ -8,53 +8,53 @@
 
 - [Modules](#modules)
   - [`b64`](#b64)
-  - [`x86_64`](#x86_64)
+  - [`x86_64`](#x86-64)
 - [Structs](#structs)
   - [`aiocb`](#aiocb)
-  - [`__exit_status`](#__exit_status)
-  - [`__timeval`](#__timeval)
-  - [`glob64_t`](#glob64_t)
+  - [`__exit_status`](#exit-status)
+  - [`__timeval`](#timeval)
+  - [`glob64_t`](#glob64-t)
   - [`msghdr`](#msghdr)
   - [`cmsghdr`](#cmsghdr)
   - [`termios`](#termios)
   - [`mallinfo`](#mallinfo)
   - [`mallinfo2`](#mallinfo2)
-  - [`nl_pktinfo`](#nl_pktinfo)
-  - [`nl_mmap_req`](#nl_mmap_req)
-  - [`nl_mmap_hdr`](#nl_mmap_hdr)
+  - [`nl_pktinfo`](#nl-pktinfo)
+  - [`nl_mmap_req`](#nl-mmap-req)
+  - [`nl_mmap_hdr`](#nl-mmap-hdr)
   - [`ntptimeval`](#ntptimeval)
-  - [`regex_t`](#regex_t)
-  - [`Elf64_Chdr`](#elf64_chdr)
-  - [`Elf32_Chdr`](#elf32_chdr)
+  - [`regex_t`](#regex-t)
+  - [`Elf64_Chdr`](#elf64-chdr)
+  - [`Elf32_Chdr`](#elf32-chdr)
   - [`seminfo`](#seminfo)
-  - [`ptrace_peeksiginfo_args`](#ptrace_peeksiginfo_args)
-  - [`__c_anonymous_ptrace_syscall_info_entry`](#__c_anonymous_ptrace_syscall_info_entry)
-  - [`__c_anonymous_ptrace_syscall_info_exit`](#__c_anonymous_ptrace_syscall_info_exit)
-  - [`__c_anonymous_ptrace_syscall_info_seccomp`](#__c_anonymous_ptrace_syscall_info_seccomp)
-  - [`ptrace_syscall_info`](#ptrace_syscall_info)
-  - [`ptrace_sud_config`](#ptrace_sud_config)
+  - [`ptrace_peeksiginfo_args`](#ptrace-peeksiginfo-args)
+  - [`__c_anonymous_ptrace_syscall_info_entry`](#c-anonymous-ptrace-syscall-info-entry)
+  - [`__c_anonymous_ptrace_syscall_info_exit`](#c-anonymous-ptrace-syscall-info-exit)
+  - [`__c_anonymous_ptrace_syscall_info_seccomp`](#c-anonymous-ptrace-syscall-info-seccomp)
+  - [`ptrace_syscall_info`](#ptrace-syscall-info)
+  - [`ptrace_sud_config`](#ptrace-sud-config)
   - [`iocb`](#iocb)
-  - [`tcp_info`](#tcp_info)
-  - [`fanotify_event_info_pidfd`](#fanotify_event_info_pidfd)
-  - [`fanotify_event_info_error`](#fanotify_event_info_error)
-  - [`sem_t`](#sem_t)
-  - [`mbstate_t`](#mbstate_t)
-  - [`fpos64_t`](#fpos64_t)
-  - [`fpos_t`](#fpos_t)
+  - [`tcp_info`](#tcp-info)
+  - [`fanotify_event_info_pidfd`](#fanotify-event-info-pidfd)
+  - [`fanotify_event_info_error`](#fanotify-event-info-error)
+  - [`sem_t`](#sem-t)
+  - [`mbstate_t`](#mbstate-t)
+  - [`fpos64_t`](#fpos64-t)
+  - [`fpos_t`](#fpos-t)
   - [`timespec`](#timespec)
   - [`utmpx`](#utmpx)
-  - [`sifields_sigchld`](#sifields_sigchld)
-  - [`siginfo_f`](#siginfo_f)
-  - [`sigset_t`](#sigset_t)
+  - [`sifields_sigchld`](#sifields-sigchld)
+  - [`siginfo_f`](#siginfo-f)
+  - [`sigset_t`](#sigset-t)
   - [`sysinfo`](#sysinfo)
-  - [`msqid_ds`](#msqid_ds)
-  - [`semid_ds`](#semid_ds)
+  - [`msqid_ds`](#msqid-ds)
+  - [`semid_ds`](#semid-ds)
   - [`timex`](#timex)
 - [Functions](#functions)
-  - [`fgetspent_r`](#fgetspent_r)
-  - [`sgetspent_r`](#sgetspent_r)
-  - [`getspent_r`](#getspent_r)
-  - [`qsort_r`](#qsort_r)
+  - [`fgetspent_r`](#fgetspent-r)
+  - [`sgetspent_r`](#sgetspent-r)
+  - [`getspent_r`](#getspent-r)
+  - [`qsort_r`](#qsort-r)
   - [`sendmmsg`](#sendmmsg)
   - [`recvmmsg`](#recvmmsg)
   - [`getrlimit64`](#getrlimit64)
@@ -78,478 +78,478 @@
   - [`getrandom`](#getrandom)
   - [`getauxval`](#getauxval)
   - [`adjtimex`](#adjtimex)
-  - [`ntp_adjtime`](#ntp_adjtime)
-  - [`ntp_gettime`](#ntp_gettime)
-  - [`clock_adjtime`](#clock_adjtime)
-  - [`fanotify_mark`](#fanotify_mark)
+  - [`ntp_adjtime`](#ntp-adjtime)
+  - [`ntp_gettime`](#ntp-gettime)
+  - [`clock_adjtime`](#clock-adjtime)
+  - [`fanotify_mark`](#fanotify-mark)
   - [`preadv2`](#preadv2)
   - [`pwritev2`](#pwritev2)
   - [`preadv64v2`](#preadv64v2)
   - [`pwritev64v2`](#pwritev64v2)
   - [`renameat2`](#renameat2)
-  - [`explicit_bzero`](#explicit_bzero)
+  - [`explicit_bzero`](#explicit-bzero)
   - [`reallocarray`](#reallocarray)
   - [`ctermid`](#ctermid)
   - [`backtrace`](#backtrace)
-  - [`backtrace_symbols`](#backtrace_symbols)
-  - [`backtrace_symbols_fd`](#backtrace_symbols_fd)
+  - [`backtrace_symbols`](#backtrace-symbols)
+  - [`backtrace_symbols_fd`](#backtrace-symbols-fd)
   - [`glob64`](#glob64)
   - [`globfree64`](#globfree64)
   - [`ptrace`](#ptrace)
-  - [`pthread_attr_getaffinity_np`](#pthread_attr_getaffinity_np)
-  - [`pthread_attr_setaffinity_np`](#pthread_attr_setaffinity_np)
+  - [`pthread_attr_getaffinity_np`](#pthread-attr-getaffinity-np)
+  - [`pthread_attr_setaffinity_np`](#pthread-attr-setaffinity-np)
   - [`getpriority`](#getpriority)
   - [`setpriority`](#setpriority)
-  - [`pthread_rwlockattr_getkind_np`](#pthread_rwlockattr_getkind_np)
-  - [`pthread_rwlockattr_setkind_np`](#pthread_rwlockattr_setkind_np)
-  - [`pthread_sigqueue`](#pthread_sigqueue)
+  - [`pthread_rwlockattr_getkind_np`](#pthread-rwlockattr-getkind-np)
+  - [`pthread_rwlockattr_setkind_np`](#pthread-rwlockattr-setkind-np)
+  - [`pthread_sigqueue`](#pthread-sigqueue)
   - [`mallinfo`](#mallinfo)
   - [`mallinfo2`](#mallinfo2)
-  - [`malloc_stats`](#malloc_stats)
-  - [`malloc_info`](#malloc_info)
-  - [`malloc_usable_size`](#malloc_usable_size)
-  - [`getpwent_r`](#getpwent_r)
-  - [`getgrent_r`](#getgrent_r)
-  - [`fgetpwent_r`](#fgetpwent_r)
-  - [`fgetgrent_r`](#fgetgrent_r)
+  - [`malloc_stats`](#malloc-stats)
+  - [`malloc_info`](#malloc-info)
+  - [`malloc_usable_size`](#malloc-usable-size)
+  - [`getpwent_r`](#getpwent-r)
+  - [`getgrent_r`](#getgrent-r)
+  - [`fgetpwent_r`](#fgetpwent-r)
+  - [`fgetgrent_r`](#fgetgrent-r)
   - [`putpwent`](#putpwent)
   - [`putgrent`](#putgrent)
   - [`sethostid`](#sethostid)
-  - [`memfd_create`](#memfd_create)
+  - [`memfd_create`](#memfd-create)
   - [`mlock2`](#mlock2)
   - [`euidaccess`](#euidaccess)
   - [`eaccess`](#eaccess)
-  - [`asctime_r`](#asctime_r)
-  - [`ctime_r`](#ctime_r)
+  - [`asctime_r`](#asctime-r)
+  - [`ctime_r`](#ctime-r)
   - [`dirname`](#dirname)
-  - [`posix_basename`](#posix_basename)
-  - [`gnu_basename`](#gnu_basename)
+  - [`posix_basename`](#posix-basename)
+  - [`gnu_basename`](#gnu-basename)
   - [`dlmopen`](#dlmopen)
   - [`dlinfo`](#dlinfo)
   - [`dladdr1`](#dladdr1)
   - [`dlvsym`](#dlvsym)
-  - [`malloc_trim`](#malloc_trim)
-  - [`gnu_get_libc_release`](#gnu_get_libc_release)
-  - [`gnu_get_libc_version`](#gnu_get_libc_version)
-  - [`posix_spawn_file_actions_addchdir_np`](#posix_spawn_file_actions_addchdir_np)
-  - [`posix_spawn_file_actions_addfchdir_np`](#posix_spawn_file_actions_addfchdir_np)
-  - [`posix_spawn_file_actions_addclosefrom_np`](#posix_spawn_file_actions_addclosefrom_np)
-  - [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix_spawn_file_actions_addtcsetpgrp_np)
-  - [`getmntent_r`](#getmntent_r)
+  - [`malloc_trim`](#malloc-trim)
+  - [`gnu_get_libc_release`](#gnu-get-libc-release)
+  - [`gnu_get_libc_version`](#gnu-get-libc-version)
+  - [`posix_spawn_file_actions_addchdir_np`](#posix-spawn-file-actions-addchdir-np)
+  - [`posix_spawn_file_actions_addfchdir_np`](#posix-spawn-file-actions-addfchdir-np)
+  - [`posix_spawn_file_actions_addclosefrom_np`](#posix-spawn-file-actions-addclosefrom-np)
+  - [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix-spawn-file-actions-addtcsetpgrp-np)
+  - [`getmntent_r`](#getmntent-r)
   - [`execveat`](#execveat)
-  - [`close_range`](#close_range)
-  - [`mq_notify`](#mq_notify)
-  - [`epoll_pwait2`](#epoll_pwait2)
+  - [`close_range`](#close-range)
+  - [`mq_notify`](#mq-notify)
+  - [`epoll_pwait2`](#epoll-pwait2)
   - [`mempcpy`](#mempcpy)
 - [Type Aliases](#type-aliases)
-  - [`pthread_t`](#pthread_t)
-  - [`__priority_which_t`](#__priority_which_t)
-  - [`__rlimit_resource_t`](#__rlimit_resource_t)
-  - [`Lmid_t`](#lmid_t)
-  - [`regoff_t`](#regoff_t)
-  - [`__kernel_rwf_t`](#__kernel_rwf_t)
+  - [`pthread_t`](#pthread-t)
+  - [`__priority_which_t`](#priority-which-t)
+  - [`__rlimit_resource_t`](#rlimit-resource-t)
+  - [`Lmid_t`](#lmid-t)
+  - [`regoff_t`](#regoff-t)
+  - [`__kernel_rwf_t`](#kernel-rwf-t)
   - [`Ioctl`](#ioctl)
-  - [`ino_t`](#ino_t)
-  - [`off_t`](#off_t)
-  - [`blkcnt_t`](#blkcnt_t)
-  - [`shmatt_t`](#shmatt_t)
-  - [`msgqnum_t`](#msgqnum_t)
-  - [`msglen_t`](#msglen_t)
-  - [`fsblkcnt_t`](#fsblkcnt_t)
-  - [`fsfilcnt_t`](#fsfilcnt_t)
-  - [`rlim_t`](#rlim_t)
-  - [`__syscall_ulong_t`](#__syscall_ulong_t)
-  - [`__fsword_t`](#__fsword_t)
-  - [`clock_t`](#clock_t)
-  - [`time_t`](#time_t)
+  - [`ino_t`](#ino-t)
+  - [`off_t`](#off-t)
+  - [`blkcnt_t`](#blkcnt-t)
+  - [`shmatt_t`](#shmatt-t)
+  - [`msgqnum_t`](#msgqnum-t)
+  - [`msglen_t`](#msglen-t)
+  - [`fsblkcnt_t`](#fsblkcnt-t)
+  - [`fsfilcnt_t`](#fsfilcnt-t)
+  - [`rlim_t`](#rlim-t)
+  - [`__syscall_ulong_t`](#syscall-ulong-t)
+  - [`__fsword_t`](#fsword-t)
+  - [`clock_t`](#clock-t)
+  - [`time_t`](#time-t)
 - [Constants](#constants)
-  - [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb_flag_encode_shift)
-  - [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb_flag_encode_mask)
-  - [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb_flag_encode_64kb)
-  - [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb_flag_encode_512kb)
-  - [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb_flag_encode_1mb)
-  - [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb_flag_encode_2mb)
-  - [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb_flag_encode_8mb)
-  - [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb_flag_encode_16mb)
-  - [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb_flag_encode_32mb)
-  - [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb_flag_encode_256mb)
-  - [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb_flag_encode_512mb)
-  - [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb_flag_encode_1gb)
-  - [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb_flag_encode_2gb)
-  - [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb_flag_encode_16gb)
-  - [`MAP_HUGE_SHIFT`](#map_huge_shift)
-  - [`MAP_HUGE_MASK`](#map_huge_mask)
-  - [`MAP_HUGE_64KB`](#map_huge_64kb)
-  - [`MAP_HUGE_512KB`](#map_huge_512kb)
-  - [`MAP_HUGE_1MB`](#map_huge_1mb)
-  - [`MAP_HUGE_2MB`](#map_huge_2mb)
-  - [`MAP_HUGE_8MB`](#map_huge_8mb)
-  - [`MAP_HUGE_16MB`](#map_huge_16mb)
-  - [`MAP_HUGE_32MB`](#map_huge_32mb)
-  - [`MAP_HUGE_256MB`](#map_huge_256mb)
-  - [`MAP_HUGE_512MB`](#map_huge_512mb)
-  - [`MAP_HUGE_1GB`](#map_huge_1gb)
-  - [`MAP_HUGE_2GB`](#map_huge_2gb)
-  - [`MAP_HUGE_16GB`](#map_huge_16gb)
-  - [`PRIO_PROCESS`](#prio_process)
-  - [`PRIO_PGRP`](#prio_pgrp)
-  - [`PRIO_USER`](#prio_user)
-  - [`MS_RMT_MASK`](#ms_rmt_mask)
-  - [`__UT_LINESIZE`](#__ut_linesize)
-  - [`__UT_NAMESIZE`](#__ut_namesize)
-  - [`__UT_HOSTSIZE`](#__ut_hostsize)
+  - [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb-flag-encode-shift)
+  - [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb-flag-encode-mask)
+  - [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb-flag-encode-64kb)
+  - [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb-flag-encode-512kb)
+  - [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb-flag-encode-1mb)
+  - [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb-flag-encode-2mb)
+  - [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb-flag-encode-8mb)
+  - [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb-flag-encode-16mb)
+  - [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb-flag-encode-32mb)
+  - [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb-flag-encode-256mb)
+  - [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb-flag-encode-512mb)
+  - [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb-flag-encode-1gb)
+  - [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb-flag-encode-2gb)
+  - [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb-flag-encode-16gb)
+  - [`MAP_HUGE_SHIFT`](#map-huge-shift)
+  - [`MAP_HUGE_MASK`](#map-huge-mask)
+  - [`MAP_HUGE_64KB`](#map-huge-64kb)
+  - [`MAP_HUGE_512KB`](#map-huge-512kb)
+  - [`MAP_HUGE_1MB`](#map-huge-1mb)
+  - [`MAP_HUGE_2MB`](#map-huge-2mb)
+  - [`MAP_HUGE_8MB`](#map-huge-8mb)
+  - [`MAP_HUGE_16MB`](#map-huge-16mb)
+  - [`MAP_HUGE_32MB`](#map-huge-32mb)
+  - [`MAP_HUGE_256MB`](#map-huge-256mb)
+  - [`MAP_HUGE_512MB`](#map-huge-512mb)
+  - [`MAP_HUGE_1GB`](#map-huge-1gb)
+  - [`MAP_HUGE_2GB`](#map-huge-2gb)
+  - [`MAP_HUGE_16GB`](#map-huge-16gb)
+  - [`PRIO_PROCESS`](#prio-process)
+  - [`PRIO_PGRP`](#prio-pgrp)
+  - [`PRIO_USER`](#prio-user)
+  - [`MS_RMT_MASK`](#ms-rmt-mask)
+  - [`__UT_LINESIZE`](#ut-linesize)
+  - [`__UT_NAMESIZE`](#ut-namesize)
+  - [`__UT_HOSTSIZE`](#ut-hostsize)
   - [`EMPTY`](#empty)
-  - [`RUN_LVL`](#run_lvl)
-  - [`BOOT_TIME`](#boot_time)
-  - [`NEW_TIME`](#new_time)
-  - [`OLD_TIME`](#old_time)
-  - [`INIT_PROCESS`](#init_process)
-  - [`LOGIN_PROCESS`](#login_process)
-  - [`USER_PROCESS`](#user_process)
-  - [`DEAD_PROCESS`](#dead_process)
+  - [`RUN_LVL`](#run-lvl)
+  - [`BOOT_TIME`](#boot-time)
+  - [`NEW_TIME`](#new-time)
+  - [`OLD_TIME`](#old-time)
+  - [`INIT_PROCESS`](#init-process)
+  - [`LOGIN_PROCESS`](#login-process)
+  - [`USER_PROCESS`](#user-process)
+  - [`DEAD_PROCESS`](#dead-process)
   - [`ACCOUNTING`](#accounting)
-  - [`LM_ID_BASE`](#lm_id_base)
-  - [`LM_ID_NEWLM`](#lm_id_newlm)
-  - [`RTLD_DI_LMID`](#rtld_di_lmid)
-  - [`RTLD_DI_LINKMAP`](#rtld_di_linkmap)
-  - [`RTLD_DI_CONFIGADDR`](#rtld_di_configaddr)
-  - [`RTLD_DI_SERINFO`](#rtld_di_serinfo)
-  - [`RTLD_DI_SERINFOSIZE`](#rtld_di_serinfosize)
-  - [`RTLD_DI_ORIGIN`](#rtld_di_origin)
-  - [`RTLD_DI_PROFILENAME`](#rtld_di_profilename)
-  - [`RTLD_DI_PROFILEOUT`](#rtld_di_profileout)
-  - [`RTLD_DI_TLS_MODID`](#rtld_di_tls_modid)
-  - [`RTLD_DI_TLS_DATA`](#rtld_di_tls_data)
-  - [`SOCK_NONBLOCK`](#sock_nonblock)
-  - [`SOL_RXRPC`](#sol_rxrpc)
-  - [`SOL_PPPOL2TP`](#sol_pppol2tp)
-  - [`SOL_PNPIPE`](#sol_pnpipe)
-  - [`SOL_RDS`](#sol_rds)
-  - [`SOL_IUCV`](#sol_iucv)
-  - [`SOL_CAIF`](#sol_caif)
-  - [`SOL_NFC`](#sol_nfc)
-  - [`MSG_TRYHARD`](#msg_tryhard)
-  - [`LC_PAPER`](#lc_paper)
-  - [`LC_NAME`](#lc_name)
-  - [`LC_ADDRESS`](#lc_address)
-  - [`LC_TELEPHONE`](#lc_telephone)
-  - [`LC_MEASUREMENT`](#lc_measurement)
-  - [`LC_IDENTIFICATION`](#lc_identification)
-  - [`LC_PAPER_MASK`](#lc_paper_mask)
-  - [`LC_NAME_MASK`](#lc_name_mask)
-  - [`LC_ADDRESS_MASK`](#lc_address_mask)
-  - [`LC_TELEPHONE_MASK`](#lc_telephone_mask)
-  - [`LC_MEASUREMENT_MASK`](#lc_measurement_mask)
-  - [`LC_IDENTIFICATION_MASK`](#lc_identification_mask)
-  - [`LC_ALL_MASK`](#lc_all_mask)
+  - [`LM_ID_BASE`](#lm-id-base)
+  - [`LM_ID_NEWLM`](#lm-id-newlm)
+  - [`RTLD_DI_LMID`](#rtld-di-lmid)
+  - [`RTLD_DI_LINKMAP`](#rtld-di-linkmap)
+  - [`RTLD_DI_CONFIGADDR`](#rtld-di-configaddr)
+  - [`RTLD_DI_SERINFO`](#rtld-di-serinfo)
+  - [`RTLD_DI_SERINFOSIZE`](#rtld-di-serinfosize)
+  - [`RTLD_DI_ORIGIN`](#rtld-di-origin)
+  - [`RTLD_DI_PROFILENAME`](#rtld-di-profilename)
+  - [`RTLD_DI_PROFILEOUT`](#rtld-di-profileout)
+  - [`RTLD_DI_TLS_MODID`](#rtld-di-tls-modid)
+  - [`RTLD_DI_TLS_DATA`](#rtld-di-tls-data)
+  - [`SOCK_NONBLOCK`](#sock-nonblock)
+  - [`SOL_RXRPC`](#sol-rxrpc)
+  - [`SOL_PPPOL2TP`](#sol-pppol2tp)
+  - [`SOL_PNPIPE`](#sol-pnpipe)
+  - [`SOL_RDS`](#sol-rds)
+  - [`SOL_IUCV`](#sol-iucv)
+  - [`SOL_CAIF`](#sol-caif)
+  - [`SOL_NFC`](#sol-nfc)
+  - [`MSG_TRYHARD`](#msg-tryhard)
+  - [`LC_PAPER`](#lc-paper)
+  - [`LC_NAME`](#lc-name)
+  - [`LC_ADDRESS`](#lc-address)
+  - [`LC_TELEPHONE`](#lc-telephone)
+  - [`LC_MEASUREMENT`](#lc-measurement)
+  - [`LC_IDENTIFICATION`](#lc-identification)
+  - [`LC_PAPER_MASK`](#lc-paper-mask)
+  - [`LC_NAME_MASK`](#lc-name-mask)
+  - [`LC_ADDRESS_MASK`](#lc-address-mask)
+  - [`LC_TELEPHONE_MASK`](#lc-telephone-mask)
+  - [`LC_MEASUREMENT_MASK`](#lc-measurement-mask)
+  - [`LC_IDENTIFICATION_MASK`](#lc-identification-mask)
+  - [`LC_ALL_MASK`](#lc-all-mask)
   - [`ENOTSUP`](#enotsup)
-  - [`SOCK_SEQPACKET`](#sock_seqpacket)
-  - [`SOCK_DCCP`](#sock_dccp)
-  - [`SOCK_PACKET`](#sock_packet)
-  - [`AF_IB`](#af_ib)
-  - [`AF_MPLS`](#af_mpls)
-  - [`AF_NFC`](#af_nfc)
-  - [`AF_VSOCK`](#af_vsock)
-  - [`AF_XDP`](#af_xdp)
-  - [`PF_IB`](#pf_ib)
-  - [`PF_MPLS`](#pf_mpls)
-  - [`PF_NFC`](#pf_nfc)
-  - [`PF_VSOCK`](#pf_vsock)
-  - [`PF_XDP`](#pf_xdp)
-  - [`SIGEV_THREAD_ID`](#sigev_thread_id)
+  - [`SOCK_SEQPACKET`](#sock-seqpacket)
+  - [`SOCK_DCCP`](#sock-dccp)
+  - [`SOCK_PACKET`](#sock-packet)
+  - [`AF_IB`](#af-ib)
+  - [`AF_MPLS`](#af-mpls)
+  - [`AF_NFC`](#af-nfc)
+  - [`AF_VSOCK`](#af-vsock)
+  - [`AF_XDP`](#af-xdp)
+  - [`PF_IB`](#pf-ib)
+  - [`PF_MPLS`](#pf-mpls)
+  - [`PF_NFC`](#pf-nfc)
+  - [`PF_VSOCK`](#pf-vsock)
+  - [`PF_XDP`](#pf-xdp)
+  - [`SIGEV_THREAD_ID`](#sigev-thread-id)
   - [`BUFSIZ`](#bufsiz)
-  - [`TMP_MAX`](#tmp_max)
-  - [`FOPEN_MAX`](#fopen_max)
-  - [`FILENAME_MAX`](#filename_max)
-  - [`POSIX_MADV_DONTNEED`](#posix_madv_dontneed)
-  - [`_CS_GNU_LIBC_VERSION`](#_cs_gnu_libc_version)
-  - [`_CS_GNU_LIBPTHREAD_VERSION`](#_cs_gnu_libpthread_version)
-  - [`_CS_V6_ENV`](#_cs_v6_env)
-  - [`_CS_V7_ENV`](#_cs_v7_env)
-  - [`_SC_EQUIV_CLASS_MAX`](#_sc_equiv_class_max)
-  - [`_SC_CHARCLASS_NAME_MAX`](#_sc_charclass_name_max)
-  - [`_SC_PII`](#_sc_pii)
-  - [`_SC_PII_XTI`](#_sc_pii_xti)
-  - [`_SC_PII_SOCKET`](#_sc_pii_socket)
-  - [`_SC_PII_INTERNET`](#_sc_pii_internet)
-  - [`_SC_PII_OSI`](#_sc_pii_osi)
-  - [`_SC_POLL`](#_sc_poll)
-  - [`_SC_SELECT`](#_sc_select)
-  - [`_SC_PII_INTERNET_STREAM`](#_sc_pii_internet_stream)
-  - [`_SC_PII_INTERNET_DGRAM`](#_sc_pii_internet_dgram)
-  - [`_SC_PII_OSI_COTS`](#_sc_pii_osi_cots)
-  - [`_SC_PII_OSI_CLTS`](#_sc_pii_osi_clts)
-  - [`_SC_PII_OSI_M`](#_sc_pii_osi_m)
-  - [`_SC_T_IOV_MAX`](#_sc_t_iov_max)
-  - [`_SC_2_C_VERSION`](#_sc_2_c_version)
-  - [`_SC_CHAR_BIT`](#_sc_char_bit)
-  - [`_SC_CHAR_MAX`](#_sc_char_max)
-  - [`_SC_CHAR_MIN`](#_sc_char_min)
-  - [`_SC_INT_MAX`](#_sc_int_max)
-  - [`_SC_INT_MIN`](#_sc_int_min)
-  - [`_SC_LONG_BIT`](#_sc_long_bit)
-  - [`_SC_WORD_BIT`](#_sc_word_bit)
-  - [`_SC_MB_LEN_MAX`](#_sc_mb_len_max)
-  - [`_SC_SSIZE_MAX`](#_sc_ssize_max)
-  - [`_SC_SCHAR_MAX`](#_sc_schar_max)
-  - [`_SC_SCHAR_MIN`](#_sc_schar_min)
-  - [`_SC_SHRT_MAX`](#_sc_shrt_max)
-  - [`_SC_SHRT_MIN`](#_sc_shrt_min)
-  - [`_SC_UCHAR_MAX`](#_sc_uchar_max)
-  - [`_SC_UINT_MAX`](#_sc_uint_max)
-  - [`_SC_ULONG_MAX`](#_sc_ulong_max)
-  - [`_SC_USHRT_MAX`](#_sc_ushrt_max)
-  - [`_SC_NL_ARGMAX`](#_sc_nl_argmax)
-  - [`_SC_NL_LANGMAX`](#_sc_nl_langmax)
-  - [`_SC_NL_MSGMAX`](#_sc_nl_msgmax)
-  - [`_SC_NL_NMAX`](#_sc_nl_nmax)
-  - [`_SC_NL_SETMAX`](#_sc_nl_setmax)
-  - [`_SC_NL_TEXTMAX`](#_sc_nl_textmax)
-  - [`_SC_BASE`](#_sc_base)
-  - [`_SC_C_LANG_SUPPORT`](#_sc_c_lang_support)
-  - [`_SC_C_LANG_SUPPORT_R`](#_sc_c_lang_support_r)
-  - [`_SC_DEVICE_IO`](#_sc_device_io)
-  - [`_SC_DEVICE_SPECIFIC`](#_sc_device_specific)
-  - [`_SC_DEVICE_SPECIFIC_R`](#_sc_device_specific_r)
-  - [`_SC_FD_MGMT`](#_sc_fd_mgmt)
-  - [`_SC_FIFO`](#_sc_fifo)
-  - [`_SC_PIPE`](#_sc_pipe)
-  - [`_SC_FILE_ATTRIBUTES`](#_sc_file_attributes)
-  - [`_SC_FILE_LOCKING`](#_sc_file_locking)
-  - [`_SC_FILE_SYSTEM`](#_sc_file_system)
-  - [`_SC_MULTI_PROCESS`](#_sc_multi_process)
-  - [`_SC_SINGLE_PROCESS`](#_sc_single_process)
-  - [`_SC_NETWORKING`](#_sc_networking)
-  - [`_SC_REGEX_VERSION`](#_sc_regex_version)
-  - [`_SC_SIGNALS`](#_sc_signals)
-  - [`_SC_SYSTEM_DATABASE`](#_sc_system_database)
-  - [`_SC_SYSTEM_DATABASE_R`](#_sc_system_database_r)
-  - [`_SC_USER_GROUPS`](#_sc_user_groups)
-  - [`_SC_USER_GROUPS_R`](#_sc_user_groups_r)
-  - [`_SC_LEVEL1_ICACHE_SIZE`](#_sc_level1_icache_size)
-  - [`_SC_LEVEL1_ICACHE_ASSOC`](#_sc_level1_icache_assoc)
-  - [`_SC_LEVEL1_ICACHE_LINESIZE`](#_sc_level1_icache_linesize)
-  - [`_SC_LEVEL1_DCACHE_SIZE`](#_sc_level1_dcache_size)
-  - [`_SC_LEVEL1_DCACHE_ASSOC`](#_sc_level1_dcache_assoc)
-  - [`_SC_LEVEL1_DCACHE_LINESIZE`](#_sc_level1_dcache_linesize)
-  - [`_SC_LEVEL2_CACHE_SIZE`](#_sc_level2_cache_size)
-  - [`_SC_LEVEL2_CACHE_ASSOC`](#_sc_level2_cache_assoc)
-  - [`_SC_LEVEL2_CACHE_LINESIZE`](#_sc_level2_cache_linesize)
-  - [`_SC_LEVEL3_CACHE_SIZE`](#_sc_level3_cache_size)
-  - [`_SC_LEVEL3_CACHE_ASSOC`](#_sc_level3_cache_assoc)
-  - [`_SC_LEVEL3_CACHE_LINESIZE`](#_sc_level3_cache_linesize)
-  - [`_SC_LEVEL4_CACHE_SIZE`](#_sc_level4_cache_size)
-  - [`_SC_LEVEL4_CACHE_ASSOC`](#_sc_level4_cache_assoc)
-  - [`_SC_LEVEL4_CACHE_LINESIZE`](#_sc_level4_cache_linesize)
-  - [`O_ACCMODE`](#o_accmode)
-  - [`ST_RELATIME`](#st_relatime)
-  - [`NI_MAXHOST`](#ni_maxhost)
-  - [`BINDERFS_SUPER_MAGIC`](#binderfs_super_magic)
-  - [`XFS_SUPER_MAGIC`](#xfs_super_magic)
-  - [`CPU_SETSIZE`](#cpu_setsize)
-  - [`PTRACE_TRACEME`](#ptrace_traceme)
-  - [`PTRACE_PEEKTEXT`](#ptrace_peektext)
-  - [`PTRACE_PEEKDATA`](#ptrace_peekdata)
-  - [`PTRACE_PEEKUSER`](#ptrace_peekuser)
-  - [`PTRACE_POKETEXT`](#ptrace_poketext)
-  - [`PTRACE_POKEDATA`](#ptrace_pokedata)
-  - [`PTRACE_POKEUSER`](#ptrace_pokeuser)
-  - [`PTRACE_CONT`](#ptrace_cont)
-  - [`PTRACE_KILL`](#ptrace_kill)
-  - [`PTRACE_SINGLESTEP`](#ptrace_singlestep)
-  - [`PTRACE_ATTACH`](#ptrace_attach)
-  - [`PTRACE_SYSCALL`](#ptrace_syscall)
-  - [`PTRACE_SETOPTIONS`](#ptrace_setoptions)
-  - [`PTRACE_GETEVENTMSG`](#ptrace_geteventmsg)
-  - [`PTRACE_GETSIGINFO`](#ptrace_getsiginfo)
-  - [`PTRACE_SETSIGINFO`](#ptrace_setsiginfo)
-  - [`PTRACE_GETREGSET`](#ptrace_getregset)
-  - [`PTRACE_SETREGSET`](#ptrace_setregset)
-  - [`PTRACE_SEIZE`](#ptrace_seize)
-  - [`PTRACE_INTERRUPT`](#ptrace_interrupt)
-  - [`PTRACE_LISTEN`](#ptrace_listen)
-  - [`PTRACE_PEEKSIGINFO`](#ptrace_peeksiginfo)
-  - [`PTRACE_GETSIGMASK`](#ptrace_getsigmask)
-  - [`PTRACE_SETSIGMASK`](#ptrace_setsigmask)
-  - [`PTRACE_GET_SYSCALL_INFO`](#ptrace_get_syscall_info)
-  - [`PTRACE_SYSCALL_INFO_NONE`](#ptrace_syscall_info_none)
-  - [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace_syscall_info_entry)
-  - [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace_syscall_info_exit)
-  - [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace_syscall_info_seccomp)
-  - [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_set_syscall_user_dispatch_config)
-  - [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_get_syscall_user_dispatch_config)
-  - [`TCA_PAD`](#tca_pad)
-  - [`TCA_DUMP_INVISIBLE`](#tca_dump_invisible)
-  - [`TCA_CHAIN`](#tca_chain)
-  - [`TCA_HW_OFFLOAD`](#tca_hw_offload)
-  - [`RTM_DELNETCONF`](#rtm_delnetconf)
-  - [`RTM_NEWSTATS`](#rtm_newstats)
-  - [`RTM_GETSTATS`](#rtm_getstats)
-  - [`RTM_NEWCACHEREPORT`](#rtm_newcachereport)
-  - [`RTM_F_LOOKUP_TABLE`](#rtm_f_lookup_table)
-  - [`RTM_F_FIB_MATCH`](#rtm_f_fib_match)
-  - [`RTA_VIA`](#rta_via)
-  - [`RTA_NEWDST`](#rta_newdst)
-  - [`RTA_PREF`](#rta_pref)
-  - [`RTA_ENCAP_TYPE`](#rta_encap_type)
-  - [`RTA_ENCAP`](#rta_encap)
-  - [`RTA_EXPIRES`](#rta_expires)
-  - [`RTA_PAD`](#rta_pad)
-  - [`RTA_UID`](#rta_uid)
-  - [`RTA_TTL_PROPAGATE`](#rta_ttl_propagate)
-  - [`NTF_EXT_LEARNED`](#ntf_ext_learned)
-  - [`NTF_OFFLOADED`](#ntf_offloaded)
-  - [`NDA_MASTER`](#nda_master)
-  - [`NDA_LINK_NETNSID`](#nda_link_netnsid)
-  - [`NDA_SRC_VNI`](#nda_src_vni)
+  - [`TMP_MAX`](#tmp-max)
+  - [`FOPEN_MAX`](#fopen-max)
+  - [`FILENAME_MAX`](#filename-max)
+  - [`POSIX_MADV_DONTNEED`](#posix-madv-dontneed)
+  - [`_CS_GNU_LIBC_VERSION`](#cs-gnu-libc-version)
+  - [`_CS_GNU_LIBPTHREAD_VERSION`](#cs-gnu-libpthread-version)
+  - [`_CS_V6_ENV`](#cs-v6-env)
+  - [`_CS_V7_ENV`](#cs-v7-env)
+  - [`_SC_EQUIV_CLASS_MAX`](#sc-equiv-class-max)
+  - [`_SC_CHARCLASS_NAME_MAX`](#sc-charclass-name-max)
+  - [`_SC_PII`](#sc-pii)
+  - [`_SC_PII_XTI`](#sc-pii-xti)
+  - [`_SC_PII_SOCKET`](#sc-pii-socket)
+  - [`_SC_PII_INTERNET`](#sc-pii-internet)
+  - [`_SC_PII_OSI`](#sc-pii-osi)
+  - [`_SC_POLL`](#sc-poll)
+  - [`_SC_SELECT`](#sc-select)
+  - [`_SC_PII_INTERNET_STREAM`](#sc-pii-internet-stream)
+  - [`_SC_PII_INTERNET_DGRAM`](#sc-pii-internet-dgram)
+  - [`_SC_PII_OSI_COTS`](#sc-pii-osi-cots)
+  - [`_SC_PII_OSI_CLTS`](#sc-pii-osi-clts)
+  - [`_SC_PII_OSI_M`](#sc-pii-osi-m)
+  - [`_SC_T_IOV_MAX`](#sc-t-iov-max)
+  - [`_SC_2_C_VERSION`](#sc-2-c-version)
+  - [`_SC_CHAR_BIT`](#sc-char-bit)
+  - [`_SC_CHAR_MAX`](#sc-char-max)
+  - [`_SC_CHAR_MIN`](#sc-char-min)
+  - [`_SC_INT_MAX`](#sc-int-max)
+  - [`_SC_INT_MIN`](#sc-int-min)
+  - [`_SC_LONG_BIT`](#sc-long-bit)
+  - [`_SC_WORD_BIT`](#sc-word-bit)
+  - [`_SC_MB_LEN_MAX`](#sc-mb-len-max)
+  - [`_SC_SSIZE_MAX`](#sc-ssize-max)
+  - [`_SC_SCHAR_MAX`](#sc-schar-max)
+  - [`_SC_SCHAR_MIN`](#sc-schar-min)
+  - [`_SC_SHRT_MAX`](#sc-shrt-max)
+  - [`_SC_SHRT_MIN`](#sc-shrt-min)
+  - [`_SC_UCHAR_MAX`](#sc-uchar-max)
+  - [`_SC_UINT_MAX`](#sc-uint-max)
+  - [`_SC_ULONG_MAX`](#sc-ulong-max)
+  - [`_SC_USHRT_MAX`](#sc-ushrt-max)
+  - [`_SC_NL_ARGMAX`](#sc-nl-argmax)
+  - [`_SC_NL_LANGMAX`](#sc-nl-langmax)
+  - [`_SC_NL_MSGMAX`](#sc-nl-msgmax)
+  - [`_SC_NL_NMAX`](#sc-nl-nmax)
+  - [`_SC_NL_SETMAX`](#sc-nl-setmax)
+  - [`_SC_NL_TEXTMAX`](#sc-nl-textmax)
+  - [`_SC_BASE`](#sc-base)
+  - [`_SC_C_LANG_SUPPORT`](#sc-c-lang-support)
+  - [`_SC_C_LANG_SUPPORT_R`](#sc-c-lang-support-r)
+  - [`_SC_DEVICE_IO`](#sc-device-io)
+  - [`_SC_DEVICE_SPECIFIC`](#sc-device-specific)
+  - [`_SC_DEVICE_SPECIFIC_R`](#sc-device-specific-r)
+  - [`_SC_FD_MGMT`](#sc-fd-mgmt)
+  - [`_SC_FIFO`](#sc-fifo)
+  - [`_SC_PIPE`](#sc-pipe)
+  - [`_SC_FILE_ATTRIBUTES`](#sc-file-attributes)
+  - [`_SC_FILE_LOCKING`](#sc-file-locking)
+  - [`_SC_FILE_SYSTEM`](#sc-file-system)
+  - [`_SC_MULTI_PROCESS`](#sc-multi-process)
+  - [`_SC_SINGLE_PROCESS`](#sc-single-process)
+  - [`_SC_NETWORKING`](#sc-networking)
+  - [`_SC_REGEX_VERSION`](#sc-regex-version)
+  - [`_SC_SIGNALS`](#sc-signals)
+  - [`_SC_SYSTEM_DATABASE`](#sc-system-database)
+  - [`_SC_SYSTEM_DATABASE_R`](#sc-system-database-r)
+  - [`_SC_USER_GROUPS`](#sc-user-groups)
+  - [`_SC_USER_GROUPS_R`](#sc-user-groups-r)
+  - [`_SC_LEVEL1_ICACHE_SIZE`](#sc-level1-icache-size)
+  - [`_SC_LEVEL1_ICACHE_ASSOC`](#sc-level1-icache-assoc)
+  - [`_SC_LEVEL1_ICACHE_LINESIZE`](#sc-level1-icache-linesize)
+  - [`_SC_LEVEL1_DCACHE_SIZE`](#sc-level1-dcache-size)
+  - [`_SC_LEVEL1_DCACHE_ASSOC`](#sc-level1-dcache-assoc)
+  - [`_SC_LEVEL1_DCACHE_LINESIZE`](#sc-level1-dcache-linesize)
+  - [`_SC_LEVEL2_CACHE_SIZE`](#sc-level2-cache-size)
+  - [`_SC_LEVEL2_CACHE_ASSOC`](#sc-level2-cache-assoc)
+  - [`_SC_LEVEL2_CACHE_LINESIZE`](#sc-level2-cache-linesize)
+  - [`_SC_LEVEL3_CACHE_SIZE`](#sc-level3-cache-size)
+  - [`_SC_LEVEL3_CACHE_ASSOC`](#sc-level3-cache-assoc)
+  - [`_SC_LEVEL3_CACHE_LINESIZE`](#sc-level3-cache-linesize)
+  - [`_SC_LEVEL4_CACHE_SIZE`](#sc-level4-cache-size)
+  - [`_SC_LEVEL4_CACHE_ASSOC`](#sc-level4-cache-assoc)
+  - [`_SC_LEVEL4_CACHE_LINESIZE`](#sc-level4-cache-linesize)
+  - [`O_ACCMODE`](#o-accmode)
+  - [`ST_RELATIME`](#st-relatime)
+  - [`NI_MAXHOST`](#ni-maxhost)
+  - [`BINDERFS_SUPER_MAGIC`](#binderfs-super-magic)
+  - [`XFS_SUPER_MAGIC`](#xfs-super-magic)
+  - [`CPU_SETSIZE`](#cpu-setsize)
+  - [`PTRACE_TRACEME`](#ptrace-traceme)
+  - [`PTRACE_PEEKTEXT`](#ptrace-peektext)
+  - [`PTRACE_PEEKDATA`](#ptrace-peekdata)
+  - [`PTRACE_PEEKUSER`](#ptrace-peekuser)
+  - [`PTRACE_POKETEXT`](#ptrace-poketext)
+  - [`PTRACE_POKEDATA`](#ptrace-pokedata)
+  - [`PTRACE_POKEUSER`](#ptrace-pokeuser)
+  - [`PTRACE_CONT`](#ptrace-cont)
+  - [`PTRACE_KILL`](#ptrace-kill)
+  - [`PTRACE_SINGLESTEP`](#ptrace-singlestep)
+  - [`PTRACE_ATTACH`](#ptrace-attach)
+  - [`PTRACE_SYSCALL`](#ptrace-syscall)
+  - [`PTRACE_SETOPTIONS`](#ptrace-setoptions)
+  - [`PTRACE_GETEVENTMSG`](#ptrace-geteventmsg)
+  - [`PTRACE_GETSIGINFO`](#ptrace-getsiginfo)
+  - [`PTRACE_SETSIGINFO`](#ptrace-setsiginfo)
+  - [`PTRACE_GETREGSET`](#ptrace-getregset)
+  - [`PTRACE_SETREGSET`](#ptrace-setregset)
+  - [`PTRACE_SEIZE`](#ptrace-seize)
+  - [`PTRACE_INTERRUPT`](#ptrace-interrupt)
+  - [`PTRACE_LISTEN`](#ptrace-listen)
+  - [`PTRACE_PEEKSIGINFO`](#ptrace-peeksiginfo)
+  - [`PTRACE_GETSIGMASK`](#ptrace-getsigmask)
+  - [`PTRACE_SETSIGMASK`](#ptrace-setsigmask)
+  - [`PTRACE_GET_SYSCALL_INFO`](#ptrace-get-syscall-info)
+  - [`PTRACE_SYSCALL_INFO_NONE`](#ptrace-syscall-info-none)
+  - [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace-syscall-info-entry)
+  - [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace-syscall-info-exit)
+  - [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace-syscall-info-seccomp)
+  - [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace-set-syscall-user-dispatch-config)
+  - [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace-get-syscall-user-dispatch-config)
+  - [`TCA_PAD`](#tca-pad)
+  - [`TCA_DUMP_INVISIBLE`](#tca-dump-invisible)
+  - [`TCA_CHAIN`](#tca-chain)
+  - [`TCA_HW_OFFLOAD`](#tca-hw-offload)
+  - [`RTM_DELNETCONF`](#rtm-delnetconf)
+  - [`RTM_NEWSTATS`](#rtm-newstats)
+  - [`RTM_GETSTATS`](#rtm-getstats)
+  - [`RTM_NEWCACHEREPORT`](#rtm-newcachereport)
+  - [`RTM_F_LOOKUP_TABLE`](#rtm-f-lookup-table)
+  - [`RTM_F_FIB_MATCH`](#rtm-f-fib-match)
+  - [`RTA_VIA`](#rta-via)
+  - [`RTA_NEWDST`](#rta-newdst)
+  - [`RTA_PREF`](#rta-pref)
+  - [`RTA_ENCAP_TYPE`](#rta-encap-type)
+  - [`RTA_ENCAP`](#rta-encap)
+  - [`RTA_EXPIRES`](#rta-expires)
+  - [`RTA_PAD`](#rta-pad)
+  - [`RTA_UID`](#rta-uid)
+  - [`RTA_TTL_PROPAGATE`](#rta-ttl-propagate)
+  - [`NTF_EXT_LEARNED`](#ntf-ext-learned)
+  - [`NTF_OFFLOADED`](#ntf-offloaded)
+  - [`NDA_MASTER`](#nda-master)
+  - [`NDA_LINK_NETNSID`](#nda-link-netnsid)
+  - [`NDA_SRC_VNI`](#nda-src-vni)
   - [`UNAME26`](#uname26)
-  - [`FDPIC_FUNCPTRS`](#fdpic_funcptrs)
-  - [`MAX_LINKS`](#max_links)
-  - [`GENL_UNS_ADMIN_PERM`](#genl_uns_admin_perm)
-  - [`GENL_ID_VFS_DQUOT`](#genl_id_vfs_dquot)
-  - [`GENL_ID_PMCRAID`](#genl_id_pmcraid)
-  - [`ELFOSABI_ARM_AEABI`](#elfosabi_arm_aeabi)
-  - [`CLONE_NEWTIME`](#clone_newtime)
-  - [`CLONE_CLEAR_SIGHAND`](#clone_clear_sighand)
-  - [`CLONE_INTO_CGROUP`](#clone_into_cgroup)
-  - [`M_MXFAST`](#m_mxfast)
-  - [`M_NLBLKS`](#m_nlblks)
-  - [`M_GRAIN`](#m_grain)
-  - [`M_KEEP`](#m_keep)
-  - [`M_TRIM_THRESHOLD`](#m_trim_threshold)
-  - [`M_TOP_PAD`](#m_top_pad)
-  - [`M_MMAP_THRESHOLD`](#m_mmap_threshold)
-  - [`M_MMAP_MAX`](#m_mmap_max)
-  - [`M_CHECK_ACTION`](#m_check_action)
-  - [`M_PERTURB`](#m_perturb)
-  - [`M_ARENA_TEST`](#m_arena_test)
-  - [`M_ARENA_MAX`](#m_arena_max)
+  - [`FDPIC_FUNCPTRS`](#fdpic-funcptrs)
+  - [`MAX_LINKS`](#max-links)
+  - [`GENL_UNS_ADMIN_PERM`](#genl-uns-admin-perm)
+  - [`GENL_ID_VFS_DQUOT`](#genl-id-vfs-dquot)
+  - [`GENL_ID_PMCRAID`](#genl-id-pmcraid)
+  - [`ELFOSABI_ARM_AEABI`](#elfosabi-arm-aeabi)
+  - [`CLONE_NEWTIME`](#clone-newtime)
+  - [`CLONE_CLEAR_SIGHAND`](#clone-clear-sighand)
+  - [`CLONE_INTO_CGROUP`](#clone-into-cgroup)
+  - [`M_MXFAST`](#m-mxfast)
+  - [`M_NLBLKS`](#m-nlblks)
+  - [`M_GRAIN`](#m-grain)
+  - [`M_KEEP`](#m-keep)
+  - [`M_TRIM_THRESHOLD`](#m-trim-threshold)
+  - [`M_TOP_PAD`](#m-top-pad)
+  - [`M_MMAP_THRESHOLD`](#m-mmap-threshold)
+  - [`M_MMAP_MAX`](#m-mmap-max)
+  - [`M_CHECK_ACTION`](#m-check-action)
+  - [`M_PERTURB`](#m-perturb)
+  - [`M_ARENA_TEST`](#m-arena-test)
+  - [`M_ARENA_MAX`](#m-arena-max)
   - [`SOMAXCONN`](#somaxconn)
-  - [`MOVE_MOUNT_F_SYMLINKS`](#move_mount_f_symlinks)
-  - [`MOVE_MOUNT_F_AUTOMOUNTS`](#move_mount_f_automounts)
-  - [`MOVE_MOUNT_F_EMPTY_PATH`](#move_mount_f_empty_path)
-  - [`MOVE_MOUNT_T_SYMLINKS`](#move_mount_t_symlinks)
-  - [`MOVE_MOUNT_T_AUTOMOUNTS`](#move_mount_t_automounts)
-  - [`MOVE_MOUNT_T_EMPTY_PATH`](#move_mount_t_empty_path)
-  - [`MOVE_MOUNT_SET_GROUP`](#move_mount_set_group)
-  - [`MOVE_MOUNT_BENEATH`](#move_mount_beneath)
-  - [`ADJ_OFFSET`](#adj_offset)
-  - [`ADJ_FREQUENCY`](#adj_frequency)
-  - [`ADJ_MAXERROR`](#adj_maxerror)
-  - [`ADJ_ESTERROR`](#adj_esterror)
-  - [`ADJ_STATUS`](#adj_status)
-  - [`ADJ_TIMECONST`](#adj_timeconst)
-  - [`ADJ_TAI`](#adj_tai)
-  - [`ADJ_SETOFFSET`](#adj_setoffset)
-  - [`ADJ_MICRO`](#adj_micro)
-  - [`ADJ_NANO`](#adj_nano)
-  - [`ADJ_TICK`](#adj_tick)
-  - [`ADJ_OFFSET_SINGLESHOT`](#adj_offset_singleshot)
-  - [`ADJ_OFFSET_SS_READ`](#adj_offset_ss_read)
-  - [`MOD_OFFSET`](#mod_offset)
-  - [`MOD_FREQUENCY`](#mod_frequency)
-  - [`MOD_MAXERROR`](#mod_maxerror)
-  - [`MOD_ESTERROR`](#mod_esterror)
-  - [`MOD_STATUS`](#mod_status)
-  - [`MOD_TIMECONST`](#mod_timeconst)
-  - [`MOD_CLKB`](#mod_clkb)
-  - [`MOD_CLKA`](#mod_clka)
-  - [`MOD_TAI`](#mod_tai)
-  - [`MOD_MICRO`](#mod_micro)
-  - [`MOD_NANO`](#mod_nano)
-  - [`STA_PLL`](#sta_pll)
-  - [`STA_PPSFREQ`](#sta_ppsfreq)
-  - [`STA_PPSTIME`](#sta_ppstime)
-  - [`STA_FLL`](#sta_fll)
-  - [`STA_INS`](#sta_ins)
-  - [`STA_DEL`](#sta_del)
-  - [`STA_UNSYNC`](#sta_unsync)
-  - [`STA_FREQHOLD`](#sta_freqhold)
-  - [`STA_PPSSIGNAL`](#sta_ppssignal)
-  - [`STA_PPSJITTER`](#sta_ppsjitter)
-  - [`STA_PPSWANDER`](#sta_ppswander)
-  - [`STA_PPSERROR`](#sta_ppserror)
-  - [`STA_CLOCKERR`](#sta_clockerr)
-  - [`STA_NANO`](#sta_nano)
-  - [`STA_MODE`](#sta_mode)
-  - [`STA_CLK`](#sta_clk)
-  - [`STA_RONLY`](#sta_ronly)
-  - [`NTP_API`](#ntp_api)
-  - [`TIME_OK`](#time_ok)
-  - [`TIME_INS`](#time_ins)
-  - [`TIME_DEL`](#time_del)
-  - [`TIME_OOP`](#time_oop)
-  - [`TIME_WAIT`](#time_wait)
-  - [`TIME_ERROR`](#time_error)
-  - [`TIME_BAD`](#time_bad)
+  - [`MOVE_MOUNT_F_SYMLINKS`](#move-mount-f-symlinks)
+  - [`MOVE_MOUNT_F_AUTOMOUNTS`](#move-mount-f-automounts)
+  - [`MOVE_MOUNT_F_EMPTY_PATH`](#move-mount-f-empty-path)
+  - [`MOVE_MOUNT_T_SYMLINKS`](#move-mount-t-symlinks)
+  - [`MOVE_MOUNT_T_AUTOMOUNTS`](#move-mount-t-automounts)
+  - [`MOVE_MOUNT_T_EMPTY_PATH`](#move-mount-t-empty-path)
+  - [`MOVE_MOUNT_SET_GROUP`](#move-mount-set-group)
+  - [`MOVE_MOUNT_BENEATH`](#move-mount-beneath)
+  - [`ADJ_OFFSET`](#adj-offset)
+  - [`ADJ_FREQUENCY`](#adj-frequency)
+  - [`ADJ_MAXERROR`](#adj-maxerror)
+  - [`ADJ_ESTERROR`](#adj-esterror)
+  - [`ADJ_STATUS`](#adj-status)
+  - [`ADJ_TIMECONST`](#adj-timeconst)
+  - [`ADJ_TAI`](#adj-tai)
+  - [`ADJ_SETOFFSET`](#adj-setoffset)
+  - [`ADJ_MICRO`](#adj-micro)
+  - [`ADJ_NANO`](#adj-nano)
+  - [`ADJ_TICK`](#adj-tick)
+  - [`ADJ_OFFSET_SINGLESHOT`](#adj-offset-singleshot)
+  - [`ADJ_OFFSET_SS_READ`](#adj-offset-ss-read)
+  - [`MOD_OFFSET`](#mod-offset)
+  - [`MOD_FREQUENCY`](#mod-frequency)
+  - [`MOD_MAXERROR`](#mod-maxerror)
+  - [`MOD_ESTERROR`](#mod-esterror)
+  - [`MOD_STATUS`](#mod-status)
+  - [`MOD_TIMECONST`](#mod-timeconst)
+  - [`MOD_CLKB`](#mod-clkb)
+  - [`MOD_CLKA`](#mod-clka)
+  - [`MOD_TAI`](#mod-tai)
+  - [`MOD_MICRO`](#mod-micro)
+  - [`MOD_NANO`](#mod-nano)
+  - [`STA_PLL`](#sta-pll)
+  - [`STA_PPSFREQ`](#sta-ppsfreq)
+  - [`STA_PPSTIME`](#sta-ppstime)
+  - [`STA_FLL`](#sta-fll)
+  - [`STA_INS`](#sta-ins)
+  - [`STA_DEL`](#sta-del)
+  - [`STA_UNSYNC`](#sta-unsync)
+  - [`STA_FREQHOLD`](#sta-freqhold)
+  - [`STA_PPSSIGNAL`](#sta-ppssignal)
+  - [`STA_PPSJITTER`](#sta-ppsjitter)
+  - [`STA_PPSWANDER`](#sta-ppswander)
+  - [`STA_PPSERROR`](#sta-ppserror)
+  - [`STA_CLOCKERR`](#sta-clockerr)
+  - [`STA_NANO`](#sta-nano)
+  - [`STA_MODE`](#sta-mode)
+  - [`STA_CLK`](#sta-clk)
+  - [`STA_RONLY`](#sta-ronly)
+  - [`NTP_API`](#ntp-api)
+  - [`TIME_OK`](#time-ok)
+  - [`TIME_INS`](#time-ins)
+  - [`TIME_DEL`](#time-del)
+  - [`TIME_OOP`](#time-oop)
+  - [`TIME_WAIT`](#time-wait)
+  - [`TIME_ERROR`](#time-error)
+  - [`TIME_BAD`](#time-bad)
   - [`MAXTC`](#maxtc)
-  - [`GLOB_PERIOD`](#glob_period)
-  - [`GLOB_ALTDIRFUNC`](#glob_altdirfunc)
-  - [`GLOB_BRACE`](#glob_brace)
-  - [`GLOB_NOMAGIC`](#glob_nomagic)
-  - [`GLOB_TILDE`](#glob_tilde)
-  - [`GLOB_ONLYDIR`](#glob_onlydir)
-  - [`GLOB_TILDE_CHECK`](#glob_tilde_check)
-  - [`MADV_COLLAPSE`](#madv_collapse)
-  - [`PTHREAD_STACK_MIN`](#pthread_stack_min)
-  - [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread_mutex_adaptive_np)
-  - [`REG_STARTEND`](#reg_startend)
-  - [`REG_EEND`](#reg_eend)
-  - [`REG_ESIZE`](#reg_esize)
-  - [`REG_ERPAREN`](#reg_erparen)
-  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t)
-  - [`O_LARGEFILE`](#o_largefile)
+  - [`GLOB_PERIOD`](#glob-period)
+  - [`GLOB_ALTDIRFUNC`](#glob-altdirfunc)
+  - [`GLOB_BRACE`](#glob-brace)
+  - [`GLOB_NOMAGIC`](#glob-nomagic)
+  - [`GLOB_TILDE`](#glob-tilde)
+  - [`GLOB_ONLYDIR`](#glob-onlydir)
+  - [`GLOB_TILDE_CHECK`](#glob-tilde-check)
+  - [`MADV_COLLAPSE`](#madv-collapse)
+  - [`PTHREAD_STACK_MIN`](#pthread-stack-min)
+  - [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread-mutex-adaptive-np)
+  - [`REG_STARTEND`](#reg-startend)
+  - [`REG_EEND`](#reg-eend)
+  - [`REG_ESIZE`](#reg-esize)
+  - [`REG_ERPAREN`](#reg-erparen)
+  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#sizeof-pthread-rwlockattr-t)
+  - [`O_LARGEFILE`](#o-largefile)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`b64`](#b64) | mod | 64-bit specific definitions for linux-like values |
-| [`x86_64`](#x86_64) | mod | x86_64-specific definitions for 64-bit linux-like values |
+| [`x86_64`](#x86-64) | mod | x86_64-specific definitions for 64-bit linux-like values |
 | [`aiocb`](#aiocb) | struct |  |
-| [`__exit_status`](#__exit_status) | struct |  |
-| [`__timeval`](#__timeval) | struct |  |
-| [`glob64_t`](#glob64_t) | struct |  |
+| [`__exit_status`](#exit-status) | struct |  |
+| [`__timeval`](#timeval) | struct |  |
+| [`glob64_t`](#glob64-t) | struct |  |
 | [`msghdr`](#msghdr) | struct |  |
 | [`cmsghdr`](#cmsghdr) | struct |  |
 | [`termios`](#termios) | struct |  |
 | [`mallinfo`](#mallinfo) | struct |  |
 | [`mallinfo2`](#mallinfo2) | struct |  |
-| [`nl_pktinfo`](#nl_pktinfo) | struct |  |
-| [`nl_mmap_req`](#nl_mmap_req) | struct |  |
-| [`nl_mmap_hdr`](#nl_mmap_hdr) | struct |  |
+| [`nl_pktinfo`](#nl-pktinfo) | struct |  |
+| [`nl_mmap_req`](#nl-mmap-req) | struct |  |
+| [`nl_mmap_hdr`](#nl-mmap-hdr) | struct |  |
 | [`ntptimeval`](#ntptimeval) | struct |  |
-| [`regex_t`](#regex_t) | struct |  |
-| [`Elf64_Chdr`](#elf64_chdr) | struct |  |
-| [`Elf32_Chdr`](#elf32_chdr) | struct |  |
+| [`regex_t`](#regex-t) | struct |  |
+| [`Elf64_Chdr`](#elf64-chdr) | struct |  |
+| [`Elf32_Chdr`](#elf32-chdr) | struct |  |
 | [`seminfo`](#seminfo) | struct |  |
-| [`ptrace_peeksiginfo_args`](#ptrace_peeksiginfo_args) | struct |  |
-| [`__c_anonymous_ptrace_syscall_info_entry`](#__c_anonymous_ptrace_syscall_info_entry) | struct |  |
-| [`__c_anonymous_ptrace_syscall_info_exit`](#__c_anonymous_ptrace_syscall_info_exit) | struct |  |
-| [`__c_anonymous_ptrace_syscall_info_seccomp`](#__c_anonymous_ptrace_syscall_info_seccomp) | struct |  |
-| [`ptrace_syscall_info`](#ptrace_syscall_info) | struct |  |
-| [`ptrace_sud_config`](#ptrace_sud_config) | struct |  |
+| [`ptrace_peeksiginfo_args`](#ptrace-peeksiginfo-args) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_entry`](#c-anonymous-ptrace-syscall-info-entry) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_exit`](#c-anonymous-ptrace-syscall-info-exit) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_seccomp`](#c-anonymous-ptrace-syscall-info-seccomp) | struct |  |
+| [`ptrace_syscall_info`](#ptrace-syscall-info) | struct |  |
+| [`ptrace_sud_config`](#ptrace-sud-config) | struct |  |
 | [`iocb`](#iocb) | struct |  |
-| [`tcp_info`](#tcp_info) | struct |  |
-| [`fanotify_event_info_pidfd`](#fanotify_event_info_pidfd) | struct |  |
-| [`fanotify_event_info_error`](#fanotify_event_info_error) | struct |  |
-| [`sem_t`](#sem_t) | struct |  |
-| [`mbstate_t`](#mbstate_t) | struct |  |
-| [`fpos64_t`](#fpos64_t) | struct |  |
-| [`fpos_t`](#fpos_t) | struct |  |
+| [`tcp_info`](#tcp-info) | struct |  |
+| [`fanotify_event_info_pidfd`](#fanotify-event-info-pidfd) | struct |  |
+| [`fanotify_event_info_error`](#fanotify-event-info-error) | struct |  |
+| [`sem_t`](#sem-t) | struct |  |
+| [`mbstate_t`](#mbstate-t) | struct |  |
+| [`fpos64_t`](#fpos64-t) | struct |  |
+| [`fpos_t`](#fpos-t) | struct |  |
 | [`timespec`](#timespec) | struct |  |
 | [`utmpx`](#utmpx) | struct |  |
-| [`sifields_sigchld`](#sifields_sigchld) | struct |  |
-| [`siginfo_f`](#siginfo_f) | struct |  |
-| [`sigset_t`](#sigset_t) | struct |  |
+| [`sifields_sigchld`](#sifields-sigchld) | struct |  |
+| [`siginfo_f`](#siginfo-f) | struct |  |
+| [`sigset_t`](#sigset-t) | struct |  |
 | [`sysinfo`](#sysinfo) | struct |  |
-| [`msqid_ds`](#msqid_ds) | struct |  |
-| [`semid_ds`](#semid_ds) | struct |  |
+| [`msqid_ds`](#msqid-ds) | struct |  |
+| [`semid_ds`](#semid-ds) | struct |  |
 | [`timex`](#timex) | struct |  |
-| [`fgetspent_r`](#fgetspent_r) | fn |  |
-| [`sgetspent_r`](#sgetspent_r) | fn |  |
-| [`getspent_r`](#getspent_r) | fn |  |
-| [`qsort_r`](#qsort_r) | fn |  |
+| [`fgetspent_r`](#fgetspent-r) | fn |  |
+| [`sgetspent_r`](#sgetspent-r) | fn |  |
+| [`getspent_r`](#getspent-r) | fn |  |
+| [`qsort_r`](#qsort-r) | fn |  |
 | [`sendmmsg`](#sendmmsg) | fn |  |
 | [`recvmmsg`](#recvmmsg) | fn |  |
 | [`getrlimit64`](#getrlimit64) | fn |  |
@@ -573,425 +573,425 @@
 | [`getrandom`](#getrandom) | fn |  |
 | [`getauxval`](#getauxval) | fn |  |
 | [`adjtimex`](#adjtimex) | fn |  |
-| [`ntp_adjtime`](#ntp_adjtime) | fn |  |
-| [`ntp_gettime`](#ntp_gettime) | fn |  |
-| [`clock_adjtime`](#clock_adjtime) | fn |  |
-| [`fanotify_mark`](#fanotify_mark) | fn |  |
+| [`ntp_adjtime`](#ntp-adjtime) | fn |  |
+| [`ntp_gettime`](#ntp-gettime) | fn |  |
+| [`clock_adjtime`](#clock-adjtime) | fn |  |
+| [`fanotify_mark`](#fanotify-mark) | fn |  |
 | [`preadv2`](#preadv2) | fn |  |
 | [`pwritev2`](#pwritev2) | fn |  |
 | [`preadv64v2`](#preadv64v2) | fn |  |
 | [`pwritev64v2`](#pwritev64v2) | fn |  |
 | [`renameat2`](#renameat2) | fn |  |
-| [`explicit_bzero`](#explicit_bzero) | fn |  |
+| [`explicit_bzero`](#explicit-bzero) | fn |  |
 | [`reallocarray`](#reallocarray) | fn |  |
 | [`ctermid`](#ctermid) | fn |  |
 | [`backtrace`](#backtrace) | fn |  |
-| [`backtrace_symbols`](#backtrace_symbols) | fn |  |
-| [`backtrace_symbols_fd`](#backtrace_symbols_fd) | fn |  |
+| [`backtrace_symbols`](#backtrace-symbols) | fn |  |
+| [`backtrace_symbols_fd`](#backtrace-symbols-fd) | fn |  |
 | [`glob64`](#glob64) | fn |  |
 | [`globfree64`](#globfree64) | fn |  |
 | [`ptrace`](#ptrace) | fn |  |
-| [`pthread_attr_getaffinity_np`](#pthread_attr_getaffinity_np) | fn |  |
-| [`pthread_attr_setaffinity_np`](#pthread_attr_setaffinity_np) | fn |  |
+| [`pthread_attr_getaffinity_np`](#pthread-attr-getaffinity-np) | fn |  |
+| [`pthread_attr_setaffinity_np`](#pthread-attr-setaffinity-np) | fn |  |
 | [`getpriority`](#getpriority) | fn |  |
 | [`setpriority`](#setpriority) | fn |  |
-| [`pthread_rwlockattr_getkind_np`](#pthread_rwlockattr_getkind_np) | fn |  |
-| [`pthread_rwlockattr_setkind_np`](#pthread_rwlockattr_setkind_np) | fn |  |
-| [`pthread_sigqueue`](#pthread_sigqueue) | fn |  |
+| [`pthread_rwlockattr_getkind_np`](#pthread-rwlockattr-getkind-np) | fn |  |
+| [`pthread_rwlockattr_setkind_np`](#pthread-rwlockattr-setkind-np) | fn |  |
+| [`pthread_sigqueue`](#pthread-sigqueue) | fn |  |
 | [`mallinfo`](#mallinfo) | fn |  |
 | [`mallinfo2`](#mallinfo2) | fn |  |
-| [`malloc_stats`](#malloc_stats) | fn |  |
-| [`malloc_info`](#malloc_info) | fn |  |
-| [`malloc_usable_size`](#malloc_usable_size) | fn |  |
-| [`getpwent_r`](#getpwent_r) | fn |  |
-| [`getgrent_r`](#getgrent_r) | fn |  |
-| [`fgetpwent_r`](#fgetpwent_r) | fn |  |
-| [`fgetgrent_r`](#fgetgrent_r) | fn |  |
+| [`malloc_stats`](#malloc-stats) | fn |  |
+| [`malloc_info`](#malloc-info) | fn |  |
+| [`malloc_usable_size`](#malloc-usable-size) | fn |  |
+| [`getpwent_r`](#getpwent-r) | fn |  |
+| [`getgrent_r`](#getgrent-r) | fn |  |
+| [`fgetpwent_r`](#fgetpwent-r) | fn |  |
+| [`fgetgrent_r`](#fgetgrent-r) | fn |  |
 | [`putpwent`](#putpwent) | fn |  |
 | [`putgrent`](#putgrent) | fn |  |
 | [`sethostid`](#sethostid) | fn |  |
-| [`memfd_create`](#memfd_create) | fn |  |
+| [`memfd_create`](#memfd-create) | fn |  |
 | [`mlock2`](#mlock2) | fn |  |
 | [`euidaccess`](#euidaccess) | fn |  |
 | [`eaccess`](#eaccess) | fn |  |
-| [`asctime_r`](#asctime_r) | fn |  |
-| [`ctime_r`](#ctime_r) | fn |  |
+| [`asctime_r`](#asctime-r) | fn |  |
+| [`ctime_r`](#ctime-r) | fn |  |
 | [`dirname`](#dirname) | fn |  |
-| [`posix_basename`](#posix_basename) | fn | POSIX version of `basename(3)`, defined in `libgen.h`. |
-| [`gnu_basename`](#gnu_basename) | fn | GNU version of `basename(3)`, defined in `string.h`. |
+| [`posix_basename`](#posix-basename) | fn | POSIX version of `basename(3)`, defined in `libgen.h`. |
+| [`gnu_basename`](#gnu-basename) | fn | GNU version of `basename(3)`, defined in `string.h`. |
 | [`dlmopen`](#dlmopen) | fn |  |
 | [`dlinfo`](#dlinfo) | fn |  |
 | [`dladdr1`](#dladdr1) | fn |  |
 | [`dlvsym`](#dlvsym) | fn |  |
-| [`malloc_trim`](#malloc_trim) | fn |  |
-| [`gnu_get_libc_release`](#gnu_get_libc_release) | fn |  |
-| [`gnu_get_libc_version`](#gnu_get_libc_version) | fn |  |
-| [`posix_spawn_file_actions_addchdir_np`](#posix_spawn_file_actions_addchdir_np) | fn |  |
-| [`posix_spawn_file_actions_addfchdir_np`](#posix_spawn_file_actions_addfchdir_np) | fn |  |
-| [`posix_spawn_file_actions_addclosefrom_np`](#posix_spawn_file_actions_addclosefrom_np) | fn |  |
-| [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix_spawn_file_actions_addtcsetpgrp_np) | fn |  |
-| [`getmntent_r`](#getmntent_r) | fn |  |
+| [`malloc_trim`](#malloc-trim) | fn |  |
+| [`gnu_get_libc_release`](#gnu-get-libc-release) | fn |  |
+| [`gnu_get_libc_version`](#gnu-get-libc-version) | fn |  |
+| [`posix_spawn_file_actions_addchdir_np`](#posix-spawn-file-actions-addchdir-np) | fn |  |
+| [`posix_spawn_file_actions_addfchdir_np`](#posix-spawn-file-actions-addfchdir-np) | fn |  |
+| [`posix_spawn_file_actions_addclosefrom_np`](#posix-spawn-file-actions-addclosefrom-np) | fn |  |
+| [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix-spawn-file-actions-addtcsetpgrp-np) | fn |  |
+| [`getmntent_r`](#getmntent-r) | fn |  |
 | [`execveat`](#execveat) | fn |  |
-| [`close_range`](#close_range) | fn |  |
-| [`mq_notify`](#mq_notify) | fn |  |
-| [`epoll_pwait2`](#epoll_pwait2) | fn |  |
+| [`close_range`](#close-range) | fn |  |
+| [`mq_notify`](#mq-notify) | fn |  |
+| [`epoll_pwait2`](#epoll-pwait2) | fn |  |
 | [`mempcpy`](#mempcpy) | fn |  |
-| [`pthread_t`](#pthread_t) | type |  |
-| [`__priority_which_t`](#__priority_which_t) | type |  |
-| [`__rlimit_resource_t`](#__rlimit_resource_t) | type |  |
-| [`Lmid_t`](#lmid_t) | type |  |
-| [`regoff_t`](#regoff_t) | type |  |
-| [`__kernel_rwf_t`](#__kernel_rwf_t) | type |  |
+| [`pthread_t`](#pthread-t) | type |  |
+| [`__priority_which_t`](#priority-which-t) | type |  |
+| [`__rlimit_resource_t`](#rlimit-resource-t) | type |  |
+| [`Lmid_t`](#lmid-t) | type |  |
+| [`regoff_t`](#regoff-t) | type |  |
+| [`__kernel_rwf_t`](#kernel-rwf-t) | type |  |
 | [`Ioctl`](#ioctl) | type |  |
-| [`ino_t`](#ino_t) | type |  |
-| [`off_t`](#off_t) | type |  |
-| [`blkcnt_t`](#blkcnt_t) | type |  |
-| [`shmatt_t`](#shmatt_t) | type |  |
-| [`msgqnum_t`](#msgqnum_t) | type |  |
-| [`msglen_t`](#msglen_t) | type |  |
-| [`fsblkcnt_t`](#fsblkcnt_t) | type |  |
-| [`fsfilcnt_t`](#fsfilcnt_t) | type |  |
-| [`rlim_t`](#rlim_t) | type |  |
-| [`__syscall_ulong_t`](#__syscall_ulong_t) | type |  |
-| [`__fsword_t`](#__fsword_t) | type |  |
-| [`clock_t`](#clock_t) | type |  |
-| [`time_t`](#time_t) | type |  |
-| [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb_flag_encode_shift) | const |  |
-| [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb_flag_encode_mask) | const |  |
-| [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb_flag_encode_64kb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb_flag_encode_512kb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb_flag_encode_1mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb_flag_encode_2mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb_flag_encode_8mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb_flag_encode_16mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb_flag_encode_32mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb_flag_encode_256mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb_flag_encode_512mb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb_flag_encode_1gb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb_flag_encode_2gb) | const |  |
-| [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb_flag_encode_16gb) | const |  |
-| [`MAP_HUGE_SHIFT`](#map_huge_shift) | const |  |
-| [`MAP_HUGE_MASK`](#map_huge_mask) | const |  |
-| [`MAP_HUGE_64KB`](#map_huge_64kb) | const |  |
-| [`MAP_HUGE_512KB`](#map_huge_512kb) | const |  |
-| [`MAP_HUGE_1MB`](#map_huge_1mb) | const |  |
-| [`MAP_HUGE_2MB`](#map_huge_2mb) | const |  |
-| [`MAP_HUGE_8MB`](#map_huge_8mb) | const |  |
-| [`MAP_HUGE_16MB`](#map_huge_16mb) | const |  |
-| [`MAP_HUGE_32MB`](#map_huge_32mb) | const |  |
-| [`MAP_HUGE_256MB`](#map_huge_256mb) | const |  |
-| [`MAP_HUGE_512MB`](#map_huge_512mb) | const |  |
-| [`MAP_HUGE_1GB`](#map_huge_1gb) | const |  |
-| [`MAP_HUGE_2GB`](#map_huge_2gb) | const |  |
-| [`MAP_HUGE_16GB`](#map_huge_16gb) | const |  |
-| [`PRIO_PROCESS`](#prio_process) | const |  |
-| [`PRIO_PGRP`](#prio_pgrp) | const |  |
-| [`PRIO_USER`](#prio_user) | const |  |
-| [`MS_RMT_MASK`](#ms_rmt_mask) | const |  |
-| [`__UT_LINESIZE`](#__ut_linesize) | const |  |
-| [`__UT_NAMESIZE`](#__ut_namesize) | const |  |
-| [`__UT_HOSTSIZE`](#__ut_hostsize) | const |  |
+| [`ino_t`](#ino-t) | type |  |
+| [`off_t`](#off-t) | type |  |
+| [`blkcnt_t`](#blkcnt-t) | type |  |
+| [`shmatt_t`](#shmatt-t) | type |  |
+| [`msgqnum_t`](#msgqnum-t) | type |  |
+| [`msglen_t`](#msglen-t) | type |  |
+| [`fsblkcnt_t`](#fsblkcnt-t) | type |  |
+| [`fsfilcnt_t`](#fsfilcnt-t) | type |  |
+| [`rlim_t`](#rlim-t) | type |  |
+| [`__syscall_ulong_t`](#syscall-ulong-t) | type |  |
+| [`__fsword_t`](#fsword-t) | type |  |
+| [`clock_t`](#clock-t) | type |  |
+| [`time_t`](#time-t) | type |  |
+| [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb-flag-encode-shift) | const |  |
+| [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb-flag-encode-mask) | const |  |
+| [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb-flag-encode-64kb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb-flag-encode-512kb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb-flag-encode-1mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb-flag-encode-2mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb-flag-encode-8mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb-flag-encode-16mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb-flag-encode-32mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb-flag-encode-256mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb-flag-encode-512mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb-flag-encode-1gb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb-flag-encode-2gb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb-flag-encode-16gb) | const |  |
+| [`MAP_HUGE_SHIFT`](#map-huge-shift) | const |  |
+| [`MAP_HUGE_MASK`](#map-huge-mask) | const |  |
+| [`MAP_HUGE_64KB`](#map-huge-64kb) | const |  |
+| [`MAP_HUGE_512KB`](#map-huge-512kb) | const |  |
+| [`MAP_HUGE_1MB`](#map-huge-1mb) | const |  |
+| [`MAP_HUGE_2MB`](#map-huge-2mb) | const |  |
+| [`MAP_HUGE_8MB`](#map-huge-8mb) | const |  |
+| [`MAP_HUGE_16MB`](#map-huge-16mb) | const |  |
+| [`MAP_HUGE_32MB`](#map-huge-32mb) | const |  |
+| [`MAP_HUGE_256MB`](#map-huge-256mb) | const |  |
+| [`MAP_HUGE_512MB`](#map-huge-512mb) | const |  |
+| [`MAP_HUGE_1GB`](#map-huge-1gb) | const |  |
+| [`MAP_HUGE_2GB`](#map-huge-2gb) | const |  |
+| [`MAP_HUGE_16GB`](#map-huge-16gb) | const |  |
+| [`PRIO_PROCESS`](#prio-process) | const |  |
+| [`PRIO_PGRP`](#prio-pgrp) | const |  |
+| [`PRIO_USER`](#prio-user) | const |  |
+| [`MS_RMT_MASK`](#ms-rmt-mask) | const |  |
+| [`__UT_LINESIZE`](#ut-linesize) | const |  |
+| [`__UT_NAMESIZE`](#ut-namesize) | const |  |
+| [`__UT_HOSTSIZE`](#ut-hostsize) | const |  |
 | [`EMPTY`](#empty) | const |  |
-| [`RUN_LVL`](#run_lvl) | const |  |
-| [`BOOT_TIME`](#boot_time) | const |  |
-| [`NEW_TIME`](#new_time) | const |  |
-| [`OLD_TIME`](#old_time) | const |  |
-| [`INIT_PROCESS`](#init_process) | const |  |
-| [`LOGIN_PROCESS`](#login_process) | const |  |
-| [`USER_PROCESS`](#user_process) | const |  |
-| [`DEAD_PROCESS`](#dead_process) | const |  |
+| [`RUN_LVL`](#run-lvl) | const |  |
+| [`BOOT_TIME`](#boot-time) | const |  |
+| [`NEW_TIME`](#new-time) | const |  |
+| [`OLD_TIME`](#old-time) | const |  |
+| [`INIT_PROCESS`](#init-process) | const |  |
+| [`LOGIN_PROCESS`](#login-process) | const |  |
+| [`USER_PROCESS`](#user-process) | const |  |
+| [`DEAD_PROCESS`](#dead-process) | const |  |
 | [`ACCOUNTING`](#accounting) | const |  |
-| [`LM_ID_BASE`](#lm_id_base) | const |  |
-| [`LM_ID_NEWLM`](#lm_id_newlm) | const |  |
-| [`RTLD_DI_LMID`](#rtld_di_lmid) | const |  |
-| [`RTLD_DI_LINKMAP`](#rtld_di_linkmap) | const |  |
-| [`RTLD_DI_CONFIGADDR`](#rtld_di_configaddr) | const |  |
-| [`RTLD_DI_SERINFO`](#rtld_di_serinfo) | const |  |
-| [`RTLD_DI_SERINFOSIZE`](#rtld_di_serinfosize) | const |  |
-| [`RTLD_DI_ORIGIN`](#rtld_di_origin) | const |  |
-| [`RTLD_DI_PROFILENAME`](#rtld_di_profilename) | const |  |
-| [`RTLD_DI_PROFILEOUT`](#rtld_di_profileout) | const |  |
-| [`RTLD_DI_TLS_MODID`](#rtld_di_tls_modid) | const |  |
-| [`RTLD_DI_TLS_DATA`](#rtld_di_tls_data) | const |  |
-| [`SOCK_NONBLOCK`](#sock_nonblock) | const |  |
-| [`SOL_RXRPC`](#sol_rxrpc) | const |  |
-| [`SOL_PPPOL2TP`](#sol_pppol2tp) | const |  |
-| [`SOL_PNPIPE`](#sol_pnpipe) | const |  |
-| [`SOL_RDS`](#sol_rds) | const |  |
-| [`SOL_IUCV`](#sol_iucv) | const |  |
-| [`SOL_CAIF`](#sol_caif) | const |  |
-| [`SOL_NFC`](#sol_nfc) | const |  |
-| [`MSG_TRYHARD`](#msg_tryhard) | const |  |
-| [`LC_PAPER`](#lc_paper) | const |  |
-| [`LC_NAME`](#lc_name) | const |  |
-| [`LC_ADDRESS`](#lc_address) | const |  |
-| [`LC_TELEPHONE`](#lc_telephone) | const |  |
-| [`LC_MEASUREMENT`](#lc_measurement) | const |  |
-| [`LC_IDENTIFICATION`](#lc_identification) | const |  |
-| [`LC_PAPER_MASK`](#lc_paper_mask) | const |  |
-| [`LC_NAME_MASK`](#lc_name_mask) | const |  |
-| [`LC_ADDRESS_MASK`](#lc_address_mask) | const |  |
-| [`LC_TELEPHONE_MASK`](#lc_telephone_mask) | const |  |
-| [`LC_MEASUREMENT_MASK`](#lc_measurement_mask) | const |  |
-| [`LC_IDENTIFICATION_MASK`](#lc_identification_mask) | const |  |
-| [`LC_ALL_MASK`](#lc_all_mask) | const |  |
+| [`LM_ID_BASE`](#lm-id-base) | const |  |
+| [`LM_ID_NEWLM`](#lm-id-newlm) | const |  |
+| [`RTLD_DI_LMID`](#rtld-di-lmid) | const |  |
+| [`RTLD_DI_LINKMAP`](#rtld-di-linkmap) | const |  |
+| [`RTLD_DI_CONFIGADDR`](#rtld-di-configaddr) | const |  |
+| [`RTLD_DI_SERINFO`](#rtld-di-serinfo) | const |  |
+| [`RTLD_DI_SERINFOSIZE`](#rtld-di-serinfosize) | const |  |
+| [`RTLD_DI_ORIGIN`](#rtld-di-origin) | const |  |
+| [`RTLD_DI_PROFILENAME`](#rtld-di-profilename) | const |  |
+| [`RTLD_DI_PROFILEOUT`](#rtld-di-profileout) | const |  |
+| [`RTLD_DI_TLS_MODID`](#rtld-di-tls-modid) | const |  |
+| [`RTLD_DI_TLS_DATA`](#rtld-di-tls-data) | const |  |
+| [`SOCK_NONBLOCK`](#sock-nonblock) | const |  |
+| [`SOL_RXRPC`](#sol-rxrpc) | const |  |
+| [`SOL_PPPOL2TP`](#sol-pppol2tp) | const |  |
+| [`SOL_PNPIPE`](#sol-pnpipe) | const |  |
+| [`SOL_RDS`](#sol-rds) | const |  |
+| [`SOL_IUCV`](#sol-iucv) | const |  |
+| [`SOL_CAIF`](#sol-caif) | const |  |
+| [`SOL_NFC`](#sol-nfc) | const |  |
+| [`MSG_TRYHARD`](#msg-tryhard) | const |  |
+| [`LC_PAPER`](#lc-paper) | const |  |
+| [`LC_NAME`](#lc-name) | const |  |
+| [`LC_ADDRESS`](#lc-address) | const |  |
+| [`LC_TELEPHONE`](#lc-telephone) | const |  |
+| [`LC_MEASUREMENT`](#lc-measurement) | const |  |
+| [`LC_IDENTIFICATION`](#lc-identification) | const |  |
+| [`LC_PAPER_MASK`](#lc-paper-mask) | const |  |
+| [`LC_NAME_MASK`](#lc-name-mask) | const |  |
+| [`LC_ADDRESS_MASK`](#lc-address-mask) | const |  |
+| [`LC_TELEPHONE_MASK`](#lc-telephone-mask) | const |  |
+| [`LC_MEASUREMENT_MASK`](#lc-measurement-mask) | const |  |
+| [`LC_IDENTIFICATION_MASK`](#lc-identification-mask) | const |  |
+| [`LC_ALL_MASK`](#lc-all-mask) | const |  |
 | [`ENOTSUP`](#enotsup) | const |  |
-| [`SOCK_SEQPACKET`](#sock_seqpacket) | const |  |
-| [`SOCK_DCCP`](#sock_dccp) | const |  |
-| [`SOCK_PACKET`](#sock_packet) | const |  |
-| [`AF_IB`](#af_ib) | const |  |
-| [`AF_MPLS`](#af_mpls) | const |  |
-| [`AF_NFC`](#af_nfc) | const |  |
-| [`AF_VSOCK`](#af_vsock) | const |  |
-| [`AF_XDP`](#af_xdp) | const |  |
-| [`PF_IB`](#pf_ib) | const |  |
-| [`PF_MPLS`](#pf_mpls) | const |  |
-| [`PF_NFC`](#pf_nfc) | const |  |
-| [`PF_VSOCK`](#pf_vsock) | const |  |
-| [`PF_XDP`](#pf_xdp) | const |  |
-| [`SIGEV_THREAD_ID`](#sigev_thread_id) | const |  |
+| [`SOCK_SEQPACKET`](#sock-seqpacket) | const |  |
+| [`SOCK_DCCP`](#sock-dccp) | const |  |
+| [`SOCK_PACKET`](#sock-packet) | const |  |
+| [`AF_IB`](#af-ib) | const |  |
+| [`AF_MPLS`](#af-mpls) | const |  |
+| [`AF_NFC`](#af-nfc) | const |  |
+| [`AF_VSOCK`](#af-vsock) | const |  |
+| [`AF_XDP`](#af-xdp) | const |  |
+| [`PF_IB`](#pf-ib) | const |  |
+| [`PF_MPLS`](#pf-mpls) | const |  |
+| [`PF_NFC`](#pf-nfc) | const |  |
+| [`PF_VSOCK`](#pf-vsock) | const |  |
+| [`PF_XDP`](#pf-xdp) | const |  |
+| [`SIGEV_THREAD_ID`](#sigev-thread-id) | const |  |
 | [`BUFSIZ`](#bufsiz) | const |  |
-| [`TMP_MAX`](#tmp_max) | const |  |
-| [`FOPEN_MAX`](#fopen_max) | const |  |
-| [`FILENAME_MAX`](#filename_max) | const |  |
-| [`POSIX_MADV_DONTNEED`](#posix_madv_dontneed) | const |  |
-| [`_CS_GNU_LIBC_VERSION`](#_cs_gnu_libc_version) | const |  |
-| [`_CS_GNU_LIBPTHREAD_VERSION`](#_cs_gnu_libpthread_version) | const |  |
-| [`_CS_V6_ENV`](#_cs_v6_env) | const |  |
-| [`_CS_V7_ENV`](#_cs_v7_env) | const |  |
-| [`_SC_EQUIV_CLASS_MAX`](#_sc_equiv_class_max) | const |  |
-| [`_SC_CHARCLASS_NAME_MAX`](#_sc_charclass_name_max) | const |  |
-| [`_SC_PII`](#_sc_pii) | const |  |
-| [`_SC_PII_XTI`](#_sc_pii_xti) | const |  |
-| [`_SC_PII_SOCKET`](#_sc_pii_socket) | const |  |
-| [`_SC_PII_INTERNET`](#_sc_pii_internet) | const |  |
-| [`_SC_PII_OSI`](#_sc_pii_osi) | const |  |
-| [`_SC_POLL`](#_sc_poll) | const |  |
-| [`_SC_SELECT`](#_sc_select) | const |  |
-| [`_SC_PII_INTERNET_STREAM`](#_sc_pii_internet_stream) | const |  |
-| [`_SC_PII_INTERNET_DGRAM`](#_sc_pii_internet_dgram) | const |  |
-| [`_SC_PII_OSI_COTS`](#_sc_pii_osi_cots) | const |  |
-| [`_SC_PII_OSI_CLTS`](#_sc_pii_osi_clts) | const |  |
-| [`_SC_PII_OSI_M`](#_sc_pii_osi_m) | const |  |
-| [`_SC_T_IOV_MAX`](#_sc_t_iov_max) | const |  |
-| [`_SC_2_C_VERSION`](#_sc_2_c_version) | const |  |
-| [`_SC_CHAR_BIT`](#_sc_char_bit) | const |  |
-| [`_SC_CHAR_MAX`](#_sc_char_max) | const |  |
-| [`_SC_CHAR_MIN`](#_sc_char_min) | const |  |
-| [`_SC_INT_MAX`](#_sc_int_max) | const |  |
-| [`_SC_INT_MIN`](#_sc_int_min) | const |  |
-| [`_SC_LONG_BIT`](#_sc_long_bit) | const |  |
-| [`_SC_WORD_BIT`](#_sc_word_bit) | const |  |
-| [`_SC_MB_LEN_MAX`](#_sc_mb_len_max) | const |  |
-| [`_SC_SSIZE_MAX`](#_sc_ssize_max) | const |  |
-| [`_SC_SCHAR_MAX`](#_sc_schar_max) | const |  |
-| [`_SC_SCHAR_MIN`](#_sc_schar_min) | const |  |
-| [`_SC_SHRT_MAX`](#_sc_shrt_max) | const |  |
-| [`_SC_SHRT_MIN`](#_sc_shrt_min) | const |  |
-| [`_SC_UCHAR_MAX`](#_sc_uchar_max) | const |  |
-| [`_SC_UINT_MAX`](#_sc_uint_max) | const |  |
-| [`_SC_ULONG_MAX`](#_sc_ulong_max) | const |  |
-| [`_SC_USHRT_MAX`](#_sc_ushrt_max) | const |  |
-| [`_SC_NL_ARGMAX`](#_sc_nl_argmax) | const |  |
-| [`_SC_NL_LANGMAX`](#_sc_nl_langmax) | const |  |
-| [`_SC_NL_MSGMAX`](#_sc_nl_msgmax) | const |  |
-| [`_SC_NL_NMAX`](#_sc_nl_nmax) | const |  |
-| [`_SC_NL_SETMAX`](#_sc_nl_setmax) | const |  |
-| [`_SC_NL_TEXTMAX`](#_sc_nl_textmax) | const |  |
-| [`_SC_BASE`](#_sc_base) | const |  |
-| [`_SC_C_LANG_SUPPORT`](#_sc_c_lang_support) | const |  |
-| [`_SC_C_LANG_SUPPORT_R`](#_sc_c_lang_support_r) | const |  |
-| [`_SC_DEVICE_IO`](#_sc_device_io) | const |  |
-| [`_SC_DEVICE_SPECIFIC`](#_sc_device_specific) | const |  |
-| [`_SC_DEVICE_SPECIFIC_R`](#_sc_device_specific_r) | const |  |
-| [`_SC_FD_MGMT`](#_sc_fd_mgmt) | const |  |
-| [`_SC_FIFO`](#_sc_fifo) | const |  |
-| [`_SC_PIPE`](#_sc_pipe) | const |  |
-| [`_SC_FILE_ATTRIBUTES`](#_sc_file_attributes) | const |  |
-| [`_SC_FILE_LOCKING`](#_sc_file_locking) | const |  |
-| [`_SC_FILE_SYSTEM`](#_sc_file_system) | const |  |
-| [`_SC_MULTI_PROCESS`](#_sc_multi_process) | const |  |
-| [`_SC_SINGLE_PROCESS`](#_sc_single_process) | const |  |
-| [`_SC_NETWORKING`](#_sc_networking) | const |  |
-| [`_SC_REGEX_VERSION`](#_sc_regex_version) | const |  |
-| [`_SC_SIGNALS`](#_sc_signals) | const |  |
-| [`_SC_SYSTEM_DATABASE`](#_sc_system_database) | const |  |
-| [`_SC_SYSTEM_DATABASE_R`](#_sc_system_database_r) | const |  |
-| [`_SC_USER_GROUPS`](#_sc_user_groups) | const |  |
-| [`_SC_USER_GROUPS_R`](#_sc_user_groups_r) | const |  |
-| [`_SC_LEVEL1_ICACHE_SIZE`](#_sc_level1_icache_size) | const |  |
-| [`_SC_LEVEL1_ICACHE_ASSOC`](#_sc_level1_icache_assoc) | const |  |
-| [`_SC_LEVEL1_ICACHE_LINESIZE`](#_sc_level1_icache_linesize) | const |  |
-| [`_SC_LEVEL1_DCACHE_SIZE`](#_sc_level1_dcache_size) | const |  |
-| [`_SC_LEVEL1_DCACHE_ASSOC`](#_sc_level1_dcache_assoc) | const |  |
-| [`_SC_LEVEL1_DCACHE_LINESIZE`](#_sc_level1_dcache_linesize) | const |  |
-| [`_SC_LEVEL2_CACHE_SIZE`](#_sc_level2_cache_size) | const |  |
-| [`_SC_LEVEL2_CACHE_ASSOC`](#_sc_level2_cache_assoc) | const |  |
-| [`_SC_LEVEL2_CACHE_LINESIZE`](#_sc_level2_cache_linesize) | const |  |
-| [`_SC_LEVEL3_CACHE_SIZE`](#_sc_level3_cache_size) | const |  |
-| [`_SC_LEVEL3_CACHE_ASSOC`](#_sc_level3_cache_assoc) | const |  |
-| [`_SC_LEVEL3_CACHE_LINESIZE`](#_sc_level3_cache_linesize) | const |  |
-| [`_SC_LEVEL4_CACHE_SIZE`](#_sc_level4_cache_size) | const |  |
-| [`_SC_LEVEL4_CACHE_ASSOC`](#_sc_level4_cache_assoc) | const |  |
-| [`_SC_LEVEL4_CACHE_LINESIZE`](#_sc_level4_cache_linesize) | const |  |
-| [`O_ACCMODE`](#o_accmode) | const |  |
-| [`ST_RELATIME`](#st_relatime) | const |  |
-| [`NI_MAXHOST`](#ni_maxhost) | const |  |
-| [`BINDERFS_SUPER_MAGIC`](#binderfs_super_magic) | const |  |
-| [`XFS_SUPER_MAGIC`](#xfs_super_magic) | const |  |
-| [`CPU_SETSIZE`](#cpu_setsize) | const |  |
-| [`PTRACE_TRACEME`](#ptrace_traceme) | const |  |
-| [`PTRACE_PEEKTEXT`](#ptrace_peektext) | const |  |
-| [`PTRACE_PEEKDATA`](#ptrace_peekdata) | const |  |
-| [`PTRACE_PEEKUSER`](#ptrace_peekuser) | const |  |
-| [`PTRACE_POKETEXT`](#ptrace_poketext) | const |  |
-| [`PTRACE_POKEDATA`](#ptrace_pokedata) | const |  |
-| [`PTRACE_POKEUSER`](#ptrace_pokeuser) | const |  |
-| [`PTRACE_CONT`](#ptrace_cont) | const |  |
-| [`PTRACE_KILL`](#ptrace_kill) | const |  |
-| [`PTRACE_SINGLESTEP`](#ptrace_singlestep) | const |  |
-| [`PTRACE_ATTACH`](#ptrace_attach) | const |  |
-| [`PTRACE_SYSCALL`](#ptrace_syscall) | const |  |
-| [`PTRACE_SETOPTIONS`](#ptrace_setoptions) | const |  |
-| [`PTRACE_GETEVENTMSG`](#ptrace_geteventmsg) | const |  |
-| [`PTRACE_GETSIGINFO`](#ptrace_getsiginfo) | const |  |
-| [`PTRACE_SETSIGINFO`](#ptrace_setsiginfo) | const |  |
-| [`PTRACE_GETREGSET`](#ptrace_getregset) | const |  |
-| [`PTRACE_SETREGSET`](#ptrace_setregset) | const |  |
-| [`PTRACE_SEIZE`](#ptrace_seize) | const |  |
-| [`PTRACE_INTERRUPT`](#ptrace_interrupt) | const |  |
-| [`PTRACE_LISTEN`](#ptrace_listen) | const |  |
-| [`PTRACE_PEEKSIGINFO`](#ptrace_peeksiginfo) | const |  |
-| [`PTRACE_GETSIGMASK`](#ptrace_getsigmask) | const |  |
-| [`PTRACE_SETSIGMASK`](#ptrace_setsigmask) | const |  |
-| [`PTRACE_GET_SYSCALL_INFO`](#ptrace_get_syscall_info) | const |  |
-| [`PTRACE_SYSCALL_INFO_NONE`](#ptrace_syscall_info_none) | const |  |
-| [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace_syscall_info_entry) | const |  |
-| [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace_syscall_info_exit) | const |  |
-| [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace_syscall_info_seccomp) | const |  |
-| [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_set_syscall_user_dispatch_config) | const |  |
-| [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_get_syscall_user_dispatch_config) | const |  |
-| [`TCA_PAD`](#tca_pad) | const |  |
-| [`TCA_DUMP_INVISIBLE`](#tca_dump_invisible) | const |  |
-| [`TCA_CHAIN`](#tca_chain) | const |  |
-| [`TCA_HW_OFFLOAD`](#tca_hw_offload) | const |  |
-| [`RTM_DELNETCONF`](#rtm_delnetconf) | const |  |
-| [`RTM_NEWSTATS`](#rtm_newstats) | const |  |
-| [`RTM_GETSTATS`](#rtm_getstats) | const |  |
-| [`RTM_NEWCACHEREPORT`](#rtm_newcachereport) | const |  |
-| [`RTM_F_LOOKUP_TABLE`](#rtm_f_lookup_table) | const |  |
-| [`RTM_F_FIB_MATCH`](#rtm_f_fib_match) | const |  |
-| [`RTA_VIA`](#rta_via) | const |  |
-| [`RTA_NEWDST`](#rta_newdst) | const |  |
-| [`RTA_PREF`](#rta_pref) | const |  |
-| [`RTA_ENCAP_TYPE`](#rta_encap_type) | const |  |
-| [`RTA_ENCAP`](#rta_encap) | const |  |
-| [`RTA_EXPIRES`](#rta_expires) | const |  |
-| [`RTA_PAD`](#rta_pad) | const |  |
-| [`RTA_UID`](#rta_uid) | const |  |
-| [`RTA_TTL_PROPAGATE`](#rta_ttl_propagate) | const |  |
-| [`NTF_EXT_LEARNED`](#ntf_ext_learned) | const |  |
-| [`NTF_OFFLOADED`](#ntf_offloaded) | const |  |
-| [`NDA_MASTER`](#nda_master) | const |  |
-| [`NDA_LINK_NETNSID`](#nda_link_netnsid) | const |  |
-| [`NDA_SRC_VNI`](#nda_src_vni) | const |  |
+| [`TMP_MAX`](#tmp-max) | const |  |
+| [`FOPEN_MAX`](#fopen-max) | const |  |
+| [`FILENAME_MAX`](#filename-max) | const |  |
+| [`POSIX_MADV_DONTNEED`](#posix-madv-dontneed) | const |  |
+| [`_CS_GNU_LIBC_VERSION`](#cs-gnu-libc-version) | const |  |
+| [`_CS_GNU_LIBPTHREAD_VERSION`](#cs-gnu-libpthread-version) | const |  |
+| [`_CS_V6_ENV`](#cs-v6-env) | const |  |
+| [`_CS_V7_ENV`](#cs-v7-env) | const |  |
+| [`_SC_EQUIV_CLASS_MAX`](#sc-equiv-class-max) | const |  |
+| [`_SC_CHARCLASS_NAME_MAX`](#sc-charclass-name-max) | const |  |
+| [`_SC_PII`](#sc-pii) | const |  |
+| [`_SC_PII_XTI`](#sc-pii-xti) | const |  |
+| [`_SC_PII_SOCKET`](#sc-pii-socket) | const |  |
+| [`_SC_PII_INTERNET`](#sc-pii-internet) | const |  |
+| [`_SC_PII_OSI`](#sc-pii-osi) | const |  |
+| [`_SC_POLL`](#sc-poll) | const |  |
+| [`_SC_SELECT`](#sc-select) | const |  |
+| [`_SC_PII_INTERNET_STREAM`](#sc-pii-internet-stream) | const |  |
+| [`_SC_PII_INTERNET_DGRAM`](#sc-pii-internet-dgram) | const |  |
+| [`_SC_PII_OSI_COTS`](#sc-pii-osi-cots) | const |  |
+| [`_SC_PII_OSI_CLTS`](#sc-pii-osi-clts) | const |  |
+| [`_SC_PII_OSI_M`](#sc-pii-osi-m) | const |  |
+| [`_SC_T_IOV_MAX`](#sc-t-iov-max) | const |  |
+| [`_SC_2_C_VERSION`](#sc-2-c-version) | const |  |
+| [`_SC_CHAR_BIT`](#sc-char-bit) | const |  |
+| [`_SC_CHAR_MAX`](#sc-char-max) | const |  |
+| [`_SC_CHAR_MIN`](#sc-char-min) | const |  |
+| [`_SC_INT_MAX`](#sc-int-max) | const |  |
+| [`_SC_INT_MIN`](#sc-int-min) | const |  |
+| [`_SC_LONG_BIT`](#sc-long-bit) | const |  |
+| [`_SC_WORD_BIT`](#sc-word-bit) | const |  |
+| [`_SC_MB_LEN_MAX`](#sc-mb-len-max) | const |  |
+| [`_SC_SSIZE_MAX`](#sc-ssize-max) | const |  |
+| [`_SC_SCHAR_MAX`](#sc-schar-max) | const |  |
+| [`_SC_SCHAR_MIN`](#sc-schar-min) | const |  |
+| [`_SC_SHRT_MAX`](#sc-shrt-max) | const |  |
+| [`_SC_SHRT_MIN`](#sc-shrt-min) | const |  |
+| [`_SC_UCHAR_MAX`](#sc-uchar-max) | const |  |
+| [`_SC_UINT_MAX`](#sc-uint-max) | const |  |
+| [`_SC_ULONG_MAX`](#sc-ulong-max) | const |  |
+| [`_SC_USHRT_MAX`](#sc-ushrt-max) | const |  |
+| [`_SC_NL_ARGMAX`](#sc-nl-argmax) | const |  |
+| [`_SC_NL_LANGMAX`](#sc-nl-langmax) | const |  |
+| [`_SC_NL_MSGMAX`](#sc-nl-msgmax) | const |  |
+| [`_SC_NL_NMAX`](#sc-nl-nmax) | const |  |
+| [`_SC_NL_SETMAX`](#sc-nl-setmax) | const |  |
+| [`_SC_NL_TEXTMAX`](#sc-nl-textmax) | const |  |
+| [`_SC_BASE`](#sc-base) | const |  |
+| [`_SC_C_LANG_SUPPORT`](#sc-c-lang-support) | const |  |
+| [`_SC_C_LANG_SUPPORT_R`](#sc-c-lang-support-r) | const |  |
+| [`_SC_DEVICE_IO`](#sc-device-io) | const |  |
+| [`_SC_DEVICE_SPECIFIC`](#sc-device-specific) | const |  |
+| [`_SC_DEVICE_SPECIFIC_R`](#sc-device-specific-r) | const |  |
+| [`_SC_FD_MGMT`](#sc-fd-mgmt) | const |  |
+| [`_SC_FIFO`](#sc-fifo) | const |  |
+| [`_SC_PIPE`](#sc-pipe) | const |  |
+| [`_SC_FILE_ATTRIBUTES`](#sc-file-attributes) | const |  |
+| [`_SC_FILE_LOCKING`](#sc-file-locking) | const |  |
+| [`_SC_FILE_SYSTEM`](#sc-file-system) | const |  |
+| [`_SC_MULTI_PROCESS`](#sc-multi-process) | const |  |
+| [`_SC_SINGLE_PROCESS`](#sc-single-process) | const |  |
+| [`_SC_NETWORKING`](#sc-networking) | const |  |
+| [`_SC_REGEX_VERSION`](#sc-regex-version) | const |  |
+| [`_SC_SIGNALS`](#sc-signals) | const |  |
+| [`_SC_SYSTEM_DATABASE`](#sc-system-database) | const |  |
+| [`_SC_SYSTEM_DATABASE_R`](#sc-system-database-r) | const |  |
+| [`_SC_USER_GROUPS`](#sc-user-groups) | const |  |
+| [`_SC_USER_GROUPS_R`](#sc-user-groups-r) | const |  |
+| [`_SC_LEVEL1_ICACHE_SIZE`](#sc-level1-icache-size) | const |  |
+| [`_SC_LEVEL1_ICACHE_ASSOC`](#sc-level1-icache-assoc) | const |  |
+| [`_SC_LEVEL1_ICACHE_LINESIZE`](#sc-level1-icache-linesize) | const |  |
+| [`_SC_LEVEL1_DCACHE_SIZE`](#sc-level1-dcache-size) | const |  |
+| [`_SC_LEVEL1_DCACHE_ASSOC`](#sc-level1-dcache-assoc) | const |  |
+| [`_SC_LEVEL1_DCACHE_LINESIZE`](#sc-level1-dcache-linesize) | const |  |
+| [`_SC_LEVEL2_CACHE_SIZE`](#sc-level2-cache-size) | const |  |
+| [`_SC_LEVEL2_CACHE_ASSOC`](#sc-level2-cache-assoc) | const |  |
+| [`_SC_LEVEL2_CACHE_LINESIZE`](#sc-level2-cache-linesize) | const |  |
+| [`_SC_LEVEL3_CACHE_SIZE`](#sc-level3-cache-size) | const |  |
+| [`_SC_LEVEL3_CACHE_ASSOC`](#sc-level3-cache-assoc) | const |  |
+| [`_SC_LEVEL3_CACHE_LINESIZE`](#sc-level3-cache-linesize) | const |  |
+| [`_SC_LEVEL4_CACHE_SIZE`](#sc-level4-cache-size) | const |  |
+| [`_SC_LEVEL4_CACHE_ASSOC`](#sc-level4-cache-assoc) | const |  |
+| [`_SC_LEVEL4_CACHE_LINESIZE`](#sc-level4-cache-linesize) | const |  |
+| [`O_ACCMODE`](#o-accmode) | const |  |
+| [`ST_RELATIME`](#st-relatime) | const |  |
+| [`NI_MAXHOST`](#ni-maxhost) | const |  |
+| [`BINDERFS_SUPER_MAGIC`](#binderfs-super-magic) | const |  |
+| [`XFS_SUPER_MAGIC`](#xfs-super-magic) | const |  |
+| [`CPU_SETSIZE`](#cpu-setsize) | const |  |
+| [`PTRACE_TRACEME`](#ptrace-traceme) | const |  |
+| [`PTRACE_PEEKTEXT`](#ptrace-peektext) | const |  |
+| [`PTRACE_PEEKDATA`](#ptrace-peekdata) | const |  |
+| [`PTRACE_PEEKUSER`](#ptrace-peekuser) | const |  |
+| [`PTRACE_POKETEXT`](#ptrace-poketext) | const |  |
+| [`PTRACE_POKEDATA`](#ptrace-pokedata) | const |  |
+| [`PTRACE_POKEUSER`](#ptrace-pokeuser) | const |  |
+| [`PTRACE_CONT`](#ptrace-cont) | const |  |
+| [`PTRACE_KILL`](#ptrace-kill) | const |  |
+| [`PTRACE_SINGLESTEP`](#ptrace-singlestep) | const |  |
+| [`PTRACE_ATTACH`](#ptrace-attach) | const |  |
+| [`PTRACE_SYSCALL`](#ptrace-syscall) | const |  |
+| [`PTRACE_SETOPTIONS`](#ptrace-setoptions) | const |  |
+| [`PTRACE_GETEVENTMSG`](#ptrace-geteventmsg) | const |  |
+| [`PTRACE_GETSIGINFO`](#ptrace-getsiginfo) | const |  |
+| [`PTRACE_SETSIGINFO`](#ptrace-setsiginfo) | const |  |
+| [`PTRACE_GETREGSET`](#ptrace-getregset) | const |  |
+| [`PTRACE_SETREGSET`](#ptrace-setregset) | const |  |
+| [`PTRACE_SEIZE`](#ptrace-seize) | const |  |
+| [`PTRACE_INTERRUPT`](#ptrace-interrupt) | const |  |
+| [`PTRACE_LISTEN`](#ptrace-listen) | const |  |
+| [`PTRACE_PEEKSIGINFO`](#ptrace-peeksiginfo) | const |  |
+| [`PTRACE_GETSIGMASK`](#ptrace-getsigmask) | const |  |
+| [`PTRACE_SETSIGMASK`](#ptrace-setsigmask) | const |  |
+| [`PTRACE_GET_SYSCALL_INFO`](#ptrace-get-syscall-info) | const |  |
+| [`PTRACE_SYSCALL_INFO_NONE`](#ptrace-syscall-info-none) | const |  |
+| [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace-syscall-info-entry) | const |  |
+| [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace-syscall-info-exit) | const |  |
+| [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace-syscall-info-seccomp) | const |  |
+| [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace-set-syscall-user-dispatch-config) | const |  |
+| [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace-get-syscall-user-dispatch-config) | const |  |
+| [`TCA_PAD`](#tca-pad) | const |  |
+| [`TCA_DUMP_INVISIBLE`](#tca-dump-invisible) | const |  |
+| [`TCA_CHAIN`](#tca-chain) | const |  |
+| [`TCA_HW_OFFLOAD`](#tca-hw-offload) | const |  |
+| [`RTM_DELNETCONF`](#rtm-delnetconf) | const |  |
+| [`RTM_NEWSTATS`](#rtm-newstats) | const |  |
+| [`RTM_GETSTATS`](#rtm-getstats) | const |  |
+| [`RTM_NEWCACHEREPORT`](#rtm-newcachereport) | const |  |
+| [`RTM_F_LOOKUP_TABLE`](#rtm-f-lookup-table) | const |  |
+| [`RTM_F_FIB_MATCH`](#rtm-f-fib-match) | const |  |
+| [`RTA_VIA`](#rta-via) | const |  |
+| [`RTA_NEWDST`](#rta-newdst) | const |  |
+| [`RTA_PREF`](#rta-pref) | const |  |
+| [`RTA_ENCAP_TYPE`](#rta-encap-type) | const |  |
+| [`RTA_ENCAP`](#rta-encap) | const |  |
+| [`RTA_EXPIRES`](#rta-expires) | const |  |
+| [`RTA_PAD`](#rta-pad) | const |  |
+| [`RTA_UID`](#rta-uid) | const |  |
+| [`RTA_TTL_PROPAGATE`](#rta-ttl-propagate) | const |  |
+| [`NTF_EXT_LEARNED`](#ntf-ext-learned) | const |  |
+| [`NTF_OFFLOADED`](#ntf-offloaded) | const |  |
+| [`NDA_MASTER`](#nda-master) | const |  |
+| [`NDA_LINK_NETNSID`](#nda-link-netnsid) | const |  |
+| [`NDA_SRC_VNI`](#nda-src-vni) | const |  |
 | [`UNAME26`](#uname26) | const |  |
-| [`FDPIC_FUNCPTRS`](#fdpic_funcptrs) | const |  |
-| [`MAX_LINKS`](#max_links) | const |  |
-| [`GENL_UNS_ADMIN_PERM`](#genl_uns_admin_perm) | const |  |
-| [`GENL_ID_VFS_DQUOT`](#genl_id_vfs_dquot) | const |  |
-| [`GENL_ID_PMCRAID`](#genl_id_pmcraid) | const |  |
-| [`ELFOSABI_ARM_AEABI`](#elfosabi_arm_aeabi) | const |  |
-| [`CLONE_NEWTIME`](#clone_newtime) | const |  |
-| [`CLONE_CLEAR_SIGHAND`](#clone_clear_sighand) | const |  |
-| [`CLONE_INTO_CGROUP`](#clone_into_cgroup) | const |  |
-| [`M_MXFAST`](#m_mxfast) | const |  |
-| [`M_NLBLKS`](#m_nlblks) | const |  |
-| [`M_GRAIN`](#m_grain) | const |  |
-| [`M_KEEP`](#m_keep) | const |  |
-| [`M_TRIM_THRESHOLD`](#m_trim_threshold) | const |  |
-| [`M_TOP_PAD`](#m_top_pad) | const |  |
-| [`M_MMAP_THRESHOLD`](#m_mmap_threshold) | const |  |
-| [`M_MMAP_MAX`](#m_mmap_max) | const |  |
-| [`M_CHECK_ACTION`](#m_check_action) | const |  |
-| [`M_PERTURB`](#m_perturb) | const |  |
-| [`M_ARENA_TEST`](#m_arena_test) | const |  |
-| [`M_ARENA_MAX`](#m_arena_max) | const |  |
+| [`FDPIC_FUNCPTRS`](#fdpic-funcptrs) | const |  |
+| [`MAX_LINKS`](#max-links) | const |  |
+| [`GENL_UNS_ADMIN_PERM`](#genl-uns-admin-perm) | const |  |
+| [`GENL_ID_VFS_DQUOT`](#genl-id-vfs-dquot) | const |  |
+| [`GENL_ID_PMCRAID`](#genl-id-pmcraid) | const |  |
+| [`ELFOSABI_ARM_AEABI`](#elfosabi-arm-aeabi) | const |  |
+| [`CLONE_NEWTIME`](#clone-newtime) | const |  |
+| [`CLONE_CLEAR_SIGHAND`](#clone-clear-sighand) | const |  |
+| [`CLONE_INTO_CGROUP`](#clone-into-cgroup) | const |  |
+| [`M_MXFAST`](#m-mxfast) | const |  |
+| [`M_NLBLKS`](#m-nlblks) | const |  |
+| [`M_GRAIN`](#m-grain) | const |  |
+| [`M_KEEP`](#m-keep) | const |  |
+| [`M_TRIM_THRESHOLD`](#m-trim-threshold) | const |  |
+| [`M_TOP_PAD`](#m-top-pad) | const |  |
+| [`M_MMAP_THRESHOLD`](#m-mmap-threshold) | const |  |
+| [`M_MMAP_MAX`](#m-mmap-max) | const |  |
+| [`M_CHECK_ACTION`](#m-check-action) | const |  |
+| [`M_PERTURB`](#m-perturb) | const |  |
+| [`M_ARENA_TEST`](#m-arena-test) | const |  |
+| [`M_ARENA_MAX`](#m-arena-max) | const |  |
 | [`SOMAXCONN`](#somaxconn) | const |  |
-| [`MOVE_MOUNT_F_SYMLINKS`](#move_mount_f_symlinks) | const |  |
-| [`MOVE_MOUNT_F_AUTOMOUNTS`](#move_mount_f_automounts) | const |  |
-| [`MOVE_MOUNT_F_EMPTY_PATH`](#move_mount_f_empty_path) | const |  |
-| [`MOVE_MOUNT_T_SYMLINKS`](#move_mount_t_symlinks) | const |  |
-| [`MOVE_MOUNT_T_AUTOMOUNTS`](#move_mount_t_automounts) | const |  |
-| [`MOVE_MOUNT_T_EMPTY_PATH`](#move_mount_t_empty_path) | const |  |
-| [`MOVE_MOUNT_SET_GROUP`](#move_mount_set_group) | const |  |
-| [`MOVE_MOUNT_BENEATH`](#move_mount_beneath) | const |  |
-| [`ADJ_OFFSET`](#adj_offset) | const |  |
-| [`ADJ_FREQUENCY`](#adj_frequency) | const |  |
-| [`ADJ_MAXERROR`](#adj_maxerror) | const |  |
-| [`ADJ_ESTERROR`](#adj_esterror) | const |  |
-| [`ADJ_STATUS`](#adj_status) | const |  |
-| [`ADJ_TIMECONST`](#adj_timeconst) | const |  |
-| [`ADJ_TAI`](#adj_tai) | const |  |
-| [`ADJ_SETOFFSET`](#adj_setoffset) | const |  |
-| [`ADJ_MICRO`](#adj_micro) | const |  |
-| [`ADJ_NANO`](#adj_nano) | const |  |
-| [`ADJ_TICK`](#adj_tick) | const |  |
-| [`ADJ_OFFSET_SINGLESHOT`](#adj_offset_singleshot) | const |  |
-| [`ADJ_OFFSET_SS_READ`](#adj_offset_ss_read) | const |  |
-| [`MOD_OFFSET`](#mod_offset) | const |  |
-| [`MOD_FREQUENCY`](#mod_frequency) | const |  |
-| [`MOD_MAXERROR`](#mod_maxerror) | const |  |
-| [`MOD_ESTERROR`](#mod_esterror) | const |  |
-| [`MOD_STATUS`](#mod_status) | const |  |
-| [`MOD_TIMECONST`](#mod_timeconst) | const |  |
-| [`MOD_CLKB`](#mod_clkb) | const |  |
-| [`MOD_CLKA`](#mod_clka) | const |  |
-| [`MOD_TAI`](#mod_tai) | const |  |
-| [`MOD_MICRO`](#mod_micro) | const |  |
-| [`MOD_NANO`](#mod_nano) | const |  |
-| [`STA_PLL`](#sta_pll) | const |  |
-| [`STA_PPSFREQ`](#sta_ppsfreq) | const |  |
-| [`STA_PPSTIME`](#sta_ppstime) | const |  |
-| [`STA_FLL`](#sta_fll) | const |  |
-| [`STA_INS`](#sta_ins) | const |  |
-| [`STA_DEL`](#sta_del) | const |  |
-| [`STA_UNSYNC`](#sta_unsync) | const |  |
-| [`STA_FREQHOLD`](#sta_freqhold) | const |  |
-| [`STA_PPSSIGNAL`](#sta_ppssignal) | const |  |
-| [`STA_PPSJITTER`](#sta_ppsjitter) | const |  |
-| [`STA_PPSWANDER`](#sta_ppswander) | const |  |
-| [`STA_PPSERROR`](#sta_ppserror) | const |  |
-| [`STA_CLOCKERR`](#sta_clockerr) | const |  |
-| [`STA_NANO`](#sta_nano) | const |  |
-| [`STA_MODE`](#sta_mode) | const |  |
-| [`STA_CLK`](#sta_clk) | const |  |
-| [`STA_RONLY`](#sta_ronly) | const |  |
-| [`NTP_API`](#ntp_api) | const |  |
-| [`TIME_OK`](#time_ok) | const |  |
-| [`TIME_INS`](#time_ins) | const |  |
-| [`TIME_DEL`](#time_del) | const |  |
-| [`TIME_OOP`](#time_oop) | const |  |
-| [`TIME_WAIT`](#time_wait) | const |  |
-| [`TIME_ERROR`](#time_error) | const |  |
-| [`TIME_BAD`](#time_bad) | const |  |
+| [`MOVE_MOUNT_F_SYMLINKS`](#move-mount-f-symlinks) | const |  |
+| [`MOVE_MOUNT_F_AUTOMOUNTS`](#move-mount-f-automounts) | const |  |
+| [`MOVE_MOUNT_F_EMPTY_PATH`](#move-mount-f-empty-path) | const |  |
+| [`MOVE_MOUNT_T_SYMLINKS`](#move-mount-t-symlinks) | const |  |
+| [`MOVE_MOUNT_T_AUTOMOUNTS`](#move-mount-t-automounts) | const |  |
+| [`MOVE_MOUNT_T_EMPTY_PATH`](#move-mount-t-empty-path) | const |  |
+| [`MOVE_MOUNT_SET_GROUP`](#move-mount-set-group) | const |  |
+| [`MOVE_MOUNT_BENEATH`](#move-mount-beneath) | const |  |
+| [`ADJ_OFFSET`](#adj-offset) | const |  |
+| [`ADJ_FREQUENCY`](#adj-frequency) | const |  |
+| [`ADJ_MAXERROR`](#adj-maxerror) | const |  |
+| [`ADJ_ESTERROR`](#adj-esterror) | const |  |
+| [`ADJ_STATUS`](#adj-status) | const |  |
+| [`ADJ_TIMECONST`](#adj-timeconst) | const |  |
+| [`ADJ_TAI`](#adj-tai) | const |  |
+| [`ADJ_SETOFFSET`](#adj-setoffset) | const |  |
+| [`ADJ_MICRO`](#adj-micro) | const |  |
+| [`ADJ_NANO`](#adj-nano) | const |  |
+| [`ADJ_TICK`](#adj-tick) | const |  |
+| [`ADJ_OFFSET_SINGLESHOT`](#adj-offset-singleshot) | const |  |
+| [`ADJ_OFFSET_SS_READ`](#adj-offset-ss-read) | const |  |
+| [`MOD_OFFSET`](#mod-offset) | const |  |
+| [`MOD_FREQUENCY`](#mod-frequency) | const |  |
+| [`MOD_MAXERROR`](#mod-maxerror) | const |  |
+| [`MOD_ESTERROR`](#mod-esterror) | const |  |
+| [`MOD_STATUS`](#mod-status) | const |  |
+| [`MOD_TIMECONST`](#mod-timeconst) | const |  |
+| [`MOD_CLKB`](#mod-clkb) | const |  |
+| [`MOD_CLKA`](#mod-clka) | const |  |
+| [`MOD_TAI`](#mod-tai) | const |  |
+| [`MOD_MICRO`](#mod-micro) | const |  |
+| [`MOD_NANO`](#mod-nano) | const |  |
+| [`STA_PLL`](#sta-pll) | const |  |
+| [`STA_PPSFREQ`](#sta-ppsfreq) | const |  |
+| [`STA_PPSTIME`](#sta-ppstime) | const |  |
+| [`STA_FLL`](#sta-fll) | const |  |
+| [`STA_INS`](#sta-ins) | const |  |
+| [`STA_DEL`](#sta-del) | const |  |
+| [`STA_UNSYNC`](#sta-unsync) | const |  |
+| [`STA_FREQHOLD`](#sta-freqhold) | const |  |
+| [`STA_PPSSIGNAL`](#sta-ppssignal) | const |  |
+| [`STA_PPSJITTER`](#sta-ppsjitter) | const |  |
+| [`STA_PPSWANDER`](#sta-ppswander) | const |  |
+| [`STA_PPSERROR`](#sta-ppserror) | const |  |
+| [`STA_CLOCKERR`](#sta-clockerr) | const |  |
+| [`STA_NANO`](#sta-nano) | const |  |
+| [`STA_MODE`](#sta-mode) | const |  |
+| [`STA_CLK`](#sta-clk) | const |  |
+| [`STA_RONLY`](#sta-ronly) | const |  |
+| [`NTP_API`](#ntp-api) | const |  |
+| [`TIME_OK`](#time-ok) | const |  |
+| [`TIME_INS`](#time-ins) | const |  |
+| [`TIME_DEL`](#time-del) | const |  |
+| [`TIME_OOP`](#time-oop) | const |  |
+| [`TIME_WAIT`](#time-wait) | const |  |
+| [`TIME_ERROR`](#time-error) | const |  |
+| [`TIME_BAD`](#time-bad) | const |  |
 | [`MAXTC`](#maxtc) | const |  |
-| [`GLOB_PERIOD`](#glob_period) | const |  |
-| [`GLOB_ALTDIRFUNC`](#glob_altdirfunc) | const |  |
-| [`GLOB_BRACE`](#glob_brace) | const |  |
-| [`GLOB_NOMAGIC`](#glob_nomagic) | const |  |
-| [`GLOB_TILDE`](#glob_tilde) | const |  |
-| [`GLOB_ONLYDIR`](#glob_onlydir) | const |  |
-| [`GLOB_TILDE_CHECK`](#glob_tilde_check) | const |  |
-| [`MADV_COLLAPSE`](#madv_collapse) | const |  |
-| [`PTHREAD_STACK_MIN`](#pthread_stack_min) | const |  |
-| [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread_mutex_adaptive_np) | const |  |
-| [`REG_STARTEND`](#reg_startend) | const |  |
-| [`REG_EEND`](#reg_eend) | const |  |
-| [`REG_ESIZE`](#reg_esize) | const |  |
-| [`REG_ERPAREN`](#reg_erparen) | const |  |
-| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t) | const |  |
-| [`O_LARGEFILE`](#o_largefile) | const |  |
+| [`GLOB_PERIOD`](#glob-period) | const |  |
+| [`GLOB_ALTDIRFUNC`](#glob-altdirfunc) | const |  |
+| [`GLOB_BRACE`](#glob-brace) | const |  |
+| [`GLOB_NOMAGIC`](#glob-nomagic) | const |  |
+| [`GLOB_TILDE`](#glob-tilde) | const |  |
+| [`GLOB_ONLYDIR`](#glob-onlydir) | const |  |
+| [`GLOB_TILDE_CHECK`](#glob-tilde-check) | const |  |
+| [`MADV_COLLAPSE`](#madv-collapse) | const |  |
+| [`PTHREAD_STACK_MIN`](#pthread-stack-min) | const |  |
+| [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread-mutex-adaptive-np) | const |  |
+| [`REG_STARTEND`](#reg-startend) | const |  |
+| [`REG_EEND`](#reg-eend) | const |  |
+| [`REG_ESIZE`](#reg-esize) | const |  |
+| [`REG_ERPAREN`](#reg-erparen) | const |  |
+| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#sizeof-pthread-rwlockattr-t) | const |  |
+| [`O_LARGEFILE`](#o-largefile) | const |  |
 
 ## Modules
 

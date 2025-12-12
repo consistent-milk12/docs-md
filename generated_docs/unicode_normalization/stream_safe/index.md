@@ -10,9 +10,9 @@
 |------|------|-------------|
 | [`StreamSafe`](#streamsafe) | struct | [UAX15-D4]: This iterator keeps track of how many non-starters there have been since the last starter in *NFKD* and will emit a Combining Grapheme Joiner (U+034F) if the count exceeds 30. |
 | [`Decomposition`](#decomposition) | struct |  |
-| [`classify_nonstarters`](#classify_nonstarters) | fn |  |
-| [`MAX_NONSTARTERS`](#max_nonstarters) | const |  |
-| [`COMBINING_GRAPHEME_JOINER`](#combining_grapheme_joiner) | const |  |
+| [`classify_nonstarters`](#classify-nonstarters) | fn |  |
+| [`MAX_NONSTARTERS`](#max-nonstarters) | const |  |
+| [`COMBINING_GRAPHEME_JOINER`](#combining-grapheme-joiner) | const |  |
 
 ## Structs
 
@@ -43,15 +43,15 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> IntoIterator for StreamSafe<I>`
 
-- <span id="streamsafe-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamsafe-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamsafe-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamsafe-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamsafe-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
-- <span id="streamsafe-type-item"></span>`type Item = char`
+- <span id="streamsafe-iterator-type-item"></span>`type Item = char`
 
 - <span id="streamsafe-next"></span>`fn next(&mut self) -> Option<char>`
 

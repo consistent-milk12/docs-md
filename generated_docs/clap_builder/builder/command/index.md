@@ -13,7 +13,7 @@
 | [`MaxTermWidth`](#maxtermwidth) | struct |  |
 | [`Captures`](#captures) | trait | A workaround: <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999> |
 | [`AppExt`](#appext) | trait |  |
-| [`two_elements_of`](#two_elements_of) | fn | Returns the first two elements of an iterator as an `Option<(T, T)>`. |
+| [`two_elements_of`](#two-elements-of) | fn | Returns the first two elements of an iterator as an `Option<(T, T)>`. |
 
 ## Structs
 
@@ -183,7 +183,7 @@ let m = Command::new("My Program")
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md#id)
 

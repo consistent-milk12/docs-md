@@ -68,8 +68,8 @@ impl FromStr for Setting {
 - [Type Aliases](#type-aliases)
   - [`ErrorImpl`](#errorimpl)
 - [Macros](#macros)
-  - [`impl_copy_clone!`](#impl_copy_clone)
-  - [`primitive_deserializer!`](#primitive_deserializer)
+  - [`impl_copy_clone!`](#impl-copy-clone)
+  - [`primitive_deserializer!`](#primitive-deserializer)
 
 ## Quick Reference
 
@@ -110,8 +110,8 @@ impl FromStr for Setting {
 | [`MapAccessDeserializer`](#mapaccessdeserializer) | struct | A deserializer holding a `MapAccess`. |
 | [`EnumAccessDeserializer`](#enumaccessdeserializer) | struct | A deserializer holding an `EnumAccess`. |
 | [`ErrorImpl`](#errorimpl) | type |  |
-| [`impl_copy_clone!`](#impl_copy_clone) | macro |  |
-| [`primitive_deserializer!`](#primitive_deserializer) | macro |  |
+| [`impl_copy_clone!`](#impl-copy-clone) | macro |  |
+| [`primitive_deserializer!`](#primitive-deserializer) | macro |  |
 
 ## Modules
 
@@ -188,9 +188,9 @@ A deserializer holding a `()`.
 
 - <span id="unitdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for UnitDeserializer<E>`
+##### `impl<E> Deserializer for UnitDeserializer<E>`
 
-- <span id="unitdeserializer-type-error"></span>`type Error = E`
+- <span id="unitdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="unitdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -254,9 +254,9 @@ A deserializer holding a `()`.
 
 - <span id="unitdeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for UnitDeserializer<E>`
+##### `impl<E> IntoDeserializer for UnitDeserializer<E>`
 
-- <span id="unitdeserializer-type-deserializer"></span>`type Deserializer = UnitDeserializer<E>`
+- <span id="unitdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = UnitDeserializer<E>`
 
 - <span id="unitdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -290,9 +290,9 @@ a `bool`.
 
 - <span id="booldeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for BoolDeserializer<E>`
+##### `impl<E> Deserializer for BoolDeserializer<E>`
 
-- <span id="booldeserializer-type-error"></span>`type Error = E`
+- <span id="booldeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="booldeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -356,9 +356,9 @@ a `bool`.
 
 - <span id="booldeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for BoolDeserializer<E>`
+##### `impl<E> IntoDeserializer for BoolDeserializer<E>`
 
-- <span id="booldeserializer-type-deserializer"></span>`type Deserializer = BoolDeserializer<E>`
+- <span id="booldeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BoolDeserializer<E>`
 
 - <span id="booldeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -392,9 +392,9 @@ an `i8`.
 
 - <span id="i8deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for I8Deserializer<E>`
+##### `impl<E> Deserializer for I8Deserializer<E>`
 
-- <span id="i8deserializer-type-error"></span>`type Error = E`
+- <span id="i8deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="i8deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -458,9 +458,9 @@ an `i8`.
 
 - <span id="i8deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for I8Deserializer<E>`
+##### `impl<E> IntoDeserializer for I8Deserializer<E>`
 
-- <span id="i8deserializer-type-deserializer"></span>`type Deserializer = I8Deserializer<E>`
+- <span id="i8deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I8Deserializer<E>`
 
 - <span id="i8deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -494,9 +494,9 @@ an `i16`.
 
 - <span id="i16deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for I16Deserializer<E>`
+##### `impl<E> Deserializer for I16Deserializer<E>`
 
-- <span id="i16deserializer-type-error"></span>`type Error = E`
+- <span id="i16deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="i16deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -560,9 +560,9 @@ an `i16`.
 
 - <span id="i16deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for I16Deserializer<E>`
+##### `impl<E> IntoDeserializer for I16Deserializer<E>`
 
-- <span id="i16deserializer-type-deserializer"></span>`type Deserializer = I16Deserializer<E>`
+- <span id="i16deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I16Deserializer<E>`
 
 - <span id="i16deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -596,9 +596,9 @@ an `i32`.
 
 - <span id="i32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for I32Deserializer<E>`
+##### `impl<E> Deserializer for I32Deserializer<E>`
 
-- <span id="i32deserializer-type-error"></span>`type Error = E`
+- <span id="i32deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="i32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -662,9 +662,9 @@ an `i32`.
 
 - <span id="i32deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for I32Deserializer<E>`
+##### `impl<E> IntoDeserializer for I32Deserializer<E>`
 
-- <span id="i32deserializer-type-deserializer"></span>`type Deserializer = I32Deserializer<E>`
+- <span id="i32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I32Deserializer<E>`
 
 - <span id="i32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -698,9 +698,9 @@ an `i64`.
 
 - <span id="i64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for I64Deserializer<E>`
+##### `impl<E> Deserializer for I64Deserializer<E>`
 
-- <span id="i64deserializer-type-error"></span>`type Error = E`
+- <span id="i64deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="i64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -764,9 +764,9 @@ an `i64`.
 
 - <span id="i64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for I64Deserializer<E>`
+##### `impl<E> IntoDeserializer for I64Deserializer<E>`
 
-- <span id="i64deserializer-type-deserializer"></span>`type Deserializer = I64Deserializer<E>`
+- <span id="i64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I64Deserializer<E>`
 
 - <span id="i64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -800,9 +800,9 @@ an `i128`.
 
 - <span id="i128deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for I128Deserializer<E>`
+##### `impl<E> Deserializer for I128Deserializer<E>`
 
-- <span id="i128deserializer-type-error"></span>`type Error = E`
+- <span id="i128deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="i128deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -866,9 +866,9 @@ an `i128`.
 
 - <span id="i128deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for I128Deserializer<E>`
+##### `impl<E> IntoDeserializer for I128Deserializer<E>`
 
-- <span id="i128deserializer-type-deserializer"></span>`type Deserializer = I128Deserializer<E>`
+- <span id="i128deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = I128Deserializer<E>`
 
 - <span id="i128deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -902,9 +902,9 @@ an `isize`.
 
 - <span id="isizedeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for IsizeDeserializer<E>`
+##### `impl<E> Deserializer for IsizeDeserializer<E>`
 
-- <span id="isizedeserializer-type-error"></span>`type Error = E`
+- <span id="isizedeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="isizedeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -968,9 +968,9 @@ an `isize`.
 
 - <span id="isizedeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for IsizeDeserializer<E>`
+##### `impl<E> IntoDeserializer for IsizeDeserializer<E>`
 
-- <span id="isizedeserializer-type-deserializer"></span>`type Deserializer = IsizeDeserializer<E>`
+- <span id="isizedeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = IsizeDeserializer<E>`
 
 - <span id="isizedeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1004,9 +1004,9 @@ a `u8`.
 
 - <span id="u8deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for U8Deserializer<E>`
+##### `impl<E> Deserializer for U8Deserializer<E>`
 
-- <span id="u8deserializer-type-error"></span>`type Error = E`
+- <span id="u8deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="u8deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1070,9 +1070,9 @@ a `u8`.
 
 - <span id="u8deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for U8Deserializer<E>`
+##### `impl<E> IntoDeserializer for U8Deserializer<E>`
 
-- <span id="u8deserializer-type-deserializer"></span>`type Deserializer = U8Deserializer<E>`
+- <span id="u8deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U8Deserializer<E>`
 
 - <span id="u8deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1106,9 +1106,9 @@ a `u16`.
 
 - <span id="u16deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for U16Deserializer<E>`
+##### `impl<E> Deserializer for U16Deserializer<E>`
 
-- <span id="u16deserializer-type-error"></span>`type Error = E`
+- <span id="u16deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="u16deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1172,9 +1172,9 @@ a `u16`.
 
 - <span id="u16deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for U16Deserializer<E>`
+##### `impl<E> IntoDeserializer for U16Deserializer<E>`
 
-- <span id="u16deserializer-type-deserializer"></span>`type Deserializer = U16Deserializer<E>`
+- <span id="u16deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U16Deserializer<E>`
 
 - <span id="u16deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1208,9 +1208,9 @@ a `u64`.
 
 - <span id="u64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for U64Deserializer<E>`
+##### `impl<E> Deserializer for U64Deserializer<E>`
 
-- <span id="u64deserializer-type-error"></span>`type Error = E`
+- <span id="u64deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="u64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1274,9 +1274,9 @@ a `u64`.
 
 - <span id="u64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for U64Deserializer<E>`
+##### `impl<E> IntoDeserializer for U64Deserializer<E>`
 
-- <span id="u64deserializer-type-deserializer"></span>`type Deserializer = U64Deserializer<E>`
+- <span id="u64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U64Deserializer<E>`
 
 - <span id="u64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1310,9 +1310,9 @@ a `u128`.
 
 - <span id="u128deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for U128Deserializer<E>`
+##### `impl<E> Deserializer for U128Deserializer<E>`
 
-- <span id="u128deserializer-type-error"></span>`type Error = E`
+- <span id="u128deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="u128deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1376,9 +1376,9 @@ a `u128`.
 
 - <span id="u128deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for U128Deserializer<E>`
+##### `impl<E> IntoDeserializer for U128Deserializer<E>`
 
-- <span id="u128deserializer-type-deserializer"></span>`type Deserializer = U128Deserializer<E>`
+- <span id="u128deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U128Deserializer<E>`
 
 - <span id="u128deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1412,9 +1412,9 @@ a `usize`.
 
 - <span id="usizedeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for UsizeDeserializer<E>`
+##### `impl<E> Deserializer for UsizeDeserializer<E>`
 
-- <span id="usizedeserializer-type-error"></span>`type Error = E`
+- <span id="usizedeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="usizedeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1478,9 +1478,9 @@ a `usize`.
 
 - <span id="usizedeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for UsizeDeserializer<E>`
+##### `impl<E> IntoDeserializer for UsizeDeserializer<E>`
 
-- <span id="usizedeserializer-type-deserializer"></span>`type Deserializer = UsizeDeserializer<E>`
+- <span id="usizedeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = UsizeDeserializer<E>`
 
 - <span id="usizedeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1514,9 +1514,9 @@ an `f32`.
 
 - <span id="f32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for F32Deserializer<E>`
+##### `impl<E> Deserializer for F32Deserializer<E>`
 
-- <span id="f32deserializer-type-error"></span>`type Error = E`
+- <span id="f32deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="f32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1580,9 +1580,9 @@ an `f32`.
 
 - <span id="f32deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for F32Deserializer<E>`
+##### `impl<E> IntoDeserializer for F32Deserializer<E>`
 
-- <span id="f32deserializer-type-deserializer"></span>`type Deserializer = F32Deserializer<E>`
+- <span id="f32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = F32Deserializer<E>`
 
 - <span id="f32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1616,9 +1616,9 @@ an `f64`.
 
 - <span id="f64deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for F64Deserializer<E>`
+##### `impl<E> Deserializer for F64Deserializer<E>`
 
-- <span id="f64deserializer-type-error"></span>`type Error = E`
+- <span id="f64deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="f64deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1682,9 +1682,9 @@ an `f64`.
 
 - <span id="f64deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for F64Deserializer<E>`
+##### `impl<E> IntoDeserializer for F64Deserializer<E>`
 
-- <span id="f64deserializer-type-deserializer"></span>`type Deserializer = F64Deserializer<E>`
+- <span id="f64deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = F64Deserializer<E>`
 
 - <span id="f64deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1718,9 +1718,9 @@ a `char`.
 
 - <span id="chardeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for CharDeserializer<E>`
+##### `impl<E> Deserializer for CharDeserializer<E>`
 
-- <span id="chardeserializer-type-error"></span>`type Error = E`
+- <span id="chardeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="chardeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1784,9 +1784,9 @@ a `char`.
 
 - <span id="chardeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> IntoDeserializer for CharDeserializer<E>`
+##### `impl<E> IntoDeserializer for CharDeserializer<E>`
 
-- <span id="chardeserializer-type-deserializer"></span>`type Deserializer = CharDeserializer<E>`
+- <span id="chardeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = CharDeserializer<E>`
 
 - <span id="chardeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1819,9 +1819,9 @@ A deserializer holding a `u32`.
 
 - <span id="u32deserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for U32Deserializer<E>`
+##### `impl<E> Deserializer for U32Deserializer<E>`
 
-- <span id="u32deserializer-type-error"></span>`type Error = E`
+- <span id="u32deserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="u32deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -1885,17 +1885,17 @@ A deserializer holding a `u32`.
 
 - <span id="u32deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
-##### `impl<'de, E> EnumAccess for U32Deserializer<E>`
+##### `impl<E> EnumAccess for U32Deserializer<E>`
 
-- <span id="u32deserializer-type-error"></span>`type Error = E`
+- <span id="u32deserializer-enumaccess-type-error"></span>`type Error = E`
 
-- <span id="u32deserializer-type-variant"></span>`type Variant = UnitOnly<E>`
+- <span id="u32deserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
 - <span id="u32deserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, E> IntoDeserializer for U32Deserializer<E>`
+##### `impl<E> IntoDeserializer for U32Deserializer<E>`
 
-- <span id="u32deserializer-type-deserializer"></span>`type Deserializer = U32Deserializer<E>`
+- <span id="u32deserializer-intodeserializer-type-deserializer"></span>`type Deserializer = U32Deserializer<E>`
 
 - <span id="u32deserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -1918,19 +1918,19 @@ A deserializer holding a `&str`.
 
 #### Trait Implementations
 
-##### `impl<'de, E> Clone for StrDeserializer<'de, E>`
+##### `impl<E> Clone for StrDeserializer<'de, E>`
 
 - <span id="strdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'de, E> Copy for StrDeserializer<'de, E>`
+##### `impl<E> Copy for StrDeserializer<'de, E>`
 
-##### `impl<'a, E> Debug for StrDeserializer<'a, E>`
+##### `impl<E> Debug for StrDeserializer<'a, E>`
 
 - <span id="strdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, 'a, E> Deserializer for StrDeserializer<'a, E>`
+##### `impl<E> Deserializer for StrDeserializer<'a, E>`
 
-- <span id="strdeserializer-type-error"></span>`type Error = E`
+- <span id="strdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="strdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -1994,17 +1994,17 @@ A deserializer holding a `&str`.
 
 - <span id="strdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, 'a, E> EnumAccess for StrDeserializer<'a, E>`
+##### `impl<E> EnumAccess for StrDeserializer<'a, E>`
 
-- <span id="strdeserializer-type-error"></span>`type Error = E`
+- <span id="strdeserializer-enumaccess-type-error"></span>`type Error = E`
 
-- <span id="strdeserializer-type-variant"></span>`type Variant = UnitOnly<E>`
+- <span id="strdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
 - <span id="strdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, 'a, E> IntoDeserializer for StrDeserializer<'a, E>`
+##### `impl<E> IntoDeserializer for StrDeserializer<'a, E>`
 
-- <span id="strdeserializer-type-deserializer"></span>`type Deserializer = StrDeserializer<'a, E>`
+- <span id="strdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = StrDeserializer<'a, E>`
 
 - <span id="strdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2028,19 +2028,19 @@ deserializer.
 
 #### Trait Implementations
 
-##### `impl<'de, E> Clone for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> Clone for BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'de, E> Copy for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> Copy for BorrowedStrDeserializer<'de, E>`
 
-##### `impl<'de, E> Debug for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> Debug for BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> Deserializer for BorrowedStrDeserializer<'de, E>`
 
-- <span id="borrowedstrdeserializer-type-error"></span>`type Error = E`
+- <span id="borrowedstrdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="borrowedstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2104,17 +2104,17 @@ deserializer.
 
 - <span id="borrowedstrdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, E> EnumAccess for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> EnumAccess for BorrowedStrDeserializer<'de, E>`
 
-- <span id="borrowedstrdeserializer-type-error"></span>`type Error = E`
+- <span id="borrowedstrdeserializer-enumaccess-type-error"></span>`type Error = E`
 
-- <span id="borrowedstrdeserializer-type-variant"></span>`type Variant = UnitOnly<E>`
+- <span id="borrowedstrdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
 - <span id="borrowedstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, E> IntoDeserializer for BorrowedStrDeserializer<'de, E>`
+##### `impl<E> IntoDeserializer for BorrowedStrDeserializer<'de, E>`
 
-- <span id="borrowedstrdeserializer-type-deserializer"></span>`type Deserializer = BorrowedStrDeserializer<'de, E>`
+- <span id="borrowedstrdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BorrowedStrDeserializer<'de, E>`
 
 - <span id="borrowedstrdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2145,9 +2145,9 @@ A deserializer holding a `String`.
 
 - <span id="stringdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for StringDeserializer<E>`
+##### `impl<E> Deserializer for StringDeserializer<E>`
 
-- <span id="stringdeserializer-type-error"></span>`type Error = E`
+- <span id="stringdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="stringdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2211,17 +2211,17 @@ A deserializer holding a `String`.
 
 - <span id="stringdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, E> EnumAccess for StringDeserializer<E>`
+##### `impl<E> EnumAccess for StringDeserializer<E>`
 
-- <span id="stringdeserializer-type-error"></span>`type Error = E`
+- <span id="stringdeserializer-enumaccess-type-error"></span>`type Error = E`
 
-- <span id="stringdeserializer-type-variant"></span>`type Variant = UnitOnly<E>`
+- <span id="stringdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
 - <span id="stringdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, E> IntoDeserializer for StringDeserializer<E>`
+##### `impl<E> IntoDeserializer for StringDeserializer<E>`
 
-- <span id="stringdeserializer-type-deserializer"></span>`type Deserializer = StringDeserializer<E>`
+- <span id="stringdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = StringDeserializer<E>`
 
 - <span id="stringdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2244,17 +2244,17 @@ A deserializer holding a `Cow<str>`.
 
 #### Trait Implementations
 
-##### `impl<'a, E> Clone for CowStrDeserializer<'a, E>`
+##### `impl<E> Clone for CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, E> Debug for CowStrDeserializer<'a, E>`
+##### `impl<E> Debug for CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, 'a, E> Deserializer for CowStrDeserializer<'a, E>`
+##### `impl<E> Deserializer for CowStrDeserializer<'a, E>`
 
-- <span id="cowstrdeserializer-type-error"></span>`type Error = E`
+- <span id="cowstrdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="cowstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2318,17 +2318,17 @@ A deserializer holding a `Cow<str>`.
 
 - <span id="cowstrdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, 'a, E> EnumAccess for CowStrDeserializer<'a, E>`
+##### `impl<E> EnumAccess for CowStrDeserializer<'a, E>`
 
-- <span id="cowstrdeserializer-type-error"></span>`type Error = E`
+- <span id="cowstrdeserializer-enumaccess-type-error"></span>`type Error = E`
 
-- <span id="cowstrdeserializer-type-variant"></span>`type Variant = UnitOnly<E>`
+- <span id="cowstrdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly<E>`
 
 - <span id="cowstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, 'a, E> IntoDeserializer for CowStrDeserializer<'a, E>`
+##### `impl<E> IntoDeserializer for CowStrDeserializer<'a, E>`
 
-- <span id="cowstrdeserializer-type-deserializer"></span>`type Deserializer = CowStrDeserializer<'a, E>`
+- <span id="cowstrdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = CowStrDeserializer<'a, E>`
 
 - <span id="cowstrdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2351,19 +2351,19 @@ A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 
 #### Trait Implementations
 
-##### `impl<'a, E> Clone for BytesDeserializer<'a, E>`
+##### `impl<E> Clone for BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, E> Copy for BytesDeserializer<'a, E>`
+##### `impl<E> Copy for BytesDeserializer<'a, E>`
 
-##### `impl<'a, E> Debug for BytesDeserializer<'a, E>`
+##### `impl<E> Debug for BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, 'a, E> Deserializer for BytesDeserializer<'a, E>`
+##### `impl<E> Deserializer for BytesDeserializer<'a, E>`
 
-- <span id="bytesdeserializer-type-error"></span>`type Error = E`
+- <span id="bytesdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="bytesdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2427,9 +2427,9 @@ A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 
 - <span id="bytesdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, 'a, E> IntoDeserializer for BytesDeserializer<'a, E>`
+##### `impl<E> IntoDeserializer for BytesDeserializer<'a, E>`
 
-- <span id="bytesdeserializer-type-deserializer"></span>`type Deserializer = BytesDeserializer<'a, E>`
+- <span id="bytesdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BytesDeserializer<'a, E>`
 
 - <span id="bytesdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2453,19 +2453,19 @@ deserializer. Always calls `Visitor::visit_borrowed_bytes`.
 
 #### Trait Implementations
 
-##### `impl<'de, E> Clone for BorrowedBytesDeserializer<'de, E>`
+##### `impl<E> Clone for BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'de, E> Copy for BorrowedBytesDeserializer<'de, E>`
+##### `impl<E> Copy for BorrowedBytesDeserializer<'de, E>`
 
-##### `impl<'de, E> Debug for BorrowedBytesDeserializer<'de, E>`
+##### `impl<E> Debug for BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, E> Deserializer for BorrowedBytesDeserializer<'de, E>`
+##### `impl<E> Deserializer for BorrowedBytesDeserializer<'de, E>`
 
-- <span id="borrowedbytesdeserializer-type-error"></span>`type Error = E`
+- <span id="borrowedbytesdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="borrowedbytesdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2529,9 +2529,9 @@ deserializer. Always calls `Visitor::visit_borrowed_bytes`.
 
 - <span id="borrowedbytesdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, E> IntoDeserializer for BorrowedBytesDeserializer<'de, E>`
+##### `impl<E> IntoDeserializer for BorrowedBytesDeserializer<'de, E>`
 
-- <span id="borrowedbytesdeserializer-type-deserializer"></span>`type Deserializer = BorrowedBytesDeserializer<'de, E>`
+- <span id="borrowedbytesdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = BorrowedBytesDeserializer<'de, E>`
 
 - <span id="borrowedbytesdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2563,9 +2563,9 @@ A deserializer that iterates over a sequence.
 
 - <span id="seqdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, I, T, E> Deserializer for SeqDeserializer<I, E>`
+##### `impl<I, E> Deserializer for SeqDeserializer<I, E>`
 
-- <span id="seqdeserializer-type-error"></span>`type Error = E`
+- <span id="seqdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="seqdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2629,15 +2629,15 @@ A deserializer that iterates over a sequence.
 
 - <span id="seqdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, I, T, E> IntoDeserializer for SeqDeserializer<I, E>`
+##### `impl<I, E> IntoDeserializer for SeqDeserializer<I, E>`
 
-- <span id="seqdeserializer-type-deserializer"></span>`type Deserializer = SeqDeserializer<I, E>`
+- <span id="seqdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = SeqDeserializer<I, E>`
 
 - <span id="seqdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
-##### `impl<'de, I, T, E> SeqAccess for SeqDeserializer<I, E>`
+##### `impl<I, E> SeqAccess for SeqDeserializer<I, E>`
 
-- <span id="seqdeserializer-type-error"></span>`type Error = E`
+- <span id="seqdeserializer-seqaccess-type-error"></span>`type Error = E`
 
 - <span id="seqdeserializer-next-element-seed"></span>`fn next_element_seed<V>(&mut self, seed: V) -> Result<Option<<V as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
@@ -2683,9 +2683,9 @@ A deserializer holding a `SeqAccess`.
 
 - <span id="seqaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, A> Deserializer for SeqAccessDeserializer<A>`
+##### `impl<A> Deserializer for SeqAccessDeserializer<A>`
 
-- <span id="seqaccessdeserializer-type-error"></span>`type Error = <A as SeqAccess>::Error`
+- <span id="seqaccessdeserializer-deserializer-type-error"></span>`type Error = <A as SeqAccess>::Error`
 
 - <span id="seqaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2749,9 +2749,9 @@ A deserializer holding a `SeqAccess`.
 
 - <span id="seqaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, A> IntoDeserializer for SeqAccessDeserializer<A>`
+##### `impl<A> IntoDeserializer for SeqAccessDeserializer<A>`
 
-- <span id="seqaccessdeserializer-type-deserializer"></span>`type Deserializer = SeqAccessDeserializer<A>`
+- <span id="seqaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = SeqAccessDeserializer<A>`
 
 - <span id="seqaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -2780,17 +2780,17 @@ A deserializer that iterates over a map.
 
 #### Trait Implementations
 
-##### `impl<'de, I, E> Clone for MapDeserializer<'de, I, E>`
+##### `impl<I, E> Clone for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'de, I, E> Debug for MapDeserializer<'de, I, E>`
+##### `impl<I, E> Debug for MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, I, E> Deserializer for MapDeserializer<'de, I, E>`
+##### `impl<I, E> Deserializer for MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-type-error"></span>`type Error = E`
+- <span id="mapdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="mapdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -2854,15 +2854,15 @@ A deserializer that iterates over a map.
 
 - <span id="mapdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, I, E> IntoDeserializer for MapDeserializer<'de, I, E>`
+##### `impl<I, E> IntoDeserializer for MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-type-deserializer"></span>`type Deserializer = MapDeserializer<'de, I, E>`
+- <span id="mapdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = MapDeserializer<'de, I, E>`
 
 - <span id="mapdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
-##### `impl<'de, I, E> MapAccess for MapDeserializer<'de, I, E>`
+##### `impl<I, E> MapAccess for MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-type-error"></span>`type Error = E`
+- <span id="mapdeserializer-mapaccess-type-error"></span>`type Error = E`
 
 - <span id="mapdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
@@ -2872,9 +2872,9 @@ A deserializer that iterates over a map.
 
 - <span id="mapdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
-##### `impl<'de, I, E> SeqAccess for MapDeserializer<'de, I, E>`
+##### `impl<I, E> SeqAccess for MapDeserializer<'de, I, E>`
 
-- <span id="mapdeserializer-type-error"></span>`type Error = E`
+- <span id="mapdeserializer-seqaccess-type-error"></span>`type Error = E`
 
 - <span id="mapdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
@@ -2890,9 +2890,9 @@ struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 
 #### Trait Implementations
 
-##### `impl<'de, A, B, E> Deserializer for PairDeserializer<A, B, E>`
+##### `impl<A, B, E> Deserializer for PairDeserializer<A, B, E>`
 
-- <span id="pairdeserializer-type-error"></span>`type Error = E`
+- <span id="pairdeserializer-deserializer-type-error"></span>`type Error = E`
 
 - <span id="pairdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
@@ -2966,9 +2966,9 @@ struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 
 #### Trait Implementations
 
-##### `impl<'de, A, B, E> SeqAccess for PairVisitor<A, B, E>`
+##### `impl<A, B, E> SeqAccess for PairVisitor<A, B, E>`
 
-- <span id="pairvisitor-type-error"></span>`type Error = E`
+- <span id="pairvisitor-seqaccess-type-error"></span>`type Error = E`
 
 - <span id="pairvisitor-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
@@ -3014,9 +3014,9 @@ A deserializer holding a `MapAccess`.
 
 - <span id="mapaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, A> Deserializer for MapAccessDeserializer<A>`
+##### `impl<A> Deserializer for MapAccessDeserializer<A>`
 
-- <span id="mapaccessdeserializer-type-error"></span>`type Error = <A as MapAccess>::Error`
+- <span id="mapaccessdeserializer-deserializer-type-error"></span>`type Error = <A as MapAccess>::Error`
 
 - <span id="mapaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -3080,17 +3080,17 @@ A deserializer holding a `MapAccess`.
 
 - <span id="mapaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, A> EnumAccess for MapAccessDeserializer<A>`
+##### `impl<A> EnumAccess for MapAccessDeserializer<A>`
 
-- <span id="mapaccessdeserializer-type-error"></span>`type Error = <A as MapAccess>::Error`
+- <span id="mapaccessdeserializer-enumaccess-type-error"></span>`type Error = <A as MapAccess>::Error`
 
-- <span id="mapaccessdeserializer-type-variant"></span>`type Variant = MapAsEnum<A>`
+- <span id="mapaccessdeserializer-enumaccess-type-variant"></span>`type Variant = MapAsEnum<A>`
 
 - <span id="mapaccessdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), <Self as >::Error>` — [`DeserializeSeed`](../index.md#deserializeseed)
 
-##### `impl<'de, A> IntoDeserializer for MapAccessDeserializer<A>`
+##### `impl<A> IntoDeserializer for MapAccessDeserializer<A>`
 
-- <span id="mapaccessdeserializer-type-deserializer"></span>`type Deserializer = MapAccessDeserializer<A>`
+- <span id="mapaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = MapAccessDeserializer<A>`
 
 - <span id="mapaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 
@@ -3120,9 +3120,9 @@ A deserializer holding an `EnumAccess`.
 
 - <span id="enumaccessdeserializer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, A> Deserializer for EnumAccessDeserializer<A>`
+##### `impl<A> Deserializer for EnumAccessDeserializer<A>`
 
-- <span id="enumaccessdeserializer-type-error"></span>`type Error = <A as EnumAccess>::Error`
+- <span id="enumaccessdeserializer-deserializer-type-error"></span>`type Error = <A as EnumAccess>::Error`
 
 - <span id="enumaccessdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md#visitor)
 
@@ -3186,9 +3186,9 @@ A deserializer holding an `EnumAccess`.
 
 - <span id="enumaccessdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>` — [`Visitor`](../index.md#visitor), [`Deserializer`](../index.md#deserializer)
 
-##### `impl<'de, A> IntoDeserializer for EnumAccessDeserializer<A>`
+##### `impl<A> IntoDeserializer for EnumAccessDeserializer<A>`
 
-- <span id="enumaccessdeserializer-type-deserializer"></span>`type Deserializer = EnumAccessDeserializer<A>`
+- <span id="enumaccessdeserializer-intodeserializer-type-deserializer"></span>`type Deserializer = EnumAccessDeserializer<A>`
 
 - <span id="enumaccessdeserializer-into-deserializer"></span>`fn into_deserializer(self) -> Self`
 

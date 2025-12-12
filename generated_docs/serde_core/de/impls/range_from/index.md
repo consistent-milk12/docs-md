@@ -27,13 +27,13 @@ struct RangeFromVisitor<Idx> {
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for RangeFromVisitor<Idx>`
+##### `impl Expected for RangeFromVisitor<Idx>`
 
 - <span id="rangefromvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, Idx> Visitor for RangeFromVisitor<Idx>`
+##### `impl<Idx> Visitor for RangeFromVisitor<Idx>`
 
-- <span id="rangefromvisitor-type-value"></span>`type Value = Idx`
+- <span id="rangefromvisitor-visitor-type-value"></span>`type Value = Idx`
 
 - <span id="rangefromvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

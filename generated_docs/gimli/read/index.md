@@ -188,7 +188,7 @@ fn main() {}
   - [`addr`](#addr)
   - [`cfi`](#cfi)
   - [`dwarf`](#dwarf)
-  - [`endian_slice`](#endian_slice)
+  - [`endian_slice`](#endian-slice)
   - [`reader`](#reader)
   - [`relocate`](#relocate)
   - [`abbrev`](#abbrev)
@@ -361,32 +361,32 @@ fn main() {}
   - [`LineProgram`](#lineprogram)
   - [`EvaluationStorage`](#evaluationstorage)
 - [Functions](#functions)
-  - [`parse_cfi_entry`](#parse_cfi_entry)
-  - [`parse_encoded_pointer`](#parse_encoded_pointer)
-  - [`parse_encoded_value`](#parse_encoded_value)
-  - [`get_attribute_size`](#get_attribute_size)
-  - [`parse_directory_v5`](#parse_directory_v5)
-  - [`parse_file_v5`](#parse_file_v5)
-  - [`parse_attribute`](#parse_attribute)
-  - [`parse_data`](#parse_data)
-  - [`compute_pc`](#compute_pc)
-  - [`generic_type`](#generic_type)
-  - [`parse_unit_type`](#parse_unit_type)
-  - [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset)
-  - [`parse_debug_info_offset`](#parse_debug_info_offset)
-  - [`parse_unit_header`](#parse_unit_header)
-  - [`parse_dwo_id`](#parse_dwo_id)
-  - [`length_u8_value`](#length_u8_value)
-  - [`length_u16_value`](#length_u16_value)
-  - [`length_u32_value`](#length_u32_value)
-  - [`length_uleb128_value`](#length_uleb128_value)
-  - [`allow_section_offset`](#allow_section_offset)
-  - [`parse_attribute`](#parse_attribute)
-  - [`skip_attributes`](#skip_attributes)
-  - [`parse_type_signature`](#parse_type_signature)
-  - [`parse_type_offset`](#parse_type_offset)
-  - [`sign_extend`](#sign_extend)
-  - [`mask_bit_size`](#mask_bit_size)
+  - [`parse_cfi_entry`](#parse-cfi-entry)
+  - [`parse_encoded_pointer`](#parse-encoded-pointer)
+  - [`parse_encoded_value`](#parse-encoded-value)
+  - [`get_attribute_size`](#get-attribute-size)
+  - [`parse_directory_v5`](#parse-directory-v5)
+  - [`parse_file_v5`](#parse-file-v5)
+  - [`parse_attribute`](#parse-attribute)
+  - [`parse_data`](#parse-data)
+  - [`compute_pc`](#compute-pc)
+  - [`generic_type`](#generic-type)
+  - [`parse_unit_type`](#parse-unit-type)
+  - [`parse_debug_abbrev_offset`](#parse-debug-abbrev-offset)
+  - [`parse_debug_info_offset`](#parse-debug-info-offset)
+  - [`parse_unit_header`](#parse-unit-header)
+  - [`parse_dwo_id`](#parse-dwo-id)
+  - [`length_u8_value`](#length-u8-value)
+  - [`length_u16_value`](#length-u16-value)
+  - [`length_u32_value`](#length-u32-value)
+  - [`length_uleb128_value`](#length-uleb128-value)
+  - [`allow_section_offset`](#allow-section-offset)
+  - [`parse_attribute`](#parse-attribute)
+  - [`skip_attributes`](#skip-attributes)
+  - [`parse_type_signature`](#parse-type-signature)
+  - [`parse_type_offset`](#parse-type-offset)
+  - [`sign_extend`](#sign-extend)
+  - [`mask_bit_size`](#mask-bit-size)
 - [Type Aliases](#type-aliases)
   - [`EndianBuf`](#endianbuf)
   - [`Result`](#result)
@@ -404,12 +404,12 @@ fn main() {}
   - [`LocListsHeader`](#loclistsheader)
   - [`RngListsHeader`](#rnglistsheader)
 - [Constants](#constants)
-  - [`MAX_RULES`](#max_rules)
-  - [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth)
-  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask)
-  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask)
-  - [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline)
-  - [`SECTION_COUNT_MAX`](#section_count_max)
+  - [`MAX_RULES`](#max-rules)
+  - [`MAX_UNWIND_STACK_DEPTH`](#max-unwind-stack-depth)
+  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi-instruction-high-bits-mask)
+  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi-instruction-low-bits-mask)
+  - [`MAX_ATTRIBUTES_INLINE`](#max-attributes-inline)
+  - [`SECTION_COUNT_MAX`](#section-count-max)
 
 ## Quick Reference
 
@@ -419,7 +419,7 @@ fn main() {}
 | [`addr`](#addr) | mod |  |
 | [`cfi`](#cfi) | mod |  |
 | [`dwarf`](#dwarf) | mod |  |
-| [`endian_slice`](#endian_slice) | mod | Working with byte slices that have an associated endianity. |
+| [`endian_slice`](#endian-slice) | mod | Working with byte slices that have an associated endianity. |
 | [`reader`](#reader) | mod |  |
 | [`relocate`](#relocate) | mod |  |
 | [`abbrev`](#abbrev) | mod | Functions for parsing DWARF debugging abbreviations. |
@@ -588,32 +588,32 @@ fn main() {}
 | [`Relocate`](#relocate) | trait | Trait for relocating addresses and offsets while reading a section. |
 | [`LineProgram`](#lineprogram) | trait | A `LineProgram` provides access to a `LineProgramHeader` and a way to add files to the files table if necessary. |
 | [`EvaluationStorage`](#evaluationstorage) | trait | Specification of what storage should be used for [`Evaluation`]. |
-| [`parse_cfi_entry`](#parse_cfi_entry) | fn |  |
-| [`parse_encoded_pointer`](#parse_encoded_pointer) | fn |  |
-| [`parse_encoded_value`](#parse_encoded_value) | fn |  |
-| [`get_attribute_size`](#get_attribute_size) | fn |  |
-| [`parse_directory_v5`](#parse_directory_v5) | fn |  |
-| [`parse_file_v5`](#parse_file_v5) | fn |  |
-| [`parse_attribute`](#parse_attribute) | fn |  |
-| [`parse_data`](#parse_data) | fn |  |
-| [`compute_pc`](#compute_pc) | fn |  |
-| [`generic_type`](#generic_type) | fn |  |
-| [`parse_unit_type`](#parse_unit_type) | fn | Parse the unit type from the unit header. |
-| [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
-| [`parse_debug_info_offset`](#parse_debug_info_offset) | fn | Parse the `debug_info_offset` in the arange header. |
-| [`parse_unit_header`](#parse_unit_header) | fn | Parse a unit header. |
-| [`parse_dwo_id`](#parse_dwo_id) | fn | Parse a dwo_id from a header |
-| [`length_u8_value`](#length_u8_value) | fn |  |
-| [`length_u16_value`](#length_u16_value) | fn |  |
-| [`length_u32_value`](#length_u32_value) | fn |  |
-| [`length_uleb128_value`](#length_uleb128_value) | fn |  |
-| [`allow_section_offset`](#allow_section_offset) | fn |  |
-| [`parse_attribute`](#parse_attribute) | fn |  |
-| [`skip_attributes`](#skip_attributes) | fn |  |
-| [`parse_type_signature`](#parse_type_signature) | fn | Parse a type unit header's unique type signature. |
-| [`parse_type_offset`](#parse_type_offset) | fn | Parse a type unit header's type offset. |
-| [`sign_extend`](#sign_extend) | fn | Convert a u64 to an i64, with sign extension if required. |
-| [`mask_bit_size`](#mask_bit_size) | fn |  |
+| [`parse_cfi_entry`](#parse-cfi-entry) | fn |  |
+| [`parse_encoded_pointer`](#parse-encoded-pointer) | fn |  |
+| [`parse_encoded_value`](#parse-encoded-value) | fn |  |
+| [`get_attribute_size`](#get-attribute-size) | fn |  |
+| [`parse_directory_v5`](#parse-directory-v5) | fn |  |
+| [`parse_file_v5`](#parse-file-v5) | fn |  |
+| [`parse_attribute`](#parse-attribute) | fn |  |
+| [`parse_data`](#parse-data) | fn |  |
+| [`compute_pc`](#compute-pc) | fn |  |
+| [`generic_type`](#generic-type) | fn |  |
+| [`parse_unit_type`](#parse-unit-type) | fn | Parse the unit type from the unit header. |
+| [`parse_debug_abbrev_offset`](#parse-debug-abbrev-offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
+| [`parse_debug_info_offset`](#parse-debug-info-offset) | fn | Parse the `debug_info_offset` in the arange header. |
+| [`parse_unit_header`](#parse-unit-header) | fn | Parse a unit header. |
+| [`parse_dwo_id`](#parse-dwo-id) | fn | Parse a dwo_id from a header |
+| [`length_u8_value`](#length-u8-value) | fn |  |
+| [`length_u16_value`](#length-u16-value) | fn |  |
+| [`length_u32_value`](#length-u32-value) | fn |  |
+| [`length_uleb128_value`](#length-uleb128-value) | fn |  |
+| [`allow_section_offset`](#allow-section-offset) | fn |  |
+| [`parse_attribute`](#parse-attribute) | fn |  |
+| [`skip_attributes`](#skip-attributes) | fn |  |
+| [`parse_type_signature`](#parse-type-signature) | fn | Parse a type unit header's unique type signature. |
+| [`parse_type_offset`](#parse-type-offset) | fn | Parse a type unit header's type offset. |
+| [`sign_extend`](#sign-extend) | fn | Convert a u64 to an i64, with sign extension if required. |
+| [`mask_bit_size`](#mask-bit-size) | fn |  |
 | [`EndianBuf`](#endianbuf) | type | `EndianBuf` has been renamed to `EndianSlice`. |
 | [`Result`](#result) | type | The result of a parse. |
 | [`LineNumberProgram`](#linenumberprogram) | type | Deprecated. |
@@ -629,12 +629,12 @@ fn main() {}
 | [`CompleteLineNumberProgram`](#completelinenumberprogram) | type | Deprecated. |
 | [`LocListsHeader`](#loclistsheader) | type |  |
 | [`RngListsHeader`](#rnglistsheader) | type |  |
-| [`MAX_RULES`](#max_rules) | const |  |
-| [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth) | const |  |
-| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask) | const |  |
-| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask) | const |  |
-| [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline) | const |  |
-| [`SECTION_COUNT_MAX`](#section_count_max) | const |  |
+| [`MAX_RULES`](#max-rules) | const |  |
+| [`MAX_UNWIND_STACK_DEPTH`](#max-unwind-stack-depth) | const |  |
+| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi-instruction-high-bits-mask) | const |  |
+| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi-instruction-low-bits-mask) | const |  |
+| [`MAX_ATTRIBUTES_INLINE`](#max-attributes-inline) | const |  |
+| [`SECTION_COUNT_MAX`](#section-count-max) | const |  |
 
 ## Modules
 
@@ -734,13 +734,13 @@ Indicates that storage should be allocated on heap.
 
 ##### `impl Eq for StoreOnHeap`
 
-##### `impl EvaluationStorage for crate::read::StoreOnHeap`
+##### `impl<R: Reader> EvaluationStorage for crate::read::StoreOnHeap`
 
-- <span id="cratereadstoreonheap-type-stack"></span>`type Stack = Vec<Value>`
+- <span id="cratereadstoreonheap-evaluationstorage-type-stack"></span>`type Stack = Vec<Value>`
 
-- <span id="cratereadstoreonheap-type-expressionstack"></span>`type ExpressionStack = Vec<(R, R)>`
+- <span id="cratereadstoreonheap-evaluationstorage-type-expressionstack"></span>`type ExpressionStack = Vec<(R, R)>`
 
-- <span id="cratereadstoreonheap-type-result"></span>`type Result = Vec<Piece<R>>`
+- <span id="cratereadstoreonheap-evaluationstorage-type-result"></span>`type Result = Vec<Piece<R>>`
 
 ##### `impl PartialEq for StoreOnHeap`
 
@@ -748,11 +748,11 @@ Indicates that storage should be allocated on heap.
 
 ##### `impl StructuralPartialEq for StoreOnHeap`
 
-##### `impl UnwindContextStorage for crate::read::StoreOnHeap`
+##### `impl<T: ReaderOffset> UnwindContextStorage for crate::read::StoreOnHeap`
 
-- <span id="cratereadstoreonheap-type-rules"></span>`type Rules = [(Register, RegisterRule<T>); 192]`
+- <span id="cratereadstoreonheap-unwindcontextstorage-type-rules"></span>`type Rules = [(Register, RegisterRule<T>); 192]`
 
-- <span id="cratereadstoreonheap-type-stack"></span>`type Stack = Box<[UnwindTableRow<T>; 4]>`
+- <span id="cratereadstoreonheap-unwindcontextstorage-type-stack"></span>`type Stack = Box<[UnwindTableRow<T>; 4]>`
 
 ### `ArrayVec<A: ArrayLike>`
 
@@ -795,7 +795,7 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-deref-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
 - <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](#arraylike)
 
@@ -813,9 +813,9 @@ struct ArrayVec<A: ArrayLike> {
 
 - <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<P, T> Receiver for ArrayVec<A>`
+##### `impl Receiver for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = T`
+- <span id="arrayvec-receiver-type-target"></span>`type Target = T`
 
 ### `DebugAddr<R>`
 
@@ -1025,7 +1025,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
-- <span id="debugframe-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
+- <span id="debugframe-unwindsection-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
 
 ### `EhFrameHdr<R: Reader>`
 
@@ -1131,7 +1131,7 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 #### Trait Implementations
 
-##### `impl<'a, 'bases, R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
 
 - <span id="ehhdrtableiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1161,11 +1161,11 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
 - <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](#ehhdrtable)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
 - <span id="ehhdrtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1226,7 +1226,7 @@ for some discussion on the differences between `.debug_frame` and
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
-- <span id="ehframe-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
+- <span id="ehframe-unwindsection-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
 
 ### `BaseAddresses`
 
@@ -1425,11 +1425,11 @@ unreachable!()
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
+##### `impl<Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
 - <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](#cfientriesiter)
 
-##### `impl<'bases, Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
+##### `impl<Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
 - <span id="cfientriesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1695,21 +1695,21 @@ Fully parsing this FDE requires first parsing its CIE.
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
 
-##### `impl<'bases, Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'bases, Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-##### `impl<'bases, Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
 
-##### `impl<'bases, Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 ### `FrameDescriptionEntry<R, Offset>`
 
@@ -1971,7 +1971,7 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 #### Trait Implementations
 
-##### `impl<'a, 'ctx, R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
+##### `impl<R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
 - <span id="unwindtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2014,7 +2014,7 @@ where
 
 ##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
 
-##### `impl<'a, R, S> FromIterator for RegisterRuleMap<R, S>`
+##### `impl<R, S> FromIterator for RegisterRuleMap<R, S>`
 
 - <span id="registerrulemap-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
 
@@ -2036,25 +2036,25 @@ An unordered iterator for register rules.
 
 #### Trait Implementations
 
-##### `impl<'iter, T> Clone for RegisterRuleIter<'iter, T>`
+##### `impl<T> Clone for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](#registerruleiter)
 
-##### `impl<'iter, T> Debug for RegisterRuleIter<'iter, T>`
+##### `impl<T> Debug for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for RegisterRuleIter<'iter, T>`
+##### `impl IntoIterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="registerruleiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="registerruleiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="registerruleiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'iter, T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
+##### `impl<T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
+- <span id="registerruleiter-iterator-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
 - <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -2142,11 +2142,11 @@ Can be [used with
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
 - <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](#callframeinstructioniter)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
 - <span id="callframeinstructioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2237,11 +2237,11 @@ struct PointerEncodingParameters<'a, R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
 
 - <span id="pointerencodingparameters-clone"></span>`fn clone(&self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](cfi/index.md#pointerencodingparameters)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
 
 - <span id="pointerencodingparameters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2890,25 +2890,25 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 #### Trait Implementations
 
-##### `impl<'a, R: Reader> Clone for UnitRef<'a, R>`
+##### `impl<R: Reader> Clone for UnitRef<'a, R>`
 
 - <span id="unitref-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, R: Reader> Copy for UnitRef<'a, R>`
+##### `impl<R: Reader> Copy for UnitRef<'a, R>`
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
 
 - <span id="unitref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: Reader> Deref for UnitRef<'a, R>`
+##### `impl<R: Reader> Deref for UnitRef<'a, R>`
 
-- <span id="unitref-type-target"></span>`type Target = Unit<R>`
+- <span id="unitref-deref-type-target"></span>`type Target = Unit<R>`
 
 - <span id="unitref-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for UnitRef<'a, R>`
+##### `impl Receiver for UnitRef<'a, R>`
 
-- <span id="unitref-type-target"></span>`type Target = T`
+- <span id="unitref-receiver-type-target"></span>`type Target = T`
 
 ### `RangeIter<R: Reader>`
 
@@ -2973,41 +2973,41 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Trait Implementations
 
-##### `impl<'input, Endian> Clone for EndianSlice<'input, Endian>`
+##### `impl<Endian> Clone for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-clone"></span>`fn clone(&self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-##### `impl<'input, Endian> Copy for EndianSlice<'input, Endian>`
+##### `impl<Endian> Copy for EndianSlice<'input, Endian>`
 
-##### `impl<'input, Endian: Endianity> Debug for EndianSlice<'input, Endian>`
+##### `impl<Endian: Endianity> Debug for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
-##### `impl<'input, Endian> Default for EndianSlice<'input, Endian>`
+##### `impl<Endian> Default for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-default"></span>`fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-##### `impl<'input, Endian> Deref for EndianSlice<'input, Endian>`
+##### `impl<Endian> Deref for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-target"></span>`type Target = [u8]`
+- <span id="endianslice-deref-type-target"></span>`type Target = [u8]`
 
 - <span id="endianslice-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<'input, Endian> Eq for EndianSlice<'input, Endian>`
+##### `impl<Endian> Eq for EndianSlice<'input, Endian>`
 
-##### `impl<'input, Endian> Hash for EndianSlice<'input, Endian>`
+##### `impl<Endian> Hash for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'input, Endian> PartialEq for EndianSlice<'input, Endian>`
+##### `impl<Endian> PartialEq for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-eq"></span>`fn eq(&self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](#endianslice)
 
-##### `impl<'input, Endian> Reader for EndianSlice<'input, Endian>`
+##### `impl<Endian> Reader for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-endian"></span>`type Endian = Endian`
+- <span id="endianslice-reader-type-endian"></span>`type Endian = Endian`
 
-- <span id="endianslice-type-offset"></span>`type Offset = usize`
+- <span id="endianslice-reader-type-offset"></span>`type Offset = usize`
 
 - <span id="endianslice-endian"></span>`fn endian(&self) -> Endian`
 
@@ -3039,11 +3039,11 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 - <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../index.md#result)
 
-##### `impl<P, T> Receiver for EndianSlice<'input, Endian>`
+##### `impl Receiver for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-target"></span>`type Target = T`
+- <span id="endianslice-receiver-type-target"></span>`type Target = T`
 
-##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
+##### `impl<Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
 
 ### `DebugBytes<'input>`
 
@@ -3155,9 +3155,9 @@ It is generally not used for reading sections in an executable file.
 
 ##### `impl<R, T> Reader for RelocateReader<R, T>`
 
-- <span id="relocatereader-type-endian"></span>`type Endian = <R as Reader>::Endian`
+- <span id="relocatereader-reader-type-endian"></span>`type Endian = <R as Reader>::Endian`
 
-- <span id="relocatereader-type-offset"></span>`type Offset = <R as Reader>::Offset`
+- <span id="relocatereader-reader-type-offset"></span>`type Offset = <R as Reader>::Offset`
 
 - <span id="relocatereader-read-address"></span>`fn read_address(&mut self, address_size: u8) -> Result<u64>` — [`Result`](../index.md#result)
 
@@ -3757,25 +3757,25 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
 
-##### `impl<'index, R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator)
 
-##### `impl<'index, R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for UnitIndexSectionIterator<'index, R>`
+##### `impl IntoIterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="unitindexsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="unitindexsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="unitindexsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'index, R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-type-item"></span>`type Item = UnitIndexSection`
+- <span id="unitindexsectioniterator-iterator-type-item"></span>`type Item = UnitIndexSection`
 
 - <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](#unitindexsection)
 
@@ -4299,7 +4299,7 @@ A line number program that has previously been run to completion.
 
 ##### `impl<R, Offset> Eq for CompleteLineProgram<R, Offset>`
 
-##### `impl<'program, R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
+##### `impl<R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
 
 - <span id="program-completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
@@ -5749,11 +5749,11 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R, Offset> Clone for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
+##### `impl<R, Offset> Clone for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
 - <span id="debugginginformationentry-clone"></span>`fn clone(&self) -> DebuggingInformationEntry<'abbrev, 'unit, R, Offset>` — [`DebuggingInformationEntry`](#debugginginformationentry)
 
-##### `impl<'abbrev, 'unit, R, Offset> Debug for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
+##### `impl<R, Offset> Debug for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
 - <span id="debugginginformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -5842,13 +5842,13 @@ Can be [used with
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'entry, 'unit, R: clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
 - <span id="attrsiter-clone"></span>`fn clone(&self) -> AttrsIter<'abbrev, 'entry, 'unit, R>` — [`AttrsIter`](#attrsiter)
 
-##### `impl<'abbrev, 'entry, 'unit, R: marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
-##### `impl<'abbrev, 'entry, 'unit, R: fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
 - <span id="attrsiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -5936,11 +5936,11 @@ unreachable!()
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesRaw<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesRaw<'abbrev, 'unit, R>`
 
 - <span id="entriesraw-clone"></span>`fn clone(&self) -> EntriesRaw<'abbrev, 'unit, R>` — [`EntriesRaw`](#entriesraw)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesRaw<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesRaw<'abbrev, 'unit, R>`
 
 - <span id="entriesraw-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -5986,11 +5986,11 @@ end of the current tree depth.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesCursor<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesCursor<'abbrev, 'unit, R>`
 
 - <span id="entriescursor-clone"></span>`fn clone(&self) -> EntriesCursor<'abbrev, 'unit, R>` — [`EntriesCursor`](#entriescursor)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesCursor<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesCursor<'abbrev, 'unit, R>`
 
 - <span id="entriescursor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -6062,11 +6062,11 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesTree<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesTree<'abbrev, 'unit, R>`
 
 - <span id="entriestree-clone"></span>`fn clone(&self) -> EntriesTree<'abbrev, 'unit, R>` — [`EntriesTree`](#entriestree)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesTree<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesTree<'abbrev, 'unit, R>`
 
 - <span id="entriestree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -6096,7 +6096,7 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
 
 - <span id="entriestreenode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -6126,7 +6126,7 @@ which allow recursive traversal of grandchildren, etc.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
 
 - <span id="entriestreeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -6702,21 +6702,21 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Clone for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](#cieorfde)
 
-##### `impl<'bases, Section, R> Debug for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Debug for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'bases, Section, R> Eq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Eq for CieOrFde<'bases, Section, R>`
 
-##### `impl<'bases, Section, R> PartialEq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](#cieorfde)
 
-##### `impl<'bases, Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
 
 ### `CfaRule<T: ReaderOffset>`
 
@@ -7362,7 +7362,7 @@ A list of attributes found in an `Abbreviation`
 
 ##### `impl Deref for Attributes`
 
-- <span id="attributes-type-target"></span>`type Target = [AttributeSpecification]`
+- <span id="attributes-deref-type-target"></span>`type Target = [AttributeSpecification]`
 
 - <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
 
@@ -7378,7 +7378,7 @@ A list of attributes found in an `Abbreviation`
 
 ##### `impl Receiver for Attributes`
 
-- <span id="attributes-type-target"></span>`type Target = T`
+- <span id="attributes-receiver-type-target"></span>`type Target = T`
 
 ### `IndexSectionId`
 

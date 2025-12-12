@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`do_alloc`](#do_alloc) | fn |  |
+| [`do_alloc`](#do-alloc) | fn |  |
 
 ## Functions
 

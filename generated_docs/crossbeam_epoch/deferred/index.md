@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Deferred`](#deferred) | struct | A `FnOnce()` that is stored inline if small, or otherwise boxed on the heap. |
 | [`Data`](#data) | type | Some space to keep a `FnOnce()` object on the stack. |
-| [`DATA_WORDS`](#data_words) | const | Number of words a piece of `Data` can hold. |
+| [`DATA_WORDS`](#data-words) | const | Number of words a piece of `Data` can hold. |
 
 ## Structs
 
@@ -46,9 +46,9 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 ##### `impl Pointable for Deferred`
 
-- <span id="deferred-const-align"></span>`const ALIGN: usize`
+- <span id="deferred-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="deferred-type-init"></span>`type Init = T`
+- <span id="deferred-pointable-type-init"></span>`type Init = T`
 
 - <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 

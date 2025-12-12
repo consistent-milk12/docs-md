@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`RabinKarp`](#rabinkarp) | struct | An implementation of the Rabin-Karp algorithm. |
 | [`Hash`](#hash) | type | The type of the rolling hash used in the Rabin-Karp algorithm. |
-| [`NUM_BUCKETS`](#num_buckets) | const | The number of buckets to store our patterns in. |
+| [`NUM_BUCKETS`](#num-buckets) | const | The number of buckets to store our patterns in. |
 
 ## Structs
 

@@ -59,15 +59,15 @@ struct LineColIterator<I> {
 
 ##### `impl<I> IntoIterator for LineColIterator<I>`
 
-- <span id="linecoliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="linecoliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="linecoliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="linecoliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="linecoliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I> Iterator for LineColIterator<I>`
 
-- <span id="linecoliterator-type-item"></span>`type Item = Result<u8, Error>`
+- <span id="linecoliterator-iterator-type-item"></span>`type Item = Result<u8, Error>`
 
 - <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md#result)
 

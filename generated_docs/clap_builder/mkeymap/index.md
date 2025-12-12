@@ -11,7 +11,7 @@
 | [`Key`](#key) | struct |  |
 | [`MKeyMap`](#mkeymap) | struct |  |
 | [`KeyType`](#keytype) | enum |  |
-| [`append_keys`](#append_keys) | fn | Generate key types for an specific Arg. |
+| [`append_keys`](#append-keys) | fn | Generate key types for an specific Arg. |
 
 ## Structs
 
@@ -103,7 +103,7 @@ struct MKeyMap {
 
 ##### `impl Index for MKeyMap`
 
-- <span id="mkeymap-type-output"></span>`type Output = Arg`
+- <span id="mkeymap-index-type-output"></span>`type Output = Arg`
 
 - <span id="mkeymap-index"></span>`fn index(&self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
 
@@ -149,7 +149,7 @@ enum KeyType {
 
 ##### `impl Index for MKeyMap`
 
-- <span id="mkeymap-type-output"></span>`type Output = Arg`
+- <span id="mkeymap-index-type-output"></span>`type Output = Arg`
 
 - <span id="mkeymap-index"></span>`fn index(&self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
 

@@ -52,8 +52,8 @@ generator.generate()?;
   - [`SearchIndexGenerator`](#searchindexgenerator)
   - [`SummaryGenerator`](#summarygenerator)
 - [Constants](#constants)
-  - [`RUST_PATH_SEP`](#rust_path_sep)
-  - [`FILE_PATH_SEP`](#file_path_sep)
+  - [`RUST_PATH_SEP`](#rust-path-sep)
+  - [`FILE_PATH_SEP`](#file-path-sep)
 
 ## Quick Reference
 
@@ -75,8 +75,8 @@ generator.generate()?;
 | [`SearchIndex`](#searchindex) | struct |  |
 | [`SearchIndexGenerator`](#searchindexgenerator) | struct |  |
 | [`SummaryGenerator`](#summarygenerator) | struct |  |
-| [`RUST_PATH_SEP`](#rust_path_sep) | const | Rust module path separator (e.g., `serde_json::de::from_str`). |
-| [`FILE_PATH_SEP`](#file_path_sep) | const | File system path separator for generated documentation. |
+| [`RUST_PATH_SEP`](#rust-path-sep) | const | Rust module path separator (e.g., `serde_json::de::from_str`). |
+| [`FILE_PATH_SEP`](#file-path-sep) | const | File system path separator for generated documentation. |
 
 ## Modules
 
@@ -165,9 +165,9 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-type-init"></span>`type Init = T`
+- <span id="cratecollection-pointable-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -192,7 +192,7 @@ struct MultiCrateContext<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:41-64`*
+*Defined in `src/multi_crate/context.rs:39-62`*
 
 Shared context for multi-crate documentation generation.
 
@@ -266,9 +266,9 @@ generation across crates.
 
 ##### `impl Pointable for MultiCrateContext<'a>`
 
-- <span id="multicratecontext-const-align"></span>`const ALIGN: usize`
+- <span id="multicratecontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratecontext-type-init"></span>`type Init = T`
+- <span id="multicratecontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -295,7 +295,7 @@ struct SingleCrateView<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:278-303`*
+*Defined in `src/multi_crate/context.rs:276-301`*
 
 View of a single crate within multi-crate context.
 
@@ -443,9 +443,9 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl Pointable for SingleCrateView<'a>`
 
-- <span id="singlecrateview-const-align"></span>`const ALIGN: usize`
+- <span id="singlecrateview-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="singlecrateview-type-init"></span>`type Init = T`
+- <span id="singlecrateview-pointable-type-init"></span>`type Init = T`
 
 - <span id="singlecrateview-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -468,7 +468,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:56-62`*
+*Defined in `src/multi_crate/generator.rs:416-422`*
 
 Generator for multi-crate documentation.
 
@@ -528,9 +528,9 @@ output/
 
 ##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-type-init"></span>`type Init = T`
+- <span id="multicrategenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -578,9 +578,9 @@ println!("Found {} crates", crates.len());
 
 ##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-type-init"></span>`type Init = T`
+- <span id="multicrateparser-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -718,9 +718,9 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-pointable-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -766,9 +766,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-const-align"></span>`const ALIGN: usize`
+- <span id="searchindex-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-type-init"></span>`type Init = T`
+- <span id="searchindex-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -854,9 +854,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 ##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-type-init"></span>`type Init = T`
+- <span id="searchindexgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -929,9 +929,9 @@ Summary
 
 ##### `impl Pointable for SummaryGenerator<'a>`
 
-- <span id="summarygenerator-const-align"></span>`const ALIGN: usize`
+- <span id="summarygenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="summarygenerator-type-init"></span>`type Init = T`
+- <span id="summarygenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="summarygenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

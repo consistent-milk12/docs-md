@@ -68,9 +68,9 @@ This preserves insertion order
 
 ##### `impl<T: PartialEq + Eq> IntoIterator for FlatSet<T>`
 
-- <span id="flatset-type-item"></span>`type Item = T`
+- <span id="flatset-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="flatset-type-intoiter"></span>`type IntoIter = IntoIter<T>`
+- <span id="flatset-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
 - <span id="flatset-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 

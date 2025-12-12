@@ -64,7 +64,7 @@ feature
 
 ##### `impl Deref for Str`
 
-- <span id="str-type-target"></span>`type Target = str`
+- <span id="str-deref-type-target"></span>`type Target = str`
 
 - <span id="str-deref"></span>`fn deref(&self) -> &str`
 
@@ -96,7 +96,7 @@ feature
 
 ##### `impl Receiver for Str`
 
-- <span id="str-type-target"></span>`type Target = T`
+- <span id="str-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Str`
 

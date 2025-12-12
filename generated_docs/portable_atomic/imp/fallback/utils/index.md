@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`CachePadded`](#cachepadded) | struct | Pads and aligns a value to the length of a cache line. |
 | [`Backoff`](#backoff) | struct | Performs exponential backoff in spin loops. |
-| [`SPIN_LIMIT`](#spin_limit) | const |  |
+| [`SPIN_LIMIT`](#spin-limit) | const |  |
 
 ## Structs
 
@@ -34,13 +34,13 @@ Pads and aligns a value to the length of a cache line.
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-deref-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for CachePadded<T>`
+##### `impl<T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-receiver-type-target"></span>`type Target = T`
 
 ### `Backoff`
 

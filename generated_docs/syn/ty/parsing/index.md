@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ambig_ty`](#ambig_ty) | fn |  |
-| [`parse_bare_fn_arg`](#parse_bare_fn_arg) | fn |  |
-| [`parse_bare_variadic`](#parse_bare_variadic) | fn |  |
+| [`ambig_ty`](#ambig-ty) | fn |  |
+| [`parse_bare_fn_arg`](#parse-bare-fn-arg) | fn |  |
+| [`parse_bare_variadic`](#parse-bare-variadic) | fn |  |
 
 ## Functions
 

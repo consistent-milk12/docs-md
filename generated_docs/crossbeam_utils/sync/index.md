@@ -13,10 +13,10 @@ Thread synchronization primitives.
 ## Contents
 
 - [Modules](#modules)
-  - [`once_lock`](#once_lock)
+  - [`once_lock`](#once-lock)
   - [`parker`](#parker)
-  - [`sharded_lock`](#sharded_lock)
-  - [`wait_group`](#wait_group)
+  - [`sharded_lock`](#sharded-lock)
+  - [`wait_group`](#wait-group)
 - [Structs](#structs)
   - [`Parker`](#parker)
   - [`Unparker`](#unparker)
@@ -29,10 +29,10 @@ Thread synchronization primitives.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`once_lock`](#once_lock) | mod |  |
+| [`once_lock`](#once-lock) | mod |  |
 | [`parker`](#parker) | mod |  |
-| [`sharded_lock`](#sharded_lock) | mod |  |
-| [`wait_group`](#wait_group) | mod |  |
+| [`sharded_lock`](#sharded-lock) | mod |  |
+| [`wait_group`](#wait-group) | mod |  |
 | [`Parker`](#parker) | struct |  |
 | [`Unparker`](#unparker) | struct |  |
 | [`ShardedLock`](#shardedlock) | struct |  |
@@ -281,7 +281,7 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-deref-type-target"></span>`type Target = T`
 
 - <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -289,9 +289,9 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 
 - <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
+##### `impl<T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
@@ -320,7 +320,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-deref-type-target"></span>`type Target = T`
 
 - <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -336,9 +336,9 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 
 - <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
 
-##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
+##### `impl<T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 

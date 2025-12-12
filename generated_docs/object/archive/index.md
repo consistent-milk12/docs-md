@@ -18,8 +18,8 @@ some traits useful for those.
   - [`AixMemberOffset`](#aixmemberoffset)
 - [Constants](#constants)
   - [`MAGIC`](#magic)
-  - [`AIX_BIG_MAGIC`](#aix_big_magic)
-  - [`THIN_MAGIC`](#thin_magic)
+  - [`AIX_BIG_MAGIC`](#aix-big-magic)
+  - [`THIN_MAGIC`](#thin-magic)
   - [`TERMINATOR`](#terminator)
 
 ## Quick Reference
@@ -31,8 +31,8 @@ some traits useful for those.
 | [`AixFileHeader`](#aixfileheader) | struct | The AIX big archive's fixed length header at file beginning. |
 | [`AixMemberOffset`](#aixmemberoffset) | struct | Offset of a member in an AIX big archive. |
 | [`MAGIC`](#magic) | const | File identification bytes stored at the beginning of the file. |
-| [`AIX_BIG_MAGIC`](#aix_big_magic) | const | File identification bytes at the beginning of AIX big archive. |
-| [`THIN_MAGIC`](#thin_magic) | const | File identification bytes stored at the beginning of a thin archive. |
+| [`AIX_BIG_MAGIC`](#aix-big-magic) | const | File identification bytes at the beginning of AIX big archive. |
+| [`THIN_MAGIC`](#thin-magic) | const | File identification bytes stored at the beginning of a thin archive. |
 | [`TERMINATOR`](#terminator) | const | The terminator for each archive member header. |
 
 ## Structs

@@ -83,8 +83,8 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 - [Enums](#enums)
   - [`Prefilter`](#prefilter)
 - [Functions](#functions)
-  - [`find_iter`](#find_iter)
-  - [`rfind_iter`](#rfind_iter)
+  - [`find_iter`](#find-iter)
+  - [`rfind_iter`](#rfind-iter)
   - [`find`](#find)
   - [`rfind`](#rfind)
 
@@ -99,8 +99,8 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 | [`FinderRev`](#finderrev) | struct | A single substring reverse searcher fixed to a particular needle. |
 | [`FinderBuilder`](#finderbuilder) | struct | A builder for constructing non-default forward or reverse memmem finders. |
 | [`Prefilter`](#prefilter) | enum |  |
-| [`find_iter`](#find_iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in a haystack. |
-| [`rfind_iter`](#rfind_iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a substring in a haystack. |
+| [`find_iter`](#find-iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in a haystack. |
+| [`rfind_iter`](#rfind-iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a substring in a haystack. |
 | [`find`](#find) | fn | Returns the index of the first occurrence of the given needle. |
 | [`rfind`](#rfind) | fn | Returns the index of the last occurrence of the given needle. |
 
@@ -148,15 +148,15 @@ needle.
 
 ##### `impl IntoIterator for FindIter<'h, 'n>`
 
-- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'h, 'n>`
 
-- <span id="finditer-type-item"></span>`type Item = usize`
+- <span id="finditer-iterator-type-item"></span>`type Item = usize`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -206,15 +206,15 @@ needle.
 
 ##### `impl IntoIterator for FindRevIter<'h, 'n>`
 
-- <span id="findreviter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findreviter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findreviter-type-intoiter"></span>`type IntoIter = I`
+- <span id="findreviter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findreviter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindRevIter<'h, 'n>`
 
-- <span id="findreviter-type-item"></span>`type Item = usize`
+- <span id="findreviter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="findreviter-next"></span>`fn next(&mut self) -> Option<usize>`
 

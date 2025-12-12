@@ -221,9 +221,9 @@ Values of this type are constructed by `RegexSet::matches`.
 
 ##### `impl IntoIterator for SetMatches`
 
-- <span id="setmatches-type-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
+- <span id="setmatches-intoiterator-type-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
 
-- <span id="setmatches-type-item"></span>`type Item = usize`
+- <span id="setmatches-intoiterator-type-item"></span>`type Item = usize`
 
 - <span id="setmatches-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -280,15 +280,15 @@ assert_eq!(matches, vec![0, 1, 3]);
 
 ##### `impl IntoIterator for SetMatchesIntoIter`
 
-- <span id="setmatchesintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="setmatchesintoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="setmatchesintoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="setmatchesintoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="setmatchesintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SetMatchesIntoIter`
 
-- <span id="setmatchesintoiter-type-item"></span>`type Item = usize`
+- <span id="setmatchesintoiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="setmatchesintoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -331,15 +331,15 @@ This iterator is created by the `SetMatches::iter` method.
 
 ##### `impl IntoIterator for SetMatchesIter<'a>`
 
-- <span id="setmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="setmatchesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="setmatchesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="setmatchesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="setmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SetMatchesIter<'a>`
 
-- <span id="setmatchesiter-type-item"></span>`type Item = usize`
+- <span id="setmatchesiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="setmatchesiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

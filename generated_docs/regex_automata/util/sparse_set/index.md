@@ -173,15 +173,15 @@ The lifetime `'a` refers to the lifetime of the set being iterated over.
 
 ##### `impl IntoIterator for SparseSetIter<'a>`
 
-- <span id="sparsesetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sparsesetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sparsesetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="sparsesetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sparsesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SparseSetIter<'a>`
 
-- <span id="sparsesetiter-type-item"></span>`type Item = StateID`
+- <span id="sparsesetiter-iterator-type-item"></span>`type Item = StateID`
 
 - <span id="sparsesetiter-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](../primitives/index.md#stateid)
 

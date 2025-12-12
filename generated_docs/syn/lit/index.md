@@ -7,7 +7,7 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`debug_impls`](#debug_impls)
+  - [`debug_impls`](#debug-impls)
   - [`parsing`](#parsing)
   - [`printing`](#printing)
   - [`value`](#value)
@@ -26,13 +26,13 @@
 - [Enums](#enums)
   - [`Lit`](#lit)
 - [Macros](#macros)
-  - [`lit_extra_traits!`](#lit_extra_traits)
+  - [`lit_extra_traits!`](#lit-extra-traits)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`debug_impls`](#debug_impls) | mod |  |
+| [`debug_impls`](#debug-impls) | mod |  |
 | [`parsing`](#parsing) | mod |  |
 | [`printing`](#printing) | mod |  |
 | [`value`](#value) | mod |  |
@@ -48,7 +48,7 @@
 | [`LitFloatRepr`](#litfloatrepr) | struct |  |
 | [`LitBool`](#litbool) | struct | A boolean literal: `true` or `false`. |
 | [`Lit`](#lit) | enum | A Rust literal such as a string or integer or boolean. |
-| [`lit_extra_traits!`](#lit_extra_traits) | macro |  |
+| [`lit_extra_traits!`](#lit-extra-traits) | macro |  |
 
 ## Modules
 

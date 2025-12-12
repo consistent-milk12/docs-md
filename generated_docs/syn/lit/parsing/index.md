@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`parse_negative_lit`](#parse_negative_lit) | fn |  |
-| [`peek_impl`](#peek_impl) | fn |  |
-| [`impl_token!`](#impl_token) | macro |  |
+| [`parse_negative_lit`](#parse-negative-lit) | fn |  |
+| [`peek_impl`](#peek-impl) | fn |  |
+| [`impl_token!`](#impl-token) | macro |  |
 
 ## Functions
 

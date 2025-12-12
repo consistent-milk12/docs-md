@@ -17,20 +17,20 @@
   - [`Attribute`](#attribute)
   - [`Alignment`](#alignment)
 - [Functions](#functions)
-  - [`default_colors_enabled`](#default_colors_enabled)
-  - [`colors_enabled`](#colors_enabled)
-  - [`set_colors_enabled`](#set_colors_enabled)
-  - [`colors_enabled_stderr`](#colors_enabled_stderr)
-  - [`set_colors_enabled_stderr`](#set_colors_enabled_stderr)
-  - [`measure_text_width`](#measure_text_width)
+  - [`default_colors_enabled`](#default-colors-enabled)
+  - [`colors_enabled`](#colors-enabled)
+  - [`set_colors_enabled`](#set-colors-enabled)
+  - [`colors_enabled_stderr`](#colors-enabled-stderr)
+  - [`set_colors_enabled_stderr`](#set-colors-enabled-stderr)
+  - [`measure_text_width`](#measure-text-width)
   - [`style`](#style)
-  - [`str_width`](#str_width)
-  - [`char_width`](#char_width)
-  - [`truncate_str`](#truncate_str)
-  - [`pad_str`](#pad_str)
-  - [`pad_str_with`](#pad_str_with)
+  - [`str_width`](#str-width)
+  - [`char_width`](#char-width)
+  - [`truncate_str`](#truncate-str)
+  - [`pad_str`](#pad-str)
+  - [`pad_str_with`](#pad-str-with)
 - [Macros](#macros)
-  - [`impl_fmt!`](#impl_fmt)
+  - [`impl_fmt!`](#impl-fmt)
 
 ## Quick Reference
 
@@ -44,19 +44,19 @@
 | [`Color`](#color) | enum | A terminal color. |
 | [`Attribute`](#attribute) | enum | A terminal style attribute. |
 | [`Alignment`](#alignment) | enum | Defines the alignment for padding operations. |
-| [`default_colors_enabled`](#default_colors_enabled) | fn |  |
-| [`colors_enabled`](#colors_enabled) | fn | Returns `true` if colors should be enabled for stdout. |
-| [`set_colors_enabled`](#set_colors_enabled) | fn | Forces colorization on or off for stdout. |
-| [`colors_enabled_stderr`](#colors_enabled_stderr) | fn | Returns `true` if colors should be enabled for stderr. |
-| [`set_colors_enabled_stderr`](#set_colors_enabled_stderr) | fn | Forces colorization on or off for stderr. |
-| [`measure_text_width`](#measure_text_width) | fn | Measure the width of a string in terminal characters. |
+| [`default_colors_enabled`](#default-colors-enabled) | fn |  |
+| [`colors_enabled`](#colors-enabled) | fn | Returns `true` if colors should be enabled for stdout. |
+| [`set_colors_enabled`](#set-colors-enabled) | fn | Forces colorization on or off for stdout. |
+| [`colors_enabled_stderr`](#colors-enabled-stderr) | fn | Returns `true` if colors should be enabled for stderr. |
+| [`set_colors_enabled_stderr`](#set-colors-enabled-stderr) | fn | Forces colorization on or off for stderr. |
+| [`measure_text_width`](#measure-text-width) | fn | Measure the width of a string in terminal characters. |
 | [`style`](#style) | fn | Wraps an object for formatting for styling. |
-| [`str_width`](#str_width) | fn |  |
-| [`char_width`](#char_width) | fn |  |
-| [`truncate_str`](#truncate_str) | fn | Truncates a string to a certain number of characters. |
-| [`pad_str`](#pad_str) | fn | Pads a string to fill a certain number of characters. |
-| [`pad_str_with`](#pad_str_with) | fn | Pads a string with specific padding to fill a certain number of characters. |
-| [`impl_fmt!`](#impl_fmt) | macro |  |
+| [`str_width`](#str-width) | fn |  |
+| [`char_width`](#char-width) | fn |  |
+| [`truncate_str`](#truncate-str) | fn | Truncates a string to a certain number of characters. |
+| [`pad_str`](#pad-str) | fn | Pads a string to fill a certain number of characters. |
+| [`pad_str_with`](#pad-str-with) | fn | Pads a string with specific padding to fill a certain number of characters. |
+| [`impl_fmt!`](#impl-fmt) | macro |  |
 
 ## Structs
 
@@ -120,15 +120,15 @@ struct BitsIter(u16);
 
 ##### `impl IntoIterator for BitsIter`
 
-- <span id="bitsiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bitsiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bitsiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="bitsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bitsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for BitsIter`
 
-- <span id="bitsiter-type-item"></span>`type Item = u16`
+- <span id="bitsiter-iterator-type-item"></span>`type Item = u16`
 
 - <span id="bitsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -369,7 +369,7 @@ A formatting wrapper that can be styled for a terminal.
 
 - <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for StyledObject<D>`
+##### `impl ToString for StyledObject<D>`
 
 - <span id="styledobject-to-string"></span>`fn to_string(&self) -> String`
 

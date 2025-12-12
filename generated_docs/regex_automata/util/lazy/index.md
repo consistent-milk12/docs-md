@@ -83,11 +83,11 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 ##### `impl<T, F: Fn() -> T> Deref for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-deref-type-target"></span>`type Target = T`
 
 - <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
-##### `impl<P, T> Receiver for Lazy<T, F>`
+##### `impl<T> Receiver for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-receiver-type-target"></span>`type Target = T`
 

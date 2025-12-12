@@ -19,18 +19,18 @@
   - [`Read`](#read)
   - [`Fused`](#fused)
 - [Functions](#functions)
-  - [`is_escape`](#is_escape)
-  - [`next_or_eof`](#next_or_eof)
-  - [`peek_or_eof`](#peek_or_eof)
+  - [`is_escape`](#is-escape)
+  - [`next_or_eof`](#next-or-eof)
+  - [`peek_or_eof`](#peek-or-eof)
   - [`error`](#error)
-  - [`as_str`](#as_str)
-  - [`parse_escape`](#parse_escape)
-  - [`parse_unicode_escape`](#parse_unicode_escape)
-  - [`push_wtf8_codepoint`](#push_wtf8_codepoint)
-  - [`ignore_escape`](#ignore_escape)
-  - [`decode_hex_val_slow`](#decode_hex_val_slow)
-  - [`build_hex_table`](#build_hex_table)
-  - [`decode_four_hex_digits`](#decode_four_hex_digits)
+  - [`as_str`](#as-str)
+  - [`parse_escape`](#parse-escape)
+  - [`parse_unicode_escape`](#parse-unicode-escape)
+  - [`push_wtf8_codepoint`](#push-wtf8-codepoint)
+  - [`ignore_escape`](#ignore-escape)
+  - [`decode_hex_val_slow`](#decode-hex-val-slow)
+  - [`build_hex_table`](#build-hex-table)
+  - [`decode_four_hex_digits`](#decode-four-hex-digits)
 
 ## Quick Reference
 
@@ -44,18 +44,18 @@
 | [`Reference`](#reference) | enum |  |
 | [`Read`](#read) | trait | Trait used by the deserializer for iterating over input. |
 | [`Fused`](#fused) | trait | Marker for whether StreamDeserializer can implement FusedIterator. |
-| [`is_escape`](#is_escape) | fn |  |
-| [`next_or_eof`](#next_or_eof) | fn |  |
-| [`peek_or_eof`](#peek_or_eof) | fn |  |
+| [`is_escape`](#is-escape) | fn |  |
+| [`next_or_eof`](#next-or-eof) | fn |  |
+| [`peek_or_eof`](#peek-or-eof) | fn |  |
 | [`error`](#error) | fn |  |
-| [`as_str`](#as_str) | fn |  |
-| [`parse_escape`](#parse_escape) | fn | Parses a JSON escape sequence and appends it into the scratch space. |
-| [`parse_unicode_escape`](#parse_unicode_escape) | fn | Parses a JSON \u escape and appends it into the scratch space. |
-| [`push_wtf8_codepoint`](#push_wtf8_codepoint) | fn | Adds a WTF-8 codepoint to the end of the buffer. |
-| [`ignore_escape`](#ignore_escape) | fn | Parses a JSON escape sequence and discards the value. |
-| [`decode_hex_val_slow`](#decode_hex_val_slow) | fn |  |
-| [`build_hex_table`](#build_hex_table) | fn |  |
-| [`decode_four_hex_digits`](#decode_four_hex_digits) | fn |  |
+| [`as_str`](#as-str) | fn |  |
+| [`parse_escape`](#parse-escape) | fn | Parses a JSON escape sequence and appends it into the scratch space. |
+| [`parse_unicode_escape`](#parse-unicode-escape) | fn | Parses a JSON \u escape and appends it into the scratch space. |
+| [`push_wtf8_codepoint`](#push-wtf8-codepoint) | fn | Adds a WTF-8 codepoint to the end of the buffer. |
+| [`ignore_escape`](#ignore-escape) | fn | Parses a JSON escape sequence and discards the value. |
+| [`decode_hex_val_slow`](#decode-hex-val-slow) | fn |  |
+| [`build_hex_table`](#build-hex-table) | fn |  |
+| [`decode_four_hex_digits`](#decode-four-hex-digits) | fn |  |
 
 ## Modules
 
@@ -101,7 +101,7 @@ JSON input source that reads from a std::io input stream.
 
 #### Trait Implementations
 
-##### `impl<'de, R> Read for IoRead<R>`
+##### `impl<R> Read for IoRead<R>`
 
 ##### `impl<R> Sealed for IoRead<R>`
 
@@ -185,15 +185,15 @@ where
 
 #### Trait Implementations
 
-##### `impl<'b, 'c, T> Deref for Reference<'b, 'c, T>`
+##### `impl<T> Deref for Reference<'b, 'c, T>`
 
-- <span id="reference-type-target"></span>`type Target = T`
+- <span id="reference-deref-type-target"></span>`type Target = T`
 
 - <span id="reference-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for Reference<'b, 'c, T>`
+##### `impl<T> Receiver for Reference<'b, 'c, T>`
 
-- <span id="reference-type-target"></span>`type Target = T`
+- <span id="reference-receiver-type-target"></span>`type Target = T`
 
 ## Traits
 

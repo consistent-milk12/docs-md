@@ -19,7 +19,7 @@ an unused warning on untested platforms (rather than exposing incorrect API).
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`linux_like`](#linux_like) | mod | API that primarily comes from Linux but is also used other platforms (e.g. Android). |
+| [`linux_like`](#linux-like) | mod | API that primarily comes from Linux but is also used other platforms (e.g. Android). |
 | [`posix`](#posix) | mod | POSIX APIs that are used by a number of platforms |
 
 ## Modules

@@ -53,9 +53,9 @@ println!("Found {} crates", crates.len());
 
 ##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-type-init"></span>`type Init = T`
+- <span id="multicrateparser-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

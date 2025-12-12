@@ -13,23 +13,23 @@ This library implements string similarity metrics.
 - [Enums](#enums)
   - [`StrSimError`](#strsimerror)
 - [Functions](#functions)
-  - [`generic_hamming`](#generic_hamming)
+  - [`generic_hamming`](#generic-hamming)
   - [`hamming`](#hamming)
-  - [`generic_jaro`](#generic_jaro)
+  - [`generic_jaro`](#generic-jaro)
   - [`jaro`](#jaro)
-  - [`generic_jaro_winkler`](#generic_jaro_winkler)
-  - [`jaro_winkler`](#jaro_winkler)
-  - [`generic_levenshtein`](#generic_levenshtein)
+  - [`generic_jaro_winkler`](#generic-jaro-winkler)
+  - [`jaro_winkler`](#jaro-winkler)
+  - [`generic_levenshtein`](#generic-levenshtein)
   - [`levenshtein`](#levenshtein)
-  - [`normalized_levenshtein`](#normalized_levenshtein)
-  - [`osa_distance`](#osa_distance)
-  - [`flat_index`](#flat_index)
-  - [`generic_damerau_levenshtein`](#generic_damerau_levenshtein)
-  - [`damerau_levenshtein_impl`](#damerau_levenshtein_impl)
-  - [`damerau_levenshtein`](#damerau_levenshtein)
-  - [`normalized_damerau_levenshtein`](#normalized_damerau_levenshtein)
+  - [`normalized_levenshtein`](#normalized-levenshtein)
+  - [`osa_distance`](#osa-distance)
+  - [`flat_index`](#flat-index)
+  - [`generic_damerau_levenshtein`](#generic-damerau-levenshtein)
+  - [`damerau_levenshtein_impl`](#damerau-levenshtein-impl)
+  - [`damerau_levenshtein`](#damerau-levenshtein)
+  - [`normalized_damerau_levenshtein`](#normalized-damerau-levenshtein)
   - [`bigrams`](#bigrams)
-  - [`sorensen_dice`](#sorensen_dice)
+  - [`sorensen_dice`](#sorensen-dice)
 - [Type Aliases](#type-aliases)
   - [`HammingResult`](#hammingresult)
 
@@ -43,23 +43,23 @@ This library implements string similarity metrics.
 | [`GrowingHashmapChar`](#growinghashmapchar) | struct | specialized hashmap to store user provided types this implementation relies on a couple of base assumptions in order to simplify the implementation - the hashmap does not have an upper limit of included items - the default value for the `ValueType` can be used as a dummy value to indicate an empty cell - elements can't be removed - only allocates memory on first write access. |
 | [`HybridGrowingHashmapChar`](#hybridgrowinghashmapchar) | struct |  |
 | [`StrSimError`](#strsimerror) | enum |  |
-| [`generic_hamming`](#generic_hamming) | fn | Calculates the number of positions in the two sequences where the elements differ. |
+| [`generic_hamming`](#generic-hamming) | fn | Calculates the number of positions in the two sequences where the elements differ. |
 | [`hamming`](#hamming) | fn | Calculates the number of positions in the two strings where the characters differ. |
-| [`generic_jaro`](#generic_jaro) | fn | Calculates the Jaro similarity between two sequences. |
+| [`generic_jaro`](#generic-jaro) | fn | Calculates the Jaro similarity between two sequences. |
 | [`jaro`](#jaro) | fn | Calculates the Jaro similarity between two strings. |
-| [`generic_jaro_winkler`](#generic_jaro_winkler) | fn | Like Jaro but gives a boost to sequences that have a common prefix. |
-| [`jaro_winkler`](#jaro_winkler) | fn | Like Jaro but gives a boost to strings that have a common prefix. |
-| [`generic_levenshtein`](#generic_levenshtein) | fn | Calculates the minimum number of insertions, deletions, and substitutions required to change one sequence into the other. |
+| [`generic_jaro_winkler`](#generic-jaro-winkler) | fn | Like Jaro but gives a boost to sequences that have a common prefix. |
+| [`jaro_winkler`](#jaro-winkler) | fn | Like Jaro but gives a boost to strings that have a common prefix. |
+| [`generic_levenshtein`](#generic-levenshtein) | fn | Calculates the minimum number of insertions, deletions, and substitutions required to change one sequence into the other. |
 | [`levenshtein`](#levenshtein) | fn | Calculates the minimum number of insertions, deletions, and substitutions required to change one string into the other. |
-| [`normalized_levenshtein`](#normalized_levenshtein) | fn | Calculates a normalized score of the Levenshtein algorithm between 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same. |
-| [`osa_distance`](#osa_distance) | fn | Like Levenshtein but allows for adjacent transpositions. |
-| [`flat_index`](#flat_index) | fn |  |
-| [`generic_damerau_levenshtein`](#generic_damerau_levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited number of times, and the triangle inequality holds. |
-| [`damerau_levenshtein_impl`](#damerau_levenshtein_impl) | fn |  |
-| [`damerau_levenshtein`](#damerau_levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited number of times, and the triangle inequality holds. |
-| [`normalized_damerau_levenshtein`](#normalized_damerau_levenshtein) | fn | Calculates a normalized score of the Damerau–Levenshtein algorithm between 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same. |
+| [`normalized_levenshtein`](#normalized-levenshtein) | fn | Calculates a normalized score of the Levenshtein algorithm between 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same. |
+| [`osa_distance`](#osa-distance) | fn | Like Levenshtein but allows for adjacent transpositions. |
+| [`flat_index`](#flat-index) | fn |  |
+| [`generic_damerau_levenshtein`](#generic-damerau-levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited number of times, and the triangle inequality holds. |
+| [`damerau_levenshtein_impl`](#damerau-levenshtein-impl) | fn |  |
+| [`damerau_levenshtein`](#damerau-levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited number of times, and the triangle inequality holds. |
+| [`normalized_damerau_levenshtein`](#normalized-damerau-levenshtein) | fn | Calculates a normalized score of the Damerau–Levenshtein algorithm between 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same. |
 | [`bigrams`](#bigrams) | fn | Returns an Iterator of char tuples. |
-| [`sorensen_dice`](#sorensen_dice) | fn | Calculates a Sørensen-Dice similarity distance using bigrams. |
+| [`sorensen_dice`](#sorensen-dice) | fn | Calculates a Sørensen-Dice similarity distance using bigrams. |
 | [`HammingResult`](#hammingresult) | type |  |
 
 ## Structs
@@ -76,9 +76,9 @@ struct StringWrapper<'a>(&'a str);
 
 ##### `impl IntoIterator for &'a StringWrapper<'b>`
 
-- <span id="a-stringwrapper-type-item"></span>`type Item = char`
+- <span id="a-stringwrapper-intoiterator-type-item"></span>`type Item = char`
 
-- <span id="a-stringwrapper-type-intoiter"></span>`type IntoIter = Chars<'b>`
+- <span id="a-stringwrapper-intoiterator-type-intoiter"></span>`type IntoIter = Chars<'b>`
 
 - <span id="a-stringwrapper-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 

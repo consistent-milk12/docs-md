@@ -13,7 +13,7 @@
 | [`Sealed`](#sealed) | trait |  |
 | [`NAN`](#nan) | const |  |
 | [`INFINITY`](#infinity) | const |  |
-| [`NEG_INFINITY`](#neg_infinity) | const |  |
+| [`NEG_INFINITY`](#neg-infinity) | const |  |
 
 ## Structs
 

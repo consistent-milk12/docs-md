@@ -51,13 +51,13 @@ core.
 
 ##### `impl Deref for CowBytes<'a>`
 
-- <span id="cowbytes-type-target"></span>`type Target = [u8]`
+- <span id="cowbytes-deref-type-target"></span>`type Target = [u8]`
 
 - <span id="cowbytes-deref"></span>`fn deref(&self) -> &[u8]`
 
 ##### `impl Receiver for CowBytes<'a>`
 
-- <span id="cowbytes-type-target"></span>`type Target = T`
+- <span id="cowbytes-receiver-type-target"></span>`type Target = T`
 
 ## Enums
 

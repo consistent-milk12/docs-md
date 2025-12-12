@@ -53,9 +53,9 @@ An epoch-based garbage collector.
 
 ##### `impl Pointable for Collector`
 
-- <span id="collector-const-align"></span>`const ALIGN: usize`
+- <span id="collector-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collector-type-init"></span>`type Init = T`
+- <span id="collector-pointable-type-init"></span>`type Init = T`
 
 - <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
@@ -101,9 +101,9 @@ A handle to a garbage collector.
 
 ##### `impl Pointable for LocalHandle`
 
-- <span id="localhandle-const-align"></span>`const ALIGN: usize`
+- <span id="localhandle-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="localhandle-type-init"></span>`type Init = T`
+- <span id="localhandle-pointable-type-init"></span>`type Init = T`
 
 - <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 

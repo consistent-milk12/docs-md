@@ -19,8 +19,8 @@ As of now this is mainly intended for use to build a higher-level wrapper.
   - [`ResetPolicy`](#resetpolicy)
 - [Functions](#functions)
   - [`inflate`](#inflate)
-  - [`inflate_loop`](#inflate_loop)
-  - [`push_dict_out`](#push_dict_out)
+  - [`inflate_loop`](#inflate-loop)
+  - [`push_dict_out`](#push-dict-out)
 
 ## Quick Reference
 
@@ -32,8 +32,8 @@ As of now this is mainly intended for use to build a higher-level wrapper.
 | [`InflateState`](#inflatestate) | struct | A struct that compbines a decompressor with extra data for streaming decompression. |
 | [`ResetPolicy`](#resetpolicy) | trait | Tag that determines reset policy of [InflateState](struct.InflateState.html) |
 | [`inflate`](#inflate) | fn | Try to decompress from `input` to `output` with the given [`InflateState`] |
-| [`inflate_loop`](#inflate_loop) | fn |  |
-| [`push_dict_out`](#push_dict_out) | fn |  |
+| [`inflate_loop`](#inflate-loop) | fn |  |
+| [`push_dict_out`](#push-dict-out) | fn |  |
 
 ## Structs
 

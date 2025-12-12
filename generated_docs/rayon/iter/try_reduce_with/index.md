@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`TryReduceWithConsumer`](#tryreducewithconsumer) | struct |  |
 | [`TryReduceWithFolder`](#tryreducewithfolder) | struct |  |
-| [`try_reduce_with`](#try_reduce_with) | fn |  |
+| [`try_reduce_with`](#try-reduce-with) | fn |  |
 
 ## Structs
 
@@ -27,17 +27,17 @@ struct TryReduceWithConsumer<'r, R> {
 
 #### Trait Implementations
 
-##### `impl<'r, R> Clone for TryReduceWithConsumer<'r, R>`
+##### `impl<R> Clone for TryReduceWithConsumer<'r, R>`
 
 - <span id="tryreducewithconsumer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'r, R, T> Consumer for TryReduceWithConsumer<'r, R>`
+##### `impl<R, T> Consumer for TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-type-folder"></span>`type Folder = TryReduceWithFolder<'r, R, T>`
+- <span id="tryreducewithconsumer-consumer-type-folder"></span>`type Folder = TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithconsumer-type-reducer"></span>`type Reducer = TryReduceWithConsumer<'r, R>`
+- <span id="tryreducewithconsumer-consumer-type-reducer"></span>`type Reducer = TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-type-result"></span>`type Result = Option<T>`
+- <span id="tryreducewithconsumer-consumer-type-result"></span>`type Result = Option<T>`
 
 - <span id="tryreducewithconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -45,15 +45,15 @@ struct TryReduceWithConsumer<'r, R> {
 
 - <span id="tryreducewithconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<'r, R> Copy for TryReduceWithConsumer<'r, R>`
+##### `impl<R> Copy for TryReduceWithConsumer<'r, R>`
 
-##### `impl<T> IntoEither for TryReduceWithConsumer<'r, R>`
+##### `impl IntoEither for TryReduceWithConsumer<'r, R>`
 
-##### `impl<T> Pointable for TryReduceWithConsumer<'r, R>`
+##### `impl Pointable for TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="tryreducewithconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreducewithconsumer-type-init"></span>`type Init = T`
+- <span id="tryreducewithconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="tryreducewithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -63,11 +63,11 @@ struct TryReduceWithConsumer<'r, R> {
 
 - <span id="tryreducewithconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'r, R, T> Reducer for TryReduceWithConsumer<'r, R>`
+##### `impl<R, T> Reducer for TryReduceWithConsumer<'r, R>`
 
 - <span id="tryreducewithconsumer-reduce"></span>`fn reduce(self, left: Option<T>, right: Option<T>) -> Option<T>`
 
-##### `impl<'r, R, T> UnindexedConsumer for TryReduceWithConsumer<'r, R>`
+##### `impl<R, T> UnindexedConsumer for TryReduceWithConsumer<'r, R>`
 
 - <span id="tryreducewithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -87,9 +87,9 @@ struct TryReduceWithFolder<'r, R, T: Try> {
 
 #### Trait Implementations
 
-##### `impl<'r, R, T> Folder for TryReduceWithFolder<'r, R, T>`
+##### `impl<R, T> Folder for TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithfolder-type-result"></span>`type Result = Option<T>`
+- <span id="tryreducewithfolder-folder-type-result"></span>`type Result = Option<T>`
 
 - <span id="tryreducewithfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -101,9 +101,9 @@ struct TryReduceWithFolder<'r, R, T: Try> {
 
 ##### `impl<T> Pointable for TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithfolder-const-align"></span>`const ALIGN: usize`
+- <span id="tryreducewithfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreducewithfolder-type-init"></span>`type Init = T`
+- <span id="tryreducewithfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="tryreducewithfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

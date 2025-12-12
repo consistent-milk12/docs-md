@@ -17,16 +17,16 @@
   - [`SearcherRevKind`](#searcherrevkind)
   - [`PrefilterConfig`](#prefilterconfig)
 - [Functions](#functions)
-  - [`searcher_kind_empty`](#searcher_kind_empty)
-  - [`searcher_kind_one_byte`](#searcher_kind_one_byte)
-  - [`searcher_kind_two_way`](#searcher_kind_two_way)
-  - [`searcher_kind_two_way_with_prefilter`](#searcher_kind_two_way_with_prefilter)
-  - [`searcher_kind_sse2`](#searcher_kind_sse2)
-  - [`searcher_kind_avx2`](#searcher_kind_avx2)
-  - [`prefilter_kind_fallback`](#prefilter_kind_fallback)
-  - [`prefilter_kind_sse2`](#prefilter_kind_sse2)
-  - [`prefilter_kind_avx2`](#prefilter_kind_avx2)
-  - [`do_packed_search`](#do_packed_search)
+  - [`searcher_kind_empty`](#searcher-kind-empty)
+  - [`searcher_kind_one_byte`](#searcher-kind-one-byte)
+  - [`searcher_kind_two_way`](#searcher-kind-two-way)
+  - [`searcher_kind_two_way_with_prefilter`](#searcher-kind-two-way-with-prefilter)
+  - [`searcher_kind_sse2`](#searcher-kind-sse2)
+  - [`searcher_kind_avx2`](#searcher-kind-avx2)
+  - [`prefilter_kind_fallback`](#prefilter-kind-fallback)
+  - [`prefilter_kind_sse2`](#prefilter-kind-sse2)
+  - [`prefilter_kind_avx2`](#prefilter-kind-avx2)
+  - [`do_packed_search`](#do-packed-search)
 - [Type Aliases](#type-aliases)
   - [`SearcherKindFn`](#searcherkindfn)
   - [`PrefilterKindFn`](#prefilterkindfn)
@@ -43,16 +43,16 @@
 | [`Pre`](#pre) | struct | A combination of prefilter effectiveness state and the prefilter itself. |
 | [`SearcherRevKind`](#searcherrevkind) | enum | The kind of the reverse searcher. |
 | [`PrefilterConfig`](#prefilterconfig) | enum | Prefilter controls whether heuristics are used to accelerate searching. |
-| [`searcher_kind_empty`](#searcher_kind_empty) | fn | Reads from the `empty` field of `SearcherKind` to handle the case of searching for the empty needle. |
-| [`searcher_kind_one_byte`](#searcher_kind_one_byte) | fn | Reads from the `one_byte` field of `SearcherKind` to handle the case of searching for a single byte needle. |
-| [`searcher_kind_two_way`](#searcher_kind_two_way) | fn | Reads from the `two_way` field of `SearcherKind` to handle the case of searching for an arbitrary needle without prefilter acceleration. |
-| [`searcher_kind_two_way_with_prefilter`](#searcher_kind_two_way_with_prefilter) | fn | Reads from the `two_way_with_prefilter` field of `SearcherKind` to handle the case of searching for an arbitrary needle with prefilter acceleration. |
-| [`searcher_kind_sse2`](#searcher_kind_sse2) | fn | Reads from the `sse2` field of `SearcherKind` to execute the x86_64 SSE2 vectorized substring search implementation. |
-| [`searcher_kind_avx2`](#searcher_kind_avx2) | fn | Reads from the `avx2` field of `SearcherKind` to execute the x86_64 AVX2 vectorized substring search implementation. |
-| [`prefilter_kind_fallback`](#prefilter_kind_fallback) | fn | Reads from the `fallback` field of `PrefilterKind` to execute the fallback prefilter. |
-| [`prefilter_kind_sse2`](#prefilter_kind_sse2) | fn | Reads from the `sse2` field of `PrefilterKind` to execute the x86_64 SSE2 prefilter. |
-| [`prefilter_kind_avx2`](#prefilter_kind_avx2) | fn | Reads from the `avx2` field of `PrefilterKind` to execute the x86_64 AVX2 prefilter. |
-| [`do_packed_search`](#do_packed_search) | fn | Returns true if the needle has the right characteristics for a vector algorithm to handle the entirety of substring search. |
+| [`searcher_kind_empty`](#searcher-kind-empty) | fn | Reads from the `empty` field of `SearcherKind` to handle the case of searching for the empty needle. |
+| [`searcher_kind_one_byte`](#searcher-kind-one-byte) | fn | Reads from the `one_byte` field of `SearcherKind` to handle the case of searching for a single byte needle. |
+| [`searcher_kind_two_way`](#searcher-kind-two-way) | fn | Reads from the `two_way` field of `SearcherKind` to handle the case of searching for an arbitrary needle without prefilter acceleration. |
+| [`searcher_kind_two_way_with_prefilter`](#searcher-kind-two-way-with-prefilter) | fn | Reads from the `two_way_with_prefilter` field of `SearcherKind` to handle the case of searching for an arbitrary needle with prefilter acceleration. |
+| [`searcher_kind_sse2`](#searcher-kind-sse2) | fn | Reads from the `sse2` field of `SearcherKind` to execute the x86_64 SSE2 vectorized substring search implementation. |
+| [`searcher_kind_avx2`](#searcher-kind-avx2) | fn | Reads from the `avx2` field of `SearcherKind` to execute the x86_64 AVX2 vectorized substring search implementation. |
+| [`prefilter_kind_fallback`](#prefilter-kind-fallback) | fn | Reads from the `fallback` field of `PrefilterKind` to execute the fallback prefilter. |
+| [`prefilter_kind_sse2`](#prefilter-kind-sse2) | fn | Reads from the `sse2` field of `PrefilterKind` to execute the x86_64 SSE2 prefilter. |
+| [`prefilter_kind_avx2`](#prefilter-kind-avx2) | fn | Reads from the `avx2` field of `PrefilterKind` to execute the x86_64 AVX2 prefilter. |
+| [`do_packed_search`](#do-packed-search) | fn | Returns true if the needle has the right characteristics for a vector algorithm to handle the entirety of substring search. |
 | [`SearcherKindFn`](#searcherkindfn) | type | The type of a substring search function. |
 | [`PrefilterKindFn`](#prefilterkindfn) | type | The type of a prefilter function. |
 

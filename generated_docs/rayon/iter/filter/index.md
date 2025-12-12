@@ -43,27 +43,27 @@ This struct is created by the `filter()` method on [`ParallelIterator`](../index
 
 - <span id="filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Filter<I, P>`
+##### `impl IntoEither for Filter<I, P>`
 
-##### `impl<T> IntoParallelIterator for Filter<I, P>`
+##### `impl IntoParallelIterator for Filter<I, P>`
 
-- <span id="filter-type-iter"></span>`type Iter = T`
+- <span id="filter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="filter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Filter<I, P>`
 
-- <span id="filter-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="filter-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Filter<I, P>`
+##### `impl Pointable for Filter<I, P>`
 
-- <span id="filter-const-align"></span>`const ALIGN: usize`
+- <span id="filter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filter-type-init"></span>`type Init = T`
+- <span id="filter-pointable-type-init"></span>`type Init = T`
 
 - <span id="filter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,13 +90,13 @@ struct FilterConsumer<'p, C, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, C, P> Consumer for FilterConsumer<'p, C, P>`
+##### `impl<T, C, P> Consumer for FilterConsumer<'p, C, P>`
 
-- <span id="filterconsumer-type-folder"></span>`type Folder = FilterFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="filterconsumer-consumer-type-folder"></span>`type Folder = FilterFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="filterconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="filterconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="filterconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="filterconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="filterconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -104,13 +104,13 @@ struct FilterConsumer<'p, C, P> {
 
 - <span id="filterconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FilterConsumer<'p, C, P>`
+##### `impl IntoEither for FilterConsumer<'p, C, P>`
 
-##### `impl<T> Pointable for FilterConsumer<'p, C, P>`
+##### `impl Pointable for FilterConsumer<'p, C, P>`
 
-- <span id="filterconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="filterconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filterconsumer-type-init"></span>`type Init = T`
+- <span id="filterconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="filterconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,7 +120,7 @@ struct FilterConsumer<'p, C, P> {
 
 - <span id="filterconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'p, T, C, P> UnindexedConsumer for FilterConsumer<'p, C, P>`
+##### `impl<T, C, P> UnindexedConsumer for FilterConsumer<'p, C, P>`
 
 - <span id="filterconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -139,9 +139,9 @@ struct FilterFolder<'p, C, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, C, P, T> Folder for FilterFolder<'p, C, P>`
+##### `impl<C, P, T> Folder for FilterFolder<'p, C, P>`
 
-- <span id="filterfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="filterfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="filterfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -149,13 +149,13 @@ struct FilterFolder<'p, C, P> {
 
 - <span id="filterfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FilterFolder<'p, C, P>`
+##### `impl IntoEither for FilterFolder<'p, C, P>`
 
-##### `impl<T> Pointable for FilterFolder<'p, C, P>`
+##### `impl Pointable for FilterFolder<'p, C, P>`
 
-- <span id="filterfolder-const-align"></span>`const ALIGN: usize`
+- <span id="filterfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filterfolder-type-init"></span>`type Init = T`
+- <span id="filterfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="filterfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

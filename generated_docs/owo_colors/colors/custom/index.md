@@ -11,12 +11,12 @@
 - [Enums](#enums)
   - [`Plane`](#plane)
 - [Functions](#functions)
-  - [`generate_lookup`](#generate_lookup)
-  - [`rgb_to_ansi`](#rgb_to_ansi)
-  - [`rgb_to_ansi_color`](#rgb_to_ansi_color)
-  - [`bytes_to_str`](#bytes_to_str)
+  - [`generate_lookup`](#generate-lookup)
+  - [`rgb_to_ansi`](#rgb-to-ansi)
+  - [`rgb_to_ansi_color`](#rgb-to-ansi-color)
+  - [`bytes_to_str`](#bytes-to-str)
 - [Constants](#constants)
-  - [`U8_TO_STR`](#u8_to_str)
+  - [`U8_TO_STR`](#u8-to-str)
 
 ## Quick Reference
 
@@ -24,11 +24,11 @@
 |------|------|-------------|
 | [`CustomColor`](#customcolor) | struct | A custom RGB color, determined at compile time |
 | [`Plane`](#plane) | enum |  |
-| [`generate_lookup`](#generate_lookup) | fn |  |
-| [`rgb_to_ansi`](#rgb_to_ansi) | fn |  |
-| [`rgb_to_ansi_color`](#rgb_to_ansi_color) | fn |  |
-| [`bytes_to_str`](#bytes_to_str) | fn | This exists since unwrap() isn't const-safe (it invokes formatting infrastructure) |
-| [`U8_TO_STR`](#u8_to_str) | const |  |
+| [`generate_lookup`](#generate-lookup) | fn |  |
+| [`rgb_to_ansi`](#rgb-to-ansi) | fn |  |
+| [`rgb_to_ansi_color`](#rgb-to-ansi-color) | fn |  |
+| [`bytes_to_str`](#bytes-to-str) | fn | This exists since unwrap() isn't const-safe (it invokes formatting infrastructure) |
+| [`U8_TO_STR`](#u8-to-str) | const |  |
 
 ## Structs
 
@@ -56,13 +56,13 @@ A custom RGB color, determined at compile time
 
 ##### `impl Color for CustomColor<R, G, B>`
 
-- <span id="customcolor-const-ansi-fg"></span>`const ANSI_FG: &'static str`
+- <span id="customcolor-color-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- <span id="customcolor-const-ansi-bg"></span>`const ANSI_BG: &'static str`
+- <span id="customcolor-color-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- <span id="customcolor-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
+- <span id="customcolor-color-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- <span id="customcolor-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
+- <span id="customcolor-color-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl OwoColorize for CustomColor<R, G, B>`
 

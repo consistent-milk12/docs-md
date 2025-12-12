@@ -38,7 +38,7 @@ feature of serde_json to use `IndexMap` instead.
   - [`ValuesMutImpl`](#valuesmutimpl)
   - [`IntoValuesImpl`](#intovaluesimpl)
 - [Macros](#macros)
-  - [`delegate_iterator!`](#delegate_iterator)
+  - [`delegate_iterator!`](#delegate-iterator)
 
 ## Quick Reference
 
@@ -65,7 +65,7 @@ feature of serde_json to use `IndexMap` instead.
 | [`ValuesImpl`](#valuesimpl) | type |  |
 | [`ValuesMutImpl`](#valuesmutimpl) | type |  |
 | [`IntoValuesImpl`](#intovaluesimpl) | type |  |
-| [`delegate_iterator!`](#delegate_iterator) | macro |  |
+| [`delegate_iterator!`](#delegate-iterator) | macro |  |
 
 ## Structs
 
@@ -147,11 +147,11 @@ Represents a JSON key/value type.
 
 - <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Map<K, V>`
+##### `impl DeserializeOwned for Map<K, V>`
 
 ##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-error"></span>`type Error = Error`
+- <span id="cratemapmap-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -227,7 +227,7 @@ Represents a JSON key/value type.
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-err"></span>`type Err = Error`
+- <span id="cratemapmap-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
@@ -235,27 +235,27 @@ Represents a JSON key/value type.
 
 - <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-output"></span>`type Output = Value`
+- <span id="map-index-type-output"></span>`type Output = Value`
 
 - <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../value/index.md#value)
 
-##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../value/index.md#value)
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
 ##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
+- <span id="a-map-intoiterator-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
+- <span id="a-map-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
 - <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -347,15 +347,15 @@ An iterator over a serde_json::Map's entries.
 
 ##### `impl IntoIterator for Iter<'a>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter<'a>`
 
-- <span id="iter-type-item"></span>`type Item = (&'a String, &'a Value)`
+- <span id="iter-iterator-type-item"></span>`type Item = (&'a String, &'a Value)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -391,15 +391,15 @@ A mutable iterator over a serde_json::Map's entries.
 
 ##### `impl IntoIterator for IterMut<'a>`
 
-- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IterMut<'a>`
 
-- <span id="itermut-type-item"></span>`type Item = (&'a String, &'a mut Value)`
+- <span id="itermut-iterator-type-item"></span>`type Item = (&'a String, &'a mut Value)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -435,15 +435,15 @@ An owning iterator over a serde_json::Map's entries.
 
 ##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = (String, Value)`
+- <span id="intoiter-iterator-type-item"></span>`type Item = (String, Value)`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -483,15 +483,15 @@ An iterator over a serde_json::Map's keys.
 
 ##### `impl IntoIterator for Keys<'a>`
 
-- <span id="keys-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="keys-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="keys-type-intoiter"></span>`type IntoIter = I`
+- <span id="keys-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Keys<'a>`
 
-- <span id="keys-type-item"></span>`type Item = &'a String`
+- <span id="keys-iterator-type-item"></span>`type Item = &'a String`
 
 - <span id="keys-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -531,15 +531,15 @@ An iterator over a serde_json::Map's values.
 
 ##### `impl IntoIterator for Values<'a>`
 
-- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-type-intoiter"></span>`type IntoIter = I`
+- <span id="values-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Values<'a>`
 
-- <span id="values-type-item"></span>`type Item = &'a Value`
+- <span id="values-iterator-type-item"></span>`type Item = &'a Value`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -575,15 +575,15 @@ A mutable iterator over a serde_json::Map's values.
 
 ##### `impl IntoIterator for ValuesMut<'a>`
 
-- <span id="valuesmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="valuesmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ValuesMut<'a>`
 
-- <span id="valuesmut-type-item"></span>`type Item = &'a mut Value`
+- <span id="valuesmut-iterator-type-item"></span>`type Item = &'a mut Value`
 
 - <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -619,15 +619,15 @@ An owning iterator over a serde_json::Map's values.
 
 ##### `impl IntoIterator for IntoValues`
 
-- <span id="intovalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intovalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intovalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="intovalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoValues`
 
-- <span id="intovalues-type-item"></span>`type Item = Value`
+- <span id="intovalues-iterator-type-item"></span>`type Item = Value`
 
 - <span id="intovalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

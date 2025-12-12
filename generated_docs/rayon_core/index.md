@@ -66,9 +66,9 @@ succeed.
   - [`scope`](#scope)
   - [`sleep`](#sleep)
   - [`spawn`](#spawn)
-  - [`thread_pool`](#thread_pool)
+  - [`thread_pool`](#thread-pool)
   - [`unwind`](#unwind)
-  - [`compile_fail`](#compile_fail)
+  - [`compile_fail`](#compile-fail)
 - [Structs](#structs)
   - [`BroadcastContext`](#broadcastcontext)
   - [`ThreadBuilder`](#threadbuilder)
@@ -84,29 +84,29 @@ succeed.
   - [`ErrorKind`](#errorkind)
 - [Functions](#functions)
   - [`broadcast`](#broadcast)
-  - [`spawn_broadcast`](#spawn_broadcast)
+  - [`spawn_broadcast`](#spawn-broadcast)
   - [`join`](#join)
-  - [`join_context`](#join_context)
-  - [`in_place_scope`](#in_place_scope)
+  - [`join_context`](#join-context)
+  - [`in_place_scope`](#in-place-scope)
   - [`scope`](#scope)
-  - [`in_place_scope_fifo`](#in_place_scope_fifo)
-  - [`scope_fifo`](#scope_fifo)
+  - [`in_place_scope_fifo`](#in-place-scope-fifo)
+  - [`scope_fifo`](#scope-fifo)
   - [`spawn`](#spawn)
-  - [`spawn_fifo`](#spawn_fifo)
-  - [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks)
-  - [`current_thread_index`](#current_thread_index)
-  - [`yield_local`](#yield_local)
-  - [`yield_now`](#yield_now)
-  - [`max_num_threads`](#max_num_threads)
-  - [`current_num_threads`](#current_num_threads)
+  - [`spawn_fifo`](#spawn-fifo)
+  - [`current_thread_has_pending_tasks`](#current-thread-has-pending-tasks)
+  - [`current_thread_index`](#current-thread-index)
+  - [`yield_local`](#yield-local)
+  - [`yield_now`](#yield-now)
+  - [`max_num_threads`](#max-num-threads)
+  - [`current_num_threads`](#current-num-threads)
   - [`initialize`](#initialize)
 - [Type Aliases](#type-aliases)
   - [`PanicHandler`](#panichandler)
   - [`StartHandler`](#starthandler)
   - [`ExitHandler`](#exithandler)
 - [Constants](#constants)
-  - [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized)
-  - [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool)
+  - [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global-pool-already-initialized)
+  - [`CURRENT_THREAD_ALREADY_IN_POOL`](#current-thread-already-in-pool)
 
 ## Quick Reference
 
@@ -121,9 +121,9 @@ succeed.
 | [`scope`](#scope) | mod | Methods for custom fork-join scopes, created by the [`scope()`] and [`in_place_scope()`] functions. |
 | [`sleep`](#sleep) | mod | Code that decides when workers should go to sleep. |
 | [`spawn`](#spawn) | mod |  |
-| [`thread_pool`](#thread_pool) | mod | Contains support for user-managed thread pools, represented by the the [`ThreadPool`] type (see that struct for details). |
+| [`thread_pool`](#thread-pool) | mod | Contains support for user-managed thread pools, represented by the the [`ThreadPool`] type (see that struct for details). |
 | [`unwind`](#unwind) | mod | Package up unwind recovery. |
-| [`compile_fail`](#compile_fail) | mod |  |
+| [`compile_fail`](#compile-fail) | mod |  |
 | [`BroadcastContext`](#broadcastcontext) | struct |  |
 | [`ThreadBuilder`](#threadbuilder) | struct |  |
 | [`Scope`](#scope) | struct |  |
@@ -136,27 +136,27 @@ succeed.
 | [`Yield`](#yield) | enum |  |
 | [`ErrorKind`](#errorkind) | enum |  |
 | [`broadcast`](#broadcast) | fn |  |
-| [`spawn_broadcast`](#spawn_broadcast) | fn |  |
+| [`spawn_broadcast`](#spawn-broadcast) | fn |  |
 | [`join`](#join) | fn |  |
-| [`join_context`](#join_context) | fn |  |
-| [`in_place_scope`](#in_place_scope) | fn |  |
+| [`join_context`](#join-context) | fn |  |
+| [`in_place_scope`](#in-place-scope) | fn |  |
 | [`scope`](#scope) | fn |  |
-| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
-| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`in_place_scope_fifo`](#in-place-scope-fifo) | fn |  |
+| [`scope_fifo`](#scope-fifo) | fn |  |
 | [`spawn`](#spawn) | fn |  |
-| [`spawn_fifo`](#spawn_fifo) | fn |  |
-| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn |  |
-| [`current_thread_index`](#current_thread_index) | fn |  |
-| [`yield_local`](#yield_local) | fn |  |
-| [`yield_now`](#yield_now) | fn |  |
-| [`max_num_threads`](#max_num_threads) | fn | Returns the maximum number of threads that Rayon supports in a single thread pool. |
-| [`current_num_threads`](#current_num_threads) | fn | Returns the number of threads in the current registry. |
+| [`spawn_fifo`](#spawn-fifo) | fn |  |
+| [`current_thread_has_pending_tasks`](#current-thread-has-pending-tasks) | fn |  |
+| [`current_thread_index`](#current-thread-index) | fn |  |
+| [`yield_local`](#yield-local) | fn |  |
+| [`yield_now`](#yield-now) | fn |  |
+| [`max_num_threads`](#max-num-threads) | fn | Returns the maximum number of threads that Rayon supports in a single thread pool. |
+| [`current_num_threads`](#current-num-threads) | fn | Returns the number of threads in the current registry. |
 | [`initialize`](#initialize) | fn | Deprecated in favor of `ThreadPoolBuilder::build_global`. |
 | [`PanicHandler`](#panichandler) | type | The type for a panic-handling closure. |
 | [`StartHandler`](#starthandler) | type | The type for a closure that gets invoked when a thread starts. |
 | [`ExitHandler`](#exithandler) | type | The type for a closure that gets invoked when a thread exits. |
-| [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized) | const |  |
-| [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool) | const |  |
+| [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global-pool-already-initialized) | const |  |
+| [`CURRENT_THREAD_ALREADY_IN_POOL`](#current-thread-already-in-pool) | const |  |
 
 ## Modules
 
@@ -210,9 +210,9 @@ Provides context to a closure called by `broadcast`.
 
 ##### `impl Pointable for BroadcastContext<'a>`
 
-- <span id="broadcastcontext-const-align"></span>`const ALIGN: usize`
+- <span id="broadcastcontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="broadcastcontext-type-init"></span>`type Init = T`
+- <span id="broadcastcontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -257,9 +257,9 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 ##### `impl Pointable for ThreadBuilder`
 
-- <span id="threadbuilder-const-align"></span>`const ALIGN: usize`
+- <span id="threadbuilder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadbuilder-type-init"></span>`type Init = T`
+- <span id="threadbuilder-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -298,9 +298,9 @@ See [`scope()`](scope/index.md) for more information.
 
 ##### `impl Pointable for Scope<'scope>`
 
-- <span id="scope-const-align"></span>`const ALIGN: usize`
+- <span id="scope-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scope-type-init"></span>`type Init = T`
+- <span id="scope-pointable-type-init"></span>`type Init = T`
 
 - <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -341,9 +341,9 @@ See [`scope_fifo()`](scope/index.md) for more information.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
 
-- <span id="scopefifo-const-align"></span>`const ALIGN: usize`
+- <span id="scopefifo-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="scopefifo-type-init"></span>`type Init = T`
+- <span id="scopefifo-pointable-type-init"></span>`type Init = T`
 
 - <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -438,9 +438,9 @@ terminate.
 
 ##### `impl Pointable for ThreadPool`
 
-- <span id="threadpool-const-align"></span>`const ALIGN: usize`
+- <span id="threadpool-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadpool-type-init"></span>`type Init = T`
+- <span id="threadpool-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -486,9 +486,9 @@ Error when initializing a thread pool.
 
 ##### `impl Pointable for ThreadPoolBuildError`
 
-- <span id="threadpoolbuilderror-const-align"></span>`const ALIGN: usize`
+- <span id="threadpoolbuilderror-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadpoolbuilderror-type-init"></span>`type Init = T`
+- <span id="threadpoolbuilderror-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadpoolbuilderror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -594,11 +594,11 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 - <span id="threadpoolbuilder-default"></span>`fn default() -> Self`
 
-##### `impl<T> Pointable for ThreadPoolBuilder<S>`
+##### `impl Pointable for ThreadPoolBuilder<S>`
 
-- <span id="threadpoolbuilder-const-align"></span>`const ALIGN: usize`
+- <span id="threadpoolbuilder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadpoolbuilder-type-init"></span>`type Init = T`
+- <span id="threadpoolbuilder-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadpoolbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -654,9 +654,9 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 ##### `impl Pointable for Configuration`
 
-- <span id="configuration-const-align"></span>`const ALIGN: usize`
+- <span id="configuration-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="configuration-type-init"></span>`type Init = T`
+- <span id="configuration-pointable-type-init"></span>`type Init = T`
 
 - <span id="configuration-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -697,9 +697,9 @@ Provides the calling context to a closure called by `join_context`.
 
 ##### `impl Pointable for FnContext`
 
-- <span id="fncontext-const-align"></span>`const ALIGN: usize`
+- <span id="fncontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="fncontext-type-init"></span>`type Init = T`
+- <span id="fncontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="fncontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -754,9 +754,9 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 ##### `impl Pointable for Yield`
 
-- <span id="yield-const-align"></span>`const ALIGN: usize`
+- <span id="yield-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="yield-type-init"></span>`type Init = T`
+- <span id="yield-pointable-type-init"></span>`type Init = T`
 
 - <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -788,9 +788,9 @@ enum ErrorKind {
 
 ##### `impl Pointable for ErrorKind`
 
-- <span id="errorkind-const-align"></span>`const ALIGN: usize`
+- <span id="errorkind-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="errorkind-type-init"></span>`type Init = T`
+- <span id="errorkind-pointable-type-init"></span>`type Init = T`
 
 - <span id="errorkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -802,33 +802,719 @@ enum ErrorKind {
 
 ## Functions
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:88`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L88)*
+### `broadcast`
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:88`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L88)*
+```rust
+fn broadcast<OP, R>(op: OP) -> Vec<R>
+where
+    OP: Fn(BroadcastContext<'_>) -> R + Sync,
+    R: Send
+```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:89`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L89)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../.source_1765210505/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:89`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L89)*
+Executes `op` within every thread in the current thread pool. If this is
+called from a non-Rayon thread, it will execute in the global thread pool.
+Any attempts to use `join`, `scope`, or parallel iterators will then operate
+within that thread pool. When the call has completed on each thread, returns
+a vector containing all of their return values.
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:91`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L91)*
+For more information, see the `ThreadPool::broadcast()` method.
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:91`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L91)*
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:92`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L92)*
+### `spawn_broadcast`
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:92`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L92)*
+```rust
+fn spawn_broadcast<OP>(op: OP)
+where
+    OP: Fn(BroadcastContext<'_>) + Send + Sync + 'static
+```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:93`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L93)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../.source_1765210505/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:93`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L93)*
+Spawns an asynchronous task on every thread in this thread pool. This task
+will run in the implicit, global scope, which means that it may outlast the
+current stack frame -- therefore, it cannot capture any references onto the
+stack (you will likely need a `move` closure).
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:94`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L94)*
+For more information, see the `ThreadPool::spawn_broadcast()` method.
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:95`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L95)*
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:97`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L97)*
+### `join`
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:97`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L97)*
+```rust
+fn join<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+where
+    A: FnOnce() -> RA + Send,
+    B: FnOnce() -> RB + Send,
+    RA: Send,
+    RB: Send
+```
+
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../.source_1765210505/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
+
+Takes two closures and *potentially* runs them in parallel. It
+returns a pair of the results from those closures.
+
+Conceptually, calling `join()` is similar to spawning two threads,
+one executing each of the two closures. However, the
+implementation is quite different and incurs very low
+overhead. The underlying technique is called "work stealing": the
+Rayon runtime uses a fixed pool of worker threads and attempts to
+only execute code in parallel when there are idle CPUs to handle
+it.
+
+When `join` is called from outside the thread pool, the calling
+thread will block while the closures execute in the pool.  When
+`join` is called within the pool, the calling thread still actively
+participates in the thread pool. It will begin by executing closure
+A (on the current thread). While it is doing that, it will advertise
+closure B as being available for other threads to execute. Once closure A
+has completed, the current thread will try to execute closure B;
+if however closure B has been stolen, then it will look for other work
+while waiting for the thief to fully execute closure B. (This is the
+typical work-stealing strategy).
+
+# Examples
+
+This example uses join to perform a quick-sort (note this is not a
+particularly optimized implementation: if you **actually** want to
+sort for real, you should prefer [the `par_sort` method] offered
+by Rayon).
+
+```rust
+use rayon_core as rayon;
+let mut v = vec![5, 1, 8, 22, 0, 44];
+quick_sort(&mut v);
+assert_eq!(v, vec![0, 1, 5, 8, 22, 44]);
+
+fn quick_sort<T:PartialOrd+Send>(v: &mut [T]) {
+   if v.len() > 1 {
+       let mid = partition(v);
+       let (lo, hi) = v.split_at_mut(mid);
+       rayon::join(|| quick_sort(lo),
+                   || quick_sort(hi));
+   }
+}
+
+// Partition rearranges all items `<=` to the pivot
+// item (arbitrary selected to be the last item in the slice)
+// to the first half of the slice. It then returns the
+// "dividing point" where the pivot is placed.
+fn partition<T:PartialOrd+Send>(v: &mut [T]) -> usize {
+    let pivot = v.len() - 1;
+    let mut i = 0;
+    for j in 0..pivot {
+        if v[j] <= v[pivot] {
+            v.swap(i, j);
+            i += 1;
+        }
+    }
+    v.swap(i, pivot);
+    i
+}
+```
+
+# Warning about blocking I/O
+
+The assumption is that the closures given to `join()` are
+CPU-bound tasks that do not perform I/O or other blocking
+operations. If you do perform I/O, and that I/O should block
+(e.g., waiting for a network request), the overall performance may
+be poor.  Moreover, if you cause one closure to be blocked waiting
+on another (for example, using a channel), that could lead to a
+deadlock.
+
+# Panics
+
+No matter what happens, both closures will always be executed.  If
+a single closure panics, whether it be the first or second
+closure, that panic will be propagated and hence `join()` will
+panic with the same panic value. If both closures panic, `join()`
+will panic with the panic value from the first closure.
+
+### `join_context`
+
+```rust
+fn join_context<A, B, RA, RB>(oper_a: A, oper_b: B) -> (RA, RB)
+where
+    A: FnOnce(crate::FnContext) -> RA + Send,
+    B: FnOnce(crate::FnContext) -> RB + Send,
+    RA: Send,
+    RB: Send
+```
+
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../.source_1765210505/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
+
+Identical to `join`, except that the closures have a parameter
+that provides context for the way the closure has been called,
+especially indicating whether they're executing on a different
+thread than where `join_context` was called.  This will occur if
+the second job is stolen by a different thread, or if
+`join_context` was called from outside the thread pool to begin
+with.
+
+### `in_place_scope`
+
+```rust
+fn in_place_scope<'scope, OP, R>(op: OP) -> R
+where
+    OP: FnOnce(&Scope<'scope>) -> R
+```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+
+Creates a "fork-join" scope `s` and invokes the closure with a
+reference to `s`. This closure can then spawn asynchronous tasks
+into `s`. Those tasks may run asynchronously with respect to the
+closure; they may themselves spawn additional tasks into `s`. When
+the closure returns, it will block until all tasks that have been
+spawned into `s` complete.
+
+This is just like `scope()` except the closure runs on the same thread
+that calls `in_place_scope()`. Only work that it spawns runs in the
+thread pool.
+
+# Panics
+
+If a panic occurs, either in the closure given to `in_place_scope()` or in
+any of the spawned jobs, that panic will be propagated and the
+call to `in_place_scope()` will panic. If multiple panics occurs, it is
+non-deterministic which of their panic values will propagate.
+Regardless, once a task is spawned using `scope.spawn()`, it will
+execute, even if the spawning task should later panic. `in_place_scope()`
+returns once all spawned jobs have completed, and any panics are
+propagated at that point.
+
+### `scope`
+
+```rust
+fn scope<'scope, OP, R>(op: OP) -> R
+where
+    OP: FnOnce(&Scope<'scope>) -> R + Send,
+    R: Send
+```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
+
+Creates a "fork-join" scope `s` and invokes the closure with a
+reference to `s`. This closure can then spawn asynchronous tasks
+into `s`. Those tasks may run asynchronously with respect to the
+closure; they may themselves spawn additional tasks into `s`. When
+the closure returns, it will block until all tasks that have been
+spawned into `s` complete.
+
+`scope()` is a more flexible building block compared to `join()`,
+since a loop can be used to spawn any number of tasks without
+recursing. However, that flexibility comes at a performance price:
+tasks spawned using `scope()` must be allocated onto the heap,
+whereas `join()` can make exclusive use of the stack. **Prefer
+`join()` (or, even better, parallel iterators) where possible.**
+
+# Example
+
+The Rayon `join()` function launches two closures and waits for them
+to stop. One could implement `join()` using a scope like so, although
+it would be less efficient than the real implementation:
+
+```rust
+use rayon_core as rayon;
+pub fn join<A,B,RA,RB>(oper_a: A, oper_b: B) -> (RA, RB)
+    where A: FnOnce() -> RA + Send,
+          B: FnOnce() -> RB + Send,
+          RA: Send,
+          RB: Send,
+{
+    let mut result_a: Option<RA> = None;
+    let mut result_b: Option<RB> = None;
+    rayon::scope(|s| {
+        s.spawn(|_| result_a = Some(oper_a()));
+        s.spawn(|_| result_b = Some(oper_b()));
+    });
+    (result_a.unwrap(), result_b.unwrap())
+}
+```
+
+# A note on threading
+
+The closure given to `scope()` executes in the Rayon thread pool,
+as do those given to `spawn()`. This means that you can't access
+thread-local variables (well, you can, but they may have
+unexpected values).
+
+# Task execution
+
+Task execution potentially starts as soon as `spawn()` is called.
+The task will end sometime before `scope()` returns. Note that the
+*closure* given to scope may return much earlier. In general
+the lifetime of a scope created like `scope(body)` goes something like this:
+
+- Scope begins when `scope(body)` is called
+- Scope body `body()` is invoked
+    - Scope tasks may be spawned
+- Scope body returns
+- Scope tasks execute, possibly spawning more tasks
+- Once all tasks are done, scope ends and `scope()` returns
+
+To see how and when tasks are joined, consider this example:
+
+```rust
+use rayon_core as rayon;
+// point start
+rayon::scope(|s| {
+    s.spawn(|s| { // task s.1
+        s.spawn(|s| { // task s.1.1
+            rayon::scope(|t| {
+                t.spawn(|_| ()); // task t.1
+                t.spawn(|_| ()); // task t.2
+            });
+        });
+    });
+    s.spawn(|s| { // task s.2
+    });
+    // point mid
+});
+// point end
+```
+
+The various tasks that are run will execute roughly like so:
+
+```notrust
+| (start)
+|
+| (scope `s` created)
++-----------------------------------------------+ (task s.2)
++-------+ (task s.1)                            |
+|       |                                       |
+|       +---+ (task s.1.1)                      |
+|       |   |                                   |
+|       |   | (scope `t` created)               |
+|       |   +----------------+ (task t.2)       |
+|       |   +---+ (task t.1) |                  |
+| (mid) |   |   |            |                  |
+:       |   + <-+------------+ (scope `t` ends) |
+:       |   |                                   |
+|<------+---+-----------------------------------+ (scope `s` ends)
+|
+| (end)
+```
+
+The point here is that everything spawned into scope `s` will
+terminate (at latest) at the same point -- right before the
+original call to `rayon::scope` returns. This includes new
+subtasks created by other subtasks (e.g., task `s.1.1`). If a new
+scope is created (such as `t`), the things spawned into that scope
+will be joined before that scope returns, which in turn occurs
+before the creating task (task `s.1.1` in this case) finishes.
+
+There is no guaranteed order of execution for spawns in a scope,
+given that other threads may steal tasks at any time. However, they
+are generally prioritized in a LIFO order on the thread from which
+they were spawned. So in this example, absent any stealing, we can
+expect `s.2` to execute before `s.1`, and `t.2` before `t.1`. Other
+threads always steal from the other end of the deque, like FIFO
+order.  The idea is that "recent" tasks are most likely to be fresh
+in the local CPU's cache, while other threads can steal older
+"stale" tasks.  For an alternate approach, consider
+[`scope_fifo()`](scope/index.md) instead.
+
+# Accessing stack data
+
+In general, spawned tasks may access stack data in place that
+outlives the scope itself. Other data must be fully owned by the
+spawned task.
+
+```rust
+use rayon_core as rayon;
+let ok: Vec<i32> = vec![1, 2, 3];
+rayon::scope(|s| {
+    let bad: Vec<i32> = vec![4, 5, 6];
+    s.spawn(|_| {
+        // We can access `ok` because outlives the scope `s`.
+        println!("ok: {:?}", ok);
+
+        // If we just try to use `bad` here, the closure will borrow `bad`
+        // (because we are just printing it out, and that only requires a
+        // borrow), which will result in a compilation error. Read on
+        // for options.
+        // println!("bad: {:?}", bad);
+   });
+});
+```
+
+As the comments example above suggest, to reference `bad` we must
+take ownership of it. One way to do this is to detach the closure
+from the surrounding stack frame, using the `move` keyword. This
+will cause it to take ownership of *all* the variables it touches,
+in this case including both `ok` *and* `bad`:
+
+```rust
+use rayon_core as rayon;
+let ok: Vec<i32> = vec![1, 2, 3];
+rayon::scope(|s| {
+    let bad: Vec<i32> = vec![4, 5, 6];
+    s.spawn(move |_| {
+        println!("ok: {:?}", ok);
+        println!("bad: {:?}", bad);
+    });
+
+    // That closure is fine, but now we can't use `ok` anywhere else,
+    // since it is owned by the previous task:
+    // s.spawn(|_| println!("ok: {:?}", ok));
+});
+```
+
+While this works, it could be a problem if we want to use `ok` elsewhere.
+There are two choices. We can keep the closure as a `move` closure, but
+instead of referencing the variable `ok`, we create a shadowed variable that
+is a borrow of `ok` and capture *that*:
+
+```rust
+use rayon_core as rayon;
+let ok: Vec<i32> = vec![1, 2, 3];
+rayon::scope(|s| {
+    let bad: Vec<i32> = vec![4, 5, 6];
+    let ok: &Vec<i32> = &ok; // shadow the original `ok`
+    s.spawn(move |_| {
+        println!("ok: {:?}", ok); // captures the shadowed version
+        println!("bad: {:?}", bad);
+    });
+
+    // Now we too can use the shadowed `ok`, since `&Vec<i32>` references
+    // can be shared freely. Note that we need a `move` closure here though,
+    // because otherwise we'd be trying to borrow the shadowed `ok`,
+    // and that doesn't outlive `scope`.
+    s.spawn(move |_| println!("ok: {:?}", ok));
+});
+```
+
+Another option is not to use the `move` keyword but instead to take ownership
+of individual variables:
+
+```rust
+use rayon_core as rayon;
+let ok: Vec<i32> = vec![1, 2, 3];
+rayon::scope(|s| {
+    let bad: Vec<i32> = vec![4, 5, 6];
+    s.spawn(|_| {
+        // Transfer ownership of `bad` into a local variable (also named `bad`).
+        // This will force the closure to take ownership of `bad` from the environment.
+        let bad = bad;
+        println!("ok: {:?}", ok); // `ok` is only borrowed.
+        println!("bad: {:?}", bad); // refers to our local variable, above.
+    });
+
+    s.spawn(|_| println!("ok: {:?}", ok)); // we too can borrow `ok`
+});
+```
+
+# Panics
+
+If a panic occurs, either in the closure given to `scope()` or in
+any of the spawned jobs, that panic will be propagated and the
+call to `scope()` will panic. If multiple panics occurs, it is
+non-deterministic which of their panic values will propagate.
+Regardless, once a task is spawned using `scope.spawn()`, it will
+execute, even if the spawning task should later panic. `scope()`
+returns once all spawned jobs have completed, and any panics are
+propagated at that point.
+
+### `in_place_scope_fifo`
+
+```rust
+fn in_place_scope_fifo<'scope, OP, R>(op: OP) -> R
+where
+    OP: FnOnce(&ScopeFifo<'scope>) -> R
+```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
+
+Creates a "fork-join" scope `s` with FIFO order, and invokes the
+closure with a reference to `s`. This closure can then spawn
+asynchronous tasks into `s`. Those tasks may run asynchronously with
+respect to the closure; they may themselves spawn additional tasks
+into `s`. When the closure returns, it will block until all tasks
+that have been spawned into `s` complete.
+
+This is just like `scope_fifo()` except the closure runs on the same thread
+that calls `in_place_scope_fifo()`. Only work that it spawns runs in the
+thread pool.
+
+# Panics
+
+If a panic occurs, either in the closure given to `in_place_scope_fifo()` or in
+any of the spawned jobs, that panic will be propagated and the
+call to `in_place_scope_fifo()` will panic. If multiple panics occurs, it is
+non-deterministic which of their panic values will propagate.
+Regardless, once a task is spawned using `scope.spawn_fifo()`, it will
+execute, even if the spawning task should later panic. `in_place_scope_fifo()`
+returns once all spawned jobs have completed, and any panics are
+propagated at that point.
+
+### `scope_fifo`
+
+```rust
+fn scope_fifo<'scope, OP, R>(op: OP) -> R
+where
+    OP: FnOnce(&ScopeFifo<'scope>) -> R + Send,
+    R: Send
+```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+
+Creates a "fork-join" scope `s` with FIFO order, and invokes the
+closure with a reference to `s`. This closure can then spawn
+asynchronous tasks into `s`. Those tasks may run asynchronously with
+respect to the closure; they may themselves spawn additional tasks
+into `s`. When the closure returns, it will block until all tasks
+that have been spawned into `s` complete.
+
+# Task execution
+
+Tasks in a `scope_fifo()` run similarly to [`scope()`](scope/index.md), but there's a
+difference in the order of execution. Consider a similar example:
+
+```rust
+use rayon_core as rayon;
+// point start
+rayon::scope_fifo(|s| {
+    s.spawn_fifo(|s| { // task s.1
+        s.spawn_fifo(|s| { // task s.1.1
+            rayon::scope_fifo(|t| {
+                t.spawn_fifo(|_| ()); // task t.1
+                t.spawn_fifo(|_| ()); // task t.2
+            });
+        });
+    });
+    s.spawn_fifo(|s| { // task s.2
+    });
+    // point mid
+});
+// point end
+```
+
+The various tasks that are run will execute roughly like so:
+
+```notrust
+| (start)
+|
+| (FIFO scope `s` created)
++--------------------+ (task s.1)
++-------+ (task s.2) |
+|       |            +---+ (task s.1.1)
+|       |            |   |
+|       |            |   | (FIFO scope `t` created)
+|       |            |   +----------------+ (task t.1)
+|       |            |   +---+ (task t.2) |
+| (mid) |            |   |   |            |
+:       |            |   + <-+------------+ (scope `t` ends)
+:       |            |   |
+|<------+------------+---+ (scope `s` ends)
+|
+| (end)
+```
+
+Under `scope_fifo()`, the spawns are prioritized in a FIFO order on
+the thread from which they were spawned, as opposed to `scope()`'s
+LIFO.  So in this example, we can expect `s.1` to execute before
+`s.2`, and `t.1` before `t.2`. Other threads also steal tasks in
+FIFO order, as usual. Overall, this has roughly the same order as
+the now-deprecated `breadth_first` option, except the effect is
+isolated to a particular scope. If spawns are intermingled from any
+combination of `scope()` and `scope_fifo()`, or from different
+threads, their order is only specified with respect to spawns in the
+same scope and thread.
+
+For more details on this design, see Rayon [RFC #1].
+
+
+# Panics
+
+If a panic occurs, either in the closure given to `scope_fifo()` or
+in any of the spawned jobs, that panic will be propagated and the
+call to `scope_fifo()` will panic. If multiple panics occurs, it is
+non-deterministic which of their panic values will propagate.
+Regardless, once a task is spawned using `scope.spawn_fifo()`, it
+will execute, even if the spawning task should later panic.
+`scope_fifo()` returns once all spawned jobs have completed, and any
+panics are propagated at that point.
+
+### `spawn`
+
+```rust
+fn spawn<F>(func: F)
+where
+    F: FnOnce() + Send + 'static
+```
+
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
+
+Puts the task into the Rayon thread pool's job queue in the "static"
+or "global" scope. Just like a standard thread, this task is not
+tied to the current stack frame, and hence it cannot hold any
+references other than those with `'static` lifetime. If you want
+to spawn a task that references stack data, use [the `scope()`
+function] to create a scope.
+
+Since tasks spawned with this function cannot hold references into
+the enclosing stack frame, you almost certainly want to use a
+`move` closure as their argument (otherwise, the closure will
+typically hold references to any variables from the enclosing
+function that you happen to use).
+
+This API assumes that the closure is executed purely for its
+side-effects (i.e., it might send messages, modify data protected
+by a mutex, or some such thing).
+
+There is no guaranteed order of execution for spawns, given that
+other threads may steal tasks at any time. However, they are
+generally prioritized in a LIFO order on the thread from which
+they were spawned. Other threads always steal from the other end of
+the deque, like FIFO order.  The idea is that "recent" tasks are
+most likely to be fresh in the local CPU's cache, while other
+threads can steal older "stale" tasks.  For an alternate approach,
+consider [`spawn_fifo()`](spawn/index.md) instead.
+
+# Panic handling
+
+If this closure should panic, the resulting panic will be
+propagated to the panic handler registered in the `ThreadPoolBuilder`,
+if any.  See `ThreadPoolBuilder::panic_handler()` for more
+details.
+
+# Examples
+
+This code creates a Rayon task that increments a global counter.
+
+```rust
+use rayon_core as rayon;
+use std::sync::atomic::{AtomicUsize, Ordering, ATOMIC_USIZE_INIT};
+
+static GLOBAL_COUNTER: AtomicUsize = ATOMIC_USIZE_INIT;
+
+rayon::spawn(move || {
+    GLOBAL_COUNTER.fetch_add(1, Ordering::SeqCst);
+});
+```
+
+### `spawn_fifo`
+
+```rust
+fn spawn_fifo<F>(func: F)
+where
+    F: FnOnce() + Send + 'static
+```
+
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
+
+Fires off a task into the Rayon thread pool in the "static" or
+"global" scope.  Just like a standard thread, this task is not
+tied to the current stack frame, and hence it cannot hold any
+references other than those with `'static` lifetime. If you want
+to spawn a task that references stack data, use [the `scope_fifo()`
+function] to create a scope.
+
+The behavior is essentially the same as [the `spawn`
+function], except that calls from the same thread
+will be prioritized in FIFO order. This is similar to the now-
+deprecated `breadth_first` option, except the effect is isolated
+to relative `spawn_fifo` calls, not all thread-pool tasks.
+
+For more details on this design, see Rayon [RFC #1].
+
+
+
+
+# Panic handling
+
+If this closure should panic, the resulting panic will be
+propagated to the panic handler registered in the `ThreadPoolBuilder`,
+if any.  See `ThreadPoolBuilder::panic_handler()` for more
+details.
+
+
+### `current_thread_has_pending_tasks`
+
+```rust
+fn current_thread_has_pending_tasks() -> Option<bool>
+```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
+
+If called from a Rayon worker thread, indicates whether that
+thread's local deque still has pending tasks. Otherwise, returns
+`None`. For more information, see [the
+`ThreadPool::current_thread_has_pending_tasks()` method][m].
+
+
+### `current_thread_index`
+
+```rust
+fn current_thread_index() -> Option<usize>
+```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
+
+If called from a Rayon worker thread, returns the index of that
+thread within its current pool; if not called from a Rayon thread,
+returns `None`.
+
+The index for a given thread will not change over the thread's
+lifetime. However, multiple threads may share the same index if
+they are in distinct thread pools.
+
+See also: [the `ThreadPool::current_thread_index()` method][m].
+
+# Future compatibility note
+
+Currently, every thread pool (including the global
+thread pool) has a fixed number of threads, but this may
+change in future Rayon versions (see [the `num_threads()` method
+for details][snt]). In that case, the index for a
+thread would not change during its lifetime, but thread
+indices may wind up being reused if threads are terminated and
+restarted.
+
+
+### `yield_local`
+
+```rust
+fn yield_local() -> Option<Yield>
+```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
+
+Cooperatively yields execution to local Rayon work.
+
+If the current thread is part of a rayon thread pool, this looks for a
+single unit of pending work in this thread's queue, then executes it.
+Completion of that work might include nested work or further work stealing.
+
+This is similar to [`yield_now()`](thread_pool/index.md), but does not steal from other threads.
+
+Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
+nothing was available, or `None` if this thread is not part of any pool at all.
+
+### `yield_now`
+
+```rust
+fn yield_now() -> Option<Yield>
+```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
+
+Cooperatively yields execution to Rayon.
+
+If the current thread is part of a rayon thread pool, this looks for a
+single unit of pending work in the pool, then executes it. Completion of
+that work might include nested work or further work stealing.
+
+This is similar to [`std::thread::yield_now()`](../rayon/index.md), but does not literally make
+that call. If you are implementing a polling loop, you may want to also
+yield to the OS scheduler yourself if no Rayon work was found.
+
+Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
+nothing was available, or `None` if this thread is not part of any pool at all.
 
 ### `max_num_threads`
 

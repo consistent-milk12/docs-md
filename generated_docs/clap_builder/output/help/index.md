@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`write_help`](#write_help) | fn | Writes the parser help to the wrapped stream. |
+| [`write_help`](#write-help) | fn | Writes the parser help to the wrapped stream. |
 
 ## Functions
 

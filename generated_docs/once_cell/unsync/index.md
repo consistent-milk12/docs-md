@@ -142,7 +142,7 @@ println!("{}", *lazy);
 
 ##### `impl<T, F: FnOnce() -> T> Deref for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-deref-type-target"></span>`type Target = T`
 
 - <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
@@ -150,9 +150,9 @@ println!("{}", *lazy);
 
 - <span id="lazy-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
-##### `impl<P, T> Receiver for Lazy<T, F>`
+##### `impl<T> Receiver for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 

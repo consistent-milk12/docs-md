@@ -132,9 +132,9 @@ where
 
 ##### `impl<R, Entry> LookupParser for PubStuffParser<R, Entry>`
 
-- <span id="pubstuffparser-type-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
+- <span id="pubstuffparser-lookupparser-type-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
 
-- <span id="pubstuffparser-type-entry"></span>`type Entry = Entry`
+- <span id="pubstuffparser-lookupparser-type-entry"></span>`type Entry = Entry`
 
 - <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md#result), [`LookupParser`](#lookupparser)
 

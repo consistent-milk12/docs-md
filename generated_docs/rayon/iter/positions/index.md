@@ -45,27 +45,27 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 - <span id="positions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Positions<I, P>`
+##### `impl IntoEither for Positions<I, P>`
 
-##### `impl<T> IntoParallelIterator for Positions<I, P>`
+##### `impl IntoParallelIterator for Positions<I, P>`
 
-- <span id="positions-type-iter"></span>`type Iter = T`
+- <span id="positions-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="positions-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="positions-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="positions-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
-- <span id="positions-type-item"></span>`type Item = usize`
+- <span id="positions-paralleliterator-type-item"></span>`type Item = usize`
 
 - <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Positions<I, P>`
+##### `impl Pointable for Positions<I, P>`
 
-- <span id="positions-const-align"></span>`const ALIGN: usize`
+- <span id="positions-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="positions-type-init"></span>`type Init = T`
+- <span id="positions-pointable-type-init"></span>`type Init = T`
 
 - <span id="positions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,13 +93,13 @@ struct PositionsConsumer<'p, C, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, C, P> Consumer for PositionsConsumer<'p, C, P>`
+##### `impl<T, C, P> Consumer for PositionsConsumer<'p, C, P>`
 
-- <span id="positionsconsumer-type-folder"></span>`type Folder = PositionsFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="positionsconsumer-consumer-type-folder"></span>`type Folder = PositionsFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="positionsconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="positionsconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="positionsconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="positionsconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="positionsconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -107,13 +107,13 @@ struct PositionsConsumer<'p, C, P> {
 
 - <span id="positionsconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for PositionsConsumer<'p, C, P>`
+##### `impl IntoEither for PositionsConsumer<'p, C, P>`
 
-##### `impl<T> Pointable for PositionsConsumer<'p, C, P>`
+##### `impl Pointable for PositionsConsumer<'p, C, P>`
 
-- <span id="positionsconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="positionsconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="positionsconsumer-type-init"></span>`type Init = T`
+- <span id="positionsconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="positionsconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -139,7 +139,7 @@ struct PositionsFolder<'p, F, P> {
 
 ##### `impl<F, P, T> Folder for PositionsFolder<'_, F, P>`
 
-- <span id="positionsfolder-type-result"></span>`type Result = <F as Folder>::Result`
+- <span id="positionsfolder-folder-type-result"></span>`type Result = <F as Folder>::Result`
 
 - <span id="positionsfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -147,13 +147,13 @@ struct PositionsFolder<'p, F, P> {
 
 - <span id="positionsfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for PositionsFolder<'p, F, P>`
+##### `impl IntoEither for PositionsFolder<'p, F, P>`
 
-##### `impl<T> Pointable for PositionsFolder<'p, F, P>`
+##### `impl Pointable for PositionsFolder<'p, F, P>`
 
-- <span id="positionsfolder-const-align"></span>`const ALIGN: usize`
+- <span id="positionsfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="positionsfolder-type-init"></span>`type Init = T`
+- <span id="positionsfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="positionsfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

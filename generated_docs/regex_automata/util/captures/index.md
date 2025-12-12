@@ -318,15 +318,15 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 ##### `impl IntoIterator for CapturesPatternIter<'a>`
 
-- <span id="capturespatterniter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturespatterniter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturespatterniter-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturespatterniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturespatterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CapturesPatternIter<'a>`
 
-- <span id="capturespatterniter-type-item"></span>`type Item = Option<Span>`
+- <span id="capturespatterniter-iterator-type-item"></span>`type Item = Option<Span>`
 
 - <span id="capturespatterniter-next"></span>`fn next(&mut self) -> Option<Option<Span>>` — [`Span`](../../index.md#span)
 
@@ -684,15 +684,15 @@ from which this iterator was created.
 
 ##### `impl IntoIterator for GroupInfoPatternNames<'a>`
 
-- <span id="groupinfopatternnames-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="groupinfopatternnames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="groupinfopatternnames-type-intoiter"></span>`type IntoIter = I`
+- <span id="groupinfopatternnames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="groupinfopatternnames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for GroupInfoPatternNames<'a>`
 
-- <span id="groupinfopatternnames-type-item"></span>`type Item = Option<&'a str>`
+- <span id="groupinfopatternnames-iterator-type-item"></span>`type Item = Option<&'a str>`
 
 - <span id="groupinfopatternnames-next"></span>`fn next(&mut self) -> Option<Option<&'a str>>`
 
@@ -728,15 +728,15 @@ from which this iterator was created.
 
 ##### `impl IntoIterator for GroupInfoAllNames<'a>`
 
-- <span id="groupinfoallnames-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="groupinfoallnames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="groupinfoallnames-type-intoiter"></span>`type IntoIter = I`
+- <span id="groupinfoallnames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="groupinfoallnames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for GroupInfoAllNames<'a>`
 
-- <span id="groupinfoallnames-type-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
+- <span id="groupinfoallnames-iterator-type-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
 
 - <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md#patternid)
 

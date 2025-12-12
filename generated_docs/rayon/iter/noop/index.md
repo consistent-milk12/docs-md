@@ -23,13 +23,13 @@ struct NoopConsumer;
 
 #### Trait Implementations
 
-##### `impl Consumer for NoopConsumer`
+##### `impl<T> Consumer for NoopConsumer`
 
-- <span id="noopconsumer-type-folder"></span>`type Folder = NoopConsumer`
+- <span id="noopconsumer-consumer-type-folder"></span>`type Folder = NoopConsumer`
 
-- <span id="noopconsumer-type-reducer"></span>`type Reducer = NoopReducer`
+- <span id="noopconsumer-consumer-type-reducer"></span>`type Reducer = NoopReducer`
 
-- <span id="noopconsumer-type-result"></span>`type Result = ()`
+- <span id="noopconsumer-consumer-type-result"></span>`type Result = ()`
 
 - <span id="noopconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](#noopreducer)
 
@@ -37,9 +37,9 @@ struct NoopConsumer;
 
 - <span id="noopconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl Folder for NoopConsumer`
+##### `impl<T> Folder for NoopConsumer`
 
-- <span id="noopconsumer-type-result"></span>`type Result = ()`
+- <span id="noopconsumer-folder-type-result"></span>`type Result = ()`
 
 - <span id="noopconsumer-consume"></span>`fn consume(self, _item: T) -> Self`
 
@@ -53,9 +53,9 @@ struct NoopConsumer;
 
 ##### `impl Pointable for NoopConsumer`
 
-- <span id="noopconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="noopconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="noopconsumer-type-init"></span>`type Init = T`
+- <span id="noopconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="noopconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -65,7 +65,7 @@ struct NoopConsumer;
 
 - <span id="noopconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl UnindexedConsumer for NoopConsumer`
+##### `impl<T> UnindexedConsumer for NoopConsumer`
 
 - <span id="noopconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -85,9 +85,9 @@ struct NoopReducer;
 
 ##### `impl Pointable for NoopReducer`
 
-- <span id="noopreducer-const-align"></span>`const ALIGN: usize`
+- <span id="noopreducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="noopreducer-type-init"></span>`type Init = T`
+- <span id="noopreducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="noopreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

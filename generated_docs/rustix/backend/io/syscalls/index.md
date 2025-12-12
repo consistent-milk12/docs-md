@@ -25,13 +25,13 @@ See the `rustix::backend` module documentation for details.
   - [`pwritev2`](#pwritev2)
   - [`close`](#close)
   - [`ioctl`](#ioctl)
-  - [`ioctl_readonly`](#ioctl_readonly)
+  - [`ioctl_readonly`](#ioctl-readonly)
   - [`dup`](#dup)
   - [`dup2`](#dup2)
   - [`dup3`](#dup3)
-  - [`fcntl_getfd`](#fcntl_getfd)
-  - [`fcntl_setfd`](#fcntl_setfd)
-  - [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec)
+  - [`fcntl_getfd`](#fcntl-getfd)
+  - [`fcntl_setfd`](#fcntl-setfd)
+  - [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec)
 
 ## Quick Reference
 
@@ -49,13 +49,13 @@ See the `rustix::backend` module documentation for details.
 | [`pwritev2`](#pwritev2) | fn |  |
 | [`close`](#close) | fn |  |
 | [`ioctl`](#ioctl) | fn |  |
-| [`ioctl_readonly`](#ioctl_readonly) | fn |  |
+| [`ioctl_readonly`](#ioctl-readonly) | fn |  |
 | [`dup`](#dup) | fn |  |
 | [`dup2`](#dup2) | fn |  |
 | [`dup3`](#dup3) | fn |  |
-| [`fcntl_getfd`](#fcntl_getfd) | fn |  |
-| [`fcntl_setfd`](#fcntl_setfd) | fn |  |
-| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn |  |
+| [`fcntl_getfd`](#fcntl-getfd) | fn |  |
+| [`fcntl_setfd`](#fcntl-setfd) | fn |  |
+| [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec) | fn |  |
 
 ## Functions
 

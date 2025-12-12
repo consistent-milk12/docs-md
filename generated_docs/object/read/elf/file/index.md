@@ -69,31 +69,31 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 #### Trait Implementations
 
-##### `impl<'data, Elf, R> Debug for ElfFile<'data, Elf, R>`
+##### `impl<Elf, R> Debug for ElfFile<'data, Elf, R>`
 
 - <span id="elffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Elf, R> Object for ElfFile<'data, Elf, R>`
+##### `impl<Elf, R> Object for ElfFile<'data, Elf, R>`
 
-- <span id="elffile-type-segment"></span>`type Segment = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-segment"></span>`type Segment = ElfSegment<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-segmentiterator"></span>`type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-segmentiterator"></span>`type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-section"></span>`type Section = ElfSection<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-section"></span>`type Section = ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-sectioniterator"></span>`type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-sectioniterator"></span>`type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-comdat"></span>`type Comdat = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-comdat"></span>`type Comdat = ElfComdat<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-comdatiterator"></span>`type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-comdatiterator"></span>`type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-symboltable"></span>`type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-symboltable"></span>`type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elffile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
@@ -143,7 +143,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="elffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
-##### `impl<'data, Elf, R> Sealed for ElfFile<'data, Elf, R>`
+##### `impl<Elf, R> Sealed for ElfFile<'data, Elf, R>`
 
 ## Traits
 

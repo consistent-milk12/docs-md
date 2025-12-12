@@ -11,9 +11,9 @@
 | [`Group`](#group) | struct | Abstraction over a group of control tags which can be scanned in parallel. |
 | [`BitMaskWord`](#bitmaskword) | type |  |
 | [`NonZeroBitMaskWord`](#nonzerobitmaskword) | type |  |
-| [`BITMASK_STRIDE`](#bitmask_stride) | const |  |
-| [`BITMASK_MASK`](#bitmask_mask) | const |  |
-| [`BITMASK_ITER_MASK`](#bitmask_iter_mask) | const |  |
+| [`BITMASK_STRIDE`](#bitmask-stride) | const |  |
+| [`BITMASK_MASK`](#bitmask-mask) | const |  |
+| [`BITMASK_ITER_MASK`](#bitmask-iter-mask) | const |  |
 
 ## Structs
 

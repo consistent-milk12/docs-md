@@ -151,7 +151,7 @@ Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 | [`private`](#private) | mod |  |
 | [`UnicodeWidthChar`](#unicodewidthchar) | trait | Methods for determining displayed width of Unicode characters. |
 | [`UnicodeWidthStr`](#unicodewidthstr) | trait | Methods for determining displayed width of Unicode strings. |
-| [`UNICODE_VERSION`](#unicode_version) | const |  |
+| [`UNICODE_VERSION`](#unicode-version) | const |  |
 
 ## Modules
 
@@ -210,5 +210,13 @@ Methods for determining displayed width of Unicode strings.
 
 ## Constants
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:179`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L179)*
+### `UNICODE_VERSION`
+```rust
+const UNICODE_VERSION: (u8, u8, u8);
+```
+
+*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../.source_1765210505/unicode-width-0.2.2/src/tables.rs#L165)*
+
+The version of [Unicode](http://www.unicode.org/)
+that this version of unicode-width is based on.
 

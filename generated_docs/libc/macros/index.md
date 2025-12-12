@@ -7,37 +7,37 @@
 ## Contents
 
 - [Macros](#macros)
-  - [`cfg_if!`](#cfg_if)
+  - [`cfg_if!`](#cfg-if)
   - [`prelude!`](#prelude)
   - [`s!`](#s)
-  - [`s_paren!`](#s_paren)
-  - [`s_no_extra_traits!`](#s_no_extra_traits)
-  - [`extern_ty!`](#extern_ty)
+  - [`s_paren!`](#s-paren)
+  - [`s_no_extra_traits!`](#s-no-extra-traits)
+  - [`extern_ty!`](#extern-ty)
   - [`e!`](#e)
-  - [`c_enum!`](#c_enum)
+  - [`c_enum!`](#c-enum)
   - [`f!`](#f)
-  - [`safe_f!`](#safe_f)
-  - [`__item!`](#__item)
-  - [`deprecated_mach!`](#deprecated_mach)
-  - [`offset_of!`](#offset_of)
+  - [`safe_f!`](#safe-f)
+  - [`__item!`](#item)
+  - [`deprecated_mach!`](#deprecated-mach)
+  - [`offset_of!`](#offset-of)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cfg_if!`](#cfg_if) | macro | A macro for defining #[cfg] if-else statements. |
+| [`cfg_if!`](#cfg-if) | macro | A macro for defining #[cfg] if-else statements. |
 | [`prelude!`](#prelude) | macro | Create an internal crate prelude with `core` reexports and common types. |
 | [`s!`](#s) | macro | Implement `Clone` and `Copy` for a struct, as well as `Debug`, `Eq`, `Hash`, and `PartialEq` if the `extra_traits` feature is enabled. |
-| [`s_paren!`](#s_paren) | macro | Implement `Clone` and `Copy` for a tuple struct, as well as `Debug`, `Eq`, `Hash`, and `PartialEq` if the `extra_traits` feature is enabled. |
-| [`s_no_extra_traits!`](#s_no_extra_traits) | macro | Implement `Clone`, `Copy`, and `Debug` since those can be derived, but exclude `PartialEq`, `Eq`, and `Hash`. |
-| [`extern_ty!`](#extern_ty) | macro | Create an uninhabited type that can't be constructed. |
+| [`s_paren!`](#s-paren) | macro | Implement `Clone` and `Copy` for a tuple struct, as well as `Debug`, `Eq`, `Hash`, and `PartialEq` if the `extra_traits` feature is enabled. |
+| [`s_no_extra_traits!`](#s-no-extra-traits) | macro | Implement `Clone`, `Copy`, and `Debug` since those can be derived, but exclude `PartialEq`, `Eq`, and `Hash`. |
+| [`extern_ty!`](#extern-ty) | macro | Create an uninhabited type that can't be constructed. |
 | [`e!`](#e) | macro | Implement `Clone` and `Copy` for an enum, as well as `Debug`, `Eq`, `Hash`, and `PartialEq` if the `extra_traits` feature is enabled. |
-| [`c_enum!`](#c_enum) | macro | Represent a C enum as Rust constants and a type. |
+| [`c_enum!`](#c-enum) | macro | Represent a C enum as Rust constants and a type. |
 | [`f!`](#f) | macro | Define a `unsafe` function. |
-| [`safe_f!`](#safe_f) | macro | Define a safe function. |
-| [`__item!`](#__item) | macro |  |
-| [`deprecated_mach!`](#deprecated_mach) | macro |  |
-| [`offset_of!`](#offset_of) | macro | Polyfill for std's `offset_of`. |
+| [`safe_f!`](#safe-f) | macro | Define a safe function. |
+| [`__item!`](#item) | macro |  |
+| [`deprecated_mach!`](#deprecated-mach) | macro |  |
+| [`offset_of!`](#offset-of) | macro | Polyfill for std's `offset_of`. |
 
 ## Macros
 

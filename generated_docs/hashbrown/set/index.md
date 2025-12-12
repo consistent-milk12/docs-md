@@ -21,7 +21,7 @@
 - [Enums](#enums)
   - [`Entry`](#entry)
 - [Functions](#functions)
-  - [`assert_covariance`](#assert_covariance)
+  - [`assert_covariance`](#assert-covariance)
 
 ## Quick Reference
 
@@ -39,7 +39,7 @@
 | [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a `HashSet`. |
 | [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashSet`. |
 | [`Entry`](#entry) | enum | A view into a single entry in a set, which may either be vacant or occupied. |
-| [`assert_covariance`](#assert_covariance) | fn |  |
+| [`assert_covariance`](#assert-covariance) | fn |  |
 
 ## Structs
 
@@ -158,7 +158,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitand-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
@@ -168,7 +168,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitor-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
@@ -178,7 +178,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitxor-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
@@ -202,7 +202,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
-##### `impl<Q, K> Equivalent for HashSet<T, S, A>`
+##### `impl<K> Equivalent for HashSet<T, S, A>`
 
 - <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -214,11 +214,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
-##### `impl<'a, T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
+##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
-- <span id="a-hashset-type-item"></span>`type Item = &'a T`
+- <span id="a-hashset-intoiterator-type-item"></span>`type Item = &'a T`
 
-- <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
+- <span id="a-hashset-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
 - <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](../hash_set/index.md#iter)
 
@@ -228,7 +228,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-sub-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
@@ -273,17 +273,17 @@ See its documentation for more.
 
 ##### `impl<K> FusedIterator for Iter<'_, K>`
 
-##### `impl<I> IntoIterator for Iter<'a, K>`
+##### `impl IntoIterator for Iter<'a, K>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K> Iterator for Iter<'a, K>`
+##### `impl<K> Iterator for Iter<'a, K>`
 
-- <span id="iter-type-item"></span>`type Item = &'a K`
+- <span id="iter-iterator-type-item"></span>`type Item = &'a K`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
@@ -324,17 +324,17 @@ This `struct` is created by the `into_iter` method on [`HashSet`](../hash_set/in
 
 ##### `impl<K, A: Allocator> FusedIterator for IntoIter<K, A>`
 
-##### `impl<I> IntoIterator for IntoIter<K, A>`
+##### `impl IntoIterator for IntoIter<K, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for IntoIter<K, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = K`
+- <span id="intoiter-iterator-type-item"></span>`type Item = K`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<K>`
 
@@ -371,17 +371,17 @@ See its documentation for more.
 
 ##### `impl<K, A: Allocator> FusedIterator for Drain<'_, K, A>`
 
-##### `impl<I> IntoIterator for Drain<'a, K, A>`
+##### `impl IntoIterator for Drain<'a, K, A>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for Drain<'_, K, A>`
 
-- <span id="drain-type-item"></span>`type Item = K`
+- <span id="drain-iterator-type-item"></span>`type Item = K`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<K>`
 
@@ -411,17 +411,17 @@ documentation for more.
 
 ##### `impl<K, F, A: Allocator> FusedIterator for ExtractIf<'_, K, F, A>`
 
-##### `impl<I> IntoIterator for ExtractIf<'a, K, F, A>`
+##### `impl IntoIterator for ExtractIf<'a, K, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="extractif-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="extractif-type-intoiter"></span>`type IntoIter = I`
+- <span id="extractif-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, F, A: Allocator> Iterator for ExtractIf<'_, K, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = K`
+- <span id="extractif-iterator-type-item"></span>`type Item = K`
 
 - <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -457,17 +457,17 @@ See its documentation for more.
 
 ##### `impl<T, S, A> FusedIterator for Intersection<'_, T, S, A>`
 
-##### `impl<I> IntoIterator for Intersection<'a, T, S, A>`
+##### `impl IntoIterator for Intersection<'a, T, S, A>`
 
-- <span id="intersection-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intersection-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intersection-type-intoiter"></span>`type IntoIter = I`
+- <span id="intersection-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intersection-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, S, A> Iterator for Intersection<'a, T, S, A>`
+##### `impl<T, S, A> Iterator for Intersection<'a, T, S, A>`
 
-- <span id="intersection-type-item"></span>`type Item = &'a T`
+- <span id="intersection-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="intersection-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
@@ -505,17 +505,17 @@ See its documentation for more.
 
 ##### `impl<T, S, A> FusedIterator for Difference<'_, T, S, A>`
 
-##### `impl<I> IntoIterator for Difference<'a, T, S, A>`
+##### `impl IntoIterator for Difference<'a, T, S, A>`
 
-- <span id="difference-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="difference-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="difference-type-intoiter"></span>`type IntoIter = I`
+- <span id="difference-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="difference-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, S, A> Iterator for Difference<'a, T, S, A>`
+##### `impl<T, S, A> Iterator for Difference<'a, T, S, A>`
 
-- <span id="difference-type-item"></span>`type Item = &'a T`
+- <span id="difference-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="difference-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
@@ -552,17 +552,17 @@ This `struct` is created by the `symmetric_difference` method on
 
 ##### `impl<T, S, A> FusedIterator for SymmetricDifference<'_, T, S, A>`
 
-##### `impl<I> IntoIterator for SymmetricDifference<'a, T, S, A>`
+##### `impl IntoIterator for SymmetricDifference<'a, T, S, A>`
 
-- <span id="symmetricdifference-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symmetricdifference-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symmetricdifference-type-intoiter"></span>`type IntoIter = I`
+- <span id="symmetricdifference-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symmetricdifference-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, S, A> Iterator for SymmetricDifference<'a, T, S, A>`
+##### `impl<T, S, A> Iterator for SymmetricDifference<'a, T, S, A>`
 
-- <span id="symmetricdifference-type-item"></span>`type Item = &'a T`
+- <span id="symmetricdifference-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="symmetricdifference-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
@@ -599,17 +599,17 @@ See its documentation for more.
 
 ##### `impl<T, S, A> FusedIterator for Union<'_, T, S, A>`
 
-##### `impl<I> IntoIterator for Union<'a, T, S, A>`
+##### `impl IntoIterator for Union<'a, T, S, A>`
 
-- <span id="union-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="union-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="union-type-intoiter"></span>`type IntoIter = I`
+- <span id="union-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="union-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, S, A> Iterator for Union<'a, T, S, A>`
+##### `impl<T, S, A> Iterator for Union<'a, T, S, A>`
 
-- <span id="union-type-item"></span>`type Item = &'a T`
+- <span id="union-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="union-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
@@ -628,7 +628,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -685,7 +685,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 

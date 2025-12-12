@@ -38,27 +38,27 @@ This struct is created by the [`split()`](#split) function.
 
 - <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Split<D, S>`
+##### `impl IntoEither for Split<D, S>`
 
-##### `impl<T> IntoParallelIterator for Split<D, S>`
+##### `impl IntoParallelIterator for Split<D, S>`
 
-- <span id="split-type-iter"></span>`type Iter = T`
+- <span id="split-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="split-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="split-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
-- <span id="split-type-item"></span>`type Item = D`
+- <span id="split-paralleliterator-type-item"></span>`type Item = D`
 
 - <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Split<D, S>`
+##### `impl Pointable for Split<D, S>`
 
-- <span id="split-const-align"></span>`const ALIGN: usize`
+- <span id="split-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="split-type-init"></span>`type Init = T`
+- <span id="split-pointable-type-init"></span>`type Init = T`
 
 - <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -81,13 +81,13 @@ struct SplitProducer<'a, D, S> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for SplitProducer<'a, D, S>`
+##### `impl IntoEither for SplitProducer<'a, D, S>`
 
-##### `impl<T> Pointable for SplitProducer<'a, D, S>`
+##### `impl Pointable for SplitProducer<'a, D, S>`
 
-- <span id="splitproducer-const-align"></span>`const ALIGN: usize`
+- <span id="splitproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="splitproducer-type-init"></span>`type Init = T`
+- <span id="splitproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -97,9 +97,9 @@ struct SplitProducer<'a, D, S> {
 
 - <span id="splitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, D, S> UnindexedProducer for SplitProducer<'a, D, S>`
+##### `impl<D, S> UnindexedProducer for SplitProducer<'a, D, S>`
 
-- <span id="splitproducer-type-item"></span>`type Item = D`
+- <span id="splitproducer-unindexedproducer-type-item"></span>`type Item = D`
 
 - <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 

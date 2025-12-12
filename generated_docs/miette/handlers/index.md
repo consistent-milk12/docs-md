@@ -31,9 +31,9 @@ Reporters included with `miette`.
   - [`LabelRenderMode`](#labelrendermode)
   - [`SpanAttach`](#spanattach)
 - [Functions](#functions)
-  - [`split_label`](#split_label)
+  - [`split_label`](#split-label)
   - [`escape`](#escape)
-  - [`safe_get_column`](#safe_get_column)
+  - [`safe_get_column`](#safe-get-column)
   - [`style`](#style)
 
 ## Quick Reference
@@ -59,9 +59,9 @@ Reporters included with `miette`.
 | [`LinkStyle`](#linkstyle) | enum |  |
 | [`LabelRenderMode`](#labelrendermode) | enum |  |
 | [`SpanAttach`](#spanattach) | enum |  |
-| [`split_label`](#split_label) | fn |  |
+| [`split_label`](#split-label) | fn |  |
 | [`escape`](#escape) | fn |  |
-| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
+| [`safe_get_column`](#safe-get-column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
 | [`style`](#style) | fn |  |
 
 ## Modules

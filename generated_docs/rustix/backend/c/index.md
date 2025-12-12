@@ -12,7 +12,7 @@ types that are convenient to have defined.
 ## Contents
 
 - [Type Aliases](#type-aliases)
-  - [`size_t`](#size_t)
+  - [`size_t`](#size-t)
 - [Constants](#constants)
   - [`SIGHUP`](#sighup)
   - [`SIGINT`](#sigint)
@@ -45,20 +45,20 @@ types that are convenient to have defined.
   - [`SIGIO`](#sigio)
   - [`SIGPWR`](#sigpwr)
   - [`SIGSYS`](#sigsys)
-  - [`PIPE_BUF`](#pipe_buf)
-  - [`CLOCK_MONOTONIC`](#clock_monotonic)
-  - [`CLOCK_REALTIME`](#clock_realtime)
-  - [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw)
-  - [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse)
-  - [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse)
-  - [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id)
-  - [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id)
+  - [`PIPE_BUF`](#pipe-buf)
+  - [`CLOCK_MONOTONIC`](#clock-monotonic)
+  - [`CLOCK_REALTIME`](#clock-realtime)
+  - [`CLOCK_MONOTONIC_RAW`](#clock-monotonic-raw)
+  - [`CLOCK_MONOTONIC_COARSE`](#clock-monotonic-coarse)
+  - [`CLOCK_REALTIME_COARSE`](#clock-realtime-coarse)
+  - [`CLOCK_THREAD_CPUTIME_ID`](#clock-thread-cputime-id)
+  - [`CLOCK_PROCESS_CPUTIME_ID`](#clock-process-cputime-id)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`size_t`](#size_t) | type |  |
+| [`size_t`](#size-t) | type |  |
 | [`SIGHUP`](#sighup) | const |  |
 | [`SIGINT`](#sigint) | const |  |
 | [`SIGQUIT`](#sigquit) | const |  |
@@ -90,14 +90,14 @@ types that are convenient to have defined.
 | [`SIGIO`](#sigio) | const |  |
 | [`SIGPWR`](#sigpwr) | const |  |
 | [`SIGSYS`](#sigsys) | const |  |
-| [`PIPE_BUF`](#pipe_buf) | const |  |
-| [`CLOCK_MONOTONIC`](#clock_monotonic) | const |  |
-| [`CLOCK_REALTIME`](#clock_realtime) | const |  |
-| [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw) | const |  |
-| [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse) | const |  |
-| [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse) | const |  |
-| [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id) | const |  |
-| [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id) | const |  |
+| [`PIPE_BUF`](#pipe-buf) | const |  |
+| [`CLOCK_MONOTONIC`](#clock-monotonic) | const |  |
+| [`CLOCK_REALTIME`](#clock-realtime) | const |  |
+| [`CLOCK_MONOTONIC_RAW`](#clock-monotonic-raw) | const |  |
+| [`CLOCK_MONOTONIC_COARSE`](#clock-monotonic-coarse) | const |  |
+| [`CLOCK_REALTIME_COARSE`](#clock-realtime-coarse) | const |  |
+| [`CLOCK_THREAD_CPUTIME_ID`](#clock-thread-cputime-id) | const |  |
+| [`CLOCK_PROCESS_CPUTIME_ID`](#clock-process-cputime-id) | const |  |
 
 ## Type Aliases
 

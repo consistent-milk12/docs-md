@@ -321,21 +321,21 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 #### Trait Implementations
 
-##### `impl<'a, R: fmt::Debug> Debug for StreamFindIter<'a, R>`
+##### `impl<R: fmt::Debug> Debug for StreamFindIter<'a, R>`
 
 - <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for StreamFindIter<'a, R>`
+##### `impl IntoIterator for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamfinditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamfinditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, R: std::io::Read> Iterator for StreamFindIter<'a, R>`
+##### `impl<R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
+- <span id="streamfinditer-iterator-type-item"></span>`type Item = Result<Match, Error>`
 
 - <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md#match)
 
@@ -668,15 +668,15 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ##### `impl IntoIterator for FindIter<'a, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'a, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = Match`
+- <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
 
@@ -708,15 +708,15 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findoverlappingiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="findoverlappingiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-type-item"></span>`type Item = Match`
+- <span id="findoverlappingiter-iterator-type-item"></span>`type Item = Match`
 
 - <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md#match)
 
@@ -925,7 +925,7 @@ panics or silent logical errors.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md#patternid)
 
@@ -1289,7 +1289,7 @@ to create a span where `start > end`.
 
 ##### `impl Index for [u8]`
 
-- <span id="u8-type-output"></span>`type Output = [u8]`
+- <span id="u8-index-type-output"></span>`type Output = [u8]`
 
 - <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](util/search/index.md#span)
 

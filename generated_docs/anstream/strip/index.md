@@ -10,9 +10,9 @@
 |------|------|-------------|
 | [`StripStream`](#stripstream) | struct | Only pass printable data to the inner `Write` |
 | [`write`](#write) | fn |  |
-| [`write_all`](#write_all) | fn |  |
-| [`write_fmt`](#write_fmt) | fn |  |
-| [`offset_to`](#offset_to) | fn |  |
+| [`write_all`](#write-all) | fn |  |
+| [`write_fmt`](#write-fmt) | fn |  |
+| [`offset_to`](#offset-to) | fn |  |
 
 ## Structs
 

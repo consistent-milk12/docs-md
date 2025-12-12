@@ -64,11 +64,11 @@ seen as a sequence of instructions for how to match a regex.
   - [`builder`](#builder)
   - [`compiler`](#compiler)
   - [`error`](#error)
-  - [`literal_trie`](#literal_trie)
+  - [`literal_trie`](#literal-trie)
   - [`map`](#map)
   - [`nfa`](#nfa)
   - [`pikevm`](#pikevm)
-  - [`range_trie`](#range_trie)
+  - [`range_trie`](#range-trie)
 - [Structs](#structs)
   - [`Builder`](#builder)
   - [`BuildError`](#builderror)
@@ -91,11 +91,11 @@ seen as a sequence of instructions for how to match a regex.
 | [`builder`](#builder) | mod |  |
 | [`compiler`](#compiler) | mod |  |
 | [`error`](#error) | mod |  |
-| [`literal_trie`](#literal_trie) | mod |  |
+| [`literal_trie`](#literal-trie) | mod |  |
 | [`map`](#map) | mod |  |
 | [`nfa`](#nfa) | mod |  |
 | [`pikevm`](#pikevm) | mod | An NFA backed Pike VM for executing regex searches with capturing groups. |
-| [`range_trie`](#range_trie) | mod |  |
+| [`range_trie`](#range-trie) | mod |  |
 | [`Builder`](#builder) | struct |  |
 | [`BuildError`](#builderror) | struct |  |
 | [`DenseTransitions`](#densetransitions) | struct |  |
@@ -580,15 +580,15 @@ this pattern iterator was created.
 
 ##### `impl IntoIterator for PatternIter<'a>`
 
-- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternIter<'a>`
 
-- <span id="patterniter-type-item"></span>`type Item = PatternID`
+- <span id="patterniter-iterator-type-item"></span>`type Item = PatternID`
 
 - <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md#patternid)
 

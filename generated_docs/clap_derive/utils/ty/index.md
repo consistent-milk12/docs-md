@@ -11,32 +11,32 @@ Special types handling
 - [Enums](#enums)
   - [`Ty`](#ty)
 - [Functions](#functions)
-  - [`inner_type`](#inner_type)
-  - [`sub_type`](#sub_type)
-  - [`only_last_segment`](#only_last_segment)
-  - [`subty_if`](#subty_if)
-  - [`subty_if_name`](#subty_if_name)
-  - [`is_simple_ty`](#is_simple_ty)
-  - [`is_generic_ty`](#is_generic_ty)
-  - [`is_unit_ty`](#is_unit_ty)
-  - [`only_one`](#only_one)
-  - [`get_vec_ty`](#get_vec_ty)
+  - [`inner_type`](#inner-type)
+  - [`sub_type`](#sub-type)
+  - [`only_last_segment`](#only-last-segment)
+  - [`subty_if`](#subty-if)
+  - [`subty_if_name`](#subty-if-name)
+  - [`is_simple_ty`](#is-simple-ty)
+  - [`is_generic_ty`](#is-generic-ty)
+  - [`is_unit_ty`](#is-unit-ty)
+  - [`only_one`](#only-one)
+  - [`get_vec_ty`](#get-vec-ty)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Ty`](#ty) | enum |  |
-| [`inner_type`](#inner_type) | fn |  |
-| [`sub_type`](#sub_type) | fn |  |
-| [`only_last_segment`](#only_last_segment) | fn |  |
-| [`subty_if`](#subty_if) | fn |  |
-| [`subty_if_name`](#subty_if_name) | fn |  |
-| [`is_simple_ty`](#is_simple_ty) | fn |  |
-| [`is_generic_ty`](#is_generic_ty) | fn |  |
-| [`is_unit_ty`](#is_unit_ty) | fn |  |
-| [`only_one`](#only_one) | fn |  |
-| [`get_vec_ty`](#get_vec_ty) | fn |  |
+| [`inner_type`](#inner-type) | fn |  |
+| [`sub_type`](#sub-type) | fn |  |
+| [`only_last_segment`](#only-last-segment) | fn |  |
+| [`subty_if`](#subty-if) | fn |  |
+| [`subty_if_name`](#subty-if-name) | fn |  |
+| [`is_simple_ty`](#is-simple-ty) | fn |  |
+| [`is_generic_ty`](#is-generic-ty) | fn |  |
+| [`is_unit_ty`](#is-unit-ty) | fn |  |
+| [`only_one`](#only-one) | fn |  |
+| [`get_vec_ty`](#get-vec-ty) | fn |  |
 
 ## Enums
 

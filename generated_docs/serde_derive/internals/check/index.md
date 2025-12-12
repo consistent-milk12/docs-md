@@ -8,38 +8,38 @@
 
 - [Functions](#functions)
   - [`check`](#check)
-  - [`check_default_on_tuple`](#check_default_on_tuple)
-  - [`check_remote_generic`](#check_remote_generic)
-  - [`check_getter`](#check_getter)
-  - [`check_flatten`](#check_flatten)
-  - [`check_flatten_field`](#check_flatten_field)
-  - [`check_identifier`](#check_identifier)
-  - [`check_variant_skip_attrs`](#check_variant_skip_attrs)
-  - [`check_internal_tag_field_name_conflict`](#check_internal_tag_field_name_conflict)
-  - [`check_adjacent_tag_conflict`](#check_adjacent_tag_conflict)
-  - [`check_transparent`](#check_transparent)
-  - [`member_message`](#member_message)
-  - [`allow_transparent`](#allow_transparent)
-  - [`check_from_and_try_from`](#check_from_and_try_from)
+  - [`check_default_on_tuple`](#check-default-on-tuple)
+  - [`check_remote_generic`](#check-remote-generic)
+  - [`check_getter`](#check-getter)
+  - [`check_flatten`](#check-flatten)
+  - [`check_flatten_field`](#check-flatten-field)
+  - [`check_identifier`](#check-identifier)
+  - [`check_variant_skip_attrs`](#check-variant-skip-attrs)
+  - [`check_internal_tag_field_name_conflict`](#check-internal-tag-field-name-conflict)
+  - [`check_adjacent_tag_conflict`](#check-adjacent-tag-conflict)
+  - [`check_transparent`](#check-transparent)
+  - [`member_message`](#member-message)
+  - [`allow_transparent`](#allow-transparent)
+  - [`check_from_and_try_from`](#check-from-and-try-from)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`check`](#check) | fn |  |
-| [`check_default_on_tuple`](#check_default_on_tuple) | fn |  |
-| [`check_remote_generic`](#check_remote_generic) | fn |  |
-| [`check_getter`](#check_getter) | fn |  |
-| [`check_flatten`](#check_flatten) | fn |  |
-| [`check_flatten_field`](#check_flatten_field) | fn |  |
-| [`check_identifier`](#check_identifier) | fn |  |
-| [`check_variant_skip_attrs`](#check_variant_skip_attrs) | fn |  |
-| [`check_internal_tag_field_name_conflict`](#check_internal_tag_field_name_conflict) | fn |  |
-| [`check_adjacent_tag_conflict`](#check_adjacent_tag_conflict) | fn |  |
-| [`check_transparent`](#check_transparent) | fn |  |
-| [`member_message`](#member_message) | fn |  |
-| [`allow_transparent`](#allow_transparent) | fn |  |
-| [`check_from_and_try_from`](#check_from_and_try_from) | fn |  |
+| [`check_default_on_tuple`](#check-default-on-tuple) | fn |  |
+| [`check_remote_generic`](#check-remote-generic) | fn |  |
+| [`check_getter`](#check-getter) | fn |  |
+| [`check_flatten`](#check-flatten) | fn |  |
+| [`check_flatten_field`](#check-flatten-field) | fn |  |
+| [`check_identifier`](#check-identifier) | fn |  |
+| [`check_variant_skip_attrs`](#check-variant-skip-attrs) | fn |  |
+| [`check_internal_tag_field_name_conflict`](#check-internal-tag-field-name-conflict) | fn |  |
+| [`check_adjacent_tag_conflict`](#check-adjacent-tag-conflict) | fn |  |
+| [`check_transparent`](#check-transparent) | fn |  |
+| [`member_message`](#member-message) | fn |  |
+| [`allow_transparent`](#allow-transparent) | fn |  |
+| [`check_from_and_try_from`](#check-from-and-try-from) | fn |  |
 
 ## Functions
 

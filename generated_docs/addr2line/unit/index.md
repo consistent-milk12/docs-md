@@ -174,17 +174,17 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for LocationRangeIter<'ctx, R>`
+##### `impl IntoIterator for LocationRangeIter<'ctx, R>`
 
-- <span id="locationrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="locationrangeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="locationrangeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="locationrangeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="locationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'ctx, R> Iterator for LocationRangeIter<'ctx, R>`
+##### `impl<R> Iterator for LocationRangeIter<'ctx, R>`
 
-- <span id="locationrangeiter-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
+- <span id="locationrangeiter-iterator-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
 - <span id="locationrangeiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

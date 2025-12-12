@@ -214,31 +214,31 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Trait Implementations
 
-##### `impl<'data, Xcoff, R> Debug for XcoffFile<'data, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffFile<'data, Xcoff, R>`
 
 - <span id="xcofffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Xcoff, R> Object for XcoffFile<'data, Xcoff, R>`
+##### `impl<Xcoff, R> Object for XcoffFile<'data, Xcoff, R>`
 
-- <span id="xcofffile-type-segment"></span>`type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-segment"></span>`type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-segmentiterator"></span>`type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-segmentiterator"></span>`type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-section"></span>`type Section = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-section"></span>`type Section = XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-sectioniterator"></span>`type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-sectioniterator"></span>`type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-comdat"></span>`type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-comdat"></span>`type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-comdatiterator"></span>`type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-comdatiterator"></span>`type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-symboltable"></span>`type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-object-type-symboltable"></span>`type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="xcofffile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="xcofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
@@ -282,7 +282,7 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="xcofffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
-##### `impl<'data, Xcoff, R> Sealed for XcoffFile<'data, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffFile<'data, Xcoff, R>`
 
 ### `XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
@@ -302,21 +302,21 @@ An iterator for the sections in an [`XcoffFile`](#xcofffile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcoffsectioniterator-iterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -351,13 +351,13 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
@@ -395,7 +395,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="xcoffsection-uncompressed-data"></span>`fn uncompressed_data(&self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../index.md#result)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
 
 ### `SectionTable<'data, Xcoff: FileHeader>`
 
@@ -425,17 +425,17 @@ Returned by `FileHeader::sections`.
 
 #### Trait Implementations
 
-##### `impl<'data, Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](#sectiontable)
 
-##### `impl<'data, Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
 
-##### `impl<'data, Xcoff: fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Xcoff> Default for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff> Default for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-default"></span>`fn default() -> Self`
 
@@ -486,11 +486,11 @@ Returned by `FileHeader::symbols`.
 
 #### Trait Implementations
 
-##### `impl<'data, Xcoff, R> Debug for SymbolTable<'data, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for SymbolTable<'data, Xcoff, R>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Xcoff, R> Default for SymbolTable<'data, Xcoff, R>`
+##### `impl<Xcoff, R> Default for SymbolTable<'data, Xcoff, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
 
@@ -514,21 +514,21 @@ Yields the index and symbol structure for each symbol.
 
 #### Trait Implementations
 
-##### `impl<'data, 'table, Xcoff, R> Debug for SymbolIterator<'data, 'table, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for SymbolIterator<'data, 'table, Xcoff, R>`
 
 - <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
+##### `impl IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'table, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-type-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
+- <span id="symboliterator-iterator-type-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -550,27 +550,27 @@ A symbol table in an [`XcoffFile`](#xcofffile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Clone for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Clone for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-clone"></span>`fn clone(&self) -> XcoffSymbolTable<'data, 'file, Xcoff, R>` — [`XcoffSymbolTable`](#xcoffsymboltable)
 
-##### `impl<'data, 'file, Xcoff, R> Copy for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Copy for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-objectsymboltable-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 - <span id="xcoffsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbolTable<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 ### `XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
@@ -590,21 +590,21 @@ An iterator for the symbols in an [`XcoffFile`](#xcofffile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Debug for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Debug for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsymboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsymboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-type-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboliterator-iterator-type-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -636,17 +636,17 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Clone for XcoffSymbol<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Clone for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymbol-clone"></span>`fn clone(&self) -> XcoffSymbol<'data, 'file, Xcoff, R>` — [`XcoffSymbol`](#xcoffsymbol)
 
-##### `impl<'data, 'file, Xcoff, R> Copy for XcoffSymbol<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Copy for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSymbol<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbol for XcoffSymbol<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbol for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
@@ -678,7 +678,7 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="xcoffsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
-##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbol<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 ### `XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
@@ -698,21 +698,21 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -735,21 +735,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdatiterator-iterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -772,13 +772,13 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
@@ -790,7 +790,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
 
 ### `XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
@@ -811,21 +811,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="xcoffcomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -848,21 +848,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-iterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -885,11 +885,11 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegment-address"></span>`fn address(&self) -> u64`
 
@@ -909,7 +909,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
 
 ## Traits
 

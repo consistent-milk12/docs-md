@@ -78,7 +78,7 @@ tracing-subscriber = { version = "0.3.22", features = [
 ], optional = true }
 
 [features]
-default = []
+default = ["source-parsing"]
 # Enable SIMD-accelerated JSON parsing (NOT RECOMMENDED - see benchmarks)
 # Benchmarks show serde_json is faster for typed struct deserialization
 simd-json = ["dep:simd-json"]

@@ -14,8 +14,8 @@
   - [`CsiState`](#csistate)
   - [`ColorTarget`](#colortarget)
 - [Functions](#functions)
-  - [`next_bytes`](#next_bytes)
-  - [`to_ansi_color`](#to_ansi_color)
+  - [`next_bytes`](#next-bytes)
+  - [`to_ansi_color`](#to-ansi-color)
 
 ## Quick Reference
 
@@ -26,8 +26,8 @@
 | [`WinconCapture`](#winconcapture) | struct |  |
 | [`CsiState`](#csistate) | enum |  |
 | [`ColorTarget`](#colortarget) | enum |  |
-| [`next_bytes`](#next_bytes) | fn |  |
-| [`to_ansi_color`](#to_ansi_color) | fn |  |
+| [`next_bytes`](#next-bytes) | fn |  |
+| [`to_ansi_color`](#to-ansi-color) | fn |  |
 
 ## Structs
 
@@ -96,15 +96,15 @@ See [`WinconBytes`](#winconbytes)
 
 ##### `impl IntoIterator for WinconBytesIter<'s>`
 
-- <span id="winconbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="winconbytesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="winconbytesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="winconbytesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="winconbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for WinconBytesIter<'_>`
 
-- <span id="winconbytesiter-type-item"></span>`type Item = (Style, String)`
+- <span id="winconbytesiter-iterator-type-item"></span>`type Item = (Style, String)`
 
 - <span id="winconbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

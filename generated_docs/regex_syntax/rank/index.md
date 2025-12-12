@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BYTE_FREQUENCIES`](#byte_frequencies) | const |  |
+| [`BYTE_FREQUENCIES`](#byte-frequencies) | const |  |
 
 ## Constants
 

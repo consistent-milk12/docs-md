@@ -48,21 +48,21 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
 
-- <span id="decompositions-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="decompositions-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="decompositions-type-intoiter"></span>`type IntoIter = I`
+- <span id="decompositions-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="decompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
-- <span id="decompositions-type-item"></span>`type Item = char`
+- <span id="decompositions-iterator-type-item"></span>`type Item = char`
 
 - <span id="decompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
 - <span id="decompositions-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> ToString for Decompositions<I>`
+##### `impl ToString for Decompositions<I>`
 
 - <span id="decompositions-to-string"></span>`fn to_string(&self) -> String`
 

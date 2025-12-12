@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ReplaceReceiver`](#replacereceiver) | struct |  |
-| [`replace_receiver`](#replace_receiver) | fn |  |
+| [`replace_receiver`](#replace-receiver) | fn |  |
 
 ## Structs
 

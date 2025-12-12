@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Severity`](#severity) | struct |  |
-| [`get_severity`](#get_severity) | fn |  |
+| [`get_severity`](#get-severity) | fn |  |
 
 ## Structs
 

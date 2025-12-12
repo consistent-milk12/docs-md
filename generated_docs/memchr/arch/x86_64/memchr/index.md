@@ -12,28 +12,28 @@ the CPU supports.
 ## Contents
 
 - [Functions](#functions)
-  - [`memchr_raw`](#memchr_raw)
-  - [`memrchr_raw`](#memrchr_raw)
-  - [`memchr2_raw`](#memchr2_raw)
-  - [`memrchr2_raw`](#memrchr2_raw)
-  - [`memchr3_raw`](#memchr3_raw)
-  - [`memrchr3_raw`](#memrchr3_raw)
-  - [`count_raw`](#count_raw)
+  - [`memchr_raw`](#memchr-raw)
+  - [`memrchr_raw`](#memrchr-raw)
+  - [`memchr2_raw`](#memchr2-raw)
+  - [`memrchr2_raw`](#memrchr2-raw)
+  - [`memchr3_raw`](#memchr3-raw)
+  - [`memrchr3_raw`](#memrchr3-raw)
+  - [`count_raw`](#count-raw)
 - [Macros](#macros)
-  - [`unsafe_ifunc!`](#unsafe_ifunc)
+  - [`unsafe_ifunc!`](#unsafe-ifunc)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`memchr_raw`](#memchr_raw) | fn | memchr, but using raw pointers to represent the haystack. |
-| [`memrchr_raw`](#memrchr_raw) | fn | memrchr, but using raw pointers to represent the haystack. |
-| [`memchr2_raw`](#memchr2_raw) | fn | memchr2, but using raw pointers to represent the haystack. |
-| [`memrchr2_raw`](#memrchr2_raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
-| [`memchr3_raw`](#memchr3_raw) | fn | memchr3, but using raw pointers to represent the haystack. |
-| [`memrchr3_raw`](#memrchr3_raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
-| [`count_raw`](#count_raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
-| [`unsafe_ifunc!`](#unsafe_ifunc) | macro | Provides a way to run a memchr-like function while amortizing the cost of runtime CPU feature detection. |
+| [`memchr_raw`](#memchr-raw) | fn | memchr, but using raw pointers to represent the haystack. |
+| [`memrchr_raw`](#memrchr-raw) | fn | memrchr, but using raw pointers to represent the haystack. |
+| [`memchr2_raw`](#memchr2-raw) | fn | memchr2, but using raw pointers to represent the haystack. |
+| [`memrchr2_raw`](#memrchr2-raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
+| [`memchr3_raw`](#memchr3-raw) | fn | memchr3, but using raw pointers to represent the haystack. |
+| [`memrchr3_raw`](#memrchr3-raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
+| [`count_raw`](#count-raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
+| [`unsafe_ifunc!`](#unsafe-ifunc) | macro | Provides a way to run a memchr-like function while amortizing the cost of runtime CPU feature detection. |
 
 ## Functions
 

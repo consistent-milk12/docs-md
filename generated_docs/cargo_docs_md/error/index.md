@@ -169,9 +169,9 @@ Each variant includes:
 
 ##### `impl Pointable for Error`
 
-- <span id="error-const-align"></span>`const ALIGN: usize`
+- <span id="error-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="error-type-init"></span>`type Init = T`
+- <span id="error-pointable-type-init"></span>`type Init = T`
 
 - <span id="error-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

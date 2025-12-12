@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`error`](#error) | mod |  |
-| [`doc_comments`](#doc_comments) | mod | The preprocessing we apply to doc comments. |
+| [`doc_comments`](#doc-comments) | mod | The preprocessing we apply to doc comments. |
 | [`spanned`](#spanned) | mod |  |
 | [`ty`](#ty) | mod | Special types handling |
 

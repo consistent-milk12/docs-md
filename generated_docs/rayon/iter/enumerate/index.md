@@ -49,29 +49,29 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 - <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Enumerate<I>`
+##### `impl IntoEither for Enumerate<I>`
 
-##### `impl<T> IntoParallelIterator for Enumerate<I>`
+##### `impl IntoParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-type-iter"></span>`type Iter = T`
+- <span id="enumerate-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="enumerate-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="enumerate-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
+- <span id="enumerate-paralleliterator-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
 - <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="enumerate-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Enumerate<I>`
+##### `impl Pointable for Enumerate<I>`
 
-- <span id="enumerate-const-align"></span>`const ALIGN: usize`
+- <span id="enumerate-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerate-type-init"></span>`type Init = T`
+- <span id="enumerate-pointable-type-init"></span>`type Init = T`
 
 - <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -94,13 +94,13 @@ struct EnumerateProducer<P> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for EnumerateProducer<P>`
+##### `impl IntoEither for EnumerateProducer<P>`
 
-##### `impl<T> Pointable for EnumerateProducer<P>`
+##### `impl Pointable for EnumerateProducer<P>`
 
-- <span id="enumerateproducer-const-align"></span>`const ALIGN: usize`
+- <span id="enumerateproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerateproducer-type-init"></span>`type Init = T`
+- <span id="enumerateproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="enumerateproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -112,9 +112,9 @@ struct EnumerateProducer<P> {
 
 ##### `impl<P> Producer for EnumerateProducer<P>`
 
-- <span id="enumerateproducer-type-item"></span>`type Item = (usize, <P as Producer>::Item)`
+- <span id="enumerateproducer-producer-type-item"></span>`type Item = (usize, <P as Producer>::Item)`
 
-- <span id="enumerateproducer-type-intoiter"></span>`type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
+- <span id="enumerateproducer-producer-type-intoiter"></span>`type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
 
 - <span id="enumerateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 

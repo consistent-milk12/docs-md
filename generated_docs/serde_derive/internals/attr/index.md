@@ -22,31 +22,31 @@
   - [`Default`](#default)
 - [Functions](#functions)
   - [`unraw`](#unraw)
-  - [`decide_tag`](#decide_tag)
-  - [`decide_identifier`](#decide_identifier)
-  - [`get_ser_and_de`](#get_ser_and_de)
-  - [`get_renames`](#get_renames)
-  - [`get_multiple_renames`](#get_multiple_renames)
-  - [`get_where_predicates`](#get_where_predicates)
-  - [`get_lit_str`](#get_lit_str)
-  - [`get_lit_str2`](#get_lit_str2)
-  - [`parse_lit_into_path`](#parse_lit_into_path)
-  - [`parse_lit_into_expr_path`](#parse_lit_into_expr_path)
-  - [`parse_lit_into_where`](#parse_lit_into_where)
-  - [`parse_lit_into_ty`](#parse_lit_into_ty)
-  - [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes)
-  - [`is_implicitly_borrowed`](#is_implicitly_borrowed)
-  - [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference)
-  - [`is_cow`](#is_cow)
-  - [`is_option`](#is_option)
-  - [`is_reference`](#is_reference)
-  - [`is_str`](#is_str)
-  - [`is_slice_u8`](#is_slice_u8)
-  - [`is_primitive_type`](#is_primitive_type)
-  - [`is_primitive_path`](#is_primitive_path)
-  - [`borrowable_lifetimes`](#borrowable_lifetimes)
-  - [`collect_lifetimes`](#collect_lifetimes)
-  - [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens)
+  - [`decide_tag`](#decide-tag)
+  - [`decide_identifier`](#decide-identifier)
+  - [`get_ser_and_de`](#get-ser-and-de)
+  - [`get_renames`](#get-renames)
+  - [`get_multiple_renames`](#get-multiple-renames)
+  - [`get_where_predicates`](#get-where-predicates)
+  - [`get_lit_str`](#get-lit-str)
+  - [`get_lit_str2`](#get-lit-str2)
+  - [`parse_lit_into_path`](#parse-lit-into-path)
+  - [`parse_lit_into_expr_path`](#parse-lit-into-expr-path)
+  - [`parse_lit_into_where`](#parse-lit-into-where)
+  - [`parse_lit_into_ty`](#parse-lit-into-ty)
+  - [`parse_lit_into_lifetimes`](#parse-lit-into-lifetimes)
+  - [`is_implicitly_borrowed`](#is-implicitly-borrowed)
+  - [`is_implicitly_borrowed_reference`](#is-implicitly-borrowed-reference)
+  - [`is_cow`](#is-cow)
+  - [`is_option`](#is-option)
+  - [`is_reference`](#is-reference)
+  - [`is_str`](#is-str)
+  - [`is_slice_u8`](#is-slice-u8)
+  - [`is_primitive_type`](#is-primitive-type)
+  - [`is_primitive_path`](#is-primitive-path)
+  - [`borrowable_lifetimes`](#borrowable-lifetimes)
+  - [`collect_lifetimes`](#collect-lifetimes)
+  - [`collect_lifetimes_from_tokens`](#collect-lifetimes-from-tokens)
 - [Type Aliases](#type-aliases)
   - [`SerAndDe`](#serandde)
 
@@ -67,31 +67,31 @@
 | [`Identifier`](#identifier) | enum | Whether this enum represents the fields of a struct or the variants of an enum. |
 | [`Default`](#default) | enum | Represents the default to use for a field when deserializing. |
 | [`unraw`](#unraw) | fn |  |
-| [`decide_tag`](#decide_tag) | fn |  |
-| [`decide_identifier`](#decide_identifier) | fn |  |
-| [`get_ser_and_de`](#get_ser_and_de) | fn |  |
-| [`get_renames`](#get_renames) | fn |  |
-| [`get_multiple_renames`](#get_multiple_renames) | fn |  |
-| [`get_where_predicates`](#get_where_predicates) | fn |  |
-| [`get_lit_str`](#get_lit_str) | fn |  |
-| [`get_lit_str2`](#get_lit_str2) | fn |  |
-| [`parse_lit_into_path`](#parse_lit_into_path) | fn |  |
-| [`parse_lit_into_expr_path`](#parse_lit_into_expr_path) | fn |  |
-| [`parse_lit_into_where`](#parse_lit_into_where) | fn |  |
-| [`parse_lit_into_ty`](#parse_lit_into_ty) | fn |  |
-| [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes) | fn |  |
-| [`is_implicitly_borrowed`](#is_implicitly_borrowed) | fn |  |
-| [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference) | fn |  |
-| [`is_cow`](#is_cow) | fn |  |
-| [`is_option`](#is_option) | fn |  |
-| [`is_reference`](#is_reference) | fn |  |
-| [`is_str`](#is_str) | fn |  |
-| [`is_slice_u8`](#is_slice_u8) | fn |  |
-| [`is_primitive_type`](#is_primitive_type) | fn |  |
-| [`is_primitive_path`](#is_primitive_path) | fn |  |
-| [`borrowable_lifetimes`](#borrowable_lifetimes) | fn |  |
-| [`collect_lifetimes`](#collect_lifetimes) | fn |  |
-| [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens) | fn |  |
+| [`decide_tag`](#decide-tag) | fn |  |
+| [`decide_identifier`](#decide-identifier) | fn |  |
+| [`get_ser_and_de`](#get-ser-and-de) | fn |  |
+| [`get_renames`](#get-renames) | fn |  |
+| [`get_multiple_renames`](#get-multiple-renames) | fn |  |
+| [`get_where_predicates`](#get-where-predicates) | fn |  |
+| [`get_lit_str`](#get-lit-str) | fn |  |
+| [`get_lit_str2`](#get-lit-str2) | fn |  |
+| [`parse_lit_into_path`](#parse-lit-into-path) | fn |  |
+| [`parse_lit_into_expr_path`](#parse-lit-into-expr-path) | fn |  |
+| [`parse_lit_into_where`](#parse-lit-into-where) | fn |  |
+| [`parse_lit_into_ty`](#parse-lit-into-ty) | fn |  |
+| [`parse_lit_into_lifetimes`](#parse-lit-into-lifetimes) | fn |  |
+| [`is_implicitly_borrowed`](#is-implicitly-borrowed) | fn |  |
+| [`is_implicitly_borrowed_reference`](#is-implicitly-borrowed-reference) | fn |  |
+| [`is_cow`](#is-cow) | fn |  |
+| [`is_option`](#is-option) | fn |  |
+| [`is_reference`](#is-reference) | fn |  |
+| [`is_str`](#is-str) | fn |  |
+| [`is_slice_u8`](#is-slice-u8) | fn |  |
+| [`is_primitive_type`](#is-primitive-type) | fn |  |
+| [`is_primitive_path`](#is-primitive-path) | fn |  |
+| [`borrowable_lifetimes`](#borrowable-lifetimes) | fn |  |
+| [`collect_lifetimes`](#collect-lifetimes) | fn |  |
+| [`collect_lifetimes_from_tokens`](#collect-lifetimes-from-tokens) | fn |  |
 | [`SerAndDe`](#serandde) | type |  |
 
 ## Structs

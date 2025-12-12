@@ -7,55 +7,55 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`outer_attrs_to_tokens`](#outer_attrs_to_tokens)
-  - [`inner_attrs_to_tokens`](#inner_attrs_to_tokens)
-  - [`print_subexpression`](#print_subexpression)
-  - [`print_expr`](#print_expr)
-  - [`print_expr_assign`](#print_expr_assign)
-  - [`print_expr_await`](#print_expr_await)
-  - [`print_expr_binary`](#print_expr_binary)
-  - [`print_expr_break`](#print_expr_break)
-  - [`print_expr_call`](#print_expr_call)
-  - [`print_expr_cast`](#print_expr_cast)
-  - [`print_expr_closure`](#print_expr_closure)
-  - [`print_expr_field`](#print_expr_field)
-  - [`print_expr_index`](#print_expr_index)
-  - [`print_expr_let`](#print_expr_let)
-  - [`print_expr_method_call`](#print_expr_method_call)
-  - [`print_expr_range`](#print_expr_range)
-  - [`print_expr_raw_addr`](#print_expr_raw_addr)
-  - [`print_expr_reference`](#print_expr_reference)
-  - [`print_expr_return`](#print_expr_return)
-  - [`print_expr_try`](#print_expr_try)
-  - [`print_expr_unary`](#print_expr_unary)
-  - [`print_expr_yield`](#print_expr_yield)
+  - [`outer_attrs_to_tokens`](#outer-attrs-to-tokens)
+  - [`inner_attrs_to_tokens`](#inner-attrs-to-tokens)
+  - [`print_subexpression`](#print-subexpression)
+  - [`print_expr`](#print-expr)
+  - [`print_expr_assign`](#print-expr-assign)
+  - [`print_expr_await`](#print-expr-await)
+  - [`print_expr_binary`](#print-expr-binary)
+  - [`print_expr_break`](#print-expr-break)
+  - [`print_expr_call`](#print-expr-call)
+  - [`print_expr_cast`](#print-expr-cast)
+  - [`print_expr_closure`](#print-expr-closure)
+  - [`print_expr_field`](#print-expr-field)
+  - [`print_expr_index`](#print-expr-index)
+  - [`print_expr_let`](#print-expr-let)
+  - [`print_expr_method_call`](#print-expr-method-call)
+  - [`print_expr_range`](#print-expr-range)
+  - [`print_expr_raw_addr`](#print-expr-raw-addr)
+  - [`print_expr_reference`](#print-expr-reference)
+  - [`print_expr_return`](#print-expr-return)
+  - [`print_expr_try`](#print-expr-try)
+  - [`print_expr_unary`](#print-expr-unary)
+  - [`print_expr_yield`](#print-expr-yield)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`outer_attrs_to_tokens`](#outer_attrs_to_tokens) | fn |  |
-| [`inner_attrs_to_tokens`](#inner_attrs_to_tokens) | fn |  |
-| [`print_subexpression`](#print_subexpression) | fn |  |
-| [`print_expr`](#print_expr) | fn |  |
-| [`print_expr_assign`](#print_expr_assign) | fn |  |
-| [`print_expr_await`](#print_expr_await) | fn |  |
-| [`print_expr_binary`](#print_expr_binary) | fn |  |
-| [`print_expr_break`](#print_expr_break) | fn |  |
-| [`print_expr_call`](#print_expr_call) | fn |  |
-| [`print_expr_cast`](#print_expr_cast) | fn |  |
-| [`print_expr_closure`](#print_expr_closure) | fn |  |
-| [`print_expr_field`](#print_expr_field) | fn |  |
-| [`print_expr_index`](#print_expr_index) | fn |  |
-| [`print_expr_let`](#print_expr_let) | fn |  |
-| [`print_expr_method_call`](#print_expr_method_call) | fn |  |
-| [`print_expr_range`](#print_expr_range) | fn |  |
-| [`print_expr_raw_addr`](#print_expr_raw_addr) | fn |  |
-| [`print_expr_reference`](#print_expr_reference) | fn |  |
-| [`print_expr_return`](#print_expr_return) | fn |  |
-| [`print_expr_try`](#print_expr_try) | fn |  |
-| [`print_expr_unary`](#print_expr_unary) | fn |  |
-| [`print_expr_yield`](#print_expr_yield) | fn |  |
+| [`outer_attrs_to_tokens`](#outer-attrs-to-tokens) | fn |  |
+| [`inner_attrs_to_tokens`](#inner-attrs-to-tokens) | fn |  |
+| [`print_subexpression`](#print-subexpression) | fn |  |
+| [`print_expr`](#print-expr) | fn |  |
+| [`print_expr_assign`](#print-expr-assign) | fn |  |
+| [`print_expr_await`](#print-expr-await) | fn |  |
+| [`print_expr_binary`](#print-expr-binary) | fn |  |
+| [`print_expr_break`](#print-expr-break) | fn |  |
+| [`print_expr_call`](#print-expr-call) | fn |  |
+| [`print_expr_cast`](#print-expr-cast) | fn |  |
+| [`print_expr_closure`](#print-expr-closure) | fn |  |
+| [`print_expr_field`](#print-expr-field) | fn |  |
+| [`print_expr_index`](#print-expr-index) | fn |  |
+| [`print_expr_let`](#print-expr-let) | fn |  |
+| [`print_expr_method_call`](#print-expr-method-call) | fn |  |
+| [`print_expr_range`](#print-expr-range) | fn |  |
+| [`print_expr_raw_addr`](#print-expr-raw-addr) | fn |  |
+| [`print_expr_reference`](#print-expr-reference) | fn |  |
+| [`print_expr_return`](#print-expr-return) | fn |  |
+| [`print_expr_try`](#print-expr-try) | fn |  |
+| [`print_expr_unary`](#print-expr-unary) | fn |  |
+| [`print_expr_yield`](#print-expr-yield) | fn |  |
 
 ## Functions
 

@@ -5,15 +5,15 @@
 - [Modules](#modules)
   - [`code`](#code)
   - [`diagnostic`](#diagnostic)
-  - [`diagnostic_arg`](#diagnostic_arg)
-  - [`diagnostic_source`](#diagnostic_source)
+  - [`diagnostic_arg`](#diagnostic-arg)
+  - [`diagnostic_source`](#diagnostic-source)
   - [`fmt`](#fmt)
   - [`forward`](#forward)
   - [`help`](#help)
   - [`label`](#label)
   - [`related`](#related)
   - [`severity`](#severity)
-  - [`source_code`](#source_code)
+  - [`source_code`](#source-code)
   - [`url`](#url)
   - [`utils`](#utils)
 
@@ -23,15 +23,15 @@
 |------|------|-------------|
 | [`code`](#code) | mod |  |
 | [`diagnostic`](#diagnostic) | mod |  |
-| [`diagnostic_arg`](#diagnostic_arg) | mod |  |
-| [`diagnostic_source`](#diagnostic_source) | mod |  |
+| [`diagnostic_arg`](#diagnostic-arg) | mod |  |
+| [`diagnostic_source`](#diagnostic-source) | mod |  |
 | [`fmt`](#fmt) | mod |  |
 | [`forward`](#forward) | mod |  |
 | [`help`](#help) | mod |  |
 | [`label`](#label) | mod |  |
 | [`related`](#related) | mod |  |
 | [`severity`](#severity) | mod |  |
-| [`source_code`](#source_code) | mod |  |
+| [`source_code`](#source-code) | mod |  |
 | [`url`](#url) | mod |  |
 | [`utils`](#utils) | mod |  |
 

@@ -51,21 +51,21 @@ An iterator for the sections in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machosectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-type-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
+- <span id="machosectioniterator-iterator-type-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
 
 - <span id="machosectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -101,13 +101,13 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
 
 - <span id="machosection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machosection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
+- <span id="machosection-objectsection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
@@ -143,7 +143,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
 
 ### `MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -173,13 +173,13 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
 
 - <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](#machosectioninternal)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
 
 - <span id="machosectioninternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -31,20 +31,20 @@ if let Some(support) = supports_color::on(Stream::Stdout) {
 - [Enums](#enums)
   - [`Stream`](#stream)
 - [Functions](#functions)
-  - [`env_force_color`](#env_force_color)
-  - [`env_no_color`](#env_no_color)
-  - [`as_str`](#as_str)
-  - [`translate_level`](#translate_level)
-  - [`is_a_tty`](#is_a_tty)
-  - [`supports_color`](#supports_color)
-  - [`check_ansi_color`](#check_ansi_color)
-  - [`check_colorterm_16m`](#check_colorterm_16m)
-  - [`check_term_16m`](#check_term_16m)
-  - [`check_256_color`](#check_256_color)
+  - [`env_force_color`](#env-force-color)
+  - [`env_no_color`](#env-no-color)
+  - [`as_str`](#as-str)
+  - [`translate_level`](#translate-level)
+  - [`is_a_tty`](#is-a-tty)
+  - [`supports_color`](#supports-color)
+  - [`check_ansi_color`](#check-ansi-color)
+  - [`check_colorterm_16m`](#check-colorterm-16m)
+  - [`check_term_16m`](#check-term-16m)
+  - [`check_256_color`](#check-256-color)
   - [`on`](#on)
-  - [`on_cached`](#on_cached)
+  - [`on_cached`](#on-cached)
 - [Macros](#macros)
-  - [`assert_stream_in_bounds!`](#assert_stream_in_bounds)
+  - [`assert_stream_in_bounds!`](#assert-stream-in-bounds)
 
 ## Quick Reference
 
@@ -52,19 +52,19 @@ if let Some(support) = supports_color::on(Stream::Stdout) {
 |------|------|-------------|
 | [`ColorLevel`](#colorlevel) | struct | Color level support details. |
 | [`Stream`](#stream) | enum | possible stream sources |
-| [`env_force_color`](#env_force_color) | fn |  |
-| [`env_no_color`](#env_no_color) | fn |  |
-| [`as_str`](#as_str) | fn |  |
-| [`translate_level`](#translate_level) | fn |  |
-| [`is_a_tty`](#is_a_tty) | fn |  |
-| [`supports_color`](#supports_color) | fn |  |
-| [`check_ansi_color`](#check_ansi_color) | fn |  |
-| [`check_colorterm_16m`](#check_colorterm_16m) | fn |  |
-| [`check_term_16m`](#check_term_16m) | fn |  |
-| [`check_256_color`](#check_256_color) | fn |  |
+| [`env_force_color`](#env-force-color) | fn |  |
+| [`env_no_color`](#env-no-color) | fn |  |
+| [`as_str`](#as-str) | fn |  |
+| [`translate_level`](#translate-level) | fn |  |
+| [`is_a_tty`](#is-a-tty) | fn |  |
+| [`supports_color`](#supports-color) | fn |  |
+| [`check_ansi_color`](#check-ansi-color) | fn |  |
+| [`check_colorterm_16m`](#check-colorterm-16m) | fn |  |
+| [`check_term_16m`](#check-term-16m) | fn |  |
+| [`check_256_color`](#check-256-color) | fn |  |
 | [`on`](#on) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors. |
-| [`on_cached`](#on_cached) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to be returned from then on. |
-| [`assert_stream_in_bounds!`](#assert_stream_in_bounds) | macro |  |
+| [`on_cached`](#on-cached) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to be returned from then on. |
+| [`assert_stream_in_bounds!`](#assert-stream-in-bounds) | macro |  |
 
 ## Structs
 

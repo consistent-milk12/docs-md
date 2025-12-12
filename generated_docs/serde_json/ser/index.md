@@ -18,16 +18,16 @@ Serialize a Rust data structure into JSON data.
 - [Traits](#traits)
   - [`Formatter`](#formatter)
 - [Functions](#functions)
-  - [`key_must_be_a_string`](#key_must_be_a_string)
-  - [`float_key_must_be_finite`](#float_key_must_be_finite)
-  - [`format_escaped_str`](#format_escaped_str)
-  - [`format_escaped_str_contents`](#format_escaped_str_contents)
-  - [`to_writer`](#to_writer)
-  - [`to_writer_pretty`](#to_writer_pretty)
-  - [`to_vec`](#to_vec)
-  - [`to_vec_pretty`](#to_vec_pretty)
-  - [`to_string`](#to_string)
-  - [`to_string_pretty`](#to_string_pretty)
+  - [`key_must_be_a_string`](#key-must-be-a-string)
+  - [`float_key_must_be_finite`](#float-key-must-be-finite)
+  - [`format_escaped_str`](#format-escaped-str)
+  - [`format_escaped_str_contents`](#format-escaped-str-contents)
+  - [`to_writer`](#to-writer)
+  - [`to_writer_pretty`](#to-writer-pretty)
+  - [`to_vec`](#to-vec)
+  - [`to_vec_pretty`](#to-vec-pretty)
+  - [`to_string`](#to-string)
+  - [`to_string_pretty`](#to-string-pretty)
   - [`indent`](#indent)
 - [Constants](#constants)
   - [`BB`](#bb)
@@ -38,7 +38,7 @@ Serialize a Rust data structure into JSON data.
   - [`QU`](#qu)
   - [`BS`](#bs)
   - [`UU`](#uu)
-  - [`__`](#__)
+  - [`__`](#)
 
 ## Quick Reference
 
@@ -50,16 +50,16 @@ Serialize a Rust data structure into JSON data.
 | [`PrettyFormatter`](#prettyformatter) | struct | This structure pretty prints a JSON value to make it human readable. |
 | [`CharEscape`](#charescape) | enum | Represents a character escape code in a type-safe manner. |
 | [`Formatter`](#formatter) | trait | This trait abstracts away serializing the JSON control characters, which allows the user to optionally pretty print the JSON output. |
-| [`key_must_be_a_string`](#key_must_be_a_string) | fn |  |
-| [`float_key_must_be_finite`](#float_key_must_be_finite) | fn |  |
-| [`format_escaped_str`](#format_escaped_str) | fn |  |
-| [`format_escaped_str_contents`](#format_escaped_str_contents) | fn |  |
-| [`to_writer`](#to_writer) | fn | Serialize the given data structure as JSON into the I/O stream. |
-| [`to_writer_pretty`](#to_writer_pretty) | fn | Serialize the given data structure as pretty-printed JSON into the I/O stream. |
-| [`to_vec`](#to_vec) | fn | Serialize the given data structure as a JSON byte vector. |
-| [`to_vec_pretty`](#to_vec_pretty) | fn | Serialize the given data structure as a pretty-printed JSON byte vector. |
-| [`to_string`](#to_string) | fn | Serialize the given data structure as a String of JSON. |
-| [`to_string_pretty`](#to_string_pretty) | fn | Serialize the given data structure as a pretty-printed String of JSON. |
+| [`key_must_be_a_string`](#key-must-be-a-string) | fn |  |
+| [`float_key_must_be_finite`](#float-key-must-be-finite) | fn |  |
+| [`format_escaped_str`](#format-escaped-str) | fn |  |
+| [`format_escaped_str_contents`](#format-escaped-str-contents) | fn |  |
+| [`to_writer`](#to-writer) | fn | Serialize the given data structure as JSON into the I/O stream. |
+| [`to_writer_pretty`](#to-writer-pretty) | fn | Serialize the given data structure as pretty-printed JSON into the I/O stream. |
+| [`to_vec`](#to-vec) | fn | Serialize the given data structure as a JSON byte vector. |
+| [`to_vec_pretty`](#to-vec-pretty) | fn | Serialize the given data structure as a pretty-printed JSON byte vector. |
+| [`to_string`](#to-string) | fn | Serialize the given data structure as a String of JSON. |
+| [`to_string_pretty`](#to-string-pretty) | fn | Serialize the given data structure as a pretty-printed String of JSON. |
 | [`indent`](#indent) | fn |  |
 | [`BB`](#bb) | const |  |
 | [`TT`](#tt) | const |  |
@@ -69,7 +69,7 @@ Serialize a Rust data structure into JSON data.
 | [`QU`](#qu) | const |  |
 | [`BS`](#bs) | const |  |
 | [`UU`](#uu) | const |  |
-| [`__`](#__) | const |  |
+| [`__`](#) | const |  |
 
 ## Structs
 
@@ -92,25 +92,25 @@ A structure for serializing Rust values into JSON.
 
 #### Trait Implementations
 
-##### `impl<'a, W, F> Serializer for &'a mut Serializer<W, F>`
+##### `impl<W, F> Serializer for &'a mut Serializer<W, F>`
 
-- <span id="a-mut-serializer-type-ok"></span>`type Ok = ()`
+- <span id="a-mut-serializer-serializer-type-ok"></span>`type Ok = ()`
 
-- <span id="a-mut-serializer-type-error"></span>`type Error = Error`
+- <span id="a-mut-serializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="a-mut-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
 
 - <span id="a-mut-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
 
@@ -186,11 +186,11 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'a, W, F> Serializer for MapKeySerializer<'a, W, F>`
+##### `impl<W, F> Serializer for MapKeySerializer<'a, W, F>`
 
-- <span id="mapkeyserializer-type-ok"></span>`type Ok = ()`
+- <span id="mapkeyserializer-serializer-type-ok"></span>`type Ok = ()`
 
-- <span id="mapkeyserializer-type-error"></span>`type Error = Error`
+- <span id="mapkeyserializer-serializer-type-error"></span>`type Error = Error`
 
 - <span id="mapkeyserializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md#result)
 
@@ -198,19 +198,19 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 
 - <span id="mapkeyserializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md#result)
 
-- <span id="mapkeyserializer-type-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializetuple"></span>`type SerializeTuple = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuple"></span>`type SerializeTuple = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializemap"></span>`type SerializeMap = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializemap"></span>`type SerializeMap = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializestruct"></span>`type SerializeStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializestruct"></span>`type SerializeStruct = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
 
 - <span id="mapkeyserializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md#result)
 

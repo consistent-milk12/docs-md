@@ -58,9 +58,9 @@ itself can never fail.
 - [Functions](#functions)
   - [`string`](#string)
   - [`bytes`](#bytes)
-  - [`find_cap_ref`](#find_cap_ref)
-  - [`find_cap_ref_braced`](#find_cap_ref_braced)
-  - [`is_valid_cap_letter`](#is_valid_cap_letter)
+  - [`find_cap_ref`](#find-cap-ref)
+  - [`find_cap_ref_braced`](#find-cap-ref-braced)
+  - [`is_valid_cap_letter`](#is-valid-cap-letter)
 
 ## Quick Reference
 
@@ -70,9 +70,9 @@ itself can never fail.
 | [`Ref`](#ref) | enum | A reference to a capture group in some text. |
 | [`string`](#string) | fn | Accepts a replacement string and interpolates capture references with their corresponding values. |
 | [`bytes`](#bytes) | fn | Accepts a replacement byte string and interpolates capture references with their corresponding values. |
-| [`find_cap_ref`](#find_cap_ref) | fn | Parses a possible reference to a capture group name in the given text, starting at the beginning of `replacement`. |
-| [`find_cap_ref_braced`](#find_cap_ref_braced) | fn | Looks for a braced reference, e.g., `${foo1}`. |
-| [`is_valid_cap_letter`](#is_valid_cap_letter) | fn | Returns true if and only if the given byte is allowed in a capture name written in non-brace form. |
+| [`find_cap_ref`](#find-cap-ref) | fn | Parses a possible reference to a capture group name in the given text, starting at the beginning of `replacement`. |
+| [`find_cap_ref_braced`](#find-cap-ref-braced) | fn | Looks for a braced reference, e.g., `${foo1}`. |
+| [`is_valid_cap_letter`](#is-valid-cap-letter) | fn | Returns true if and only if the given byte is allowed in a capture name written in non-brace form. |
 
 ## Structs
 

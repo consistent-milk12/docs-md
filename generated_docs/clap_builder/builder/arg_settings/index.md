@@ -35,7 +35,7 @@ struct ArgFlags(u32);
 
 ##### `impl BitOr for ArgFlags`
 
-- <span id="argflags-type-output"></span>`type Output = ArgFlags`
+- <span id="argflags-bitor-type-output"></span>`type Output = ArgFlags`
 
 - <span id="argflags-bitor"></span>`fn bitor(self, rhs: Self) -> <Self as >::Output`
 

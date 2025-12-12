@@ -16,8 +16,8 @@ enum Enum {}
 | Item | Kind | Description |
 |------|------|-------------|
 | [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(untagged)]` attribute |
-| [`deserialize_variant`](#deserialize_variant) | fn |  |
-| [`deserialize_newtype_variant`](#deserialize_newtype_variant) | fn |  |
+| [`deserialize_variant`](#deserialize-variant) | fn |  |
+| [`deserialize_newtype_variant`](#deserialize-newtype-variant) | fn |  |
 
 ## Functions
 

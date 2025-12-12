@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`x86_64`](#x86_64) | mod |  |
+| [`x86_64`](#x86-64) | mod |  |
 | [`Builder`](#builder) | struct | A builder for constructing a Teddy matcher. |
 | [`Searcher`](#searcher) | struct | A searcher that dispatches to one of several possible Teddy variants. |
 | [`SearcherT`](#searchert) | trait | A trait that provides dynamic dispatch over the different possible Teddy variants on the same algorithm. |

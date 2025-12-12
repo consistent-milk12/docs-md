@@ -96,11 +96,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Trait Implementations
 
-##### `impl<V: clone::Clone, const BYTES: usize> Clone for Slim<V, BYTES>`
+##### `impl<V: clone::Clone> Clone for Slim<V, BYTES>`
 
 - <span id="slim-clone"></span>`fn clone(&self) -> Slim<V, BYTES>` — [`Slim`](#slim)
 
-##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Slim<V, BYTES>`
+##### `impl<V: fmt::Debug> Debug for Slim<V, BYTES>`
 
 - <span id="slim-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -141,11 +141,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Trait Implementations
 
-##### `impl<V: clone::Clone, const BYTES: usize> Clone for Fat<V, BYTES>`
+##### `impl<V: clone::Clone> Clone for Fat<V, BYTES>`
 
 - <span id="fat-clone"></span>`fn clone(&self) -> Fat<V, BYTES>` — [`Fat`](#fat)
 
-##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Fat<V, BYTES>`
+##### `impl<V: fmt::Debug> Debug for Fat<V, BYTES>`
 
 - <span id="fat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

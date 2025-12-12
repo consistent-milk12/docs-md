@@ -18,9 +18,9 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`FdFlags`](#fdflags) | struct |  |
-| [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
-| [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
-| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
+| [`fcntl_getfd`](#fcntl-getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
+| [`fcntl_setfd`](#fcntl-setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
+| [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
 
 ## Structs
 
@@ -48,7 +48,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitAnd for FdFlags`
 
-- <span id="fdflags-type-output"></span>`type Output = FdFlags`
+- <span id="fdflags-bitand-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -58,7 +58,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitOr for FdFlags`
 
-- <span id="fdflags-type-output"></span>`type Output = FdFlags`
+- <span id="fdflags-bitor-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-bitor"></span>`fn bitor(self, other: FdFlags) -> Self` — [`FdFlags`](../../backend/io/types/index.md#fdflags)
 
@@ -68,7 +68,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitXor for FdFlags`
 
-- <span id="fdflags-type-output"></span>`type Output = FdFlags`
+- <span id="fdflags-bitxor-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -94,9 +94,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Flags for FdFlags`
 
-- <span id="fdflags-const-flags"></span>`const FLAGS: &'static [Flag<FdFlags>]`
+- <span id="fdflags-flags-const-flags"></span>`const FLAGS: &'static [Flag<FdFlags>]`
 
-- <span id="fdflags-type-bits"></span>`type Bits = u32`
+- <span id="fdflags-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -112,9 +112,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl IntoIterator for FdFlags`
 
-- <span id="fdflags-type-item"></span>`type Item = FdFlags`
+- <span id="fdflags-intoiterator-type-item"></span>`type Item = FdFlags`
 
-- <span id="fdflags-type-intoiter"></span>`type IntoIter = Iter<FdFlags>`
+- <span id="fdflags-intoiterator-type-intoiter"></span>`type IntoIter = Iter<FdFlags>`
 
 - <span id="fdflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -124,7 +124,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Not for FdFlags`
 
-- <span id="fdflags-type-output"></span>`type Output = FdFlags`
+- <span id="fdflags-not-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-not"></span>`fn not(self) -> Self`
 
@@ -138,15 +138,15 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PublicFlags for FdFlags`
 
-- <span id="fdflags-type-primitive"></span>`type Primitive = u32`
+- <span id="fdflags-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="fdflags-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="fdflags-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for FdFlags`
 
 ##### `impl Sub for FdFlags`
 
-- <span id="fdflags-type-output"></span>`type Output = FdFlags`
+- <span id="fdflags-sub-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-sub"></span>`fn sub(self, other: Self) -> Self`
 

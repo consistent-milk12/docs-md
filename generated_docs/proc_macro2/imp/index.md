@@ -18,11 +18,11 @@
   - [`Literal`](#literal)
 - [Functions](#functions)
   - [`mismatch`](#mismatch)
-  - [`into_compiler_token`](#into_compiler_token)
-  - [`debug_span_field_if_nontrivial`](#debug_span_field_if_nontrivial)
+  - [`into_compiler_token`](#into-compiler-token)
+  - [`debug_span_field_if_nontrivial`](#debug-span-field-if-nontrivial)
 - [Macros](#macros)
-  - [`suffixed_numbers!`](#suffixed_numbers)
-  - [`unsuffixed_integers!`](#unsuffixed_integers)
+  - [`suffixed_numbers!`](#suffixed-numbers)
+  - [`unsuffixed_integers!`](#unsuffixed-integers)
 
 ## Quick Reference
 
@@ -37,10 +37,10 @@
 | [`Ident`](#ident) | enum |  |
 | [`Literal`](#literal) | enum |  |
 | [`mismatch`](#mismatch) | fn |  |
-| [`into_compiler_token`](#into_compiler_token) | fn |  |
-| [`debug_span_field_if_nontrivial`](#debug_span_field_if_nontrivial) | fn |  |
-| [`suffixed_numbers!`](#suffixed_numbers) | macro |  |
-| [`unsuffixed_integers!`](#unsuffixed_integers) | macro |  |
+| [`into_compiler_token`](#into-compiler-token) | fn |  |
+| [`debug_span_field_if_nontrivial`](#debug-span-field-if-nontrivial) | fn |  |
+| [`suffixed_numbers!`](#suffixed-numbers) | macro |  |
+| [`unsuffixed_integers!`](#unsuffixed-integers) | macro |  |
 
 ## Structs
 
@@ -120,9 +120,9 @@ enum TokenStream {
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-intoiterator-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-type-intoiter"></span>`type IntoIter = TokenTreeIter`
+- <span id="tokenstream-intoiterator-type-intoiter"></span>`type IntoIter = TokenTreeIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
 
@@ -193,15 +193,15 @@ enum TokenTreeIter {
 
 ##### `impl IntoIterator for TokenTreeIter`
 
-- <span id="tokentreeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tokentreeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tokentreeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="tokentreeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tokentreeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TokenTreeIter`
 
-- <span id="tokentreeiter-type-item"></span>`type Item = TokenTree`
+- <span id="tokentreeiter-iterator-type-item"></span>`type Item = TokenTree`
 
 - <span id="tokentreeiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md#tokentree)
 
@@ -348,7 +348,7 @@ enum Ident {
 
 ##### `impl IdentFragment for proc_macro2::Ident`
 
-- <span id="proc-macro2ident-type-error"></span>`type Error = Infallible`
+- <span id="proc-macro2ident-identfragment-type-error"></span>`type Error = Infallible`
 
 ##### `impl Parse for proc_macro2::Ident`
 

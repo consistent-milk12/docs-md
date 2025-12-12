@@ -9,26 +9,26 @@
 - [Enums](#enums)
   - [`PathStyle`](#pathstyle)
 - [Functions](#functions)
-  - [`print_path`](#print_path)
-  - [`print_path_segment`](#print_path_segment)
-  - [`print_path_arguments`](#print_path_arguments)
-  - [`print_angle_bracketed_generic_arguments`](#print_angle_bracketed_generic_arguments)
-  - [`print_parenthesized_generic_arguments`](#print_parenthesized_generic_arguments)
-  - [`print_qpath`](#print_qpath)
-  - [`conditionally_print_turbofish`](#conditionally_print_turbofish)
+  - [`print_path`](#print-path)
+  - [`print_path_segment`](#print-path-segment)
+  - [`print_path_arguments`](#print-path-arguments)
+  - [`print_angle_bracketed_generic_arguments`](#print-angle-bracketed-generic-arguments)
+  - [`print_parenthesized_generic_arguments`](#print-parenthesized-generic-arguments)
+  - [`print_qpath`](#print-qpath)
+  - [`conditionally_print_turbofish`](#conditionally-print-turbofish)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`PathStyle`](#pathstyle) | enum |  |
-| [`print_path`](#print_path) | fn |  |
-| [`print_path_segment`](#print_path_segment) | fn |  |
-| [`print_path_arguments`](#print_path_arguments) | fn |  |
-| [`print_angle_bracketed_generic_arguments`](#print_angle_bracketed_generic_arguments) | fn |  |
-| [`print_parenthesized_generic_arguments`](#print_parenthesized_generic_arguments) | fn |  |
-| [`print_qpath`](#print_qpath) | fn |  |
-| [`conditionally_print_turbofish`](#conditionally_print_turbofish) | fn |  |
+| [`print_path`](#print-path) | fn |  |
+| [`print_path_segment`](#print-path-segment) | fn |  |
+| [`print_path_arguments`](#print-path-arguments) | fn |  |
+| [`print_angle_bracketed_generic_arguments`](#print-angle-bracketed-generic-arguments) | fn |  |
+| [`print_parenthesized_generic_arguments`](#print-parenthesized-generic-arguments) | fn |  |
+| [`print_qpath`](#print-qpath) | fn |  |
+| [`conditionally_print_turbofish`](#conditionally-print-turbofish) | fn |  |
 
 ## Enums
 

@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`join`](#join) | fn | Takes two closures and *potentially* runs them in parallel. |
-| [`join_context`](#join_context) | fn | Identical to `join`, except that the closures have a parameter that provides context for the way the closure has been called, especially indicating whether they're executing on a different thread than where `join_context` was called. |
-| [`join_recover_from_panic`](#join_recover_from_panic) | fn | If job A panics, we still cannot return until we are sure that job B is complete. |
+| [`join_context`](#join-context) | fn | Identical to `join`, except that the closures have a parameter that provides context for the way the closure has been called, especially indicating whether they're executing on a different thread than where `join_context` was called. |
+| [`join_recover_from_panic`](#join-recover-from-panic) | fn | If job A panics, we still cannot return until we are sure that job B is complete. |
 
 ## Functions
 

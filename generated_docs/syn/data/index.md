@@ -284,15 +284,15 @@ struct Members<'a> {
 
 ##### `impl IntoIterator for Members<'a>`
 
-- <span id="members-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="members-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="members-type-intoiter"></span>`type IntoIter = I`
+- <span id="members-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="members-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Members<'a>`
 
-- <span id="members-type-item"></span>`type Item = Member`
+- <span id="members-iterator-type-item"></span>`type Item = Member`
 
 - <span id="members-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -362,9 +362,9 @@ This type is a [syntax tree enum].
 
 ##### `impl IntoIterator for Fields`
 
-- <span id="fields-type-item"></span>`type Item = Field`
+- <span id="fields-intoiterator-type-item"></span>`type Item = Field`
 
-- <span id="fields-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
+- <span id="fields-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
 
 - <span id="fields-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 

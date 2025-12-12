@@ -40,7 +40,7 @@ running the full regex engine.
 ## Contents
 
 - [Modules](#modules)
-  - [`aho_corasick`](#aho_corasick)
+  - [`aho_corasick`](#aho-corasick)
   - [`byteset`](#byteset)
   - [`memchr`](#memchr)
   - [`memmem`](#memmem)
@@ -59,7 +59,7 @@ running the full regex engine.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`aho_corasick`](#aho_corasick) | mod |  |
+| [`aho_corasick`](#aho-corasick) | mod |  |
 | [`byteset`](#byteset) | mod |  |
 | [`memchr`](#memchr) | mod |  |
 | [`memmem`](#memmem) | mod |  |

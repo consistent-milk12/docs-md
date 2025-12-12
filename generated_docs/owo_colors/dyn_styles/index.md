@@ -17,19 +17,19 @@
 - [Functions](#functions)
   - [`style`](#style)
 - [Constants](#constants)
-  - [`DIMMED_SHIFT`](#dimmed_shift)
-  - [`ITALIC_SHIFT`](#italic_shift)
-  - [`UNDERLINE_SHIFT`](#underline_shift)
-  - [`BLINK_SHIFT`](#blink_shift)
-  - [`BLINK_FAST_SHIFT`](#blink_fast_shift)
-  - [`REVERSED_SHIFT`](#reversed_shift)
-  - [`HIDDEN_SHIFT`](#hidden_shift)
-  - [`STRIKETHROUGH_SHIFT`](#strikethrough_shift)
+  - [`DIMMED_SHIFT`](#dimmed-shift)
+  - [`ITALIC_SHIFT`](#italic-shift)
+  - [`UNDERLINE_SHIFT`](#underline-shift)
+  - [`BLINK_SHIFT`](#blink-shift)
+  - [`BLINK_FAST_SHIFT`](#blink-fast-shift)
+  - [`REVERSED_SHIFT`](#reversed-shift)
+  - [`HIDDEN_SHIFT`](#hidden-shift)
+  - [`STRIKETHROUGH_SHIFT`](#strikethrough-shift)
 - [Macros](#macros)
-  - [`color_methods!`](#color_methods)
-  - [`style_methods!`](#style_methods)
-  - [`style_flags_methods!`](#style_flags_methods)
-  - [`impl_fmt!`](#impl_fmt)
+  - [`color_methods!`](#color-methods)
+  - [`style_methods!`](#style-methods)
+  - [`style_flags_methods!`](#style-flags-methods)
+  - [`impl_fmt!`](#impl-fmt)
 
 ## Quick Reference
 
@@ -42,18 +42,18 @@
 | [`StyleSuffixFormatter`](#stylesuffixformatter) | struct | Formatter for the suffix of a [`Style`]. |
 | [`Effect`](#effect) | enum | A runtime-configurable text effect for use with [`Style`] |
 | [`style`](#style) | fn | Helper to create [`Style`]s more ergonomically |
-| [`DIMMED_SHIFT`](#dimmed_shift) | const |  |
-| [`ITALIC_SHIFT`](#italic_shift) | const |  |
-| [`UNDERLINE_SHIFT`](#underline_shift) | const |  |
-| [`BLINK_SHIFT`](#blink_shift) | const |  |
-| [`BLINK_FAST_SHIFT`](#blink_fast_shift) | const |  |
-| [`REVERSED_SHIFT`](#reversed_shift) | const |  |
-| [`HIDDEN_SHIFT`](#hidden_shift) | const |  |
-| [`STRIKETHROUGH_SHIFT`](#strikethrough_shift) | const |  |
-| [`color_methods!`](#color_methods) | macro |  |
-| [`style_methods!`](#style_methods) | macro |  |
-| [`style_flags_methods!`](#style_flags_methods) | macro |  |
-| [`impl_fmt!`](#impl_fmt) | macro |  |
+| [`DIMMED_SHIFT`](#dimmed-shift) | const |  |
+| [`ITALIC_SHIFT`](#italic-shift) | const |  |
+| [`UNDERLINE_SHIFT`](#underline-shift) | const |  |
+| [`BLINK_SHIFT`](#blink-shift) | const |  |
+| [`BLINK_FAST_SHIFT`](#blink-fast-shift) | const |  |
+| [`REVERSED_SHIFT`](#reversed-shift) | const |  |
+| [`HIDDEN_SHIFT`](#hidden-shift) | const |  |
+| [`STRIKETHROUGH_SHIFT`](#strikethrough-shift) | const |  |
+| [`color_methods!`](#color-methods) | macro |  |
+| [`style_methods!`](#style-methods) | macro |  |
+| [`style_flags_methods!`](#style-flags-methods) | macro |  |
+| [`impl_fmt!`](#impl-fmt) | macro |  |
 
 ## Structs
 
@@ -102,7 +102,7 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
 
-- <span id="cratestyled-type-inner"></span>`type Inner = T`
+- <span id="cratestyled-isstyled-type-inner"></span>`type Inner = T`
 
 - <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](../index.md#style)
 
@@ -120,7 +120,7 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 
 - <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Styled<T>`
+##### `impl OwoColorize for Styled<T>`
 
 ##### `impl<T: fmt::Pointer> Pointer for Styled<T>`
 

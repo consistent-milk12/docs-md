@@ -18,8 +18,8 @@
   - [`TermWrite`](#termwrite)
   - [`TermRead`](#termread)
 - [Functions](#functions)
-  - [`user_attended`](#user_attended)
-  - [`user_attended_stderr`](#user_attended_stderr)
+  - [`user_attended`](#user-attended)
+  - [`user_attended_stderr`](#user-attended-stderr)
 
 ## Quick Reference
 
@@ -33,8 +33,8 @@
 | [`TermFamily`](#termfamily) | enum | The family of the terminal. |
 | [`TermWrite`](#termwrite) | trait |  |
 | [`TermRead`](#termread) | trait |  |
-| [`user_attended`](#user_attended) | fn | A fast way to check if the application has a user attended for stdout. |
-| [`user_attended_stderr`](#user_attended_stderr) | fn | A fast way to check if the application has a user attended for stderr. |
+| [`user_attended`](#user-attended) | fn | A fast way to check if the application has a user attended for stdout. |
+| [`user_attended_stderr`](#user-attended-stderr) | fn | A fast way to check if the application has a user attended for stderr. |
 
 ## Structs
 

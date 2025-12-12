@@ -71,15 +71,15 @@ pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
 
 ##### `impl IntoIterator for Chain<'a>`
 
-- <span id="chain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chain-type-intoiter"></span>`type IntoIter = I`
+- <span id="chain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Chain<'a>`
 
-- <span id="chain-type-item"></span>`type Item = &'a dyn Error`
+- <span id="chain-iterator-type-item"></span>`type Item = &'a dyn Error`
 
 - <span id="chain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

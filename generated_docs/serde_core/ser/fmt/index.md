@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`fmt_primitives!`](#fmt_primitives) | macro |  |
+| [`fmt_primitives!`](#fmt-primitives) | macro |  |
 
 ## Macros
 

@@ -162,7 +162,7 @@ Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
   - [`Yellow`](#yellow)
   - [`YellowGreen`](#yellowgreen)
 - [Macros](#macros)
-  - [`css_color_types!`](#css_color_types)
+  - [`css_color_types!`](#css-color-types)
 
 ## Quick Reference
 
@@ -316,7 +316,7 @@ Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 | [`WhiteSmoke`](#whitesmoke) | type |  |
 | [`Yellow`](#yellow) | type |  |
 | [`YellowGreen`](#yellowgreen) | type |  |
-| [`css_color_types!`](#css_color_types) | macro |  |
+| [`css_color_types!`](#css-color-types) | macro |  |
 
 ## Modules
 

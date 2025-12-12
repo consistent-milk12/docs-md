@@ -12,8 +12,8 @@
 | [`Stmts`](#stmts) | struct | Interpolate a fragment as the statements of a block. |
 | [`Match`](#match) | struct | Interpolate a fragment as the value part of a `match` expression. |
 | [`Fragment`](#fragment) | enum |  |
-| [`quote_expr!`](#quote_expr) | macro |  |
-| [`quote_block!`](#quote_block) | macro |  |
+| [`quote_expr!`](#quote-expr) | macro |  |
+| [`quote_block!`](#quote-block) | macro |  |
 
 ## Structs
 

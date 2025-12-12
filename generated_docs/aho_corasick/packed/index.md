@@ -347,15 +347,15 @@ searched.
 
 ##### `impl IntoIterator for FindIter<'s, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindIter<'s, 'h>`
 
-- <span id="finditer-type-item"></span>`type Item = Match`
+- <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 

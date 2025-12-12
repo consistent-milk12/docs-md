@@ -33,11 +33,11 @@ struct ProductConsumer<P: Send> {
 
 ##### `impl<P, T> Consumer for ProductConsumer<P>`
 
-- <span id="productconsumer-type-folder"></span>`type Folder = ProductFolder<P>`
+- <span id="productconsumer-consumer-type-folder"></span>`type Folder = ProductFolder<P>`
 
-- <span id="productconsumer-type-reducer"></span>`type Reducer = ProductConsumer<P>`
+- <span id="productconsumer-consumer-type-reducer"></span>`type Reducer = ProductConsumer<P>`
 
-- <span id="productconsumer-type-result"></span>`type Result = P`
+- <span id="productconsumer-consumer-type-result"></span>`type Result = P`
 
 - <span id="productconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -45,13 +45,13 @@ struct ProductConsumer<P: Send> {
 
 - <span id="productconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ProductConsumer<P>`
+##### `impl IntoEither for ProductConsumer<P>`
 
-##### `impl<T> Pointable for ProductConsumer<P>`
+##### `impl Pointable for ProductConsumer<P>`
 
-- <span id="productconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="productconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="productconsumer-type-init"></span>`type Init = T`
+- <span id="productconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="productconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -87,7 +87,7 @@ struct ProductFolder<P> {
 
 ##### `impl<P, T> Folder for ProductFolder<P>`
 
-- <span id="productfolder-type-result"></span>`type Result = P`
+- <span id="productfolder-folder-type-result"></span>`type Result = P`
 
 - <span id="productfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -97,13 +97,13 @@ struct ProductFolder<P> {
 
 - <span id="productfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ProductFolder<P>`
+##### `impl IntoEither for ProductFolder<P>`
 
-##### `impl<T> Pointable for ProductFolder<P>`
+##### `impl Pointable for ProductFolder<P>`
 
-- <span id="productfolder-const-align"></span>`const ALIGN: usize`
+- <span id="productfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="productfolder-type-init"></span>`type Init = T`
+- <span id="productfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="productfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

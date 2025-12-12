@@ -22,70 +22,70 @@ and some is `unsafe` to interpret the values in a `RetReg`.
 
 - [Functions](#functions)
   - [`zero`](#zero)
-  - [`size_of`](#size_of)
-  - [`pass_usize`](#pass_usize)
-  - [`raw_fd`](#raw_fd)
-  - [`no_fd`](#no_fd)
-  - [`slice_just_addr`](#slice_just_addr)
-  - [`slice_just_addr_mut`](#slice_just_addr_mut)
+  - [`size_of`](#size-of)
+  - [`pass_usize`](#pass-usize)
+  - [`raw_fd`](#raw-fd)
+  - [`no_fd`](#no-fd)
+  - [`slice_just_addr`](#slice-just-addr)
+  - [`slice_just_addr_mut`](#slice-just-addr-mut)
   - [`slice`](#slice)
-  - [`slice_mut`](#slice_mut)
-  - [`by_ref`](#by_ref)
-  - [`by_mut`](#by_mut)
-  - [`opt_mut`](#opt_mut)
-  - [`opt_ref`](#opt_ref)
-  - [`c_int`](#c_int)
-  - [`c_uint`](#c_uint)
-  - [`loff_t`](#loff_t)
-  - [`loff_t_from_u64`](#loff_t_from_u64)
-  - [`dev_t`](#dev_t)
+  - [`slice_mut`](#slice-mut)
+  - [`by_ref`](#by-ref)
+  - [`by_mut`](#by-mut)
+  - [`opt_mut`](#opt-mut)
+  - [`opt_ref`](#opt-ref)
+  - [`c_int`](#c-int)
+  - [`c_uint`](#c-uint)
+  - [`loff_t`](#loff-t)
+  - [`loff_t_from_u64`](#loff-t-from-u64)
+  - [`dev_t`](#dev-t)
   - [`ret`](#ret)
-  - [`ret_infallible`](#ret_infallible)
-  - [`ret_c_int`](#ret_c_int)
-  - [`ret_c_uint`](#ret_c_uint)
-  - [`ret_u64`](#ret_u64)
-  - [`ret_usize`](#ret_usize)
-  - [`ret_usize_infallible`](#ret_usize_infallible)
-  - [`ret_c_int_infallible`](#ret_c_int_infallible)
-  - [`ret_c_uint_infallible`](#ret_c_uint_infallible)
-  - [`ret_owned_fd`](#ret_owned_fd)
-  - [`ret_discarded_fd`](#ret_discarded_fd)
-  - [`ret_void_star`](#ret_void_star)
+  - [`ret_infallible`](#ret-infallible)
+  - [`ret_c_int`](#ret-c-int)
+  - [`ret_c_uint`](#ret-c-uint)
+  - [`ret_u64`](#ret-u64)
+  - [`ret_usize`](#ret-usize)
+  - [`ret_usize_infallible`](#ret-usize-infallible)
+  - [`ret_c_int_infallible`](#ret-c-int-infallible)
+  - [`ret_c_uint_infallible`](#ret-c-uint-infallible)
+  - [`ret_owned_fd`](#ret-owned-fd)
+  - [`ret_discarded_fd`](#ret-discarded-fd)
+  - [`ret_void_star`](#ret-void-star)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`zero`](#zero) | fn | Pass a zero, or null, argument. |
-| [`size_of`](#size_of) | fn | Pass the `mem::size_of` of a type. |
-| [`pass_usize`](#pass_usize) | fn | Pass an arbitrary `usize` value. |
-| [`raw_fd`](#raw_fd) | fn | Pass a raw file-descriptor argument. |
-| [`no_fd`](#no_fd) | fn | Deliberately pass `-1` to a file-descriptor argument, for system calls like `mmap` where this indicates the argument is omitted. |
-| [`slice_just_addr`](#slice_just_addr) | fn |  |
-| [`slice_just_addr_mut`](#slice_just_addr_mut) | fn |  |
+| [`size_of`](#size-of) | fn | Pass the `mem::size_of` of a type. |
+| [`pass_usize`](#pass-usize) | fn | Pass an arbitrary `usize` value. |
+| [`raw_fd`](#raw-fd) | fn | Pass a raw file-descriptor argument. |
+| [`no_fd`](#no-fd) | fn | Deliberately pass `-1` to a file-descriptor argument, for system calls like `mmap` where this indicates the argument is omitted. |
+| [`slice_just_addr`](#slice-just-addr) | fn |  |
+| [`slice_just_addr_mut`](#slice-just-addr-mut) | fn |  |
 | [`slice`](#slice) | fn |  |
-| [`slice_mut`](#slice_mut) | fn |  |
-| [`by_ref`](#by_ref) | fn |  |
-| [`by_mut`](#by_mut) | fn |  |
-| [`opt_mut`](#opt_mut) | fn | Convert an optional mutable reference into a `usize` for passing to a syscall. |
-| [`opt_ref`](#opt_ref) | fn | Convert an optional immutable reference into a `usize` for passing to a syscall. |
-| [`c_int`](#c_int) | fn | Convert a `c_int` into an `ArgReg`. |
-| [`c_uint`](#c_uint) | fn | Convert a `c_uint` into an `ArgReg`. |
-| [`loff_t`](#loff_t) | fn |  |
-| [`loff_t_from_u64`](#loff_t_from_u64) | fn |  |
-| [`dev_t`](#dev_t) | fn |  |
+| [`slice_mut`](#slice-mut) | fn |  |
+| [`by_ref`](#by-ref) | fn |  |
+| [`by_mut`](#by-mut) | fn |  |
+| [`opt_mut`](#opt-mut) | fn | Convert an optional mutable reference into a `usize` for passing to a syscall. |
+| [`opt_ref`](#opt-ref) | fn | Convert an optional immutable reference into a `usize` for passing to a syscall. |
+| [`c_int`](#c-int) | fn | Convert a `c_int` into an `ArgReg`. |
+| [`c_uint`](#c-uint) | fn | Convert a `c_uint` into an `ArgReg`. |
+| [`loff_t`](#loff-t) | fn |  |
+| [`loff_t_from_u64`](#loff-t-from-u64) | fn |  |
+| [`dev_t`](#dev-t) | fn |  |
 | [`ret`](#ret) | fn | Convert a `usize` returned from a syscall that effectively returns `()` on success. |
-| [`ret_infallible`](#ret_infallible) | fn | Convert a `usize` returned from a syscall that effectively always returns `()`. |
-| [`ret_c_int`](#ret_c_int) | fn | Convert a `usize` returned from a syscall that effectively returns a `c_int` on success. |
-| [`ret_c_uint`](#ret_c_uint) | fn | Convert a `usize` returned from a syscall that effectively returns a `c_uint` on success. |
-| [`ret_u64`](#ret_u64) | fn | Convert a `usize` returned from a syscall that effectively returns a `u64` on success. |
-| [`ret_usize`](#ret_usize) | fn | Convert a `usize` returned from a syscall that effectively returns a `usize` on success. |
-| [`ret_usize_infallible`](#ret_usize_infallible) | fn | Convert a `usize` returned from a syscall that effectively always returns a `usize`. |
-| [`ret_c_int_infallible`](#ret_c_int_infallible) | fn | Convert a `c_int` returned from a syscall that effectively always returns a `c_int`. |
-| [`ret_c_uint_infallible`](#ret_c_uint_infallible) | fn | Convert a `c_uint` returned from a syscall that effectively always returns a `c_uint`. |
-| [`ret_owned_fd`](#ret_owned_fd) | fn | Convert a `usize` returned from a syscall that effectively returns an `OwnedFd` on success. |
-| [`ret_discarded_fd`](#ret_discarded_fd) | fn | Convert the return value of `dup2` and `dup3`. |
-| [`ret_void_star`](#ret_void_star) | fn | Convert a `usize` returned from a syscall that effectively returns a `*mut c_void` on success. |
+| [`ret_infallible`](#ret-infallible) | fn | Convert a `usize` returned from a syscall that effectively always returns `()`. |
+| [`ret_c_int`](#ret-c-int) | fn | Convert a `usize` returned from a syscall that effectively returns a `c_int` on success. |
+| [`ret_c_uint`](#ret-c-uint) | fn | Convert a `usize` returned from a syscall that effectively returns a `c_uint` on success. |
+| [`ret_u64`](#ret-u64) | fn | Convert a `usize` returned from a syscall that effectively returns a `u64` on success. |
+| [`ret_usize`](#ret-usize) | fn | Convert a `usize` returned from a syscall that effectively returns a `usize` on success. |
+| [`ret_usize_infallible`](#ret-usize-infallible) | fn | Convert a `usize` returned from a syscall that effectively always returns a `usize`. |
+| [`ret_c_int_infallible`](#ret-c-int-infallible) | fn | Convert a `c_int` returned from a syscall that effectively always returns a `c_int`. |
+| [`ret_c_uint_infallible`](#ret-c-uint-infallible) | fn | Convert a `c_uint` returned from a syscall that effectively always returns a `c_uint`. |
+| [`ret_owned_fd`](#ret-owned-fd) | fn | Convert a `usize` returned from a syscall that effectively returns an `OwnedFd` on success. |
+| [`ret_discarded_fd`](#ret-discarded-fd) | fn | Convert the return value of `dup2` and `dup3`. |
+| [`ret_void_star`](#ret-void-star) | fn | Convert a `usize` returned from a syscall that effectively returns a `*mut c_void` on success. |
 
 ## Functions
 

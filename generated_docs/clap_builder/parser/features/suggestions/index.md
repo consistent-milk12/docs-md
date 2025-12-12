@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`did_you_mean`](#did_you_mean) | fn | Find strings from an iterable of `possible_values` similar to a given value `v` Returns a Vec of all possible values that exceed a similarity threshold sorted by ascending similarity, most similar comes last |
-| [`did_you_mean_flag`](#did_you_mean_flag) | fn | Returns a suffix that can be empty, or is the standard 'did you mean' phrase |
+| [`did_you_mean`](#did-you-mean) | fn | Find strings from an iterable of `possible_values` similar to a given value `v` Returns a Vec of all possible values that exceed a similarity threshold sorted by ascending similarity, most similar comes last |
+| [`did_you_mean_flag`](#did-you-mean-flag) | fn | Returns a suffix that can be empty, or is the standard 'did you mean' phrase |
 
 ## Functions
 

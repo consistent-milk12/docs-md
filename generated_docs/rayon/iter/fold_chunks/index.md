@@ -45,7 +45,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I, ID, U, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
+##### `impl<I, ID, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
 
 - <span id="foldchunks-len"></span>`fn len(&self) -> usize`
 
@@ -53,29 +53,29 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 - <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for FoldChunks<I, ID, F>`
+##### `impl IntoEither for FoldChunks<I, ID, F>`
 
-##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
+##### `impl IntoParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-type-iter"></span>`type Iter = T`
+- <span id="foldchunks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
+##### `impl<I, ID, F> ParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-type-item"></span>`type Item = U`
+- <span id="foldchunks-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="foldchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for FoldChunks<I, ID, F>`
+##### `impl Pointable for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-const-align"></span>`const ALIGN: usize`
+- <span id="foldchunks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunks-type-init"></span>`type Init = T`
+- <span id="foldchunks-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

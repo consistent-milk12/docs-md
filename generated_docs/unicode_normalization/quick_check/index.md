@@ -9,38 +9,38 @@
 - [Enums](#enums)
   - [`IsNormalized`](#isnormalized)
 - [Functions](#functions)
-  - [`quick_check`](#quick_check)
-  - [`is_nfc_quick`](#is_nfc_quick)
-  - [`is_nfkc_quick`](#is_nfkc_quick)
-  - [`is_nfd_quick`](#is_nfd_quick)
-  - [`is_nfkd_quick`](#is_nfkd_quick)
-  - [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick)
-  - [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick)
-  - [`is_nfc`](#is_nfc)
-  - [`is_nfkc`](#is_nfkc)
-  - [`is_nfd`](#is_nfd)
-  - [`is_nfkd`](#is_nfkd)
-  - [`is_nfc_stream_safe`](#is_nfc_stream_safe)
-  - [`is_nfd_stream_safe`](#is_nfd_stream_safe)
+  - [`quick_check`](#quick-check)
+  - [`is_nfc_quick`](#is-nfc-quick)
+  - [`is_nfkc_quick`](#is-nfkc-quick)
+  - [`is_nfd_quick`](#is-nfd-quick)
+  - [`is_nfkd_quick`](#is-nfkd-quick)
+  - [`is_nfc_stream_safe_quick`](#is-nfc-stream-safe-quick)
+  - [`is_nfd_stream_safe_quick`](#is-nfd-stream-safe-quick)
+  - [`is_nfc`](#is-nfc)
+  - [`is_nfkc`](#is-nfkc)
+  - [`is_nfd`](#is-nfd)
+  - [`is_nfkd`](#is-nfkd)
+  - [`is_nfc_stream_safe`](#is-nfc-stream-safe)
+  - [`is_nfd_stream_safe`](#is-nfd-stream-safe)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`IsNormalized`](#isnormalized) | enum | QuickCheck quickly determines if a string is normalized, it can return `Maybe` |
-| [`quick_check`](#quick_check) | fn |  |
-| [`is_nfc_quick`](#is_nfc_quick) | fn | Quickly check if a string is in NFC, potentially returning `IsNormalized::Maybe` if further checks are necessary. |
-| [`is_nfkc_quick`](#is_nfkc_quick) | fn | Quickly check if a string is in NFKC. |
-| [`is_nfd_quick`](#is_nfd_quick) | fn | Quickly check if a string is in NFD. |
-| [`is_nfkd_quick`](#is_nfkd_quick) | fn | Quickly check if a string is in NFKD. |
-| [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick) | fn | Quickly check if a string is Stream-Safe NFC. |
-| [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick) | fn | Quickly check if a string is Stream-Safe NFD. |
-| [`is_nfc`](#is_nfc) | fn | Authoritatively check if a string is in NFC. |
-| [`is_nfkc`](#is_nfkc) | fn | Authoritatively check if a string is in NFKC. |
-| [`is_nfd`](#is_nfd) | fn | Authoritatively check if a string is in NFD. |
-| [`is_nfkd`](#is_nfkd) | fn | Authoritatively check if a string is in NFKD. |
-| [`is_nfc_stream_safe`](#is_nfc_stream_safe) | fn | Authoritatively check if a string is Stream-Safe NFC. |
-| [`is_nfd_stream_safe`](#is_nfd_stream_safe) | fn | Authoritatively check if a string is Stream-Safe NFD. |
+| [`quick_check`](#quick-check) | fn |  |
+| [`is_nfc_quick`](#is-nfc-quick) | fn | Quickly check if a string is in NFC, potentially returning `IsNormalized::Maybe` if further checks are necessary. |
+| [`is_nfkc_quick`](#is-nfkc-quick) | fn | Quickly check if a string is in NFKC. |
+| [`is_nfd_quick`](#is-nfd-quick) | fn | Quickly check if a string is in NFD. |
+| [`is_nfkd_quick`](#is-nfkd-quick) | fn | Quickly check if a string is in NFKD. |
+| [`is_nfc_stream_safe_quick`](#is-nfc-stream-safe-quick) | fn | Quickly check if a string is Stream-Safe NFC. |
+| [`is_nfd_stream_safe_quick`](#is-nfd-stream-safe-quick) | fn | Quickly check if a string is Stream-Safe NFD. |
+| [`is_nfc`](#is-nfc) | fn | Authoritatively check if a string is in NFC. |
+| [`is_nfkc`](#is-nfkc) | fn | Authoritatively check if a string is in NFKC. |
+| [`is_nfd`](#is-nfd) | fn | Authoritatively check if a string is in NFD. |
+| [`is_nfkd`](#is-nfkd) | fn | Authoritatively check if a string is in NFKD. |
+| [`is_nfc_stream_safe`](#is-nfc-stream-safe) | fn | Authoritatively check if a string is Stream-Safe NFC. |
+| [`is_nfd_stream_safe`](#is-nfd-stream-safe) | fn | Authoritatively check if a string is Stream-Safe NFD. |
 
 ## Enums
 

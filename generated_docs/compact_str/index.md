@@ -176,7 +176,7 @@ Thanks for readingme!
 - [Modules](#modules)
   - [`features`](#features)
   - [`macros`](#macros)
-  - [`unicode_data`](#unicode_data)
+  - [`unicode_data`](#unicode-data)
   - [`repr`](#repr)
   - [`traits`](#traits)
 - [Structs](#structs)
@@ -191,10 +191,10 @@ Thanks for readingme!
   - [`ToCompactString`](#tocompactstring)
   - [`UnwrapWithMsg`](#unwrapwithmsg)
 - [Functions](#functions)
-  - [`convert_while_ascii`](#convert_while_ascii)
-  - [`unwrap_with_msg_fail`](#unwrap_with_msg_fail)
+  - [`convert_while_ascii`](#convert-while-ascii)
+  - [`unwrap_with_msg_fail`](#unwrap-with-msg-fail)
 - [Macros](#macros)
-  - [`format_compact!`](#format_compact)
+  - [`format_compact!`](#format-compact)
 
 ## Quick Reference
 
@@ -202,7 +202,7 @@ Thanks for readingme!
 |------|------|-------------|
 | [`features`](#features) | mod | A module that contains the implementations for optional features. |
 | [`macros`](#macros) | mod |  |
-| [`unicode_data`](#unicode_data) | mod | Adapted from <https://doc.rust-lang.org/nightly/src/core/unicode/unicode_data.rs.html> |
+| [`unicode_data`](#unicode-data) | mod | Adapted from <https://doc.rust-lang.org/nightly/src/core/unicode/unicode_data.rs.html> |
 | [`repr`](#repr) | mod |  |
 | [`traits`](#traits) | mod |  |
 | [`CompactString`](#compactstring) | struct | A [`CompactString`] is a compact string type that can be used almost anywhere a [`String`] or [`str`] can be used. |
@@ -213,9 +213,9 @@ Thanks for readingme!
 | [`CompactStringExt`](#compactstringext) | trait |  |
 | [`ToCompactString`](#tocompactstring) | trait |  |
 | [`UnwrapWithMsg`](#unwrapwithmsg) | trait |  |
-| [`convert_while_ascii`](#convert_while_ascii) | fn | Converts the bytes while the bytes are still ascii. |
-| [`unwrap_with_msg_fail`](#unwrap_with_msg_fail) | fn |  |
-| [`format_compact!`](#format_compact) | macro | Creates a `CompactString` using interpolation of runtime expressions. |
+| [`convert_while_ascii`](#convert-while-ascii) | fn | Converts the bytes while the bytes are still ascii. |
+| [`unwrap_with_msg_fail`](#unwrap-with-msg-fail) | fn |  |
+| [`format_compact!`](#format-compact) | macro | Creates a `CompactString` using interpolation of runtime expressions. |
 
 ## Modules
 
@@ -445,7 +445,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Add for CompactString`
 
-- <span id="compactstring-type-output"></span>`type Output = CompactString`
+- <span id="compactstring-add-type-output"></span>`type Output = CompactString`
 
 - <span id="compactstring-add"></span>`fn add(self, rhs: &str) -> <Self as >::Output`
 
@@ -473,7 +473,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Deref for CompactString`
 
-- <span id="compactstring-type-target"></span>`type Target = str`
+- <span id="compactstring-deref-type-target"></span>`type Target = str`
 
 - <span id="compactstring-deref"></span>`fn deref(&self) -> &str`
 
@@ -497,7 +497,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl FromStr for CompactString`
 
-- <span id="compactstring-type-err"></span>`type Err = Infallible`
+- <span id="compactstring-fromstr-type-err"></span>`type Err = Infallible`
 
 - <span id="compactstring-from-str"></span>`fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](#compactstring)
 
@@ -511,7 +511,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
-##### `impl PartialEq for CompactString`
+##### `impl<T: AsRef<str> + ?Sized> PartialEq for CompactString`
 
 - <span id="compactstring-eq"></span>`fn eq(&self, other: &T) -> bool`
 
@@ -521,7 +521,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Receiver for CompactString`
 
-- <span id="compactstring-type-target"></span>`type Target = T`
+- <span id="compactstring-receiver-type-target"></span>`type Target = T`
 
 ##### `impl ToCompactString for CompactString`
 
@@ -613,7 +613,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl Deref for Drain<'_>`
 
-- <span id="drain-type-target"></span>`type Target = str`
+- <span id="drain-deref-type-target"></span>`type Target = str`
 
 - <span id="drain-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -633,15 +633,15 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl IntoIterator for Drain<'a>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Drain<'_>`
 
-- <span id="drain-type-item"></span>`type Item = char`
+- <span id="drain-iterator-type-item"></span>`type Item = char`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<char>`
 
@@ -653,7 +653,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl Receiver for Drain<'a>`
 
-- <span id="drain-type-target"></span>`type Target = T`
+- <span id="drain-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Send for Drain<'_>`
 
@@ -825,8 +825,8 @@ trait ToCompactString { ... }
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
-[`fmt::Display`](../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
+[`fmt::Display`](../miette_derive/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
+[`fmt::Display`](../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
 implementation for free.
 
 #### Required Methods
@@ -912,7 +912,7 @@ depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
+the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
 
 # Panics
 

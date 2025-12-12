@@ -7,87 +7,87 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
-  - [`CASED_LETTER`](#cased_letter)
-  - [`CLOSE_PUNCTUATION`](#close_punctuation)
-  - [`CONNECTOR_PUNCTUATION`](#connector_punctuation)
+  - [`BY_NAME`](#by-name)
+  - [`CASED_LETTER`](#cased-letter)
+  - [`CLOSE_PUNCTUATION`](#close-punctuation)
+  - [`CONNECTOR_PUNCTUATION`](#connector-punctuation)
   - [`CONTROL`](#control)
-  - [`CURRENCY_SYMBOL`](#currency_symbol)
-  - [`DASH_PUNCTUATION`](#dash_punctuation)
-  - [`DECIMAL_NUMBER`](#decimal_number)
-  - [`ENCLOSING_MARK`](#enclosing_mark)
-  - [`FINAL_PUNCTUATION`](#final_punctuation)
+  - [`CURRENCY_SYMBOL`](#currency-symbol)
+  - [`DASH_PUNCTUATION`](#dash-punctuation)
+  - [`DECIMAL_NUMBER`](#decimal-number)
+  - [`ENCLOSING_MARK`](#enclosing-mark)
+  - [`FINAL_PUNCTUATION`](#final-punctuation)
   - [`FORMAT`](#format)
-  - [`INITIAL_PUNCTUATION`](#initial_punctuation)
+  - [`INITIAL_PUNCTUATION`](#initial-punctuation)
   - [`LETTER`](#letter)
-  - [`LETTER_NUMBER`](#letter_number)
-  - [`LINE_SEPARATOR`](#line_separator)
-  - [`LOWERCASE_LETTER`](#lowercase_letter)
+  - [`LETTER_NUMBER`](#letter-number)
+  - [`LINE_SEPARATOR`](#line-separator)
+  - [`LOWERCASE_LETTER`](#lowercase-letter)
   - [`MARK`](#mark)
-  - [`MATH_SYMBOL`](#math_symbol)
-  - [`MODIFIER_LETTER`](#modifier_letter)
-  - [`MODIFIER_SYMBOL`](#modifier_symbol)
-  - [`NONSPACING_MARK`](#nonspacing_mark)
+  - [`MATH_SYMBOL`](#math-symbol)
+  - [`MODIFIER_LETTER`](#modifier-letter)
+  - [`MODIFIER_SYMBOL`](#modifier-symbol)
+  - [`NONSPACING_MARK`](#nonspacing-mark)
   - [`NUMBER`](#number)
-  - [`OPEN_PUNCTUATION`](#open_punctuation)
+  - [`OPEN_PUNCTUATION`](#open-punctuation)
   - [`OTHER`](#other)
-  - [`OTHER_LETTER`](#other_letter)
-  - [`OTHER_NUMBER`](#other_number)
-  - [`OTHER_PUNCTUATION`](#other_punctuation)
-  - [`OTHER_SYMBOL`](#other_symbol)
-  - [`PARAGRAPH_SEPARATOR`](#paragraph_separator)
-  - [`PRIVATE_USE`](#private_use)
+  - [`OTHER_LETTER`](#other-letter)
+  - [`OTHER_NUMBER`](#other-number)
+  - [`OTHER_PUNCTUATION`](#other-punctuation)
+  - [`OTHER_SYMBOL`](#other-symbol)
+  - [`PARAGRAPH_SEPARATOR`](#paragraph-separator)
+  - [`PRIVATE_USE`](#private-use)
   - [`PUNCTUATION`](#punctuation)
   - [`SEPARATOR`](#separator)
-  - [`SPACE_SEPARATOR`](#space_separator)
-  - [`SPACING_MARK`](#spacing_mark)
+  - [`SPACE_SEPARATOR`](#space-separator)
+  - [`SPACING_MARK`](#spacing-mark)
   - [`SYMBOL`](#symbol)
-  - [`TITLECASE_LETTER`](#titlecase_letter)
+  - [`TITLECASE_LETTER`](#titlecase-letter)
   - [`UNASSIGNED`](#unassigned)
-  - [`UPPERCASE_LETTER`](#uppercase_letter)
+  - [`UPPERCASE_LETTER`](#uppercase-letter)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
-| [`CASED_LETTER`](#cased_letter) | const |  |
-| [`CLOSE_PUNCTUATION`](#close_punctuation) | const |  |
-| [`CONNECTOR_PUNCTUATION`](#connector_punctuation) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
+| [`CASED_LETTER`](#cased-letter) | const |  |
+| [`CLOSE_PUNCTUATION`](#close-punctuation) | const |  |
+| [`CONNECTOR_PUNCTUATION`](#connector-punctuation) | const |  |
 | [`CONTROL`](#control) | const |  |
-| [`CURRENCY_SYMBOL`](#currency_symbol) | const |  |
-| [`DASH_PUNCTUATION`](#dash_punctuation) | const |  |
-| [`DECIMAL_NUMBER`](#decimal_number) | const |  |
-| [`ENCLOSING_MARK`](#enclosing_mark) | const |  |
-| [`FINAL_PUNCTUATION`](#final_punctuation) | const |  |
+| [`CURRENCY_SYMBOL`](#currency-symbol) | const |  |
+| [`DASH_PUNCTUATION`](#dash-punctuation) | const |  |
+| [`DECIMAL_NUMBER`](#decimal-number) | const |  |
+| [`ENCLOSING_MARK`](#enclosing-mark) | const |  |
+| [`FINAL_PUNCTUATION`](#final-punctuation) | const |  |
 | [`FORMAT`](#format) | const |  |
-| [`INITIAL_PUNCTUATION`](#initial_punctuation) | const |  |
+| [`INITIAL_PUNCTUATION`](#initial-punctuation) | const |  |
 | [`LETTER`](#letter) | const |  |
-| [`LETTER_NUMBER`](#letter_number) | const |  |
-| [`LINE_SEPARATOR`](#line_separator) | const |  |
-| [`LOWERCASE_LETTER`](#lowercase_letter) | const |  |
+| [`LETTER_NUMBER`](#letter-number) | const |  |
+| [`LINE_SEPARATOR`](#line-separator) | const |  |
+| [`LOWERCASE_LETTER`](#lowercase-letter) | const |  |
 | [`MARK`](#mark) | const |  |
-| [`MATH_SYMBOL`](#math_symbol) | const |  |
-| [`MODIFIER_LETTER`](#modifier_letter) | const |  |
-| [`MODIFIER_SYMBOL`](#modifier_symbol) | const |  |
-| [`NONSPACING_MARK`](#nonspacing_mark) | const |  |
+| [`MATH_SYMBOL`](#math-symbol) | const |  |
+| [`MODIFIER_LETTER`](#modifier-letter) | const |  |
+| [`MODIFIER_SYMBOL`](#modifier-symbol) | const |  |
+| [`NONSPACING_MARK`](#nonspacing-mark) | const |  |
 | [`NUMBER`](#number) | const |  |
-| [`OPEN_PUNCTUATION`](#open_punctuation) | const |  |
+| [`OPEN_PUNCTUATION`](#open-punctuation) | const |  |
 | [`OTHER`](#other) | const |  |
-| [`OTHER_LETTER`](#other_letter) | const |  |
-| [`OTHER_NUMBER`](#other_number) | const |  |
-| [`OTHER_PUNCTUATION`](#other_punctuation) | const |  |
-| [`OTHER_SYMBOL`](#other_symbol) | const |  |
-| [`PARAGRAPH_SEPARATOR`](#paragraph_separator) | const |  |
-| [`PRIVATE_USE`](#private_use) | const |  |
+| [`OTHER_LETTER`](#other-letter) | const |  |
+| [`OTHER_NUMBER`](#other-number) | const |  |
+| [`OTHER_PUNCTUATION`](#other-punctuation) | const |  |
+| [`OTHER_SYMBOL`](#other-symbol) | const |  |
+| [`PARAGRAPH_SEPARATOR`](#paragraph-separator) | const |  |
+| [`PRIVATE_USE`](#private-use) | const |  |
 | [`PUNCTUATION`](#punctuation) | const |  |
 | [`SEPARATOR`](#separator) | const |  |
-| [`SPACE_SEPARATOR`](#space_separator) | const |  |
-| [`SPACING_MARK`](#spacing_mark) | const |  |
+| [`SPACE_SEPARATOR`](#space-separator) | const |  |
+| [`SPACING_MARK`](#spacing-mark) | const |  |
 | [`SYMBOL`](#symbol) | const |  |
-| [`TITLECASE_LETTER`](#titlecase_letter) | const |  |
+| [`TITLECASE_LETTER`](#titlecase-letter) | const |  |
 | [`UNASSIGNED`](#unassigned) | const |  |
-| [`UPPERCASE_LETTER`](#uppercase_letter) | const |  |
+| [`UPPERCASE_LETTER`](#uppercase-letter) | const |  |
 
 ## Constants
 

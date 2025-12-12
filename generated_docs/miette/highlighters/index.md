@@ -66,7 +66,7 @@ Wrapping the trait object in this way allows us to implement `Debug` and `Clone`
 
 ##### `impl Deref for MietteHighlighter`
 
-- <span id="miettehighlighter-type-target"></span>`type Target = dyn Highlighter + Send + Sync`
+- <span id="miettehighlighter-deref-type-target"></span>`type Target = dyn Highlighter + Sync + Send`
 
 - <span id="miettehighlighter-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -74,7 +74,7 @@ Wrapping the trait object in this way allows us to implement `Debug` and `Clone`
 
 ##### `impl Receiver for MietteHighlighter`
 
-- <span id="miettehighlighter-type-target"></span>`type Target = T`
+- <span id="miettehighlighter-receiver-type-target"></span>`type Target = T`
 
 ### `BlankHighlighter`
 

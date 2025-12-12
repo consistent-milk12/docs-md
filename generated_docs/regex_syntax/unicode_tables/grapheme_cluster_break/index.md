@@ -7,7 +7,7 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
+  - [`BY_NAME`](#by-name)
   - [`CR`](#cr)
   - [`CONTROL`](#control)
   - [`EXTEND`](#extend)
@@ -16,7 +16,7 @@
   - [`LV`](#lv)
   - [`LVT`](#lvt)
   - [`PREPEND`](#prepend)
-  - [`REGIONAL_INDICATOR`](#regional_indicator)
+  - [`REGIONAL_INDICATOR`](#regional-indicator)
   - [`SPACINGMARK`](#spacingmark)
   - [`T`](#t)
   - [`V`](#v)
@@ -26,7 +26,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
 | [`CR`](#cr) | const |  |
 | [`CONTROL`](#control) | const |  |
 | [`EXTEND`](#extend) | const |  |
@@ -35,7 +35,7 @@
 | [`LV`](#lv) | const |  |
 | [`LVT`](#lvt) | const |  |
 | [`PREPEND`](#prepend) | const |  |
-| [`REGIONAL_INDICATOR`](#regional_indicator) | const |  |
+| [`REGIONAL_INDICATOR`](#regional-indicator) | const |  |
 | [`SPACINGMARK`](#spacingmark) | const |  |
 | [`T`](#t) | const |  |
 | [`V`](#v) | const |  |

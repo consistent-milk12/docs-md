@@ -67,7 +67,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl BitOr for Style`
 
-- <span id="style-type-output"></span>`type Output = Style`
+- <span id="style-bitor-type-output"></span>`type Output = Style`
 
 - <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 
@@ -115,7 +115,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Sub for Style`
 
-- <span id="style-type-output"></span>`type Output = Style`
+- <span id="style-sub-type-output"></span>`type Output = Style`
 
 - <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 

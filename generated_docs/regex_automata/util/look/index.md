@@ -17,7 +17,7 @@ This module principally defines two types:
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`is_word_char`](#is_word_char) | mod | A module that looks for word codepoints using regex-syntax's data tables. |
+| [`is_word_char`](#is-word-char) | mod | A module that looks for word codepoints using regex-syntax's data tables. |
 | [`LookSet`](#lookset) | struct | LookSet is a memory-efficient set of look-around assertions. |
 | [`LookSetIter`](#looksetiter) | struct | An iterator over all look-around assertions in a [`LookSet`]. |
 | [`LookMatcher`](#lookmatcher) | struct | A matcher for look-around assertions. |
@@ -168,15 +168,15 @@ This iterator is created by `LookSet::iter`.
 
 ##### `impl IntoIterator for LookSetIter`
 
-- <span id="looksetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="looksetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="looksetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="looksetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="looksetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LookSetIter`
 
-- <span id="looksetiter-type-item"></span>`type Item = Look`
+- <span id="looksetiter-iterator-type-item"></span>`type Item = Look`
 
 - <span id="looksetiter-next"></span>`fn next(&mut self) -> Option<Look>` — [`Look`](#look)
 

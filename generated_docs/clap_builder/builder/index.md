@@ -10,22 +10,22 @@ Define [`Command`](command/index.md) line [arguments][`Arg`](arg/index.md)
 
 - [Modules](#modules)
   - [`action`](#action)
-  - [`app_settings`](#app_settings)
+  - [`app_settings`](#app-settings)
   - [`arg`](#arg)
-  - [`arg_group`](#arg_group)
-  - [`arg_predicate`](#arg_predicate)
-  - [`arg_settings`](#arg_settings)
+  - [`arg_group`](#arg-group)
+  - [`arg_predicate`](#arg-predicate)
+  - [`arg_settings`](#arg-settings)
   - [`command`](#command)
   - [`ext`](#ext)
-  - [`os_str`](#os_str)
-  - [`possible_value`](#possible_value)
+  - [`os_str`](#os-str)
+  - [`possible_value`](#possible-value)
   - [`range`](#range)
   - [`resettable`](#resettable)
   - [`str`](#str)
-  - [`styled_str`](#styled_str)
-  - [`value_hint`](#value_hint)
-  - [`value_parser`](#value_parser)
-  - [`debug_asserts`](#debug_asserts)
+  - [`styled_str`](#styled-str)
+  - [`value_hint`](#value-hint)
+  - [`value_parser`](#value-parser)
+  - [`debug_asserts`](#debug-asserts)
   - [`styling`](#styling)
 - [Structs](#structs)
   - [`Str`](#str)
@@ -67,22 +67,22 @@ Define [`Command`](command/index.md) line [arguments][`Arg`](arg/index.md)
 | Item | Kind | Description |
 |------|------|-------------|
 | [`action`](#action) | mod |  |
-| [`app_settings`](#app_settings) | mod |  |
+| [`app_settings`](#app-settings) | mod |  |
 | [`arg`](#arg) | mod |  |
-| [`arg_group`](#arg_group) | mod |  |
-| [`arg_predicate`](#arg_predicate) | mod |  |
-| [`arg_settings`](#arg_settings) | mod |  |
+| [`arg_group`](#arg-group) | mod |  |
+| [`arg_predicate`](#arg-predicate) | mod |  |
+| [`arg_settings`](#arg-settings) | mod |  |
 | [`command`](#command) | mod |  |
 | [`ext`](#ext) | mod |  |
-| [`os_str`](#os_str) | mod |  |
-| [`possible_value`](#possible_value) | mod |  |
+| [`os_str`](#os-str) | mod |  |
+| [`possible_value`](#possible-value) | mod |  |
 | [`range`](#range) | mod |  |
 | [`resettable`](#resettable) | mod |  |
 | [`str`](#str) | mod |  |
-| [`styled_str`](#styled_str) | mod |  |
-| [`value_hint`](#value_hint) | mod |  |
-| [`value_parser`](#value_parser) | mod |  |
-| [`debug_asserts`](#debug_asserts) | mod |  |
+| [`styled_str`](#styled-str) | mod |  |
+| [`value_hint`](#value-hint) | mod |  |
+| [`value_parser`](#value-parser) | mod |  |
+| [`debug_asserts`](#debug-asserts) | mod |  |
 | [`styling`](#styling) | mod | Terminal [`Styles`] for help and error output |
 | [`Str`](#str) | struct |  |
 | [`Arg`](#arg) | struct |  |
@@ -186,7 +186,7 @@ feature
 
 ##### `impl Deref for Str`
 
-- <span id="str-type-target"></span>`type Target = str`
+- <span id="str-deref-type-target"></span>`type Target = str`
 
 - <span id="str-deref"></span>`fn deref(&self) -> &str`
 
@@ -218,7 +218,7 @@ feature
 
 ##### `impl Receiver for Str`
 
-- <span id="str-type-target"></span>`type Target = T`
+- <span id="str-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Str`
 
@@ -667,7 +667,7 @@ let m = Command::new("My Program")
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../util/id/index.md#id)
 
@@ -722,7 +722,7 @@ feature
 
 ##### `impl Deref for OsStr`
 
-- <span id="osstr-type-target"></span>`type Target = OsStr`
+- <span id="osstr-deref-type-target"></span>`type Target = OsStr`
 
 - <span id="osstr-deref"></span>`fn deref(&self) -> &std::ffi::OsStr`
 
@@ -750,7 +750,7 @@ feature
 
 ##### `impl Receiver for OsStr`
 
-- <span id="osstr-type-target"></span>`type Target = T`
+- <span id="osstr-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for OsStr`
 
@@ -1148,7 +1148,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 ##### `impl TypedValueParser for BoolValueParser`
 
-- <span id="boolvalueparser-type-value"></span>`type Value = bool`
+- <span id="boolvalueparser-typedvalueparser-type-value"></span>`type Value = bool`
 
 - <span id="boolvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1236,7 +1236,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 ##### `impl TypedValueParser for BoolishValueParser`
 
-- <span id="boolishvalueparser-type-value"></span>`type Value = bool`
+- <span id="boolishvalueparser-typedvalueparser-type-value"></span>`type Value = bool`
 
 - <span id="boolishvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1307,13 +1307,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 
 - <span id="enumvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for EnumValueParser<E>`
+##### `impl IntoResettable for EnumValueParser<E>`
 
 - <span id="enumvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md#resettable), [`ValueParser`](value_parser/index.md#valueparser)
 
 ##### `impl<E: crate::ValueEnum + Clone + Send + Sync + 'static> TypedValueParser for EnumValueParser<E>`
 
-- <span id="enumvalueparser-type-value"></span>`type Value = E`
+- <span id="enumvalueparser-typedvalueparser-type-value"></span>`type Value = E`
 
 - <span id="enumvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1397,7 +1397,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 ##### `impl TypedValueParser for FalseyValueParser`
 
-- <span id="falseyvalueparser-type-value"></span>`type Value = bool`
+- <span id="falseyvalueparser-typedvalueparser-type-value"></span>`type Value = bool`
 
 - <span id="falseyvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1432,13 +1432,13 @@ See `TypedValueParser::map`
 
 - <span id="mapvalueparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoResettable for MapValueParser<P, F>`
+##### `impl IntoResettable for MapValueParser<P, F>`
 
 - <span id="mapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md#resettable), [`ValueParser`](value_parser/index.md#valueparser)
 
-##### `impl<P, F, T> TypedValueParser for MapValueParser<P, F>`
+##### `impl<P, F> TypedValueParser for MapValueParser<P, F>`
 
-- <span id="mapvalueparser-type-value"></span>`type Value = T`
+- <span id="mapvalueparser-typedvalueparser-type-value"></span>`type Value = T`
 
 - <span id="mapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1516,7 +1516,7 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 
 ##### `impl TypedValueParser for NonEmptyStringValueParser`
 
-- <span id="nonemptystringvalueparser-type-value"></span>`type Value = String`
+- <span id="nonemptystringvalueparser-typedvalueparser-type-value"></span>`type Value = String`
 
 - <span id="nonemptystringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1559,7 +1559,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 ##### `impl TypedValueParser for OsStringValueParser`
 
-- <span id="osstringvalueparser-type-value"></span>`type Value = OsString`
+- <span id="osstringvalueparser-typedvalueparser-type-value"></span>`type Value = OsString`
 
 - <span id="osstringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1604,7 +1604,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 ##### `impl TypedValueParser for PathBufValueParser`
 
-- <span id="pathbufvalueparser-type-value"></span>`type Value = PathBuf`
+- <span id="pathbufvalueparser-typedvalueparser-type-value"></span>`type Value = PathBuf`
 
 - <span id="pathbufvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1678,7 +1678,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 ##### `impl TypedValueParser for PossibleValuesParser`
 
-- <span id="possiblevaluesparser-type-value"></span>`type Value = String`
+- <span id="possiblevaluesparser-typedvalueparser-type-value"></span>`type Value = String`
 
 - <span id="possiblevaluesparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1768,13 +1768,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 - <span id="rangedi64valueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for RangedI64ValueParser<T>`
+##### `impl IntoResettable for RangedI64ValueParser<T>`
 
 - <span id="rangedi64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md#resettable), [`ValueParser`](value_parser/index.md#valueparser)
 
 ##### `impl<T: TryFrom<i64> + Clone + Send + Sync + 'static> TypedValueParser for RangedI64ValueParser<T>`
 
-- <span id="rangedi64valueparser-type-value"></span>`type Value = T`
+- <span id="rangedi64valueparser-typedvalueparser-type-value"></span>`type Value = T`
 
 - <span id="rangedi64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1852,13 +1852,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 - <span id="rangedu64valueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for RangedU64ValueParser<T>`
+##### `impl IntoResettable for RangedU64ValueParser<T>`
 
 - <span id="rangedu64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md#resettable), [`ValueParser`](value_parser/index.md#valueparser)
 
 ##### `impl<T: TryFrom<u64> + Clone + Send + Sync + 'static> TypedValueParser for RangedU64ValueParser<T>`
 
-- <span id="rangedu64valueparser-type-value"></span>`type Value = T`
+- <span id="rangedu64valueparser-typedvalueparser-type-value"></span>`type Value = T`
 
 - <span id="rangedu64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1901,7 +1901,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 ##### `impl TypedValueParser for StringValueParser`
 
-- <span id="stringvalueparser-type-value"></span>`type Value = String`
+- <span id="stringvalueparser-typedvalueparser-type-value"></span>`type Value = String`
 
 - <span id="stringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -1936,13 +1936,13 @@ See `TypedValueParser::try_map`
 
 - <span id="trymapvalueparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoResettable for TryMapValueParser<P, F>`
+##### `impl IntoResettable for TryMapValueParser<P, F>`
 
 - <span id="trymapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md#resettable), [`ValueParser`](value_parser/index.md#valueparser)
 
-##### `impl<P, F, T, E> TypedValueParser for TryMapValueParser<P, F>`
+##### `impl<P, F> TypedValueParser for TryMapValueParser<P, F>`
 
-- <span id="trymapvalueparser-type-value"></span>`type Value = T`
+- <span id="trymapvalueparser-typedvalueparser-type-value"></span>`type Value = T`
 
 - <span id="trymapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -2017,7 +2017,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 
 ##### `impl TypedValueParser for UnknownArgumentValueParser`
 
-- <span id="unknownargumentvalueparser-type-value"></span>`type Value = String`
+- <span id="unknownargumentvalueparser-typedvalueparser-type-value"></span>`type Value = String`
 
 - <span id="unknownargumentvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md#command), [`Arg`](arg/index.md#arg), [`TypedValueParser`](value_parser/index.md#typedvalueparser), [`Error`](../index.md#error)
 
@@ -2781,7 +2781,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl FromStr for ValueHint`
 
-- <span id="valuehint-type-err"></span>`type Err = String`
+- <span id="valuehint-fromstr-type-err"></span>`type Err = String`
 
 - <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 

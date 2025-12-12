@@ -28,9 +28,9 @@ assert_eq!((0..=100).sum::<u64>(), r);
 | [`private`](#private) | mod | These traits help drive integer type inference. |
 | [`Iter`](#iter) | struct | Parallel iterator over an inclusive range, implemented for all integer types and `char`. |
 | [`convert!`](#convert) | macro |  |
-| [`parallel_range_impl!`](#parallel_range_impl) | macro |  |
-| [`indexed_range_impl!`](#indexed_range_impl) | macro |  |
-| [`convert_char!`](#convert_char) | macro |  |
+| [`parallel_range_impl!`](#parallel-range-impl) | macro |  |
+| [`indexed_range_impl!`](#indexed-range-impl) | macro |  |
+| [`convert_char!`](#convert-char) | macro |  |
 
 ## Modules
 
@@ -96,15 +96,15 @@ assert_eq!(p, s);
 
 ##### `impl<T> IntoParallelIterator for Iter<T>`
 
-- <span id="iter-type-iter"></span>`type Iter = T`
+- <span id="iter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- <span id="iter-type-item"></span>`type Item = T`
+- <span id="iter-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -112,9 +112,9 @@ assert_eq!(p, s);
 
 ##### `impl<T> Pointable for Iter<T>`
 
-- <span id="iter-const-align"></span>`const ALIGN: usize`
+- <span id="iter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-type-init"></span>`type Init = T`
+- <span id="iter-pointable-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

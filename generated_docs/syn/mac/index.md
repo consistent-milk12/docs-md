@@ -12,7 +12,7 @@
 | [`printing`](#printing) | mod |  |
 | [`Macro`](#macro) | struct | A macro invocation: `println!("{}", mac)`. |
 | [`MacroDelimiter`](#macrodelimiter) | enum | A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`. |
-| [`parse_delimiter`](#parse_delimiter) | fn |  |
+| [`parse_delimiter`](#parse-delimiter) | fn |  |
 
 ## Modules
 

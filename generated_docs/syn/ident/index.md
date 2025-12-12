@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`parsing`](#parsing) | mod |  |
-| [`xid_ok`](#xid_ok) | fn |  |
-| [`ident_from_token!`](#ident_from_token) | macro |  |
+| [`xid_ok`](#xid-ok) | fn |  |
+| [`ident_from_token!`](#ident-from-token) | macro |  |
 
 ## Modules
 

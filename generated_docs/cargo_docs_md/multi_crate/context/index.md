@@ -32,7 +32,7 @@ struct MultiCrateContext<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:41-64`*
+*Defined in `src/multi_crate/context.rs:39-62`*
 
 Shared context for multi-crate documentation generation.
 
@@ -106,9 +106,9 @@ generation across crates.
 
 ##### `impl Pointable for MultiCrateContext<'a>`
 
-- <span id="multicratecontext-const-align"></span>`const ALIGN: usize`
+- <span id="multicratecontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratecontext-type-init"></span>`type Init = T`
+- <span id="multicratecontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -135,7 +135,7 @@ struct SingleCrateView<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:278-303`*
+*Defined in `src/multi_crate/context.rs:276-301`*
 
 View of a single crate within multi-crate context.
 
@@ -283,9 +283,9 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl Pointable for SingleCrateView<'a>`
 
-- <span id="singlecrateview-const-align"></span>`const ALIGN: usize`
+- <span id="singlecrateview-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="singlecrateview-type-init"></span>`type Init = T`
+- <span id="singlecrateview-pointable-type-init"></span>`type Init = T`
 
 - <span id="singlecrateview-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

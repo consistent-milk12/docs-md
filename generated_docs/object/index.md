@@ -54,10 +54,10 @@ points of the crate.
   - [`macho`](#macho)
   - [`pe`](#pe)
   - [`xcoff`](#xcoff)
-  - [`read_ref`](#read_ref)
-  - [`read_cache`](#read_cache)
+  - [`read_ref`](#read-ref)
+  - [`read_cache`](#read-cache)
   - [`util`](#util)
-  - [`gnu_compression`](#gnu_compression)
+  - [`gnu_compression`](#gnu-compression)
   - [`any`](#any)
   - [`archive`](#archive)
   - [`coff`](#coff)
@@ -120,16 +120,16 @@ points of the crate.
   - [`ReadError`](#readerror)
   - [`SymbolMapEntry`](#symbolmapentry)
 - [Functions](#functions)
-  - [`from_bytes`](#from_bytes)
-  - [`from_bytes_mut`](#from_bytes_mut)
-  - [`slice_from_bytes`](#slice_from_bytes)
-  - [`slice_from_bytes_mut`](#slice_from_bytes_mut)
-  - [`slice_from_all_bytes`](#slice_from_all_bytes)
-  - [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut)
-  - [`bytes_of`](#bytes_of)
-  - [`bytes_of_mut`](#bytes_of_mut)
-  - [`bytes_of_slice`](#bytes_of_slice)
-  - [`bytes_of_slice_mut`](#bytes_of_slice_mut)
+  - [`from_bytes`](#from-bytes)
+  - [`from_bytes_mut`](#from-bytes-mut)
+  - [`slice_from_bytes`](#slice-from-bytes)
+  - [`slice_from_bytes_mut`](#slice-from-bytes-mut)
+  - [`slice_from_all_bytes`](#slice-from-all-bytes)
+  - [`slice_from_all_bytes_mut`](#slice-from-all-bytes-mut)
+  - [`bytes_of`](#bytes-of)
+  - [`bytes_of_mut`](#bytes-of-mut)
+  - [`bytes_of_slice`](#bytes-of-slice)
+  - [`bytes_of_slice_mut`](#bytes-of-slice-mut)
 - [Type Aliases](#type-aliases)
   - [`NativeEndian`](#nativeendian)
   - [`U16`](#u16)
@@ -142,8 +142,8 @@ points of the crate.
   - [`Result`](#result)
   - [`NativeFile`](#nativefile)
 - [Macros](#macros)
-  - [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod)
-  - [`unsafe_impl_pod!`](#unsafe_impl_pod)
+  - [`unsafe_impl_endian_pod!`](#unsafe-impl-endian-pod)
+  - [`unsafe_impl_pod!`](#unsafe-impl-pod)
 
 ## Quick Reference
 
@@ -158,10 +158,10 @@ points of the crate.
 | [`macho`](#macho) | mod | Mach-O definitions. |
 | [`pe`](#pe) | mod | PE/COFF definitions. |
 | [`xcoff`](#xcoff) | mod | XCOFF definitions |
-| [`read_ref`](#read_ref) | mod |  |
-| [`read_cache`](#read_cache) | mod |  |
+| [`read_ref`](#read-ref) | mod |  |
+| [`read_cache`](#read-cache) | mod |  |
 | [`util`](#util) | mod |  |
-| [`gnu_compression`](#gnu_compression) | mod |  |
+| [`gnu_compression`](#gnu-compression) | mod |  |
 | [`any`](#any) | mod |  |
 | [`archive`](#archive) | mod | Support for archive files. |
 | [`coff`](#coff) | mod | Support for reading Windows COFF files. |
@@ -220,16 +220,16 @@ points of the crate.
 | [`Pod`](#pod) | trait | A trait for types that can safely be converted from and to byte slices. |
 | [`ReadError`](#readerror) | trait |  |
 | [`SymbolMapEntry`](#symbolmapentry) | trait | An entry in a [`SymbolMap`]. |
-| [`from_bytes`](#from_bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
-| [`from_bytes_mut`](#from_bytes_mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
-| [`slice_from_bytes`](#slice_from_bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
-| [`slice_from_bytes_mut`](#slice_from_bytes_mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
-| [`slice_from_all_bytes`](#slice_from_all_bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
-| [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
-| [`bytes_of`](#bytes_of) | fn | Cast a `Pod` type to a byte slice. |
-| [`bytes_of_mut`](#bytes_of_mut) | fn | Cast a `Pod` type to a mutable byte slice. |
-| [`bytes_of_slice`](#bytes_of_slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
-| [`bytes_of_slice_mut`](#bytes_of_slice_mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
+| [`from_bytes`](#from-bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
+| [`from_bytes_mut`](#from-bytes-mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
+| [`slice_from_bytes`](#slice-from-bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_bytes_mut`](#slice-from-bytes-mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes`](#slice-from-all-bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes_mut`](#slice-from-all-bytes-mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`bytes_of`](#bytes-of) | fn | Cast a `Pod` type to a byte slice. |
+| [`bytes_of_mut`](#bytes-of-mut) | fn | Cast a `Pod` type to a mutable byte slice. |
+| [`bytes_of_slice`](#bytes-of-slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
+| [`bytes_of_slice_mut`](#bytes-of-slice-mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
 | [`NativeEndian`](#nativeendian) | type | The native endianness for the target platform. |
 | [`U16`](#u16) | type | A `u16` value with an externally specified endianness of type `E`. |
 | [`U32`](#u32) | type | A `u32` value with an externally specified endianness of type `E`. |
@@ -240,8 +240,8 @@ points of the crate.
 | [`Result`](#result) | type |  |
 | [`Result`](#result) | type | The result type used within the read module. |
 | [`NativeFile`](#nativefile) | type | The native executable file for the target platform. |
-| [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod) | macro |  |
-| [`unsafe_impl_pod!`](#unsafe_impl_pod) | macro |  |
+| [`unsafe_impl_endian_pod!`](#unsafe-impl-endian-pod) | macro |  |
+| [`unsafe_impl_pod!`](#unsafe-impl-pod) | macro |  |
 
 ## Modules
 

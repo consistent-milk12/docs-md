@@ -16,27 +16,27 @@
   - [`CanonicalClassQuery`](#canonicalclassquery)
 - [Functions](#functions)
   - [`class`](#class)
-  - [`perl_word`](#perl_word)
-  - [`perl_space`](#perl_space)
-  - [`perl_digit`](#perl_digit)
-  - [`hir_class`](#hir_class)
-  - [`is_word_character`](#is_word_character)
-  - [`canonical_gencat`](#canonical_gencat)
-  - [`canonical_script`](#canonical_script)
-  - [`canonical_prop`](#canonical_prop)
-  - [`canonical_value`](#canonical_value)
-  - [`property_values`](#property_values)
-  - [`property_set`](#property_set)
+  - [`perl_word`](#perl-word)
+  - [`perl_space`](#perl-space)
+  - [`perl_digit`](#perl-digit)
+  - [`hir_class`](#hir-class)
+  - [`is_word_character`](#is-word-character)
+  - [`canonical_gencat`](#canonical-gencat)
+  - [`canonical_script`](#canonical-script)
+  - [`canonical_prop`](#canonical-prop)
+  - [`canonical_value`](#canonical-value)
+  - [`property_values`](#property-values)
+  - [`property_set`](#property-set)
   - [`ages`](#ages)
   - [`gencat`](#gencat)
   - [`script`](#script)
-  - [`script_extension`](#script_extension)
-  - [`bool_property`](#bool_property)
+  - [`script_extension`](#script-extension)
+  - [`bool_property`](#bool-property)
   - [`gcb`](#gcb)
   - [`wb`](#wb)
   - [`sb`](#sb)
-  - [`symbolic_name_normalize`](#symbolic_name_normalize)
-  - [`symbolic_name_normalize_bytes`](#symbolic_name_normalize_bytes)
+  - [`symbolic_name_normalize`](#symbolic-name-normalize)
+  - [`symbolic_name_normalize_bytes`](#symbolic-name-normalize-bytes)
 - [Type Aliases](#type-aliases)
   - [`Range`](#range)
   - [`PropertyValues`](#propertyvalues)
@@ -52,27 +52,27 @@
 | [`ClassQuery`](#classquery) | enum | A query for finding a character class defined by Unicode. |
 | [`CanonicalClassQuery`](#canonicalclassquery) | enum | Like ClassQuery, but its parameters have been canonicalized. |
 | [`class`](#class) | fn | Looks up a Unicode class given a query. |
-| [`perl_word`](#perl_word) | fn | Returns a Unicode aware class for \w. |
-| [`perl_space`](#perl_space) | fn | Returns a Unicode aware class for \s. |
-| [`perl_digit`](#perl_digit) | fn | Returns a Unicode aware class for \d. |
-| [`hir_class`](#hir_class) | fn | Build a Unicode HIR class from a sequence of Unicode scalar value ranges. |
-| [`is_word_character`](#is_word_character) | fn | Returns true only if the given codepoint is in the `\w` character class. |
-| [`canonical_gencat`](#canonical_gencat) | fn |  |
-| [`canonical_script`](#canonical_script) | fn |  |
-| [`canonical_prop`](#canonical_prop) | fn | Find the canonical property name for the given normalized property name. |
-| [`canonical_value`](#canonical_value) | fn | Find the canonical property value for the given normalized property value. |
-| [`property_values`](#property_values) | fn | Return the table of property values for the given property name. |
-| [`property_set`](#property_set) | fn |  |
+| [`perl_word`](#perl-word) | fn | Returns a Unicode aware class for \w. |
+| [`perl_space`](#perl-space) | fn | Returns a Unicode aware class for \s. |
+| [`perl_digit`](#perl-digit) | fn | Returns a Unicode aware class for \d. |
+| [`hir_class`](#hir-class) | fn | Build a Unicode HIR class from a sequence of Unicode scalar value ranges. |
+| [`is_word_character`](#is-word-character) | fn | Returns true only if the given codepoint is in the `\w` character class. |
+| [`canonical_gencat`](#canonical-gencat) | fn |  |
+| [`canonical_script`](#canonical-script) | fn |  |
+| [`canonical_prop`](#canonical-prop) | fn | Find the canonical property name for the given normalized property name. |
+| [`canonical_value`](#canonical-value) | fn | Find the canonical property value for the given normalized property value. |
+| [`property_values`](#property-values) | fn | Return the table of property values for the given property name. |
+| [`property_set`](#property-set) | fn |  |
 | [`ages`](#ages) | fn | Returns an iterator over Unicode Age sets. |
 | [`gencat`](#gencat) | fn | Returns the Unicode HIR class corresponding to the given general category. |
 | [`script`](#script) | fn | Returns the Unicode HIR class corresponding to the given script. |
-| [`script_extension`](#script_extension) | fn | Returns the Unicode HIR class corresponding to the given script extension. |
-| [`bool_property`](#bool_property) | fn | Returns the Unicode HIR class corresponding to the given Unicode boolean property. |
+| [`script_extension`](#script-extension) | fn | Returns the Unicode HIR class corresponding to the given script extension. |
+| [`bool_property`](#bool-property) | fn | Returns the Unicode HIR class corresponding to the given Unicode boolean property. |
 | [`gcb`](#gcb) | fn | Returns the Unicode HIR class corresponding to the given grapheme cluster break property. |
 | [`wb`](#wb) | fn | Returns the Unicode HIR class corresponding to the given word break property. |
 | [`sb`](#sb) | fn | Returns the Unicode HIR class corresponding to the given sentence break property. |
-| [`symbolic_name_normalize`](#symbolic_name_normalize) | fn | Like symbolic_name_normalize_bytes, but operates on a string. |
-| [`symbolic_name_normalize_bytes`](#symbolic_name_normalize_bytes) | fn | Normalize the given symbolic name in place according to UAX44-LM3. |
+| [`symbolic_name_normalize`](#symbolic-name-normalize) | fn | Like symbolic_name_normalize_bytes, but operates on a string. |
+| [`symbolic_name_normalize_bytes`](#symbolic-name-normalize-bytes) | fn | Normalize the given symbolic name in place according to UAX44-LM3. |
 | [`Range`](#range) | type | An inclusive range of codepoints from a generated file (hence the static lifetime). |
 | [`PropertyValues`](#propertyvalues) | type | A mapping of property values for a specific property. |
 

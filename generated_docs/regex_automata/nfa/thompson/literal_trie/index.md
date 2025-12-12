@@ -287,15 +287,15 @@ we can include it in the `Frame` type for non-recursive trie traversal.
 
 ##### `impl IntoIterator for StateChunksIter<'a>`
 
-- <span id="statechunksiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="statechunksiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="statechunksiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="statechunksiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="statechunksiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StateChunksIter<'a>`
 
-- <span id="statechunksiter-type-item"></span>`type Item = &'a [Transition]`
+- <span id="statechunksiter-iterator-type-item"></span>`type Item = &'a [Transition]`
 
 - <span id="statechunksiter-next"></span>`fn next(&mut self) -> Option<&'a [Transition]>` — [`Transition`](#transition)
 

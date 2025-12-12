@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`inside_proc_macro`](#inside_proc_macro) | fn |  |
-| [`force_fallback`](#force_fallback) | fn |  |
-| [`unforce_fallback`](#unforce_fallback) | fn |  |
+| [`inside_proc_macro`](#inside-proc-macro) | fn |  |
+| [`force_fallback`](#force-fallback) | fn |  |
+| [`unforce_fallback`](#unforce-fallback) | fn |  |
 | [`initialize`](#initialize) | fn |  |
 
 ## Functions

@@ -19,25 +19,25 @@ list of such functions.
   - [`getpwent`](#getpwent)
   - [`getpwuid`](#getpwuid)
   - [`getpwnam`](#getpwnam)
-  - [`getpwuid_r`](#getpwuid_r)
-  - [`getpwnam_r`](#getpwnam_r)
+  - [`getpwuid_r`](#getpwuid-r)
+  - [`getpwnam_r`](#getpwnam-r)
   - [`gethostbyname`](#gethostbyname)
   - [`execv`](#execv)
   - [`execvp`](#execvp)
   - [`execvpe`](#execvpe)
   - [`wordexp`](#wordexp)
   - [`localtime`](#localtime)
-  - [`localtime_r`](#localtime_r)
+  - [`localtime_r`](#localtime-r)
   - [`gmtime`](#gmtime)
-  - [`gmtime_r`](#gmtime_r)
+  - [`gmtime_r`](#gmtime-r)
   - [`ctime`](#ctime)
-  - [`ctime_r`](#ctime_r)
+  - [`ctime_r`](#ctime-r)
   - [`asctime`](#asctime)
-  - [`asctime_r`](#asctime_r)
+  - [`asctime_r`](#asctime-r)
   - [`mktime`](#mktime)
   - [`getifaddrs`](#getifaddrs)
   - [`closefrom`](#closefrom)
-  - [`login_tty`](#login_tty)
+  - [`login_tty`](#login-tty)
   - [`openpty`](#openpty)
   - [`isatty`](#isatty)
 
@@ -48,25 +48,25 @@ list of such functions.
 | [`getpwent`](#getpwent) | fn | See the [module comment](self). |
 | [`getpwuid`](#getpwuid) | fn | See the [module comment](self). |
 | [`getpwnam`](#getpwnam) | fn | See the [module comment](self). |
-| [`getpwuid_r`](#getpwuid_r) | fn | See the [module comment](self). |
-| [`getpwnam_r`](#getpwnam_r) | fn | See the [module comment](self). |
+| [`getpwuid_r`](#getpwuid-r) | fn | See the [module comment](self). |
+| [`getpwnam_r`](#getpwnam-r) | fn | See the [module comment](self). |
 | [`gethostbyname`](#gethostbyname) | fn | See the [module comment](self). |
 | [`execv`](#execv) | fn | See the [module comment](self). |
 | [`execvp`](#execvp) | fn | See the [module comment](self). |
 | [`execvpe`](#execvpe) | fn | See the [module comment](self). |
 | [`wordexp`](#wordexp) | fn | See the [module comment](self). |
 | [`localtime`](#localtime) | fn | See the [module comment](self). |
-| [`localtime_r`](#localtime_r) | fn | See the [module comment](self). |
+| [`localtime_r`](#localtime-r) | fn | See the [module comment](self). |
 | [`gmtime`](#gmtime) | fn | See the [module comment](self). |
-| [`gmtime_r`](#gmtime_r) | fn | See the [module comment](self). |
+| [`gmtime_r`](#gmtime-r) | fn | See the [module comment](self). |
 | [`ctime`](#ctime) | fn | See the [module comment](self). |
-| [`ctime_r`](#ctime_r) | fn | See the [module comment](self). |
+| [`ctime_r`](#ctime-r) | fn | See the [module comment](self). |
 | [`asctime`](#asctime) | fn | See the [module comment](self). |
-| [`asctime_r`](#asctime_r) | fn | See the [module comment](self). |
+| [`asctime_r`](#asctime-r) | fn | See the [module comment](self). |
 | [`mktime`](#mktime) | fn | See the [module comment](self). |
 | [`getifaddrs`](#getifaddrs) | fn | See the [module comment](self). |
 | [`closefrom`](#closefrom) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
-| [`login_tty`](#login_tty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`login_tty`](#login-tty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
 | [`openpty`](#openpty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
 | [`isatty`](#isatty) | fn | See [`std::io::IsTerminal`]. |
 

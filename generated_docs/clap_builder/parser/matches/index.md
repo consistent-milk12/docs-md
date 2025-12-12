@@ -7,9 +7,9 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`arg_matches`](#arg_matches)
-  - [`matched_arg`](#matched_arg)
-  - [`value_source`](#value_source)
+  - [`arg_matches`](#arg-matches)
+  - [`matched_arg`](#matched-arg)
+  - [`value_source`](#value-source)
 - [Structs](#structs)
   - [`IdsRef`](#idsref)
   - [`RawValues`](#rawvalues)
@@ -24,9 +24,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`arg_matches`](#arg_matches) | mod |  |
-| [`matched_arg`](#matched_arg) | mod |  |
-| [`value_source`](#value_source) | mod |  |
+| [`arg_matches`](#arg-matches) | mod |  |
+| [`matched_arg`](#matched-arg) | mod |  |
+| [`value_source`](#value-source) | mod |  |
 | [`IdsRef`](#idsref) | struct |  |
 | [`RawValues`](#rawvalues) | struct |  |
 | [`Values`](#values) | struct |  |
@@ -93,15 +93,15 @@ assert_eq!(
 
 ##### `impl IntoIterator for IdsRef<'a>`
 
-- <span id="idsref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="idsref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="idsref-type-intoiter"></span>`type IntoIter = I`
+- <span id="idsref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="idsref-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IdsRef<'a>`
 
-- <span id="idsref-type-item"></span>`type Item = &'a Id`
+- <span id="idsref-iterator-type-item"></span>`type Item = &'a Id`
 
 - <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../util/id/index.md#id)
 
@@ -167,15 +167,15 @@ assert_eq!(
 
 ##### `impl IntoIterator for RawValues<'a>`
 
-- <span id="rawvalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawvalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawvalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawvalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawvalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawValues<'a>`
 
-- <span id="rawvalues-type-item"></span>`type Item = &'a OsStr`
+- <span id="rawvalues-iterator-type-item"></span>`type Item = &'a OsStr`
 
 - <span id="rawvalues-next"></span>`fn next(&mut self) -> Option<&'a OsStr>`
 
@@ -233,17 +233,17 @@ assert_eq!(values.next(), None);
 
 ##### `impl<T> ExactSizeIterator for Values<T>`
 
-##### `impl<I> IntoIterator for Values<T>`
+##### `impl IntoIterator for Values<T>`
 
-- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-type-intoiter"></span>`type IntoIter = I`
+- <span id="values-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for Values<T>`
 
-- <span id="values-type-item"></span>`type Item = T`
+- <span id="values-iterator-type-item"></span>`type Item = T`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -284,35 +284,35 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl<'a, T: clone::Clone> Clone for ValuesRef<'a, T>`
+##### `impl<T: clone::Clone> Clone for ValuesRef<'a, T>`
 
 - <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](arg_matches/index.md#valuesref)
 
-##### `impl<'a, T: fmt::Debug> Debug for ValuesRef<'a, T>`
+##### `impl<T: fmt::Debug> Debug for ValuesRef<'a, T>`
 
 - <span id="valuesref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T: 'a> Default for ValuesRef<'a, T>`
+##### `impl<T: 'a> Default for ValuesRef<'a, T>`
 
 - <span id="valuesref-default"></span>`fn default() -> Self`
 
-##### `impl<'a, T: 'a> DoubleEndedIterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> DoubleEndedIterator for ValuesRef<'a, T>`
 
 - <span id="valuesref-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T: 'a> ExactSizeIterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> ExactSizeIterator for ValuesRef<'a, T>`
 
-##### `impl<I> IntoIterator for ValuesRef<'a, T>`
+##### `impl IntoIterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesref-type-intoiter"></span>`type IntoIter = I`
+- <span id="valuesref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesref-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T: 'a> Iterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> Iterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-type-item"></span>`type Item = &'a T`
+- <span id="valuesref-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="valuesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -489,15 +489,15 @@ assert_eq!(indices.next(), None);
 
 ##### `impl IntoIterator for Indices<'a>`
 
-- <span id="indices-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="indices-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="indices-type-intoiter"></span>`type IntoIter = I`
+- <span id="indices-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="indices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Indices<'_>`
 
-- <span id="indices-type-item"></span>`type Item = usize`
+- <span id="indices-iterator-type-item"></span>`type Item = usize`
 
 - <span id="indices-next"></span>`fn next(&mut self) -> Option<usize>`
 

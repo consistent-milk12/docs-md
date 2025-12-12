@@ -9,27 +9,27 @@
 - [Structs](#structs)
   - [`FloatingDecimal64`](#floatingdecimal64)
 - [Functions](#functions)
-  - [`decimal_length17`](#decimal_length17)
+  - [`decimal_length17`](#decimal-length17)
   - [`d2d`](#d2d)
 - [Constants](#constants)
-  - [`DOUBLE_MANTISSA_BITS`](#double_mantissa_bits)
-  - [`DOUBLE_EXPONENT_BITS`](#double_exponent_bits)
-  - [`DOUBLE_BIAS`](#double_bias)
-  - [`DOUBLE_POW5_INV_BITCOUNT`](#double_pow5_inv_bitcount)
-  - [`DOUBLE_POW5_BITCOUNT`](#double_pow5_bitcount)
+  - [`DOUBLE_MANTISSA_BITS`](#double-mantissa-bits)
+  - [`DOUBLE_EXPONENT_BITS`](#double-exponent-bits)
+  - [`DOUBLE_BIAS`](#double-bias)
+  - [`DOUBLE_POW5_INV_BITCOUNT`](#double-pow5-inv-bitcount)
+  - [`DOUBLE_POW5_BITCOUNT`](#double-pow5-bitcount)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`FloatingDecimal64`](#floatingdecimal64) | struct |  |
-| [`decimal_length17`](#decimal_length17) | fn |  |
+| [`decimal_length17`](#decimal-length17) | fn |  |
 | [`d2d`](#d2d) | fn |  |
-| [`DOUBLE_MANTISSA_BITS`](#double_mantissa_bits) | const |  |
-| [`DOUBLE_EXPONENT_BITS`](#double_exponent_bits) | const |  |
-| [`DOUBLE_BIAS`](#double_bias) | const |  |
-| [`DOUBLE_POW5_INV_BITCOUNT`](#double_pow5_inv_bitcount) | const |  |
-| [`DOUBLE_POW5_BITCOUNT`](#double_pow5_bitcount) | const |  |
+| [`DOUBLE_MANTISSA_BITS`](#double-mantissa-bits) | const |  |
+| [`DOUBLE_EXPONENT_BITS`](#double-exponent-bits) | const |  |
+| [`DOUBLE_BIAS`](#double-bias) | const |  |
+| [`DOUBLE_POW5_INV_BITCOUNT`](#double-pow5-inv-bitcount) | const |  |
+| [`DOUBLE_POW5_BITCOUNT`](#double-pow5-bitcount) | const |  |
 
 ## Structs
 

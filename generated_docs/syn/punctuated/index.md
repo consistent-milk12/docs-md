@@ -44,9 +44,9 @@ a_function_call(arg1, arg2, arg3);
   - [`IterTrait`](#itertrait)
   - [`IterMutTrait`](#itermuttrait)
 - [Functions](#functions)
-  - [`do_extend`](#do_extend)
-  - [`empty_punctuated_iter`](#empty_punctuated_iter)
-  - [`empty_punctuated_iter_mut`](#empty_punctuated_iter_mut)
+  - [`do_extend`](#do-extend)
+  - [`empty_punctuated_iter`](#empty-punctuated-iter)
+  - [`empty_punctuated_iter_mut`](#empty-punctuated-iter-mut)
 
 ## Quick Reference
 
@@ -65,9 +65,9 @@ a_function_call(arg1, arg2, arg3);
 | [`Pair`](#pair) | enum | A single syntax tree node of type `T` followed by its trailing punctuation of type `P` if any. |
 | [`IterTrait`](#itertrait) | trait |  |
 | [`IterMutTrait`](#itermuttrait) | trait |  |
-| [`do_extend`](#do_extend) | fn |  |
-| [`empty_punctuated_iter`](#empty_punctuated_iter) | fn |  |
-| [`empty_punctuated_iter_mut`](#empty_punctuated_iter_mut) | fn |  |
+| [`do_extend`](#do-extend) | fn |  |
+| [`empty_punctuated_iter`](#empty-punctuated-iter) | fn |  |
+| [`empty_punctuated_iter_mut`](#empty-punctuated-iter-mut) | fn |  |
 
 ## Modules
 
@@ -180,7 +180,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> Index for Punctuated<T, P>`
 
-- <span id="punctuated-type-output"></span>`type Output = T`
+- <span id="punctuated-index-type-output"></span>`type Output = T`
 
 - <span id="punctuated-index"></span>`fn index(&self, index: usize) -> &<Self as >::Output`
 
@@ -190,9 +190,9 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> IntoIterator for Punctuated<T, P>`
 
-- <span id="punctuated-type-item"></span>`type Item = T`
+- <span id="punctuated-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="punctuated-type-intoiter"></span>`type IntoIter = IntoIter<T>`
+- <span id="punctuated-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
 - <span id="punctuated-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -228,29 +228,29 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Trait Implementations
 
-##### `impl<'a, T, P> Clone for Pairs<'a, T, P>`
+##### `impl<T, P> Clone for Pairs<'a, T, P>`
 
 - <span id="pairs-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, T, P> DoubleEndedIterator for Pairs<'a, T, P>`
+##### `impl<T, P> DoubleEndedIterator for Pairs<'a, T, P>`
 
 - <span id="pairs-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> ExactSizeIterator for Pairs<'a, T, P>`
+##### `impl<T, P> ExactSizeIterator for Pairs<'a, T, P>`
 
 - <span id="pairs-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for Pairs<'a, T, P>`
+##### `impl IntoIterator for Pairs<'a, T, P>`
 
-- <span id="pairs-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pairs-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pairs-type-intoiter"></span>`type IntoIter = I`
+- <span id="pairs-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pairs-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, P> Iterator for Pairs<'a, T, P>`
+##### `impl<T, P> Iterator for Pairs<'a, T, P>`
 
-- <span id="pairs-type-item"></span>`type Item = Pair<&'a T, &'a P>`
+- <span id="pairs-iterator-type-item"></span>`type Item = Pair<&'a T, &'a P>`
 
 - <span id="pairs-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -274,25 +274,25 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Trait Implementations
 
-##### `impl<'a, T, P> DoubleEndedIterator for PairsMut<'a, T, P>`
+##### `impl<T, P> DoubleEndedIterator for PairsMut<'a, T, P>`
 
 - <span id="pairsmut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> ExactSizeIterator for PairsMut<'a, T, P>`
+##### `impl<T, P> ExactSizeIterator for PairsMut<'a, T, P>`
 
 - <span id="pairsmut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for PairsMut<'a, T, P>`
+##### `impl IntoIterator for PairsMut<'a, T, P>`
 
-- <span id="pairsmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pairsmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pairsmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="pairsmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pairsmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, P> Iterator for PairsMut<'a, T, P>`
+##### `impl<T, P> Iterator for PairsMut<'a, T, P>`
 
-- <span id="pairsmut-type-item"></span>`type Item = Pair<&'a mut T, &'a mut P>`
+- <span id="pairsmut-iterator-type-item"></span>`type Item = Pair<&'a mut T, &'a mut P>`
 
 - <span id="pairsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -328,17 +328,17 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - <span id="intopairs-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for IntoPairs<T, P>`
+##### `impl IntoIterator for IntoPairs<T, P>`
 
-- <span id="intopairs-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intopairs-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intopairs-type-intoiter"></span>`type IntoIter = I`
+- <span id="intopairs-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intopairs-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, P> Iterator for IntoPairs<T, P>`
 
-- <span id="intopairs-type-item"></span>`type Item = Pair<T, P>`
+- <span id="intopairs-iterator-type-item"></span>`type Item = Pair<T, P>`
 
 - <span id="intopairs-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -373,17 +373,17 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for IntoIter<T>`
+##### `impl IntoIterator for IntoIter<T>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IntoIter<T>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -406,29 +406,29 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Trait Implementations
 
-##### `impl<'a, T> Clone for Iter<'a, T>`
+##### `impl<T> Clone for Iter<'a, T>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, T> DoubleEndedIterator for Iter<'a, T>`
+##### `impl<T> DoubleEndedIterator for Iter<'a, T>`
 
 - <span id="iter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T> ExactSizeIterator for Iter<'a, T>`
+##### `impl<T> ExactSizeIterator for Iter<'a, T>`
 
 - <span id="iter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for Iter<'a, T>`
+##### `impl IntoIterator for Iter<'a, T>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for Iter<'a, T>`
+##### `impl<T> Iterator for Iter<'a, T>`
 
-- <span id="iter-type-item"></span>`type Item = &'a T`
+- <span id="iter-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -447,33 +447,33 @@ struct PrivateIter<'a, T: 'a, P: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, P> Clone for PrivateIter<'a, T, P>`
+##### `impl<T, P> Clone for PrivateIter<'a, T, P>`
 
 - <span id="privateiter-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, T, P> DoubleEndedIterator for PrivateIter<'a, T, P>`
+##### `impl<T, P> DoubleEndedIterator for PrivateIter<'a, T, P>`
 
 - <span id="privateiter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> ExactSizeIterator for PrivateIter<'a, T, P>`
+##### `impl<T, P> ExactSizeIterator for PrivateIter<'a, T, P>`
 
 - <span id="privateiter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for PrivateIter<'a, T, P>`
+##### `impl IntoIterator for PrivateIter<'a, T, P>`
 
-- <span id="privateiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="privateiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="privateiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="privateiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="privateiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, P> Iterator for PrivateIter<'a, T, P>`
+##### `impl<T, P> Iterator for PrivateIter<'a, T, P>`
 
-- <span id="privateiter-type-item"></span>`type Item = &'a T`
+- <span id="privateiter-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="privateiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> TrivialDrop for PrivateIter<'a, T, P>`
+##### `impl<T, P> TrivialDrop for PrivateIter<'a, T, P>`
 
 ### `IterMut<'a, T: 'a>`
 
@@ -492,25 +492,25 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Trait Implementations
 
-##### `impl<'a, T> DoubleEndedIterator for IterMut<'a, T>`
+##### `impl<T> DoubleEndedIterator for IterMut<'a, T>`
 
 - <span id="itermut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T> ExactSizeIterator for IterMut<'a, T>`
+##### `impl<T> ExactSizeIterator for IterMut<'a, T>`
 
 - <span id="itermut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for IterMut<'a, T>`
+##### `impl IntoIterator for IterMut<'a, T>`
 
-- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for IterMut<'a, T>`
+##### `impl<T> Iterator for IterMut<'a, T>`
 
-- <span id="itermut-type-item"></span>`type Item = &'a mut T`
+- <span id="itermut-iterator-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -529,29 +529,29 @@ struct PrivateIterMut<'a, T: 'a, P: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, P> DoubleEndedIterator for PrivateIterMut<'a, T, P>`
+##### `impl<T, P> DoubleEndedIterator for PrivateIterMut<'a, T, P>`
 
 - <span id="privateitermut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> ExactSizeIterator for PrivateIterMut<'a, T, P>`
+##### `impl<T, P> ExactSizeIterator for PrivateIterMut<'a, T, P>`
 
 - <span id="privateitermut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for PrivateIterMut<'a, T, P>`
+##### `impl IntoIterator for PrivateIterMut<'a, T, P>`
 
-- <span id="privateitermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="privateitermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="privateitermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="privateitermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="privateitermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T, P> Iterator for PrivateIterMut<'a, T, P>`
+##### `impl<T, P> Iterator for PrivateIterMut<'a, T, P>`
 
-- <span id="privateitermut-type-item"></span>`type Item = &'a mut T`
+- <span id="privateitermut-iterator-type-item"></span>`type Item = &'a mut T`
 
 - <span id="privateitermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T, P> TrivialDrop for PrivateIterMut<'a, T, P>`
+##### `impl<T, P> TrivialDrop for PrivateIterMut<'a, T, P>`
 
 ## Enums
 

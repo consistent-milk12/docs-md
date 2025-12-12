@@ -105,7 +105,7 @@ struct Queue<T> {
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-deref-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &T`
 
@@ -127,9 +127,9 @@ struct Queue<T> {
 
 - <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
 
-##### `impl<P, T> Receiver for CachePadded<T>`
+##### `impl<T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: Send> Send for CachePadded<T>`
 

@@ -9,7 +9,7 @@ Streaming decompression functionality.
 ## Contents
 
 - [Modules](#modules)
-  - [`inflate_flags`](#inflate_flags)
+  - [`inflate_flags`](#inflate-flags)
 - [Structs](#structs)
   - [`HuffmanTable`](#huffmantable)
   - [`DecompressorOxide`](#decompressoroxide)
@@ -18,94 +18,94 @@ Streaming decompression functionality.
   - [`State`](#state)
   - [`Action`](#action)
 - [Functions](#functions)
-  - [`num_extra_bits_for_distance_code`](#num_extra_bits_for_distance_code)
-  - [`read_u16_le`](#read_u16_le)
-  - [`fill_bit_buffer`](#fill_bit_buffer)
-  - [`validate_zlib_header`](#validate_zlib_header)
-  - [`decode_huffman_code`](#decode_huffman_code)
-  - [`read_byte`](#read_byte)
-  - [`read_bits`](#read_bits)
-  - [`pad_to_bytes`](#pad_to_bytes)
-  - [`end_of_input`](#end_of_input)
-  - [`undo_bytes`](#undo_bytes)
-  - [`start_static_table`](#start_static_table)
-  - [`reverse_bits`](#reverse_bits)
-  - [`init_tree`](#init_tree)
+  - [`num_extra_bits_for_distance_code`](#num-extra-bits-for-distance-code)
+  - [`read_u16_le`](#read-u16-le)
+  - [`fill_bit_buffer`](#fill-bit-buffer)
+  - [`validate_zlib_header`](#validate-zlib-header)
+  - [`decode_huffman_code`](#decode-huffman-code)
+  - [`read_byte`](#read-byte)
+  - [`read_bits`](#read-bits)
+  - [`pad_to_bytes`](#pad-to-bytes)
+  - [`end_of_input`](#end-of-input)
+  - [`undo_bytes`](#undo-bytes)
+  - [`start_static_table`](#start-static-table)
+  - [`reverse_bits`](#reverse-bits)
+  - [`init_tree`](#init-tree)
   - [`transfer`](#transfer)
-  - [`apply_match`](#apply_match)
-  - [`decompress_fast`](#decompress_fast)
+  - [`apply_match`](#apply-match)
+  - [`decompress_fast`](#decompress-fast)
   - [`decompress`](#decompress)
 - [Type Aliases](#type-aliases)
   - [`BitBuffer`](#bitbuffer)
 - [Constants](#constants)
-  - [`TINFL_LZ_DICT_SIZE`](#tinfl_lz_dict_size)
-  - [`MAX_HUFF_TABLES`](#max_huff_tables)
-  - [`MAX_HUFF_SYMBOLS_0`](#max_huff_symbols_0)
-  - [`MAX_HUFF_SYMBOLS_1`](#max_huff_symbols_1)
-  - [`MAX_HUFF_SYMBOLS_2`](#max_huff_symbols_2)
-  - [`FAST_LOOKUP_BITS`](#fast_lookup_bits)
-  - [`FAST_LOOKUP_SIZE`](#fast_lookup_size)
-  - [`MAX_HUFF_TREE_SIZE`](#max_huff_tree_size)
-  - [`LITLEN_TABLE`](#litlen_table)
-  - [`DIST_TABLE`](#dist_table)
-  - [`HUFFLEN_TABLE`](#hufflen_table)
-  - [`LEN_CODES_SIZE`](#len_codes_size)
-  - [`LEN_CODES_MASK`](#len_codes_mask)
-  - [`MIN_TABLE_SIZES`](#min_table_sizes)
-  - [`LENGTH_BASE`](#length_base)
-  - [`LENGTH_EXTRA`](#length_extra)
-  - [`DIST_BASE`](#dist_base)
-  - [`BASE_EXTRA_MASK`](#base_extra_mask)
+  - [`TINFL_LZ_DICT_SIZE`](#tinfl-lz-dict-size)
+  - [`MAX_HUFF_TABLES`](#max-huff-tables)
+  - [`MAX_HUFF_SYMBOLS_0`](#max-huff-symbols-0)
+  - [`MAX_HUFF_SYMBOLS_1`](#max-huff-symbols-1)
+  - [`MAX_HUFF_SYMBOLS_2`](#max-huff-symbols-2)
+  - [`FAST_LOOKUP_BITS`](#fast-lookup-bits)
+  - [`FAST_LOOKUP_SIZE`](#fast-lookup-size)
+  - [`MAX_HUFF_TREE_SIZE`](#max-huff-tree-size)
+  - [`LITLEN_TABLE`](#litlen-table)
+  - [`DIST_TABLE`](#dist-table)
+  - [`HUFFLEN_TABLE`](#hufflen-table)
+  - [`LEN_CODES_SIZE`](#len-codes-size)
+  - [`LEN_CODES_MASK`](#len-codes-mask)
+  - [`MIN_TABLE_SIZES`](#min-table-sizes)
+  - [`LENGTH_BASE`](#length-base)
+  - [`LENGTH_EXTRA`](#length-extra)
+  - [`DIST_BASE`](#dist-base)
+  - [`BASE_EXTRA_MASK`](#base-extra-mask)
 - [Macros](#macros)
-  - [`generate_state!`](#generate_state)
+  - [`generate_state!`](#generate-state)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`inflate_flags`](#inflate_flags) | mod | Flags to [`decompress()`] to control how inflation works. |
+| [`inflate_flags`](#inflate-flags) | mod | Flags to [`decompress()`] to control how inflation works. |
 | [`HuffmanTable`](#huffmantable) | struct | A struct containing huffman code lengths and the huffman code tree used by the decompressor. |
 | [`DecompressorOxide`](#decompressoroxide) | struct | Main decompression struct. |
 | [`LocalVars`](#localvars) | struct |  |
 | [`State`](#state) | enum |  |
 | [`Action`](#action) | enum |  |
-| [`num_extra_bits_for_distance_code`](#num_extra_bits_for_distance_code) | fn | Get the number of extra bits used for a distance code. |
-| [`read_u16_le`](#read_u16_le) | fn | Read an le u16 value from the slice iterator. |
-| [`fill_bit_buffer`](#fill_bit_buffer) | fn | Ensure that there is data in the bit buffer. |
-| [`validate_zlib_header`](#validate_zlib_header) | fn | Check that the zlib header is correct and that there is enough space in the buffer for the window size specified in the header. |
-| [`decode_huffman_code`](#decode_huffman_code) | fn | Try to decode the next huffman code, and puts it in the counter field of the decompressor if successful. |
-| [`read_byte`](#read_byte) | fn | Try to read one byte from `in_iter` and call `f` with the read byte as an argument, returning the result. |
-| [`read_bits`](#read_bits) | fn | Try to read `amount` number of bits from `in_iter` and call the function `f` with the bits as an an argument after reading, returning the result of that function, or `Action::End` if there are not enough bytes left. |
-| [`pad_to_bytes`](#pad_to_bytes) | fn |  |
-| [`end_of_input`](#end_of_input) | fn |  |
-| [`undo_bytes`](#undo_bytes) | fn |  |
-| [`start_static_table`](#start_static_table) | fn |  |
-| [`reverse_bits`](#reverse_bits) | fn |  |
-| [`init_tree`](#init_tree) | fn |  |
+| [`num_extra_bits_for_distance_code`](#num-extra-bits-for-distance-code) | fn | Get the number of extra bits used for a distance code. |
+| [`read_u16_le`](#read-u16-le) | fn | Read an le u16 value from the slice iterator. |
+| [`fill_bit_buffer`](#fill-bit-buffer) | fn | Ensure that there is data in the bit buffer. |
+| [`validate_zlib_header`](#validate-zlib-header) | fn | Check that the zlib header is correct and that there is enough space in the buffer for the window size specified in the header. |
+| [`decode_huffman_code`](#decode-huffman-code) | fn | Try to decode the next huffman code, and puts it in the counter field of the decompressor if successful. |
+| [`read_byte`](#read-byte) | fn | Try to read one byte from `in_iter` and call `f` with the read byte as an argument, returning the result. |
+| [`read_bits`](#read-bits) | fn | Try to read `amount` number of bits from `in_iter` and call the function `f` with the bits as an an argument after reading, returning the result of that function, or `Action::End` if there are not enough bytes left. |
+| [`pad_to_bytes`](#pad-to-bytes) | fn |  |
+| [`end_of_input`](#end-of-input) | fn |  |
+| [`undo_bytes`](#undo-bytes) | fn |  |
+| [`start_static_table`](#start-static-table) | fn |  |
+| [`reverse_bits`](#reverse-bits) | fn |  |
+| [`init_tree`](#init-tree) | fn |  |
 | [`transfer`](#transfer) | fn |  |
-| [`apply_match`](#apply_match) | fn | Presumes that there is at least match_len bytes in output left. |
-| [`decompress_fast`](#decompress_fast) | fn | Fast inner decompression loop which is run  while there is at least 259 bytes left in the output buffer, and at least 6 bytes left in the input buffer (The maximum one match would need + 1). |
+| [`apply_match`](#apply-match) | fn | Presumes that there is at least match_len bytes in output left. |
+| [`decompress_fast`](#decompress-fast) | fn | Fast inner decompression loop which is run  while there is at least 259 bytes left in the output buffer, and at least 6 bytes left in the input buffer (The maximum one match would need + 1). |
 | [`decompress`](#decompress) | fn | Main decompression function. |
 | [`BitBuffer`](#bitbuffer) | type |  |
-| [`TINFL_LZ_DICT_SIZE`](#tinfl_lz_dict_size) | const |  |
-| [`MAX_HUFF_TABLES`](#max_huff_tables) | const | The number of huffman tables used. |
-| [`MAX_HUFF_SYMBOLS_0`](#max_huff_symbols_0) | const | The length of the first (literal/length) huffman table. |
-| [`MAX_HUFF_SYMBOLS_1`](#max_huff_symbols_1) | const | The length of the second (distance) huffman table. |
-| [`MAX_HUFF_SYMBOLS_2`](#max_huff_symbols_2) | const | The length of the last (huffman code length) huffman table. |
-| [`FAST_LOOKUP_BITS`](#fast_lookup_bits) | const | The maximum length of a code that can be looked up in the fast lookup table. |
-| [`FAST_LOOKUP_SIZE`](#fast_lookup_size) | const | The size of the fast lookup table. |
-| [`MAX_HUFF_TREE_SIZE`](#max_huff_tree_size) | const |  |
-| [`LITLEN_TABLE`](#litlen_table) | const |  |
-| [`DIST_TABLE`](#dist_table) | const |  |
-| [`HUFFLEN_TABLE`](#hufflen_table) | const |  |
-| [`LEN_CODES_SIZE`](#len_codes_size) | const |  |
-| [`LEN_CODES_MASK`](#len_codes_mask) | const |  |
-| [`MIN_TABLE_SIZES`](#min_table_sizes) | const |  |
-| [`LENGTH_BASE`](#length_base) | const | Base length for each length code. |
-| [`LENGTH_EXTRA`](#length_extra) | const | Number of extra bits for each length code. |
-| [`DIST_BASE`](#dist_base) | const | Base length for each distance code. |
-| [`BASE_EXTRA_MASK`](#base_extra_mask) | const | The mask used when indexing the base/extra arrays. |
-| [`generate_state!`](#generate_state) | macro |  |
+| [`TINFL_LZ_DICT_SIZE`](#tinfl-lz-dict-size) | const |  |
+| [`MAX_HUFF_TABLES`](#max-huff-tables) | const | The number of huffman tables used. |
+| [`MAX_HUFF_SYMBOLS_0`](#max-huff-symbols-0) | const | The length of the first (literal/length) huffman table. |
+| [`MAX_HUFF_SYMBOLS_1`](#max-huff-symbols-1) | const | The length of the second (distance) huffman table. |
+| [`MAX_HUFF_SYMBOLS_2`](#max-huff-symbols-2) | const | The length of the last (huffman code length) huffman table. |
+| [`FAST_LOOKUP_BITS`](#fast-lookup-bits) | const | The maximum length of a code that can be looked up in the fast lookup table. |
+| [`FAST_LOOKUP_SIZE`](#fast-lookup-size) | const | The size of the fast lookup table. |
+| [`MAX_HUFF_TREE_SIZE`](#max-huff-tree-size) | const |  |
+| [`LITLEN_TABLE`](#litlen-table) | const |  |
+| [`DIST_TABLE`](#dist-table) | const |  |
+| [`HUFFLEN_TABLE`](#hufflen-table) | const |  |
+| [`LEN_CODES_SIZE`](#len-codes-size) | const |  |
+| [`LEN_CODES_MASK`](#len-codes-mask) | const |  |
+| [`MIN_TABLE_SIZES`](#min-table-sizes) | const |  |
+| [`LENGTH_BASE`](#length-base) | const | Base length for each length code. |
+| [`LENGTH_EXTRA`](#length-extra) | const | Number of extra bits for each length code. |
+| [`DIST_BASE`](#dist-base) | const | Base length for each distance code. |
+| [`BASE_EXTRA_MASK`](#base-extra-mask) | const | The mask used when indexing the base/extra arrays. |
+| [`generate_state!`](#generate-state) | macro |  |
 
 ## Modules
 

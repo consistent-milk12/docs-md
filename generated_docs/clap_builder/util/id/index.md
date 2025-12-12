@@ -70,7 +70,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](#id)
 

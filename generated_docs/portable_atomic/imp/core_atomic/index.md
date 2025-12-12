@@ -20,7 +20,7 @@
   - [`AtomicI64`](#atomici64)
   - [`AtomicU64`](#atomicu64)
 - [Macros](#macros)
-  - [`atomic_int!`](#atomic_int)
+  - [`atomic_int!`](#atomic-int)
 
 ## Quick Reference
 
@@ -38,7 +38,7 @@
 | [`AtomicU32`](#atomicu32) | struct |  |
 | [`AtomicI64`](#atomici64) | struct |  |
 | [`AtomicU64`](#atomicu64) | struct |  |
-| [`atomic_int!`](#atomic_int) | macro |  |
+| [`atomic_int!`](#atomic-int) | macro |  |
 
 ## Structs
 
@@ -83,13 +83,13 @@ struct AtomicPtr<T> {
 
 ##### `impl<T> Deref for AtomicPtr<T>`
 
-- <span id="atomicptr-type-target"></span>`type Target = AtomicPtr<T>`
+- <span id="atomicptr-deref-type-target"></span>`type Target = AtomicPtr<T>`
 
 - <span id="atomicptr-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicPtr<T>`
+##### `impl<T> Receiver for AtomicPtr<T>`
 
-- <span id="atomicptr-type-target"></span>`type Target = T`
+- <span id="atomicptr-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicIsize`
 
@@ -118,13 +118,13 @@ struct AtomicIsize {
 
 ##### `impl Deref for AtomicIsize`
 
-- <span id="atomicisize-type-target"></span>`type Target = AtomicIsize`
+- <span id="atomicisize-deref-type-target"></span>`type Target = AtomicIsize`
 
 - <span id="atomicisize-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicIsize`
 
-- <span id="atomicisize-type-target"></span>`type Target = T`
+- <span id="atomicisize-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicUsize`
 
@@ -153,13 +153,13 @@ struct AtomicUsize {
 
 ##### `impl Deref for AtomicUsize`
 
-- <span id="atomicusize-type-target"></span>`type Target = AtomicUsize`
+- <span id="atomicusize-deref-type-target"></span>`type Target = AtomicUsize`
 
 - <span id="atomicusize-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicUsize`
 
-- <span id="atomicusize-type-target"></span>`type Target = T`
+- <span id="atomicusize-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicI8`
 
@@ -188,13 +188,13 @@ struct AtomicI8 {
 
 ##### `impl Deref for AtomicI8`
 
-- <span id="atomici8-type-target"></span>`type Target = AtomicI8`
+- <span id="atomici8-deref-type-target"></span>`type Target = AtomicI8`
 
 - <span id="atomici8-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicI8`
 
-- <span id="atomici8-type-target"></span>`type Target = T`
+- <span id="atomici8-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicU8`
 
@@ -223,13 +223,13 @@ struct AtomicU8 {
 
 ##### `impl Deref for AtomicU8`
 
-- <span id="atomicu8-type-target"></span>`type Target = AtomicU8`
+- <span id="atomicu8-deref-type-target"></span>`type Target = AtomicU8`
 
 - <span id="atomicu8-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicU8`
 
-- <span id="atomicu8-type-target"></span>`type Target = T`
+- <span id="atomicu8-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicI16`
 
@@ -258,13 +258,13 @@ struct AtomicI16 {
 
 ##### `impl Deref for AtomicI16`
 
-- <span id="atomici16-type-target"></span>`type Target = AtomicI16`
+- <span id="atomici16-deref-type-target"></span>`type Target = AtomicI16`
 
 - <span id="atomici16-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicI16`
 
-- <span id="atomici16-type-target"></span>`type Target = T`
+- <span id="atomici16-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicU16`
 
@@ -293,13 +293,13 @@ struct AtomicU16 {
 
 ##### `impl Deref for AtomicU16`
 
-- <span id="atomicu16-type-target"></span>`type Target = AtomicU16`
+- <span id="atomicu16-deref-type-target"></span>`type Target = AtomicU16`
 
 - <span id="atomicu16-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicU16`
 
-- <span id="atomicu16-type-target"></span>`type Target = T`
+- <span id="atomicu16-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicI32`
 
@@ -328,13 +328,13 @@ struct AtomicI32 {
 
 ##### `impl Deref for AtomicI32`
 
-- <span id="atomici32-type-target"></span>`type Target = AtomicI32`
+- <span id="atomici32-deref-type-target"></span>`type Target = AtomicI32`
 
 - <span id="atomici32-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicI32`
 
-- <span id="atomici32-type-target"></span>`type Target = T`
+- <span id="atomici32-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicU32`
 
@@ -363,13 +363,13 @@ struct AtomicU32 {
 
 ##### `impl Deref for AtomicU32`
 
-- <span id="atomicu32-type-target"></span>`type Target = AtomicU32`
+- <span id="atomicu32-deref-type-target"></span>`type Target = AtomicU32`
 
 - <span id="atomicu32-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicU32`
 
-- <span id="atomicu32-type-target"></span>`type Target = T`
+- <span id="atomicu32-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicI64`
 
@@ -398,13 +398,13 @@ struct AtomicI64 {
 
 ##### `impl Deref for AtomicI64`
 
-- <span id="atomici64-type-target"></span>`type Target = AtomicI64`
+- <span id="atomici64-deref-type-target"></span>`type Target = AtomicI64`
 
 - <span id="atomici64-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicI64`
 
-- <span id="atomici64-type-target"></span>`type Target = T`
+- <span id="atomici64-receiver-type-target"></span>`type Target = T`
 
 ### `AtomicU64`
 
@@ -433,13 +433,13 @@ struct AtomicU64 {
 
 ##### `impl Deref for AtomicU64`
 
-- <span id="atomicu64-type-target"></span>`type Target = AtomicU64`
+- <span id="atomicu64-deref-type-target"></span>`type Target = AtomicU64`
 
 - <span id="atomicu64-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for AtomicU64`
 
-- <span id="atomicu64-type-target"></span>`type Target = T`
+- <span id="atomicu64-receiver-type-target"></span>`type Target = T`
 
 ## Macros
 

@@ -49,15 +49,15 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> IntoParallelIterator for Empty<T>`
 
-- <span id="empty-type-iter"></span>`type Iter = T`
+- <span id="empty-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="empty-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="empty-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
-- <span id="empty-type-item"></span>`type Item = T`
+- <span id="empty-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -65,9 +65,9 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> Pointable for Empty<T>`
 
-- <span id="empty-const-align"></span>`const ALIGN: usize`
+- <span id="empty-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="empty-type-init"></span>`type Init = T`
+- <span id="empty-pointable-type-init"></span>`type Init = T`
 
 - <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,9 +93,9 @@ Private empty producer
 
 ##### `impl<T> Pointable for EmptyProducer<T>`
 
-- <span id="emptyproducer-const-align"></span>`const ALIGN: usize`
+- <span id="emptyproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="emptyproducer-type-init"></span>`type Init = T`
+- <span id="emptyproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="emptyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -107,9 +107,9 @@ Private empty producer
 
 ##### `impl<T: Send> Producer for EmptyProducer<T>`
 
-- <span id="emptyproducer-type-item"></span>`type Item = T`
+- <span id="emptyproducer-producer-type-item"></span>`type Item = T`
 
-- <span id="emptyproducer-type-intoiter"></span>`type IntoIter = Empty<T>`
+- <span id="emptyproducer-producer-type-intoiter"></span>`type IntoIter = Empty<T>`
 
 - <span id="emptyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 

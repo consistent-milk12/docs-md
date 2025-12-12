@@ -18,7 +18,7 @@ Metadata describing trace data.
 - [Enums](#enums)
   - [`LevelInner`](#levelinner)
 - [Functions](#functions)
-  - [`filter_as_usize`](#filter_as_usize)
+  - [`filter_as_usize`](#filter-as-usize)
 
 ## Quick Reference
 
@@ -31,7 +31,7 @@ Metadata describing trace data.
 | [`ParseLevelFilterError`](#parselevelfiltererror) | struct | Indicates that a string could not be parsed to a valid level. |
 | [`ParseLevelError`](#parselevelerror) | struct | Returned if parsing a `Level` fails. |
 | [`LevelInner`](#levelinner) | enum |  |
-| [`filter_as_usize`](#filter_as_usize) | fn |  |
+| [`filter_as_usize`](#filter-as-usize) | fn |  |
 
 ## Structs
 
@@ -395,7 +395,7 @@ recorded in.
 
 ##### `impl FromStr for Level`
 
-- <span id="level-type-err"></span>`type Err = ParseLevelError`
+- <span id="level-fromstr-type-err"></span>`type Err = ParseLevelError`
 
 - <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
 
@@ -505,7 +505,7 @@ and `LevelFilter`s interact.
 
 ##### `impl FromStr for LevelFilter`
 
-- <span id="levelfilter-type-err"></span>`type Err = ParseLevelFilterError`
+- <span id="levelfilter-fromstr-type-err"></span>`type Err = ParseLevelFilterError`
 
 - <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 

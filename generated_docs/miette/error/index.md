@@ -29,7 +29,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../../addr2line/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../../cargo_docs_md/error/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**

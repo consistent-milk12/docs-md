@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`__impl_slice_eq1!`](#__impl_slice_eq1) | macro |  |
+| [`__impl_slice_eq1!`](#impl-slice-eq1) | macro |  |
 
 ## Macros
 

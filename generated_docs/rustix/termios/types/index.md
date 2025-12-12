@@ -64,7 +64,7 @@ struct Termios {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
+`struct termios` for use with [`tcgetattr`](../../backend/termios/syscalls/index.md) and [`tcsetattr`](../index.md).
 
 
 
@@ -182,7 +182,7 @@ Flags controlling terminal input.
 
 ##### `impl BitAnd for InputModes`
 
-- <span id="inputmodes-type-output"></span>`type Output = InputModes`
+- <span id="inputmodes-bitand-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -192,7 +192,7 @@ Flags controlling terminal input.
 
 ##### `impl BitOr for InputModes`
 
-- <span id="inputmodes-type-output"></span>`type Output = InputModes`
+- <span id="inputmodes-bitor-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitor"></span>`fn bitor(self, other: InputModes) -> Self` — [`InputModes`](../index.md#inputmodes)
 
@@ -202,7 +202,7 @@ Flags controlling terminal input.
 
 ##### `impl BitXor for InputModes`
 
-- <span id="inputmodes-type-output"></span>`type Output = InputModes`
+- <span id="inputmodes-bitxor-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -228,9 +228,9 @@ Flags controlling terminal input.
 
 ##### `impl Flags for InputModes`
 
-- <span id="inputmodes-const-flags"></span>`const FLAGS: &'static [Flag<InputModes>]`
+- <span id="inputmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<InputModes>]`
 
-- <span id="inputmodes-type-bits"></span>`type Bits = u32`
+- <span id="inputmodes-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -246,9 +246,9 @@ Flags controlling terminal input.
 
 ##### `impl IntoIterator for InputModes`
 
-- <span id="inputmodes-type-item"></span>`type Item = InputModes`
+- <span id="inputmodes-intoiterator-type-item"></span>`type Item = InputModes`
 
-- <span id="inputmodes-type-intoiter"></span>`type IntoIter = Iter<InputModes>`
+- <span id="inputmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<InputModes>`
 
 - <span id="inputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -258,7 +258,7 @@ Flags controlling terminal input.
 
 ##### `impl Not for InputModes`
 
-- <span id="inputmodes-type-output"></span>`type Output = InputModes`
+- <span id="inputmodes-not-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-not"></span>`fn not(self) -> Self`
 
@@ -272,15 +272,15 @@ Flags controlling terminal input.
 
 ##### `impl PublicFlags for InputModes`
 
-- <span id="inputmodes-type-primitive"></span>`type Primitive = u32`
+- <span id="inputmodes-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="inputmodes-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="inputmodes-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for InputModes`
 
 ##### `impl Sub for InputModes`
 
-- <span id="inputmodes-type-output"></span>`type Output = InputModes`
+- <span id="inputmodes-sub-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -374,7 +374,7 @@ Flags controlling terminal output.
 
 ##### `impl BitAnd for OutputModes`
 
-- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-bitand-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -384,7 +384,7 @@ Flags controlling terminal output.
 
 ##### `impl BitOr for OutputModes`
 
-- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-bitor-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitor"></span>`fn bitor(self, other: OutputModes) -> Self` — [`OutputModes`](../index.md#outputmodes)
 
@@ -394,7 +394,7 @@ Flags controlling terminal output.
 
 ##### `impl BitXor for OutputModes`
 
-- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-bitxor-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -420,9 +420,9 @@ Flags controlling terminal output.
 
 ##### `impl Flags for OutputModes`
 
-- <span id="outputmodes-const-flags"></span>`const FLAGS: &'static [Flag<OutputModes>]`
+- <span id="outputmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<OutputModes>]`
 
-- <span id="outputmodes-type-bits"></span>`type Bits = u32`
+- <span id="outputmodes-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -438,9 +438,9 @@ Flags controlling terminal output.
 
 ##### `impl IntoIterator for OutputModes`
 
-- <span id="outputmodes-type-item"></span>`type Item = OutputModes`
+- <span id="outputmodes-intoiterator-type-item"></span>`type Item = OutputModes`
 
-- <span id="outputmodes-type-intoiter"></span>`type IntoIter = Iter<OutputModes>`
+- <span id="outputmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<OutputModes>`
 
 - <span id="outputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -450,7 +450,7 @@ Flags controlling terminal output.
 
 ##### `impl Not for OutputModes`
 
-- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-not-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-not"></span>`fn not(self) -> Self`
 
@@ -464,15 +464,15 @@ Flags controlling terminal output.
 
 ##### `impl PublicFlags for OutputModes`
 
-- <span id="outputmodes-type-primitive"></span>`type Primitive = u32`
+- <span id="outputmodes-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="outputmodes-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="outputmodes-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for OutputModes`
 
 ##### `impl Sub for OutputModes`
 
-- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-sub-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -536,7 +536,7 @@ probably these flags.
 
 ##### `impl BitAnd for ControlModes`
 
-- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-bitand-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -546,7 +546,7 @@ probably these flags.
 
 ##### `impl BitOr for ControlModes`
 
-- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-bitor-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitor"></span>`fn bitor(self, other: ControlModes) -> Self` — [`ControlModes`](../index.md#controlmodes)
 
@@ -556,7 +556,7 @@ probably these flags.
 
 ##### `impl BitXor for ControlModes`
 
-- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-bitxor-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -582,9 +582,9 @@ probably these flags.
 
 ##### `impl Flags for ControlModes`
 
-- <span id="controlmodes-const-flags"></span>`const FLAGS: &'static [Flag<ControlModes>]`
+- <span id="controlmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<ControlModes>]`
 
-- <span id="controlmodes-type-bits"></span>`type Bits = u32`
+- <span id="controlmodes-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -600,9 +600,9 @@ probably these flags.
 
 ##### `impl IntoIterator for ControlModes`
 
-- <span id="controlmodes-type-item"></span>`type Item = ControlModes`
+- <span id="controlmodes-intoiterator-type-item"></span>`type Item = ControlModes`
 
-- <span id="controlmodes-type-intoiter"></span>`type IntoIter = Iter<ControlModes>`
+- <span id="controlmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<ControlModes>`
 
 - <span id="controlmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -612,7 +612,7 @@ probably these flags.
 
 ##### `impl Not for ControlModes`
 
-- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-not-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-not"></span>`fn not(self) -> Self`
 
@@ -626,15 +626,15 @@ probably these flags.
 
 ##### `impl PublicFlags for ControlModes`
 
-- <span id="controlmodes-type-primitive"></span>`type Primitive = u32`
+- <span id="controlmodes-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="controlmodes-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="controlmodes-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for ControlModes`
 
 ##### `impl Sub for ControlModes`
 
-- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-sub-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -698,7 +698,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitAnd for LocalModes`
 
-- <span id="localmodes-type-output"></span>`type Output = LocalModes`
+- <span id="localmodes-bitand-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -708,7 +708,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitOr for LocalModes`
 
-- <span id="localmodes-type-output"></span>`type Output = LocalModes`
+- <span id="localmodes-bitor-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitor"></span>`fn bitor(self, other: LocalModes) -> Self` — [`LocalModes`](../index.md#localmodes)
 
@@ -718,7 +718,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitXor for LocalModes`
 
-- <span id="localmodes-type-output"></span>`type Output = LocalModes`
+- <span id="localmodes-bitxor-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -744,9 +744,9 @@ Flags controlling “local” terminal modes.
 
 ##### `impl Flags for LocalModes`
 
-- <span id="localmodes-const-flags"></span>`const FLAGS: &'static [Flag<LocalModes>]`
+- <span id="localmodes-flags-const-flags"></span>`const FLAGS: &'static [Flag<LocalModes>]`
 
-- <span id="localmodes-type-bits"></span>`type Bits = u32`
+- <span id="localmodes-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -762,9 +762,9 @@ Flags controlling “local” terminal modes.
 
 ##### `impl IntoIterator for LocalModes`
 
-- <span id="localmodes-type-item"></span>`type Item = LocalModes`
+- <span id="localmodes-intoiterator-type-item"></span>`type Item = LocalModes`
 
-- <span id="localmodes-type-intoiter"></span>`type IntoIter = Iter<LocalModes>`
+- <span id="localmodes-intoiterator-type-intoiter"></span>`type IntoIter = Iter<LocalModes>`
 
 - <span id="localmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -774,7 +774,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl Not for LocalModes`
 
-- <span id="localmodes-type-output"></span>`type Output = LocalModes`
+- <span id="localmodes-not-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-not"></span>`fn not(self) -> Self`
 
@@ -788,15 +788,15 @@ Flags controlling “local” terminal modes.
 
 ##### `impl PublicFlags for LocalModes`
 
-- <span id="localmodes-type-primitive"></span>`type Primitive = u32`
+- <span id="localmodes-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="localmodes-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="localmodes-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for LocalModes`
 
 ##### `impl Sub for LocalModes`
 
-- <span id="localmodes-type-output"></span>`type Output = LocalModes`
+- <span id="localmodes-sub-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -831,7 +831,7 @@ various special control codes.
 
 ##### `impl Index for SpecialCodes`
 
-- <span id="specialcodes-type-output"></span>`type Output = u8`
+- <span id="specialcodes-index-type-output"></span>`type Output = u8`
 
 - <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
@@ -921,7 +921,7 @@ Indices for use with `Termios::special_codes`.
 
 ##### `impl Index for SpecialCodes`
 
-- <span id="specialcodes-type-output"></span>`type Output = u8`
+- <span id="specialcodes-index-type-output"></span>`type Output = u8`
 
 - <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](../index.md#specialcodeindex)
 
@@ -1053,7 +1053,7 @@ enum QueueSelector {
 
 *Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
-`TC*` values for use with [`tcflush`](../index.md).
+`TC*` values for use with [`tcflush`](../../backend/termios/syscalls/index.md).
 
 
 #### Variants

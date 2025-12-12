@@ -16,10 +16,10 @@
   - [`ParseError`](#parseerror)
 - [Functions](#functions)
   - [`demangle`](#demangle)
-  - [`basic_type`](#basic_type)
+  - [`basic_type`](#basic-type)
 - [Constants](#constants)
-  - [`MAX_DEPTH`](#max_depth)
-  - [`SMALL_PUNYCODE_LEN`](#small_punycode_len)
+  - [`MAX_DEPTH`](#max-depth)
+  - [`SMALL_PUNYCODE_LEN`](#small-punycode-len)
 - [Macros](#macros)
   - [`write!`](#write)
   - [`invalid!`](#invalid)
@@ -36,9 +36,9 @@
 | [`Printer`](#printer) | struct |  |
 | [`ParseError`](#parseerror) | enum |  |
 | [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
-| [`basic_type`](#basic_type) | fn |  |
-| [`MAX_DEPTH`](#max_depth) | const |  |
-| [`SMALL_PUNYCODE_LEN`](#small_punycode_len) | const |  |
+| [`basic_type`](#basic-type) | fn |  |
+| [`MAX_DEPTH`](#max-depth) | const |  |
+| [`SMALL_PUNYCODE_LEN`](#small-punycode-len) | const |  |
 | [`write!`](#write) | macro |  |
 | [`invalid!`](#invalid) | macro | Mark the parser as errored (with `ParseError::Invalid`), print the appropriate message (see `ParseError::message`) and return early. |
 | [`parse!`](#parse) | macro | Call a parser method (if the parser hasn't errored yet), and mark the parser as errored if it returns `Err`. |

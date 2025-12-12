@@ -25,9 +25,9 @@ its variants for more information.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`WordSeparator`](#wordseparator) | enum | Describes where words occur in a line of text. |
-| [`find_words_ascii_space`](#find_words_ascii_space) | fn |  |
-| [`strip_ansi_escape_sequences`](#strip_ansi_escape_sequences) | fn |  |
-| [`find_words_unicode_break_properties`](#find_words_unicode_break_properties) | fn | Find words in line. |
+| [`find_words_ascii_space`](#find-words-ascii-space) | fn |  |
+| [`strip_ansi_escape_sequences`](#strip-ansi-escape-sequences) | fn |  |
+| [`find_words_unicode_break_properties`](#find-words-unicode-break-properties) | fn | Find words in line. |
 | [`SHY`](#shy) | const | Soft hyphen, also knows as a “shy hyphen”. |
 
 ## Enums

@@ -81,10 +81,10 @@ By default all features are enabled.  The following features exist:
 ## Contents
 
 - [Modules](#modules)
-  - [`common_term`](#common_term)
+  - [`common_term`](#common-term)
   - [`kb`](#kb)
   - [`term`](#term)
-  - [`unix_term`](#unix_term)
+  - [`unix_term`](#unix-term)
   - [`utils`](#utils)
   - [`ansi`](#ansi)
 - [Structs](#structs)
@@ -103,27 +103,27 @@ By default all features are enabled.  The following features exist:
   - [`Attribute`](#attribute)
   - [`Color`](#color)
 - [Functions](#functions)
-  - [`user_attended`](#user_attended)
-  - [`user_attended_stderr`](#user_attended_stderr)
-  - [`colors_enabled`](#colors_enabled)
-  - [`colors_enabled_stderr`](#colors_enabled_stderr)
-  - [`measure_text_width`](#measure_text_width)
-  - [`pad_str`](#pad_str)
-  - [`pad_str_with`](#pad_str_with)
-  - [`set_colors_enabled`](#set_colors_enabled)
-  - [`set_colors_enabled_stderr`](#set_colors_enabled_stderr)
+  - [`user_attended`](#user-attended)
+  - [`user_attended_stderr`](#user-attended-stderr)
+  - [`colors_enabled`](#colors-enabled)
+  - [`colors_enabled_stderr`](#colors-enabled-stderr)
+  - [`measure_text_width`](#measure-text-width)
+  - [`pad_str`](#pad-str)
+  - [`pad_str_with`](#pad-str-with)
+  - [`set_colors_enabled`](#set-colors-enabled)
+  - [`set_colors_enabled_stderr`](#set-colors-enabled-stderr)
   - [`style`](#style)
-  - [`truncate_str`](#truncate_str)
-  - [`strip_ansi_codes`](#strip_ansi_codes)
+  - [`truncate_str`](#truncate-str)
+  - [`strip_ansi_codes`](#strip-ansi-codes)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`common_term`](#common_term) | mod |  |
+| [`common_term`](#common-term) | mod |  |
 | [`kb`](#kb) | mod |  |
 | [`term`](#term) | mod |  |
-| [`unix_term`](#unix_term) | mod |  |
+| [`unix_term`](#unix-term) | mod |  |
 | [`utils`](#utils) | mod |  |
 | [`ansi`](#ansi) | mod |  |
 | [`Term`](#term) | struct |  |
@@ -139,18 +139,18 @@ By default all features are enabled.  The following features exist:
 | [`Alignment`](#alignment) | enum |  |
 | [`Attribute`](#attribute) | enum |  |
 | [`Color`](#color) | enum |  |
-| [`user_attended`](#user_attended) | fn |  |
-| [`user_attended_stderr`](#user_attended_stderr) | fn |  |
-| [`colors_enabled`](#colors_enabled) | fn |  |
-| [`colors_enabled_stderr`](#colors_enabled_stderr) | fn |  |
-| [`measure_text_width`](#measure_text_width) | fn |  |
-| [`pad_str`](#pad_str) | fn |  |
-| [`pad_str_with`](#pad_str_with) | fn |  |
-| [`set_colors_enabled`](#set_colors_enabled) | fn |  |
-| [`set_colors_enabled_stderr`](#set_colors_enabled_stderr) | fn |  |
+| [`user_attended`](#user-attended) | fn |  |
+| [`user_attended_stderr`](#user-attended-stderr) | fn |  |
+| [`colors_enabled`](#colors-enabled) | fn |  |
+| [`colors_enabled_stderr`](#colors-enabled-stderr) | fn |  |
+| [`measure_text_width`](#measure-text-width) | fn |  |
+| [`pad_str`](#pad-str) | fn |  |
+| [`pad_str_with`](#pad-str-with) | fn |  |
+| [`set_colors_enabled`](#set-colors-enabled) | fn |  |
+| [`set_colors_enabled_stderr`](#set-colors-enabled-stderr) | fn |  |
 | [`style`](#style) | fn |  |
-| [`truncate_str`](#truncate_str) | fn |  |
-| [`strip_ansi_codes`](#strip_ansi_codes) | fn |  |
+| [`truncate_str`](#truncate-str) | fn |  |
+| [`strip_ansi_codes`](#strip-ansi-codes) | fn |  |
 
 ## Modules
 
@@ -590,7 +590,7 @@ A formatting wrapper that can be styled for a terminal.
 
 - <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for StyledObject<D>`
+##### `impl ToString for StyledObject<D>`
 
 - <span id="styledobject-to-string"></span>`fn to_string(&self) -> String`
 
@@ -637,15 +637,15 @@ ansi codes or string values.
 
 ##### `impl IntoIterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="ansicodeiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="ansicodeiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="ansicodeiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="ansicodeiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-type-item"></span>`type Item = (&'a str, bool)`
+- <span id="ansicodeiterator-iterator-type-item"></span>`type Item = (&'a str, bool)`
 
 - <span id="ansicodeiterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
 
@@ -659,7 +659,7 @@ struct WithoutAnsi<'a> {
 
 *Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../.source_1765210505/console-0.16.1/src/ansi.rs#L206-L208)*
 
-A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -951,27 +951,179 @@ A terminal color.
 
 ## Functions
 
-*Defined in [`console-0.16.1/src/lib.rs:92`](../../.source_1765210505/console-0.16.1/src/lib.rs#L92)*
+### `user_attended`
 
-*Defined in [`console-0.16.1/src/lib.rs:92`](../../.source_1765210505/console-0.16.1/src/lib.rs#L92)*
+```rust
+fn user_attended() -> bool
+```
 
-*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+*Defined in [`console-0.16.1/src/term.rs:578-580`](../../.source_1765210505/console-0.16.1/src/term.rs#L578-L580)*
 
-*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+A fast way to check if the application has a user attended for stdout.
 
-*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+This means that stdout is connected to a terminal instead of a
+file or redirected by other means. This is a shortcut for
+checking the `is_attended` feature on the stdout terminal.
 
-*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+### `user_attended_stderr`
 
-*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+```rust
+fn user_attended_stderr() -> bool
+```
 
-*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+*Defined in [`console-0.16.1/src/term.rs:588-590`](../../.source_1765210505/console-0.16.1/src/term.rs#L588-L590)*
 
-*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+A fast way to check if the application has a user attended for stderr.
 
-*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+This means that stderr is connected to a terminal instead of a
+file or redirected by other means. This is a shortcut for
+checking the `is_attended` feature on the stderr terminal.
 
-*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+### `colors_enabled`
 
-*Defined in [`console-0.16.1/src/lib.rs:102`](../../.source_1765210505/console-0.16.1/src/lib.rs#L102)*
+```rust
+fn colors_enabled() -> bool
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:34-36`](../../.source_1765210505/console-0.16.1/src/utils.rs#L34-L36)*
+
+Returns `true` if colors should be enabled for stdout.
+
+This honors the [clicolors spec](http://bixense.com/clicolors/).
+
+* `CLICOLOR != 0`: ANSI colors are supported and should be used when the program isn't piped.
+* `CLICOLOR == 0`: Don't output ANSI color escape codes.
+* `CLICOLOR_FORCE != 0`: ANSI colors should be enabled no matter what.
+
+### `colors_enabled_stderr`
+
+```rust
+fn colors_enabled_stderr() -> bool
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:55-57`](../../.source_1765210505/console-0.16.1/src/utils.rs#L55-L57)*
+
+Returns `true` if colors should be enabled for stderr.
+
+This honors the [clicolors spec](http://bixense.com/clicolors/).
+
+* `CLICOLOR != 0`: ANSI colors are supported and should be used when the program isn't piped.
+* `CLICOLOR == 0`: Don't output ANSI color escape codes.
+* `CLICOLOR_FORCE != 0`: ANSI colors should be enabled no matter what.
+
+### `measure_text_width`
+
+```rust
+fn measure_text_width(s: &str) -> usize
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:69-83`](../../.source_1765210505/console-0.16.1/src/utils.rs#L69-L83)*
+
+Measure the width of a string in terminal characters.
+
+### `pad_str`
+
+```rust
+fn pad_str<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>) -> alloc::borrow::Cow<'a, str>
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:892-899`](../../.source_1765210505/console-0.16.1/src/utils.rs#L892-L899)*
+
+Pads a string to fill a certain number of characters.
+
+This will honor ansi codes correctly and allows you to align a string
+on the left, right or centered.  Additionally truncation can be enabled
+by setting `truncate` to a string that should be used as a truncation
+marker.
+
+### `pad_str_with`
+
+```rust
+fn pad_str_with<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>, pad: char) -> alloc::borrow::Cow<'a, str>
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:906-939`](../../.source_1765210505/console-0.16.1/src/utils.rs#L906-L939)*
+
+Pads a string with specific padding to fill a certain number of characters.
+
+This will honor ansi codes correctly and allows you to align a string
+on the left, right or centered.  Additionally truncation can be enabled
+by setting `truncate` to a string that should be used as a truncation
+marker.
+
+### `set_colors_enabled`
+
+```rust
+fn set_colors_enabled(val: bool)
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:43-45`](../../.source_1765210505/console-0.16.1/src/utils.rs#L43-L45)*
+
+Forces colorization on or off for stdout.
+
+This overrides the default for the current process and changes the return value of the
+`colors_enabled` function.
+
+### `set_colors_enabled_stderr`
+
+```rust
+fn set_colors_enabled_stderr(val: bool)
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:64-66`](../../.source_1765210505/console-0.16.1/src/utils.rs#L64-L66)*
+
+Forces colorization on or off for stderr.
+
+This overrides the default for the current process and changes the return value of the
+`colors_enabled` function.
+
+### `style`
+
+```rust
+fn style<D>(val: D) -> StyledObject<D>
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:509-511`](../../.source_1765210505/console-0.16.1/src/utils.rs#L509-L511)*
+
+Wraps an object for formatting for styling.
+
+Example:
+
+```rust,no_run
+use console::style;
+format!("Hello {}", style("World").cyan());
+```
+
+This is a shortcut for making a new style and applying it
+to a value:
+
+```rust,no_run
+use console::Style;
+format!("Hello {}", Style::new().cyan().apply_to("World"));
+```
+
+### `truncate_str`
+
+```rust
+fn truncate_str<'a>(s: &'a str, width: usize, tail: &str) -> alloc::borrow::Cow<'a, str>
+```
+
+*Defined in [`console-0.16.1/src/utils.rs:817-884`](../../.source_1765210505/console-0.16.1/src/utils.rs#L817-L884)*
+
+Truncates a string to a certain number of characters.
+
+This ensures that escape codes are not screwed up in the process.
+If the maximum length is hit the string will be truncated but
+escapes code will still be honored.  If truncation takes place
+the tail string will be appended.
+
+### `strip_ansi_codes`
+
+```rust
+fn strip_ansi_codes(s: &str) -> alloc::borrow::Cow<'_, str>
+```
+
+*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../.source_1765210505/console-0.16.1/src/ansi.rs#L192-L203)*
+
+Helper function to strip ansi codes.
 

@@ -76,8 +76,8 @@ want to create your own garbage collector, use the [`Collector`](collector/index
   - [`Pointer`](#pointer)
 - [Functions](#functions)
   - [`unprotected`](#unprotected)
-  - [`default_collector`](#default_collector)
-  - [`is_pinned`](#is_pinned)
+  - [`default_collector`](#default-collector)
+  - [`is_pinned`](#is-pinned)
   - [`pin`](#pin)
 - [Type Aliases](#type-aliases)
   - [`CompareAndSetError`](#compareandseterror)
@@ -106,8 +106,8 @@ want to create your own garbage collector, use the [`Collector`](collector/index
 | [`Pointable`](#pointable) | trait |  |
 | [`Pointer`](#pointer) | trait |  |
 | [`unprotected`](#unprotected) | fn |  |
-| [`default_collector`](#default_collector) | fn |  |
-| [`is_pinned`](#is_pinned) | fn |  |
+| [`default_collector`](#default-collector) | fn |  |
+| [`is_pinned`](#is-pinned) | fn |  |
 | [`pin`](#pin) | fn |  |
 | [`CompareAndSetError`](#compareandseterror) | type |  |
 
@@ -166,9 +166,9 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 ##### `impl<T> Pointable for Atomic<T>`
 
-- <span id="atomic-const-align"></span>`const ALIGN: usize`
+- <span id="atomic-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomic-type-init"></span>`type Init = T`
+- <span id="atomic-pointable-type-init"></span>`type Init = T`
 
 - <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -217,9 +217,9 @@ The error returned on failed compare-and-swap operation.
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
-- <span id="compareexchangeerror-const-align"></span>`const ALIGN: usize`
+- <span id="compareexchangeerror-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="compareexchangeerror-type-init"></span>`type Init = T`
+- <span id="compareexchangeerror-pointable-type-init"></span>`type Init = T`
 
 - <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -275,7 +275,7 @@ least significant bits of the address.
 
 ##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
-- <span id="owned-type-target"></span>`type Target = T`
+- <span id="owned-deref-type-target"></span>`type Target = T`
 
 - <span id="owned-deref"></span>`fn deref(&self) -> &T`
 
@@ -289,9 +289,9 @@ least significant bits of the address.
 
 ##### `impl<T> Pointable for Owned<T>`
 
-- <span id="owned-const-align"></span>`const ALIGN: usize`
+- <span id="owned-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="owned-type-init"></span>`type Init = T`
+- <span id="owned-pointable-type-init"></span>`type Init = T`
 
 - <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -307,9 +307,9 @@ least significant bits of the address.
 
 - <span id="owned-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
-##### `impl<P, T> Receiver for Owned<T>`
+##### `impl<T> Receiver for Owned<T>`
 
-- <span id="owned-type-target"></span>`type Target = T`
+- <span id="owned-receiver-type-target"></span>`type Target = T`
 
 ### `Shared<'g, T: 'g + ?Sized + Pointable>`
 
@@ -355,19 +355,19 @@ least significant bits of the address.
 
 - <span id="shared-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
-##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
+##### `impl<T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
 - <span id="shared-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
+##### `impl<T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
 - <span id="shared-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering>`
 
 ##### `impl<T> Pointable for Shared<'g, T>`
 
-- <span id="shared-const-align"></span>`const ALIGN: usize`
+- <span id="shared-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="shared-type-init"></span>`type Init = T`
+- <span id="shared-pointable-type-init"></span>`type Init = T`
 
 - <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -423,9 +423,9 @@ An epoch-based garbage collector.
 
 ##### `impl Pointable for Collector`
 
-- <span id="collector-const-align"></span>`const ALIGN: usize`
+- <span id="collector-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collector-type-init"></span>`type Init = T`
+- <span id="collector-pointable-type-init"></span>`type Init = T`
 
 - <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -471,9 +471,9 @@ A handle to a garbage collector.
 
 ##### `impl Pointable for LocalHandle`
 
-- <span id="localhandle-const-align"></span>`const ALIGN: usize`
+- <span id="localhandle-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="localhandle-type-init"></span>`type Init = T`
+- <span id="localhandle-pointable-type-init"></span>`type Init = T`
 
 - <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -581,9 +581,9 @@ assert!(!epoch::is_pinned());
 
 ##### `impl Pointable for Guard`
 
-- <span id="guard-const-align"></span>`const ALIGN: usize`
+- <span id="guard-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="guard-type-init"></span>`type Init = T`
+- <span id="guard-pointable-type-init"></span>`type Init = T`
 
 - <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md#pointable)
 
@@ -717,15 +717,139 @@ A trait for either `Owned` or `Shared` pointers.
 
 ## Functions
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:160`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/lib.rs#L160)*
+### `unprotected`
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:166`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/lib.rs#L166)*
+```rust
+unsafe fn unprotected() -> &'static Guard
+```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:166`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/lib.rs#L166)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:166`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/lib.rs#L166)*
+Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](atomic/index.md)s.
+
+This guard should be used in special occasions only. Note that it doesn't actually keep any
+thread pinned - it's just a fake guard that allows loading from [`Atomic`](atomic/index.md)s unsafely.
+
+Note that calling `defer` with a dummy guard will not defer the function - it will just
+execute the function immediately.
+
+If necessary, it's possible to create more dummy guards by cloning: `unprotected().clone()`.
+
+# Safety
+
+Loading and dereferencing data from an [`Atomic`](atomic/index.md) using this guard is safe only if the
+[`Atomic`](atomic/index.md) is not being concurrently modified by other threads.
+
+# Examples
+
+```rust
+use crossbeam_epoch::{self as epoch, Atomic};
+use std::sync::atomic::Ordering::Relaxed;
+
+let a = Atomic::new(7);
+
+unsafe {
+    // Load `a` without pinning the current thread.
+    a.load(Relaxed, epoch::unprotected());
+
+    // It's possible to create more dummy guards.
+    let dummy = epoch::unprotected();
+
+    dummy.defer(move || {
+        println!("This gets executed immediately.");
+    });
+
+    // Dropping `dummy` doesn't affect the current thread - it's just a noop.
+}
+unsafe { drop(a.into_owned()); } // avoid leak
+```
+
+The most common use of this function is when constructing or destructing a data structure.
+
+For example, we can use a dummy guard in the destructor of a Treiber stack because at that
+point no other thread could concurrently modify the [`Atomic`](atomic/index.md)s we are accessing.
+
+If we were to actually pin the current thread during destruction, that would just unnecessarily
+delay garbage collection and incur some performance cost, so in cases like these `unprotected`
+is very helpful.
+
+```rust
+use crossbeam_epoch::{self as epoch, Atomic};
+use std::mem::ManuallyDrop;
+use std::sync::atomic::Ordering::Relaxed;
+
+struct Stack<T> {
+    head: Atomic<Node<T>>,
+}
+
+struct Node<T> {
+    data: ManuallyDrop<T>,
+    next: Atomic<Node<T>>,
+}
+
+impl<T> Drop for Stack<T> {
+    fn drop(&mut self) {
+        unsafe {
+            // Unprotected load.
+            let mut node = self.head.load(Relaxed, epoch::unprotected());
+
+            while let Some(n) = node.as_ref() {
+                // Unprotected load.
+                let next = n.next.load(Relaxed, epoch::unprotected());
+
+                // Take ownership of the node, then drop its data and deallocate it.
+                let mut o = node.into_owned();
+                ManuallyDrop::drop(&mut o.data);
+                drop(o);
+
+                node = next;
+            }
+        }
+    }
+}
+```
+
+
+
+### `default_collector`
+
+```rust
+fn default_collector() -> &'static crate::collector::Collector
+```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
+
+Returns the default global collector.
+
+### `is_pinned`
+
+```rust
+fn is_pinned() -> bool
+```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
+
+Returns `true` if the current thread is pinned.
+
+### `pin`
+
+```rust
+fn pin() -> crate::guard::Guard
+```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
+
+Pins the current thread.
 
 ## Type Aliases
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:155`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/lib.rs#L155)*
+### `CompareAndSetError<'g, T, P>`
+
+```rust
+type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
+```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+
+The error returned on failed compare-and-set operation.
 

@@ -21,11 +21,11 @@
   - [`UnzipOp`](#unzipop)
 - [Functions](#functions)
   - [`execute`](#execute)
-  - [`execute_into`](#execute_into)
+  - [`execute_into`](#execute-into)
   - [`unzip`](#unzip)
-  - [`unzip_indexed`](#unzip_indexed)
+  - [`unzip_indexed`](#unzip-indexed)
   - [`partition`](#partition)
-  - [`partition_map`](#partition_map)
+  - [`partition_map`](#partition-map)
 
 ## Quick Reference
 
@@ -43,11 +43,11 @@
 | [`Collector`](#collector) | struct | Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`. |
 | [`UnzipOp`](#unzipop) | trait | This trait abstracts the different ways we can "unzip" one parallel iterator into two distinct consumers, which we can handle almost identically apart from how to process the individual items. |
 | [`execute`](#execute) | fn | Runs an unzip-like operation into default `ParallelExtend` collections. |
-| [`execute_into`](#execute_into) | fn | Runs an unzip-like operation into `ParallelExtend` collections. |
+| [`execute_into`](#execute-into) | fn | Runs an unzip-like operation into `ParallelExtend` collections. |
 | [`unzip`](#unzip) | fn | Unzips the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
-| [`unzip_indexed`](#unzip_indexed) | fn | Unzips an `IndexedParallelIterator` into two arbitrary `Consumer`s. |
+| [`unzip_indexed`](#unzip-indexed) | fn | Unzips an `IndexedParallelIterator` into two arbitrary `Consumer`s. |
 | [`partition`](#partition) | fn | Partitions the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
-| [`partition_map`](#partition_map) | fn | Partitions and maps the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
+| [`partition_map`](#partition-map) | fn | Partitions and maps the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
 
 ## Structs
 
@@ -67,9 +67,9 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 ##### `impl Pointable for Unzip`
 
-- <span id="unzip-const-align"></span>`const ALIGN: usize`
+- <span id="unzip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzip-type-init"></span>`type Init = T`
+- <span id="unzip-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -79,11 +79,11 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 - <span id="unzip-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl UnzipOp for Unzip`
+##### `impl<A: Send, B: Send> UnzipOp for Unzip`
 
-- <span id="unzip-type-left"></span>`type Left = A`
+- <span id="unzip-unzipop-type-left"></span>`type Left = A`
 
-- <span id="unzip-type-right"></span>`type Right = B`
+- <span id="unzip-unzipop-type-right"></span>`type Right = B`
 
 - <span id="unzip-consume"></span>`fn consume<FA, FB>(&self, item: (A, B), left: FA, right: FB) -> (FA, FB)`
 
@@ -103,13 +103,13 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for Partition<P>`
+##### `impl IntoEither for Partition<P>`
 
-##### `impl<T> Pointable for Partition<P>`
+##### `impl Pointable for Partition<P>`
 
-- <span id="partition-const-align"></span>`const ALIGN: usize`
+- <span id="partition-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="partition-type-init"></span>`type Init = T`
+- <span id="partition-pointable-type-init"></span>`type Init = T`
 
 - <span id="partition-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -121,9 +121,9 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 ##### `impl<P, T> UnzipOp for Partition<P>`
 
-- <span id="partition-type-left"></span>`type Left = T`
+- <span id="partition-unzipop-type-left"></span>`type Left = T`
 
-- <span id="partition-type-right"></span>`type Right = T`
+- <span id="partition-unzipop-type-right"></span>`type Right = T`
 
 - <span id="partition-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
@@ -141,13 +141,13 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for PartitionMap<P>`
+##### `impl IntoEither for PartitionMap<P>`
 
-##### `impl<T> Pointable for PartitionMap<P>`
+##### `impl Pointable for PartitionMap<P>`
 
-- <span id="partitionmap-const-align"></span>`const ALIGN: usize`
+- <span id="partitionmap-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="partitionmap-type-init"></span>`type Init = T`
+- <span id="partitionmap-pointable-type-init"></span>`type Init = T`
 
 - <span id="partitionmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -157,11 +157,11 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 - <span id="partitionmap-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<P, L, R, T> UnzipOp for PartitionMap<P>`
+##### `impl<P, T> UnzipOp for PartitionMap<P>`
 
-- <span id="partitionmap-type-left"></span>`type Left = L`
+- <span id="partitionmap-unzipop-type-left"></span>`type Left = L`
 
-- <span id="partitionmap-type-right"></span>`type Right = R`
+- <span id="partitionmap-unzipop-type-right"></span>`type Right = R`
 
 - <span id="partitionmap-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
@@ -181,29 +181,29 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for UnzipA<'b, I, OP, FromB>`
+##### `impl IntoEither for UnzipA<'b, I, OP, FromB>`
 
-##### `impl<T> IntoParallelIterator for UnzipA<'b, I, OP, FromB>`
+##### `impl IntoParallelIterator for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-type-iter"></span>`type Iter = T`
+- <span id="unzipa-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="unzipa-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="unzipa-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="unzipa-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'b, I, OP, FromB> ParallelIterator for UnzipA<'b, I, OP, FromB>`
+##### `impl<I, OP, FromB> ParallelIterator for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-type-item"></span>`type Item = <OP as UnzipOp>::Left`
+- <span id="unzipa-paralleliterator-type-item"></span>`type Item = <OP as UnzipOp>::Left`
 
 - <span id="unzipa-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="unzipa-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for UnzipA<'b, I, OP, FromB>`
+##### `impl Pointable for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-const-align"></span>`const ALIGN: usize`
+- <span id="unzipa-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipa-type-init"></span>`type Init = T`
+- <span id="unzipa-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzipa-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -234,29 +234,29 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for UnzipB<'r, I, OP, CA>`
+##### `impl IntoEither for UnzipB<'r, I, OP, CA>`
 
-##### `impl<T> IntoParallelIterator for UnzipB<'r, I, OP, CA>`
+##### `impl IntoParallelIterator for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-type-iter"></span>`type Iter = T`
+- <span id="unzipb-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="unzipb-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="unzipb-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="unzipb-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'r, I, OP, CA> ParallelIterator for UnzipB<'r, I, OP, CA>`
+##### `impl<I, OP, CA> ParallelIterator for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-type-item"></span>`type Item = <OP as UnzipOp>::Right`
+- <span id="unzipb-paralleliterator-type-item"></span>`type Item = <OP as UnzipOp>::Right`
 
 - <span id="unzipb-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="unzipb-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for UnzipB<'r, I, OP, CA>`
+##### `impl Pointable for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-const-align"></span>`const ALIGN: usize`
+- <span id="unzipb-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipb-type-init"></span>`type Init = T`
+- <span id="unzipb-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzipb-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -282,13 +282,13 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, OP, CA, CB> Consumer for UnzipConsumer<'a, OP, CA, CB>`
+##### `impl<T, OP, CA, CB> Consumer for UnzipConsumer<'a, OP, CA, CB>`
 
-- <span id="unzipconsumer-type-folder"></span>`type Folder = UnzipFolder<'a, OP, <CA as Consumer>::Folder, <CB as Consumer>::Folder>`
+- <span id="unzipconsumer-consumer-type-folder"></span>`type Folder = UnzipFolder<'a, OP, <CA as Consumer>::Folder, <CB as Consumer>::Folder>`
 
-- <span id="unzipconsumer-type-reducer"></span>`type Reducer = UnzipReducer<<CA as Consumer>::Reducer, <CB as Consumer>::Reducer>`
+- <span id="unzipconsumer-consumer-type-reducer"></span>`type Reducer = UnzipReducer<<CA as Consumer>::Reducer, <CB as Consumer>::Reducer>`
 
-- <span id="unzipconsumer-type-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
+- <span id="unzipconsumer-consumer-type-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
 
 - <span id="unzipconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -296,13 +296,13 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for UnzipConsumer<'a, OP, CA, CB>`
+##### `impl IntoEither for UnzipConsumer<'a, OP, CA, CB>`
 
-##### `impl<T> Pointable for UnzipConsumer<'a, OP, CA, CB>`
+##### `impl Pointable for UnzipConsumer<'a, OP, CA, CB>`
 
-- <span id="unzipconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="unzipconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipconsumer-type-init"></span>`type Init = T`
+- <span id="unzipconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzipconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -312,7 +312,7 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 - <span id="unzipconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, T, OP, CA, CB> UnindexedConsumer for UnzipConsumer<'a, OP, CA, CB>`
+##### `impl<T, OP, CA, CB> UnindexedConsumer for UnzipConsumer<'a, OP, CA, CB>`
 
 - <span id="unzipconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -334,9 +334,9 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, OP, FA, FB> Folder for UnzipFolder<'a, OP, FA, FB>`
+##### `impl<T, OP, FA, FB> Folder for UnzipFolder<'a, OP, FA, FB>`
 
-- <span id="unzipfolder-type-result"></span>`type Result = (<FA as Folder>::Result, <FB as Folder>::Result)`
+- <span id="unzipfolder-folder-type-result"></span>`type Result = (<FA as Folder>::Result, <FB as Folder>::Result)`
 
 - <span id="unzipfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -344,13 +344,13 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 - <span id="unzipfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for UnzipFolder<'a, OP, FA, FB>`
+##### `impl IntoEither for UnzipFolder<'a, OP, FA, FB>`
 
-##### `impl<T> Pointable for UnzipFolder<'a, OP, FA, FB>`
+##### `impl Pointable for UnzipFolder<'a, OP, FA, FB>`
 
-- <span id="unzipfolder-const-align"></span>`const ALIGN: usize`
+- <span id="unzipfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipfolder-type-init"></span>`type Init = T`
+- <span id="unzipfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzipfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -375,13 +375,13 @@ struct UnzipReducer<RA, RB> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for UnzipReducer<RA, RB>`
+##### `impl IntoEither for UnzipReducer<RA, RB>`
 
-##### `impl<T> Pointable for UnzipReducer<RA, RB>`
+##### `impl Pointable for UnzipReducer<RA, RB>`
 
-- <span id="unzipreducer-const-align"></span>`const ALIGN: usize`
+- <span id="unzipreducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipreducer-type-init"></span>`type Init = T`
+- <span id="unzipreducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="unzipreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -411,9 +411,9 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 ##### `impl Pointable for UnEither`
 
-- <span id="uneither-const-align"></span>`const ALIGN: usize`
+- <span id="uneither-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="uneither-type-init"></span>`type Init = T`
+- <span id="uneither-pointable-type-init"></span>`type Init = T`
 
 - <span id="uneither-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -423,11 +423,11 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - <span id="uneither-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl UnzipOp for UnEither`
+##### `impl<L, R> UnzipOp for UnEither`
 
-- <span id="uneither-type-left"></span>`type Left = L`
+- <span id="uneither-unzipop-type-left"></span>`type Left = L`
 
-- <span id="uneither-type-right"></span>`type Right = R`
+- <span id="uneither-unzipop-type-right"></span>`type Right = R`
 
 - <span id="uneither-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md#either)
 
@@ -449,17 +449,17 @@ Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 
 - <span id="collector-default"></span>`fn default() -> Self`
 
-##### `impl<T> IntoEither for Collector<FromT>`
+##### `impl IntoEither for Collector<FromT>`
 
 ##### `impl<T, FromT> ParallelExtend for Collector<FromT>`
 
 - <span id="collector-par-extend"></span>`fn par_extend<I>(&mut self, pi: I)`
 
-##### `impl<T> Pointable for Collector<FromT>`
+##### `impl Pointable for Collector<FromT>`
 
-- <span id="collector-const-align"></span>`const ALIGN: usize`
+- <span id="collector-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collector-type-init"></span>`type Init = T`
+- <span id="collector-pointable-type-init"></span>`type Init = T`
 
 - <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

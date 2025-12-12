@@ -38,7 +38,7 @@ instructions.
   - [`ArgNumber`](#argnumber)
   - [`RetNumber`](#retnumber)
 - [Functions](#functions)
-  - [`raw_arg`](#raw_arg)
+  - [`raw_arg`](#raw-arg)
   - [`nr`](#nr)
 
 ## Quick Reference
@@ -61,7 +61,7 @@ instructions.
 | [`FromAsm`](#fromasm) | trait |  |
 | [`ArgNumber`](#argnumber) | trait |  |
 | [`RetNumber`](#retnumber) | trait |  |
-| [`raw_arg`](#raw_arg) | fn | Encode a system call argument as an `ArgReg`. |
+| [`raw_arg`](#raw-arg) | fn | Encode a system call argument as an `ArgReg`. |
 | [`nr`](#nr) | fn | Encode a system call number (a `__NR_*` constant) as a `SyscallNumber`. |
 
 ## Modules
@@ -200,9 +200,9 @@ it might be pointing to.
 
 #### Trait Implementations
 
-##### `impl<'a, Num: super::ArgNumber> Sealed for super::ArgReg<'a, Num>`
+##### `impl<Num: super::ArgNumber> Sealed for super::ArgReg<'a, Num>`
 
-##### `impl<'a, Num: ArgNumber> ToAsm for ArgReg<'a, Num>`
+##### `impl<Num: ArgNumber> ToAsm for ArgReg<'a, Num>`
 
 - <span id="argreg-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
 

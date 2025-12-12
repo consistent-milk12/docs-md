@@ -15,7 +15,7 @@
 - [Enums](#enums)
   - [`IndexSectionId`](#indexsectionid)
 - [Constants](#constants)
-  - [`SECTION_COUNT_MAX`](#section_count_max)
+  - [`SECTION_COUNT_MAX`](#section-count-max)
 
 ## Quick Reference
 
@@ -27,7 +27,7 @@
 | [`UnitIndexSectionIterator`](#unitindexsectioniterator) | struct | An iterator over the section offsets and sizes for a row in a `UnitIndex`. |
 | [`UnitIndexSection`](#unitindexsection) | struct | Information about a unit's contribution to a section in a `.dwp` file. |
 | [`IndexSectionId`](#indexsectionid) | enum | Section kinds which are permitted in a `.dwp` index. |
-| [`SECTION_COUNT_MAX`](#section_count_max) | const |  |
+| [`SECTION_COUNT_MAX`](#section-count-max) | const |  |
 
 ## Structs
 
@@ -173,25 +173,25 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
 
-##### `impl<'index, R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
 
-##### `impl<'index, R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
 - <span id="unitindexsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for UnitIndexSectionIterator<'index, R>`
+##### `impl IntoIterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="unitindexsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="unitindexsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="unitindexsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'index, R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
+##### `impl<R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-type-item"></span>`type Item = UnitIndexSection`
+- <span id="unitindexsectioniterator-iterator-type-item"></span>`type Item = UnitIndexSection`
 
 - <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md#unitindexsection)
 

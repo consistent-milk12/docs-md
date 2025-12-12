@@ -10,8 +10,8 @@ Utilities related to FFI bindings.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`c_void`](#c_void) | struct |  |
-| [`c_uint`](#c_uint) | fn |  |
+| [`c_void`](#c-void) | struct |  |
+| [`c_uint`](#c-uint) | fn |  |
 
 ## Structs
 
@@ -111,5 +111,11 @@ than once.
 
 ## Functions
 
-*Defined in [`rustix-1.1.2/src/ffi.rs:9`](../../../.source_1765210505/rustix-1.1.2/src/ffi.rs#L9)*
+### `c_uint`
+
+```rust
+fn c_uint(sections: &gimli::Dwarf<R>) -> Result<Self, gimli::Error>
+```
+
+*Defined in [`addr2line-0.25.1/src/unit.rs:504-521`](../../../.source_1765210505/addr2line-0.25.1/src/unit.rs#L504-L521)*
 

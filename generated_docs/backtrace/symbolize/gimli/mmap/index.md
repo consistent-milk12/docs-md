@@ -31,7 +31,7 @@ struct Mmap {
 
 ##### `impl Deref for Mmap`
 
-- <span id="mmap-type-target"></span>`type Target = [u8]`
+- <span id="mmap-deref-type-target"></span>`type Target = [u8]`
 
 - <span id="mmap-deref"></span>`fn deref(&self) -> &[u8]`
 
@@ -41,5 +41,5 @@ struct Mmap {
 
 ##### `impl Receiver for Mmap`
 
-- <span id="mmap-type-target"></span>`type Target = T`
+- <span id="mmap-receiver-type-target"></span>`type Target = T`
 

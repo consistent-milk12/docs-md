@@ -89,15 +89,15 @@ An iterator over each equivalence class.
 
 ##### `impl IntoIterator for ByteClassIter`
 
-- <span id="byteclassiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassIter`
 
-- <span id="byteclassiter-type-item"></span>`type Item = u8`
+- <span id="byteclassiter-iterator-type-item"></span>`type Item = u8`
 
 - <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -123,15 +123,15 @@ An iterator over all elements in a specific equivalence class.
 
 ##### `impl IntoIterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselements-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselements-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-type-item"></span>`type Item = u8`
+- <span id="byteclasselements-iterator-type-item"></span>`type Item = u8`
 
 - <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -157,15 +157,15 @@ sequence of contiguous ranges.
 
 ##### `impl IntoIterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselementranges-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselementranges-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-type-item"></span>`type Item = (u8, u8)`
+- <span id="byteclasselementranges-iterator-type-item"></span>`type Item = (u8, u8)`
 
 - <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 

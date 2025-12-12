@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`write_mantissa_long`](#write_mantissa_long) | fn |  |
-| [`write_mantissa`](#write_mantissa) | fn |  |
+| [`write_mantissa_long`](#write-mantissa-long) | fn |  |
+| [`write_mantissa`](#write-mantissa) | fn |  |
 
 ## Functions
 

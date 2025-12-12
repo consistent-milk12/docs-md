@@ -11,35 +11,35 @@
 - [Modules](#modules)
   - [`consts`](#consts)
 - [Functions](#functions)
-  - [`compose_opcode`](#compose_opcode)
+  - [`compose_opcode`](#compose-opcode)
 - [Constants](#constants)
-  - [`NUM_BITS`](#num_bits)
-  - [`GROUP_BITS`](#group_bits)
-  - [`NUM_SHIFT`](#num_shift)
-  - [`GROUP_SHIFT`](#group_shift)
-  - [`SIZE_SHIFT`](#size_shift)
-  - [`DIR_SHIFT`](#dir_shift)
-  - [`NUM_MASK`](#num_mask)
-  - [`GROUP_MASK`](#group_mask)
-  - [`SIZE_MASK`](#size_mask)
-  - [`DIR_MASK`](#dir_mask)
+  - [`NUM_BITS`](#num-bits)
+  - [`GROUP_BITS`](#group-bits)
+  - [`NUM_SHIFT`](#num-shift)
+  - [`GROUP_SHIFT`](#group-shift)
+  - [`SIZE_SHIFT`](#size-shift)
+  - [`DIR_SHIFT`](#dir-shift)
+  - [`NUM_MASK`](#num-mask)
+  - [`GROUP_MASK`](#group-mask)
+  - [`SIZE_MASK`](#size-mask)
+  - [`DIR_MASK`](#dir-mask)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`consts`](#consts) | mod |  |
-| [`compose_opcode`](#compose_opcode) | fn | Compose an opcode from its component parts. |
-| [`NUM_BITS`](#num_bits) | const |  |
-| [`GROUP_BITS`](#group_bits) | const |  |
-| [`NUM_SHIFT`](#num_shift) | const |  |
-| [`GROUP_SHIFT`](#group_shift) | const |  |
-| [`SIZE_SHIFT`](#size_shift) | const |  |
-| [`DIR_SHIFT`](#dir_shift) | const |  |
-| [`NUM_MASK`](#num_mask) | const |  |
-| [`GROUP_MASK`](#group_mask) | const |  |
-| [`SIZE_MASK`](#size_mask) | const |  |
-| [`DIR_MASK`](#dir_mask) | const |  |
+| [`compose_opcode`](#compose-opcode) | fn | Compose an opcode from its component parts. |
+| [`NUM_BITS`](#num-bits) | const |  |
+| [`GROUP_BITS`](#group-bits) | const |  |
+| [`NUM_SHIFT`](#num-shift) | const |  |
+| [`GROUP_SHIFT`](#group-shift) | const |  |
+| [`SIZE_SHIFT`](#size-shift) | const |  |
+| [`DIR_SHIFT`](#dir-shift) | const |  |
+| [`NUM_MASK`](#num-mask) | const |  |
+| [`GROUP_MASK`](#group-mask) | const |  |
+| [`SIZE_MASK`](#size-mask) | const |  |
+| [`DIR_MASK`](#dir-mask) | const |  |
 
 ## Modules
 

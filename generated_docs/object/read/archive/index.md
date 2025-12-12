@@ -41,9 +41,9 @@ fn main() -> Result<(), Box<dyn Error>> {
   - [`MemberHeader`](#memberheader)
   - [`SymbolIteratorInternal`](#symboliteratorinternal)
 - [Functions](#functions)
-  - [`parse_u64_digits`](#parse_u64_digits)
-  - [`parse_sysv_extended_name`](#parse_sysv_extended_name)
-  - [`parse_bsd_extended_name`](#parse_bsd_extended_name)
+  - [`parse_u64_digits`](#parse-u64-digits)
+  - [`parse_sysv_extended_name`](#parse-sysv-extended-name)
+  - [`parse_bsd_extended_name`](#parse-bsd-extended-name)
 
 ## Quick Reference
 
@@ -59,9 +59,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`Members`](#members) | enum | The list of members in the archive. |
 | [`MemberHeader`](#memberheader) | enum | An archive member header. |
 | [`SymbolIteratorInternal`](#symboliteratorinternal) | enum |  |
-| [`parse_u64_digits`](#parse_u64_digits) | fn |  |
-| [`parse_sysv_extended_name`](#parse_sysv_extended_name) | fn | Digits are a decimal offset into the extended name table. |
-| [`parse_bsd_extended_name`](#parse_bsd_extended_name) | fn | Digits are a decimal length of the extended name, which is contained in `data` at `offset`. |
+| [`parse_u64_digits`](#parse-u64-digits) | fn |  |
+| [`parse_sysv_extended_name`](#parse-sysv-extended-name) | fn | Digits are a decimal offset into the extended name table. |
+| [`parse_bsd_extended_name`](#parse-bsd-extended-name) | fn | Digits are a decimal length of the extended name, which is contained in `data` at `offset`. |
 
 ## Structs
 
@@ -100,13 +100,13 @@ A partially parsed archive file.
 
 #### Trait Implementations
 
-##### `impl<'data, R: clone::Clone + ReadRef<'data>> Clone for ArchiveFile<'data, R>`
+##### `impl<R: clone::Clone + ReadRef<'data>> Clone for ArchiveFile<'data, R>`
 
 - <span id="archivefile-clone"></span>`fn clone(&self) -> ArchiveFile<'data, R>` — [`ArchiveFile`](#archivefile)
 
-##### `impl<'data, R: marker::Copy + ReadRef<'data>> Copy for ArchiveFile<'data, R>`
+##### `impl<R: marker::Copy + ReadRef<'data>> Copy for ArchiveFile<'data, R>`
 
-##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for ArchiveFile<'data, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ArchiveFile<'data, R>`
 
 - <span id="archivefile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -127,21 +127,21 @@ An iterator over the members of an archive.
 
 #### Trait Implementations
 
-##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for ArchiveMemberIterator<'data, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ArchiveMemberIterator<'data, R>`
 
 - <span id="archivememberiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ArchiveMemberIterator<'data, R>`
+##### `impl IntoIterator for ArchiveMemberIterator<'data, R>`
 
-- <span id="archivememberiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="archivememberiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="archivememberiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="archivememberiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="archivememberiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, R: ReadRef<'data>> Iterator for ArchiveMemberIterator<'data, R>`
+##### `impl<R: ReadRef<'data>> Iterator for ArchiveMemberIterator<'data, R>`
 
-- <span id="archivememberiterator-type-item"></span>`type Item = Result<ArchiveMember<'data>, Error>`
+- <span id="archivememberiterator-iterator-type-item"></span>`type Item = Result<ArchiveMember<'data>, Error>`
 
 - <span id="archivememberiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -244,15 +244,15 @@ An iterator over the symbols in the archive symbol table.
 
 ##### `impl IntoIterator for ArchiveSymbolIterator<'data>`
 
-- <span id="archivesymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="archivesymboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="archivesymboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="archivesymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="archivesymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ArchiveSymbolIterator<'data>`
 
-- <span id="archivesymboliterator-type-item"></span>`type Item = Result<ArchiveSymbol<'data>, Error>`
+- <span id="archivesymboliterator-iterator-type-item"></span>`type Item = Result<ArchiveSymbol<'data>, Error>`
 
 - <span id="archivesymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

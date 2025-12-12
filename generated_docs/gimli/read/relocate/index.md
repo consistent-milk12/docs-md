@@ -47,9 +47,9 @@ It is generally not used for reading sections in an executable file.
 
 ##### `impl<R, T> Reader for RelocateReader<R, T>`
 
-- <span id="relocatereader-type-endian"></span>`type Endian = <R as Reader>::Endian`
+- <span id="relocatereader-reader-type-endian"></span>`type Endian = <R as Reader>::Endian`
 
-- <span id="relocatereader-type-offset"></span>`type Offset = <R as Reader>::Offset`
+- <span id="relocatereader-reader-type-offset"></span>`type Offset = <R as Reader>::Offset`
 
 - <span id="relocatereader-read-address"></span>`fn read_address(&mut self, address_size: u8) -> Result<u64>` — [`Result`](../../index.md#result)
 

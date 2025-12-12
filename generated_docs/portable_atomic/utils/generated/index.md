@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`fast_atomic_64_macros`](#fast_atomic_64_macros) | mod |  |
+| [`fast_atomic_64_macros`](#fast-atomic-64-macros) | mod |  |
 
 ## Modules
 

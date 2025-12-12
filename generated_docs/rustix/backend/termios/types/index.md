@@ -10,7 +10,7 @@ Types for the `termios` module.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`tcflag_t`](#tcflag_t) | type |  |
+| [`tcflag_t`](#tcflag-t) | type |  |
 
 ## Type Aliases
 

@@ -54,7 +54,7 @@ struct TypeRenderer<'a> {
 }
 ```
 
-*Defined in `src/types.rs:66-72`*
+*Defined in `src/types.rs:67-73`*
 
 Type renderer for converting rustdoc types to Rust syntax strings.
 
@@ -90,6 +90,12 @@ let generics = renderer.render_generics(&params);
 - <span id="typerenderer-new"></span>`const fn new(krate: &'a Crate) -> Self`
 
 - <span id="typerenderer-get-type-id"></span>`const fn get_type_id(&self, ty: &Type) -> Option<Id>`
+
+- <span id="typerenderer-render-path-with-args"></span>`fn render_path_with_args<'p>(self, path: &'p str, args: Option<&GenericArgs>) -> Cow<'p, str>`
+
+- <span id="typerenderer-write-bounds-joined"></span>`fn write_bounds_joined(self, out: &mut String, bounds: &[GenericBound])`
+
+- <span id="typerenderer-write-types-joined"></span>`fn write_types_joined<'t, I>(self, out: &mut String, types: I, sep: &str)`
 
 - <span id="typerenderer-render-type"></span>`fn render_type<'t>(&self, ty: &'t Type) -> Cow<'t, str>`
 
@@ -137,9 +143,9 @@ let generics = renderer.render_generics(&params);
 
 ##### `impl Pointable for TypeRenderer<'a>`
 
-- <span id="typerenderer-const-align"></span>`const ALIGN: usize`
+- <span id="typerenderer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="typerenderer-type-init"></span>`type Init = T`
+- <span id="typerenderer-pointable-type-init"></span>`type Init = T`
 
 - <span id="typerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

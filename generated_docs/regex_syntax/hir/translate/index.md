@@ -16,9 +16,9 @@ Defines a translator that converts an `Ast` to an `Hir`.
 - [Enums](#enums)
   - [`HirFrame`](#hirframe)
 - [Functions](#functions)
-  - [`hir_ascii_class_bytes`](#hir_ascii_class_bytes)
-  - [`ascii_class`](#ascii_class)
-  - [`ascii_class_as_chars`](#ascii_class_as_chars)
+  - [`hir_ascii_class_bytes`](#hir-ascii-class-bytes)
+  - [`ascii_class`](#ascii-class)
+  - [`ascii_class_as_chars`](#ascii-class-as-chars)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 
@@ -31,9 +31,9 @@ Defines a translator that converts an `Ast` to an `Hir`.
 | [`TranslatorI`](#translatori) | struct | The internal implementation of a translator. |
 | [`Flags`](#flags) | struct | A translator's representation of a regular expression's flags at any given moment in time. |
 | [`HirFrame`](#hirframe) | enum | An HirFrame is a single stack frame, represented explicitly, which is created for each item in the Ast that we traverse. |
-| [`hir_ascii_class_bytes`](#hir_ascii_class_bytes) | fn |  |
-| [`ascii_class`](#ascii_class) | fn |  |
-| [`ascii_class_as_chars`](#ascii_class_as_chars) | fn |  |
+| [`hir_ascii_class_bytes`](#hir-ascii-class-bytes) | fn |  |
+| [`ascii_class`](#ascii-class) | fn |  |
+| [`ascii_class_as_chars`](#ascii-class-as-chars) | fn |  |
 | [`Result`](#result) | type |  |
 
 ## Structs
@@ -228,9 +228,9 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 
 ##### `impl Visitor for TranslatorI<'t, 'p>`
 
-- <span id="translatori-type-output"></span>`type Output = Hir`
+- <span id="translatori-visitor-type-output"></span>`type Output = Hir`
 
-- <span id="translatori-type-err"></span>`type Err = Error`
+- <span id="translatori-visitor-type-err"></span>`type Err = Error`
 
 - <span id="translatori-finish"></span>`fn finish(self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 

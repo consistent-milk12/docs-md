@@ -11,7 +11,7 @@
 | [`NarratableReportHandler`](#narratablereporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
 | [`Line`](#line) | struct |  |
 | [`SpanAttach`](#spanattach) | enum |  |
-| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
+| [`safe_get_column`](#safe-get-column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
 
 ## Structs
 

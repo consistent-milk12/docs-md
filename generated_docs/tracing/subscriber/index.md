@@ -11,9 +11,9 @@ Collects and records trace data.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`DefaultGuard`](#defaultguard) | trait |  |
-| [`with_default`](#with_default) | fn | Sets this [`Subscriber`] as the default for the current thread for the duration of a closure. |
-| [`set_global_default`](#set_global_default) | fn | Sets this subscriber as the global default for the duration of the entire program. |
-| [`set_default`](#set_default) | fn | Sets the [`Subscriber`] as the default for the current thread for the duration of the lifetime of the returned [`DefaultGuard`]. |
+| [`with_default`](#with-default) | fn | Sets this [`Subscriber`] as the default for the current thread for the duration of a closure. |
+| [`set_global_default`](#set-global-default) | fn | Sets this subscriber as the global default for the duration of the entire program. |
+| [`set_default`](#set-default) | fn | Sets the [`Subscriber`] as the default for the current thread for the duration of the lifetime of the returned [`DefaultGuard`]. |
 
 ## Traits
 

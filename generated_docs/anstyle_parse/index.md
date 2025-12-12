@@ -48,8 +48,8 @@ Just type `:q` to exit.
 - [Type Aliases](#type-aliases)
   - [`DefaultCharAccumulator`](#defaultcharaccumulator)
 - [Constants](#constants)
-  - [`MAX_INTERMEDIATES`](#max_intermediates)
-  - [`MAX_OSC_PARAMS`](#max_osc_params)
+  - [`MAX_INTERMEDIATES`](#max-intermediates)
+  - [`MAX_OSC_PARAMS`](#max-osc-params)
 
 ## Quick Reference
 
@@ -66,8 +66,8 @@ Just type `:q` to exit.
 | [`CharAccumulator`](#characcumulator) | trait | Build a `char` out of bytes |
 | [`Perform`](#perform) | trait | Performs actions requested by the [`Parser`] |
 | [`DefaultCharAccumulator`](#defaultcharaccumulator) | type | Most flexible [`CharAccumulator`] for [`Parser`] based on active features |
-| [`MAX_INTERMEDIATES`](#max_intermediates) | const |  |
-| [`MAX_OSC_PARAMS`](#max_osc_params) | const |  |
+| [`MAX_INTERMEDIATES`](#max-intermediates) | const |  |
+| [`MAX_OSC_PARAMS`](#max-osc-params) | const |  |
 
 ## Modules
 
@@ -146,9 +146,9 @@ struct Params {
 
 ##### `impl IntoIterator for &'a Params`
 
-- <span id="a-params-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
+- <span id="a-params-intoiterator-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
 
-- <span id="a-params-type-item"></span>`type Item = &'a [u16]`
+- <span id="a-params-intoiterator-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="a-params-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -179,15 +179,15 @@ Immutable subparameter iterator.
 
 ##### `impl IntoIterator for ParamsIter<'a>`
 
-- <span id="paramsiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="paramsiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="paramsiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="paramsiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ParamsIter<'a>`
 
-- <span id="paramsiter-type-item"></span>`type Item = &'a [u16]`
+- <span id="paramsiter-iterator-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -9,12 +9,12 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`help`](#help) | mod |  |
-| [`help_template`](#help_template) | mod |  |
+| [`help_template`](#help-template) | mod |  |
 | [`usage`](#usage) | mod |  |
 | [`fmt`](#fmt) | mod |  |
 | [`textwrap`](#textwrap) | mod | Fork of `textwrap` crate |
 | [`TAB`](#tab) | const |  |
-| [`TAB_WIDTH`](#tab_width) | const |  |
+| [`TAB_WIDTH`](#tab-width) | const |  |
 
 ## Modules
 

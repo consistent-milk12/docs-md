@@ -7,33 +7,33 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`move_cursor_down`](#move_cursor_down)
-  - [`move_cursor_up`](#move_cursor_up)
-  - [`move_cursor_left`](#move_cursor_left)
-  - [`move_cursor_right`](#move_cursor_right)
-  - [`move_cursor_to`](#move_cursor_to)
-  - [`clear_chars`](#clear_chars)
-  - [`clear_line`](#clear_line)
-  - [`clear_screen`](#clear_screen)
-  - [`clear_to_end_of_screen`](#clear_to_end_of_screen)
-  - [`show_cursor`](#show_cursor)
-  - [`hide_cursor`](#hide_cursor)
+  - [`move_cursor_down`](#move-cursor-down)
+  - [`move_cursor_up`](#move-cursor-up)
+  - [`move_cursor_left`](#move-cursor-left)
+  - [`move_cursor_right`](#move-cursor-right)
+  - [`move_cursor_to`](#move-cursor-to)
+  - [`clear_chars`](#clear-chars)
+  - [`clear_line`](#clear-line)
+  - [`clear_screen`](#clear-screen)
+  - [`clear_to_end_of_screen`](#clear-to-end-of-screen)
+  - [`show_cursor`](#show-cursor)
+  - [`hide_cursor`](#hide-cursor)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`move_cursor_down`](#move_cursor_down) | fn |  |
-| [`move_cursor_up`](#move_cursor_up) | fn |  |
-| [`move_cursor_left`](#move_cursor_left) | fn |  |
-| [`move_cursor_right`](#move_cursor_right) | fn |  |
-| [`move_cursor_to`](#move_cursor_to) | fn |  |
-| [`clear_chars`](#clear_chars) | fn |  |
-| [`clear_line`](#clear_line) | fn |  |
-| [`clear_screen`](#clear_screen) | fn |  |
-| [`clear_to_end_of_screen`](#clear_to_end_of_screen) | fn |  |
-| [`show_cursor`](#show_cursor) | fn |  |
-| [`hide_cursor`](#hide_cursor) | fn |  |
+| [`move_cursor_down`](#move-cursor-down) | fn |  |
+| [`move_cursor_up`](#move-cursor-up) | fn |  |
+| [`move_cursor_left`](#move-cursor-left) | fn |  |
+| [`move_cursor_right`](#move-cursor-right) | fn |  |
+| [`move_cursor_to`](#move-cursor-to) | fn |  |
+| [`clear_chars`](#clear-chars) | fn |  |
+| [`clear_line`](#clear-line) | fn |  |
+| [`clear_screen`](#clear-screen) | fn |  |
+| [`clear_to_end_of_screen`](#clear-to-end-of-screen) | fn |  |
+| [`show_cursor`](#show-cursor) | fn |  |
+| [`hide_cursor`](#hide-cursor) | fn |  |
 
 ## Functions
 

@@ -33,15 +33,15 @@ struct IterImpl {
 
 ##### `impl IntoIterator for IterImpl`
 
-- <span id="iterimpl-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterimpl-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterimpl-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterimpl-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterimpl-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IterImpl`
 
-- <span id="iterimpl-type-item"></span>`type Item = TokenTree`
+- <span id="iterimpl-iterator-type-item"></span>`type Item = TokenTree`
 
 - <span id="iterimpl-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

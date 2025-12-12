@@ -11,7 +11,7 @@
 | [`SkipAny`](#skipany) | struct | `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`. |
 | [`SkipAnyConsumer`](#skipanyconsumer) | struct |  |
 | [`SkipAnyFolder`](#skipanyfolder) | struct |  |
-| [`checked_decrement`](#checked_decrement) | fn |  |
+| [`checked_decrement`](#checked-decrement) | fn |  |
 
 ## Structs
 
@@ -44,27 +44,27 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](../ind
 
 - <span id="skipany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for SkipAny<I>`
+##### `impl IntoEither for SkipAny<I>`
 
-##### `impl<T> IntoParallelIterator for SkipAny<I>`
+##### `impl IntoParallelIterator for SkipAny<I>`
 
-- <span id="skipany-type-iter"></span>`type Iter = T`
+- <span id="skipany-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="skipany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for SkipAny<I>`
 
-- <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for SkipAny<I>`
+##### `impl Pointable for SkipAny<I>`
 
-- <span id="skipany-const-align"></span>`const ALIGN: usize`
+- <span id="skipany-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipany-type-init"></span>`type Init = T`
+- <span id="skipany-pointable-type-init"></span>`type Init = T`
 
 - <span id="skipany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -87,13 +87,13 @@ struct SkipAnyConsumer<'f, C> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C> Consumer for SkipAnyConsumer<'f, C>`
+##### `impl<T, C> Consumer for SkipAnyConsumer<'f, C>`
 
-- <span id="skipanyconsumer-type-folder"></span>`type Folder = SkipAnyFolder<'f, <C as Consumer>::Folder>`
+- <span id="skipanyconsumer-consumer-type-folder"></span>`type Folder = SkipAnyFolder<'f, <C as Consumer>::Folder>`
 
-- <span id="skipanyconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="skipanyconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="skipanyconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="skipanyconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="skipanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -101,13 +101,13 @@ struct SkipAnyConsumer<'f, C> {
 
 - <span id="skipanyconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for SkipAnyConsumer<'f, C>`
+##### `impl IntoEither for SkipAnyConsumer<'f, C>`
 
-##### `impl<T> Pointable for SkipAnyConsumer<'f, C>`
+##### `impl Pointable for SkipAnyConsumer<'f, C>`
 
-- <span id="skipanyconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="skipanyconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanyconsumer-type-init"></span>`type Init = T`
+- <span id="skipanyconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="skipanyconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -117,7 +117,7 @@ struct SkipAnyConsumer<'f, C> {
 
 - <span id="skipanyconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, T, C> UnindexedConsumer for SkipAnyConsumer<'f, C>`
+##### `impl<T, C> UnindexedConsumer for SkipAnyConsumer<'f, C>`
 
 - <span id="skipanyconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -136,9 +136,9 @@ struct SkipAnyFolder<'f, C> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C> Folder for SkipAnyFolder<'f, C>`
+##### `impl<T, C> Folder for SkipAnyFolder<'f, C>`
 
-- <span id="skipanyfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="skipanyfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="skipanyfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -148,13 +148,13 @@ struct SkipAnyFolder<'f, C> {
 
 - <span id="skipanyfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for SkipAnyFolder<'f, C>`
+##### `impl IntoEither for SkipAnyFolder<'f, C>`
 
-##### `impl<T> Pointable for SkipAnyFolder<'f, C>`
+##### `impl Pointable for SkipAnyFolder<'f, C>`
 
-- <span id="skipanyfolder-const-align"></span>`const ALIGN: usize`
+- <span id="skipanyfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanyfolder-type-init"></span>`type Init = T`
+- <span id="skipanyfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="skipanyfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

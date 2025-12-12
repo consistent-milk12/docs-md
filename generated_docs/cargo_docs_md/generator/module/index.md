@@ -102,9 +102,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl Pointable for ModuleRenderer<'a>`
 
-- <span id="modulerenderer-const-align"></span>`const ALIGN: usize`
+- <span id="modulerenderer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="modulerenderer-type-init"></span>`type Init = T`
+- <span id="modulerenderer-pointable-type-init"></span>`type Init = T`
 
 - <span id="modulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -133,7 +133,7 @@ struct CategorizedItems<'a> {
 }
 ```
 
-*Defined in `src/generator/module.rs:829-863`*
+*Defined in `src/generator/module.rs:837-871`*
 
 Items categorized by type for organized rendering.
 
@@ -211,9 +211,9 @@ This organization improves navigation by grouping related items together.
 
 ##### `impl Pointable for CategorizedItems<'a>`
 
-- <span id="categorizeditems-const-align"></span>`const ALIGN: usize`
+- <span id="categorizeditems-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="categorizeditems-type-init"></span>`type Init = T`
+- <span id="categorizeditems-pointable-type-init"></span>`type Init = T`
 
 - <span id="categorizeditems-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

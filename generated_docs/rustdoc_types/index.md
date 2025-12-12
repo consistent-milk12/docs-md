@@ -75,7 +75,7 @@ increase the number of collisions.
   - [`Type`](#type)
   - [`MacroKind`](#macrokind)
 - [Constants](#constants)
-  - [`FORMAT_VERSION`](#format_version)
+  - [`FORMAT_VERSION`](#format-version)
 
 ## Quick Reference
 
@@ -135,7 +135,7 @@ increase the number of collisions.
 | [`Term`](#term) | enum | Either a type or a constant, usually stored as the right-hand side of an equation in places like [`AssocItemConstraint`] |
 | [`Type`](#type) | enum | A type. |
 | [`MacroKind`](#macrokind) | enum | The way a [`ProcMacro`] is declared to be used. |
-| [`FORMAT_VERSION`](#format_version) | const | The version of JSON output that this crate represents. |
+| [`FORMAT_VERSION`](#format-version) | const | The version of JSON output that this crate represents. |
 
 ## Structs
 

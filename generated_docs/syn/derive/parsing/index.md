@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`data_struct`](#data_struct) | fn |  |
-| [`data_enum`](#data_enum) | fn |  |
-| [`data_union`](#data_union) | fn |  |
+| [`data_struct`](#data-struct) | fn |  |
+| [`data_enum`](#data-enum) | fn |  |
+| [`data_union`](#data-union) | fn |  |
 
 ## Functions
 

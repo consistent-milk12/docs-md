@@ -34,9 +34,9 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 
 ##### `impl<T> Pointable for ChunkByProducer<'p, T, Slice, Pred>`
 
-- <span id="chunkbyproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunkbyproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkbyproducer-type-init"></span>`type Init = T`
+- <span id="chunkbyproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunkbyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -48,7 +48,7 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 
 ##### `impl<T, Slice, Pred> UnindexedProducer for ChunkByProducer<'_, T, Slice, Pred>`
 
-- <span id="chunkbyproducer-type-item"></span>`type Item = Slice`
+- <span id="chunkbyproducer-unindexedproducer-type-item"></span>`type Item = Slice`
 
 - <span id="chunkbyproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -88,23 +88,23 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 ##### `impl<T> IntoParallelIterator for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-type-iter"></span>`type Iter = T`
+- <span id="chunkby-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunkby-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunkby-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunkby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T, P> ParallelIterator for ChunkBy<'data, T, P>`
+##### `impl<T, P> ParallelIterator for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-type-item"></span>`type Item = &'data [T]`
+- <span id="chunkby-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
 - <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-const-align"></span>`const ALIGN: usize`
+- <span id="chunkby-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkby-type-init"></span>`type Init = T`
+- <span id="chunkby-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunkby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -145,23 +145,23 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 ##### `impl<T> IntoParallelIterator for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-type-iter"></span>`type Iter = T`
+- <span id="chunkbymut-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunkbymut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunkbymut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunkbymut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T, P> ParallelIterator for ChunkByMut<'data, T, P>`
+##### `impl<T, P> ParallelIterator for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-type-item"></span>`type Item = &'data mut [T]`
+- <span id="chunkbymut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-const-align"></span>`const ALIGN: usize`
+- <span id="chunkbymut-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkbymut-type-init"></span>`type Init = T`
+- <span id="chunkbymut-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunkbymut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

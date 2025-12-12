@@ -39,27 +39,27 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - <span id="iterbridge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for IterBridge<Iter>`
+##### `impl IntoEither for IterBridge<Iter>`
 
-##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
+##### `impl IntoParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-type-iter"></span>`type Iter = T`
+- <span id="iterbridge-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iterbridge-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iterbridge-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
+- <span id="iterbridge-paralleliterator-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
 - <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for IterBridge<Iter>`
+##### `impl Pointable for IterBridge<Iter>`
 
-- <span id="iterbridge-const-align"></span>`const ALIGN: usize`
+- <span id="iterbridge-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterbridge-type-init"></span>`type Init = T`
+- <span id="iterbridge-pointable-type-init"></span>`type Init = T`
 
 - <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -83,13 +83,13 @@ struct IterParallelProducer<'a, Iter> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for IterParallelProducer<'a, Iter>`
+##### `impl IntoEither for IterParallelProducer<'a, Iter>`
 
-##### `impl<T> Pointable for IterParallelProducer<'a, Iter>`
+##### `impl Pointable for IterParallelProducer<'a, Iter>`
 
-- <span id="iterparallelproducer-const-align"></span>`const ALIGN: usize`
+- <span id="iterparallelproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterparallelproducer-type-init"></span>`type Init = T`
+- <span id="iterparallelproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="iterparallelproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -101,7 +101,7 @@ struct IterParallelProducer<'a, Iter> {
 
 ##### `impl<Iter: Iterator + Send> UnindexedProducer for &IterParallelProducer<'_, Iter>`
 
-- <span id="iterparallelproducer-type-item"></span>`type Item = <Iter as Iterator>::Item`
+- <span id="iterparallelproducer-unindexedproducer-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
 - <span id="iterparallelproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 

@@ -10,10 +10,10 @@ Low-level utility functions.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`type_eq`](#type_eq) | fn | Determine if two static, generic types are equal to each other. |
-| [`type_eq_non_static`](#type_eq_non_static) | fn | Determine if two generic types which may not be static are equal to each other. |
-| [`non_static_type_id`](#non_static_type_id) | fn | Produces type IDs that are compatible with `TypeId::of::<T>`, but without `T: 'static` bound. |
-| [`transmute_unchecked`](#transmute_unchecked) | fn | Reinterprets the bits of a value of one type as another type. |
+| [`type_eq`](#type-eq) | fn | Determine if two static, generic types are equal to each other. |
+| [`type_eq_non_static`](#type-eq-non-static) | fn | Determine if two generic types which may not be static are equal to each other. |
+| [`non_static_type_id`](#non-static-type-id) | fn | Produces type IDs that are compatible with `TypeId::of::<T>`, but without `T: 'static` bound. |
+| [`transmute_unchecked`](#transmute-unchecked) | fn | Reinterprets the bits of a value of one type as another type. |
 
 ## Functions
 

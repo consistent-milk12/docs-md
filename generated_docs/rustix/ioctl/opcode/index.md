@@ -18,11 +18,11 @@ recommended to use these functions to compute them.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`from_components`](#from_components) | fn | Create a new opcode from a direction, group, number, and size. |
+| [`from_components`](#from-components) | fn | Create a new opcode from a direction, group, number, and size. |
 | [`none`](#none) | fn | Create a new opcode from a group, a number, that uses no data. |
 | [`read`](#read) | fn | Create a new reading opcode from a group, a number and the type of data. |
 | [`write`](#write) | fn | Create a new writing opcode from a group, a number and the type of data. |
-| [`read_write`](#read_write) | fn | Create a new reading and writing opcode from a group, a number and the type of data. |
+| [`read_write`](#read-write) | fn | Create a new reading and writing opcode from a group, a number and the type of data. |
 
 ## Functions
 

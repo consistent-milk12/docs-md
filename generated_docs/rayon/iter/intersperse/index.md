@@ -56,29 +56,29 @@ item of the adapted iterator.  This struct is created by the
 
 - <span id="intersperse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Intersperse<I>`
+##### `impl IntoEither for Intersperse<I>`
 
-##### `impl<T> IntoParallelIterator for Intersperse<I>`
+##### `impl IntoParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-type-iter"></span>`type Iter = T`
+- <span id="intersperse-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intersperse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intersperse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intersperse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="intersperse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="intersperse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Intersperse<I>`
+##### `impl Pointable for Intersperse<I>`
 
-- <span id="intersperse-const-align"></span>`const ALIGN: usize`
+- <span id="intersperse-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperse-type-init"></span>`type Init = T`
+- <span id="intersperse-pointable-type-init"></span>`type Init = T`
 
 - <span id="intersperse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -109,13 +109,13 @@ where
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for IntersperseProducer<P>`
+##### `impl IntoEither for IntersperseProducer<P>`
 
-##### `impl<T> Pointable for IntersperseProducer<P>`
+##### `impl Pointable for IntersperseProducer<P>`
 
-- <span id="intersperseproducer-const-align"></span>`const ALIGN: usize`
+- <span id="intersperseproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperseproducer-type-init"></span>`type Init = T`
+- <span id="intersperseproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="intersperseproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -127,9 +127,9 @@ where
 
 ##### `impl<P> Producer for IntersperseProducer<P>`
 
-- <span id="intersperseproducer-type-item"></span>`type Item = <P as Producer>::Item`
+- <span id="intersperseproducer-producer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="intersperseproducer-type-intoiter"></span>`type IntoIter = IntersperseIter<<P as Producer>::IntoIter>`
+- <span id="intersperseproducer-producer-type-intoiter"></span>`type IntoIter = IntersperseIter<<P as Producer>::IntoIter>`
 
 - <span id="intersperseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -166,29 +166,29 @@ where
 
 - <span id="intersperseiter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<T> IntoEither for IntersperseIter<I>`
+##### `impl IntoEither for IntersperseIter<I>`
 
 ##### `impl<I> IntoIterator for IntersperseIter<I>`
 
-- <span id="intersperseiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intersperseiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intersperseiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intersperseiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intersperseiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I> Iterator for IntersperseIter<I>`
 
-- <span id="intersperseiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intersperseiter-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="intersperseiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="intersperseiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> Pointable for IntersperseIter<I>`
+##### `impl Pointable for IntersperseIter<I>`
 
-- <span id="intersperseiter-const-align"></span>`const ALIGN: usize`
+- <span id="intersperseiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperseiter-type-init"></span>`type Init = T`
+- <span id="intersperseiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="intersperseiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -218,11 +218,11 @@ struct IntersperseConsumer<C, T> {
 
 ##### `impl<C, T> Consumer for IntersperseConsumer<C, T>`
 
-- <span id="intersperseconsumer-type-folder"></span>`type Folder = IntersperseFolder<<C as Consumer>::Folder, T>`
+- <span id="intersperseconsumer-consumer-type-folder"></span>`type Folder = IntersperseFolder<<C as Consumer>::Folder, T>`
 
-- <span id="intersperseconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="intersperseconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="intersperseconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="intersperseconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="intersperseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -234,9 +234,9 @@ struct IntersperseConsumer<C, T> {
 
 ##### `impl<T> Pointable for IntersperseConsumer<C, T>`
 
-- <span id="intersperseconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="intersperseconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperseconsumer-type-init"></span>`type Init = T`
+- <span id="intersperseconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="intersperseconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -268,7 +268,7 @@ struct IntersperseFolder<C, T> {
 
 ##### `impl<C, T> Folder for IntersperseFolder<C, T>`
 
-- <span id="interspersefolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="interspersefolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="interspersefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -282,9 +282,9 @@ struct IntersperseFolder<C, T> {
 
 ##### `impl<T> Pointable for IntersperseFolder<C, T>`
 
-- <span id="interspersefolder-const-align"></span>`const ALIGN: usize`
+- <span id="interspersefolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="interspersefolder-type-init"></span>`type Init = T`
+- <span id="interspersefolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="interspersefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

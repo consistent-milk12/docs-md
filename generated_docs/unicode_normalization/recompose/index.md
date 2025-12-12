@@ -49,19 +49,19 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I> IntoIterator for Recompositions<I>`
 
-- <span id="recompositions-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="recompositions-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="recompositions-type-intoiter"></span>`type IntoIter = I`
+- <span id="recompositions-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="recompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Recompositions<I>`
 
-- <span id="recompositions-type-item"></span>`type Item = char`
+- <span id="recompositions-iterator-type-item"></span>`type Item = char`
 
 - <span id="recompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
-##### `impl<T> ToString for Recompositions<I>`
+##### `impl ToString for Recompositions<I>`
 
 - <span id="recompositions-to-string"></span>`fn to_string(&self) -> String`
 

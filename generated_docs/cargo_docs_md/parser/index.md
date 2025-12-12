@@ -89,9 +89,9 @@ into the `rustdoc_types::Crate` structure.
 
 ##### `impl Pointable for Parser`
 
-- <span id="parser-const-align"></span>`const ALIGN: usize`
+- <span id="parser-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="parser-type-init"></span>`type Init = T`
+- <span id="parser-pointable-type-init"></span>`type Init = T`
 
 - <span id="parser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -7,34 +7,34 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`heap_capacity`](#heap_capacity)
-  - [`inline_capacity`](#inline_capacity)
+  - [`heap_capacity`](#heap-capacity)
+  - [`inline_capacity`](#inline-capacity)
 - [Structs](#structs)
   - [`HeapBuffer`](#heapbuffer)
 - [Functions](#functions)
-  - [`amortized_growth`](#amortized_growth)
-  - [`allocate_ptr`](#allocate_ptr)
-  - [`deallocate_ptr`](#deallocate_ptr)
-  - [`do_alloc`](#do_alloc)
+  - [`amortized_growth`](#amortized-growth)
+  - [`allocate_ptr`](#allocate-ptr)
+  - [`deallocate_ptr`](#deallocate-ptr)
+  - [`do_alloc`](#do-alloc)
 - [Type Aliases](#type-aliases)
   - [`StrBuffer`](#strbuffer)
 - [Constants](#constants)
-  - [`MIN_HEAP_SIZE`](#min_heap_size)
+  - [`MIN_HEAP_SIZE`](#min-heap-size)
   - [`UNKNOWN`](#unknown)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`heap_capacity`](#heap_capacity) | mod |  |
-| [`inline_capacity`](#inline_capacity) | mod |  |
+| [`heap_capacity`](#heap-capacity) | mod |  |
+| [`inline_capacity`](#inline-capacity) | mod |  |
 | [`HeapBuffer`](#heapbuffer) | struct |  |
-| [`amortized_growth`](#amortized_growth) | fn | [`HeapBuffer`] grows at an amortized rates of 1.5x |
-| [`allocate_ptr`](#allocate_ptr) | fn | Allocates a buffer on the heap that we can use to store a string, optionally stores the capacity of said buffer on the heap. |
-| [`deallocate_ptr`](#deallocate_ptr) | fn | Deallocates a buffer on the heap, handling when the capacity is also stored on the heap |
-| [`do_alloc`](#do_alloc) | fn | SAFETY: `layout` must not be zero sized |
+| [`amortized_growth`](#amortized-growth) | fn | [`HeapBuffer`] grows at an amortized rates of 1.5x |
+| [`allocate_ptr`](#allocate-ptr) | fn | Allocates a buffer on the heap that we can use to store a string, optionally stores the capacity of said buffer on the heap. |
+| [`deallocate_ptr`](#deallocate-ptr) | fn | Deallocates a buffer on the heap, handling when the capacity is also stored on the heap |
+| [`do_alloc`](#do-alloc) | fn | SAFETY: `layout` must not be zero sized |
 | [`StrBuffer`](#strbuffer) | type |  |
-| [`MIN_HEAP_SIZE`](#min_heap_size) | const | The minimum size we'll allocate on the heap is one usize larger than our max inline size |
+| [`MIN_HEAP_SIZE`](#min-heap-size) | const | The minimum size we'll allocate on the heap is one usize larger than our max inline size |
 | [`UNKNOWN`](#unknown) | const |  |
 
 ## Modules

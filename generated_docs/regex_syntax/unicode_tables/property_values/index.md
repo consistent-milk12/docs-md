@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`PROPERTY_VALUES`](#property_values) | const |  |
+| [`PROPERTY_VALUES`](#property-values) | const |  |
 
 ## Constants
 

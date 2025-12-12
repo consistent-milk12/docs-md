@@ -326,15 +326,15 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 ##### `impl IntoIterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="findmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-type-item"></span>`type Item = Match`
+- <span id="findmatches-iterator-type-item"></span>`type Item = Match`
 
 - <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../../index.md#match)
 
@@ -373,15 +373,15 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 ##### `impl IntoIterator for CapturesMatches<'r, 'c, 'h>`
 
-- <span id="capturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturesmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CapturesMatches<'r, 'c, 'h>`
 
-- <span id="capturesmatches-type-item"></span>`type Item = Captures`
+- <span id="capturesmatches-iterator-type-item"></span>`type Item = Captures`
 
 - <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md#captures)
 

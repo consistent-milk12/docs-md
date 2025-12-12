@@ -12,25 +12,25 @@
   - [`Align64`](#align64)
   - [`Align128`](#align128)
 - [Functions](#functions)
-  - [`lookup_width`](#lookup_width)
-  - [`single_char_width`](#single_char_width)
-  - [`width_in_str`](#width_in_str)
-  - [`str_width`](#str_width)
-  - [`lookup_width_cjk`](#lookup_width_cjk)
-  - [`single_char_width_cjk`](#single_char_width_cjk)
-  - [`width_in_str_cjk`](#width_in_str_cjk)
-  - [`str_width_cjk`](#str_width_cjk)
-  - [`is_transparent_zero_width`](#is_transparent_zero_width)
-  - [`is_ligature_transparent`](#is_ligature_transparent)
-  - [`is_solidus_transparent`](#is_solidus_transparent)
-  - [`starts_emoji_presentation_seq`](#starts_emoji_presentation_seq)
-  - [`starts_non_ideographic_text_presentation_seq`](#starts_non_ideographic_text_presentation_seq)
-  - [`is_emoji_modifier_base`](#is_emoji_modifier_base)
+  - [`lookup_width`](#lookup-width)
+  - [`single_char_width`](#single-char-width)
+  - [`width_in_str`](#width-in-str)
+  - [`str_width`](#str-width)
+  - [`lookup_width_cjk`](#lookup-width-cjk)
+  - [`single_char_width_cjk`](#single-char-width-cjk)
+  - [`width_in_str_cjk`](#width-in-str-cjk)
+  - [`str_width_cjk`](#str-width-cjk)
+  - [`is_transparent_zero_width`](#is-transparent-zero-width)
+  - [`is_ligature_transparent`](#is-ligature-transparent)
+  - [`is_solidus_transparent`](#is-solidus-transparent)
+  - [`starts_emoji_presentation_seq`](#starts-emoji-presentation-seq)
+  - [`starts_non_ideographic_text_presentation_seq`](#starts-non-ideographic-text-presentation-seq)
+  - [`is_emoji_modifier_base`](#is-emoji-modifier-base)
 - [Constants](#constants)
-  - [`LIGATURE_TRANSPARENT_MASK`](#ligature_transparent_mask)
-  - [`UNICODE_VERSION`](#unicode_version)
-  - [`WIDTH_MIDDLE_LEN`](#width_middle_len)
-  - [`WIDTH_LEAVES_LEN`](#width_leaves_len)
+  - [`LIGATURE_TRANSPARENT_MASK`](#ligature-transparent-mask)
+  - [`UNICODE_VERSION`](#unicode-version)
+  - [`WIDTH_MIDDLE_LEN`](#width-middle-len)
+  - [`WIDTH_LEAVES_LEN`](#width-leaves-len)
 
 ## Quick Reference
 
@@ -40,24 +40,24 @@
 | [`Align32`](#align32) | struct |  |
 | [`Align64`](#align64) | struct |  |
 | [`Align128`](#align128) | struct |  |
-| [`lookup_width`](#lookup_width) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by consulting a multi-level lookup table. |
-| [`single_char_width`](#single_char_width) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or `None` if `c` is a control character. |
-| [`width_in_str`](#width_in_str) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`. |
-| [`str_width`](#str_width) | fn |  |
-| [`lookup_width_cjk`](#lookup_width_cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by consulting a multi-level lookup table. |
-| [`single_char_width_cjk`](#single_char_width_cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or `None` if `c` is a control character. |
-| [`width_in_str_cjk`](#width_in_str_cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`. |
-| [`str_width_cjk`](#str_width_cjk) | fn |  |
-| [`is_transparent_zero_width`](#is_transparent_zero_width) | fn | Whether this character is a zero-width character with `Joining_Type=Transparent`. |
-| [`is_ligature_transparent`](#is_ligature_transparent) | fn | Whether this character is a default-ignorable combining mark or ZWJ. |
-| [`is_solidus_transparent`](#is_solidus_transparent) | fn | Whether this character is transparent wrt the effect of U+0338 COMBINING LONG SOLIDUS OVERLAY on its base character. |
-| [`starts_emoji_presentation_seq`](#starts_emoji_presentation_seq) | fn | Whether this character forms an [emoji presentation sequence] (https://www.unicode.org/reports/tr51/#def_emoji_presentation_sequence) when followed by `'\u{FEOF}'`. |
-| [`starts_non_ideographic_text_presentation_seq`](#starts_non_ideographic_text_presentation_seq) | fn | Returns `true` if `c` has default emoji presentation, but forms a [text presentation sequence] (https://www.unicode.org/reports/tr51/#def_text_presentation_sequence) when followed by `'\u{FEOE}'`, and is not ideographic. |
-| [`is_emoji_modifier_base`](#is_emoji_modifier_base) | fn | Returns `true` if `c` is an `Emoji_Modifier_Base`. |
-| [`LIGATURE_TRANSPARENT_MASK`](#ligature_transparent_mask) | const |  |
-| [`UNICODE_VERSION`](#unicode_version) | const | The version of [Unicode](http://www.unicode.org/) that this version of unicode-width is based on. |
-| [`WIDTH_MIDDLE_LEN`](#width_middle_len) | const |  |
-| [`WIDTH_LEAVES_LEN`](#width_leaves_len) | const |  |
+| [`lookup_width`](#lookup-width) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by consulting a multi-level lookup table. |
+| [`single_char_width`](#single-char-width) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or `None` if `c` is a control character. |
+| [`width_in_str`](#width-in-str) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`. |
+| [`str_width`](#str-width) | fn |  |
+| [`lookup_width_cjk`](#lookup-width-cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c` by consulting a multi-level lookup table. |
+| [`single_char_width_cjk`](#single-char-width-cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`, or `None` if `c` is a control character. |
+| [`width_in_str_cjk`](#width-in-str-cjk) | fn | Returns the [UAX #11](https://www.unicode.org/reports/tr11/) based width of `c`. |
+| [`str_width_cjk`](#str-width-cjk) | fn |  |
+| [`is_transparent_zero_width`](#is-transparent-zero-width) | fn | Whether this character is a zero-width character with `Joining_Type=Transparent`. |
+| [`is_ligature_transparent`](#is-ligature-transparent) | fn | Whether this character is a default-ignorable combining mark or ZWJ. |
+| [`is_solidus_transparent`](#is-solidus-transparent) | fn | Whether this character is transparent wrt the effect of U+0338 COMBINING LONG SOLIDUS OVERLAY on its base character. |
+| [`starts_emoji_presentation_seq`](#starts-emoji-presentation-seq) | fn | Whether this character forms an [emoji presentation sequence] (https://www.unicode.org/reports/tr51/#def_emoji_presentation_sequence) when followed by `'\u{FEOF}'`. |
+| [`starts_non_ideographic_text_presentation_seq`](#starts-non-ideographic-text-presentation-seq) | fn | Returns `true` if `c` has default emoji presentation, but forms a [text presentation sequence] (https://www.unicode.org/reports/tr51/#def_text_presentation_sequence) when followed by `'\u{FEOE}'`, and is not ideographic. |
+| [`is_emoji_modifier_base`](#is-emoji-modifier-base) | fn | Returns `true` if `c` is an `Emoji_Modifier_Base`. |
+| [`LIGATURE_TRANSPARENT_MASK`](#ligature-transparent-mask) | const |  |
+| [`UNICODE_VERSION`](#unicode-version) | const | The version of [Unicode](http://www.unicode.org/) that this version of unicode-width is based on. |
+| [`WIDTH_MIDDLE_LEN`](#width-middle-len) | const |  |
+| [`WIDTH_LEAVES_LEN`](#width-leaves-len) | const |  |
 
 ## Structs
 

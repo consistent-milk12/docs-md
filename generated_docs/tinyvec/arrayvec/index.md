@@ -177,7 +177,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> Deref for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = [<A as Array>::Item]`
+- <span id="arrayvec-deref-type-target"></span>`type Target = [<A as Array>::Item]`
 
 - <span id="arrayvec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -205,7 +205,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> Index for ArrayVec<A>`
 
-- <span id="arrayvec-type-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="arrayvec-index-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="arrayvec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -215,9 +215,9 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> IntoIterator for ArrayVec<A>`
 
-- <span id="arrayvec-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayvec-intoiterator-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="arrayvec-type-intoiter"></span>`type IntoIter = ArrayVecIterator<A>`
+- <span id="arrayvec-intoiterator-type-intoiter"></span>`type IntoIter = ArrayVecIterator<A>`
 
 - <span id="arrayvec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -249,11 +249,11 @@ assert_eq!(no_ints.len(), 0);
 
 - <span id="arrayvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<P, T> Receiver for ArrayVec<A>`
+##### `impl Receiver for ArrayVec<A>`
 
-- <span id="arrayvec-type-target"></span>`type Target = T`
+- <span id="arrayvec-receiver-type-target"></span>`type Target = T`
 
-##### `impl<T> ToString for ArrayVec<A>`
+##### `impl ToString for ArrayVec<A>`
 
 - <span id="arrayvec-to-string"></span>`fn to_string(&self) -> String`
 
@@ -283,31 +283,31 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 
 #### Trait Implementations
 
-##### `impl<'p, A, I> DoubleEndedIterator for ArrayVecSplice<'p, A, I>`
+##### `impl<A, I> DoubleEndedIterator for ArrayVecSplice<'p, A, I>`
 
 - <span id="arrayvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
-##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Drop for ArrayVecSplice<'p, A, I>`
+##### `impl<A: Array, I: Iterator<Item = <A as >::Item>> Drop for ArrayVecSplice<'p, A, I>`
 
 - <span id="arrayvecsplice-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'p, A, I> ExactSizeIterator for ArrayVecSplice<'p, A, I>`
+##### `impl<A, I> ExactSizeIterator for ArrayVecSplice<'p, A, I>`
 
 - <span id="arrayvecsplice-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'p, A, I> FusedIterator for ArrayVecSplice<'p, A, I>`
+##### `impl<A, I> FusedIterator for ArrayVecSplice<'p, A, I>`
 
 ##### `impl<I> IntoIterator for ArrayVecSplice<'p, A, I>`
 
-- <span id="arrayvecsplice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayvecsplice-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayvecsplice-type-intoiter"></span>`type IntoIter = I`
+- <span id="arrayvecsplice-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayvecsplice-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Iterator for ArrayVecSplice<'p, A, I>`
+##### `impl<A: Array, I: Iterator<Item = <A as >::Item>> Iterator for ArrayVecSplice<'p, A, I>`
 
-- <span id="arrayvecsplice-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayvecsplice-iterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="arrayvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
@@ -380,17 +380,17 @@ Iterator for consuming an `ArrayVec` and returning owned elements.
 
 ##### `impl<A: Array> FusedIterator for ArrayVecIterator<A>`
 
-##### `impl<I> IntoIterator for ArrayVecIterator<A>`
+##### `impl IntoIterator for ArrayVecIterator<A>`
 
-- <span id="arrayveciterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayveciterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayveciterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="arrayveciterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayveciterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Array> Iterator for ArrayVecIterator<A>`
 
-- <span id="arrayveciterator-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayveciterator-iterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="arrayveciterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

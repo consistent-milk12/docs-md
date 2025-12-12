@@ -17,7 +17,7 @@ macros in `clap_derive`.
 | [`Args`](#args) | trait | Parse a set of arguments into a user-defined container. |
 | [`Subcommand`](#subcommand) | trait | Parse a sub-command into a user-defined enum. |
 | [`ValueEnum`](#valueenum) | trait | Parse arguments into enums. |
-| [`format_error`](#format_error) | fn |  |
+| [`format_error`](#format-error) | fn |  |
 
 ## Traits
 

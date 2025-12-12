@@ -8,13 +8,13 @@ Low level terminal capability lookups
   - [`windows`](#windows)
 - [Functions](#functions)
   - [`clicolor`](#clicolor)
-  - [`clicolor_force`](#clicolor_force)
-  - [`no_color`](#no_color)
-  - [`term_supports_color`](#term_supports_color)
-  - [`term_supports_ansi_color`](#term_supports_ansi_color)
+  - [`clicolor_force`](#clicolor-force)
+  - [`no_color`](#no-color)
+  - [`term_supports_color`](#term-supports-color)
+  - [`term_supports_ansi_color`](#term-supports-ansi-color)
   - [`truecolor`](#truecolor)
-  - [`is_ci`](#is_ci)
-  - [`non_empty`](#non_empty)
+  - [`is_ci`](#is-ci)
+  - [`non_empty`](#non-empty)
 
 ## Quick Reference
 
@@ -22,13 +22,13 @@ Low level terminal capability lookups
 |------|------|-------------|
 | [`windows`](#windows) | mod | Windows-specific style queries |
 | [`clicolor`](#clicolor) | fn | Check [CLICOLOR] status |
-| [`clicolor_force`](#clicolor_force) | fn | Check [CLICOLOR_FORCE] status |
-| [`no_color`](#no_color) | fn | Check [NO_COLOR] status |
-| [`term_supports_color`](#term_supports_color) | fn | Check `TERM` for color support |
-| [`term_supports_ansi_color`](#term_supports_ansi_color) | fn | Check `TERM` for ANSI color support |
+| [`clicolor_force`](#clicolor-force) | fn | Check [CLICOLOR_FORCE] status |
+| [`no_color`](#no-color) | fn | Check [NO_COLOR] status |
+| [`term_supports_color`](#term-supports-color) | fn | Check `TERM` for color support |
+| [`term_supports_ansi_color`](#term-supports-ansi-color) | fn | Check `TERM` for ANSI color support |
 | [`truecolor`](#truecolor) | fn | Check [COLORTERM] for truecolor support |
-| [`is_ci`](#is_ci) | fn | Report whether this is running in CI |
-| [`non_empty`](#non_empty) | fn |  |
+| [`is_ci`](#is-ci) | fn | Report whether this is running in CI |
+| [`non_empty`](#non-empty) | fn |  |
 
 ## Modules
 

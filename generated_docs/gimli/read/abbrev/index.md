@@ -18,9 +18,9 @@ Functions for parsing DWARF debugging abbreviations.
   - [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
   - [`Attributes`](#attributes)
 - [Functions](#functions)
-  - [`get_attribute_size`](#get_attribute_size)
+  - [`get_attribute_size`](#get-attribute-size)
 - [Constants](#constants)
-  - [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline)
+  - [`MAX_ATTRIBUTES_INLINE`](#max-attributes-inline)
 
 ## Quick Reference
 
@@ -33,8 +33,8 @@ Functions for parsing DWARF debugging abbreviations.
 | [`AttributeSpecification`](#attributespecification) | struct | The description of an attribute in an abbreviated type. |
 | [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy) | enum | The strategy to use for caching abbreviations. |
 | [`Attributes`](#attributes) | enum | A list of attributes found in an `Abbreviation` |
-| [`get_attribute_size`](#get_attribute_size) | fn |  |
-| [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline) | const |  |
+| [`get_attribute_size`](#get-attribute-size) | fn |  |
+| [`MAX_ATTRIBUTES_INLINE`](#max-attributes-inline) | const |  |
 
 ## Structs
 
@@ -343,7 +343,7 @@ A list of attributes found in an `Abbreviation`
 
 ##### `impl Deref for Attributes`
 
-- <span id="attributes-type-target"></span>`type Target = [AttributeSpecification]`
+- <span id="attributes-deref-type-target"></span>`type Target = [AttributeSpecification]`
 
 - <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md#attributespecification)
 
@@ -359,7 +359,7 @@ A list of attributes found in an `Abbreviation`
 
 ##### `impl Receiver for Attributes`
 
-- <span id="attributes-type-target"></span>`type Target = T`
+- <span id="attributes-receiver-type-target"></span>`type Target = T`
 
 ## Functions
 

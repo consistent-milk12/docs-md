@@ -13,57 +13,57 @@ Header: `uapi/linux/can.h`
   - [`j1939`](#j1939)
   - [`raw`](#raw)
 - [Structs](#structs)
-  - [`can_frame`](#can_frame)
-  - [`canfd_frame`](#canfd_frame)
-  - [`canxl_frame`](#canxl_frame)
-  - [`sockaddr_can`](#sockaddr_can)
-  - [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp)
-  - [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939)
-  - [`can_filter`](#can_filter)
+  - [`can_frame`](#can-frame)
+  - [`canfd_frame`](#canfd-frame)
+  - [`canxl_frame`](#canxl-frame)
+  - [`sockaddr_can`](#sockaddr-can)
+  - [`__c_anonymous_sockaddr_can_tp`](#c-anonymous-sockaddr-can-tp)
+  - [`__c_anonymous_sockaddr_can_j1939`](#c-anonymous-sockaddr-can-j1939)
+  - [`can_filter`](#can-filter)
 - [Type Aliases](#type-aliases)
-  - [`canid_t`](#canid_t)
-  - [`can_err_mask_t`](#can_err_mask_t)
+  - [`canid_t`](#canid-t)
+  - [`can_err_mask_t`](#can-err-mask-t)
 - [Constants](#constants)
-  - [`CAN_EFF_FLAG`](#can_eff_flag)
-  - [`CAN_RTR_FLAG`](#can_rtr_flag)
-  - [`CAN_ERR_FLAG`](#can_err_flag)
-  - [`CAN_SFF_MASK`](#can_sff_mask)
-  - [`CAN_EFF_MASK`](#can_eff_mask)
-  - [`CAN_ERR_MASK`](#can_err_mask)
-  - [`CANXL_PRIO_MASK`](#canxl_prio_mask)
-  - [`CAN_SFF_ID_BITS`](#can_sff_id_bits)
-  - [`CAN_EFF_ID_BITS`](#can_eff_id_bits)
-  - [`CANXL_PRIO_BITS`](#canxl_prio_bits)
-  - [`CAN_MAX_DLC`](#can_max_dlc)
-  - [`CAN_MAX_DLEN`](#can_max_dlen)
-  - [`CANFD_MAX_DLC`](#canfd_max_dlc)
-  - [`CANFD_MAX_DLEN`](#canfd_max_dlen)
-  - [`CANXL_MIN_DLC`](#canxl_min_dlc)
-  - [`CANXL_MAX_DLC`](#canxl_max_dlc)
-  - [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask)
-  - [`CANXL_MIN_DLEN`](#canxl_min_dlen)
-  - [`CANXL_MAX_DLEN`](#canxl_max_dlen)
-  - [`CANFD_BRS`](#canfd_brs)
-  - [`CANFD_ESI`](#canfd_esi)
-  - [`CANFD_FDF`](#canfd_fdf)
-  - [`CANXL_XLF`](#canxl_xlf)
-  - [`CANXL_SEC`](#canxl_sec)
-  - [`CAN_MTU`](#can_mtu)
-  - [`CANFD_MTU`](#canfd_mtu)
-  - [`CANXL_MTU`](#canxl_mtu)
-  - [`CANXL_HDR_SIZE`](#canxl_hdr_size)
-  - [`CANXL_MIN_MTU`](#canxl_min_mtu)
-  - [`CANXL_MAX_MTU`](#canxl_max_mtu)
-  - [`CAN_RAW`](#can_raw)
-  - [`CAN_BCM`](#can_bcm)
-  - [`CAN_TP16`](#can_tp16)
-  - [`CAN_TP20`](#can_tp20)
-  - [`CAN_MCNET`](#can_mcnet)
-  - [`CAN_ISOTP`](#can_isotp)
-  - [`CAN_J1939`](#can_j1939)
-  - [`CAN_NPROTO`](#can_nproto)
-  - [`SOL_CAN_BASE`](#sol_can_base)
-  - [`CAN_INV_FILTER`](#can_inv_filter)
+  - [`CAN_EFF_FLAG`](#can-eff-flag)
+  - [`CAN_RTR_FLAG`](#can-rtr-flag)
+  - [`CAN_ERR_FLAG`](#can-err-flag)
+  - [`CAN_SFF_MASK`](#can-sff-mask)
+  - [`CAN_EFF_MASK`](#can-eff-mask)
+  - [`CAN_ERR_MASK`](#can-err-mask)
+  - [`CANXL_PRIO_MASK`](#canxl-prio-mask)
+  - [`CAN_SFF_ID_BITS`](#can-sff-id-bits)
+  - [`CAN_EFF_ID_BITS`](#can-eff-id-bits)
+  - [`CANXL_PRIO_BITS`](#canxl-prio-bits)
+  - [`CAN_MAX_DLC`](#can-max-dlc)
+  - [`CAN_MAX_DLEN`](#can-max-dlen)
+  - [`CANFD_MAX_DLC`](#canfd-max-dlc)
+  - [`CANFD_MAX_DLEN`](#canfd-max-dlen)
+  - [`CANXL_MIN_DLC`](#canxl-min-dlc)
+  - [`CANXL_MAX_DLC`](#canxl-max-dlc)
+  - [`CANXL_MAX_DLC_MASK`](#canxl-max-dlc-mask)
+  - [`CANXL_MIN_DLEN`](#canxl-min-dlen)
+  - [`CANXL_MAX_DLEN`](#canxl-max-dlen)
+  - [`CANFD_BRS`](#canfd-brs)
+  - [`CANFD_ESI`](#canfd-esi)
+  - [`CANFD_FDF`](#canfd-fdf)
+  - [`CANXL_XLF`](#canxl-xlf)
+  - [`CANXL_SEC`](#canxl-sec)
+  - [`CAN_MTU`](#can-mtu)
+  - [`CANFD_MTU`](#canfd-mtu)
+  - [`CANXL_MTU`](#canxl-mtu)
+  - [`CANXL_HDR_SIZE`](#canxl-hdr-size)
+  - [`CANXL_MIN_MTU`](#canxl-min-mtu)
+  - [`CANXL_MAX_MTU`](#canxl-max-mtu)
+  - [`CAN_RAW`](#can-raw)
+  - [`CAN_BCM`](#can-bcm)
+  - [`CAN_TP16`](#can-tp16)
+  - [`CAN_TP20`](#can-tp20)
+  - [`CAN_MCNET`](#can-mcnet)
+  - [`CAN_ISOTP`](#can-isotp)
+  - [`CAN_J1939`](#can-j1939)
+  - [`CAN_NPROTO`](#can-nproto)
+  - [`SOL_CAN_BASE`](#sol-can-base)
+  - [`CAN_INV_FILTER`](#can-inv-filter)
 
 ## Quick Reference
 
@@ -72,55 +72,55 @@ Header: `uapi/linux/can.h`
 | [`bcm`](#bcm) | mod | Header: `linux/can/bcm.h` |
 | [`j1939`](#j1939) | mod | `linux/can/j1939.h` |
 | [`raw`](#raw) | mod | Header: `linux/can/raw.h` |
-| [`can_frame`](#can_frame) | struct |  |
-| [`canfd_frame`](#canfd_frame) | struct |  |
-| [`canxl_frame`](#canxl_frame) | struct |  |
-| [`sockaddr_can`](#sockaddr_can) | struct |  |
-| [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp) | struct |  |
-| [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939) | struct |  |
-| [`can_filter`](#can_filter) | struct |  |
-| [`canid_t`](#canid_t) | type |  |
-| [`can_err_mask_t`](#can_err_mask_t) | type |  |
-| [`CAN_EFF_FLAG`](#can_eff_flag) | const |  |
-| [`CAN_RTR_FLAG`](#can_rtr_flag) | const |  |
-| [`CAN_ERR_FLAG`](#can_err_flag) | const |  |
-| [`CAN_SFF_MASK`](#can_sff_mask) | const |  |
-| [`CAN_EFF_MASK`](#can_eff_mask) | const |  |
-| [`CAN_ERR_MASK`](#can_err_mask) | const |  |
-| [`CANXL_PRIO_MASK`](#canxl_prio_mask) | const |  |
-| [`CAN_SFF_ID_BITS`](#can_sff_id_bits) | const |  |
-| [`CAN_EFF_ID_BITS`](#can_eff_id_bits) | const |  |
-| [`CANXL_PRIO_BITS`](#canxl_prio_bits) | const |  |
-| [`CAN_MAX_DLC`](#can_max_dlc) | const |  |
-| [`CAN_MAX_DLEN`](#can_max_dlen) | const |  |
-| [`CANFD_MAX_DLC`](#canfd_max_dlc) | const |  |
-| [`CANFD_MAX_DLEN`](#canfd_max_dlen) | const |  |
-| [`CANXL_MIN_DLC`](#canxl_min_dlc) | const |  |
-| [`CANXL_MAX_DLC`](#canxl_max_dlc) | const |  |
-| [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask) | const |  |
-| [`CANXL_MIN_DLEN`](#canxl_min_dlen) | const |  |
-| [`CANXL_MAX_DLEN`](#canxl_max_dlen) | const |  |
-| [`CANFD_BRS`](#canfd_brs) | const |  |
-| [`CANFD_ESI`](#canfd_esi) | const |  |
-| [`CANFD_FDF`](#canfd_fdf) | const |  |
-| [`CANXL_XLF`](#canxl_xlf) | const |  |
-| [`CANXL_SEC`](#canxl_sec) | const |  |
-| [`CAN_MTU`](#can_mtu) | const |  |
-| [`CANFD_MTU`](#canfd_mtu) | const |  |
-| [`CANXL_MTU`](#canxl_mtu) | const |  |
-| [`CANXL_HDR_SIZE`](#canxl_hdr_size) | const |  |
-| [`CANXL_MIN_MTU`](#canxl_min_mtu) | const |  |
-| [`CANXL_MAX_MTU`](#canxl_max_mtu) | const |  |
-| [`CAN_RAW`](#can_raw) | const |  |
-| [`CAN_BCM`](#can_bcm) | const |  |
-| [`CAN_TP16`](#can_tp16) | const |  |
-| [`CAN_TP20`](#can_tp20) | const |  |
-| [`CAN_MCNET`](#can_mcnet) | const |  |
-| [`CAN_ISOTP`](#can_isotp) | const |  |
-| [`CAN_J1939`](#can_j1939) | const |  |
-| [`CAN_NPROTO`](#can_nproto) | const |  |
-| [`SOL_CAN_BASE`](#sol_can_base) | const |  |
-| [`CAN_INV_FILTER`](#can_inv_filter) | const |  |
+| [`can_frame`](#can-frame) | struct |  |
+| [`canfd_frame`](#canfd-frame) | struct |  |
+| [`canxl_frame`](#canxl-frame) | struct |  |
+| [`sockaddr_can`](#sockaddr-can) | struct |  |
+| [`__c_anonymous_sockaddr_can_tp`](#c-anonymous-sockaddr-can-tp) | struct |  |
+| [`__c_anonymous_sockaddr_can_j1939`](#c-anonymous-sockaddr-can-j1939) | struct |  |
+| [`can_filter`](#can-filter) | struct |  |
+| [`canid_t`](#canid-t) | type |  |
+| [`can_err_mask_t`](#can-err-mask-t) | type |  |
+| [`CAN_EFF_FLAG`](#can-eff-flag) | const |  |
+| [`CAN_RTR_FLAG`](#can-rtr-flag) | const |  |
+| [`CAN_ERR_FLAG`](#can-err-flag) | const |  |
+| [`CAN_SFF_MASK`](#can-sff-mask) | const |  |
+| [`CAN_EFF_MASK`](#can-eff-mask) | const |  |
+| [`CAN_ERR_MASK`](#can-err-mask) | const |  |
+| [`CANXL_PRIO_MASK`](#canxl-prio-mask) | const |  |
+| [`CAN_SFF_ID_BITS`](#can-sff-id-bits) | const |  |
+| [`CAN_EFF_ID_BITS`](#can-eff-id-bits) | const |  |
+| [`CANXL_PRIO_BITS`](#canxl-prio-bits) | const |  |
+| [`CAN_MAX_DLC`](#can-max-dlc) | const |  |
+| [`CAN_MAX_DLEN`](#can-max-dlen) | const |  |
+| [`CANFD_MAX_DLC`](#canfd-max-dlc) | const |  |
+| [`CANFD_MAX_DLEN`](#canfd-max-dlen) | const |  |
+| [`CANXL_MIN_DLC`](#canxl-min-dlc) | const |  |
+| [`CANXL_MAX_DLC`](#canxl-max-dlc) | const |  |
+| [`CANXL_MAX_DLC_MASK`](#canxl-max-dlc-mask) | const |  |
+| [`CANXL_MIN_DLEN`](#canxl-min-dlen) | const |  |
+| [`CANXL_MAX_DLEN`](#canxl-max-dlen) | const |  |
+| [`CANFD_BRS`](#canfd-brs) | const |  |
+| [`CANFD_ESI`](#canfd-esi) | const |  |
+| [`CANFD_FDF`](#canfd-fdf) | const |  |
+| [`CANXL_XLF`](#canxl-xlf) | const |  |
+| [`CANXL_SEC`](#canxl-sec) | const |  |
+| [`CAN_MTU`](#can-mtu) | const |  |
+| [`CANFD_MTU`](#canfd-mtu) | const |  |
+| [`CANXL_MTU`](#canxl-mtu) | const |  |
+| [`CANXL_HDR_SIZE`](#canxl-hdr-size) | const |  |
+| [`CANXL_MIN_MTU`](#canxl-min-mtu) | const |  |
+| [`CANXL_MAX_MTU`](#canxl-max-mtu) | const |  |
+| [`CAN_RAW`](#can-raw) | const |  |
+| [`CAN_BCM`](#can-bcm) | const |  |
+| [`CAN_TP16`](#can-tp16) | const |  |
+| [`CAN_TP20`](#can-tp20) | const |  |
+| [`CAN_MCNET`](#can-mcnet) | const |  |
+| [`CAN_ISOTP`](#can-isotp) | const |  |
+| [`CAN_J1939`](#can-j1939) | const |  |
+| [`CAN_NPROTO`](#can-nproto) | const |  |
+| [`SOL_CAN_BASE`](#sol-can-base) | const |  |
+| [`CAN_INV_FILTER`](#can-inv-filter) | const |  |
 
 ## Modules
 

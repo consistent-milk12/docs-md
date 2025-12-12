@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`spawn`](#spawn) | fn | Puts the task into the Rayon thread pool's job queue in the "static" or "global" scope. |
-| [`spawn_in`](#spawn_in) | fn | Spawns an asynchronous job in `registry.` |
-| [`spawn_job`](#spawn_job) | fn |  |
-| [`spawn_fifo`](#spawn_fifo) | fn | Fires off a task into the Rayon thread pool in the "static" or "global" scope. |
-| [`spawn_fifo_in`](#spawn_fifo_in) | fn | Spawns an asynchronous FIFO job in `registry.` |
+| [`spawn_in`](#spawn-in) | fn | Spawns an asynchronous job in `registry.` |
+| [`spawn_job`](#spawn-job) | fn |  |
+| [`spawn_fifo`](#spawn-fifo) | fn | Fires off a task into the Rayon thread pool in the "static" or "global" scope. |
+| [`spawn_fifo_in`](#spawn-fifo-in) | fn | Spawns an asynchronous FIFO job in `registry.` |
 
 ## Functions
 

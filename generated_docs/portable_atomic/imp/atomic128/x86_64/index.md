@@ -14,52 +14,52 @@
   - [`AtomicU128`](#atomicu128)
 - [Functions](#functions)
   - [`cmpxchg16b`](#cmpxchg16b)
-  - [`atomic_load_vmovdqa`](#atomic_load_vmovdqa)
-  - [`atomic_store_vmovdqa`](#atomic_store_vmovdqa)
-  - [`atomic_load`](#atomic_load)
-  - [`atomic_load_cmpxchg16b`](#atomic_load_cmpxchg16b)
-  - [`atomic_store`](#atomic_store)
-  - [`atomic_store_cmpxchg16b`](#atomic_store_cmpxchg16b)
-  - [`atomic_compare_exchange`](#atomic_compare_exchange)
-  - [`atomic_swap_cmpxchg16b`](#atomic_swap_cmpxchg16b)
-  - [`atomic_add_cmpxchg16b`](#atomic_add_cmpxchg16b)
-  - [`atomic_sub_cmpxchg16b`](#atomic_sub_cmpxchg16b)
-  - [`atomic_and_cmpxchg16b`](#atomic_and_cmpxchg16b)
-  - [`atomic_nand_cmpxchg16b`](#atomic_nand_cmpxchg16b)
-  - [`atomic_or_cmpxchg16b`](#atomic_or_cmpxchg16b)
-  - [`atomic_xor_cmpxchg16b`](#atomic_xor_cmpxchg16b)
-  - [`atomic_not_cmpxchg16b`](#atomic_not_cmpxchg16b)
-  - [`atomic_neg_cmpxchg16b`](#atomic_neg_cmpxchg16b)
-  - [`atomic_max_cmpxchg16b`](#atomic_max_cmpxchg16b)
-  - [`atomic_umax_cmpxchg16b`](#atomic_umax_cmpxchg16b)
-  - [`atomic_min_cmpxchg16b`](#atomic_min_cmpxchg16b)
-  - [`atomic_umin_cmpxchg16b`](#atomic_umin_cmpxchg16b)
-  - [`atomic_swap`](#atomic_swap)
-  - [`atomic_add`](#atomic_add)
-  - [`atomic_sub`](#atomic_sub)
-  - [`atomic_and`](#atomic_and)
-  - [`atomic_nand`](#atomic_nand)
-  - [`atomic_or`](#atomic_or)
-  - [`atomic_xor`](#atomic_xor)
-  - [`atomic_max`](#atomic_max)
-  - [`atomic_umax`](#atomic_umax)
-  - [`atomic_min`](#atomic_min)
-  - [`atomic_umin`](#atomic_umin)
-  - [`atomic_not`](#atomic_not)
-  - [`atomic_neg`](#atomic_neg)
-  - [`is_lock_free`](#is_lock_free)
+  - [`atomic_load_vmovdqa`](#atomic-load-vmovdqa)
+  - [`atomic_store_vmovdqa`](#atomic-store-vmovdqa)
+  - [`atomic_load`](#atomic-load)
+  - [`atomic_load_cmpxchg16b`](#atomic-load-cmpxchg16b)
+  - [`atomic_store`](#atomic-store)
+  - [`atomic_store_cmpxchg16b`](#atomic-store-cmpxchg16b)
+  - [`atomic_compare_exchange`](#atomic-compare-exchange)
+  - [`atomic_swap_cmpxchg16b`](#atomic-swap-cmpxchg16b)
+  - [`atomic_add_cmpxchg16b`](#atomic-add-cmpxchg16b)
+  - [`atomic_sub_cmpxchg16b`](#atomic-sub-cmpxchg16b)
+  - [`atomic_and_cmpxchg16b`](#atomic-and-cmpxchg16b)
+  - [`atomic_nand_cmpxchg16b`](#atomic-nand-cmpxchg16b)
+  - [`atomic_or_cmpxchg16b`](#atomic-or-cmpxchg16b)
+  - [`atomic_xor_cmpxchg16b`](#atomic-xor-cmpxchg16b)
+  - [`atomic_not_cmpxchg16b`](#atomic-not-cmpxchg16b)
+  - [`atomic_neg_cmpxchg16b`](#atomic-neg-cmpxchg16b)
+  - [`atomic_max_cmpxchg16b`](#atomic-max-cmpxchg16b)
+  - [`atomic_umax_cmpxchg16b`](#atomic-umax-cmpxchg16b)
+  - [`atomic_min_cmpxchg16b`](#atomic-min-cmpxchg16b)
+  - [`atomic_umin_cmpxchg16b`](#atomic-umin-cmpxchg16b)
+  - [`atomic_swap`](#atomic-swap)
+  - [`atomic_add`](#atomic-add)
+  - [`atomic_sub`](#atomic-sub)
+  - [`atomic_and`](#atomic-and)
+  - [`atomic_nand`](#atomic-nand)
+  - [`atomic_or`](#atomic-or)
+  - [`atomic_xor`](#atomic-xor)
+  - [`atomic_max`](#atomic-max)
+  - [`atomic_umax`](#atomic-umax)
+  - [`atomic_min`](#atomic-min)
+  - [`atomic_umin`](#atomic-umin)
+  - [`atomic_not`](#atomic-not)
+  - [`atomic_neg`](#atomic-neg)
+  - [`is_lock_free`](#is-lock-free)
 - [Constants](#constants)
-  - [`IS_ALWAYS_LOCK_FREE`](#is_always_lock_free)
+  - [`IS_ALWAYS_LOCK_FREE`](#is-always-lock-free)
 - [Macros](#macros)
   - [`atomic128!`](#atomic128)
-  - [`atomic_rmw_by_atomic_update!`](#atomic_rmw_by_atomic_update)
-  - [`debug_assert_cmpxchg16b!`](#debug_assert_cmpxchg16b)
-  - [`debug_assert_vmovdqa_atomic!`](#debug_assert_vmovdqa_atomic)
-  - [`ptr_modifier!`](#ptr_modifier)
-  - [`load_store_detect!`](#load_store_detect)
-  - [`atomic_rmw_cas_3!`](#atomic_rmw_cas_3)
-  - [`atomic_rmw_cas_2!`](#atomic_rmw_cas_2)
-  - [`select_atomic_rmw!`](#select_atomic_rmw)
+  - [`atomic_rmw_by_atomic_update!`](#atomic-rmw-by-atomic-update)
+  - [`debug_assert_cmpxchg16b!`](#debug-assert-cmpxchg16b)
+  - [`debug_assert_vmovdqa_atomic!`](#debug-assert-vmovdqa-atomic)
+  - [`ptr_modifier!`](#ptr-modifier)
+  - [`load_store_detect!`](#load-store-detect)
+  - [`atomic_rmw_cas_3!`](#atomic-rmw-cas-3)
+  - [`atomic_rmw_cas_2!`](#atomic-rmw-cas-2)
+  - [`select_atomic_rmw!`](#select-atomic-rmw)
 
 ## Quick Reference
 
@@ -70,50 +70,50 @@
 | [`AtomicI128`](#atomici128) | struct |  |
 | [`AtomicU128`](#atomicu128) | struct |  |
 | [`cmpxchg16b`](#cmpxchg16b) | fn |  |
-| [`atomic_load_vmovdqa`](#atomic_load_vmovdqa) | fn |  |
-| [`atomic_store_vmovdqa`](#atomic_store_vmovdqa) | fn |  |
-| [`atomic_load`](#atomic_load) | fn |  |
-| [`atomic_load_cmpxchg16b`](#atomic_load_cmpxchg16b) | fn |  |
-| [`atomic_store`](#atomic_store) | fn |  |
-| [`atomic_store_cmpxchg16b`](#atomic_store_cmpxchg16b) | fn |  |
-| [`atomic_compare_exchange`](#atomic_compare_exchange) | fn |  |
-| [`atomic_swap_cmpxchg16b`](#atomic_swap_cmpxchg16b) | fn |  |
-| [`atomic_add_cmpxchg16b`](#atomic_add_cmpxchg16b) | fn |  |
-| [`atomic_sub_cmpxchg16b`](#atomic_sub_cmpxchg16b) | fn |  |
-| [`atomic_and_cmpxchg16b`](#atomic_and_cmpxchg16b) | fn |  |
-| [`atomic_nand_cmpxchg16b`](#atomic_nand_cmpxchg16b) | fn |  |
-| [`atomic_or_cmpxchg16b`](#atomic_or_cmpxchg16b) | fn |  |
-| [`atomic_xor_cmpxchg16b`](#atomic_xor_cmpxchg16b) | fn |  |
-| [`atomic_not_cmpxchg16b`](#atomic_not_cmpxchg16b) | fn |  |
-| [`atomic_neg_cmpxchg16b`](#atomic_neg_cmpxchg16b) | fn |  |
-| [`atomic_max_cmpxchg16b`](#atomic_max_cmpxchg16b) | fn |  |
-| [`atomic_umax_cmpxchg16b`](#atomic_umax_cmpxchg16b) | fn |  |
-| [`atomic_min_cmpxchg16b`](#atomic_min_cmpxchg16b) | fn |  |
-| [`atomic_umin_cmpxchg16b`](#atomic_umin_cmpxchg16b) | fn |  |
-| [`atomic_swap`](#atomic_swap) | fn |  |
-| [`atomic_add`](#atomic_add) | fn |  |
-| [`atomic_sub`](#atomic_sub) | fn |  |
-| [`atomic_and`](#atomic_and) | fn |  |
-| [`atomic_nand`](#atomic_nand) | fn |  |
-| [`atomic_or`](#atomic_or) | fn |  |
-| [`atomic_xor`](#atomic_xor) | fn |  |
-| [`atomic_max`](#atomic_max) | fn |  |
-| [`atomic_umax`](#atomic_umax) | fn |  |
-| [`atomic_min`](#atomic_min) | fn |  |
-| [`atomic_umin`](#atomic_umin) | fn |  |
-| [`atomic_not`](#atomic_not) | fn |  |
-| [`atomic_neg`](#atomic_neg) | fn |  |
-| [`is_lock_free`](#is_lock_free) | fn |  |
-| [`IS_ALWAYS_LOCK_FREE`](#is_always_lock_free) | const |  |
+| [`atomic_load_vmovdqa`](#atomic-load-vmovdqa) | fn |  |
+| [`atomic_store_vmovdqa`](#atomic-store-vmovdqa) | fn |  |
+| [`atomic_load`](#atomic-load) | fn |  |
+| [`atomic_load_cmpxchg16b`](#atomic-load-cmpxchg16b) | fn |  |
+| [`atomic_store`](#atomic-store) | fn |  |
+| [`atomic_store_cmpxchg16b`](#atomic-store-cmpxchg16b) | fn |  |
+| [`atomic_compare_exchange`](#atomic-compare-exchange) | fn |  |
+| [`atomic_swap_cmpxchg16b`](#atomic-swap-cmpxchg16b) | fn |  |
+| [`atomic_add_cmpxchg16b`](#atomic-add-cmpxchg16b) | fn |  |
+| [`atomic_sub_cmpxchg16b`](#atomic-sub-cmpxchg16b) | fn |  |
+| [`atomic_and_cmpxchg16b`](#atomic-and-cmpxchg16b) | fn |  |
+| [`atomic_nand_cmpxchg16b`](#atomic-nand-cmpxchg16b) | fn |  |
+| [`atomic_or_cmpxchg16b`](#atomic-or-cmpxchg16b) | fn |  |
+| [`atomic_xor_cmpxchg16b`](#atomic-xor-cmpxchg16b) | fn |  |
+| [`atomic_not_cmpxchg16b`](#atomic-not-cmpxchg16b) | fn |  |
+| [`atomic_neg_cmpxchg16b`](#atomic-neg-cmpxchg16b) | fn |  |
+| [`atomic_max_cmpxchg16b`](#atomic-max-cmpxchg16b) | fn |  |
+| [`atomic_umax_cmpxchg16b`](#atomic-umax-cmpxchg16b) | fn |  |
+| [`atomic_min_cmpxchg16b`](#atomic-min-cmpxchg16b) | fn |  |
+| [`atomic_umin_cmpxchg16b`](#atomic-umin-cmpxchg16b) | fn |  |
+| [`atomic_swap`](#atomic-swap) | fn |  |
+| [`atomic_add`](#atomic-add) | fn |  |
+| [`atomic_sub`](#atomic-sub) | fn |  |
+| [`atomic_and`](#atomic-and) | fn |  |
+| [`atomic_nand`](#atomic-nand) | fn |  |
+| [`atomic_or`](#atomic-or) | fn |  |
+| [`atomic_xor`](#atomic-xor) | fn |  |
+| [`atomic_max`](#atomic-max) | fn |  |
+| [`atomic_umax`](#atomic-umax) | fn |  |
+| [`atomic_min`](#atomic-min) | fn |  |
+| [`atomic_umin`](#atomic-umin) | fn |  |
+| [`atomic_not`](#atomic-not) | fn |  |
+| [`atomic_neg`](#atomic-neg) | fn |  |
+| [`is_lock_free`](#is-lock-free) | fn |  |
+| [`IS_ALWAYS_LOCK_FREE`](#is-always-lock-free) | const |  |
 | [`atomic128!`](#atomic128) | macro |  |
-| [`atomic_rmw_by_atomic_update!`](#atomic_rmw_by_atomic_update) | macro |  |
-| [`debug_assert_cmpxchg16b!`](#debug_assert_cmpxchg16b) | macro |  |
-| [`debug_assert_vmovdqa_atomic!`](#debug_assert_vmovdqa_atomic) | macro |  |
-| [`ptr_modifier!`](#ptr_modifier) | macro |  |
-| [`load_store_detect!`](#load_store_detect) | macro |  |
-| [`atomic_rmw_cas_3!`](#atomic_rmw_cas_3) | macro | Atomic RMW by CAS loop (3 arguments) `unsafe fn(dst: *mut u128, val: u128, order: Ordering) -> u128;` |
-| [`atomic_rmw_cas_2!`](#atomic_rmw_cas_2) | macro | Atomic RMW by CAS loop (2 arguments) `unsafe fn(dst: *mut u128, order: Ordering) -> u128;` |
-| [`select_atomic_rmw!`](#select_atomic_rmw) | macro |  |
+| [`atomic_rmw_by_atomic_update!`](#atomic-rmw-by-atomic-update) | macro |  |
+| [`debug_assert_cmpxchg16b!`](#debug-assert-cmpxchg16b) | macro |  |
+| [`debug_assert_vmovdqa_atomic!`](#debug-assert-vmovdqa-atomic) | macro |  |
+| [`ptr_modifier!`](#ptr-modifier) | macro |  |
+| [`load_store_detect!`](#load-store-detect) | macro |  |
+| [`atomic_rmw_cas_3!`](#atomic-rmw-cas-3) | macro | Atomic RMW by CAS loop (3 arguments) `unsafe fn(dst: *mut u128, val: u128, order: Ordering) -> u128;` |
+| [`atomic_rmw_cas_2!`](#atomic-rmw-cas-2) | macro | Atomic RMW by CAS loop (2 arguments) `unsafe fn(dst: *mut u128, order: Ordering) -> u128;` |
+| [`select_atomic_rmw!`](#select-atomic-rmw) | macro |  |
 
 ## Modules
 

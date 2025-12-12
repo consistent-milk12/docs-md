@@ -80,9 +80,9 @@ output/
 
 ##### `impl Pointable for NestedGenerator<'a>`
 
-- <span id="nestedgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="nestedgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="nestedgenerator-type-init"></span>`type Init = T`
+- <span id="nestedgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="nestedgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -59,7 +59,7 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Trait Implementations
 
-##### `impl<'a, T, A: Allocator> AsRef for Drain<'a, T, A>`
+##### `impl<T, A: Allocator> AsRef for Drain<'a, T, A>`
 
 - <span id="drain-as-ref"></span>`fn as_ref(&self) -> &[T]`
 
@@ -79,17 +79,17 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<T, A: Allocator> FusedIterator for Drain<'_, T, A>`
 
-##### `impl<I> IntoIterator for Drain<'a, T, A>`
+##### `impl IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = T`
+- <span id="drain-iterator-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 

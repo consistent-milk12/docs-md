@@ -43,21 +43,21 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> IntoIterator for Replacements<I>`
 
-- <span id="replacements-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="replacements-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="replacements-type-intoiter"></span>`type IntoIter = I`
+- <span id="replacements-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="replacements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
-- <span id="replacements-type-item"></span>`type Item = char`
+- <span id="replacements-iterator-type-item"></span>`type Item = char`
 
 - <span id="replacements-next"></span>`fn next(&mut self) -> Option<char>`
 
 - <span id="replacements-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> ToString for Replacements<I>`
+##### `impl ToString for Replacements<I>`
 
 - <span id="replacements-to-string"></span>`fn to_string(&self) -> String`
 

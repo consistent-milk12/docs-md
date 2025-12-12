@@ -16,8 +16,8 @@
   - [`InlinedFunction`](#inlinedfunction)
   - [`InlinedState`](#inlinedstate)
 - [Functions](#functions)
-  - [`name_attr`](#name_attr)
-  - [`name_entry`](#name_entry)
+  - [`name_attr`](#name-attr)
+  - [`name_entry`](#name-entry)
 
 ## Quick Reference
 
@@ -31,8 +31,8 @@
 | [`InlinedFunctionAddress`](#inlinedfunctionaddress) | struct |  |
 | [`InlinedFunction`](#inlinedfunction) | struct |  |
 | [`InlinedState`](#inlinedstate) | struct |  |
-| [`name_attr`](#name_attr) | fn |  |
-| [`name_entry`](#name_entry) | fn |  |
+| [`name_attr`](#name-attr) | fn |  |
+| [`name_entry`](#name-entry) | fn |  |
 
 ## Structs
 

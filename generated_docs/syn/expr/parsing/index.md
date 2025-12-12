@@ -9,73 +9,73 @@
 - [Structs](#structs)
   - [`AllowStruct`](#allowstruct)
 - [Functions](#functions)
-  - [`parse_with_earlier_boundary_rule`](#parse_with_earlier_boundary_rule)
-  - [`parse_expr`](#parse_expr)
-  - [`parse_binop_rhs`](#parse_binop_rhs)
-  - [`peek_precedence`](#peek_precedence)
-  - [`ambiguous_expr`](#ambiguous_expr)
-  - [`expr_attrs`](#expr_attrs)
-  - [`unary_expr`](#unary_expr)
-  - [`trailer_expr`](#trailer_expr)
-  - [`trailer_helper`](#trailer_helper)
-  - [`atom_expr`](#atom_expr)
-  - [`atom_labeled`](#atom_labeled)
-  - [`expr_builtin`](#expr_builtin)
-  - [`path_or_macro_or_struct`](#path_or_macro_or_struct)
-  - [`rest_of_path_or_macro_or_struct`](#rest_of_path_or_macro_or_struct)
-  - [`paren_or_tuple`](#paren_or_tuple)
-  - [`array_or_repeat`](#array_or_repeat)
-  - [`continue_parsing_early`](#continue_parsing_early)
-  - [`expr_group`](#expr_group)
-  - [`expr_let`](#expr_let)
-  - [`expr_unary`](#expr_unary)
-  - [`expr_become`](#expr_become)
-  - [`expr_closure`](#expr_closure)
-  - [`closure_arg`](#closure_arg)
-  - [`expr_break`](#expr_break)
-  - [`expr_struct_helper`](#expr_struct_helper)
-  - [`expr_range`](#expr_range)
-  - [`parse_range_end`](#parse_range_end)
-  - [`multi_index`](#multi_index)
-  - [`check_cast`](#check_cast)
+  - [`parse_with_earlier_boundary_rule`](#parse-with-earlier-boundary-rule)
+  - [`parse_expr`](#parse-expr)
+  - [`parse_binop_rhs`](#parse-binop-rhs)
+  - [`peek_precedence`](#peek-precedence)
+  - [`ambiguous_expr`](#ambiguous-expr)
+  - [`expr_attrs`](#expr-attrs)
+  - [`unary_expr`](#unary-expr)
+  - [`trailer_expr`](#trailer-expr)
+  - [`trailer_helper`](#trailer-helper)
+  - [`atom_expr`](#atom-expr)
+  - [`atom_labeled`](#atom-labeled)
+  - [`expr_builtin`](#expr-builtin)
+  - [`path_or_macro_or_struct`](#path-or-macro-or-struct)
+  - [`rest_of_path_or_macro_or_struct`](#rest-of-path-or-macro-or-struct)
+  - [`paren_or_tuple`](#paren-or-tuple)
+  - [`array_or_repeat`](#array-or-repeat)
+  - [`continue_parsing_early`](#continue-parsing-early)
+  - [`expr_group`](#expr-group)
+  - [`expr_let`](#expr-let)
+  - [`expr_unary`](#expr-unary)
+  - [`expr_become`](#expr-become)
+  - [`expr_closure`](#expr-closure)
+  - [`closure_arg`](#closure-arg)
+  - [`expr_break`](#expr-break)
+  - [`expr_struct_helper`](#expr-struct-helper)
+  - [`expr_range`](#expr-range)
+  - [`parse_range_end`](#parse-range-end)
+  - [`multi_index`](#multi-index)
+  - [`check_cast`](#check-cast)
 - [Macros](#macros)
-  - [`impl_by_parsing_expr!`](#impl_by_parsing_expr)
+  - [`impl_by_parsing_expr!`](#impl-by-parsing-expr)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`AllowStruct`](#allowstruct) | struct |  |
-| [`parse_with_earlier_boundary_rule`](#parse_with_earlier_boundary_rule) | fn |  |
-| [`parse_expr`](#parse_expr) | fn |  |
-| [`parse_binop_rhs`](#parse_binop_rhs) | fn |  |
-| [`peek_precedence`](#peek_precedence) | fn |  |
-| [`ambiguous_expr`](#ambiguous_expr) | fn |  |
-| [`expr_attrs`](#expr_attrs) | fn |  |
-| [`unary_expr`](#unary_expr) | fn |  |
-| [`trailer_expr`](#trailer_expr) | fn |  |
-| [`trailer_helper`](#trailer_helper) | fn |  |
-| [`atom_expr`](#atom_expr) | fn |  |
-| [`atom_labeled`](#atom_labeled) | fn |  |
-| [`expr_builtin`](#expr_builtin) | fn |  |
-| [`path_or_macro_or_struct`](#path_or_macro_or_struct) | fn |  |
-| [`rest_of_path_or_macro_or_struct`](#rest_of_path_or_macro_or_struct) | fn |  |
-| [`paren_or_tuple`](#paren_or_tuple) | fn |  |
-| [`array_or_repeat`](#array_or_repeat) | fn |  |
-| [`continue_parsing_early`](#continue_parsing_early) | fn |  |
-| [`expr_group`](#expr_group) | fn |  |
-| [`expr_let`](#expr_let) | fn |  |
-| [`expr_unary`](#expr_unary) | fn |  |
-| [`expr_become`](#expr_become) | fn |  |
-| [`expr_closure`](#expr_closure) | fn |  |
-| [`closure_arg`](#closure_arg) | fn |  |
-| [`expr_break`](#expr_break) | fn |  |
-| [`expr_struct_helper`](#expr_struct_helper) | fn |  |
-| [`expr_range`](#expr_range) | fn |  |
-| [`parse_range_end`](#parse_range_end) | fn |  |
-| [`multi_index`](#multi_index) | fn |  |
-| [`check_cast`](#check_cast) | fn |  |
-| [`impl_by_parsing_expr!`](#impl_by_parsing_expr) | macro |  |
+| [`parse_with_earlier_boundary_rule`](#parse-with-earlier-boundary-rule) | fn |  |
+| [`parse_expr`](#parse-expr) | fn |  |
+| [`parse_binop_rhs`](#parse-binop-rhs) | fn |  |
+| [`peek_precedence`](#peek-precedence) | fn |  |
+| [`ambiguous_expr`](#ambiguous-expr) | fn |  |
+| [`expr_attrs`](#expr-attrs) | fn |  |
+| [`unary_expr`](#unary-expr) | fn |  |
+| [`trailer_expr`](#trailer-expr) | fn |  |
+| [`trailer_helper`](#trailer-helper) | fn |  |
+| [`atom_expr`](#atom-expr) | fn |  |
+| [`atom_labeled`](#atom-labeled) | fn |  |
+| [`expr_builtin`](#expr-builtin) | fn |  |
+| [`path_or_macro_or_struct`](#path-or-macro-or-struct) | fn |  |
+| [`rest_of_path_or_macro_or_struct`](#rest-of-path-or-macro-or-struct) | fn |  |
+| [`paren_or_tuple`](#paren-or-tuple) | fn |  |
+| [`array_or_repeat`](#array-or-repeat) | fn |  |
+| [`continue_parsing_early`](#continue-parsing-early) | fn |  |
+| [`expr_group`](#expr-group) | fn |  |
+| [`expr_let`](#expr-let) | fn |  |
+| [`expr_unary`](#expr-unary) | fn |  |
+| [`expr_become`](#expr-become) | fn |  |
+| [`expr_closure`](#expr-closure) | fn |  |
+| [`closure_arg`](#closure-arg) | fn |  |
+| [`expr_break`](#expr-break) | fn |  |
+| [`expr_struct_helper`](#expr-struct-helper) | fn |  |
+| [`expr_range`](#expr-range) | fn |  |
+| [`parse_range_end`](#parse-range-end) | fn |  |
+| [`multi_index`](#multi-index) | fn |  |
+| [`check_cast`](#check-cast) | fn |  |
+| [`impl_by_parsing_expr!`](#impl-by-parsing-expr) | macro |  |
 
 ## Structs
 

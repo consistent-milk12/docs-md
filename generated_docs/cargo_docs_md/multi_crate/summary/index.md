@@ -78,9 +78,9 @@ Summary
 
 ##### `impl Pointable for SummaryGenerator<'a>`
 
-- <span id="summarygenerator-const-align"></span>`const ALIGN: usize`
+- <span id="summarygenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="summarygenerator-type-init"></span>`type Init = T`
+- <span id="summarygenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="summarygenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

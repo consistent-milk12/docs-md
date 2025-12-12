@@ -17,8 +17,8 @@
   - [`Trait`](#trait)
 - [Functions](#functions)
   - [`get`](#get)
-  - [`parse_error_attribute`](#parse_error_attribute)
-  - [`parse_token_expr`](#parse_token_expr)
+  - [`parse_error_attribute`](#parse-error-attribute)
+  - [`parse_token_expr`](#parse-token-expr)
 
 ## Quick Reference
 
@@ -32,8 +32,8 @@
 | [`Fmt`](#fmt) | struct |  |
 | [`Trait`](#trait) | enum |  |
 | [`get`](#get) | fn |  |
-| [`parse_error_attribute`](#parse_error_attribute) | fn |  |
-| [`parse_token_expr`](#parse_token_expr) | fn |  |
+| [`parse_error_attribute`](#parse-error-attribute) | fn |  |
+| [`parse_token_expr`](#parse-token-expr) | fn |  |
 
 ## Structs
 

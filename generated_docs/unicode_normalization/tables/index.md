@@ -7,62 +7,62 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`composition_table_astral`](#composition_table_astral)
-  - [`is_public_assigned`](#is_public_assigned)
-  - [`qc_nfc`](#qc_nfc)
-  - [`qc_nfkc`](#qc_nfkc)
-  - [`qc_nfd`](#qc_nfd)
-  - [`qc_nfkd`](#qc_nfkd)
-  - [`stream_safe_leading_nonstarters`](#stream_safe_leading_nonstarters)
+  - [`composition_table_astral`](#composition-table-astral)
+  - [`is_public_assigned`](#is-public-assigned)
+  - [`qc_nfc`](#qc-nfc)
+  - [`qc_nfkc`](#qc-nfkc)
+  - [`qc_nfd`](#qc-nfd)
+  - [`qc_nfkd`](#qc-nfkd)
+  - [`stream_safe_leading_nonstarters`](#stream-safe-leading-nonstarters)
 - [Constants](#constants)
-  - [`UNICODE_VERSION`](#unicode_version)
-  - [`CANONICAL_COMBINING_CLASS_SALT`](#canonical_combining_class_salt)
-  - [`CANONICAL_COMBINING_CLASS_KV`](#canonical_combining_class_kv)
-  - [`COMPOSITION_TABLE_SALT`](#composition_table_salt)
-  - [`COMPOSITION_TABLE_KV`](#composition_table_kv)
-  - [`CANONICAL_DECOMPOSED_CHARS`](#canonical_decomposed_chars)
-  - [`CANONICAL_DECOMPOSED_SALT`](#canonical_decomposed_salt)
-  - [`CANONICAL_DECOMPOSED_KV`](#canonical_decomposed_kv)
-  - [`COMPATIBILITY_DECOMPOSED_CHARS`](#compatibility_decomposed_chars)
-  - [`COMPATIBILITY_DECOMPOSED_SALT`](#compatibility_decomposed_salt)
-  - [`COMPATIBILITY_DECOMPOSED_KV`](#compatibility_decomposed_kv)
-  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_CHARS`](#cjk_compat_variants_decomposed_chars)
-  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_SALT`](#cjk_compat_variants_decomposed_salt)
-  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_KV`](#cjk_compat_variants_decomposed_kv)
-  - [`COMBINING_MARK_SALT`](#combining_mark_salt)
-  - [`COMBINING_MARK_KV`](#combining_mark_kv)
-  - [`TRAILING_NONSTARTERS_SALT`](#trailing_nonstarters_salt)
-  - [`TRAILING_NONSTARTERS_KV`](#trailing_nonstarters_kv)
+  - [`UNICODE_VERSION`](#unicode-version)
+  - [`CANONICAL_COMBINING_CLASS_SALT`](#canonical-combining-class-salt)
+  - [`CANONICAL_COMBINING_CLASS_KV`](#canonical-combining-class-kv)
+  - [`COMPOSITION_TABLE_SALT`](#composition-table-salt)
+  - [`COMPOSITION_TABLE_KV`](#composition-table-kv)
+  - [`CANONICAL_DECOMPOSED_CHARS`](#canonical-decomposed-chars)
+  - [`CANONICAL_DECOMPOSED_SALT`](#canonical-decomposed-salt)
+  - [`CANONICAL_DECOMPOSED_KV`](#canonical-decomposed-kv)
+  - [`COMPATIBILITY_DECOMPOSED_CHARS`](#compatibility-decomposed-chars)
+  - [`COMPATIBILITY_DECOMPOSED_SALT`](#compatibility-decomposed-salt)
+  - [`COMPATIBILITY_DECOMPOSED_KV`](#compatibility-decomposed-kv)
+  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_CHARS`](#cjk-compat-variants-decomposed-chars)
+  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_SALT`](#cjk-compat-variants-decomposed-salt)
+  - [`CJK_COMPAT_VARIANTS_DECOMPOSED_KV`](#cjk-compat-variants-decomposed-kv)
+  - [`COMBINING_MARK_SALT`](#combining-mark-salt)
+  - [`COMBINING_MARK_KV`](#combining-mark-kv)
+  - [`TRAILING_NONSTARTERS_SALT`](#trailing-nonstarters-salt)
+  - [`TRAILING_NONSTARTERS_KV`](#trailing-nonstarters-kv)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`composition_table_astral`](#composition_table_astral) | fn |  |
-| [`is_public_assigned`](#is_public_assigned) | fn |  |
-| [`qc_nfc`](#qc_nfc) | fn |  |
-| [`qc_nfkc`](#qc_nfkc) | fn |  |
-| [`qc_nfd`](#qc_nfd) | fn |  |
-| [`qc_nfkd`](#qc_nfkd) | fn |  |
-| [`stream_safe_leading_nonstarters`](#stream_safe_leading_nonstarters) | fn |  |
-| [`UNICODE_VERSION`](#unicode_version) | const |  |
-| [`CANONICAL_COMBINING_CLASS_SALT`](#canonical_combining_class_salt) | const |  |
-| [`CANONICAL_COMBINING_CLASS_KV`](#canonical_combining_class_kv) | const |  |
-| [`COMPOSITION_TABLE_SALT`](#composition_table_salt) | const |  |
-| [`COMPOSITION_TABLE_KV`](#composition_table_kv) | const |  |
-| [`CANONICAL_DECOMPOSED_CHARS`](#canonical_decomposed_chars) | const |  |
-| [`CANONICAL_DECOMPOSED_SALT`](#canonical_decomposed_salt) | const |  |
-| [`CANONICAL_DECOMPOSED_KV`](#canonical_decomposed_kv) | const |  |
-| [`COMPATIBILITY_DECOMPOSED_CHARS`](#compatibility_decomposed_chars) | const |  |
-| [`COMPATIBILITY_DECOMPOSED_SALT`](#compatibility_decomposed_salt) | const |  |
-| [`COMPATIBILITY_DECOMPOSED_KV`](#compatibility_decomposed_kv) | const |  |
-| [`CJK_COMPAT_VARIANTS_DECOMPOSED_CHARS`](#cjk_compat_variants_decomposed_chars) | const |  |
-| [`CJK_COMPAT_VARIANTS_DECOMPOSED_SALT`](#cjk_compat_variants_decomposed_salt) | const |  |
-| [`CJK_COMPAT_VARIANTS_DECOMPOSED_KV`](#cjk_compat_variants_decomposed_kv) | const |  |
-| [`COMBINING_MARK_SALT`](#combining_mark_salt) | const |  |
-| [`COMBINING_MARK_KV`](#combining_mark_kv) | const |  |
-| [`TRAILING_NONSTARTERS_SALT`](#trailing_nonstarters_salt) | const |  |
-| [`TRAILING_NONSTARTERS_KV`](#trailing_nonstarters_kv) | const |  |
+| [`composition_table_astral`](#composition-table-astral) | fn |  |
+| [`is_public_assigned`](#is-public-assigned) | fn |  |
+| [`qc_nfc`](#qc-nfc) | fn |  |
+| [`qc_nfkc`](#qc-nfkc) | fn |  |
+| [`qc_nfd`](#qc-nfd) | fn |  |
+| [`qc_nfkd`](#qc-nfkd) | fn |  |
+| [`stream_safe_leading_nonstarters`](#stream-safe-leading-nonstarters) | fn |  |
+| [`UNICODE_VERSION`](#unicode-version) | const |  |
+| [`CANONICAL_COMBINING_CLASS_SALT`](#canonical-combining-class-salt) | const |  |
+| [`CANONICAL_COMBINING_CLASS_KV`](#canonical-combining-class-kv) | const |  |
+| [`COMPOSITION_TABLE_SALT`](#composition-table-salt) | const |  |
+| [`COMPOSITION_TABLE_KV`](#composition-table-kv) | const |  |
+| [`CANONICAL_DECOMPOSED_CHARS`](#canonical-decomposed-chars) | const |  |
+| [`CANONICAL_DECOMPOSED_SALT`](#canonical-decomposed-salt) | const |  |
+| [`CANONICAL_DECOMPOSED_KV`](#canonical-decomposed-kv) | const |  |
+| [`COMPATIBILITY_DECOMPOSED_CHARS`](#compatibility-decomposed-chars) | const |  |
+| [`COMPATIBILITY_DECOMPOSED_SALT`](#compatibility-decomposed-salt) | const |  |
+| [`COMPATIBILITY_DECOMPOSED_KV`](#compatibility-decomposed-kv) | const |  |
+| [`CJK_COMPAT_VARIANTS_DECOMPOSED_CHARS`](#cjk-compat-variants-decomposed-chars) | const |  |
+| [`CJK_COMPAT_VARIANTS_DECOMPOSED_SALT`](#cjk-compat-variants-decomposed-salt) | const |  |
+| [`CJK_COMPAT_VARIANTS_DECOMPOSED_KV`](#cjk-compat-variants-decomposed-kv) | const |  |
+| [`COMBINING_MARK_SALT`](#combining-mark-salt) | const |  |
+| [`COMBINING_MARK_KV`](#combining-mark-kv) | const |  |
+| [`TRAILING_NONSTARTERS_SALT`](#trailing-nonstarters-salt) | const |  |
+| [`TRAILING_NONSTARTERS_KV`](#trailing-nonstarters-kv) | const |  |
 
 ## Functions
 

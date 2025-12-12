@@ -40,7 +40,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitAnd for DupFlags`
 
-- <span id="dupflags-type-output"></span>`type Output = DupFlags`
+- <span id="dupflags-bitand-type-output"></span>`type Output = DupFlags`
 
 - <span id="dupflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -50,7 +50,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitOr for DupFlags`
 
-- <span id="dupflags-type-output"></span>`type Output = DupFlags`
+- <span id="dupflags-bitor-type-output"></span>`type Output = DupFlags`
 
 - <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md#dupflags)
 
@@ -60,7 +60,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitXor for DupFlags`
 
-- <span id="dupflags-type-output"></span>`type Output = DupFlags`
+- <span id="dupflags-bitxor-type-output"></span>`type Output = DupFlags`
 
 - <span id="dupflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -86,9 +86,9 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Flags for DupFlags`
 
-- <span id="dupflags-const-flags"></span>`const FLAGS: &'static [Flag<DupFlags>]`
+- <span id="dupflags-flags-const-flags"></span>`const FLAGS: &'static [Flag<DupFlags>]`
 
-- <span id="dupflags-type-bits"></span>`type Bits = u32`
+- <span id="dupflags-flags-type-bits"></span>`type Bits = u32`
 
 - <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md#c-uint)
 
@@ -104,9 +104,9 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl IntoIterator for DupFlags`
 
-- <span id="dupflags-type-item"></span>`type Item = DupFlags`
+- <span id="dupflags-intoiterator-type-item"></span>`type Item = DupFlags`
 
-- <span id="dupflags-type-intoiter"></span>`type IntoIter = Iter<DupFlags>`
+- <span id="dupflags-intoiterator-type-intoiter"></span>`type IntoIter = Iter<DupFlags>`
 
 - <span id="dupflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -116,7 +116,7 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Not for DupFlags`
 
-- <span id="dupflags-type-output"></span>`type Output = DupFlags`
+- <span id="dupflags-not-type-output"></span>`type Output = DupFlags`
 
 - <span id="dupflags-not"></span>`fn not(self) -> Self`
 
@@ -130,15 +130,15 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PublicFlags for DupFlags`
 
-- <span id="dupflags-type-primitive"></span>`type Primitive = u32`
+- <span id="dupflags-publicflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="dupflags-type-internal"></span>`type Internal = InternalBitFlags`
+- <span id="dupflags-publicflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for DupFlags`
 
 ##### `impl Sub for DupFlags`
 
-- <span id="dupflags-type-output"></span>`type Output = DupFlags`
+- <span id="dupflags-sub-type-output"></span>`type Output = DupFlags`
 
 - <span id="dupflags-sub"></span>`fn sub(self, other: Self) -> Self`
 

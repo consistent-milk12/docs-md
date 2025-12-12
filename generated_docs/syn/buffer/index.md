@@ -15,11 +15,11 @@ cheaply copyable cursor.
 - [Enums](#enums)
   - [`Entry`](#entry)
 - [Functions](#functions)
-  - [`same_scope`](#same_scope)
-  - [`same_buffer`](#same_buffer)
-  - [`start_of_buffer`](#start_of_buffer)
-  - [`cmp_assuming_same_buffer`](#cmp_assuming_same_buffer)
-  - [`open_span_of_group`](#open_span_of_group)
+  - [`same_scope`](#same-scope)
+  - [`same_buffer`](#same-buffer)
+  - [`start_of_buffer`](#start-of-buffer)
+  - [`cmp_assuming_same_buffer`](#cmp-assuming-same-buffer)
+  - [`open_span_of_group`](#open-span-of-group)
 
 ## Quick Reference
 
@@ -28,11 +28,11 @@ cheaply copyable cursor.
 | [`TokenBuffer`](#tokenbuffer) | struct | A buffer that can be efficiently traversed multiple times, unlike `TokenStream` which requires a deep copy in order to traverse more than once. |
 | [`Cursor`](#cursor) | struct | A cheaply copyable cursor into a `TokenBuffer`. |
 | [`Entry`](#entry) | enum | Internal type which is used instead of `TokenTree` to represent a token tree within a `TokenBuffer`. |
-| [`same_scope`](#same_scope) | fn |  |
-| [`same_buffer`](#same_buffer) | fn |  |
-| [`start_of_buffer`](#start_of_buffer) | fn |  |
-| [`cmp_assuming_same_buffer`](#cmp_assuming_same_buffer) | fn |  |
-| [`open_span_of_group`](#open_span_of_group) | fn |  |
+| [`same_scope`](#same-scope) | fn |  |
+| [`same_buffer`](#same-buffer) | fn |  |
+| [`start_of_buffer`](#start-of-buffer) | fn |  |
+| [`cmp_assuming_same_buffer`](#cmp-assuming-same-buffer) | fn |  |
+| [`open_span_of_group`](#open-span-of-group) | fn |  |
 
 ## Structs
 

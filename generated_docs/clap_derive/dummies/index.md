@@ -11,11 +11,11 @@ Dummy implementations that we emit along with an error.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`parser`](#parser) | fn |  |
-| [`into_app`](#into_app) | fn |  |
-| [`from_arg_matches`](#from_arg_matches) | fn |  |
+| [`into_app`](#into-app) | fn |  |
+| [`from_arg_matches`](#from-arg-matches) | fn |  |
 | [`subcommand`](#subcommand) | fn |  |
 | [`args`](#args) | fn |  |
-| [`value_enum`](#value_enum) | fn |  |
+| [`value_enum`](#value-enum) | fn |  |
 
 ## Functions
 

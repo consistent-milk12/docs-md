@@ -9,7 +9,7 @@
 - [Modules](#modules)
   - [`alloc`](#alloc)
   - [`boxed`](#boxed)
-  - [`raw_vec`](#raw_vec)
+  - [`raw_vec`](#raw-vec)
   - [`vec`](#vec)
   - [`macros`](#macros)
   - [`slice`](#slice)
@@ -20,7 +20,7 @@
 - [Functions](#functions)
   - [`assume`](#assume)
   - [`addr`](#addr)
-  - [`invalid_mut`](#invalid_mut)
+  - [`invalid_mut`](#invalid-mut)
 
 ## Quick Reference
 
@@ -28,7 +28,7 @@
 |------|------|-------------|
 | [`alloc`](#alloc) | mod | Memory allocation APIs |
 | [`boxed`](#boxed) | mod | The `Box<T>` type for heap allocation. |
-| [`raw_vec`](#raw_vec) | mod |  |
+| [`raw_vec`](#raw-vec) | mod |  |
 | [`vec`](#vec) | mod | A contiguous growable array type with heap-allocated contents, written `Vec<T>`. |
 | [`macros`](#macros) | mod |  |
 | [`slice`](#slice) | mod |  |
@@ -37,7 +37,7 @@
 | [`SliceExt`](#sliceext) | trait |  |
 | [`assume`](#assume) | fn |  |
 | [`addr`](#addr) | fn |  |
-| [`invalid_mut`](#invalid_mut) | fn |  |
+| [`invalid_mut`](#invalid-mut) | fn |  |
 
 ## Modules
 

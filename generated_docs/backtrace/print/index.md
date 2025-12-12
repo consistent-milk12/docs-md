@@ -11,7 +11,7 @@
 | [`BacktraceFmt`](#backtracefmt) | struct | A formatter for backtraces. |
 | [`BacktraceFrameFmt`](#backtraceframefmt) | struct | A formatter for just one frame of a backtrace. |
 | [`PrintFmt`](#printfmt) | enum | The styles of printing that we can print |
-| [`HEX_WIDTH`](#hex_width) | const |  |
+| [`HEX_WIDTH`](#hex-width) | const |  |
 
 ## Structs
 

@@ -2769,5 +2769,26 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 
 ## Functions
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:9`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L9)*
+### `visit`
+
+```rust
+fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
+```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+
+Executes an implementation of `Visitor` in constant stack space.
+
+This function will visit every node in the given `Ast` while calling the
+appropriate methods provided by the [`Visitor`](visitor/index.md) trait.
+
+The primary use case for this method is when one wants to perform case
+analysis over an `Ast` without using a stack size proportional to the depth
+of the `Ast`. Namely, this method will instead use constant stack size, but
+will use heap space proportional to the size of the `Ast`. This may be
+desirable in cases where the size of `Ast` is proportional to end user
+input.
+
+If the visitor returns an error at any point, then visiting is stopped and
+the error is returned.
 

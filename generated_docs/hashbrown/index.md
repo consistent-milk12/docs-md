@@ -18,15 +18,15 @@ The original C++ version of [SwissTable] can be found [here], and this
   - [`hasher`](#hasher)
   - [`raw`](#raw)
   - [`util`](#util)
-  - [`external_trait_impls`](#external_trait_impls)
+  - [`external_trait_impls`](#external-trait-impls)
   - [`map`](#map)
-  - [`raw_entry`](#raw_entry)
+  - [`raw_entry`](#raw-entry)
   - [`scopeguard`](#scopeguard)
   - [`set`](#set)
   - [`table`](#table)
-  - [`hash_map`](#hash_map)
-  - [`hash_set`](#hash_set)
-  - [`hash_table`](#hash_table)
+  - [`hash_map`](#hash-map)
+  - [`hash_set`](#hash-set)
+  - [`hash_table`](#hash-table)
 - [Structs](#structs)
   - [`DefaultHashBuilder`](#defaulthashbuilder)
   - [`DefaultHasher`](#defaulthasher)
@@ -45,15 +45,15 @@ The original C++ version of [SwissTable] can be found [here], and this
 | [`hasher`](#hasher) | mod |  |
 | [`raw`](#raw) | mod |  |
 | [`util`](#util) | mod |  |
-| [`external_trait_impls`](#external_trait_impls) | mod |  |
+| [`external_trait_impls`](#external-trait-impls) | mod |  |
 | [`map`](#map) | mod |  |
-| [`raw_entry`](#raw_entry) | mod |  |
+| [`raw_entry`](#raw-entry) | mod |  |
 | [`scopeguard`](#scopeguard) | mod |  |
 | [`set`](#set) | mod |  |
 | [`table`](#table) | mod |  |
-| [`hash_map`](#hash_map) | mod | A hash map implemented with quadratic probing and SIMD lookup. |
-| [`hash_set`](#hash_set) | mod | A hash set implemented as a `HashMap` where the value is `()`. |
-| [`hash_table`](#hash_table) | mod | A hash table implemented with quadratic probing and SIMD lookup. |
+| [`hash_map`](#hash-map) | mod | A hash map implemented with quadratic probing and SIMD lookup. |
+| [`hash_set`](#hash-set) | mod | A hash set implemented as a `HashMap` where the value is `()`. |
+| [`hash_table`](#hash-table) | mod | A hash table implemented with quadratic probing and SIMD lookup. |
 | [`DefaultHashBuilder`](#defaulthashbuilder) | struct |  |
 | [`DefaultHasher`](#defaulthasher) | struct |  |
 | [`HashMap`](#hashmap) | struct |  |
@@ -101,7 +101,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-buildhasher-type-hasher"></span>`type Hasher = DefaultHasher`
 
 - <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
@@ -368,7 +368,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
-##### `impl<Q, K> Equivalent for HashMap<K, V, S, A>`
+##### `impl<K> Equivalent for HashMap<K, V, S, A>`
 
 - <span id="hashmap-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -382,15 +382,15 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- <span id="hashmap-type-output"></span>`type Output = V`
+- <span id="hashmap-index-type-output"></span>`type Output = V`
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
-##### `impl<'a, K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
+##### `impl<K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
-- <span id="a-hashmap-type-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="a-hashmap-intoiterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
+- <span id="a-hashmap-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
 - <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md#iter)
 
@@ -513,7 +513,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitand-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
@@ -523,7 +523,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitor-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
@@ -533,7 +533,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-bitxor-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
@@ -557,7 +557,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
-##### `impl<Q, K> Equivalent for HashSet<T, S, A>`
+##### `impl<K> Equivalent for HashSet<T, S, A>`
 
 - <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -569,11 +569,11 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
-##### `impl<'a, T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
+##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
-- <span id="a-hashset-type-item"></span>`type Item = &'a T`
+- <span id="a-hashset-intoiterator-type-item"></span>`type Item = &'a T`
 
-- <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
+- <span id="a-hashset-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
 - <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md#iter)
 
@@ -583,7 +583,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
 
-- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+- <span id="hashset-sub-type-output"></span>`type Output = HashSet<T, S, A>`
 
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
@@ -661,9 +661,9 @@ doing this because it changes the runtime of hash table operations from
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- <span id="hashtable-type-item"></span>`type Item = T`
+- <span id="hashtable-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md#intoiter)
 
@@ -707,7 +707,7 @@ The error type for `try_reserve` methods.
 
 ##### `impl Eq for TryReserveError`
 
-##### `impl Equivalent for TryReserveError`
+##### `impl<K> Equivalent for TryReserveError`
 
 - <span id="tryreserveerror-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 

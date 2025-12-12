@@ -26,8 +26,8 @@ instructions.
 |------|------|-------------|
 | [`asm`](#asm) | mod | x86-64 Linux system calls. |
 | [`syscall!`](#syscall) | macro |  |
-| [`syscall_always_asm!`](#syscall_always_asm) | macro |  |
-| [`syscall_readonly!`](#syscall_readonly) | macro | Like `syscall`, but adds the `readonly` attribute to the inline asm, which indicates that the syscall does not mutate any memory. |
+| [`syscall_always_asm!`](#syscall-always-asm) | macro |  |
+| [`syscall_readonly!`](#syscall-readonly) | macro | Like `syscall`, but adds the `readonly` attribute to the inline asm, which indicates that the syscall does not mutate any memory. |
 
 ## Modules
 

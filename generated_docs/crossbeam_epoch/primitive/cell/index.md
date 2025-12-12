@@ -36,9 +36,9 @@ struct UnsafeCell<T>(::core::cell::UnsafeCell<T>);
 
 ##### `impl<T> Pointable for UnsafeCell<T>`
 
-- <span id="unsafecell-const-align"></span>`const ALIGN: usize`
+- <span id="unsafecell-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unsafecell-type-init"></span>`type Init = T`
+- <span id="unsafecell-pointable-type-init"></span>`type Init = T`
 
 - <span id="unsafecell-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 

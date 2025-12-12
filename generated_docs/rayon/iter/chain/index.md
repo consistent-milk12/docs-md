@@ -51,29 +51,29 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../index.
 
 - <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Chain<A, B>`
+##### `impl IntoEither for Chain<A, B>`
 
-##### `impl<T> IntoParallelIterator for Chain<A, B>`
+##### `impl IntoParallelIterator for Chain<A, B>`
 
-- <span id="chain-type-iter"></span>`type Iter = T`
+- <span id="chain-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
-- <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
+- <span id="chain-paralleliterator-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
 - <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Chain<A, B>`
+##### `impl Pointable for Chain<A, B>`
 
-- <span id="chain-const-align"></span>`const ALIGN: usize`
+- <span id="chain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chain-type-init"></span>`type Init = T`
+- <span id="chain-pointable-type-init"></span>`type Init = T`
 
 - <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -104,13 +104,13 @@ where
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for ChainProducer<A, B>`
+##### `impl IntoEither for ChainProducer<A, B>`
 
-##### `impl<T> Pointable for ChainProducer<A, B>`
+##### `impl Pointable for ChainProducer<A, B>`
 
-- <span id="chainproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chainproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chainproducer-type-init"></span>`type Init = T`
+- <span id="chainproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chainproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -122,9 +122,9 @@ where
 
 ##### `impl<A, B> Producer for ChainProducer<A, B>`
 
-- <span id="chainproducer-type-item"></span>`type Item = <A as Producer>::Item`
+- <span id="chainproducer-producer-type-item"></span>`type Item = <A as Producer>::Item`
 
-- <span id="chainproducer-type-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
+- <span id="chainproducer-producer-type-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
 - <span id="chainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -160,29 +160,29 @@ Wrapper for `Chain` to implement `ExactSizeIterator`
 
 ##### `impl<A, B> ExactSizeIterator for ChainSeq<A, B>`
 
-##### `impl<T> IntoEither for ChainSeq<A, B>`
+##### `impl IntoEither for ChainSeq<A, B>`
 
-##### `impl<I> IntoIterator for ChainSeq<A, B>`
+##### `impl IntoIterator for ChainSeq<A, B>`
 
-- <span id="chainseq-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chainseq-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chainseq-type-intoiter"></span>`type IntoIter = I`
+- <span id="chainseq-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chainseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A, B> Iterator for ChainSeq<A, B>`
 
-- <span id="chainseq-type-item"></span>`type Item = <A as Iterator>::Item`
+- <span id="chainseq-iterator-type-item"></span>`type Item = <A as Iterator>::Item`
 
 - <span id="chainseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="chainseq-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> Pointable for ChainSeq<A, B>`
+##### `impl Pointable for ChainSeq<A, B>`
 
-- <span id="chainseq-const-align"></span>`const ALIGN: usize`
+- <span id="chainseq-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chainseq-type-init"></span>`type Init = T`
+- <span id="chainseq-pointable-type-init"></span>`type Init = T`
 
 - <span id="chainseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

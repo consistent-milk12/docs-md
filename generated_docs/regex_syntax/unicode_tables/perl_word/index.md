@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`PERL_WORD`](#perl_word) | const |  |
+| [`PERL_WORD`](#perl-word) | const |  |
 
 ## Constants
 

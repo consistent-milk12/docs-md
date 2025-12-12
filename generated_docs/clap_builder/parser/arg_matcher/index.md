@@ -85,11 +85,11 @@ struct ArgMatcher {
 
 ##### `impl Deref for ArgMatcher`
 
-- <span id="argmatcher-type-target"></span>`type Target = ArgMatches`
+- <span id="argmatcher-deref-type-target"></span>`type Target = ArgMatches`
 
 - <span id="argmatcher-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for ArgMatcher`
 
-- <span id="argmatcher-type-target"></span>`type Target = T`
+- <span id="argmatcher-receiver-type-target"></span>`type Target = T`
 

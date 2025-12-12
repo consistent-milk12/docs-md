@@ -78,9 +78,9 @@ where
 
 ##### `impl<T, R, F> LookupContinuation for SimpleLookup<T, R, F>`
 
-- <span id="simplelookup-type-output"></span>`type Output = T`
+- <span id="simplelookup-lookupcontinuation-type-output"></span>`type Output = T`
 
-- <span id="simplelookup-type-buf"></span>`type Buf = R`
+- <span id="simplelookup-lookupcontinuation-type-buf"></span>`type Buf = R`
 
 - <span id="simplelookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 
@@ -102,9 +102,9 @@ where
 
 ##### `impl<T, L, F> LookupContinuation for MappedLookup<T, L, F>`
 
-- <span id="mappedlookup-type-output"></span>`type Output = T`
+- <span id="mappedlookup-lookupcontinuation-type-output"></span>`type Output = T`
 
-- <span id="mappedlookup-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
+- <span id="mappedlookup-lookupcontinuation-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
 - <span id="mappedlookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 
@@ -145,9 +145,9 @@ computation is resumed.
 
 ##### `impl<T, L, F> LookupContinuation for LoopingLookup<T, L, F>`
 
-- <span id="loopinglookup-type-output"></span>`type Output = T`
+- <span id="loopinglookup-lookupcontinuation-type-output"></span>`type Output = T`
 
-- <span id="loopinglookup-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
+- <span id="loopinglookup-lookupcontinuation-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
 - <span id="loopinglookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 

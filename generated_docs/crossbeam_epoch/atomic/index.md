@@ -17,11 +17,11 @@
   - [`Pointable`](#pointable)
   - [`Pointer`](#pointer)
 - [Functions](#functions)
-  - [`strongest_failure_ordering`](#strongest_failure_ordering)
-  - [`low_bits`](#low_bits)
-  - [`ensure_aligned`](#ensure_aligned)
-  - [`compose_tag`](#compose_tag)
-  - [`decompose_tag`](#decompose_tag)
+  - [`strongest_failure_ordering`](#strongest-failure-ordering)
+  - [`low_bits`](#low-bits)
+  - [`ensure_aligned`](#ensure-aligned)
+  - [`compose_tag`](#compose-tag)
+  - [`decompose_tag`](#decompose-tag)
 - [Type Aliases](#type-aliases)
   - [`CompareAndSetError`](#compareandseterror)
 
@@ -37,11 +37,11 @@
 | [`CompareAndSetOrdering`](#compareandsetordering) | trait | Memory orderings for compare-and-set operations. |
 | [`Pointable`](#pointable) | trait | Types that are pointed to by a single word. |
 | [`Pointer`](#pointer) | trait | A trait for either `Owned` or `Shared` pointers. |
-| [`strongest_failure_ordering`](#strongest_failure_ordering) | fn | Given ordering for the success case in a compare-exchange operation, returns the strongest appropriate ordering for the failure case. |
-| [`low_bits`](#low_bits) | fn | Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`. |
-| [`ensure_aligned`](#ensure_aligned) | fn | Panics if the pointer is not properly unaligned. |
-| [`compose_tag`](#compose_tag) | fn | Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`. |
-| [`decompose_tag`](#decompose_tag) | fn | Decomposes a tagged pointer `data` into the pointer and the tag. |
+| [`strongest_failure_ordering`](#strongest-failure-ordering) | fn | Given ordering for the success case in a compare-exchange operation, returns the strongest appropriate ordering for the failure case. |
+| [`low_bits`](#low-bits) | fn | Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`. |
+| [`ensure_aligned`](#ensure-aligned) | fn | Panics if the pointer is not properly unaligned. |
+| [`compose_tag`](#compose-tag) | fn | Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`. |
+| [`decompose_tag`](#decompose-tag) | fn | Decomposes a tagged pointer `data` into the pointer and the tag. |
 | [`CompareAndSetError`](#compareandseterror) | type | The error returned on failed compare-and-set operation. |
 
 ## Structs
@@ -77,9 +77,9 @@ The error returned on failed compare-and-swap operation.
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
-- <span id="compareexchangeerror-const-align"></span>`const ALIGN: usize`
+- <span id="compareexchangeerror-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="compareexchangeerror-type-init"></span>`type Init = T`
+- <span id="compareexchangeerror-pointable-type-init"></span>`type Init = T`
 
 - <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
@@ -135,9 +135,9 @@ Elements are not present in the type, but they will be in the allocation.
 
 ##### `impl<T> Pointable for Array<T>`
 
-- <span id="array-const-align"></span>`const ALIGN: usize`
+- <span id="array-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="array-type-init"></span>`type Init = T`
+- <span id="array-pointable-type-init"></span>`type Init = T`
 
 - <span id="array-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
@@ -188,9 +188,9 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 
 ##### `impl<T> Pointable for Atomic<T>`
 
-- <span id="atomic-const-align"></span>`const ALIGN: usize`
+- <span id="atomic-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomic-type-init"></span>`type Init = T`
+- <span id="atomic-pointable-type-init"></span>`type Init = T`
 
 - <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
@@ -254,7 +254,7 @@ least significant bits of the address.
 
 ##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
-- <span id="owned-type-target"></span>`type Target = T`
+- <span id="owned-deref-type-target"></span>`type Target = T`
 
 - <span id="owned-deref"></span>`fn deref(&self) -> &T`
 
@@ -268,9 +268,9 @@ least significant bits of the address.
 
 ##### `impl<T> Pointable for Owned<T>`
 
-- <span id="owned-const-align"></span>`const ALIGN: usize`
+- <span id="owned-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="owned-type-init"></span>`type Init = T`
+- <span id="owned-pointable-type-init"></span>`type Init = T`
 
 - <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
@@ -286,9 +286,9 @@ least significant bits of the address.
 
 - <span id="owned-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
-##### `impl<P, T> Receiver for Owned<T>`
+##### `impl<T> Receiver for Owned<T>`
 
-- <span id="owned-type-target"></span>`type Target = T`
+- <span id="owned-receiver-type-target"></span>`type Target = T`
 
 ### `Shared<'g, T: 'g + ?Sized + Pointable>`
 
@@ -334,19 +334,19 @@ least significant bits of the address.
 
 - <span id="shared-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
-##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
+##### `impl<T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
 - <span id="shared-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
+##### `impl<T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
 - <span id="shared-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering>`
 
 ##### `impl<T> Pointable for Shared<'g, T>`
 
-- <span id="shared-const-align"></span>`const ALIGN: usize`
+- <span id="shared-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="shared-type-init"></span>`type Init = T`
+- <span id="shared-pointable-type-init"></span>`type Init = T`
 
 - <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 

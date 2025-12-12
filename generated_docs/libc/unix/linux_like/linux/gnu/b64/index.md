@@ -9,87 +9,87 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`x86_64`](#x86_64)
-  - [`not_x32`](#not_x32)
+  - [`x86_64`](#x86-64)
+  - [`not_x32`](#not-x32)
 - [Structs](#structs)
-  - [`sigset_t`](#sigset_t)
+  - [`sigset_t`](#sigset-t)
   - [`sysinfo`](#sysinfo)
-  - [`msqid_ds`](#msqid_ds)
-  - [`semid_ds`](#semid_ds)
+  - [`msqid_ds`](#msqid-ds)
+  - [`semid_ds`](#semid-ds)
   - [`timex`](#timex)
   - [`sigaction`](#sigaction)
   - [`statfs`](#statfs)
   - [`flock`](#flock)
   - [`flock64`](#flock64)
-  - [`siginfo_t`](#siginfo_t)
-  - [`stack_t`](#stack_t)
+  - [`siginfo_t`](#siginfo-t)
+  - [`stack_t`](#stack-t)
   - [`stat`](#stat)
   - [`stat64`](#stat64)
   - [`statfs64`](#statfs64)
   - [`statvfs64`](#statvfs64)
-  - [`pthread_attr_t`](#pthread_attr_t)
-  - [`_libc_fpxreg`](#_libc_fpxreg)
-  - [`_libc_xmmreg`](#_libc_xmmreg)
-  - [`_libc_fpstate`](#_libc_fpstate)
-  - [`user_regs_struct`](#user_regs_struct)
+  - [`pthread_attr_t`](#pthread-attr-t)
+  - [`_libc_fpxreg`](#libc-fpxreg)
+  - [`_libc_xmmreg`](#libc-xmmreg)
+  - [`_libc_fpstate`](#libc-fpstate)
+  - [`user_regs_struct`](#user-regs-struct)
   - [`user`](#user)
-  - [`mcontext_t`](#mcontext_t)
-  - [`ipc_perm`](#ipc_perm)
-  - [`shmid_ds`](#shmid_ds)
-  - [`ptrace_rseq_configuration`](#ptrace_rseq_configuration)
-  - [`clone_args`](#clone_args)
-  - [`user_fpregs_struct`](#user_fpregs_struct)
-  - [`ucontext_t`](#ucontext_t)
-  - [`max_align_t`](#max_align_t)
+  - [`mcontext_t`](#mcontext-t)
+  - [`ipc_perm`](#ipc-perm)
+  - [`shmid_ds`](#shmid-ds)
+  - [`ptrace_rseq_configuration`](#ptrace-rseq-configuration)
+  - [`clone_args`](#clone-args)
+  - [`user_fpregs_struct`](#user-fpregs-struct)
+  - [`ucontext_t`](#ucontext-t)
+  - [`max_align_t`](#max-align-t)
 - [Functions](#functions)
   - [`getcontext`](#getcontext)
   - [`setcontext`](#setcontext)
   - [`makecontext`](#makecontext)
   - [`swapcontext`](#swapcontext)
 - [Type Aliases](#type-aliases)
-  - [`ino_t`](#ino_t)
-  - [`off_t`](#off_t)
-  - [`blkcnt_t`](#blkcnt_t)
-  - [`shmatt_t`](#shmatt_t)
-  - [`msgqnum_t`](#msgqnum_t)
-  - [`msglen_t`](#msglen_t)
-  - [`fsblkcnt_t`](#fsblkcnt_t)
-  - [`fsfilcnt_t`](#fsfilcnt_t)
-  - [`rlim_t`](#rlim_t)
-  - [`__syscall_ulong_t`](#__syscall_ulong_t)
-  - [`__fsword_t`](#__fsword_t)
-  - [`clock_t`](#clock_t)
-  - [`time_t`](#time_t)
-  - [`wchar_t`](#wchar_t)
-  - [`nlink_t`](#nlink_t)
-  - [`blksize_t`](#blksize_t)
-  - [`greg_t`](#greg_t)
-  - [`suseconds_t`](#suseconds_t)
-  - [`__u64`](#__u64)
-  - [`__s64`](#__s64)
+  - [`ino_t`](#ino-t)
+  - [`off_t`](#off-t)
+  - [`blkcnt_t`](#blkcnt-t)
+  - [`shmatt_t`](#shmatt-t)
+  - [`msgqnum_t`](#msgqnum-t)
+  - [`msglen_t`](#msglen-t)
+  - [`fsblkcnt_t`](#fsblkcnt-t)
+  - [`fsfilcnt_t`](#fsfilcnt-t)
+  - [`rlim_t`](#rlim-t)
+  - [`__syscall_ulong_t`](#syscall-ulong-t)
+  - [`__fsword_t`](#fsword-t)
+  - [`clock_t`](#clock-t)
+  - [`time_t`](#time-t)
+  - [`wchar_t`](#wchar-t)
+  - [`nlink_t`](#nlink-t)
+  - [`blksize_t`](#blksize-t)
+  - [`greg_t`](#greg-t)
+  - [`suseconds_t`](#suseconds-t)
+  - [`__u64`](#u64)
+  - [`__s64`](#s64)
 - [Constants](#constants)
-  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t)
-  - [`O_LARGEFILE`](#o_largefile)
-  - [`POSIX_FADV_DONTNEED`](#posix_fadv_dontneed)
-  - [`POSIX_FADV_NOREUSE`](#posix_fadv_noreuse)
+  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#sizeof-pthread-rwlockattr-t)
+  - [`O_LARGEFILE`](#o-largefile)
+  - [`POSIX_FADV_DONTNEED`](#posix-fadv-dontneed)
+  - [`POSIX_FADV_NOREUSE`](#posix-fadv-noreuse)
   - [`VEOF`](#veof)
-  - [`RTLD_DEEPBIND`](#rtld_deepbind)
-  - [`RTLD_GLOBAL`](#rtld_global)
-  - [`RTLD_NOLOAD`](#rtld_noload)
-  - [`O_APPEND`](#o_append)
-  - [`O_CREAT`](#o_creat)
-  - [`O_EXCL`](#o_excl)
-  - [`O_NOCTTY`](#o_noctty)
-  - [`O_NONBLOCK`](#o_nonblock)
-  - [`O_SYNC`](#o_sync)
-  - [`O_RSYNC`](#o_rsync)
-  - [`O_DSYNC`](#o_dsync)
-  - [`O_FSYNC`](#o_fsync)
-  - [`O_NOATIME`](#o_noatime)
-  - [`O_PATH`](#o_path)
-  - [`O_TMPFILE`](#o_tmpfile)
-  - [`MADV_SOFT_OFFLINE`](#madv_soft_offline)
-  - [`MAP_GROWSDOWN`](#map_growsdown)
+  - [`RTLD_DEEPBIND`](#rtld-deepbind)
+  - [`RTLD_GLOBAL`](#rtld-global)
+  - [`RTLD_NOLOAD`](#rtld-noload)
+  - [`O_APPEND`](#o-append)
+  - [`O_CREAT`](#o-creat)
+  - [`O_EXCL`](#o-excl)
+  - [`O_NOCTTY`](#o-noctty)
+  - [`O_NONBLOCK`](#o-nonblock)
+  - [`O_SYNC`](#o-sync)
+  - [`O_RSYNC`](#o-rsync)
+  - [`O_DSYNC`](#o-dsync)
+  - [`O_FSYNC`](#o-fsync)
+  - [`O_NOATIME`](#o-noatime)
+  - [`O_PATH`](#o-path)
+  - [`O_TMPFILE`](#o-tmpfile)
+  - [`MADV_SOFT_OFFLINE`](#madv-soft-offline)
+  - [`MAP_GROWSDOWN`](#map-growsdown)
   - [`EDEADLK`](#edeadlk)
   - [`ENAMETOOLONG`](#enametoolong)
   - [`ENOLCK`](#enolck)
@@ -168,11 +168,11 @@
   - [`ENOTRECOVERABLE`](#enotrecoverable)
   - [`EHWPOISON`](#ehwpoison)
   - [`ERFKILL`](#erfkill)
-  - [`SOCK_STREAM`](#sock_stream)
-  - [`SOCK_DGRAM`](#sock_dgram)
-  - [`SA_ONSTACK`](#sa_onstack)
-  - [`SA_SIGINFO`](#sa_siginfo)
-  - [`SA_NOCLDWAIT`](#sa_nocldwait)
+  - [`SOCK_STREAM`](#sock-stream)
+  - [`SOCK_DGRAM`](#sock-dgram)
+  - [`SA_ONSTACK`](#sa-onstack)
+  - [`SA_SIGINFO`](#sa-siginfo)
+  - [`SA_NOCLDWAIT`](#sa-nocldwait)
   - [`SIGTTIN`](#sigttin)
   - [`SIGTTOU`](#sigttou)
   - [`SIGXCPU`](#sigxcpu)
@@ -194,35 +194,35 @@
   - [`SIGUNUSED`](#sigunused)
   - [`SIGPOLL`](#sigpoll)
   - [`SIGPWR`](#sigpwr)
-  - [`SIG_SETMASK`](#sig_setmask)
-  - [`SIG_BLOCK`](#sig_block)
-  - [`SIG_UNBLOCK`](#sig_unblock)
+  - [`SIG_SETMASK`](#sig-setmask)
+  - [`SIG_BLOCK`](#sig-block)
+  - [`SIG_UNBLOCK`](#sig-unblock)
   - [`POLLWRNORM`](#pollwrnorm)
   - [`POLLWRBAND`](#pollwrband)
-  - [`O_ASYNC`](#o_async)
-  - [`O_NDELAY`](#o_ndelay)
-  - [`PTRACE_DETACH`](#ptrace_detach)
-  - [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace_get_rseq_configuration)
-  - [`EFD_NONBLOCK`](#efd_nonblock)
-  - [`F_GETLK`](#f_getlk)
-  - [`F_GETOWN`](#f_getown)
-  - [`F_SETOWN`](#f_setown)
-  - [`F_SETLK`](#f_setlk)
-  - [`F_SETLKW`](#f_setlkw)
-  - [`F_OFD_GETLK`](#f_ofd_getlk)
-  - [`F_OFD_SETLK`](#f_ofd_setlk)
-  - [`F_OFD_SETLKW`](#f_ofd_setlkw)
-  - [`F_RDLCK`](#f_rdlck)
-  - [`F_WRLCK`](#f_wrlck)
-  - [`F_UNLCK`](#f_unlck)
-  - [`SFD_NONBLOCK`](#sfd_nonblock)
+  - [`O_ASYNC`](#o-async)
+  - [`O_NDELAY`](#o-ndelay)
+  - [`PTRACE_DETACH`](#ptrace-detach)
+  - [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace-get-rseq-configuration)
+  - [`EFD_NONBLOCK`](#efd-nonblock)
+  - [`F_GETLK`](#f-getlk)
+  - [`F_GETOWN`](#f-getown)
+  - [`F_SETOWN`](#f-setown)
+  - [`F_SETLK`](#f-setlk)
+  - [`F_SETLKW`](#f-setlkw)
+  - [`F_OFD_GETLK`](#f-ofd-getlk)
+  - [`F_OFD_SETLK`](#f-ofd-setlk)
+  - [`F_OFD_SETLKW`](#f-ofd-setlkw)
+  - [`F_RDLCK`](#f-rdlck)
+  - [`F_WRLCK`](#f-wrlck)
+  - [`F_UNLCK`](#f-unlck)
+  - [`SFD_NONBLOCK`](#sfd-nonblock)
   - [`TCSANOW`](#tcsanow)
   - [`TCSADRAIN`](#tcsadrain)
   - [`TCSAFLUSH`](#tcsaflush)
-  - [`SFD_CLOEXEC`](#sfd_cloexec)
+  - [`SFD_CLOEXEC`](#sfd-cloexec)
   - [`NCCS`](#nccs)
-  - [`O_TRUNC`](#o_trunc)
-  - [`O_CLOEXEC`](#o_cloexec)
+  - [`O_TRUNC`](#o-trunc)
+  - [`O_CLOEXEC`](#o-cloexec)
   - [`EBFONT`](#ebfont)
   - [`ENOSTR`](#enostr)
   - [`ENODATA`](#enodata)
@@ -237,58 +237,58 @@
   - [`ECOMM`](#ecomm)
   - [`EPROTO`](#eproto)
   - [`EDOTDOT`](#edotdot)
-  - [`SA_NODEFER`](#sa_nodefer)
-  - [`SA_RESETHAND`](#sa_resethand)
-  - [`SA_RESTART`](#sa_restart)
-  - [`SA_NOCLDSTOP`](#sa_nocldstop)
-  - [`EPOLL_CLOEXEC`](#epoll_cloexec)
-  - [`EFD_CLOEXEC`](#efd_cloexec)
-  - [`__SIZEOF_PTHREAD_CONDATTR_T`](#__sizeof_pthread_condattr_t)
-  - [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#__sizeof_pthread_mutexattr_t)
-  - [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#__sizeof_pthread_barrierattr_t)
-  - [`O_DIRECT`](#o_direct)
-  - [`O_DIRECTORY`](#o_directory)
-  - [`O_NOFOLLOW`](#o_nofollow)
-  - [`MAP_HUGETLB`](#map_hugetlb)
-  - [`MAP_LOCKED`](#map_locked)
-  - [`MAP_NORESERVE`](#map_noreserve)
-  - [`MAP_32BIT`](#map_32bit)
-  - [`MAP_ANON`](#map_anon)
-  - [`MAP_ANONYMOUS`](#map_anonymous)
-  - [`MAP_DENYWRITE`](#map_denywrite)
-  - [`MAP_EXECUTABLE`](#map_executable)
-  - [`MAP_POPULATE`](#map_populate)
-  - [`MAP_NONBLOCK`](#map_nonblock)
-  - [`MAP_STACK`](#map_stack)
-  - [`MAP_SYNC`](#map_sync)
+  - [`SA_NODEFER`](#sa-nodefer)
+  - [`SA_RESETHAND`](#sa-resethand)
+  - [`SA_RESTART`](#sa-restart)
+  - [`SA_NOCLDSTOP`](#sa-nocldstop)
+  - [`EPOLL_CLOEXEC`](#epoll-cloexec)
+  - [`EFD_CLOEXEC`](#efd-cloexec)
+  - [`__SIZEOF_PTHREAD_CONDATTR_T`](#sizeof-pthread-condattr-t)
+  - [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#sizeof-pthread-mutexattr-t)
+  - [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#sizeof-pthread-barrierattr-t)
+  - [`O_DIRECT`](#o-direct)
+  - [`O_DIRECTORY`](#o-directory)
+  - [`O_NOFOLLOW`](#o-nofollow)
+  - [`MAP_HUGETLB`](#map-hugetlb)
+  - [`MAP_LOCKED`](#map-locked)
+  - [`MAP_NORESERVE`](#map-noreserve)
+  - [`MAP_32BIT`](#map-32bit)
+  - [`MAP_ANON`](#map-anon)
+  - [`MAP_ANONYMOUS`](#map-anonymous)
+  - [`MAP_DENYWRITE`](#map-denywrite)
+  - [`MAP_EXECUTABLE`](#map-executable)
+  - [`MAP_POPULATE`](#map-populate)
+  - [`MAP_NONBLOCK`](#map-nonblock)
+  - [`MAP_STACK`](#map-stack)
+  - [`MAP_SYNC`](#map-sync)
   - [`EDEADLOCK`](#edeadlock)
   - [`EUCLEAN`](#euclean)
   - [`ENOTNAM`](#enotnam)
   - [`ENAVAIL`](#enavail)
   - [`EISNAM`](#eisnam)
   - [`EREMOTEIO`](#eremoteio)
-  - [`PTRACE_GETFPREGS`](#ptrace_getfpregs)
-  - [`PTRACE_SETFPREGS`](#ptrace_setfpregs)
-  - [`PTRACE_GETFPXREGS`](#ptrace_getfpxregs)
-  - [`PTRACE_SETFPXREGS`](#ptrace_setfpxregs)
-  - [`PTRACE_GETREGS`](#ptrace_getregs)
-  - [`PTRACE_SETREGS`](#ptrace_setregs)
-  - [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace_peeksiginfo_shared)
-  - [`PTRACE_SYSEMU`](#ptrace_sysemu)
-  - [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace_sysemu_singlestep)
-  - [`PR_GET_SPECULATION_CTRL`](#pr_get_speculation_ctrl)
-  - [`PR_SET_SPECULATION_CTRL`](#pr_set_speculation_ctrl)
-  - [`PR_SPEC_NOT_AFFECTED`](#pr_spec_not_affected)
-  - [`PR_SPEC_PRCTL`](#pr_spec_prctl)
-  - [`PR_SPEC_ENABLE`](#pr_spec_enable)
-  - [`PR_SPEC_DISABLE`](#pr_spec_disable)
-  - [`PR_SPEC_FORCE_DISABLE`](#pr_spec_force_disable)
-  - [`PR_SPEC_DISABLE_NOEXEC`](#pr_spec_disable_noexec)
-  - [`PR_SPEC_STORE_BYPASS`](#pr_spec_store_bypass)
-  - [`PR_SPEC_INDIRECT_BRANCH`](#pr_spec_indirect_branch)
-  - [`MCL_CURRENT`](#mcl_current)
-  - [`MCL_FUTURE`](#mcl_future)
-  - [`MCL_ONFAULT`](#mcl_onfault)
+  - [`PTRACE_GETFPREGS`](#ptrace-getfpregs)
+  - [`PTRACE_SETFPREGS`](#ptrace-setfpregs)
+  - [`PTRACE_GETFPXREGS`](#ptrace-getfpxregs)
+  - [`PTRACE_SETFPXREGS`](#ptrace-setfpxregs)
+  - [`PTRACE_GETREGS`](#ptrace-getregs)
+  - [`PTRACE_SETREGS`](#ptrace-setregs)
+  - [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace-peeksiginfo-shared)
+  - [`PTRACE_SYSEMU`](#ptrace-sysemu)
+  - [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace-sysemu-singlestep)
+  - [`PR_GET_SPECULATION_CTRL`](#pr-get-speculation-ctrl)
+  - [`PR_SET_SPECULATION_CTRL`](#pr-set-speculation-ctrl)
+  - [`PR_SPEC_NOT_AFFECTED`](#pr-spec-not-affected)
+  - [`PR_SPEC_PRCTL`](#pr-spec-prctl)
+  - [`PR_SPEC_ENABLE`](#pr-spec-enable)
+  - [`PR_SPEC_DISABLE`](#pr-spec-disable)
+  - [`PR_SPEC_FORCE_DISABLE`](#pr-spec-force-disable)
+  - [`PR_SPEC_DISABLE_NOEXEC`](#pr-spec-disable-noexec)
+  - [`PR_SPEC_STORE_BYPASS`](#pr-spec-store-bypass)
+  - [`PR_SPEC_INDIRECT_BRANCH`](#pr-spec-indirect-branch)
+  - [`MCL_CURRENT`](#mcl-current)
+  - [`MCL_FUTURE`](#mcl-future)
+  - [`MCL_ONFAULT`](#mcl-onfault)
   - [`SIGSTKSZ`](#sigstksz)
   - [`MINSIGSTKSZ`](#minsigstksz)
   - [`CBAUD`](#cbaud)
@@ -397,123 +397,123 @@
   - [`RDX`](#rdx)
   - [`RSI`](#rsi)
   - [`RDI`](#rdi)
-  - [`ORIG_RAX`](#orig_rax)
+  - [`ORIG_RAX`](#orig-rax)
   - [`RIP`](#rip)
   - [`CS`](#cs)
   - [`EFLAGS`](#eflags)
   - [`RSP`](#rsp)
   - [`SS`](#ss)
-  - [`FS_BASE`](#fs_base)
-  - [`GS_BASE`](#gs_base)
+  - [`FS_BASE`](#fs-base)
+  - [`GS_BASE`](#gs-base)
   - [`DS`](#ds)
   - [`ES`](#es)
   - [`FS`](#fs)
   - [`GS`](#gs)
-  - [`REG_R8`](#reg_r8)
-  - [`REG_R9`](#reg_r9)
-  - [`REG_R10`](#reg_r10)
-  - [`REG_R11`](#reg_r11)
-  - [`REG_R12`](#reg_r12)
-  - [`REG_R13`](#reg_r13)
-  - [`REG_R14`](#reg_r14)
-  - [`REG_R15`](#reg_r15)
-  - [`REG_RDI`](#reg_rdi)
-  - [`REG_RSI`](#reg_rsi)
-  - [`REG_RBP`](#reg_rbp)
-  - [`REG_RBX`](#reg_rbx)
-  - [`REG_RDX`](#reg_rdx)
-  - [`REG_RAX`](#reg_rax)
-  - [`REG_RCX`](#reg_rcx)
-  - [`REG_RSP`](#reg_rsp)
-  - [`REG_RIP`](#reg_rip)
-  - [`REG_EFL`](#reg_efl)
-  - [`REG_CSGSFS`](#reg_csgsfs)
-  - [`REG_ERR`](#reg_err)
-  - [`REG_TRAPNO`](#reg_trapno)
-  - [`REG_OLDMASK`](#reg_oldmask)
-  - [`REG_CR2`](#reg_cr2)
+  - [`REG_R8`](#reg-r8)
+  - [`REG_R9`](#reg-r9)
+  - [`REG_R10`](#reg-r10)
+  - [`REG_R11`](#reg-r11)
+  - [`REG_R12`](#reg-r12)
+  - [`REG_R13`](#reg-r13)
+  - [`REG_R14`](#reg-r14)
+  - [`REG_R15`](#reg-r15)
+  - [`REG_RDI`](#reg-rdi)
+  - [`REG_RSI`](#reg-rsi)
+  - [`REG_RBP`](#reg-rbp)
+  - [`REG_RBX`](#reg-rbx)
+  - [`REG_RDX`](#reg-rdx)
+  - [`REG_RAX`](#reg-rax)
+  - [`REG_RCX`](#reg-rcx)
+  - [`REG_RSP`](#reg-rsp)
+  - [`REG_RIP`](#reg-rip)
+  - [`REG_EFL`](#reg-efl)
+  - [`REG_CSGSFS`](#reg-csgsfs)
+  - [`REG_ERR`](#reg-err)
+  - [`REG_TRAPNO`](#reg-trapno)
+  - [`REG_OLDMASK`](#reg-oldmask)
+  - [`REG_CR2`](#reg-cr2)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`x86_64`](#x86_64) | mod | x86_64-specific definitions for 64-bit linux-like values |
-| [`not_x32`](#not_x32) | mod |  |
-| [`sigset_t`](#sigset_t) | struct |  |
+| [`x86_64`](#x86-64) | mod | x86_64-specific definitions for 64-bit linux-like values |
+| [`not_x32`](#not-x32) | mod |  |
+| [`sigset_t`](#sigset-t) | struct |  |
 | [`sysinfo`](#sysinfo) | struct |  |
-| [`msqid_ds`](#msqid_ds) | struct |  |
-| [`semid_ds`](#semid_ds) | struct |  |
+| [`msqid_ds`](#msqid-ds) | struct |  |
+| [`semid_ds`](#semid-ds) | struct |  |
 | [`timex`](#timex) | struct |  |
 | [`sigaction`](#sigaction) | struct |  |
 | [`statfs`](#statfs) | struct |  |
 | [`flock`](#flock) | struct |  |
 | [`flock64`](#flock64) | struct |  |
-| [`siginfo_t`](#siginfo_t) | struct |  |
-| [`stack_t`](#stack_t) | struct |  |
+| [`siginfo_t`](#siginfo-t) | struct |  |
+| [`stack_t`](#stack-t) | struct |  |
 | [`stat`](#stat) | struct |  |
 | [`stat64`](#stat64) | struct |  |
 | [`statfs64`](#statfs64) | struct |  |
 | [`statvfs64`](#statvfs64) | struct |  |
-| [`pthread_attr_t`](#pthread_attr_t) | struct |  |
-| [`_libc_fpxreg`](#_libc_fpxreg) | struct |  |
-| [`_libc_xmmreg`](#_libc_xmmreg) | struct |  |
-| [`_libc_fpstate`](#_libc_fpstate) | struct |  |
-| [`user_regs_struct`](#user_regs_struct) | struct |  |
+| [`pthread_attr_t`](#pthread-attr-t) | struct |  |
+| [`_libc_fpxreg`](#libc-fpxreg) | struct |  |
+| [`_libc_xmmreg`](#libc-xmmreg) | struct |  |
+| [`_libc_fpstate`](#libc-fpstate) | struct |  |
+| [`user_regs_struct`](#user-regs-struct) | struct |  |
 | [`user`](#user) | struct |  |
-| [`mcontext_t`](#mcontext_t) | struct |  |
-| [`ipc_perm`](#ipc_perm) | struct |  |
-| [`shmid_ds`](#shmid_ds) | struct |  |
-| [`ptrace_rseq_configuration`](#ptrace_rseq_configuration) | struct |  |
-| [`clone_args`](#clone_args) | struct |  |
-| [`user_fpregs_struct`](#user_fpregs_struct) | struct |  |
-| [`ucontext_t`](#ucontext_t) | struct |  |
-| [`max_align_t`](#max_align_t) | struct |  |
+| [`mcontext_t`](#mcontext-t) | struct |  |
+| [`ipc_perm`](#ipc-perm) | struct |  |
+| [`shmid_ds`](#shmid-ds) | struct |  |
+| [`ptrace_rseq_configuration`](#ptrace-rseq-configuration) | struct |  |
+| [`clone_args`](#clone-args) | struct |  |
+| [`user_fpregs_struct`](#user-fpregs-struct) | struct |  |
+| [`ucontext_t`](#ucontext-t) | struct |  |
+| [`max_align_t`](#max-align-t) | struct |  |
 | [`getcontext`](#getcontext) | fn |  |
 | [`setcontext`](#setcontext) | fn |  |
 | [`makecontext`](#makecontext) | fn |  |
 | [`swapcontext`](#swapcontext) | fn |  |
-| [`ino_t`](#ino_t) | type |  |
-| [`off_t`](#off_t) | type |  |
-| [`blkcnt_t`](#blkcnt_t) | type |  |
-| [`shmatt_t`](#shmatt_t) | type |  |
-| [`msgqnum_t`](#msgqnum_t) | type |  |
-| [`msglen_t`](#msglen_t) | type |  |
-| [`fsblkcnt_t`](#fsblkcnt_t) | type |  |
-| [`fsfilcnt_t`](#fsfilcnt_t) | type |  |
-| [`rlim_t`](#rlim_t) | type |  |
-| [`__syscall_ulong_t`](#__syscall_ulong_t) | type |  |
-| [`__fsword_t`](#__fsword_t) | type |  |
-| [`clock_t`](#clock_t) | type |  |
-| [`time_t`](#time_t) | type |  |
-| [`wchar_t`](#wchar_t) | type |  |
-| [`nlink_t`](#nlink_t) | type |  |
-| [`blksize_t`](#blksize_t) | type |  |
-| [`greg_t`](#greg_t) | type |  |
-| [`suseconds_t`](#suseconds_t) | type |  |
-| [`__u64`](#__u64) | type |  |
-| [`__s64`](#__s64) | type |  |
-| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t) | const |  |
-| [`O_LARGEFILE`](#o_largefile) | const |  |
-| [`POSIX_FADV_DONTNEED`](#posix_fadv_dontneed) | const |  |
-| [`POSIX_FADV_NOREUSE`](#posix_fadv_noreuse) | const |  |
+| [`ino_t`](#ino-t) | type |  |
+| [`off_t`](#off-t) | type |  |
+| [`blkcnt_t`](#blkcnt-t) | type |  |
+| [`shmatt_t`](#shmatt-t) | type |  |
+| [`msgqnum_t`](#msgqnum-t) | type |  |
+| [`msglen_t`](#msglen-t) | type |  |
+| [`fsblkcnt_t`](#fsblkcnt-t) | type |  |
+| [`fsfilcnt_t`](#fsfilcnt-t) | type |  |
+| [`rlim_t`](#rlim-t) | type |  |
+| [`__syscall_ulong_t`](#syscall-ulong-t) | type |  |
+| [`__fsword_t`](#fsword-t) | type |  |
+| [`clock_t`](#clock-t) | type |  |
+| [`time_t`](#time-t) | type |  |
+| [`wchar_t`](#wchar-t) | type |  |
+| [`nlink_t`](#nlink-t) | type |  |
+| [`blksize_t`](#blksize-t) | type |  |
+| [`greg_t`](#greg-t) | type |  |
+| [`suseconds_t`](#suseconds-t) | type |  |
+| [`__u64`](#u64) | type |  |
+| [`__s64`](#s64) | type |  |
+| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#sizeof-pthread-rwlockattr-t) | const |  |
+| [`O_LARGEFILE`](#o-largefile) | const |  |
+| [`POSIX_FADV_DONTNEED`](#posix-fadv-dontneed) | const |  |
+| [`POSIX_FADV_NOREUSE`](#posix-fadv-noreuse) | const |  |
 | [`VEOF`](#veof) | const |  |
-| [`RTLD_DEEPBIND`](#rtld_deepbind) | const |  |
-| [`RTLD_GLOBAL`](#rtld_global) | const |  |
-| [`RTLD_NOLOAD`](#rtld_noload) | const |  |
-| [`O_APPEND`](#o_append) | const |  |
-| [`O_CREAT`](#o_creat) | const |  |
-| [`O_EXCL`](#o_excl) | const |  |
-| [`O_NOCTTY`](#o_noctty) | const |  |
-| [`O_NONBLOCK`](#o_nonblock) | const |  |
-| [`O_SYNC`](#o_sync) | const |  |
-| [`O_RSYNC`](#o_rsync) | const |  |
-| [`O_DSYNC`](#o_dsync) | const |  |
-| [`O_FSYNC`](#o_fsync) | const |  |
-| [`O_NOATIME`](#o_noatime) | const |  |
-| [`O_PATH`](#o_path) | const |  |
-| [`O_TMPFILE`](#o_tmpfile) | const |  |
-| [`MADV_SOFT_OFFLINE`](#madv_soft_offline) | const |  |
-| [`MAP_GROWSDOWN`](#map_growsdown) | const |  |
+| [`RTLD_DEEPBIND`](#rtld-deepbind) | const |  |
+| [`RTLD_GLOBAL`](#rtld-global) | const |  |
+| [`RTLD_NOLOAD`](#rtld-noload) | const |  |
+| [`O_APPEND`](#o-append) | const |  |
+| [`O_CREAT`](#o-creat) | const |  |
+| [`O_EXCL`](#o-excl) | const |  |
+| [`O_NOCTTY`](#o-noctty) | const |  |
+| [`O_NONBLOCK`](#o-nonblock) | const |  |
+| [`O_SYNC`](#o-sync) | const |  |
+| [`O_RSYNC`](#o-rsync) | const |  |
+| [`O_DSYNC`](#o-dsync) | const |  |
+| [`O_FSYNC`](#o-fsync) | const |  |
+| [`O_NOATIME`](#o-noatime) | const |  |
+| [`O_PATH`](#o-path) | const |  |
+| [`O_TMPFILE`](#o-tmpfile) | const |  |
+| [`MADV_SOFT_OFFLINE`](#madv-soft-offline) | const |  |
+| [`MAP_GROWSDOWN`](#map-growsdown) | const |  |
 | [`EDEADLK`](#edeadlk) | const |  |
 | [`ENAMETOOLONG`](#enametoolong) | const |  |
 | [`ENOLCK`](#enolck) | const |  |
@@ -592,11 +592,11 @@
 | [`ENOTRECOVERABLE`](#enotrecoverable) | const |  |
 | [`EHWPOISON`](#ehwpoison) | const |  |
 | [`ERFKILL`](#erfkill) | const |  |
-| [`SOCK_STREAM`](#sock_stream) | const |  |
-| [`SOCK_DGRAM`](#sock_dgram) | const |  |
-| [`SA_ONSTACK`](#sa_onstack) | const |  |
-| [`SA_SIGINFO`](#sa_siginfo) | const |  |
-| [`SA_NOCLDWAIT`](#sa_nocldwait) | const |  |
+| [`SOCK_STREAM`](#sock-stream) | const |  |
+| [`SOCK_DGRAM`](#sock-dgram) | const |  |
+| [`SA_ONSTACK`](#sa-onstack) | const |  |
+| [`SA_SIGINFO`](#sa-siginfo) | const |  |
+| [`SA_NOCLDWAIT`](#sa-nocldwait) | const |  |
 | [`SIGTTIN`](#sigttin) | const |  |
 | [`SIGTTOU`](#sigttou) | const |  |
 | [`SIGXCPU`](#sigxcpu) | const |  |
@@ -618,35 +618,35 @@
 | [`SIGUNUSED`](#sigunused) | const |  |
 | [`SIGPOLL`](#sigpoll) | const |  |
 | [`SIGPWR`](#sigpwr) | const |  |
-| [`SIG_SETMASK`](#sig_setmask) | const |  |
-| [`SIG_BLOCK`](#sig_block) | const |  |
-| [`SIG_UNBLOCK`](#sig_unblock) | const |  |
+| [`SIG_SETMASK`](#sig-setmask) | const |  |
+| [`SIG_BLOCK`](#sig-block) | const |  |
+| [`SIG_UNBLOCK`](#sig-unblock) | const |  |
 | [`POLLWRNORM`](#pollwrnorm) | const |  |
 | [`POLLWRBAND`](#pollwrband) | const |  |
-| [`O_ASYNC`](#o_async) | const |  |
-| [`O_NDELAY`](#o_ndelay) | const |  |
-| [`PTRACE_DETACH`](#ptrace_detach) | const |  |
-| [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace_get_rseq_configuration) | const |  |
-| [`EFD_NONBLOCK`](#efd_nonblock) | const |  |
-| [`F_GETLK`](#f_getlk) | const |  |
-| [`F_GETOWN`](#f_getown) | const |  |
-| [`F_SETOWN`](#f_setown) | const |  |
-| [`F_SETLK`](#f_setlk) | const |  |
-| [`F_SETLKW`](#f_setlkw) | const |  |
-| [`F_OFD_GETLK`](#f_ofd_getlk) | const |  |
-| [`F_OFD_SETLK`](#f_ofd_setlk) | const |  |
-| [`F_OFD_SETLKW`](#f_ofd_setlkw) | const |  |
-| [`F_RDLCK`](#f_rdlck) | const |  |
-| [`F_WRLCK`](#f_wrlck) | const |  |
-| [`F_UNLCK`](#f_unlck) | const |  |
-| [`SFD_NONBLOCK`](#sfd_nonblock) | const |  |
+| [`O_ASYNC`](#o-async) | const |  |
+| [`O_NDELAY`](#o-ndelay) | const |  |
+| [`PTRACE_DETACH`](#ptrace-detach) | const |  |
+| [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace-get-rseq-configuration) | const |  |
+| [`EFD_NONBLOCK`](#efd-nonblock) | const |  |
+| [`F_GETLK`](#f-getlk) | const |  |
+| [`F_GETOWN`](#f-getown) | const |  |
+| [`F_SETOWN`](#f-setown) | const |  |
+| [`F_SETLK`](#f-setlk) | const |  |
+| [`F_SETLKW`](#f-setlkw) | const |  |
+| [`F_OFD_GETLK`](#f-ofd-getlk) | const |  |
+| [`F_OFD_SETLK`](#f-ofd-setlk) | const |  |
+| [`F_OFD_SETLKW`](#f-ofd-setlkw) | const |  |
+| [`F_RDLCK`](#f-rdlck) | const |  |
+| [`F_WRLCK`](#f-wrlck) | const |  |
+| [`F_UNLCK`](#f-unlck) | const |  |
+| [`SFD_NONBLOCK`](#sfd-nonblock) | const |  |
 | [`TCSANOW`](#tcsanow) | const |  |
 | [`TCSADRAIN`](#tcsadrain) | const |  |
 | [`TCSAFLUSH`](#tcsaflush) | const |  |
-| [`SFD_CLOEXEC`](#sfd_cloexec) | const |  |
+| [`SFD_CLOEXEC`](#sfd-cloexec) | const |  |
 | [`NCCS`](#nccs) | const |  |
-| [`O_TRUNC`](#o_trunc) | const |  |
-| [`O_CLOEXEC`](#o_cloexec) | const |  |
+| [`O_TRUNC`](#o-trunc) | const |  |
+| [`O_CLOEXEC`](#o-cloexec) | const |  |
 | [`EBFONT`](#ebfont) | const |  |
 | [`ENOSTR`](#enostr) | const |  |
 | [`ENODATA`](#enodata) | const |  |
@@ -661,58 +661,58 @@
 | [`ECOMM`](#ecomm) | const |  |
 | [`EPROTO`](#eproto) | const |  |
 | [`EDOTDOT`](#edotdot) | const |  |
-| [`SA_NODEFER`](#sa_nodefer) | const |  |
-| [`SA_RESETHAND`](#sa_resethand) | const |  |
-| [`SA_RESTART`](#sa_restart) | const |  |
-| [`SA_NOCLDSTOP`](#sa_nocldstop) | const |  |
-| [`EPOLL_CLOEXEC`](#epoll_cloexec) | const |  |
-| [`EFD_CLOEXEC`](#efd_cloexec) | const |  |
-| [`__SIZEOF_PTHREAD_CONDATTR_T`](#__sizeof_pthread_condattr_t) | const |  |
-| [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#__sizeof_pthread_mutexattr_t) | const |  |
-| [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#__sizeof_pthread_barrierattr_t) | const |  |
-| [`O_DIRECT`](#o_direct) | const |  |
-| [`O_DIRECTORY`](#o_directory) | const |  |
-| [`O_NOFOLLOW`](#o_nofollow) | const |  |
-| [`MAP_HUGETLB`](#map_hugetlb) | const |  |
-| [`MAP_LOCKED`](#map_locked) | const |  |
-| [`MAP_NORESERVE`](#map_noreserve) | const |  |
-| [`MAP_32BIT`](#map_32bit) | const |  |
-| [`MAP_ANON`](#map_anon) | const |  |
-| [`MAP_ANONYMOUS`](#map_anonymous) | const |  |
-| [`MAP_DENYWRITE`](#map_denywrite) | const |  |
-| [`MAP_EXECUTABLE`](#map_executable) | const |  |
-| [`MAP_POPULATE`](#map_populate) | const |  |
-| [`MAP_NONBLOCK`](#map_nonblock) | const |  |
-| [`MAP_STACK`](#map_stack) | const |  |
-| [`MAP_SYNC`](#map_sync) | const |  |
+| [`SA_NODEFER`](#sa-nodefer) | const |  |
+| [`SA_RESETHAND`](#sa-resethand) | const |  |
+| [`SA_RESTART`](#sa-restart) | const |  |
+| [`SA_NOCLDSTOP`](#sa-nocldstop) | const |  |
+| [`EPOLL_CLOEXEC`](#epoll-cloexec) | const |  |
+| [`EFD_CLOEXEC`](#efd-cloexec) | const |  |
+| [`__SIZEOF_PTHREAD_CONDATTR_T`](#sizeof-pthread-condattr-t) | const |  |
+| [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#sizeof-pthread-mutexattr-t) | const |  |
+| [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#sizeof-pthread-barrierattr-t) | const |  |
+| [`O_DIRECT`](#o-direct) | const |  |
+| [`O_DIRECTORY`](#o-directory) | const |  |
+| [`O_NOFOLLOW`](#o-nofollow) | const |  |
+| [`MAP_HUGETLB`](#map-hugetlb) | const |  |
+| [`MAP_LOCKED`](#map-locked) | const |  |
+| [`MAP_NORESERVE`](#map-noreserve) | const |  |
+| [`MAP_32BIT`](#map-32bit) | const |  |
+| [`MAP_ANON`](#map-anon) | const |  |
+| [`MAP_ANONYMOUS`](#map-anonymous) | const |  |
+| [`MAP_DENYWRITE`](#map-denywrite) | const |  |
+| [`MAP_EXECUTABLE`](#map-executable) | const |  |
+| [`MAP_POPULATE`](#map-populate) | const |  |
+| [`MAP_NONBLOCK`](#map-nonblock) | const |  |
+| [`MAP_STACK`](#map-stack) | const |  |
+| [`MAP_SYNC`](#map-sync) | const |  |
 | [`EDEADLOCK`](#edeadlock) | const |  |
 | [`EUCLEAN`](#euclean) | const |  |
 | [`ENOTNAM`](#enotnam) | const |  |
 | [`ENAVAIL`](#enavail) | const |  |
 | [`EISNAM`](#eisnam) | const |  |
 | [`EREMOTEIO`](#eremoteio) | const |  |
-| [`PTRACE_GETFPREGS`](#ptrace_getfpregs) | const |  |
-| [`PTRACE_SETFPREGS`](#ptrace_setfpregs) | const |  |
-| [`PTRACE_GETFPXREGS`](#ptrace_getfpxregs) | const |  |
-| [`PTRACE_SETFPXREGS`](#ptrace_setfpxregs) | const |  |
-| [`PTRACE_GETREGS`](#ptrace_getregs) | const |  |
-| [`PTRACE_SETREGS`](#ptrace_setregs) | const |  |
-| [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace_peeksiginfo_shared) | const |  |
-| [`PTRACE_SYSEMU`](#ptrace_sysemu) | const |  |
-| [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace_sysemu_singlestep) | const |  |
-| [`PR_GET_SPECULATION_CTRL`](#pr_get_speculation_ctrl) | const |  |
-| [`PR_SET_SPECULATION_CTRL`](#pr_set_speculation_ctrl) | const |  |
-| [`PR_SPEC_NOT_AFFECTED`](#pr_spec_not_affected) | const |  |
-| [`PR_SPEC_PRCTL`](#pr_spec_prctl) | const |  |
-| [`PR_SPEC_ENABLE`](#pr_spec_enable) | const |  |
-| [`PR_SPEC_DISABLE`](#pr_spec_disable) | const |  |
-| [`PR_SPEC_FORCE_DISABLE`](#pr_spec_force_disable) | const |  |
-| [`PR_SPEC_DISABLE_NOEXEC`](#pr_spec_disable_noexec) | const |  |
-| [`PR_SPEC_STORE_BYPASS`](#pr_spec_store_bypass) | const |  |
-| [`PR_SPEC_INDIRECT_BRANCH`](#pr_spec_indirect_branch) | const |  |
-| [`MCL_CURRENT`](#mcl_current) | const |  |
-| [`MCL_FUTURE`](#mcl_future) | const |  |
-| [`MCL_ONFAULT`](#mcl_onfault) | const |  |
+| [`PTRACE_GETFPREGS`](#ptrace-getfpregs) | const |  |
+| [`PTRACE_SETFPREGS`](#ptrace-setfpregs) | const |  |
+| [`PTRACE_GETFPXREGS`](#ptrace-getfpxregs) | const |  |
+| [`PTRACE_SETFPXREGS`](#ptrace-setfpxregs) | const |  |
+| [`PTRACE_GETREGS`](#ptrace-getregs) | const |  |
+| [`PTRACE_SETREGS`](#ptrace-setregs) | const |  |
+| [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace-peeksiginfo-shared) | const |  |
+| [`PTRACE_SYSEMU`](#ptrace-sysemu) | const |  |
+| [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace-sysemu-singlestep) | const |  |
+| [`PR_GET_SPECULATION_CTRL`](#pr-get-speculation-ctrl) | const |  |
+| [`PR_SET_SPECULATION_CTRL`](#pr-set-speculation-ctrl) | const |  |
+| [`PR_SPEC_NOT_AFFECTED`](#pr-spec-not-affected) | const |  |
+| [`PR_SPEC_PRCTL`](#pr-spec-prctl) | const |  |
+| [`PR_SPEC_ENABLE`](#pr-spec-enable) | const |  |
+| [`PR_SPEC_DISABLE`](#pr-spec-disable) | const |  |
+| [`PR_SPEC_FORCE_DISABLE`](#pr-spec-force-disable) | const |  |
+| [`PR_SPEC_DISABLE_NOEXEC`](#pr-spec-disable-noexec) | const |  |
+| [`PR_SPEC_STORE_BYPASS`](#pr-spec-store-bypass) | const |  |
+| [`PR_SPEC_INDIRECT_BRANCH`](#pr-spec-indirect-branch) | const |  |
+| [`MCL_CURRENT`](#mcl-current) | const |  |
+| [`MCL_FUTURE`](#mcl-future) | const |  |
+| [`MCL_ONFAULT`](#mcl-onfault) | const |  |
 | [`SIGSTKSZ`](#sigstksz) | const |  |
 | [`MINSIGSTKSZ`](#minsigstksz) | const |  |
 | [`CBAUD`](#cbaud) | const |  |
@@ -821,41 +821,41 @@
 | [`RDX`](#rdx) | const |  |
 | [`RSI`](#rsi) | const |  |
 | [`RDI`](#rdi) | const |  |
-| [`ORIG_RAX`](#orig_rax) | const |  |
+| [`ORIG_RAX`](#orig-rax) | const |  |
 | [`RIP`](#rip) | const |  |
 | [`CS`](#cs) | const |  |
 | [`EFLAGS`](#eflags) | const |  |
 | [`RSP`](#rsp) | const |  |
 | [`SS`](#ss) | const |  |
-| [`FS_BASE`](#fs_base) | const |  |
-| [`GS_BASE`](#gs_base) | const |  |
+| [`FS_BASE`](#fs-base) | const |  |
+| [`GS_BASE`](#gs-base) | const |  |
 | [`DS`](#ds) | const |  |
 | [`ES`](#es) | const |  |
 | [`FS`](#fs) | const |  |
 | [`GS`](#gs) | const |  |
-| [`REG_R8`](#reg_r8) | const |  |
-| [`REG_R9`](#reg_r9) | const |  |
-| [`REG_R10`](#reg_r10) | const |  |
-| [`REG_R11`](#reg_r11) | const |  |
-| [`REG_R12`](#reg_r12) | const |  |
-| [`REG_R13`](#reg_r13) | const |  |
-| [`REG_R14`](#reg_r14) | const |  |
-| [`REG_R15`](#reg_r15) | const |  |
-| [`REG_RDI`](#reg_rdi) | const |  |
-| [`REG_RSI`](#reg_rsi) | const |  |
-| [`REG_RBP`](#reg_rbp) | const |  |
-| [`REG_RBX`](#reg_rbx) | const |  |
-| [`REG_RDX`](#reg_rdx) | const |  |
-| [`REG_RAX`](#reg_rax) | const |  |
-| [`REG_RCX`](#reg_rcx) | const |  |
-| [`REG_RSP`](#reg_rsp) | const |  |
-| [`REG_RIP`](#reg_rip) | const |  |
-| [`REG_EFL`](#reg_efl) | const |  |
-| [`REG_CSGSFS`](#reg_csgsfs) | const |  |
-| [`REG_ERR`](#reg_err) | const |  |
-| [`REG_TRAPNO`](#reg_trapno) | const |  |
-| [`REG_OLDMASK`](#reg_oldmask) | const |  |
-| [`REG_CR2`](#reg_cr2) | const |  |
+| [`REG_R8`](#reg-r8) | const |  |
+| [`REG_R9`](#reg-r9) | const |  |
+| [`REG_R10`](#reg-r10) | const |  |
+| [`REG_R11`](#reg-r11) | const |  |
+| [`REG_R12`](#reg-r12) | const |  |
+| [`REG_R13`](#reg-r13) | const |  |
+| [`REG_R14`](#reg-r14) | const |  |
+| [`REG_R15`](#reg-r15) | const |  |
+| [`REG_RDI`](#reg-rdi) | const |  |
+| [`REG_RSI`](#reg-rsi) | const |  |
+| [`REG_RBP`](#reg-rbp) | const |  |
+| [`REG_RBX`](#reg-rbx) | const |  |
+| [`REG_RDX`](#reg-rdx) | const |  |
+| [`REG_RAX`](#reg-rax) | const |  |
+| [`REG_RCX`](#reg-rcx) | const |  |
+| [`REG_RSP`](#reg-rsp) | const |  |
+| [`REG_RIP`](#reg-rip) | const |  |
+| [`REG_EFL`](#reg-efl) | const |  |
+| [`REG_CSGSFS`](#reg-csgsfs) | const |  |
+| [`REG_ERR`](#reg-err) | const |  |
+| [`REG_TRAPNO`](#reg-trapno) | const |  |
+| [`REG_OLDMASK`](#reg-oldmask) | const |  |
+| [`REG_CR2`](#reg-cr2) | const |  |
 
 ## Modules
 

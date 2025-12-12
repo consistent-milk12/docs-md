@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`args`](#args) | mod |  |
-| [`into_app`](#into_app) | mod |  |
+| [`into_app`](#into-app) | mod |  |
 | [`parser`](#parser) | mod |  |
 | [`subcommand`](#subcommand) | mod |  |
-| [`value_enum`](#value_enum) | mod |  |
+| [`value_enum`](#value-enum) | mod |  |
 
 ## Modules
 

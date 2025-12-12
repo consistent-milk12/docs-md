@@ -45,9 +45,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl Ioctl for NoArg<OPCODE>`
 
-- <span id="noarg-type-output"></span>`type Output = ()`
+- <span id="noarg-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="noarg-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="noarg-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
@@ -86,15 +86,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode, Output> Debug for Getter<OPCODE, Output>`
+##### `impl<Output> Debug for Getter<OPCODE, Output>`
 
 - <span id="getter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<const OPCODE: super::Opcode, Output> Ioctl for Getter<OPCODE, Output>`
+##### `impl<Output> Ioctl for Getter<OPCODE, Output>`
 
-- <span id="getter-type-output"></span>`type Output = Output`
+- <span id="getter-ioctl-type-output"></span>`type Output = Output`
 
-- <span id="getter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="getter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
@@ -133,15 +133,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode, Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
+##### `impl<Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
 
 - <span id="setter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<const OPCODE: super::Opcode, Input> Ioctl for Setter<OPCODE, Input>`
+##### `impl<Input> Ioctl for Setter<OPCODE, Input>`
 
-- <span id="setter-type-output"></span>`type Output = ()`
+- <span id="setter-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="setter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="setter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
@@ -180,11 +180,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<'a, const OPCODE: super::Opcode, T> Ioctl for Updater<'a, OPCODE, T>`
+##### `impl<T> Ioctl for Updater<'a, OPCODE, T>`
 
-- <span id="updater-type-output"></span>`type Output = ()`
+- <span id="updater-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="updater-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="updater-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 
@@ -226,9 +226,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl Ioctl for IntegerSetter<OPCODE>`
 
-- <span id="integersetter-type-output"></span>`type Output = ()`
+- <span id="integersetter-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="integersetter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="integersetter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](../index.md#opcode)
 

@@ -36,7 +36,7 @@
   - [`CapturedParam`](#capturedparam)
   - [`WherePredicate`](#wherepredicate)
 - [Macros](#macros)
-  - [`generics_wrapper_impls!`](#generics_wrapper_impls)
+  - [`generics_wrapper_impls!`](#generics-wrapper-impls)
 
 ## Quick Reference
 
@@ -68,7 +68,7 @@
 | [`TraitBoundModifier`](#traitboundmodifier) | enum | A modifier on a trait bound, currently only used for the `?` in `?Sized`. |
 | [`CapturedParam`](#capturedparam) | enum | Single parameter in a precise capturing bound. |
 | [`WherePredicate`](#wherepredicate) | enum | A single predicate in a `where` clause: `T: Deserialize<'de>`. |
-| [`generics_wrapper_impls!`](#generics_wrapper_impls) | macro |  |
+| [`generics_wrapper_impls!`](#generics-wrapper-impls) | macro |  |
 
 ## Modules
 
@@ -323,15 +323,15 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl IntoIterator for Lifetimes<'a>`
 
-- <span id="lifetimes-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="lifetimes-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="lifetimes-type-intoiter"></span>`type IntoIter = I`
+- <span id="lifetimes-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="lifetimes-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Lifetimes<'a>`
 
-- <span id="lifetimes-type-item"></span>`type Item = &'a LifetimeParam`
+- <span id="lifetimes-iterator-type-item"></span>`type Item = &'a LifetimeParam`
 
 - <span id="lifetimes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -347,15 +347,15 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl IntoIterator for LifetimesMut<'a>`
 
-- <span id="lifetimesmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="lifetimesmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="lifetimesmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="lifetimesmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="lifetimesmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LifetimesMut<'a>`
 
-- <span id="lifetimesmut-type-item"></span>`type Item = &'a mut LifetimeParam`
+- <span id="lifetimesmut-iterator-type-item"></span>`type Item = &'a mut LifetimeParam`
 
 - <span id="lifetimesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -371,15 +371,15 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl IntoIterator for TypeParams<'a>`
 
-- <span id="typeparams-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="typeparams-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="typeparams-type-intoiter"></span>`type IntoIter = I`
+- <span id="typeparams-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="typeparams-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TypeParams<'a>`
 
-- <span id="typeparams-type-item"></span>`type Item = &'a TypeParam`
+- <span id="typeparams-iterator-type-item"></span>`type Item = &'a TypeParam`
 
 - <span id="typeparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -395,15 +395,15 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl IntoIterator for TypeParamsMut<'a>`
 
-- <span id="typeparamsmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="typeparamsmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="typeparamsmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="typeparamsmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="typeparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TypeParamsMut<'a>`
 
-- <span id="typeparamsmut-type-item"></span>`type Item = &'a mut TypeParam`
+- <span id="typeparamsmut-iterator-type-item"></span>`type Item = &'a mut TypeParam`
 
 - <span id="typeparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -419,15 +419,15 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl IntoIterator for ConstParams<'a>`
 
-- <span id="constparams-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="constparams-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="constparams-type-intoiter"></span>`type IntoIter = I`
+- <span id="constparams-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="constparams-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ConstParams<'a>`
 
-- <span id="constparams-type-item"></span>`type Item = &'a ConstParam`
+- <span id="constparams-iterator-type-item"></span>`type Item = &'a ConstParam`
 
 - <span id="constparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -443,15 +443,15 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl IntoIterator for ConstParamsMut<'a>`
 
-- <span id="constparamsmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="constparamsmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="constparamsmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="constparamsmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="constparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ConstParamsMut<'a>`
 
-- <span id="constparamsmut-type-item"></span>`type Item = &'a mut ConstParam`
+- <span id="constparamsmut-iterator-type-item"></span>`type Item = &'a mut ConstParam`
 
 - <span id="constparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

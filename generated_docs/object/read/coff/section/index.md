@@ -98,21 +98,21 @@ An iterator for the loadable sections in a [`CoffFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegmentIterator<'data, 'file, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegmentIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CoffSegmentIterator<'data, 'file, R, Coff>`
+##### `impl IntoIterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffsegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="coffsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSegmentIterator<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-type-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
+- <span id="coffsegmentiterator-iterator-type-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
 
 - <span id="coffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -141,11 +141,11 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegment<'data, 'file, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegment<'data, 'file, R, Coff>`
 
 - <span id="coffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSegment for CoffSegment<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSegment for CoffSegment<'data, 'file, R, Coff>`
 
 - <span id="coffsegment-address"></span>`fn address(&self) -> u64`
 
@@ -165,7 +165,7 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 - <span id="coffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSegment<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSegment<'data, 'file, R, Coff>`
 
 ### `CoffSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -182,21 +182,21 @@ An iterator for the sections in a [`CoffFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSectionIterator<'data, 'file, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSectionIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CoffSectionIterator<'data, 'file, R, Coff>`
+##### `impl IntoIterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="coffsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSectionIterator<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-type-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
+- <span id="coffsectioniterator-iterator-type-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
 
 - <span id="coffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -228,13 +228,13 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSection<'data, 'file, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSection<'data, 'file, R, Coff>`
 
 - <span id="coffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSection for CoffSection<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> ObjectSection for CoffSection<'data, 'file, R, Coff>`
 
-- <span id="coffsection-type-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
+- <span id="coffsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
@@ -270,7 +270,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="coffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSection<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSection<'data, 'file, R, Coff>`
 
 ## Type Aliases
 

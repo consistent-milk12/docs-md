@@ -27,17 +27,17 @@ struct ReduceConsumer<'r, R, ID> {
 
 #### Trait Implementations
 
-##### `impl<'r, R, ID> Clone for ReduceConsumer<'r, R, ID>`
+##### `impl<R, ID> Clone for ReduceConsumer<'r, R, ID>`
 
 - <span id="reduceconsumer-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'r, R, ID, T> Consumer for ReduceConsumer<'r, R, ID>`
+##### `impl<R, ID, T> Consumer for ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-type-folder"></span>`type Folder = ReduceFolder<'r, R, T>`
+- <span id="reduceconsumer-consumer-type-folder"></span>`type Folder = ReduceFolder<'r, R, T>`
 
-- <span id="reduceconsumer-type-reducer"></span>`type Reducer = ReduceConsumer<'r, R, ID>`
+- <span id="reduceconsumer-consumer-type-reducer"></span>`type Reducer = ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-type-result"></span>`type Result = T`
+- <span id="reduceconsumer-consumer-type-result"></span>`type Result = T`
 
 - <span id="reduceconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -45,15 +45,15 @@ struct ReduceConsumer<'r, R, ID> {
 
 - <span id="reduceconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<'r, R, ID> Copy for ReduceConsumer<'r, R, ID>`
+##### `impl<R, ID> Copy for ReduceConsumer<'r, R, ID>`
 
-##### `impl<T> IntoEither for ReduceConsumer<'r, R, ID>`
+##### `impl IntoEither for ReduceConsumer<'r, R, ID>`
 
-##### `impl<T> Pointable for ReduceConsumer<'r, R, ID>`
+##### `impl Pointable for ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="reduceconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="reduceconsumer-type-init"></span>`type Init = T`
+- <span id="reduceconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="reduceconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -63,11 +63,11 @@ struct ReduceConsumer<'r, R, ID> {
 
 - <span id="reduceconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'r, R, ID, T> Reducer for ReduceConsumer<'r, R, ID>`
+##### `impl<R, ID, T> Reducer for ReduceConsumer<'r, R, ID>`
 
 - <span id="reduceconsumer-reduce"></span>`fn reduce(self, left: T, right: T) -> T`
 
-##### `impl<'r, R, ID, T> UnindexedConsumer for ReduceConsumer<'r, R, ID>`
+##### `impl<R, ID, T> UnindexedConsumer for ReduceConsumer<'r, R, ID>`
 
 - <span id="reduceconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -86,9 +86,9 @@ struct ReduceFolder<'r, R, T> {
 
 #### Trait Implementations
 
-##### `impl<'r, R, T> Folder for ReduceFolder<'r, R, T>`
+##### `impl<R, T> Folder for ReduceFolder<'r, R, T>`
 
-- <span id="reducefolder-type-result"></span>`type Result = T`
+- <span id="reducefolder-folder-type-result"></span>`type Result = T`
 
 - <span id="reducefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -102,9 +102,9 @@ struct ReduceFolder<'r, R, T> {
 
 ##### `impl<T> Pointable for ReduceFolder<'r, R, T>`
 
-- <span id="reducefolder-const-align"></span>`const ALIGN: usize`
+- <span id="reducefolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="reducefolder-type-init"></span>`type Init = T`
+- <span id="reducefolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="reducefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

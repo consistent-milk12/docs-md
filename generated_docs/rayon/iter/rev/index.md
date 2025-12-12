@@ -49,29 +49,29 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 
 - <span id="rev-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Rev<I>`
+##### `impl IntoEither for Rev<I>`
 
-##### `impl<T> IntoParallelIterator for Rev<I>`
+##### `impl IntoParallelIterator for Rev<I>`
 
-- <span id="rev-type-iter"></span>`type Iter = T`
+- <span id="rev-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="rev-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rev-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rev-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Rev<I>`
 
-- <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="rev-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="rev-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Rev<I>`
+##### `impl Pointable for Rev<I>`
 
-- <span id="rev-const-align"></span>`const ALIGN: usize`
+- <span id="rev-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="rev-type-init"></span>`type Init = T`
+- <span id="rev-pointable-type-init"></span>`type Init = T`
 
 - <span id="rev-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -94,13 +94,13 @@ struct RevProducer<P> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for RevProducer<P>`
+##### `impl IntoEither for RevProducer<P>`
 
-##### `impl<T> Pointable for RevProducer<P>`
+##### `impl Pointable for RevProducer<P>`
 
-- <span id="revproducer-const-align"></span>`const ALIGN: usize`
+- <span id="revproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="revproducer-type-init"></span>`type Init = T`
+- <span id="revproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="revproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -112,9 +112,9 @@ struct RevProducer<P> {
 
 ##### `impl<P> Producer for RevProducer<P>`
 
-- <span id="revproducer-type-item"></span>`type Item = <P as Producer>::Item`
+- <span id="revproducer-producer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="revproducer-type-intoiter"></span>`type IntoIter = Rev<<P as Producer>::IntoIter>`
+- <span id="revproducer-producer-type-intoiter"></span>`type IntoIter = Rev<<P as Producer>::IntoIter>`
 
 - <span id="revproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 

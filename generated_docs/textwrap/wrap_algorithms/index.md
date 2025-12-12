@@ -28,7 +28,7 @@ is about 4 times faster than the optimal-fit algorithm.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`WrapAlgorithm`](#wrapalgorithm) | enum | Describes how to wrap words into lines. |
-| [`wrap_first_fit`](#wrap_first_fit) | fn | Wrap abstract fragments into lines with a first-fit algorithm. |
+| [`wrap_first_fit`](#wrap-first-fit) | fn | Wrap abstract fragments into lines with a first-fit algorithm. |
 
 ## Enums
 

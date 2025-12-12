@@ -55,7 +55,7 @@ the file size.
 
 - <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
+##### `impl<R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
 
 - <span id="a-readcache-len"></span>`fn len(self) -> Result<u64, ()>`
 
@@ -107,17 +107,17 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 
 #### Trait Implementations
 
-##### `impl<'a, R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
 
-##### `impl<'a, R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
+##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-len"></span>`fn len(self) -> Result<u64, ()>`
 

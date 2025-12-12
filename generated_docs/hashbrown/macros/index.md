@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cfg_if!`](#cfg_if) | macro |  |
-| [`default_fn!`](#default_fn) | macro |  |
+| [`cfg_if!`](#cfg-if) | macro |  |
+| [`default_fn!`](#default-fn) | macro |  |
 
 ## Macros
 

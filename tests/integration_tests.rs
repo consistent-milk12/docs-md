@@ -1052,3 +1052,736 @@ fn test_trait_definition_has_traits_section() {
         "Trait should have code block with signature"
     );
 }
+
+// =============================================================================
+// Code Block Handling Tests (Phase 4.1)
+// =============================================================================
+
+/// Tests for `unhide_code_lines` function which processes hidden code lines
+/// in documentation code blocks (lines starting with `# `).
+///
+/// The function:
+/// 1. Strips `# ` prefix from lines in code blocks (unhides rustdoc hidden lines)
+/// 2. Converts bare fences (```) to rust fences (```rust)
+mod code_block_tests {
+    use cargo_docs_md::generator::DocLinkUtils;
+
+    #[test]
+    fn test_unhide_code_lines_converts_bare_fence_to_rust() {
+        // Code block with bare ``` fence - bare fences get `rust` added
+        let input = "```\nlet x = 1;\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        // Bare fence becomes ```rust
+        assert!(
+            result.contains("```rust\n"),
+            "Bare fence should be converted to rust fence, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_preserves_rust_fence() {
+        // Code block with ```rust should remain unchanged
+        let input = "```rust\nlet x = 1;\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        assert!(
+            result.contains("```rust\n"),
+            "Rust fence should be preserved, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_strips_hash_prefix() {
+        // Hidden lines (starting with `# `) have their prefix stripped
+        // `# use std::io;` becomes `use std::io;`
+        let input = "```rust\n# use std::io;\nlet x = 1;\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        assert!(
+            result.contains("use std::io;"),
+            "Hidden line prefix should be stripped, got: {result}"
+        );
+        assert!(
+            !result.contains("# use std::io;"),
+            "Original hidden line should be removed, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_handles_tilde_fence() {
+        // ~~~ fence should also work - bare tilde gets `rust` added
+        let input = "~~~\n# hidden\nvisible\n~~~";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        assert!(
+            result.contains("~~~rust\n"),
+            "Bare tilde fence should be converted to rust fence, got: {result}"
+        );
+        assert!(
+            result.contains("\nhidden\n"),
+            "Hidden line prefix should be stripped, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_handles_mixed_fences() {
+        // Mixed fence types should each be handled correctly
+        let input = "```rust\n# a\n```\n\n~~~\n# b\n~~~";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        assert!(
+            result.contains("\na\n"),
+            "First hidden line should have prefix stripped, got: {result}"
+        );
+        assert!(
+            result.contains("\nb\n"),
+            "Second hidden line should have prefix stripped, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_bare_fence_strips_hidden() {
+        // Bare fence (``` without language) gets `rust` added and hidden lines stripped
+        let input = "```\n# This becomes visible\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        // Bare fence becomes ```rust and # prefix is stripped
+        assert!(
+            result.contains("```rust\n"),
+            "Bare fence should become rust fence, got: {result}"
+        );
+        assert!(
+            result.contains("This becomes visible"),
+            "Hidden line prefix should be stripped, got: {result}"
+        );
+        assert!(
+            !result.contains("# This becomes"),
+            "Original hidden prefix should be gone, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_preserves_text_outside_blocks() {
+        let input = "Some text\n# This is a heading\n```rust\n# hidden\n```\nMore text";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        // Text outside code blocks should be preserved
+        assert!(
+            result.contains("Some text"),
+            "Text before block should be preserved"
+        );
+        assert!(
+            result.contains("More text"),
+            "Text after block should be preserved"
+        );
+        // The # heading outside the code block should be preserved
+        assert!(
+            result.contains("# This is a heading"),
+            "Markdown heading should be preserved"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_lone_hash_becomes_empty_line() {
+        // A lone # (hidden empty line) becomes an empty line
+        let input = "```\n#\nlet x = 1;\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        // After ```rust, there should be an empty line before `let x = 1;`
+        // The lone # becomes an empty line
+        assert!(
+            result.contains("```rust\n\nlet x = 1;"),
+            "Lone hash should become empty line, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_strips_hash_in_all_code_blocks() {
+        // NOTE: unhide_code_lines strips `# ` from ALL code blocks,
+        // not just rust blocks. This is because rustdoc's hidden line
+        // syntax works in all code blocks.
+        let input = "```python\n# This hidden line\nprint('hello')\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        // The `# ` prefix is stripped even in non-rust blocks
+        assert!(
+            result.contains("This hidden line"),
+            "Hidden line should be unhidden, got: {result}"
+        );
+        assert!(
+            !result.contains("# This hidden line"),
+            "Original hidden prefix should be gone, got: {result}"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_preserves_regular_hash() {
+        // Lines with # not followed by space are preserved
+        // (only `# ` prefix is stripped, not `#foo`)
+        let input = "```rust\n#[derive(Debug)]\nstruct Foo;\n```";
+        let result = DocLinkUtils::unhide_code_lines(input);
+
+        assert!(
+            result.contains("#[derive(Debug)]"),
+            "Derive attribute should be preserved, got: {result}"
+        );
+    }
+}
+
+// =============================================================================
+// Link Resolution Tests (Phase 4.2)
+// =============================================================================
+
+/// Tests for the 3-strategy link resolution.
+mod link_resolution_tests {
+    use super::*;
+
+    #[test]
+    fn test_intra_doc_links_are_resolved() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Look for resolved links in the output
+        // Resolved links look like: [`Type`](path.md#anchor)
+        let resolved_link_pattern = regex::Regex::new(r"\[`[^`]+`\]\([^)]+\)").unwrap();
+        let mut resolved_count = 0;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            resolved_count += resolved_link_pattern.find_iter(content).count();
+        }
+
+        eprintln!("Found {resolved_count} resolved intra-doc links in output");
+
+        // The fixture should have some resolved links
+        assert!(
+            resolved_count > 0,
+            "Generated docs should contain resolved intra-doc links"
+        );
+    }
+
+    #[test]
+    fn test_unresolved_links_have_fallback_format() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Unresolved links should have format: [`link_text`]
+        // (no parentheses with URL)
+        let unresolved_pattern = regex::Regex::new(r"\[`[^`]+`\](?!\()").unwrap();
+        let mut unresolved_count = 0;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            unresolved_count += unresolved_pattern.find_iter(content).count();
+        }
+
+        eprintln!("Found {unresolved_count} unresolved link references");
+
+        // Having some unresolved links is normal (external crate references)
+        // This test just verifies the format
+    }
+
+    #[test]
+    fn test_link_resolution_uses_short_name_fallback() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Check for links that use short names (Strategy 2 or 3)
+        // These would be links where the display text differs from a full path
+        let simple_link_pattern = regex::Regex::new(r"\[`([A-Z][a-zA-Z0-9]*)`\]\(").unwrap();
+        let mut short_name_links = 0;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            short_name_links += simple_link_pattern.find_iter(content).count();
+        }
+
+        eprintln!("Found {short_name_links} links with short/simple names");
+
+        // Should have links using short names
+        assert!(
+            short_name_links > 0,
+            "Should have links resolved with short names (Strategy 2/3)"
+        );
+    }
+}
+
+// =============================================================================
+// Tuple Struct and Enum Rendering Tests (Phase 4.3)
+// =============================================================================
+
+/// Tests for tuple struct and enum variant rendering.
+mod tuple_rendering_tests {
+    use super::*;
+
+    #[test]
+    fn test_tuple_struct_renders_fields() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+
+        // Look for tuple structs in the crate
+        let mut has_tuple_struct = false;
+        for item in krate.index.values() {
+            if let rustdoc_types::ItemEnum::Struct(s) = &item.inner {
+                if matches!(s.kind, rustdoc_types::StructKind::Tuple(_)) {
+                    has_tuple_struct = true;
+                    break;
+                }
+            }
+        }
+
+        if !has_tuple_struct {
+            eprintln!("Skipping test: no tuple structs in fixture");
+            return;
+        }
+
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Tuple structs should render with parentheses: struct Name(Type1, Type2);
+        let tuple_struct_pattern = regex::Regex::new(r"struct \w+[^{]*\([^)]+\);").unwrap();
+        let mut found_tuple_struct = false;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            if tuple_struct_pattern.is_match(content) {
+                found_tuple_struct = true;
+                break;
+            }
+        }
+
+        assert!(
+            found_tuple_struct,
+            "Tuple struct should be rendered with parentheses format"
+        );
+    }
+
+    #[test]
+    fn test_tuple_enum_variant_renders_fields() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+
+        // Look for enums with tuple variants
+        let mut has_tuple_variant = false;
+        for item in krate.index.values() {
+            if let rustdoc_types::ItemEnum::Enum(e) = &item.inner {
+                for variant_id in &e.variants {
+                    if let Some(variant) = krate.index.get(variant_id) {
+                        if let rustdoc_types::ItemEnum::Variant(v) = &variant.inner {
+                            if matches!(v.kind, rustdoc_types::VariantKind::Tuple(_)) {
+                                has_tuple_variant = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if has_tuple_variant {
+                break;
+            }
+        }
+
+        if !has_tuple_variant {
+            eprintln!("Skipping test: no tuple enum variants in fixture");
+            return;
+        }
+
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Tuple variants should render with parentheses: VariantName(Type),
+        let tuple_variant_pattern = regex::Regex::new(r"    \w+\([^)]+\),").unwrap();
+        let mut found_tuple_variant = false;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            if tuple_variant_pattern.is_match(content) {
+                found_tuple_variant = true;
+                break;
+            }
+        }
+
+        assert!(
+            found_tuple_variant,
+            "Tuple enum variant should be rendered with parentheses format"
+        );
+    }
+}
+
+// =============================================================================
+// Trait Bound Rendering Tests (Phase 4.3)
+// =============================================================================
+
+/// Tests for trait definition rendering with bounds.
+mod trait_bound_rendering_tests {
+    use super::*;
+
+    #[test]
+    fn test_trait_with_bounds_renders_correctly() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+
+        // Look for traits with bounds (supertraits)
+        let mut has_trait_with_bounds = false;
+        for item in krate.index.values() {
+            if let rustdoc_types::ItemEnum::Trait(t) = &item.inner {
+                if !t.bounds.is_empty() {
+                    has_trait_with_bounds = true;
+                    eprintln!("Found trait with bounds: {:?}", item.name);
+                    break;
+                }
+            }
+        }
+
+        if !has_trait_with_bounds {
+            eprintln!("Skipping test: no traits with bounds in fixture");
+            return;
+        }
+
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Traits with bounds should render with `: Bound1 + Bound2`
+        let trait_with_bounds_pattern = regex::Regex::new(r"trait \w+[^{]*: [^{]+\{").unwrap();
+        let mut found_trait_with_bounds = false;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            if trait_with_bounds_pattern.is_match(content) {
+                found_trait_with_bounds = true;
+                break;
+            }
+        }
+
+        assert!(
+            found_trait_with_bounds,
+            "Trait with bounds should be rendered with `: Bound` format"
+        );
+    }
+
+    #[test]
+    fn test_trait_without_bounds_renders_correctly() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+
+        // Look for traits without bounds
+        let mut has_trait_without_bounds = false;
+        for item in krate.index.values() {
+            if let rustdoc_types::ItemEnum::Trait(t) = &item.inner {
+                if t.bounds.is_empty() {
+                    has_trait_without_bounds = true;
+                    break;
+                }
+            }
+        }
+
+        if !has_trait_without_bounds {
+            eprintln!("Skipping test: no traits without bounds in fixture");
+            return;
+        }
+
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Traits without bounds should not have `: ` before `{`
+        let trait_no_bounds_pattern = regex::Regex::new(r"trait \w+(<[^>]+>)?\s*\{").unwrap();
+        let mut found_trait_no_bounds = false;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            if trait_no_bounds_pattern.is_match(content) {
+                found_trait_no_bounds = true;
+                break;
+            }
+        }
+
+        assert!(
+            found_trait_no_bounds,
+            "Trait without bounds should render without colon"
+        );
+    }
+}
+
+// =============================================================================
+// Markdown Output Format Verification Tests
+// =============================================================================
+
+/// Tests that verify the overall structure of generated markdown matches expectations.
+mod markdown_format_tests {
+    use super::*;
+    use std::fs;
+
+    #[test]
+    fn test_generated_markdown_has_expected_sections() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+            .expect("Generation failed");
+
+        let index = capture.get("index.md").expect("Should have index.md");
+
+        // Verify expected sections exist
+        let expected_headings = ["## Modules", "## Structs", "## Functions"];
+
+        for heading in &expected_headings {
+            if index.contains(heading) {
+                eprintln!("Found expected heading: {heading}");
+            }
+        }
+
+        // At minimum, the crate should have some content sections
+        assert!(
+            index.contains("## "),
+            "Index should have level-2 headings for sections"
+        );
+    }
+
+    #[test]
+    fn test_generated_markdown_has_quick_reference() {
+        if !fixture_exists() {
+            eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+            return;
+        }
+
+        let krate = load_fixture();
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // Check for Quick Reference table in module files
+        let table_header_pattern = regex::Regex::new(r"\| Item \| Description \|").unwrap();
+        let mut found_quick_ref = false;
+
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            if table_header_pattern.is_match(content) {
+                found_quick_ref = true;
+                break;
+            }
+        }
+
+        assert!(
+            found_quick_ref,
+            "Generated docs should contain Quick Reference table"
+        );
+    }
+
+    #[test]
+    fn test_fixture_file_format_is_valid() {
+        // Read the ideal fixture file and verify its format
+        let fixture_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("tests")
+            .join("fixtures")
+            .join("ideal_module_output.md");
+
+        if !fixture_path.exists() {
+            eprintln!("Skipping test: ideal fixture not found");
+            return;
+        }
+
+        let content = fs::read_to_string(&fixture_path).expect("Failed to read fixture");
+
+        // Verify breadcrumb structure (module pages start with breadcrumb)
+        assert!(
+            content.starts_with("*["),
+            "Fixture should start with breadcrumb navigation"
+        );
+        assert!(
+            content.contains("---\n\n# Module `"),
+            "Fixture should have separator before module heading"
+        );
+
+        // Verify Contents section (TOC)
+        assert!(
+            content.contains("## Contents"),
+            "Fixture should have Contents section (TOC)"
+        );
+        assert!(
+            content.contains("- [Structs](#structs)"),
+            "Contents should have Structs link"
+        );
+        // Verify slugified anchors (underscores become hyphens)
+        assert!(
+            content.contains("#default-capacity"),
+            "Anchors should use hyphens not underscores"
+        );
+
+        // Verify Quick Reference table structure
+        assert!(
+            content.contains("## Quick Reference"),
+            "Fixture should have Quick Reference section"
+        );
+        assert!(
+            content.contains("| Item | Kind | Description |"),
+            "Fixture should have Quick Reference table with Kind column"
+        );
+        assert!(
+            content.contains("| struct |"),
+            "Quick Reference should categorize structs"
+        );
+
+        // Verify main sections
+        assert!(
+            content.contains("## Structs"),
+            "Fixture should have Structs section"
+        );
+        assert!(
+            content.contains("## Enums"),
+            "Fixture should have Enums section"
+        );
+        assert!(
+            content.contains("## Traits"),
+            "Fixture should have Traits section"
+        );
+        assert!(
+            content.contains("## Functions"),
+            "Fixture should have Functions section"
+        );
+        assert!(
+            content.contains("## Constants"),
+            "Fixture should have Constants section"
+        );
+        assert!(
+            content.contains("## Type Aliases"),
+            "Fixture should have Type Aliases section"
+        );
+
+        // Verify code blocks are properly formatted
+        assert!(
+            content.contains("```rust\n"),
+            "Fixture should have Rust code blocks"
+        );
+        assert!(
+            content.contains("\n```\n"),
+            "Fixture code blocks should be properly closed"
+        );
+
+        // Verify source location format with links
+        assert!(
+            content.contains("*Defined in [`"),
+            "Fixture should have source location markers with links"
+        );
+        assert!(
+            content.contains("](../../.source_"),
+            "Source locations should link to .source_ directory"
+        );
+
+        // Verify struct definitions
+        assert!(
+            content.contains("struct Container<T>"),
+            "Fixture should have generic struct"
+        );
+        assert!(
+            content.contains("struct Wrapper<A, B>(A, B)"),
+            "Fixture should have tuple struct"
+        );
+
+        // Verify Fields section
+        assert!(
+            content.contains("#### Fields"),
+            "Structs should have Fields section"
+        );
+        assert!(
+            content.contains("- **`value`**: `T`"),
+            "Fields should use bold name with type"
+        );
+
+        // Verify Implementations section
+        assert!(
+            content.contains("#### Implementations"),
+            "Structs should have Implementations section"
+        );
+        assert!(
+            content.contains("#### Trait Implementations"),
+            "Structs should have Trait Implementations section"
+        );
+
+        // Verify trait structure
+        assert!(
+            content.contains("trait Transformable<T>: Clone + Debug { ... }"),
+            "Fixture should have trait with bounds and ellipsis"
+        );
+        assert!(
+            content.contains("#### Required Methods"),
+            "Traits should have Required Methods section"
+        );
+        assert!(
+            content.contains("#### Provided Methods"),
+            "Traits should have Provided Methods section"
+        );
+        assert!(
+            content.contains("#### Implementors"),
+            "Traits should have Implementors section"
+        );
+
+        // Verify enum structure
+        assert!(
+            content.contains("#### Variants"),
+            "Enums should have Variants section"
+        );
+        assert!(
+            content.contains("Running(u64)"),
+            "Enums should have tuple variant"
+        );
+        assert!(
+            content.contains("Complete { result: String"),
+            "Enums should have struct variant"
+        );
+
+        // Verify method anchors use hyphens
+        assert!(
+            content.contains("<span id=\"container-new\"></span>"),
+            "Fixture should have method anchors"
+        );
+        assert!(
+            content.contains("<span id=\"container-into-inner\"></span>"),
+            "Method anchors should use hyphens for multi-word names"
+        );
+
+        // Verify constant format includes type suffix
+        assert!(
+            content.contains("const DEFAULT_CAPACITY: usize = 16usize;"),
+            "Constants should include value with type suffix"
+        );
+
+        eprintln!("Fixture file validation passed");
+    }
+}

@@ -9,7 +9,7 @@
 - [Modules](#modules)
   - [`alphabet`](#alphabet)
   - [`buffer`](#buffer)
-  - [`byte_frequencies`](#byte_frequencies)
+  - [`byte_frequencies`](#byte-frequencies)
   - [`debug`](#debug)
   - [`error`](#error)
   - [`int`](#int)
@@ -25,7 +25,7 @@
 |------|------|-------------|
 | [`alphabet`](#alphabet) | mod |  |
 | [`buffer`](#buffer) | mod |  |
-| [`byte_frequencies`](#byte_frequencies) | mod |  |
+| [`byte_frequencies`](#byte-frequencies) | mod |  |
 | [`debug`](#debug) | mod |  |
 | [`error`](#error) | mod |  |
 | [`int`](#int) | mod | This module provides several integer oriented traits for converting between both fixed size integers and integers whose size varies based on the target (like `usize`). |

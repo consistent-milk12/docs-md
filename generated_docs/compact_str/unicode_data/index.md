@@ -11,11 +11,11 @@ Adapted from
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`case_ignorable`](#case_ignorable) | mod |  |
+| [`case_ignorable`](#case-ignorable) | mod |  |
 | [`cased`](#cased) | mod |  |
-| [`skip_search`](#skip_search) | fn |  |
-| [`decode_prefix_sum`](#decode_prefix_sum) | fn |  |
-| [`decode_length`](#decode_length) | fn |  |
+| [`skip_search`](#skip-search) | fn |  |
+| [`decode_prefix_sum`](#decode-prefix-sum) | fn |  |
+| [`decode_length`](#decode-length) | fn |  |
 
 ## Modules
 

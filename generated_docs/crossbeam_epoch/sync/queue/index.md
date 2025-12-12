@@ -62,9 +62,9 @@ struct Queue<T> {
 
 ##### `impl<T> Pointable for Queue<T>`
 
-- <span id="queue-const-align"></span>`const ALIGN: usize`
+- <span id="queue-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="queue-type-init"></span>`type Init = T`
+- <span id="queue-pointable-type-init"></span>`type Init = T`
 
 - <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
@@ -104,9 +104,9 @@ struct Node<T> {
 
 ##### `impl<T> Pointable for Node<T>`
 
-- <span id="node-const-align"></span>`const ALIGN: usize`
+- <span id="node-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="node-type-init"></span>`type Init = T`
+- <span id="node-pointable-type-init"></span>`type Init = T`
 
 - <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 

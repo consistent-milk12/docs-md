@@ -69,7 +69,7 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 |------|------|-------------|
 | [`unix`](#unix) | mod |  |
 | [`Handle`](#handle) | struct | A handle to a file that can be tested for equality with other handles. |
-| [`is_same_file`](#is_same_file) | fn | Returns true if the two file paths may correspond to the same file. |
+| [`is_same_file`](#is-same-file) | fn | Returns true if the two file paths may correspond to the same file. |
 
 ## Modules
 

@@ -47,13 +47,13 @@ improving it. We would love to hear from you!
 - [Traits](#traits)
   - [`Fragment`](#fragment)
 - [Functions](#functions)
-  - [`skip_ansi_escape_sequence`](#skip_ansi_escape_sequence)
-  - [`ch_width`](#ch_width)
-  - [`display_width`](#display_width)
-  - [`break_words`](#break_words)
+  - [`skip_ansi_escape_sequence`](#skip-ansi-escape-sequence)
+  - [`ch_width`](#ch-width)
+  - [`display_width`](#display-width)
+  - [`break_words`](#break-words)
 - [Constants](#constants)
   - [`CSI`](#csi)
-  - [`ANSI_FINAL_BYTE`](#ansi_final_byte)
+  - [`ANSI_FINAL_BYTE`](#ansi-final-byte)
 
 ## Quick Reference
 
@@ -61,12 +61,12 @@ improving it. We would love to hear from you!
 |------|------|-------------|
 | [`Word`](#word) | struct | A piece of wrappable text, including any trailing whitespace. |
 | [`Fragment`](#fragment) | trait | A (text) fragment denotes the unit which we wrap into lines. |
-| [`skip_ansi_escape_sequence`](#skip_ansi_escape_sequence) | fn | Skip ANSI escape sequences. |
-| [`ch_width`](#ch_width) | fn |  |
-| [`display_width`](#display_width) | fn | Compute the display width of `text` while skipping over ANSI escape sequences. |
-| [`break_words`](#break_words) | fn | Forcibly break words wider than `line_width` into smaller words. |
+| [`skip_ansi_escape_sequence`](#skip-ansi-escape-sequence) | fn | Skip ANSI escape sequences. |
+| [`ch_width`](#ch-width) | fn |  |
+| [`display_width`](#display-width) | fn | Compute the display width of `text` while skipping over ANSI escape sequences. |
+| [`break_words`](#break-words) | fn | Forcibly break words wider than `line_width` into smaller words. |
 | [`CSI`](#csi) | const | The CSI or “Control Sequence Introducer” introduces an ANSI escape sequence. |
-| [`ANSI_FINAL_BYTE`](#ansi_final_byte) | const | The final bytes of an ANSI escape sequence must be in this range. |
+| [`ANSI_FINAL_BYTE`](#ansi-final-byte) | const | The final bytes of an ANSI escape sequence must be in this range. |
 
 ## Structs
 
@@ -122,7 +122,7 @@ trailing whitespace, and potentially a penalty item.
 
 ##### `impl Deref for Word<'_>`
 
-- <span id="word-type-target"></span>`type Target = str`
+- <span id="word-deref-type-target"></span>`type Target = str`
 
 - <span id="word-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -142,7 +142,7 @@ trailing whitespace, and potentially a penalty item.
 
 ##### `impl Receiver for Word<'a>`
 
-- <span id="word-type-target"></span>`type Target = T`
+- <span id="word-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Word<'a>`
 

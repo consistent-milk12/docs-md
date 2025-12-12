@@ -53,29 +53,29 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 - <span id="foldchunkswith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for FoldChunksWith<I, U, F>`
+##### `impl IntoEither for FoldChunksWith<I, U, F>`
 
-##### `impl<T> IntoParallelIterator for FoldChunksWith<I, U, F>`
+##### `impl IntoParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-type-iter"></span>`type Iter = T`
+- <span id="foldchunkswith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunkswith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunkswith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunkswith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, U, F> ParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-type-item"></span>`type Item = U`
+- <span id="foldchunkswith-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="foldchunkswith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for FoldChunksWith<I, U, F>`
+##### `impl Pointable for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-const-align"></span>`const ALIGN: usize`
+- <span id="foldchunkswith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunkswith-type-init"></span>`type Init = T`
+- <span id="foldchunkswith-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldchunkswith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

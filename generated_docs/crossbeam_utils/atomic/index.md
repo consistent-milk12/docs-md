@@ -13,8 +13,8 @@ Atomic types.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`seq_lock`](#seq_lock) | mod |  |
-| [`atomic_cell`](#atomic_cell) | mod |  |
+| [`seq_lock`](#seq-lock) | mod |  |
+| [`atomic_cell`](#atomic-cell) | mod |  |
 | [`consume`](#consume) | mod |  |
 | [`AtomicCell`](#atomiccell) | struct |  |
 | [`AtomicConsume`](#atomicconsume) | trait |  |

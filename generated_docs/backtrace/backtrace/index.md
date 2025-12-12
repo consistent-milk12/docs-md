@@ -11,7 +11,7 @@
 | [`libunwind`](#libunwind) | mod | Backtrace support using libunwind/gcc_s/etc APIs. |
 | [`Frame`](#frame) | struct | A trait representing one frame of a backtrace, yielded to the `trace` function of this crate. |
 | [`trace`](#trace) | fn | Inspects the current call-stack, passing all active frames into the closure provided to calculate a stack trace. |
-| [`trace_unsynchronized`](#trace_unsynchronized) | fn | Same as `trace`, only unsafe as it's unsynchronized. |
+| [`trace_unsynchronized`](#trace-unsynchronized) | fn | Same as `trace`, only unsafe as it's unsynchronized. |
 
 ## Modules
 

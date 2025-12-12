@@ -11,11 +11,11 @@
 - [Functions](#functions)
   - [`f2d`](#f2d)
 - [Constants](#constants)
-  - [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits)
-  - [`FLOAT_EXPONENT_BITS`](#float_exponent_bits)
-  - [`FLOAT_BIAS`](#float_bias)
-  - [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount)
-  - [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount)
+  - [`FLOAT_MANTISSA_BITS`](#float-mantissa-bits)
+  - [`FLOAT_EXPONENT_BITS`](#float-exponent-bits)
+  - [`FLOAT_BIAS`](#float-bias)
+  - [`FLOAT_POW5_BITCOUNT`](#float-pow5-bitcount)
+  - [`FLOAT_POW5_INV_BITCOUNT`](#float-pow5-inv-bitcount)
 
 ## Quick Reference
 
@@ -23,11 +23,11 @@
 |------|------|-------------|
 | [`FloatingDecimal32`](#floatingdecimal32) | struct |  |
 | [`f2d`](#f2d) | fn |  |
-| [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits) | const |  |
-| [`FLOAT_EXPONENT_BITS`](#float_exponent_bits) | const |  |
-| [`FLOAT_BIAS`](#float_bias) | const |  |
-| [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount) | const |  |
-| [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount) | const |  |
+| [`FLOAT_MANTISSA_BITS`](#float-mantissa-bits) | const |  |
+| [`FLOAT_EXPONENT_BITS`](#float-exponent-bits) | const |  |
+| [`FLOAT_BIAS`](#float-bias) | const |  |
+| [`FLOAT_POW5_BITCOUNT`](#float-pow5-bitcount) | const |  |
+| [`FLOAT_POW5_INV_BITCOUNT`](#float-pow5-inv-bitcount) | const |  |
 
 ## Structs
 
@@ -75,7 +75,17 @@ const FLOAT_BIAS: i32 = 127i32;
 
 *Defined in [`ryu-1.0.20/src/f2s.rs:28`](../../../.source_1765210505/ryu-1.0.20/src/f2s.rs#L28)*
 
-*Defined in [`ryu-1.0.20/src/f2s.rs:29`](../../../.source_1765210505/ryu-1.0.20/src/f2s.rs#L29)*
+### `FLOAT_POW5_BITCOUNT`
+```rust
+const FLOAT_POW5_BITCOUNT: i32 = 61i32;
+```
 
-*Defined in [`ryu-1.0.20/src/f2s.rs:29`](../../../.source_1765210505/ryu-1.0.20/src/f2s.rs#L29)*
+*Defined in [`ryu-1.0.20/src/f2s_intrinsics.rs:24`](../../../.source_1765210505/ryu-1.0.20/src/f2s_intrinsics.rs#L24)*
+
+### `FLOAT_POW5_INV_BITCOUNT`
+```rust
+const FLOAT_POW5_INV_BITCOUNT: i32 = 61i32;
+```
+
+*Defined in [`ryu-1.0.20/src/f2s_intrinsics.rs:23`](../../../.source_1765210505/ryu-1.0.20/src/f2s_intrinsics.rs#L23)*
 

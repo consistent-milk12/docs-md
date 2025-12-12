@@ -34,7 +34,7 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 | [`dummies`](#dummies) | mod | Dummy implementations that we emit along with an error. |
 | [`item`](#item) | mod |  |
 | [`utils`](#utils) | mod |  |
-| [`to_compile_error`](#to_compile_error) | fn |  |
+| [`to_compile_error`](#to-compile-error) | fn |  |
 
 ## Modules
 

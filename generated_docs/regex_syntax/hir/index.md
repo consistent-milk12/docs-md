@@ -56,11 +56,11 @@ to its simplified structure.
   - [`Visitor`](#visitor)
 - [Functions](#functions)
   - [`visit`](#visit)
-  - [`class_chars`](#class_chars)
-  - [`class_bytes`](#class_bytes)
-  - [`singleton_chars`](#singleton_chars)
-  - [`singleton_bytes`](#singleton_bytes)
-  - [`lift_common_prefix`](#lift_common_prefix)
+  - [`class_chars`](#class-chars)
+  - [`class_bytes`](#class-bytes)
+  - [`singleton_chars`](#singleton-chars)
+  - [`singleton_bytes`](#singleton-bytes)
+  - [`lift_common_prefix`](#lift-common-prefix)
 
 ## Quick Reference
 
@@ -94,11 +94,11 @@ to its simplified structure.
 | [`Dot`](#dot) | enum | A type describing the different flavors of `.`. |
 | [`Visitor`](#visitor) | trait |  |
 | [`visit`](#visit) | fn |  |
-| [`class_chars`](#class_chars) | fn | Given a sequence of HIR values where each value corresponds to a Unicode class (or an all-ASCII byte class), return a single Unicode class corresponding to the union of the classes found. |
-| [`class_bytes`](#class_bytes) | fn | Given a sequence of HIR values where each value corresponds to a byte class (or an all-ASCII Unicode class), return a single byte class corresponding to the union of the classes found. |
-| [`singleton_chars`](#singleton_chars) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single `char`, return that sequence of `char`s. |
-| [`singleton_bytes`](#singleton_bytes) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single byte, return that sequence of bytes. |
-| [`lift_common_prefix`](#lift_common_prefix) | fn | Looks for a common prefix in the list of alternation branches given. |
+| [`class_chars`](#class-chars) | fn | Given a sequence of HIR values where each value corresponds to a Unicode class (or an all-ASCII byte class), return a single Unicode class corresponding to the union of the classes found. |
+| [`class_bytes`](#class-bytes) | fn | Given a sequence of HIR values where each value corresponds to a byte class (or an all-ASCII Unicode class), return a single byte class corresponding to the union of the classes found. |
+| [`singleton_chars`](#singleton-chars) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single `char`, return that sequence of `char`s. |
+| [`singleton_bytes`](#singleton-bytes) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single byte, return that sequence of bytes. |
+| [`lift_common_prefix`](#lift-common-prefix) | fn | Looks for a common prefix in the list of alternation branches given. |
 
 ## Modules
 
@@ -452,15 +452,15 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 ##### `impl IntoIterator for ClassUnicodeIter<'a>`
 
-- <span id="classunicodeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="classunicodeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="classunicodeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="classunicodeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="classunicodeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ClassUnicodeIter<'a>`
 
-- <span id="classunicodeiter-type-item"></span>`type Item = &'a ClassUnicodeRange`
+- <span id="classunicodeiter-iterator-type-item"></span>`type Item = &'a ClassUnicodeRange`
 
 - <span id="classunicodeiter-next"></span>`fn next(&mut self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](#classunicoderange)
 
@@ -510,7 +510,7 @@ in the range.
 
 ##### `impl Interval for ClassUnicodeRange`
 
-- <span id="classunicoderange-type-bound"></span>`type Bound = char`
+- <span id="classunicoderange-interval-type-bound"></span>`type Bound = char`
 
 - <span id="classunicoderange-lower"></span>`fn lower(&self) -> char`
 
@@ -622,15 +622,15 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 ##### `impl IntoIterator for ClassBytesIter<'a>`
 
-- <span id="classbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="classbytesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="classbytesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="classbytesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="classbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ClassBytesIter<'a>`
 
-- <span id="classbytesiter-type-item"></span>`type Item = &'a ClassBytesRange`
+- <span id="classbytesiter-iterator-type-item"></span>`type Item = &'a ClassBytesRange`
 
 - <span id="classbytesiter-next"></span>`fn next(&mut self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](#classbytesrange)
 
@@ -680,7 +680,7 @@ in the range.
 
 ##### `impl Interval for ClassBytesRange`
 
-- <span id="classbytesrange-type-bound"></span>`type Bound = u8`
+- <span id="classbytesrange-interval-type-bound"></span>`type Bound = u8`
 
 - <span id="classbytesrange-lower"></span>`fn lower(&self) -> u8`
 
@@ -1082,15 +1082,15 @@ This iterator is created by `LookSet::iter`.
 
 ##### `impl IntoIterator for LookSetIter`
 
-- <span id="looksetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="looksetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="looksetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="looksetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="looksetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LookSetIter`
 
-- <span id="looksetiter-type-item"></span>`type Item = Look`
+- <span id="looksetiter-iterator-type-item"></span>`type Item = Look`
 
 - <span id="looksetiter-next"></span>`fn next(&mut self) -> Option<Look>` — [`Look`](#look)
 
@@ -1700,7 +1700,28 @@ running it using the [`visit`](visitor/index.md) function.
 
 ## Functions
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:37`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L37)*
+### `visit`
+
+```rust
+fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
+```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+
+Executes an implementation of `Visitor` in constant stack space.
+
+This function will visit every node in the given `Hir` while calling
+appropriate methods provided by the [`Visitor`](visitor/index.md) trait.
+
+The primary use case for this method is when one wants to perform case
+analysis over an `Hir` without using a stack size proportional to the depth
+of the `Hir`. Namely, this method will instead use constant stack space,
+but will use heap space proportional to the size of the `Hir`. This may be
+desirable in cases where the size of `Hir` is proportional to end user
+input.
+
+If the visitor returns an error at any point, then visiting is stopped and
+the error is returned.
 
 ### `class_chars`
 

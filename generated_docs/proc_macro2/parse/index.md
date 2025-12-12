@@ -10,51 +10,51 @@
   - [`Cursor`](#cursor)
   - [`Reject`](#reject)
 - [Functions](#functions)
-  - [`skip_whitespace`](#skip_whitespace)
-  - [`block_comment`](#block_comment)
-  - [`is_whitespace`](#is_whitespace)
-  - [`word_break`](#word_break)
-  - [`token_stream`](#token_stream)
-  - [`lex_error`](#lex_error)
-  - [`leaf_token`](#leaf_token)
+  - [`skip_whitespace`](#skip-whitespace)
+  - [`block_comment`](#block-comment)
+  - [`is_whitespace`](#is-whitespace)
+  - [`word_break`](#word-break)
+  - [`token_stream`](#token-stream)
+  - [`lex_error`](#lex-error)
+  - [`leaf_token`](#leaf-token)
   - [`ident`](#ident)
-  - [`ident_any`](#ident_any)
-  - [`ident_not_raw`](#ident_not_raw)
+  - [`ident_any`](#ident-any)
+  - [`ident_not_raw`](#ident-not-raw)
   - [`literal`](#literal)
-  - [`literal_nocapture`](#literal_nocapture)
-  - [`literal_suffix`](#literal_suffix)
+  - [`literal_nocapture`](#literal-nocapture)
+  - [`literal_suffix`](#literal-suffix)
   - [`string`](#string)
-  - [`cooked_string`](#cooked_string)
-  - [`raw_string`](#raw_string)
-  - [`byte_string`](#byte_string)
-  - [`cooked_byte_string`](#cooked_byte_string)
-  - [`delimiter_of_raw_string`](#delimiter_of_raw_string)
-  - [`raw_byte_string`](#raw_byte_string)
-  - [`c_string`](#c_string)
-  - [`raw_c_string`](#raw_c_string)
-  - [`cooked_c_string`](#cooked_c_string)
+  - [`cooked_string`](#cooked-string)
+  - [`raw_string`](#raw-string)
+  - [`byte_string`](#byte-string)
+  - [`cooked_byte_string`](#cooked-byte-string)
+  - [`delimiter_of_raw_string`](#delimiter-of-raw-string)
+  - [`raw_byte_string`](#raw-byte-string)
+  - [`c_string`](#c-string)
+  - [`raw_c_string`](#raw-c-string)
+  - [`cooked_c_string`](#cooked-c-string)
   - [`byte`](#byte)
   - [`character`](#character)
-  - [`backslash_x_char`](#backslash_x_char)
-  - [`backslash_x_byte`](#backslash_x_byte)
-  - [`backslash_x_nonzero`](#backslash_x_nonzero)
-  - [`backslash_u`](#backslash_u)
-  - [`trailing_backslash`](#trailing_backslash)
+  - [`backslash_x_char`](#backslash-x-char)
+  - [`backslash_x_byte`](#backslash-x-byte)
+  - [`backslash_x_nonzero`](#backslash-x-nonzero)
+  - [`backslash_u`](#backslash-u)
+  - [`trailing_backslash`](#trailing-backslash)
   - [`float`](#float)
-  - [`float_digits`](#float_digits)
+  - [`float_digits`](#float-digits)
   - [`int`](#int)
   - [`digits`](#digits)
   - [`punct`](#punct)
-  - [`punct_char`](#punct_char)
-  - [`doc_comment`](#doc_comment)
-  - [`doc_comment_contents`](#doc_comment_contents)
-  - [`take_until_newline_or_eof`](#take_until_newline_or_eof)
+  - [`punct_char`](#punct-char)
+  - [`doc_comment`](#doc-comment)
+  - [`doc_comment_contents`](#doc-comment-contents)
+  - [`take_until_newline_or_eof`](#take-until-newline-or-eof)
 - [Type Aliases](#type-aliases)
   - [`PResult`](#presult)
 - [Constants](#constants)
   - [`ERROR`](#error)
 - [Macros](#macros)
-  - [`next_ch!`](#next_ch)
+  - [`next_ch!`](#next-ch)
 
 ## Quick Reference
 
@@ -62,48 +62,48 @@
 |------|------|-------------|
 | [`Cursor`](#cursor) | struct |  |
 | [`Reject`](#reject) | struct |  |
-| [`skip_whitespace`](#skip_whitespace) | fn |  |
-| [`block_comment`](#block_comment) | fn |  |
-| [`is_whitespace`](#is_whitespace) | fn |  |
-| [`word_break`](#word_break) | fn |  |
-| [`token_stream`](#token_stream) | fn |  |
-| [`lex_error`](#lex_error) | fn |  |
-| [`leaf_token`](#leaf_token) | fn |  |
+| [`skip_whitespace`](#skip-whitespace) | fn |  |
+| [`block_comment`](#block-comment) | fn |  |
+| [`is_whitespace`](#is-whitespace) | fn |  |
+| [`word_break`](#word-break) | fn |  |
+| [`token_stream`](#token-stream) | fn |  |
+| [`lex_error`](#lex-error) | fn |  |
+| [`leaf_token`](#leaf-token) | fn |  |
 | [`ident`](#ident) | fn |  |
-| [`ident_any`](#ident_any) | fn |  |
-| [`ident_not_raw`](#ident_not_raw) | fn |  |
+| [`ident_any`](#ident-any) | fn |  |
+| [`ident_not_raw`](#ident-not-raw) | fn |  |
 | [`literal`](#literal) | fn |  |
-| [`literal_nocapture`](#literal_nocapture) | fn |  |
-| [`literal_suffix`](#literal_suffix) | fn |  |
+| [`literal_nocapture`](#literal-nocapture) | fn |  |
+| [`literal_suffix`](#literal-suffix) | fn |  |
 | [`string`](#string) | fn |  |
-| [`cooked_string`](#cooked_string) | fn |  |
-| [`raw_string`](#raw_string) | fn |  |
-| [`byte_string`](#byte_string) | fn |  |
-| [`cooked_byte_string`](#cooked_byte_string) | fn |  |
-| [`delimiter_of_raw_string`](#delimiter_of_raw_string) | fn |  |
-| [`raw_byte_string`](#raw_byte_string) | fn |  |
-| [`c_string`](#c_string) | fn |  |
-| [`raw_c_string`](#raw_c_string) | fn |  |
-| [`cooked_c_string`](#cooked_c_string) | fn |  |
+| [`cooked_string`](#cooked-string) | fn |  |
+| [`raw_string`](#raw-string) | fn |  |
+| [`byte_string`](#byte-string) | fn |  |
+| [`cooked_byte_string`](#cooked-byte-string) | fn |  |
+| [`delimiter_of_raw_string`](#delimiter-of-raw-string) | fn |  |
+| [`raw_byte_string`](#raw-byte-string) | fn |  |
+| [`c_string`](#c-string) | fn |  |
+| [`raw_c_string`](#raw-c-string) | fn |  |
+| [`cooked_c_string`](#cooked-c-string) | fn |  |
 | [`byte`](#byte) | fn |  |
 | [`character`](#character) | fn |  |
-| [`backslash_x_char`](#backslash_x_char) | fn |  |
-| [`backslash_x_byte`](#backslash_x_byte) | fn |  |
-| [`backslash_x_nonzero`](#backslash_x_nonzero) | fn |  |
-| [`backslash_u`](#backslash_u) | fn |  |
-| [`trailing_backslash`](#trailing_backslash) | fn |  |
+| [`backslash_x_char`](#backslash-x-char) | fn |  |
+| [`backslash_x_byte`](#backslash-x-byte) | fn |  |
+| [`backslash_x_nonzero`](#backslash-x-nonzero) | fn |  |
+| [`backslash_u`](#backslash-u) | fn |  |
+| [`trailing_backslash`](#trailing-backslash) | fn |  |
 | [`float`](#float) | fn |  |
-| [`float_digits`](#float_digits) | fn |  |
+| [`float_digits`](#float-digits) | fn |  |
 | [`int`](#int) | fn |  |
 | [`digits`](#digits) | fn |  |
 | [`punct`](#punct) | fn |  |
-| [`punct_char`](#punct_char) | fn |  |
-| [`doc_comment`](#doc_comment) | fn |  |
-| [`doc_comment_contents`](#doc_comment_contents) | fn |  |
-| [`take_until_newline_or_eof`](#take_until_newline_or_eof) | fn |  |
+| [`punct_char`](#punct-char) | fn |  |
+| [`doc_comment`](#doc-comment) | fn |  |
+| [`doc_comment_contents`](#doc-comment-contents) | fn |  |
+| [`take_until_newline_or_eof`](#take-until-newline-or-eof) | fn |  |
 | [`PResult`](#presult) | type |  |
 | [`ERROR`](#error) | const |  |
-| [`next_ch!`](#next_ch) | macro |  |
+| [`next_ch!`](#next-ch) | macro |  |
 
 ## Structs
 

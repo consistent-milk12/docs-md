@@ -42,7 +42,7 @@ Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for HashTable<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for HashTable<'data, Elf>`
 
 - <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -78,7 +78,7 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for GnuHashTable<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for GnuHashTable<'data, Elf>`
 
 - <span id="gnuhashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

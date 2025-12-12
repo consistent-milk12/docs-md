@@ -78,17 +78,17 @@ Returned by `macho::SymtabCommand::symbols`.
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Mach, R>` — [`SymbolTable`](../index.md#symboltable)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
 
@@ -109,27 +109,27 @@ A symbol table in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-clone"></span>`fn clone(&self) -> MachOSymbolTable<'data, 'file, Mach, R>` — [`MachOSymbolTable`](../index.md#machosymboltable)
 
-##### `impl<'data, 'file, Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboltable-objectsymboltable-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machosymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
 - <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
 
 ### `MachOSymbolIterator<'data, 'file, Mach, R>`
 
@@ -155,21 +155,21 @@ An iterator for the symbols in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
 
 - <span id="machosymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosymboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosymboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboliterator-iterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -202,17 +202,17 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-clone"></span>`fn clone(&self) -> MachOSymbol<'data, 'file, Mach, R>` — [`MachOSymbol`](../index.md#machosymbol)
 
-##### `impl<'data, 'file, Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
@@ -244,7 +244,7 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 - <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
 
 ## Traits
 

@@ -7,36 +7,36 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`any_value`](#any_value)
-  - [`flat_map`](#flat_map)
-  - [`flat_set`](#flat_set)
+  - [`any_value`](#any-value)
+  - [`flat_map`](#flat-map)
+  - [`flat_set`](#flat-set)
   - [`graph`](#graph)
   - [`id`](#id)
-  - [`str_to_bool`](#str_to_bool)
+  - [`str_to_bool`](#str-to-bool)
   - [`color`](#color)
 - [Structs](#structs)
   - [`Id`](#id)
 - [Functions](#functions)
-  - [`eq_ignore_case`](#eq_ignore_case)
+  - [`eq_ignore_case`](#eq-ignore-case)
 - [Constants](#constants)
-  - [`SUCCESS_CODE`](#success_code)
-  - [`USAGE_CODE`](#usage_code)
+  - [`SUCCESS_CODE`](#success-code)
+  - [`USAGE_CODE`](#usage-code)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`any_value`](#any_value) | mod |  |
-| [`flat_map`](#flat_map) | mod |  |
-| [`flat_set`](#flat_set) | mod |  |
+| [`any_value`](#any-value) | mod |  |
+| [`flat_map`](#flat-map) | mod |  |
+| [`flat_set`](#flat-set) | mod |  |
 | [`graph`](#graph) | mod |  |
 | [`id`](#id) | mod |  |
-| [`str_to_bool`](#str_to_bool) | mod |  |
+| [`str_to_bool`](#str-to-bool) | mod |  |
 | [`color`](#color) | mod |  |
 | [`Id`](#id) | struct |  |
-| [`eq_ignore_case`](#eq_ignore_case) | fn |  |
-| [`SUCCESS_CODE`](#success_code) | const |  |
-| [`USAGE_CODE`](#usage_code) | const |  |
+| [`eq_ignore_case`](#eq-ignore-case) | fn |  |
+| [`SUCCESS_CODE`](#success-code) | const |  |
+| [`USAGE_CODE`](#usage-code) | const |  |
 
 ## Modules
 
@@ -108,7 +108,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](id/index.md#id)
 

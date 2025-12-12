@@ -43,27 +43,27 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](../i
 
 - <span id="filtermap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FilterMap<I, P>`
+##### `impl IntoEither for FilterMap<I, P>`
 
-##### `impl<T> IntoParallelIterator for FilterMap<I, P>`
+##### `impl IntoParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-type-iter"></span>`type Iter = T`
+- <span id="filtermap-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="filtermap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filtermap-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filtermap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<I, P, R> ParallelIterator for FilterMap<I, P>`
+##### `impl<I, P> ParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-type-item"></span>`type Item = R`
+- <span id="filtermap-paralleliterator-type-item"></span>`type Item = R`
 
 - <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FilterMap<I, P>`
+##### `impl Pointable for FilterMap<I, P>`
 
-- <span id="filtermap-const-align"></span>`const ALIGN: usize`
+- <span id="filtermap-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filtermap-type-init"></span>`type Init = T`
+- <span id="filtermap-pointable-type-init"></span>`type Init = T`
 
 - <span id="filtermap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,13 +90,13 @@ struct FilterMapConsumer<'p, C, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, U, C, P> Consumer for FilterMapConsumer<'p, C, P>`
+##### `impl<T, C, P> Consumer for FilterMapConsumer<'p, C, P>`
 
-- <span id="filtermapconsumer-type-folder"></span>`type Folder = FilterMapFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="filtermapconsumer-consumer-type-folder"></span>`type Folder = FilterMapFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="filtermapconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="filtermapconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="filtermapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="filtermapconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="filtermapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -104,13 +104,13 @@ struct FilterMapConsumer<'p, C, P> {
 
 - <span id="filtermapconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FilterMapConsumer<'p, C, P>`
+##### `impl IntoEither for FilterMapConsumer<'p, C, P>`
 
-##### `impl<T> Pointable for FilterMapConsumer<'p, C, P>`
+##### `impl Pointable for FilterMapConsumer<'p, C, P>`
 
-- <span id="filtermapconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="filtermapconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filtermapconsumer-type-init"></span>`type Init = T`
+- <span id="filtermapconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="filtermapconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,7 +120,7 @@ struct FilterMapConsumer<'p, C, P> {
 
 - <span id="filtermapconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'p, T, U, C, P> UnindexedConsumer for FilterMapConsumer<'p, C, P>`
+##### `impl<T, C, P> UnindexedConsumer for FilterMapConsumer<'p, C, P>`
 
 - <span id="filtermapconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -139,9 +139,9 @@ struct FilterMapFolder<'p, C, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, U, C, P> Folder for FilterMapFolder<'p, C, P>`
+##### `impl<T, C, P> Folder for FilterMapFolder<'p, C, P>`
 
-- <span id="filtermapfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="filtermapfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="filtermapfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -149,13 +149,13 @@ struct FilterMapFolder<'p, C, P> {
 
 - <span id="filtermapfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FilterMapFolder<'p, C, P>`
+##### `impl IntoEither for FilterMapFolder<'p, C, P>`
 
-##### `impl<T> Pointable for FilterMapFolder<'p, C, P>`
+##### `impl Pointable for FilterMapFolder<'p, C, P>`
 
-- <span id="filtermapfolder-const-align"></span>`const ALIGN: usize`
+- <span id="filtermapfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="filtermapfolder-type-init"></span>`type Init = T`
+- <span id="filtermapfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="filtermapfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

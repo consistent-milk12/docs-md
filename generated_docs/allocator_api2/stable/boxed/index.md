@@ -197,7 +197,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> BoxIter for Box<I, A>`
 
-- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-boxiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="box-last"></span>`fn last(self) -> Option<<I as >::Item>`
 
@@ -217,7 +217,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<T: ?Sized, A: Allocator> Deref for Box<T, A>`
 
-- <span id="box-type-target"></span>`type Target = T`
+- <span id="box-deref-type-target"></span>`type Target = T`
 
 - <span id="box-deref"></span>`fn deref(&self) -> &T`
 
@@ -245,7 +245,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-len"></span>`fn len(&self) -> usize`
 
-##### `impl Extend for alloc_crate::string::String`
+##### `impl<A: Allocator> Extend for alloc_crate::string::String`
 
 - <span id="alloc-cratestringstring-extend"></span>`fn extend<I: IntoIterator<Item = Box<str, A>>>(&mut self, iter: I)`
 
@@ -257,7 +257,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<F: ?Sized + Future + Unpin, A> Future for Box<F, A>`
 
-- <span id="box-type-output"></span>`type Output = <F as Future>::Output`
+- <span id="box-future-type-output"></span>`type Output = <F as Future>::Output`
 
 - <span id="box-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
@@ -295,25 +295,25 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-write-isize"></span>`fn write_isize(&mut self, i: isize)`
 
-##### `impl<F> IntoFuture for Box<T, A>`
+##### `impl IntoFuture for Box<T, A>`
 
-- <span id="box-type-output"></span>`type Output = <F as Future>::Output`
+- <span id="box-intofuture-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="box-type-intofuture"></span>`type IntoFuture = F`
+- <span id="box-intofuture-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="box-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
-##### `impl<I> IntoIterator for Box<T, A>`
+##### `impl IntoIterator for Box<T, A>`
 
-- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="box-type-intoiter"></span>`type IntoIter = I`
+- <span id="box-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="box-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> Iterator for Box<I, A>`
 
-- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="box-next"></span>`fn next(&mut self) -> Option<<I as >::Item>`
 
@@ -349,9 +349,9 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<P, T> Receiver for Box<T, A>`
+##### `impl<T> Receiver for Box<T, A>`
 
-- <span id="box-type-target"></span>`type Target = T`
+- <span id="box-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T, A> Send for Box<T, A>`
 

@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`choose_generics_over_qpath`](#choose_generics_over_qpath) | fn |  |
-| [`choose_generics_over_qpath_after_keyword`](#choose_generics_over_qpath_after_keyword) | fn |  |
+| [`choose_generics_over_qpath`](#choose-generics-over-qpath) | fn |  |
+| [`choose_generics_over_qpath_after_keyword`](#choose-generics-over-qpath-after-keyword) | fn |  |
 
 ## Functions
 

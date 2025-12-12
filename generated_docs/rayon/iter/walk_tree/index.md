@@ -13,11 +13,11 @@
   - [`WalkTreePostfix`](#walktreepostfix)
   - [`WalkTree`](#walktree)
 - [Functions](#functions)
-  - [`walk_tree_prefix`](#walk_tree_prefix)
-  - [`consume_rec_postfix`](#consume_rec_postfix)
-  - [`split_vec`](#split_vec)
-  - [`walk_tree_postfix`](#walk_tree_postfix)
-  - [`walk_tree`](#walk_tree)
+  - [`walk_tree_prefix`](#walk-tree-prefix)
+  - [`consume_rec_postfix`](#consume-rec-postfix)
+  - [`split_vec`](#split-vec)
+  - [`walk_tree_postfix`](#walk-tree-postfix)
+  - [`walk_tree`](#walk-tree)
 
 ## Quick Reference
 
@@ -28,11 +28,11 @@
 | [`WalkTreePostfixProducer`](#walktreepostfixproducer) | struct |  |
 | [`WalkTreePostfix`](#walktreepostfix) | struct | ParallelIterator for arbitrary tree-shaped patterns. |
 | [`WalkTree`](#walktree) | struct | ParallelIterator for arbitrary tree-shaped patterns. |
-| [`walk_tree_prefix`](#walk_tree_prefix) | fn | Create a tree-like prefix parallel iterator from an initial root node. |
-| [`consume_rec_postfix`](#consume_rec_postfix) | fn |  |
-| [`split_vec`](#split_vec) | fn | Divide given vector in two equally sized vectors. |
-| [`walk_tree_postfix`](#walk_tree_postfix) | fn | Create a tree like postfix parallel iterator from an initial root node. |
-| [`walk_tree`](#walk_tree) | fn | Create a tree like parallel iterator from an initial root node. |
+| [`walk_tree_prefix`](#walk-tree-prefix) | fn | Create a tree-like prefix parallel iterator from an initial root node. |
+| [`consume_rec_postfix`](#consume-rec-postfix) | fn |  |
+| [`split_vec`](#split-vec) | fn | Divide given vector in two equally sized vectors. |
+| [`walk_tree_postfix`](#walk-tree-postfix) | fn | Create a tree like postfix parallel iterator from an initial root node. |
+| [`walk_tree`](#walk-tree) | fn | Create a tree like parallel iterator from an initial root node. |
 
 ## Structs
 
@@ -50,17 +50,17 @@ struct WalkTreePrefixProducer<'b, S, B> {
 
 #### Trait Implementations
 
-##### `impl<'b, S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePrefixProducer<'b, S, B>`
+##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePrefixProducer<'b, S, B>`
 
 - <span id="walktreeprefixproducer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePrefixProducer<'b, S, B>`
+##### `impl IntoEither for WalkTreePrefixProducer<'b, S, B>`
 
-##### `impl<T> Pointable for WalkTreePrefixProducer<'b, S, B>`
+##### `impl Pointable for WalkTreePrefixProducer<'b, S, B>`
 
-- <span id="walktreeprefixproducer-const-align"></span>`const ALIGN: usize`
+- <span id="walktreeprefixproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreeprefixproducer-type-init"></span>`type Init = T`
+- <span id="walktreeprefixproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreeprefixproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -70,9 +70,9 @@ struct WalkTreePrefixProducer<'b, S, B> {
 
 - <span id="walktreeprefixproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<S, B, I> UnindexedProducer for WalkTreePrefixProducer<'_, S, B>`
+##### `impl<S, B> UnindexedProducer for WalkTreePrefixProducer<'_, S, B>`
 
-- <span id="walktreeprefixproducer-type-item"></span>`type Item = S`
+- <span id="walktreeprefixproducer-unindexedproducer-type-item"></span>`type Item = S`
 
 - <span id="walktreeprefixproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -98,27 +98,27 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 - <span id="walktreeprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePrefix<S, B>`
+##### `impl IntoEither for WalkTreePrefix<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTreePrefix<S, B>`
+##### `impl IntoParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-type-iter"></span>`type Iter = T`
+- <span id="walktreeprefix-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktreeprefix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreeprefix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreeprefix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTreePrefix<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-type-item"></span>`type Item = S`
+- <span id="walktreeprefix-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTreePrefix<S, B>`
+##### `impl Pointable for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-const-align"></span>`const ALIGN: usize`
+- <span id="walktreeprefix-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreeprefix-type-init"></span>`type Init = T`
+- <span id="walktreeprefix-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreeprefix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -142,17 +142,17 @@ struct WalkTreePostfixProducer<'b, S, B> {
 
 #### Trait Implementations
 
-##### `impl<'b, S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePostfixProducer<'b, S, B>`
+##### `impl<S: fmt::Debug, B: fmt::Debug> Debug for WalkTreePostfixProducer<'b, S, B>`
 
 - <span id="walktreepostfixproducer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePostfixProducer<'b, S, B>`
+##### `impl IntoEither for WalkTreePostfixProducer<'b, S, B>`
 
-##### `impl<T> Pointable for WalkTreePostfixProducer<'b, S, B>`
+##### `impl Pointable for WalkTreePostfixProducer<'b, S, B>`
 
-- <span id="walktreepostfixproducer-const-align"></span>`const ALIGN: usize`
+- <span id="walktreepostfixproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreepostfixproducer-type-init"></span>`type Init = T`
+- <span id="walktreepostfixproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreepostfixproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -162,9 +162,9 @@ struct WalkTreePostfixProducer<'b, S, B> {
 
 - <span id="walktreepostfixproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<S, B, I> UnindexedProducer for WalkTreePostfixProducer<'_, S, B>`
+##### `impl<S, B> UnindexedProducer for WalkTreePostfixProducer<'_, S, B>`
 
-- <span id="walktreepostfixproducer-type-item"></span>`type Item = S`
+- <span id="walktreepostfixproducer-unindexedproducer-type-item"></span>`type Item = S`
 
 - <span id="walktreepostfixproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -190,27 +190,27 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 - <span id="walktreepostfix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTreePostfix<S, B>`
+##### `impl IntoEither for WalkTreePostfix<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTreePostfix<S, B>`
+##### `impl IntoParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-type-iter"></span>`type Iter = T`
+- <span id="walktreepostfix-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktreepostfix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreepostfix-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreepostfix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTreePostfix<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-type-item"></span>`type Item = S`
+- <span id="walktreepostfix-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTreePostfix<S, B>`
+##### `impl Pointable for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-const-align"></span>`const ALIGN: usize`
+- <span id="walktreepostfix-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreepostfix-type-init"></span>`type Init = T`
+- <span id="walktreepostfix-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktreepostfix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -237,27 +237,27 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 - <span id="walktree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for WalkTree<S, B>`
+##### `impl IntoEither for WalkTree<S, B>`
 
-##### `impl<T> IntoParallelIterator for WalkTree<S, B>`
+##### `impl IntoParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-type-iter"></span>`type Iter = T`
+- <span id="walktree-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="walktree-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktree-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktree-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<S, B, I> ParallelIterator for WalkTree<S, B>`
+##### `impl<S, B> ParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-type-item"></span>`type Item = S`
+- <span id="walktree-paralleliterator-type-item"></span>`type Item = S`
 
 - <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for WalkTree<S, B>`
+##### `impl Pointable for WalkTree<S, B>`
 
-- <span id="walktree-const-align"></span>`const ALIGN: usize`
+- <span id="walktree-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktree-type-init"></span>`type Init = T`
+- <span id="walktree-pointable-type-init"></span>`type Init = T`
 
 - <span id="walktree-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

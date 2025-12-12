@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`parse_group`](#parse_group) | fn |  |
-| [`parse_delimited`](#parse_delimited) | fn |  |
+| [`parse_group`](#parse-group) | fn |  |
+| [`parse_delimited`](#parse-delimited) | fn |  |
 
 ## Functions
 

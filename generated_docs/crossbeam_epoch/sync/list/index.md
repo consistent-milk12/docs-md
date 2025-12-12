@@ -59,9 +59,9 @@ cache-line than thread-local data in terms of performance.
 
 ##### `impl Pointable for Entry`
 
-- <span id="entry-const-align"></span>`const ALIGN: usize`
+- <span id="entry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="entry-type-init"></span>`type Init = T`
+- <span id="entry-pointable-type-init"></span>`type Init = T`
 
 - <span id="entry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
@@ -114,9 +114,9 @@ A lock-free, intrusive linked list of type `T`.
 
 ##### `impl<T> Pointable for List<T, C>`
 
-- <span id="list-const-align"></span>`const ALIGN: usize`
+- <span id="list-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="list-type-init"></span>`type Init = T`
+- <span id="list-pointable-type-init"></span>`type Init = T`
 
 - <span id="list-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
@@ -167,25 +167,25 @@ An iterator used for retrieving values from the list.
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Iter<'g, T, C>`
+##### `impl IntoIterator for Iter<'g, T, C>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'g, T: 'g, C: IsElement<T>> Iterator for Iter<'g, T, C>`
+##### `impl<T: 'g, C: IsElement<T>> Iterator for Iter<'g, T, C>`
 
-- <span id="iter-type-item"></span>`type Item = Result<&'g T, IterError>`
+- <span id="iter-iterator-type-item"></span>`type Item = Result<&'g T, IterError>`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<T> Pointable for Iter<'g, T, C>`
 
-- <span id="iter-const-align"></span>`const ALIGN: usize`
+- <span id="iter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-type-init"></span>`type Init = T`
+- <span id="iter-pointable-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 
@@ -228,9 +228,9 @@ An error that occurs during iteration over the list.
 
 ##### `impl Pointable for IterError`
 
-- <span id="itererror-const-align"></span>`const ALIGN: usize`
+- <span id="itererror-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="itererror-type-init"></span>`type Init = T`
+- <span id="itererror-pointable-type-init"></span>`type Init = T`
 
 - <span id="itererror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 

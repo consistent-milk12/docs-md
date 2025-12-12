@@ -44,8 +44,8 @@ real demonstration of how quadratic behavior is mitigated.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`hybrid_try_search_half_rev`](#hybrid_try_search_half_rev) | fn |  |
-| [`hybrid_eoi_rev`](#hybrid_eoi_rev) | fn |  |
+| [`hybrid_try_search_half_rev`](#hybrid-try-search-half-rev) | fn |  |
+| [`hybrid_eoi_rev`](#hybrid-eoi-rev) | fn |  |
 
 ## Functions
 

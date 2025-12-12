@@ -5,8 +5,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ctypes`](#ctypes) | mod |  |
-| [`select_macros`](#select_macros) | mod |  |
-| [`signal_macros`](#signal_macros) | mod |  |
+| [`select_macros`](#select-macros) | mod |  |
+| [`signal_macros`](#signal-macros) | mod |  |
 | [`elf`](#elf) | mod | The ELF ABI. |
 | [`auxvec`](#auxvec) | mod |  |
 | [`errno`](#errno) | mod |  |

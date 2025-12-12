@@ -7,7 +7,7 @@
 ## Contents
 
 - [Modules](#modules)
-  - [`__private`](#__private)
+  - [`__private`](#private)
 - [Structs](#structs)
   - [`Flag`](#flag)
 - [Traits](#traits)
@@ -16,19 +16,19 @@
   - [`Primitive`](#primitive)
   - [`PublicFlags`](#publicflags)
 - [Macros](#macros)
-  - [`impl_bits!`](#impl_bits)
+  - [`impl_bits!`](#impl-bits)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`__private`](#__private) | mod |  |
+| [`__private`](#private) | mod |  |
 | [`Flag`](#flag) | struct | A defined flags value that may be named or unnamed. |
 | [`Flags`](#flags) | trait | A set of defined flags using a bits type as storage. |
 | [`Bits`](#bits) | trait | A bits type that can be used as storage for a flags type. |
 | [`Primitive`](#primitive) | trait |  |
 | [`PublicFlags`](#publicflags) | trait | A trait for referencing the `bitflags`-owned internal type without exposing it publicly. |
-| [`impl_bits!`](#impl_bits) | macro |  |
+| [`impl_bits!`](#impl-bits) | macro |  |
 
 ## Modules
 

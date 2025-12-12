@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Input`](#input) | enum |  |
 | [`Action`](#action) | enum |  |
-| [`scan_expr`](#scan_expr) | fn |  |
+| [`scan_expr`](#scan-expr) | fn |  |
 
 ## Enums
 

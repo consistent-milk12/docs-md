@@ -10,8 +10,8 @@ Support for lookups based on minimal perfect hashing.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`my_hash`](#my_hash) | fn |  |
-| [`mph_lookup`](#mph_lookup) | fn | Do a lookup using minimal perfect hashing. |
+| [`my_hash`](#my-hash) | fn |  |
+| [`mph_lookup`](#mph-lookup) | fn | Do a lookup using minimal perfect hashing. |
 
 ## Functions
 

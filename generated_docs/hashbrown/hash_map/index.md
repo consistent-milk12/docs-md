@@ -28,11 +28,11 @@ A hash map implemented with quadratic probing and SIMD lookup.
   - [`Entry`](#entry)
   - [`EntryRef`](#entryref)
 - [Functions](#functions)
-  - [`make_hasher`](#make_hasher)
-  - [`equivalent_key`](#equivalent_key)
+  - [`make_hasher`](#make-hasher)
+  - [`equivalent_key`](#equivalent-key)
   - [`equivalent`](#equivalent)
-  - [`make_hash`](#make_hash)
-  - [`assert_covariance`](#assert_covariance)
+  - [`make_hash`](#make-hash)
+  - [`assert_covariance`](#assert-covariance)
 
 ## Quick Reference
 
@@ -55,11 +55,11 @@ A hash map implemented with quadratic probing and SIMD lookup.
 | [`OccupiedError`](#occupiederror) | struct | The error returned by [`try_insert`](HashMap::try_insert) when the key already exists. |
 | [`Entry`](#entry) | enum | A view into a single entry in a map, which may either be vacant or occupied. |
 | [`EntryRef`](#entryref) | enum | A view into a single entry in a map, which may either be vacant or occupied, with any borrowed form of the map's key type. |
-| [`make_hasher`](#make_hasher) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
-| [`equivalent_key`](#equivalent_key) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
+| [`make_hasher`](#make-hasher) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
+| [`equivalent_key`](#equivalent-key) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
 | [`equivalent`](#equivalent) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
-| [`make_hash`](#make_hash) | fn |  |
-| [`assert_covariance`](#assert_covariance) | fn |  |
+| [`make_hash`](#make-hash) | fn |  |
+| [`assert_covariance`](#assert-covariance) | fn |  |
 
 ## Structs
 
@@ -266,7 +266,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
-##### `impl<Q, K> Equivalent for HashMap<K, V, S, A>`
+##### `impl<K> Equivalent for HashMap<K, V, S, A>`
 
 - <span id="hashmap-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -280,15 +280,15 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- <span id="hashmap-type-output"></span>`type Output = V`
+- <span id="hashmap-index-type-output"></span>`type Output = V`
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
-##### `impl<'a, K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
+##### `impl<K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
-- <span id="a-hashmap-type-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="a-hashmap-intoiterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
+- <span id="a-hashmap-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
 - <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](#iter)
 
@@ -354,17 +354,17 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<K, V> FusedIterator for Iter<'_, K, V>`
 
-##### `impl<I> IntoIterator for Iter<'a, K, V>`
+##### `impl IntoIterator for Iter<'a, K, V>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
+##### `impl<K, V> Iterator for Iter<'a, K, V>`
 
-- <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="iter-iterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
@@ -429,17 +429,17 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<K, V> FusedIterator for IterMut<'_, K, V>`
 
-##### `impl<I> IntoIterator for IterMut<'a, K, V>`
+##### `impl IntoIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
+##### `impl<K, V> Iterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
+- <span id="itermut-iterator-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
@@ -508,17 +508,17 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoIter<K, V, A>`
 
-##### `impl<I> IntoIterator for IntoIter<K, V, A>`
+##### `impl IntoIterator for IntoIter<K, V, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoIter<K, V, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = (K, V)`
+- <span id="intoiter-iterator-type-item"></span>`type Item = (K, V)`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
@@ -580,17 +580,17 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoKeys<K, V, A>`
 
-##### `impl<I> IntoIterator for IntoKeys<K, V, A>`
+##### `impl IntoIterator for IntoKeys<K, V, A>`
 
-- <span id="intokeys-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intokeys-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intokeys-type-intoiter"></span>`type IntoIter = I`
+- <span id="intokeys-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intokeys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoKeys<K, V, A>`
 
-- <span id="intokeys-type-item"></span>`type Item = K`
+- <span id="intokeys-iterator-type-item"></span>`type Item = K`
 
 - <span id="intokeys-next"></span>`fn next(&mut self) -> Option<K>`
 
@@ -651,17 +651,17 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoValues<K, V, A>`
 
-##### `impl<I> IntoIterator for IntoValues<K, V, A>`
+##### `impl IntoIterator for IntoValues<K, V, A>`
 
-- <span id="intovalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intovalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intovalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="intovalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoValues<K, V, A>`
 
-- <span id="intovalues-type-item"></span>`type Item = V`
+- <span id="intovalues-iterator-type-item"></span>`type Item = V`
 
 - <span id="intovalues-next"></span>`fn next(&mut self) -> Option<V>`
 
@@ -726,17 +726,17 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K, V> FusedIterator for Keys<'_, K, V>`
 
-##### `impl<I> IntoIterator for Keys<'a, K, V>`
+##### `impl IntoIterator for Keys<'a, K, V>`
 
-- <span id="keys-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="keys-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="keys-type-intoiter"></span>`type IntoIter = I`
+- <span id="keys-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for Keys<'a, K, V>`
+##### `impl<K, V> Iterator for Keys<'a, K, V>`
 
-- <span id="keys-type-item"></span>`type Item = &'a K`
+- <span id="keys-iterator-type-item"></span>`type Item = &'a K`
 
 - <span id="keys-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
@@ -801,17 +801,17 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V> FusedIterator for Values<'_, K, V>`
 
-##### `impl<I> IntoIterator for Values<'a, K, V>`
+##### `impl IntoIterator for Values<'a, K, V>`
 
-- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-type-intoiter"></span>`type IntoIter = I`
+- <span id="values-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for Values<'a, K, V>`
+##### `impl<K, V> Iterator for Values<'a, K, V>`
 
-- <span id="values-type-item"></span>`type Item = &'a V`
+- <span id="values-iterator-type-item"></span>`type Item = &'a V`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<&'a V>`
 
@@ -872,17 +872,17 @@ assert_eq!(drain_iter.next(), None);
 
 ##### `impl<K, V, A: Allocator> FusedIterator for Drain<'_, K, V, A>`
 
-##### `impl<I> IntoIterator for Drain<'a, K, V, A>`
+##### `impl IntoIterator for Drain<'a, K, V, A>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for Drain<'_, K, V, A>`
 
-- <span id="drain-type-item"></span>`type Item = (K, V)`
+- <span id="drain-iterator-type-item"></span>`type Item = (K, V)`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
@@ -935,17 +935,17 @@ assert_eq!(map.len(), 1);
 
 ##### `impl<K, V, F> FusedIterator for ExtractIf<'_, K, V, F>`
 
-##### `impl<I> IntoIterator for ExtractIf<'a, K, V, F, A>`
+##### `impl IntoIterator for ExtractIf<'a, K, V, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="extractif-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="extractif-type-intoiter"></span>`type IntoIter = I`
+- <span id="extractif-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, F, A> Iterator for ExtractIf<'_, K, V, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = (K, V)`
+- <span id="extractif-iterator-type-item"></span>`type Item = (K, V)`
 
 - <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1003,17 +1003,17 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<K, V> FusedIterator for ValuesMut<'_, K, V>`
 
-##### `impl<I> IntoIterator for ValuesMut<'a, K, V>`
+##### `impl IntoIterator for ValuesMut<'a, K, V>`
 
-- <span id="valuesmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="valuesmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for ValuesMut<'a, K, V>`
+##### `impl<K, V> Iterator for ValuesMut<'a, K, V>`
 
-- <span id="valuesmut-type-item"></span>`type Item = &'a mut V`
+- <span id="valuesmut-iterator-type-item"></span>`type Item = &'a mut V`
 
 - <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<&'a mut V>`
 
@@ -1113,7 +1113,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 *Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -1270,7 +1270,7 @@ assert_eq!(map[&"a"], 100);
 
 - <span id="occupiederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for OccupiedError<'a, K, V, S, A>`
+##### `impl ToString for OccupiedError<'a, K, V, S, A>`
 
 - <span id="occupiederror-to-string"></span>`fn to_string(&self) -> String`
 

@@ -15,8 +15,8 @@ for an overview.
 | [`Sleep`](#sleep) | struct | The `Sleep` struct is embedded into each registry. |
 | [`IdleState`](#idlestate) | struct | An instance of this struct is created when a thread becomes idle. |
 | [`WorkerSleepState`](#workersleepstate) | struct | The "sleep state" for an individual worker. |
-| [`ROUNDS_UNTIL_SLEEPY`](#rounds_until_sleepy) | const |  |
-| [`ROUNDS_UNTIL_SLEEPING`](#rounds_until_sleeping) | const |  |
+| [`ROUNDS_UNTIL_SLEEPY`](#rounds-until-sleepy) | const |  |
+| [`ROUNDS_UNTIL_SLEEPING`](#rounds-until-sleeping) | const |  |
 
 ## Modules
 
@@ -80,9 +80,9 @@ events. See the `README.md` in this module for more details.
 
 ##### `impl Pointable for Sleep`
 
-- <span id="sleep-const-align"></span>`const ALIGN: usize`
+- <span id="sleep-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sleep-type-init"></span>`type Init = T`
+- <span id="sleep-pointable-type-init"></span>`type Init = T`
 
 - <span id="sleep-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -135,9 +135,9 @@ idle.) It tracks state such as how long the thread has been idle.
 
 ##### `impl Pointable for IdleState`
 
-- <span id="idlestate-const-align"></span>`const ALIGN: usize`
+- <span id="idlestate-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="idlestate-type-init"></span>`type Init = T`
+- <span id="idlestate-pointable-type-init"></span>`type Init = T`
 
 - <span id="idlestate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -175,9 +175,9 @@ The "sleep state" for an individual worker.
 
 ##### `impl Pointable for WorkerSleepState`
 
-- <span id="workersleepstate-const-align"></span>`const ALIGN: usize`
+- <span id="workersleepstate-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="workersleepstate-type-init"></span>`type Init = T`
+- <span id="workersleepstate-pointable-type-init"></span>`type Init = T`
 
 - <span id="workersleepstate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

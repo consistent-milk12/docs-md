@@ -29,7 +29,7 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 
 ##### `impl<T: ?Sized> Deref for NoDrop<T>`
 
-- <span id="nodrop-type-target"></span>`type Target = T`
+- <span id="nodrop-deref-type-target"></span>`type Target = T`
 
 - <span id="nodrop-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -37,9 +37,9 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 
 - <span id="nodrop-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
-##### `impl<P, T> Receiver for NoDrop<T>`
+##### `impl<T> Receiver for NoDrop<T>`
 
-- <span id="nodrop-type-target"></span>`type Target = T`
+- <span id="nodrop-receiver-type-target"></span>`type Target = T`
 
 ## Traits
 

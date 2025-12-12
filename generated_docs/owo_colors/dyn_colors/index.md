@@ -77,7 +77,7 @@ allowing for multiple types of colors to be used at runtime.
 
 ##### `impl FromStr for DynColors`
 
-- <span id="dyncolors-type-err"></span>`type Err = ParseColorError`
+- <span id="dyncolors-fromstr-type-err"></span>`type Err = ParseColorError`
 
 - <span id="dyncolors-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 

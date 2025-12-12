@@ -10,7 +10,7 @@
   - [`fmt`](#fmt)
   - [`generics`](#generics)
   - [`prop`](#prop)
-  - [`scan_expr`](#scan_expr)
+  - [`scan_expr`](#scan-expr)
   - [`unraw`](#unraw)
   - [`valid`](#valid)
 - [Structs](#structs)
@@ -27,7 +27,7 @@
 | [`fmt`](#fmt) | mod |  |
 | [`generics`](#generics) | mod |  |
 | [`prop`](#prop) | mod |  |
-| [`scan_expr`](#scan_expr) | mod |  |
+| [`scan_expr`](#scan-expr) | mod |  |
 | [`unraw`](#unraw) | mod |  |
 | [`valid`](#valid) | mod |  |
 | [`private`](#private) | struct |  |

@@ -80,9 +80,9 @@ output/
 
 ##### `impl Pointable for FlatGenerator<'a>`
 
-- <span id="flatgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="flatgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatgenerator-type-init"></span>`type Init = T`
+- <span id="flatgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

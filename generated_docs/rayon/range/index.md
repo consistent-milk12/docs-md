@@ -31,9 +31,9 @@ assert_eq!((0..100).sum::<u64>(), r);
 - [Traits](#traits)
   - [`UnindexedRangeLen`](#unindexedrangelen)
 - [Macros](#macros)
-  - [`indexed_range_impl!`](#indexed_range_impl)
-  - [`unindexed_range_impl!`](#unindexed_range_impl)
-  - [`convert_char!`](#convert_char)
+  - [`indexed_range_impl!`](#indexed-range-impl)
+  - [`unindexed_range_impl!`](#unindexed-range-impl)
+  - [`convert_char!`](#convert-char)
 
 ## Quick Reference
 
@@ -43,9 +43,9 @@ assert_eq!((0..100).sum::<u64>(), r);
 | [`Iter`](#iter) | struct | Parallel iterator over a range, implemented for all integer types and `char`. |
 | [`IterProducer`](#iterproducer) | struct |  |
 | [`UnindexedRangeLen`](#unindexedrangelen) | trait |  |
-| [`indexed_range_impl!`](#indexed_range_impl) | macro |  |
-| [`unindexed_range_impl!`](#unindexed_range_impl) | macro |  |
-| [`convert_char!`](#convert_char) | macro |  |
+| [`indexed_range_impl!`](#indexed-range-impl) | macro |  |
+| [`unindexed_range_impl!`](#unindexed-range-impl) | macro |  |
+| [`convert_char!`](#convert-char) | macro |  |
 
 ## Modules
 
@@ -107,15 +107,15 @@ assert_eq!(p, s);
 
 ##### `impl<T> IntoParallelIterator for Iter<T>`
 
-- <span id="iter-type-iter"></span>`type Iter = T`
+- <span id="iter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- <span id="iter-type-item"></span>`type Item = T`
+- <span id="iter-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -123,9 +123,9 @@ assert_eq!(p, s);
 
 ##### `impl<T> Pointable for Iter<T>`
 
-- <span id="iter-const-align"></span>`const ALIGN: usize`
+- <span id="iter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-type-init"></span>`type Init = T`
+- <span id="iter-pointable-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -151,17 +151,17 @@ struct IterProducer<T> {
 
 ##### `impl<T> IntoIterator for IterProducer<T>`
 
-- <span id="iterproducer-type-item"></span>`type Item = <Range<T> as Iterator>::Item`
+- <span id="iterproducer-intoiterator-type-item"></span>`type Item = <Range<T> as Iterator>::Item`
 
-- <span id="iterproducer-type-intoiter"></span>`type IntoIter = Range<T>`
+- <span id="iterproducer-intoiterator-type-intoiter"></span>`type IntoIter = Range<T>`
 
 - <span id="iterproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl<T> Pointable for IterProducer<T>`
 
-- <span id="iterproducer-const-align"></span>`const ALIGN: usize`
+- <span id="iterproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterproducer-type-init"></span>`type Init = T`
+- <span id="iterproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="iterproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -173,9 +173,9 @@ struct IterProducer<T> {
 
 ##### `impl Producer for IterProducer<u8>`
 
-- <span id="iterproducer-type-item"></span>`type Item = <Range<u8> as Iterator>::Item`
+- <span id="iterproducer-producer-type-item"></span>`type Item = <Range<u8> as Iterator>::Item`
 
-- <span id="iterproducer-type-intoiter"></span>`type IntoIter = Range<u8>`
+- <span id="iterproducer-producer-type-intoiter"></span>`type IntoIter = Range<u8>`
 
 - <span id="iterproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
@@ -183,7 +183,7 @@ struct IterProducer<T> {
 
 ##### `impl UnindexedProducer for IterProducer<u64>`
 
-- <span id="iterproducer-type-item"></span>`type Item = u64`
+- <span id="iterproducer-unindexedproducer-type-item"></span>`type Item = u64`
 
 - <span id="iterproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 

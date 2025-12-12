@@ -24,16 +24,16 @@ Deserialize JSON data to a Rust data structure.
 - [Traits](#traits)
   - [`Read`](#read)
 - [Functions](#functions)
-  - [`from_trait`](#from_trait)
-  - [`from_reader`](#from_reader)
-  - [`from_slice`](#from_slice)
-  - [`from_str`](#from_str)
+  - [`from_trait`](#from-trait)
+  - [`from_reader`](#from-reader)
+  - [`from_slice`](#from-slice)
+  - [`from_str`](#from-str)
 - [Macros](#macros)
   - [`overflow!`](#overflow)
-  - [`deserialize_number!`](#deserialize_number)
-  - [`if_checking_recursion_limit!`](#if_checking_recursion_limit)
-  - [`check_recursion!`](#check_recursion)
-  - [`deserialize_numeric_key!`](#deserialize_numeric_key)
+  - [`deserialize_number!`](#deserialize-number)
+  - [`if_checking_recursion_limit!`](#if-checking-recursion-limit)
+  - [`check_recursion!`](#check-recursion)
+  - [`deserialize_numeric_key!`](#deserialize-numeric-key)
 
 ## Quick Reference
 
@@ -51,15 +51,15 @@ Deserialize JSON data to a Rust data structure.
 | [`StreamDeserializer`](#streamdeserializer) | struct | Iterator that deserializes a stream into multiple JSON values. |
 | [`ParserNumber`](#parsernumber) | enum |  |
 | [`Read`](#read) | trait |  |
-| [`from_trait`](#from_trait) | fn |  |
-| [`from_reader`](#from_reader) | fn | Deserialize an instance of type `T` from an I/O stream of JSON. |
-| [`from_slice`](#from_slice) | fn | Deserialize an instance of type `T` from bytes of JSON text. |
-| [`from_str`](#from_str) | fn | Deserialize an instance of type `T` from a string of JSON text. |
+| [`from_trait`](#from-trait) | fn |  |
+| [`from_reader`](#from-reader) | fn | Deserialize an instance of type `T` from an I/O stream of JSON. |
+| [`from_slice`](#from-slice) | fn | Deserialize an instance of type `T` from bytes of JSON text. |
+| [`from_str`](#from-str) | fn | Deserialize an instance of type `T` from a string of JSON text. |
 | [`overflow!`](#overflow) | macro |  |
-| [`deserialize_number!`](#deserialize_number) | macro |  |
-| [`if_checking_recursion_limit!`](#if_checking_recursion_limit) | macro |  |
-| [`check_recursion!`](#check_recursion) | macro |  |
-| [`deserialize_numeric_key!`](#deserialize_numeric_key) | macro |  |
+| [`deserialize_number!`](#deserialize-number) | macro |  |
+| [`if_checking_recursion_limit!`](#if-checking-recursion-limit) | macro |  |
+| [`check_recursion!`](#check-recursion) | macro |  |
+| [`deserialize_numeric_key!`](#deserialize-numeric-key) | macro |  |
 
 ## Structs
 
@@ -153,7 +153,7 @@ JSON input source that reads from a std::io input stream.
 
 #### Trait Implementations
 
-##### `impl<'de, R> Read for IoRead<R>`
+##### `impl<R> Read for IoRead<R>`
 
 ##### `impl<R> Sealed for IoRead<R>`
 
@@ -177,9 +177,9 @@ A structure that deserializes JSON into Rust values.
 
 #### Trait Implementations
 
-##### `impl<'de, R: Read<'de>> Deserializer for &mut Deserializer<R>`
+##### `impl<R: Read<'de>> Deserializer for &mut Deserializer<R>`
 
-- <span id="mut-deserializer-type-error"></span>`type Error = Error`
+- <span id="mut-deserializer-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="mut-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
 
@@ -260,9 +260,9 @@ struct SeqAccess<'a, R: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> SeqAccess for SeqAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> SeqAccess for SeqAccess<'a, R>`
 
-- <span id="seqaccess-type-error"></span>`type Error = Error`
+- <span id="seqaccess-seqaccess-type-error"></span>`type Error = Error`
 
 - <span id="seqaccess-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>>` — [`Result`](../error/index.md#result)
 
@@ -283,9 +283,9 @@ struct MapAccess<'a, R: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> MapAccess for MapAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> MapAccess for MapAccess<'a, R>`
 
-- <span id="mapaccess-type-error"></span>`type Error = Error`
+- <span id="mapaccess-mapaccess-type-error"></span>`type Error = Error`
 
 - <span id="mapaccess-next-key-seed"></span>`fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>>` — [`Result`](../error/index.md#result)
 
@@ -307,17 +307,17 @@ struct VariantAccess<'a, R: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> EnumAccess for VariantAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> EnumAccess for VariantAccess<'a, R>`
 
-- <span id="variantaccess-type-error"></span>`type Error = Error`
+- <span id="variantaccess-enumaccess-type-error"></span>`type Error = Error`
 
-- <span id="variantaccess-type-variant"></span>`type Variant = VariantAccess<'a, R>`
+- <span id="variantaccess-enumaccess-type-variant"></span>`type Variant = VariantAccess<'a, R>`
 
 - <span id="variantaccess-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../error/index.md#result)
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> VariantAccess for VariantAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> VariantAccess for VariantAccess<'a, R>`
 
-- <span id="variantaccess-type-error"></span>`type Error = Error`
+- <span id="variantaccess-variantaccess-type-error"></span>`type Error = Error`
 
 - <span id="variantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
@@ -343,17 +343,17 @@ struct UnitVariantAccess<'a, R: 'a> {
 
 #### Trait Implementations
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> EnumAccess for UnitVariantAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> EnumAccess for UnitVariantAccess<'a, R>`
 
-- <span id="unitvariantaccess-type-error"></span>`type Error = Error`
+- <span id="unitvariantaccess-enumaccess-type-error"></span>`type Error = Error`
 
-- <span id="unitvariantaccess-type-variant"></span>`type Variant = UnitVariantAccess<'a, R>`
+- <span id="unitvariantaccess-enumaccess-type-variant"></span>`type Variant = UnitVariantAccess<'a, R>`
 
 - <span id="unitvariantaccess-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../error/index.md#result)
 
-##### `impl<'de, 'a, R: Read<'de> + 'a> VariantAccess for UnitVariantAccess<'a, R>`
+##### `impl<R: Read<'de> + 'a> VariantAccess for UnitVariantAccess<'a, R>`
 
-- <span id="unitvariantaccess-type-error"></span>`type Error = Error`
+- <span id="unitvariantaccess-variantaccess-type-error"></span>`type Error = Error`
 
 - <span id="unitvariantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<()>` — [`Result`](../error/index.md#result)
 
@@ -382,9 +382,9 @@ deserialize invalid JSON successfully.
 
 #### Trait Implementations
 
-##### `impl<'de, 'a, R> Deserializer for MapKey<'a, R>`
+##### `impl<R> Deserializer for MapKey<'a, R>`
 
-- <span id="mapkey-type-error"></span>`type Error = Error`
+- <span id="mapkey-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="mapkey-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
 
@@ -494,19 +494,19 @@ fn main() {
 
 #### Trait Implementations
 
-##### `impl<'de, R, T> FusedIterator for StreamDeserializer<'de, R, T>`
+##### `impl<R, T> FusedIterator for StreamDeserializer<'de, R, T>`
 
-##### `impl<I> IntoIterator for StreamDeserializer<'de, R, T>`
+##### `impl IntoIterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamdeserializer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamdeserializer-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamdeserializer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamdeserializer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'de, R, T> Iterator for StreamDeserializer<'de, R, T>`
+##### `impl<R, T> Iterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-type-item"></span>`type Item = Result<T, Error>`
+- <span id="streamdeserializer-iterator-type-item"></span>`type Item = Result<T, Error>`
 
 - <span id="streamdeserializer-next"></span>`fn next(&mut self) -> Option<Result<T>>` — [`Result`](../error/index.md#result)
 

@@ -42,12 +42,12 @@ a|b|0x0C
   - [`WriteHex`](#writehex)
   - [`ParseHex`](#parsehex)
 - [Functions](#functions)
-  - [`to_writer`](#to_writer)
-  - [`from_str`](#from_str)
-  - [`to_writer_truncate`](#to_writer_truncate)
-  - [`from_str_truncate`](#from_str_truncate)
-  - [`to_writer_strict`](#to_writer_strict)
-  - [`from_str_strict`](#from_str_strict)
+  - [`to_writer`](#to-writer)
+  - [`from_str`](#from-str)
+  - [`to_writer_truncate`](#to-writer-truncate)
+  - [`from_str_truncate`](#from-str-truncate)
+  - [`to_writer_strict`](#to-writer-strict)
+  - [`from_str_strict`](#from-str-strict)
 
 ## Quick Reference
 
@@ -57,12 +57,12 @@ a|b|0x0C
 | [`ParseErrorKind`](#parseerrorkind) | enum |  |
 | [`WriteHex`](#writehex) | trait | Encode a value as a hex string. |
 | [`ParseHex`](#parsehex) | trait | Parse a value from a hex string. |
-| [`to_writer`](#to_writer) | fn | Write a flags value as text. |
-| [`from_str`](#from_str) | fn | Parse a flags value from text. |
-| [`to_writer_truncate`](#to_writer_truncate) | fn | Write a flags value as text, ignoring any unknown bits. |
-| [`from_str_truncate`](#from_str_truncate) | fn | Parse a flags value from text. |
-| [`to_writer_strict`](#to_writer_strict) | fn | Write only the contained, defined, named flags in a flags value as text. |
-| [`from_str_strict`](#from_str_strict) | fn | Parse a flags value from text. |
+| [`to_writer`](#to-writer) | fn | Write a flags value as text. |
+| [`from_str`](#from-str) | fn | Parse a flags value from text. |
+| [`to_writer_truncate`](#to-writer-truncate) | fn | Write a flags value as text, ignoring any unknown bits. |
+| [`from_str_truncate`](#from-str-truncate) | fn | Parse a flags value from text. |
+| [`to_writer_strict`](#to-writer-strict) | fn | Write only the contained, defined, named flags in a flags value as text. |
+| [`from_str_strict`](#from-str-strict) | fn | Parse a flags value from text. |
 
 ## Structs
 

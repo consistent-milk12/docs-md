@@ -49,7 +49,7 @@ destroyed as soon as the data structure gets dropped.
 | [`SealedBag`](#sealedbag) | struct | A pair of an epoch and a bag. |
 | [`Global`](#global) | struct | The global data for a garbage collector. |
 | [`Local`](#local) | struct | Participant for garbage collection. |
-| [`MAX_OBJECTS`](#max_objects) | const | Maximum number of objects a bag can contain. |
+| [`MAX_OBJECTS`](#max-objects) | const | Maximum number of objects a bag can contain. |
 
 ## Structs
 
@@ -98,9 +98,9 @@ A bag of deferred functions.
 
 ##### `impl Pointable for Bag`
 
-- <span id="bag-const-align"></span>`const ALIGN: usize`
+- <span id="bag-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="bag-type-init"></span>`type Init = T`
+- <span id="bag-pointable-type-init"></span>`type Init = T`
 
 - <span id="bag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
@@ -141,9 +141,9 @@ A pair of an epoch and a bag.
 
 ##### `impl Pointable for SealedBag`
 
-- <span id="sealedbag-const-align"></span>`const ALIGN: usize`
+- <span id="sealedbag-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sealedbag-type-init"></span>`type Init = T`
+- <span id="sealedbag-pointable-type-init"></span>`type Init = T`
 
 - <span id="sealedbag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
@@ -199,9 +199,9 @@ The global data for a garbage collector.
 
 ##### `impl Pointable for Global`
 
-- <span id="global-const-align"></span>`const ALIGN: usize`
+- <span id="global-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="global-type-init"></span>`type Init = T`
+- <span id="global-pointable-type-init"></span>`type Init = T`
 
 - <span id="global-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
@@ -303,9 +303,9 @@ Participant for garbage collection.
 
 ##### `impl Pointable for Local`
 
-- <span id="local-const-align"></span>`const ALIGN: usize`
+- <span id="local-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="local-type-init"></span>`type Init = T`
+- <span id="local-pointable-type-init"></span>`type Init = T`
 
 - <span id="local-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 

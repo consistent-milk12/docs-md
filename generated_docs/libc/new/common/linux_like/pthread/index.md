@@ -8,11 +8,11 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`pthread_getaffinity_np`](#pthread_getaffinity_np) | fn |  |
-| [`pthread_getattr_np`](#pthread_getattr_np) | fn |  |
-| [`pthread_getname_np`](#pthread_getname_np) | fn |  |
-| [`pthread_setaffinity_np`](#pthread_setaffinity_np) | fn |  |
-| [`pthread_setname_np`](#pthread_setname_np) | fn |  |
+| [`pthread_getaffinity_np`](#pthread-getaffinity-np) | fn |  |
+| [`pthread_getattr_np`](#pthread-getattr-np) | fn |  |
+| [`pthread_getname_np`](#pthread-getname-np) | fn |  |
+| [`pthread_setaffinity_np`](#pthread-setaffinity-np) | fn |  |
+| [`pthread_setname_np`](#pthread-setname-np) | fn |  |
 
 ## Functions
 

@@ -56,21 +56,21 @@ An iterator for the COMDAT section groups in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfComdatIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfComdatIterator<'data, 'file, Elf, R>`
 
 - <span id="elfcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfComdatIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-type-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elfcomdatiterator-iterator-type-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
 
 - <span id="elfcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -103,13 +103,13 @@ Most functionality is provided by the [`ObjectComdat`](../../index.md) trait imp
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfComdat<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfComdat<'data, 'file, Elf, R>`
 
 - <span id="elfcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Elf, R> ObjectComdat for ElfComdat<'data, 'file, Elf, R>`
+##### `impl<Elf, R> ObjectComdat for ElfComdat<'data, 'file, Elf, R>`
 
-- <span id="elfcomdat-type-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
+- <span id="elfcomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
@@ -121,7 +121,7 @@ Most functionality is provided by the [`ObjectComdat`](../../index.md) trait imp
 
 - <span id="elfcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Elf, R> Sealed for ElfComdat<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Sealed for ElfComdat<'data, 'file, Elf, R>`
 
 ### `ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
@@ -141,21 +141,21 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile`](../inde
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfComdatSectionIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="elfcomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="elfcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -21,8 +21,8 @@ Gracefully degrade styled output
   - [`WinconBytes`](#winconbytes)
   - [`WinconBytesIter`](#winconbytesiter)
 - [Functions](#functions)
-  - [`strip_bytes`](#strip_bytes)
-  - [`strip_str`](#strip_str)
+  - [`strip_bytes`](#strip-bytes)
+  - [`strip_str`](#strip-str)
 
 ## Quick Reference
 
@@ -38,8 +38,8 @@ Gracefully degrade styled output
 | [`StrippedStr`](#strippedstr) | struct |  |
 | [`WinconBytes`](#winconbytes) | struct |  |
 | [`WinconBytesIter`](#winconbytesiter) | struct |  |
-| [`strip_bytes`](#strip_bytes) | fn |  |
-| [`strip_str`](#strip_str) | fn |  |
+| [`strip_bytes`](#strip-bytes) | fn |  |
+| [`strip_str`](#strip-str) | fn |  |
 
 ## Modules
 
@@ -113,15 +113,15 @@ See [`StripBytes`](strip/index.md)
 
 ##### `impl IntoIterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripbytesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripbytesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="stripbytesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-type-item"></span>`type Item = &'s [u8]`
+- <span id="stripbytesiter-iterator-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="stripbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -194,15 +194,15 @@ See [`StripStr`](strip/index.md)
 
 ##### `impl IntoIterator for StripStrIter<'s>`
 
-- <span id="stripstriter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripstriter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripstriter-type-intoiter"></span>`type IntoIter = I`
+- <span id="stripstriter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripstriter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StripStrIter<'s>`
 
-- <span id="stripstriter-type-item"></span>`type Item = &'s str`
+- <span id="stripstriter-iterator-type-item"></span>`type Item = &'s str`
 
 - <span id="stripstriter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -254,15 +254,15 @@ See [`strip_bytes`](strip/index.md)
 
 ##### `impl IntoIterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedbytes-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedbytes-type-intoiter"></span>`type IntoIter = I`
+- <span id="strippedbytes-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedbytes-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-type-item"></span>`type Item = &'s [u8]`
+- <span id="strippedbytes-iterator-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="strippedbytes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -313,15 +313,15 @@ See [`strip_str`](strip/index.md)
 
 ##### `impl IntoIterator for StrippedStr<'s>`
 
-- <span id="strippedstr-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedstr-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedstr-type-intoiter"></span>`type IntoIter = I`
+- <span id="strippedstr-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedstr-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StrippedStr<'s>`
 
-- <span id="strippedstr-type-item"></span>`type Item = &'s str`
+- <span id="strippedstr-iterator-type-item"></span>`type Item = &'s str`
 
 - <span id="strippedstr-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -400,15 +400,15 @@ See [`WinconBytes`](wincon/index.md)
 
 ##### `impl IntoIterator for WinconBytesIter<'s>`
 
-- <span id="winconbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="winconbytesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="winconbytesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="winconbytesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="winconbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for WinconBytesIter<'_>`
 
-- <span id="winconbytesiter-type-item"></span>`type Item = (Style, String)`
+- <span id="winconbytesiter-iterator-type-item"></span>`type Item = (Style, String)`
 
 - <span id="winconbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -420,7 +420,51 @@ See [`WinconBytes`](wincon/index.md)
 
 ## Functions
 
-*Defined in [`anstream-0.6.21/src/adapter/mod.rs:6`](../../../.source_1765210505/anstream-0.6.21/src/adapter/mod.rs#L6)*
+### `strip_bytes`
 
-*Defined in [`anstream-0.6.21/src/adapter/mod.rs:7`](../../../.source_1765210505/anstream-0.6.21/src/adapter/mod.rs#L7)*
+```rust
+fn strip_bytes(data: &[u8]) -> StrippedBytes<'_>
+```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
+
+Strip ANSI escapes from bytes, returning the printable content
+
+This can be used to take output from a program that includes escape sequences and write it
+somewhere that does not easily support them, such as a log file.
+
+# Example
+
+```rust
+use std::io::Write as _;
+
+let styled_text = "\x1b[32mfoo\x1b[m bar";
+let plain_str = anstream::adapter::strip_bytes(styled_text.as_bytes()).into_vec();
+assert_eq!(plain_str.as_slice(), &b"foo bar"[..]);
+```
+
+### `strip_str`
+
+```rust
+fn strip_str(data: &str) -> StrippedStr<'_>
+```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
+
+Strip ANSI escapes from a `&str`, returning the printable content
+
+This can be used to take output from a program that includes escape sequences and write it
+somewhere that does not easily support them, such as a log file.
+
+For non-contiguous data, see [`StripStr`](strip/index.md).
+
+# Example
+
+```rust
+use std::io::Write as _;
+
+let styled_text = "\x1b[32mfoo\x1b[m bar";
+let plain_str = anstream::adapter::strip_str(&styled_text).to_string();
+assert_eq!(plain_str, "foo bar");
+```
 

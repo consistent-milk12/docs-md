@@ -19,7 +19,7 @@ hint::spin_loop();
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`spin_loop`](#spin_loop) | fn | Emits a machine instruction to signal the processor that it is running in a busy-wait spin-loop ("spin lock"). |
+| [`spin_loop`](#spin-loop) | fn | Emits a machine instruction to signal the processor that it is running in a busy-wait spin-loop ("spin lock"). |
 
 ## Functions
 

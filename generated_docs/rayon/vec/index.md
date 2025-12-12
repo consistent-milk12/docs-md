@@ -55,15 +55,15 @@ Parallel iterator that moves out of a vector.
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-type-iter"></span>`type Iter = T`
+- <span id="intoiter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -71,9 +71,9 @@ Parallel iterator that moves out of a vector.
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-const-align"></span>`const ALIGN: usize`
+- <span id="intoiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-type-init"></span>`type Init = T`
+- <span id="intoiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -99,15 +99,15 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 #### Trait Implementations
 
-##### `impl<'data, T: fmt::Debug + Send> Debug for Drain<'data, T>`
+##### `impl<T: fmt::Debug + Send> Debug for Drain<'data, T>`
 
 - <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, T: Send> Drop for Drain<'data, T>`
+##### `impl<T: Send> Drop for Drain<'data, T>`
 
 - <span id="drain-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'data, T: Send> IndexedParallelIterator for Drain<'data, T>`
+##### `impl<T: Send> IndexedParallelIterator for Drain<'data, T>`
 
 - <span id="drain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -119,15 +119,15 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 ##### `impl<T> IntoParallelIterator for Drain<'data, T>`
 
-- <span id="drain-type-iter"></span>`type Iter = T`
+- <span id="drain-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T: Send> ParallelIterator for Drain<'data, T>`
+##### `impl<T: Send> ParallelIterator for Drain<'data, T>`
 
-- <span id="drain-type-item"></span>`type Item = T`
+- <span id="drain-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -135,9 +135,9 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 ##### `impl<T> Pointable for Drain<'data, T>`
 
-- <span id="drain-const-align"></span>`const ALIGN: usize`
+- <span id="drain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-type-init"></span>`type Init = T`
+- <span id="drain-pointable-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -165,7 +165,7 @@ struct DrainProducer<'data, T: Send> {
 
 #### Trait Implementations
 
-##### `impl<'data, T: 'data + Send> Drop for DrainProducer<'data, T>`
+##### `impl<T: 'data + Send> Drop for DrainProducer<'data, T>`
 
 - <span id="drainproducer-drop"></span>`fn drop(&mut self)`
 
@@ -173,9 +173,9 @@ struct DrainProducer<'data, T: Send> {
 
 ##### `impl<T> Pointable for DrainProducer<'data, T>`
 
-- <span id="drainproducer-const-align"></span>`const ALIGN: usize`
+- <span id="drainproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="drainproducer-type-init"></span>`type Init = T`
+- <span id="drainproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="drainproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -185,11 +185,11 @@ struct DrainProducer<'data, T: Send> {
 
 - <span id="drainproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'data, T: 'data + Send> Producer for DrainProducer<'data, T>`
+##### `impl<T: 'data + Send> Producer for DrainProducer<'data, T>`
 
-- <span id="drainproducer-type-item"></span>`type Item = T`
+- <span id="drainproducer-producer-type-item"></span>`type Item = T`
 
-- <span id="drainproducer-type-intoiter"></span>`type IntoIter = SliceDrain<'data, T>`
+- <span id="drainproducer-producer-type-intoiter"></span>`type IntoIter = SliceDrain<'data, T>`
 
 - <span id="drainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md#producer)
 
@@ -207,33 +207,33 @@ struct SliceDrain<'data, T> {
 
 #### Trait Implementations
 
-##### `impl<'data, T: 'data> DoubleEndedIterator for SliceDrain<'data, T>`
+##### `impl<T: 'data> DoubleEndedIterator for SliceDrain<'data, T>`
 
 - <span id="slicedrain-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'data, T: 'data> Drop for SliceDrain<'data, T>`
+##### `impl<T: 'data> Drop for SliceDrain<'data, T>`
 
 - <span id="slicedrain-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'data, T: 'data> ExactSizeIterator for SliceDrain<'data, T>`
+##### `impl<T: 'data> ExactSizeIterator for SliceDrain<'data, T>`
 
 - <span id="slicedrain-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'data, T: 'data> FusedIterator for SliceDrain<'data, T>`
+##### `impl<T: 'data> FusedIterator for SliceDrain<'data, T>`
 
 ##### `impl<T> IntoEither for SliceDrain<'data, T>`
 
-##### `impl<I> IntoIterator for SliceDrain<'data, T>`
+##### `impl IntoIterator for SliceDrain<'data, T>`
 
-- <span id="slicedrain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="slicedrain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="slicedrain-type-intoiter"></span>`type IntoIter = I`
+- <span id="slicedrain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="slicedrain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, T: 'data> Iterator for SliceDrain<'data, T>`
+##### `impl<T: 'data> Iterator for SliceDrain<'data, T>`
 
-- <span id="slicedrain-type-item"></span>`type Item = T`
+- <span id="slicedrain-iterator-type-item"></span>`type Item = T`
 
 - <span id="slicedrain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -243,9 +243,9 @@ struct SliceDrain<'data, T> {
 
 ##### `impl<T> Pointable for SliceDrain<'data, T>`
 
-- <span id="slicedrain-const-align"></span>`const ALIGN: usize`
+- <span id="slicedrain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="slicedrain-type-init"></span>`type Init = T`
+- <span id="slicedrain-pointable-type-init"></span>`type Init = T`
 
 - <span id="slicedrain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

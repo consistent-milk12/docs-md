@@ -240,7 +240,7 @@ See `Command::error` to create an error.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error<F>`
+##### `impl ToString for Error<F>`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 

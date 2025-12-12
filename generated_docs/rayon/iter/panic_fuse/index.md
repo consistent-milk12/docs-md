@@ -56,29 +56,29 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../i
 
 - <span id="panicfuse-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for PanicFuse<I>`
+##### `impl IntoEither for PanicFuse<I>`
 
-##### `impl<T> IntoParallelIterator for PanicFuse<I>`
+##### `impl IntoParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-type-iter"></span>`type Iter = T`
+- <span id="panicfuse-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="panicfuse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="panicfuse-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="panicfuse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="panicfuse-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="panicfuse-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for PanicFuse<I>`
+##### `impl Pointable for PanicFuse<I>`
 
-- <span id="panicfuse-const-align"></span>`const ALIGN: usize`
+- <span id="panicfuse-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuse-type-init"></span>`type Init = T`
+- <span id="panicfuse-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfuse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -116,9 +116,9 @@ Helper that sets a bool to `true` if dropped while unwinding.
 
 ##### `impl Pointable for Fuse<'a>`
 
-- <span id="fuse-const-align"></span>`const ALIGN: usize`
+- <span id="fuse-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="fuse-type-init"></span>`type Init = T`
+- <span id="fuse-pointable-type-init"></span>`type Init = T`
 
 - <span id="fuse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -141,13 +141,13 @@ struct PanicFuseProducer<'a, P> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for PanicFuseProducer<'a, P>`
+##### `impl IntoEither for PanicFuseProducer<'a, P>`
 
-##### `impl<T> Pointable for PanicFuseProducer<'a, P>`
+##### `impl Pointable for PanicFuseProducer<'a, P>`
 
-- <span id="panicfuseproducer-const-align"></span>`const ALIGN: usize`
+- <span id="panicfuseproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuseproducer-type-init"></span>`type Init = T`
+- <span id="panicfuseproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfuseproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -157,11 +157,11 @@ struct PanicFuseProducer<'a, P> {
 
 - <span id="panicfuseproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, P> Producer for PanicFuseProducer<'a, P>`
+##### `impl<P> Producer for PanicFuseProducer<'a, P>`
 
-- <span id="panicfuseproducer-type-item"></span>`type Item = <P as Producer>::Item`
+- <span id="panicfuseproducer-producer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="panicfuseproducer-type-intoiter"></span>`type IntoIter = PanicFuseIter<'a, <P as Producer>::IntoIter>`
+- <span id="panicfuseproducer-producer-type-intoiter"></span>`type IntoIter = PanicFuseIter<'a, <P as Producer>::IntoIter>`
 
 - <span id="panicfuseproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -186,37 +186,37 @@ struct PanicFuseIter<'a, I> {
 
 #### Trait Implementations
 
-##### `impl<'a, I> DoubleEndedIterator for PanicFuseIter<'a, I>`
+##### `impl<I> DoubleEndedIterator for PanicFuseIter<'a, I>`
 
 - <span id="panicfuseiter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, I> ExactSizeIterator for PanicFuseIter<'a, I>`
+##### `impl<I> ExactSizeIterator for PanicFuseIter<'a, I>`
 
 - <span id="panicfuseiter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<T> IntoEither for PanicFuseIter<'a, I>`
+##### `impl IntoEither for PanicFuseIter<'a, I>`
 
 ##### `impl<I> IntoIterator for PanicFuseIter<'a, I>`
 
-- <span id="panicfuseiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="panicfuseiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="panicfuseiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="panicfuseiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="panicfuseiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, I> Iterator for PanicFuseIter<'a, I>`
+##### `impl<I> Iterator for PanicFuseIter<'a, I>`
 
-- <span id="panicfuseiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="panicfuseiter-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="panicfuseiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="panicfuseiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> Pointable for PanicFuseIter<'a, I>`
+##### `impl Pointable for PanicFuseIter<'a, I>`
 
-- <span id="panicfuseiter-const-align"></span>`const ALIGN: usize`
+- <span id="panicfuseiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuseiter-type-init"></span>`type Init = T`
+- <span id="panicfuseiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfuseiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -239,13 +239,13 @@ struct PanicFuseConsumer<'a, C> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, C> Consumer for PanicFuseConsumer<'a, C>`
+##### `impl<T, C> Consumer for PanicFuseConsumer<'a, C>`
 
-- <span id="panicfuseconsumer-type-folder"></span>`type Folder = PanicFuseFolder<'a, <C as Consumer>::Folder>`
+- <span id="panicfuseconsumer-consumer-type-folder"></span>`type Folder = PanicFuseFolder<'a, <C as Consumer>::Folder>`
 
-- <span id="panicfuseconsumer-type-reducer"></span>`type Reducer = PanicFuseReducer<'a, <C as Consumer>::Reducer>`
+- <span id="panicfuseconsumer-consumer-type-reducer"></span>`type Reducer = PanicFuseReducer<'a, <C as Consumer>::Reducer>`
 
-- <span id="panicfuseconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="panicfuseconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="panicfuseconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -253,13 +253,13 @@ struct PanicFuseConsumer<'a, C> {
 
 - <span id="panicfuseconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for PanicFuseConsumer<'a, C>`
+##### `impl IntoEither for PanicFuseConsumer<'a, C>`
 
-##### `impl<T> Pointable for PanicFuseConsumer<'a, C>`
+##### `impl Pointable for PanicFuseConsumer<'a, C>`
 
-- <span id="panicfuseconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="panicfuseconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuseconsumer-type-init"></span>`type Init = T`
+- <span id="panicfuseconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfuseconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -269,7 +269,7 @@ struct PanicFuseConsumer<'a, C> {
 
 - <span id="panicfuseconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, T, C> UnindexedConsumer for PanicFuseConsumer<'a, C>`
+##### `impl<T, C> UnindexedConsumer for PanicFuseConsumer<'a, C>`
 
 - <span id="panicfuseconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -288,9 +288,9 @@ struct PanicFuseFolder<'a, C> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, C> Folder for PanicFuseFolder<'a, C>`
+##### `impl<T, C> Folder for PanicFuseFolder<'a, C>`
 
-- <span id="panicfusefolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="panicfusefolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="panicfusefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -300,13 +300,13 @@ struct PanicFuseFolder<'a, C> {
 
 - <span id="panicfusefolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for PanicFuseFolder<'a, C>`
+##### `impl IntoEither for PanicFuseFolder<'a, C>`
 
-##### `impl<T> Pointable for PanicFuseFolder<'a, C>`
+##### `impl Pointable for PanicFuseFolder<'a, C>`
 
-- <span id="panicfusefolder-const-align"></span>`const ALIGN: usize`
+- <span id="panicfusefolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfusefolder-type-init"></span>`type Init = T`
+- <span id="panicfusefolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfusefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -329,13 +329,13 @@ struct PanicFuseReducer<'a, C> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for PanicFuseReducer<'a, C>`
+##### `impl IntoEither for PanicFuseReducer<'a, C>`
 
-##### `impl<T> Pointable for PanicFuseReducer<'a, C>`
+##### `impl Pointable for PanicFuseReducer<'a, C>`
 
-- <span id="panicfusereducer-const-align"></span>`const ALIGN: usize`
+- <span id="panicfusereducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfusereducer-type-init"></span>`type Init = T`
+- <span id="panicfusereducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="panicfusereducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -345,7 +345,7 @@ struct PanicFuseReducer<'a, C> {
 
 - <span id="panicfusereducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, T, C> Reducer for PanicFuseReducer<'a, C>`
+##### `impl<T, C> Reducer for PanicFuseReducer<'a, C>`
 
 - <span id="panicfusereducer-reduce"></span>`fn reduce(self, left: T, right: T) -> T`
 

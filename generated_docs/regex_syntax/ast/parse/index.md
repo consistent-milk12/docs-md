@@ -18,9 +18,9 @@ This module provides a regular expression parser.
   - [`GroupState`](#groupstate)
   - [`ClassState`](#classstate)
 - [Functions](#functions)
-  - [`is_hex`](#is_hex)
-  - [`is_capture_char`](#is_capture_char)
-  - [`specialize_err`](#specialize_err)
+  - [`is_hex`](#is-hex)
+  - [`is_capture_char`](#is-capture-char)
+  - [`specialize_err`](#specialize-err)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 
@@ -35,9 +35,9 @@ This module provides a regular expression parser.
 | [`Primitive`](#primitive) | enum | A primitive is an expression with no sub-expressions. |
 | [`GroupState`](#groupstate) | enum | GroupState represents a single stack frame while parsing nested groups and alternations. |
 | [`ClassState`](#classstate) | enum | ClassState represents a single stack frame while parsing character classes. |
-| [`is_hex`](#is_hex) | fn | Returns true if the given character is a hexadecimal digit. |
-| [`is_capture_char`](#is_capture_char) | fn | Returns true if the given character is a valid in a capture group name. |
-| [`specialize_err`](#specialize_err) | fn | When the result is an error, transforms the ast::ErrorKind from the source Result into another one. |
+| [`is_hex`](#is-hex) | fn | Returns true if the given character is a hexadecimal digit. |
+| [`is_capture_char`](#is-capture-char) | fn | Returns true if the given character is a valid in a capture group name. |
+| [`specialize_err`](#specialize-err) | fn | When the result is an error, transforms the ast::ErrorKind from the source Result into another one. |
 | [`Result`](#result) | type |  |
 
 ## Structs
@@ -296,11 +296,11 @@ work against the internal interface of the parser.
 
 #### Trait Implementations
 
-##### `impl<'s, P: clone::Clone> Clone for ParserI<'s, P>`
+##### `impl<P: clone::Clone> Clone for ParserI<'s, P>`
 
 - <span id="parseri-clone"></span>`fn clone(&self) -> ParserI<'s, P>` — [`ParserI`](#parseri)
 
-##### `impl<'s, P: fmt::Debug> Debug for ParserI<'s, P>`
+##### `impl<P: fmt::Debug> Debug for ParserI<'s, P>`
 
 - <span id="parseri-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -340,15 +340,15 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 
 #### Trait Implementations
 
-##### `impl<'p, 's, P: fmt::Debug> Debug for NestLimiter<'p, 's, P>`
+##### `impl<P: fmt::Debug> Debug for NestLimiter<'p, 's, P>`
 
 - <span id="nestlimiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'p, 's, P: Borrow<Parser>> Visitor for NestLimiter<'p, 's, P>`
+##### `impl<P: Borrow<Parser>> Visitor for NestLimiter<'p, 's, P>`
 
-- <span id="nestlimiter-type-output"></span>`type Output = ()`
+- <span id="nestlimiter-visitor-type-output"></span>`type Output = ()`
 
-- <span id="nestlimiter-type-err"></span>`type Err = Error`
+- <span id="nestlimiter-visitor-type-err"></span>`type Err = Error`
 
 - <span id="nestlimiter-finish"></span>`fn finish(self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md#error)
 

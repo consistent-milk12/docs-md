@@ -23,9 +23,9 @@
 - [Traits](#traits)
   - [`LineProgram`](#lineprogram)
 - [Functions](#functions)
-  - [`parse_directory_v5`](#parse_directory_v5)
-  - [`parse_file_v5`](#parse_file_v5)
-  - [`parse_attribute`](#parse_attribute)
+  - [`parse_directory_v5`](#parse-directory-v5)
+  - [`parse_file_v5`](#parse-file-v5)
+  - [`parse_attribute`](#parse-attribute)
 - [Type Aliases](#type-aliases)
   - [`LineNumberProgram`](#linenumberprogram)
   - [`StateMachine`](#statemachine)
@@ -56,9 +56,9 @@
 | [`LineInstruction`](#lineinstruction) | enum | A parsed line number program instruction. |
 | [`ColumnType`](#columntype) | enum | The type of column that a row is referring to. |
 | [`LineProgram`](#lineprogram) | trait | A `LineProgram` provides access to a `LineProgramHeader` and a way to add files to the files table if necessary. |
-| [`parse_directory_v5`](#parse_directory_v5) | fn |  |
-| [`parse_file_v5`](#parse_file_v5) | fn |  |
-| [`parse_attribute`](#parse_attribute) | fn |  |
+| [`parse_directory_v5`](#parse-directory-v5) | fn |  |
+| [`parse_file_v5`](#parse-file-v5) | fn |  |
+| [`parse_attribute`](#parse-attribute) | fn |  |
 | [`LineNumberProgram`](#linenumberprogram) | type | Deprecated. |
 | [`StateMachine`](#statemachine) | type | Deprecated. |
 | [`OneShotLineRows`](#oneshotlinerows) | type |  |
@@ -545,7 +545,7 @@ A line number program that has previously been run to completion.
 
 ##### `impl<R, Offset> Eq for CompleteLineProgram<R, Offset>`
 
-##### `impl<'program, R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
+##### `impl<R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
 
 - <span id="program-completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md#lineprogramheader)
 

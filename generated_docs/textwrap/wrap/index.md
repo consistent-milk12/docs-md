@@ -11,8 +11,8 @@ Functions for wrapping text.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`wrap`](#wrap) | fn | Wrap a line of text at a given width. |
-| [`wrap_single_line`](#wrap_single_line) | fn |  |
-| [`wrap_single_line_slow_path`](#wrap_single_line_slow_path) | fn | Wrap a single line of text. |
+| [`wrap_single_line`](#wrap-single-line) | fn |  |
+| [`wrap_single_line_slow_path`](#wrap-single-line-slow-path) | fn | Wrap a single line of text. |
 
 ## Functions
 

@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Capacity`](#capacity) | struct | An integer type that uses `core::mem::size_of::<usize>() - 1` bytes to store the capacity of a heap buffer. |
-| [`USIZE_SIZE`](#usize_size) | const |  |
-| [`VALID_MASK`](#valid_mask) | const | Mask of bits in [`Capacity`] that encode the value. |
-| [`HEAP_MARKER`](#heap_marker) | const | Mask of bits that are set in [`Capacity`] if the string data is stored on the heap. |
-| [`MAX_VALUE`](#max_value) | const | The maximum value we're able to store, e.g. on 64-bit arch this is 2^56 - 2. |
+| [`USIZE_SIZE`](#usize-size) | const |  |
+| [`VALID_MASK`](#valid-mask) | const | Mask of bits in [`Capacity`] that encode the value. |
+| [`HEAP_MARKER`](#heap-marker) | const | Mask of bits that are set in [`Capacity`] if the string data is stored on the heap. |
+| [`MAX_VALUE`](#max-value) | const | The maximum value we're able to store, e.g. on 64-bit arch this is 2^56 - 2. |
 
 ## Structs
 

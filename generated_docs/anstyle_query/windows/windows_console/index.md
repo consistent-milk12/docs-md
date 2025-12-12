@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`enable_ansi_colors`](#enable_ansi_colors) | fn |  |
+| [`enable_ansi_colors`](#enable-ansi-colors) | fn |  |
 
 ## Functions
 

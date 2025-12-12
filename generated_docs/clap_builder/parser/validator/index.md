@@ -10,10 +10,10 @@
 |------|------|-------------|
 | [`Validator`](#validator) | struct |  |
 | [`Conflicts`](#conflicts) | struct |  |
-| [`gather_direct_conflicts`](#gather_direct_conflicts) | fn |  |
-| [`gather_arg_direct_conflicts`](#gather_arg_direct_conflicts) | fn |  |
-| [`gather_group_direct_conflicts`](#gather_group_direct_conflicts) | fn |  |
-| [`get_possible_values_cli`](#get_possible_values_cli) | fn |  |
+| [`gather_direct_conflicts`](#gather-direct-conflicts) | fn |  |
+| [`gather_arg_direct_conflicts`](#gather-arg-direct-conflicts) | fn |  |
+| [`gather_group_direct_conflicts`](#gather-group-direct-conflicts) | fn |  |
+| [`get_possible_values_cli`](#get-possible-values-cli) | fn |  |
 
 ## Structs
 

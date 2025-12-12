@@ -19,16 +19,16 @@
   - [`Flavor`](#flavor)
   - [`Steal`](#steal)
 - [Constants](#constants)
-  - [`MIN_CAP`](#min_cap)
-  - [`MAX_BATCH`](#max_batch)
-  - [`FLUSH_THRESHOLD_BYTES`](#flush_threshold_bytes)
+  - [`MIN_CAP`](#min-cap)
+  - [`MAX_BATCH`](#max-batch)
+  - [`FLUSH_THRESHOLD_BYTES`](#flush-threshold-bytes)
   - [`WRITE`](#write)
   - [`READ`](#read)
   - [`DESTROY`](#destroy)
   - [`LAP`](#lap)
-  - [`BLOCK_CAP`](#block_cap)
+  - [`BLOCK_CAP`](#block-cap)
   - [`SHIFT`](#shift)
-  - [`HAS_NEXT`](#has_next)
+  - [`HAS_NEXT`](#has-next)
 
 ## Quick Reference
 
@@ -44,16 +44,16 @@
 | [`Injector`](#injector) | struct | An injector queue. |
 | [`Flavor`](#flavor) | enum | Worker queue flavor: FIFO or LIFO. |
 | [`Steal`](#steal) | enum | Possible outcomes of a steal operation. |
-| [`MIN_CAP`](#min_cap) | const |  |
-| [`MAX_BATCH`](#max_batch) | const |  |
-| [`FLUSH_THRESHOLD_BYTES`](#flush_threshold_bytes) | const |  |
+| [`MIN_CAP`](#min-cap) | const |  |
+| [`MAX_BATCH`](#max-batch) | const |  |
+| [`FLUSH_THRESHOLD_BYTES`](#flush-threshold-bytes) | const |  |
 | [`WRITE`](#write) | const |  |
 | [`READ`](#read) | const |  |
 | [`DESTROY`](#destroy) | const |  |
 | [`LAP`](#lap) | const |  |
-| [`BLOCK_CAP`](#block_cap) | const |  |
+| [`BLOCK_CAP`](#block-cap) | const |  |
 | [`SHIFT`](#shift) | const |  |
-| [`HAS_NEXT`](#has_next) | const |  |
+| [`HAS_NEXT`](#has-next) | const |  |
 
 ## Structs
 
@@ -105,9 +105,9 @@ This is just a pointer to the buffer and its length - dropping an instance of th
 
 ##### `impl<T> Pointable for Buffer<T>`
 
-- <span id="buffer-const-align"></span>`const ALIGN: usize`
+- <span id="buffer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="buffer-type-init"></span>`type Init = T`
+- <span id="buffer-pointable-type-init"></span>`type Init = T`
 
 - <span id="buffer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -166,9 +166,9 @@ The implementation is based on the following work:
 
 ##### `impl<T> Pointable for Inner<T>`
 
-- <span id="inner-const-align"></span>`const ALIGN: usize`
+- <span id="inner-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inner-type-init"></span>`type Init = T`
+- <span id="inner-pointable-type-init"></span>`type Init = T`
 
 - <span id="inner-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -278,9 +278,9 @@ assert_eq!(w.pop(), Some(2));
 
 ##### `impl<T> Pointable for Worker<T>`
 
-- <span id="worker-const-align"></span>`const ALIGN: usize`
+- <span id="worker-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="worker-type-init"></span>`type Init = T`
+- <span id="worker-pointable-type-init"></span>`type Init = T`
 
 - <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -362,9 +362,9 @@ assert_eq!(s.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Stealer<T>`
 
-- <span id="stealer-const-align"></span>`const ALIGN: usize`
+- <span id="stealer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="stealer-type-init"></span>`type Init = T`
+- <span id="stealer-pointable-type-init"></span>`type Init = T`
 
 - <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -409,9 +409,9 @@ A slot in a block.
 
 ##### `impl<T> Pointable for Slot<T>`
 
-- <span id="slot-const-align"></span>`const ALIGN: usize`
+- <span id="slot-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="slot-type-init"></span>`type Init = T`
+- <span id="slot-pointable-type-init"></span>`type Init = T`
 
 - <span id="slot-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -460,9 +460,9 @@ Each block in the list can hold up to `BLOCK_CAP` values.
 
 ##### `impl<T> Pointable for Block<T>`
 
-- <span id="block-const-align"></span>`const ALIGN: usize`
+- <span id="block-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="block-type-init"></span>`type Init = T`
+- <span id="block-pointable-type-init"></span>`type Init = T`
 
 - <span id="block-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -499,9 +499,9 @@ A position in a queue.
 
 ##### `impl<T> Pointable for Position<T>`
 
-- <span id="position-const-align"></span>`const ALIGN: usize`
+- <span id="position-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="position-type-init"></span>`type Init = T`
+- <span id="position-pointable-type-init"></span>`type Init = T`
 
 - <span id="position-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -592,9 +592,9 @@ assert_eq!(q.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Injector<T>`
 
-- <span id="injector-const-align"></span>`const ALIGN: usize`
+- <span id="injector-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="injector-type-init"></span>`type Init = T`
+- <span id="injector-pointable-type-init"></span>`type Init = T`
 
 - <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -653,9 +653,9 @@ Worker queue flavor: FIFO or LIFO.
 
 ##### `impl Pointable for Flavor`
 
-- <span id="flavor-const-align"></span>`const ALIGN: usize`
+- <span id="flavor-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flavor-type-init"></span>`type Init = T`
+- <span id="flavor-pointable-type-init"></span>`type Init = T`
 
 - <span id="flavor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -748,9 +748,9 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 ##### `impl<T> Pointable for Steal<T>`
 
-- <span id="steal-const-align"></span>`const ALIGN: usize`
+- <span id="steal-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="steal-type-init"></span>`type Init = T`
+- <span id="steal-pointable-type-init"></span>`type Init = T`
 
 - <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

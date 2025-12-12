@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`GlobalSeedStorage`](#globalseedstorage) | struct |  |
 | [`GlobalSeed`](#globalseed) | struct | An object representing an initialized global seed. |
-| [`generate_global_seed`](#generate_global_seed) | fn |  |
+| [`generate_global_seed`](#generate-global-seed) | fn |  |
 | [`UNINIT`](#uninit) | const |  |
 | [`LOCKED`](#locked) | const |  |
 | [`INIT`](#init) | const |  |

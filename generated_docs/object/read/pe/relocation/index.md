@@ -54,15 +54,15 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 
 ##### `impl IntoIterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationblockiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationblockiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="relocationblockiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationblockiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-type-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
+- <span id="relocationblockiterator-iterator-type-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
 
 - <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -98,15 +98,15 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 ##### `impl IntoIterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="relocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-type-item"></span>`type Item = Relocation`
+- <span id="relocationiterator-iterator-type-item"></span>`type Item = Relocation`
 
 - <span id="relocationiterator-next"></span>`fn next(&mut self) -> Option<Relocation>` — [`Relocation`](../index.md#relocation)
 

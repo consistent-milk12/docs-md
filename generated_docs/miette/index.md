@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../addr2line/index.md).
+  [`std::error::Error`](../cargo_docs_md/error/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../addr2line/index.md).
+regular [`std::error::Error`](../cargo_docs_md/error/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -808,22 +808,22 @@ under the Apache License. Some code is taken from
 
 - [Modules](#modules)
   - [`chain`](#chain)
-  - [`diagnostic_chain`](#diagnostic_chain)
-  - [`diagnostic_impls`](#diagnostic_impls)
+  - [`diagnostic_chain`](#diagnostic-chain)
+  - [`diagnostic_impls`](#diagnostic-impls)
   - [`error`](#error)
   - [`eyreish`](#eyreish)
   - [`handler`](#handler)
   - [`handlers`](#handlers)
   - [`highlighters`](#highlighters)
-  - [`miette_diagnostic`](#miette_diagnostic)
-  - [`named_source`](#named_source)
+  - [`miette_diagnostic`](#miette-diagnostic)
+  - [`named_source`](#named-source)
   - [`panic`](#panic)
   - [`protocol`](#protocol)
-  - [`source_impls`](#source_impls)
+  - [`source_impls`](#source-impls)
   - [`context`](#context)
   - [`error`](#error)
   - [`fmt`](#fmt)
-  - [`into_diagnostic`](#into_diagnostic)
+  - [`into_diagnostic`](#into-diagnostic)
   - [`kind`](#kind)
   - [`macros`](#macros)
   - [`ptr`](#ptr)
@@ -858,10 +858,10 @@ under the Apache License. Some code is taken from
   - [`SourceCode`](#sourcecode)
   - [`SpanContents`](#spancontents)
 - [Functions](#functions)
-  - [`set_hook`](#set_hook)
-  - [`capture_handler`](#capture_handler)
-  - [`get_default_printer`](#get_default_printer)
-  - [`set_panic_hook`](#set_panic_hook)
+  - [`set_hook`](#set-hook)
+  - [`capture_handler`](#capture-handler)
+  - [`get_default_printer`](#get-default-printer)
+  - [`set_panic_hook`](#set-panic-hook)
 - [Type Aliases](#type-aliases)
   - [`ErrorHook`](#errorhook)
   - [`Result`](#result)
@@ -871,30 +871,30 @@ under the Apache License. Some code is taken from
   - [`ensure!`](#ensure)
   - [`miette!`](#miette)
   - [`diagnostic!`](#diagnostic)
-  - [`box_error_impls!`](#box_error_impls)
-  - [`box_borrow_impls!`](#box_borrow_impls)
+  - [`box_error_impls!`](#box-error-impls)
+  - [`box_borrow_impls!`](#box-borrow-impls)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`chain`](#chain) | mod | Iterate over error `.source()` chains. |
-| [`diagnostic_chain`](#diagnostic_chain) | mod | Iterate over error `.diagnostic_source()` chains. |
-| [`diagnostic_impls`](#diagnostic_impls) | mod | Default trait implementations for [`Diagnostic`]. |
+| [`diagnostic_chain`](#diagnostic-chain) | mod | Iterate over error `.diagnostic_source()` chains. |
+| [`diagnostic_impls`](#diagnostic-impls) | mod | Default trait implementations for [`Diagnostic`]. |
 | [`error`](#error) | mod |  |
 | [`eyreish`](#eyreish) | mod |  |
 | [`handler`](#handler) | mod |  |
 | [`handlers`](#handlers) | mod | Reporters included with `miette`. |
 | [`highlighters`](#highlighters) | mod | This module provides a trait for creating custom syntax highlighters that highlight [`Diagnostic`](crate::Diagnostic) source code with ANSI escape sequences when rendering with the [`GraphicalReportHighlighter`](crate::GraphicalReportHandler). |
-| [`miette_diagnostic`](#miette_diagnostic) | mod |  |
-| [`named_source`](#named_source) | mod |  |
+| [`miette_diagnostic`](#miette-diagnostic) | mod |  |
+| [`named_source`](#named-source) | mod |  |
 | [`panic`](#panic) | mod |  |
 | [`protocol`](#protocol) | mod | This module defines the core of the miette protocol: a series of types and traits that you can implement to get access to miette's (and related library's) full reporting and such features. |
-| [`source_impls`](#source_impls) | mod | Default trait implementations for [`SourceCode`]. |
+| [`source_impls`](#source-impls) | mod | Default trait implementations for [`SourceCode`]. |
 | [`context`](#context) | mod |  |
 | [`error`](#error) | mod |  |
 | [`fmt`](#fmt) | mod |  |
-| [`into_diagnostic`](#into_diagnostic) | mod |  |
+| [`into_diagnostic`](#into-diagnostic) | mod |  |
 | [`kind`](#kind) | mod |  |
 | [`macros`](#macros) | mod |  |
 | [`ptr`](#ptr) | mod |  |
@@ -925,10 +925,10 @@ under the Apache License. Some code is taken from
 | [`Diagnostic`](#diagnostic) | trait | Adds rich metadata to your Error that can be used by [`Report`](crate::Report) to print really nice and human-friendly error messages. |
 | [`SourceCode`](#sourcecode) | trait | Represents readable source code of some sort. |
 | [`SpanContents`](#spancontents) | trait | Contents of a [`SourceCode`] covered by [`SourceSpan`]. |
-| [`set_hook`](#set_hook) | fn | Set the error hook. |
-| [`capture_handler`](#capture_handler) | fn |  |
-| [`get_default_printer`](#get_default_printer) | fn |  |
-| [`set_panic_hook`](#set_panic_hook) | fn | Tells miette to render panics using its rendering engine. |
+| [`set_hook`](#set-hook) | fn | Set the error hook. |
+| [`capture_handler`](#capture-handler) | fn |  |
+| [`get_default_printer`](#get-default-printer) | fn |  |
+| [`set_panic_hook`](#set-panic-hook) | fn | Tells miette to render panics using its rendering engine. |
 | [`ErrorHook`](#errorhook) | type |  |
 | [`Result`](#result) | type | type alias for `Result<T, Report>` |
 | [`ByteOffset`](#byteoffset) | type | "Raw" type for the byte offset from the beginning of a [`SourceCode`]. |
@@ -936,8 +936,8 @@ under the Apache License. Some code is taken from
 | [`ensure!`](#ensure) | macro | Return early with an error if a condition is not satisfied. |
 | [`miette!`](#miette) | macro | Construct an ad-hoc [`Report`]. |
 | [`diagnostic!`](#diagnostic) | macro | Construct a [`MietteDiagnostic`] in more user-friendly way. |
-| [`box_error_impls!`](#box_error_impls) | macro |  |
-| [`box_borrow_impls!`](#box_borrow_impls) | macro |  |
+| [`box_error_impls!`](#box-error-impls) | macro |  |
+| [`box_borrow_impls!`](#box-borrow-impls) | macro |  |
 
 ## Modules
 
@@ -1041,7 +1041,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-deref-type-target"></span>`type Target = dyn Diagnostic + Sync + Send`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -1065,7 +1065,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Receiver for Report`
 
-- <span id="report-type-target"></span>`type Target = T`
+- <span id="report-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
@@ -1429,7 +1429,7 @@ implement `name`. For example [`String`](../clap_builder/index.md). Or if you wa
 
 - <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](#namedsource)
 
-##### `impl<D> OwoColorize for NamedSource<S>`
+##### `impl OwoColorize for NamedSource<S>`
 
 ##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 
@@ -1739,7 +1739,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**

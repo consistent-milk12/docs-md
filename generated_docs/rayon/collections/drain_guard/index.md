@@ -36,25 +36,25 @@ zero-allocation conversions to/from `Vec`, though not zero-cost:
 
 #### Trait Implementations
 
-##### `impl<'a, T, C: From<Vec<T>>> Drop for DrainGuard<'a, T, C>`
+##### `impl<T, C: From<Vec<T>>> Drop for DrainGuard<'a, T, C>`
 
 - <span id="drainguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for DrainGuard<'a, T, C>`
 
-##### `impl<'a, T, C> ParallelDrainRange for &'a mut DrainGuard<'_, T, C>`
+##### `impl<T, C> ParallelDrainRange for &'a mut DrainGuard<'_, T, C>`
 
-- <span id="a-mut-drainguard-type-iter"></span>`type Iter = Drain<'a, T>`
+- <span id="a-mut-drainguard-paralleldrainrange-type-iter"></span>`type Iter = Drain<'a, T>`
 
-- <span id="a-mut-drainguard-type-item"></span>`type Item = T`
+- <span id="a-mut-drainguard-paralleldrainrange-type-item"></span>`type Item = T`
 
 - <span id="a-mut-drainguard-par-drain"></span>`fn par_drain<R: RangeBounds<usize>>(self, range: R) -> <Self as >::Iter` — [`ParallelDrainRange`](../../iter/index.md#paralleldrainrange)
 
 ##### `impl<T> Pointable for DrainGuard<'a, T, C>`
 
-- <span id="drainguard-const-align"></span>`const ALIGN: usize`
+- <span id="drainguard-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="drainguard-type-init"></span>`type Init = T`
+- <span id="drainguard-pointable-type-init"></span>`type Init = T`
 
 - <span id="drainguard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

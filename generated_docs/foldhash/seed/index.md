@@ -10,8 +10,8 @@
 |------|------|-------------|
 | [`global`](#global) | mod |  |
 | [`SharedSeed`](#sharedseed) | struct | A random seed intended to be shared by many different foldhash instances. |
-| [`gen_per_hasher_seed`](#gen_per_hasher_seed) | fn |  |
-| [`FIXED_GLOBAL_SEED`](#fixed_global_seed) | const | Used for FixedState, and RandomState if atomics for dynamic init are unavailable. |
+| [`gen_per_hasher_seed`](#gen-per-hasher-seed) | fn |  |
+| [`FIXED_GLOBAL_SEED`](#fixed-global-seed) | const | Used for FixedState, and RandomState if atomics for dynamic init are unavailable. |
 
 ## Modules
 

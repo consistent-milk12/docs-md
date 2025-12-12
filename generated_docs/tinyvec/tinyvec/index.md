@@ -33,31 +33,31 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 
 #### Trait Implementations
 
-##### `impl<'p, A, I> DoubleEndedIterator for TinyVecSplice<'p, A, I>`
+##### `impl<A, I> DoubleEndedIterator for TinyVecSplice<'p, A, I>`
 
 - <span id="tinyvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
-##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Drop for TinyVecSplice<'p, A, I>`
+##### `impl<A: Array, I: Iterator<Item = <A as >::Item>> Drop for TinyVecSplice<'p, A, I>`
 
 - <span id="tinyvecsplice-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'p, A, I> ExactSizeIterator for TinyVecSplice<'p, A, I>`
+##### `impl<A, I> ExactSizeIterator for TinyVecSplice<'p, A, I>`
 
 - <span id="tinyvecsplice-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'p, A, I> FusedIterator for TinyVecSplice<'p, A, I>`
+##### `impl<A, I> FusedIterator for TinyVecSplice<'p, A, I>`
 
 ##### `impl<I> IntoIterator for TinyVecSplice<'p, A, I>`
 
-- <span id="tinyvecsplice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyvecsplice-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyvecsplice-type-intoiter"></span>`type IntoIter = I`
+- <span id="tinyvecsplice-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyvecsplice-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'p, A, I> Iterator for TinyVecSplice<'p, A, I>`
+##### `impl<A, I> Iterator for TinyVecSplice<'p, A, I>`
 
-- <span id="tinyvecsplice-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvecsplice-iterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md#array)
 
@@ -150,7 +150,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> Deref for TinyVec<A>`
 
-- <span id="tinyvec-type-target"></span>`type Target = [<A as Array>::Item]`
+- <span id="tinyvec-deref-type-target"></span>`type Target = [<A as Array>::Item]`
 
 - <span id="tinyvec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -178,7 +178,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> Index for TinyVec<A>`
 
-- <span id="tinyvec-type-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="tinyvec-index-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="tinyvec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -188,9 +188,9 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> IntoIterator for TinyVec<A>`
 
-- <span id="tinyvec-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvec-intoiterator-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="tinyvec-type-intoiter"></span>`type IntoIter = TinyVecIterator<A>`
+- <span id="tinyvec-intoiterator-type-intoiter"></span>`type IntoIter = TinyVecIterator<A>`
 
 - <span id="tinyvec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -222,11 +222,11 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 - <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<P, T> Receiver for TinyVec<A>`
+##### `impl Receiver for TinyVec<A>`
 
-- <span id="tinyvec-type-target"></span>`type Target = T`
+- <span id="tinyvec-receiver-type-target"></span>`type Target = T`
 
-##### `impl<T> ToString for TinyVec<A>`
+##### `impl ToString for TinyVec<A>`
 
 - <span id="tinyvec-to-string"></span>`fn to_string(&self) -> String`
 
@@ -255,23 +255,23 @@ See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
 
 #### Trait Implementations
 
-##### `impl<'p, A: Array> DoubleEndedIterator for TinyVecDrain<'p, A>`
+##### `impl<A: Array> DoubleEndedIterator for TinyVecDrain<'p, A>`
 
 - <span id="tinyvecdrain-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="tinyvecdrain-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<Self as >::Item>`
 
-##### `impl<I> IntoIterator for TinyVecDrain<'p, A>`
+##### `impl IntoIterator for TinyVecDrain<'p, A>`
 
-- <span id="tinyvecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyvecdrain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyvecdrain-type-intoiter"></span>`type IntoIter = I`
+- <span id="tinyvecdrain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'p, A: Array> Iterator for TinyVecDrain<'p, A>`
+##### `impl<A: Array> Iterator for TinyVecDrain<'p, A>`
 
-- <span id="tinyvecdrain-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvecdrain-iterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -320,17 +320,17 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 
 ##### `impl<A: Array> FusedIterator for TinyVecIterator<A>`
 
-##### `impl<I> IntoIterator for TinyVecIterator<A>`
+##### `impl IntoIterator for TinyVecIterator<A>`
 
-- <span id="tinyveciterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyveciterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyveciterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="tinyveciterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyveciterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Array> Iterator for TinyVecIterator<A>`
 
-- <span id="tinyveciterator-type-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyveciterator-iterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyveciterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

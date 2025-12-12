@@ -15,7 +15,7 @@
   - [`Color`](#color)
   - [`AnsiColor`](#ansicolor)
 - [Constants](#constants)
-  - [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity)
+  - [`DISPLAY_BUFFER_CAPACITY`](#display-buffer-capacity)
 
 ## Quick Reference
 
@@ -27,7 +27,7 @@
 | [`NullFormatter`](#nullformatter) | struct |  |
 | [`Color`](#color) | enum | Any ANSI color code scheme |
 | [`AnsiColor`](#ansicolor) | enum | Available 4-bit ANSI color palette codes |
-| [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity) | const |  |
+| [`DISPLAY_BUFFER_CAPACITY`](#display-buffer-capacity) | const |  |
 
 ## Structs
 

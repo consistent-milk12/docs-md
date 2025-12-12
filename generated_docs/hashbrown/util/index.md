@@ -8,10 +8,10 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cold_path`](#cold_path) | fn |  |
+| [`cold_path`](#cold-path) | fn |  |
 | [`likely`](#likely) | fn |  |
 | [`unlikely`](#unlikely) | fn |  |
-| [`invalid_mut`](#invalid_mut) | fn |  |
+| [`invalid_mut`](#invalid-mut) | fn |  |
 
 ## Functions
 

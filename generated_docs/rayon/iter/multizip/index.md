@@ -12,7 +12,7 @@
 | [`reduce!`](#reduce) | macro |  |
 | [`nest!`](#nest) | macro |  |
 | [`flatten!`](#flatten) | macro |  |
-| [`multizip_impls!`](#multizip_impls) | macro |  |
+| [`multizip_impls!`](#multizip-impls) | macro |  |
 
 ## Structs
 
@@ -123,15 +123,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> IntoParallelIterator for MultiZip<T>`
 
-- <span id="multizip-type-iter"></span>`type Iter = T`
+- <span id="multizip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="multizip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="multizip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
+- <span id="multizip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
 - <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -139,9 +139,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
-- <span id="multizip-const-align"></span>`const ALIGN: usize`
+- <span id="multizip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multizip-type-init"></span>`type Init = T`
+- <span id="multizip-pointable-type-init"></span>`type Init = T`
 
 - <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

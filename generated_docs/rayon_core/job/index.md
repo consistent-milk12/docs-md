@@ -61,9 +61,9 @@ it. We also carry the "execute fn" from the `Job` trait.
 
 ##### `impl Pointable for JobRef`
 
-- <span id="jobref-const-align"></span>`const ALIGN: usize`
+- <span id="jobref-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobref-type-init"></span>`type Init = T`
+- <span id="jobref-pointable-type-init"></span>`type Init = T`
 
 - <span id="jobref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -114,11 +114,11 @@ the stack frame is later popped.  The function parameter indicates
 
 - <span id="stackjob-execute"></span>`unsafe fn execute(this: *const ())`
 
-##### `impl<T> Pointable for StackJob<L, F, R>`
+##### `impl Pointable for StackJob<L, F, R>`
 
-- <span id="stackjob-const-align"></span>`const ALIGN: usize`
+- <span id="stackjob-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="stackjob-type-init"></span>`type Init = T`
+- <span id="stackjob-pointable-type-init"></span>`type Init = T`
 
 - <span id="stackjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -161,11 +161,11 @@ signal that the job executed.
 
 - <span id="heapjob-execute"></span>`unsafe fn execute(this: *const ())`
 
-##### `impl<T> Pointable for HeapJob<BODY>`
+##### `impl Pointable for HeapJob<BODY>`
 
-- <span id="heapjob-const-align"></span>`const ALIGN: usize`
+- <span id="heapjob-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="heapjob-type-init"></span>`type Init = T`
+- <span id="heapjob-pointable-type-init"></span>`type Init = T`
 
 - <span id="heapjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -204,11 +204,11 @@ be turned into multiple `JobRef`s and called multiple times.
 
 - <span id="arcjob-execute"></span>`unsafe fn execute(this: *const ())`
 
-##### `impl<T> Pointable for ArcJob<BODY>`
+##### `impl Pointable for ArcJob<BODY>`
 
-- <span id="arcjob-const-align"></span>`const ALIGN: usize`
+- <span id="arcjob-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="arcjob-type-init"></span>`type Init = T`
+- <span id="arcjob-pointable-type-init"></span>`type Init = T`
 
 - <span id="arcjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -244,9 +244,9 @@ Indirect queue to provide FIFO job priority.
 
 ##### `impl Pointable for JobFifo`
 
-- <span id="jobfifo-const-align"></span>`const ALIGN: usize`
+- <span id="jobfifo-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobfifo-type-init"></span>`type Init = T`
+- <span id="jobfifo-pointable-type-init"></span>`type Init = T`
 
 - <span id="jobfifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -280,9 +280,9 @@ enum JobResult<T> {
 
 ##### `impl<T> Pointable for JobResult<T>`
 
-- <span id="jobresult-const-align"></span>`const ALIGN: usize`
+- <span id="jobresult-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobresult-type-init"></span>`type Init = T`
+- <span id="jobresult-pointable-type-init"></span>`type Init = T`
 
 - <span id="jobresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

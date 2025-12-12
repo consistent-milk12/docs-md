@@ -30,9 +30,9 @@
   - [`RelocationStateV3`](#relocationstatev3)
   - [`RelocationStateV5`](#relocationstatev5)
 - [Constants](#constants)
-  - [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min_header_size_subcaches_v1)
-  - [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min_header_size_subcaches_v2)
-  - [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min_header_size_mappings_v2)
+  - [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min-header-size-subcaches-v1)
+  - [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min-header-size-subcaches-v2)
+  - [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min-header-size-mappings-v2)
 
 ## Quick Reference
 
@@ -59,9 +59,9 @@
 | [`RelocationStateV2`](#relocationstatev2) | enum |  |
 | [`RelocationStateV3`](#relocationstatev3) | enum |  |
 | [`RelocationStateV5`](#relocationstatev5) | enum |  |
-| [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min_header_size_subcaches_v1) | const |  |
-| [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min_header_size_subcaches_v2) | const |  |
-| [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min_header_size_mappings_v2) | const |  |
+| [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min-header-size-subcaches-v1) | const |  |
+| [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min-header-size-subcaches-v2) | const |  |
+| [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min-header-size-mappings-v2) | const |  |
 
 ## Structs
 
@@ -112,7 +112,7 @@ A parsed representation of the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCache<'data, E, R>`
+##### `impl<E, R> Debug for DyldCache<'data, E, R>`
 
 - <span id="dyldcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -140,7 +140,7 @@ The data for one file in the cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldFile<'data, E, R>`
+##### `impl<E, R> Debug for DyldFile<'data, E, R>`
 
 - <span id="dyldfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -162,21 +162,21 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, 'cache, E, R> Debug for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl<E, R> Debug for DyldCacheImageIterator<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacheimageiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacheimageiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacheimageiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacheimageiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'cache, E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl<E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
+- <span id="dyldcacheimageiterator-iterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-next"></span>`fn next(&mut self) -> Option<DyldCacheImage<'data, 'cache, E, R>>` — [`DyldCacheImage`](../index.md#dyldcacheimage)
 
@@ -208,7 +208,7 @@ One image (dylib) from inside the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, 'cache, E, R> Debug for DyldCacheImage<'data, 'cache, E, R>`
+##### `impl<E, R> Debug for DyldCacheImage<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -231,21 +231,21 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheMappingIterator<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheMappingIterator<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheMappingIterator<'data, E, R>`
+##### `impl IntoIterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcachemappingiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcachemappingiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcachemappingiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcachemappingiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
+##### `impl<E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
+- <span id="dyldcachemappingiterator-iterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -284,13 +284,13 @@ Information about a mapping.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Clone for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Clone for DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemapping-clone"></span>`fn clone(&self) -> DyldCacheMapping<'data, E, R>` — [`DyldCacheMapping`](../index.md#dyldcachemapping)
 
-##### `impl<'data, E, R> Copy for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Copy for DyldCacheMapping<'data, E, R>`
 
-##### `impl<'data, E, R> Debug for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemapping-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -311,21 +311,21 @@ An iterator over relocations in a mapping
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIterator<'data, E, R>`
 
 - <span id="dyldcacherelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacherelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacherelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacherelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacherelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl<E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
+- <span id="dyldcacherelocationiterator-iterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
 
 - <span id="dyldcacherelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -379,7 +379,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -420,7 +420,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -461,7 +461,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -568,13 +568,13 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldSubCacheSlice<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheSlice<'data, E>`
 
 - <span id="dyldsubcacheslice-clone"></span>`fn clone(&self) -> DyldSubCacheSlice<'data, E>` — [`DyldSubCacheSlice`](../index.md#dyldsubcacheslice)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldSubCacheSlice<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheSlice<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldSubCacheSlice<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheSlice<'data, E>`
 
 - <span id="dyldsubcacheslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -606,13 +606,13 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingSlice<'data, E>`
 
 - <span id="dyldcachemappingslice-clone"></span>`fn clone(&self) -> DyldCacheMappingSlice<'data, E>` — [`DyldCacheMappingSlice`](../index.md#dyldcachemappingslice)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingSlice<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingSlice<'data, E>`
 
 - <span id="dyldcachemappingslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -631,7 +631,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E> Debug for DyldCacheMappingVersionIterator<'data, E>`
+##### `impl<E> Debug for DyldCacheMappingVersionIterator<'data, E>`
 
 - <span id="dyldcachemappingversioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -650,11 +650,11 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E> Clone for DyldCacheMappingVersion<'data, E>`
+##### `impl<E> Clone for DyldCacheMappingVersion<'data, E>`
 
 - <span id="dyldcachemappingversion-clone"></span>`fn clone(&self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](#dyldcachemappingversion)
 
-##### `impl<'data, E> Copy for DyldCacheMappingVersion<'data, E>`
+##### `impl<E> Copy for DyldCacheMappingVersion<'data, E>`
 
 ### `DyldCacheSlideInfo<'data, E: Endian>`
 
@@ -683,13 +683,13 @@ The slide info for a dyld cache mapping, including variable length arrays.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo<'data, E>`
 
 - <span id="dyldcacheslideinfo-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo<'data, E>` — [`DyldCacheSlideInfo`](../index.md#dyldcacheslideinfo)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
 
 - <span id="dyldcacheslideinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -711,7 +711,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorversion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

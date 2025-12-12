@@ -25,14 +25,14 @@ This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 - [Enums](#enums)
   - [`StateSaver`](#statesaver)
 - [Functions](#functions)
-  - [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping)
-  - [`minimum_lazy_state_id`](#minimum_lazy_state_id)
-  - [`minimum_cache_capacity`](#minimum_cache_capacity)
+  - [`skip_empty_utf8_splits_overlapping`](#skip-empty-utf8-splits-overlapping)
+  - [`minimum_lazy_state_id`](#minimum-lazy-state-id)
+  - [`minimum_cache_capacity`](#minimum-cache-capacity)
 - [Type Aliases](#type-aliases)
   - [`StateMap`](#statemap)
 - [Constants](#constants)
-  - [`MIN_STATES`](#min_states)
-  - [`SENTINEL_STATES`](#sentinel_states)
+  - [`MIN_STATES`](#min-states)
+  - [`SENTINEL_STATES`](#sentinel-states)
 
 ## Quick Reference
 
@@ -47,12 +47,12 @@ This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 | [`Builder`](#builder) | struct | A builder for constructing a lazy deterministic finite automaton from regular expressions. |
 | [`OverlappingState`](#overlappingstate) | struct | Represents the current state of an overlapping search. |
 | [`StateSaver`](#statesaver) | enum | A simple type that encapsulates the saving of a state ID through a cache clearing. |
-| [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping) | fn | Runs the given overlapping `search` function (forwards or backwards) until a match is found whose offset does not split a codepoint. |
-| [`minimum_lazy_state_id`](#minimum_lazy_state_id) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns the minimum lazy state ID that must be representable. |
-| [`minimum_cache_capacity`](#minimum_cache_capacity) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns a heuristic minimum number of bytes of heap space required. |
+| [`skip_empty_utf8_splits_overlapping`](#skip-empty-utf8-splits-overlapping) | fn | Runs the given overlapping `search` function (forwards or backwards) until a match is found whose offset does not split a codepoint. |
+| [`minimum_lazy_state_id`](#minimum-lazy-state-id) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns the minimum lazy state ID that must be representable. |
+| [`minimum_cache_capacity`](#minimum-cache-capacity) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns a heuristic minimum number of bytes of heap space required. |
 | [`StateMap`](#statemap) | type | A map from states to state identifiers. |
-| [`MIN_STATES`](#min_states) | const | The minimum number of states that a lazy DFA's cache size must support. |
-| [`SENTINEL_STATES`](#sentinel_states) | const | The number of "sentinel" states that get added to every lazy DFA. |
+| [`MIN_STATES`](#min-states) | const | The minimum number of states that a lazy DFA's cache size must support. |
+| [`SENTINEL_STATES`](#sentinel-states) | const | The number of "sentinel" states that get added to every lazy DFA. |
 
 ## Structs
 

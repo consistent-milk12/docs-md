@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`accept_as_ident`](#accept_as_ident) | fn |  |
+| [`accept_as_ident`](#accept-as-ident) | fn |  |
 
 ## Functions
 

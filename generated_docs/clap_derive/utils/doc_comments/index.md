@@ -13,13 +13,13 @@ non-empty adjacent lines, delimited by sequences of blank (whitespace only) line
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`extract_doc_comment`](#extract_doc_comment) | fn |  |
-| [`format_doc_comment`](#format_doc_comment) | fn |  |
-| [`split_paragraphs`](#split_paragraphs) | fn |  |
-| [`remove_period`](#remove_period) | fn |  |
-| [`is_blank`](#is_blank) | fn |  |
-| [`merge_lines`](#merge_lines) | fn |  |
-| [`parse_markdown`](#parse_markdown) | fn |  |
+| [`extract_doc_comment`](#extract-doc-comment) | fn |  |
+| [`format_doc_comment`](#format-doc-comment) | fn |  |
+| [`split_paragraphs`](#split-paragraphs) | fn |  |
+| [`remove_period`](#remove-period) | fn |  |
+| [`is_blank`](#is-blank) | fn |  |
+| [`merge_lines`](#merge-lines) | fn |  |
+| [`parse_markdown`](#parse-markdown) | fn |  |
 
 ## Functions
 

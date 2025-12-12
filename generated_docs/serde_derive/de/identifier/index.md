@@ -11,9 +11,9 @@ way of a Rust enum.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`deserialize_custom`](#deserialize_custom) | fn |  |
-| [`deserialize_generated`](#deserialize_generated) | fn |  |
-| [`deserialize_identifier`](#deserialize_identifier) | fn |  |
+| [`deserialize_custom`](#deserialize-custom) | fn |  |
+| [`deserialize_generated`](#deserialize-generated) | fn |  |
+| [`deserialize_identifier`](#deserialize-identifier) | fn |  |
 
 ## Functions
 

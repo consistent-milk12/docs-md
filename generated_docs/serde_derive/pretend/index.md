@@ -8,12 +8,12 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`pretend_used`](#pretend_used) | fn |  |
-| [`pretend_fields_used`](#pretend_fields_used) | fn |  |
-| [`pretend_fields_used_struct`](#pretend_fields_used_struct) | fn |  |
-| [`pretend_fields_used_struct_packed`](#pretend_fields_used_struct_packed) | fn |  |
-| [`pretend_fields_used_enum`](#pretend_fields_used_enum) | fn |  |
-| [`pretend_variants_used`](#pretend_variants_used) | fn |  |
+| [`pretend_used`](#pretend-used) | fn |  |
+| [`pretend_fields_used`](#pretend-fields-used) | fn |  |
+| [`pretend_fields_used_struct`](#pretend-fields-used-struct) | fn |  |
+| [`pretend_fields_used_struct_packed`](#pretend-fields-used-struct-packed) | fn |  |
+| [`pretend_fields_used_enum`](#pretend-fields-used-enum) | fn |  |
+| [`pretend_variants_used`](#pretend-variants-used) | fn |  |
 
 ## Functions
 

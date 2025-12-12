@@ -10,8 +10,8 @@ Terminal-related `ioctl` functions.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ioctl_tiocexcl`](#ioctl_tiocexcl) | fn | `ioctl(fd, TIOCEXCL)`—Enables exclusive mode on a terminal. |
-| [`ioctl_tiocnxcl`](#ioctl_tiocnxcl) | fn | `ioctl(fd, TIOCNXCL)`—Disables exclusive mode on a terminal. |
+| [`ioctl_tiocexcl`](#ioctl-tiocexcl) | fn | `ioctl(fd, TIOCEXCL)`—Enables exclusive mode on a terminal. |
+| [`ioctl_tiocnxcl`](#ioctl-tiocnxcl) | fn | `ioctl(fd, TIOCNXCL)`—Disables exclusive mode on a terminal. |
 
 ## Functions
 

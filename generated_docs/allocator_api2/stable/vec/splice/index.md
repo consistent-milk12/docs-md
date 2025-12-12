@@ -38,7 +38,7 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 #### Trait Implementations
 
-##### `impl<'a, I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
+##### `impl<I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
 
 - <span id="splice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -54,15 +54,15 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
-- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splice-type-intoiter"></span>`type IntoIter = I`
+- <span id="splice-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
-- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

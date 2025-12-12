@@ -64,7 +64,7 @@ feature
 
 ##### `impl Deref for OsStr`
 
-- <span id="osstr-type-target"></span>`type Target = OsStr`
+- <span id="osstr-deref-type-target"></span>`type Target = OsStr`
 
 - <span id="osstr-deref"></span>`fn deref(&self) -> &std::ffi::OsStr`
 
@@ -92,7 +92,7 @@ feature
 
 ##### `impl Receiver for OsStr`
 
-- <span id="osstr-type-target"></span>`type Target = T`
+- <span id="osstr-receiver-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for OsStr`
 

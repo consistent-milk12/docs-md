@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Byte`](#byte) | struct | A type that wraps a single byte with a convenient fmt::Debug impl that escapes the byte. |
 | [`Bytes`](#bytes) | struct | A type that provides a human readable debug impl for arbitrary bytes. |
-| [`utf8_decode`](#utf8_decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
+| [`utf8_decode`](#utf8-decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
 
 ## Structs
 

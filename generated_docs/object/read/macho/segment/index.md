@@ -51,21 +51,21 @@ An iterator for the segments in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machosegmentiterator-iterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -97,11 +97,11 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegment-address"></span>`fn address(&self) -> u64`
 
@@ -121,7 +121,7 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 - <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
 
 ### `MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -145,13 +145,13 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](#machosegmentinternal)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

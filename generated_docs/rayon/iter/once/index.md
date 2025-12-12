@@ -48,15 +48,15 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> IntoParallelIterator for Once<T>`
 
-- <span id="once-type-iter"></span>`type Iter = T`
+- <span id="once-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="once-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="once-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
-- <span id="once-type-item"></span>`type Item = T`
+- <span id="once-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -64,9 +64,9 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> Pointable for Once<T>`
 
-- <span id="once-const-align"></span>`const ALIGN: usize`
+- <span id="once-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="once-type-init"></span>`type Init = T`
+- <span id="once-pointable-type-init"></span>`type Init = T`
 
 - <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

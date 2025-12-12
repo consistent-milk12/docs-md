@@ -110,7 +110,7 @@ Represents the color preferences for program output
 
 ##### `impl FromStr for ColorChoice`
 
-- <span id="colorchoice-type-err"></span>`type Err = String`
+- <span id="colorchoice-fromstr-type-err"></span>`type Err = String`
 
 - <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 

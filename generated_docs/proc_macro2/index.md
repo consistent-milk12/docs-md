@@ -89,7 +89,7 @@ a different thread.
   - [`detection`](#detection)
   - [`extra`](#extra)
   - [`imp`](#imp)
-  - [`token_stream`](#token_stream)
+  - [`token_stream`](#token-stream)
 - [Structs](#structs)
   - [`TokenStream`](#tokenstream)
   - [`LexError`](#lexerror)
@@ -103,8 +103,8 @@ a different thread.
   - [`Delimiter`](#delimiter)
   - [`Spacing`](#spacing)
 - [Macros](#macros)
-  - [`suffixed_int_literals!`](#suffixed_int_literals)
-  - [`unsuffixed_int_literals!`](#unsuffixed_int_literals)
+  - [`suffixed_int_literals!`](#suffixed-int-literals)
+  - [`unsuffixed_int_literals!`](#unsuffixed-int-literals)
 
 ## Quick Reference
 
@@ -117,7 +117,7 @@ a different thread.
 | [`detection`](#detection) | mod |  |
 | [`extra`](#extra) | mod | Items which do not have a correspondence to any API in the proc_macro crate, but are necessary to include in proc-macro2. |
 | [`imp`](#imp) | mod |  |
-| [`token_stream`](#token_stream) | mod | Public implementation details for the `TokenStream` type, such as iterators. |
+| [`token_stream`](#token-stream) | mod | Public implementation details for the `TokenStream` type, such as iterators. |
 | [`TokenStream`](#tokenstream) | struct | An abstract stream of tokens, or more concretely a sequence of token trees. |
 | [`LexError`](#lexerror) | struct | Error returned from `TokenStream::from_str`. |
 | [`Span`](#span) | struct | A region of source code, along with macro expansion information. |
@@ -128,8 +128,8 @@ a different thread.
 | [`TokenTree`](#tokentree) | enum | A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`). |
 | [`Delimiter`](#delimiter) | enum | Describes how a sequence of token trees is delimited. |
 | [`Spacing`](#spacing) | enum | Whether a `Punct` is followed immediately by another `Punct` or followed by another token or whitespace. |
-| [`suffixed_int_literals!`](#suffixed_int_literals) | macro |  |
-| [`unsuffixed_int_literals!`](#unsuffixed_int_literals) | macro |  |
+| [`suffixed_int_literals!`](#suffixed-int-literals) | macro |  |
+| [`unsuffixed_int_literals!`](#unsuffixed-int-literals) | macro |  |
 
 ## Modules
 
@@ -201,15 +201,15 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl FromStr for TokenStream`
 
-- <span id="tokenstream-type-err"></span>`type Err = LexError`
+- <span id="tokenstream-fromstr-type-err"></span>`type Err = LexError`
 
 - <span id="tokenstream-from-str"></span>`fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](#tokenstream), [`LexError`](#lexerror)
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-intoiterator-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="tokenstream-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](token_stream/index.md#intoiter)
 
@@ -547,7 +547,7 @@ if ident_string.len() > 60 {
 
 ##### `impl IdentFragment for proc_macro2::Ident`
 
-- <span id="proc-macro2ident-type-error"></span>`type Error = Infallible`
+- <span id="proc-macro2ident-identfragment-type-error"></span>`type Error = Infallible`
 
 ##### `impl Ord for Ident`
 
@@ -685,7 +685,7 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl FromStr for Literal`
 
-- <span id="literal-type-err"></span>`type Err = LexError`
+- <span id="literal-fromstr-type-err"></span>`type Err = LexError`
 
 - <span id="literal-from-str"></span>`fn from_str(repr: &str) -> Result<Self, LexError>` — [`LexError`](#lexerror)
 

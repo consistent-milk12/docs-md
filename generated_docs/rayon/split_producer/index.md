@@ -44,13 +44,13 @@ Common producer for splitting on a predicate.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for SplitProducer<'p, P, V, INCL>`
+##### `impl IntoEither for SplitProducer<'p, P, V, INCL>`
 
-##### `impl<T> Pointable for SplitProducer<'p, P, V, INCL>`
+##### `impl Pointable for SplitProducer<'p, P, V, INCL>`
 
-- <span id="splitproducer-const-align"></span>`const ALIGN: usize`
+- <span id="splitproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="splitproducer-type-init"></span>`type Init = T`
+- <span id="splitproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -60,9 +60,9 @@ Common producer for splitting on a predicate.
 
 - <span id="splitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'p, P, V, const INCL: bool> UnindexedProducer for SplitProducer<'p, P, V, INCL>`
+##### `impl<P, V> UnindexedProducer for SplitProducer<'p, P, V, INCL>`
 
-- <span id="splitproducer-type-item"></span>`type Item = V`
+- <span id="splitproducer-unindexedproducer-type-item"></span>`type Item = V`
 
 - <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 

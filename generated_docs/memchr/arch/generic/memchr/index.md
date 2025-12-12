@@ -14,10 +14,10 @@ Generic crate-internal routines for the `memchr` family of functions.
   - [`Three`](#three)
   - [`Iter`](#iter)
 - [Functions](#functions)
-  - [`search_slice_with_raw`](#search_slice_with_raw)
-  - [`fwd_byte_by_byte`](#fwd_byte_by_byte)
-  - [`rev_byte_by_byte`](#rev_byte_by_byte)
-  - [`count_byte_by_byte`](#count_byte_by_byte)
+  - [`search_slice_with_raw`](#search-slice-with-raw)
+  - [`fwd_byte_by_byte`](#fwd-byte-by-byte)
+  - [`rev_byte_by_byte`](#rev-byte-by-byte)
+  - [`count_byte_by_byte`](#count-byte-by-byte)
 
 ## Quick Reference
 
@@ -27,10 +27,10 @@ Generic crate-internal routines for the `memchr` family of functions.
 | [`Two`](#two) | struct | Finds all occurrences of two bytes in a haystack. |
 | [`Three`](#three) | struct | Finds all occurrences of two bytes in a haystack. |
 | [`Iter`](#iter) | struct | An iterator over all occurrences of a set of bytes in a haystack. |
-| [`search_slice_with_raw`](#search_slice_with_raw) | fn | Search a slice using a function that operates on raw pointers. |
-| [`fwd_byte_by_byte`](#fwd_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or until `confirm(*ptr)` returns `true`. |
-| [`rev_byte_by_byte`](#rev_byte_by_byte) | fn | Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or until `confirm(*ptr)` returns `true`. |
-| [`count_byte_by_byte`](#count_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns the number of times `confirm(*ptr)` returns `true`. |
+| [`search_slice_with_raw`](#search-slice-with-raw) | fn | Search a slice using a function that operates on raw pointers. |
+| [`fwd_byte_by_byte`](#fwd-byte-by-byte) | fn | Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or until `confirm(*ptr)` returns `true`. |
+| [`rev_byte_by_byte`](#rev-byte-by-byte) | fn | Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or until `confirm(*ptr)` returns `true`. |
+| [`count_byte_by_byte`](#count-byte-by-byte) | fn | Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns the number of times `confirm(*ptr)` returns `true`. |
 
 ## Structs
 

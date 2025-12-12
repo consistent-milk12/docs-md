@@ -7,14 +7,14 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
+  - [`BY_NAME`](#by-name)
   - [`ALETTER`](#aletter)
   - [`CR`](#cr)
-  - [`DOUBLE_QUOTE`](#double_quote)
+  - [`DOUBLE_QUOTE`](#double-quote)
   - [`EXTEND`](#extend)
   - [`EXTENDNUMLET`](#extendnumlet)
   - [`FORMAT`](#format)
-  - [`HEBREW_LETTER`](#hebrew_letter)
+  - [`HEBREW_LETTER`](#hebrew-letter)
   - [`KATAKANA`](#katakana)
   - [`LF`](#lf)
   - [`MIDLETTER`](#midletter)
@@ -22,8 +22,8 @@
   - [`MIDNUMLET`](#midnumlet)
   - [`NEWLINE`](#newline)
   - [`NUMERIC`](#numeric)
-  - [`REGIONAL_INDICATOR`](#regional_indicator)
-  - [`SINGLE_QUOTE`](#single_quote)
+  - [`REGIONAL_INDICATOR`](#regional-indicator)
+  - [`SINGLE_QUOTE`](#single-quote)
   - [`WSEGSPACE`](#wsegspace)
   - [`ZWJ`](#zwj)
 
@@ -31,14 +31,14 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
 | [`ALETTER`](#aletter) | const |  |
 | [`CR`](#cr) | const |  |
-| [`DOUBLE_QUOTE`](#double_quote) | const |  |
+| [`DOUBLE_QUOTE`](#double-quote) | const |  |
 | [`EXTEND`](#extend) | const |  |
 | [`EXTENDNUMLET`](#extendnumlet) | const |  |
 | [`FORMAT`](#format) | const |  |
-| [`HEBREW_LETTER`](#hebrew_letter) | const |  |
+| [`HEBREW_LETTER`](#hebrew-letter) | const |  |
 | [`KATAKANA`](#katakana) | const |  |
 | [`LF`](#lf) | const |  |
 | [`MIDLETTER`](#midletter) | const |  |
@@ -46,8 +46,8 @@
 | [`MIDNUMLET`](#midnumlet) | const |  |
 | [`NEWLINE`](#newline) | const |  |
 | [`NUMERIC`](#numeric) | const |  |
-| [`REGIONAL_INDICATOR`](#regional_indicator) | const |  |
-| [`SINGLE_QUOTE`](#single_quote) | const |  |
+| [`REGIONAL_INDICATOR`](#regional-indicator) | const |  |
+| [`SINGLE_QUOTE`](#single-quote) | const |  |
 | [`WSEGSPACE`](#wsegspace) | const |  |
 | [`ZWJ`](#zwj) | const |  |
 

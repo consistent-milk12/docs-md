@@ -677,25 +677,25 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 #### Trait Implementations
 
-##### `impl<'a, R: Reader> Clone for UnitRef<'a, R>`
+##### `impl<R: Reader> Clone for UnitRef<'a, R>`
 
 - <span id="unitref-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, R: Reader> Copy for UnitRef<'a, R>`
+##### `impl<R: Reader> Copy for UnitRef<'a, R>`
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
 
 - <span id="unitref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: Reader> Deref for UnitRef<'a, R>`
+##### `impl<R: Reader> Deref for UnitRef<'a, R>`
 
-- <span id="unitref-type-target"></span>`type Target = Unit<R>`
+- <span id="unitref-deref-type-target"></span>`type Target = Unit<R>`
 
 - <span id="unitref-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for UnitRef<'a, R>`
+##### `impl Receiver for UnitRef<'a, R>`
 
-- <span id="unitref-type-target"></span>`type Target = T`
+- <span id="unitref-receiver-type-target"></span>`type Target = T`
 
 ### `RangeIter<R: Reader>`
 

@@ -49,15 +49,15 @@ Iterator of a chain of cause errors.
 
 ##### `impl IntoIterator for DiagnosticChain<'a>`
 
-- <span id="diagnosticchain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="diagnosticchain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="diagnosticchain-type-intoiter"></span>`type IntoIter = I`
+- <span id="diagnosticchain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="diagnosticchain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DiagnosticChain<'a>`
 
-- <span id="diagnosticchain-type-item"></span>`type Item = ErrorKind<'a>`
+- <span id="diagnosticchain-iterator-type-item"></span>`type Item = ErrorKind<'a>`
 
 - <span id="diagnosticchain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

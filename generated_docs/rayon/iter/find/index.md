@@ -32,13 +32,13 @@ struct FindConsumer<'p, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, P> Consumer for FindConsumer<'p, P>`
+##### `impl<T, P> Consumer for FindConsumer<'p, P>`
 
-- <span id="findconsumer-type-folder"></span>`type Folder = FindFolder<'p, T, P>`
+- <span id="findconsumer-consumer-type-folder"></span>`type Folder = FindFolder<'p, T, P>`
 
-- <span id="findconsumer-type-reducer"></span>`type Reducer = FindReducer`
+- <span id="findconsumer-consumer-type-reducer"></span>`type Reducer = FindReducer`
 
-- <span id="findconsumer-type-result"></span>`type Result = Option<T>`
+- <span id="findconsumer-consumer-type-result"></span>`type Result = Option<T>`
 
 - <span id="findconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -46,13 +46,13 @@ struct FindConsumer<'p, P> {
 
 - <span id="findconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FindConsumer<'p, P>`
+##### `impl IntoEither for FindConsumer<'p, P>`
 
-##### `impl<T> Pointable for FindConsumer<'p, P>`
+##### `impl Pointable for FindConsumer<'p, P>`
 
-- <span id="findconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="findconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="findconsumer-type-init"></span>`type Init = T`
+- <span id="findconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="findconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -62,7 +62,7 @@ struct FindConsumer<'p, P> {
 
 - <span id="findconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'p, T, P> UnindexedConsumer for FindConsumer<'p, P>`
+##### `impl<T, P> UnindexedConsumer for FindConsumer<'p, P>`
 
 - <span id="findconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -82,9 +82,9 @@ struct FindFolder<'p, T, P> {
 
 #### Trait Implementations
 
-##### `impl<'p, T, P> Folder for FindFolder<'p, T, P>`
+##### `impl<T, P> Folder for FindFolder<'p, T, P>`
 
-- <span id="findfolder-type-result"></span>`type Result = Option<T>`
+- <span id="findfolder-folder-type-result"></span>`type Result = Option<T>`
 
 - <span id="findfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -98,9 +98,9 @@ struct FindFolder<'p, T, P> {
 
 ##### `impl<T> Pointable for FindFolder<'p, T, P>`
 
-- <span id="findfolder-const-align"></span>`const ALIGN: usize`
+- <span id="findfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="findfolder-type-init"></span>`type Init = T`
+- <span id="findfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="findfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -124,9 +124,9 @@ struct FindReducer;
 
 ##### `impl Pointable for FindReducer`
 
-- <span id="findreducer-const-align"></span>`const ALIGN: usize`
+- <span id="findreducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="findreducer-type-init"></span>`type Init = T`
+- <span id="findreducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="findreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -136,7 +136,7 @@ struct FindReducer;
 
 - <span id="findreducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl Reducer for FindReducer`
+##### `impl<T> Reducer for FindReducer`
 
 - <span id="findreducer-reduce"></span>`fn reduce(self, left: Option<T>, right: Option<T>) -> Option<T>`
 

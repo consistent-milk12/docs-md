@@ -18,22 +18,22 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
   - [`errno`](#errno)
   - [`fcntl`](#fcntl)
   - [`ioctl`](#ioctl)
-  - [`read_write`](#read_write)
+  - [`read_write`](#read-write)
 - [Structs](#structs)
   - [`Errno`](#errno)
 - [Functions](#functions)
-  - [`retry_on_intr`](#retry_on_intr)
+  - [`retry_on_intr`](#retry-on-intr)
   - [`close`](#close)
   - [`dup`](#dup)
   - [`dup2`](#dup2)
   - [`dup3`](#dup3)
-  - [`fcntl_getfd`](#fcntl_getfd)
-  - [`fcntl_setfd`](#fcntl_setfd)
-  - [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec)
-  - [`ioctl_fioclex`](#ioctl_fioclex)
-  - [`ioctl_fionclex`](#ioctl_fionclex)
-  - [`ioctl_fionbio`](#ioctl_fionbio)
-  - [`ioctl_fionread`](#ioctl_fionread)
+  - [`fcntl_getfd`](#fcntl-getfd)
+  - [`fcntl_setfd`](#fcntl-setfd)
+  - [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec)
+  - [`ioctl_fioclex`](#ioctl-fioclex)
+  - [`ioctl_fionclex`](#ioctl-fionclex)
+  - [`ioctl_fionbio`](#ioctl-fionbio)
+  - [`ioctl_fionread`](#ioctl-fionread)
   - [`read`](#read)
   - [`write`](#write)
   - [`pread`](#pread)
@@ -56,20 +56,20 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 | [`errno`](#errno) | mod | The `Errno` type, which is a minimal wrapper around an error code. |
 | [`fcntl`](#fcntl) | mod | The Unix `fcntl` function is effectively lots of different functions hidden behind a single dynamic dispatch interface. |
 | [`ioctl`](#ioctl) | mod | The Unix `ioctl` function is effectively lots of different functions hidden behind a single dynamic dispatch interface. |
-| [`read_write`](#read_write) | mod | `read` and `write`, optionally positioned, optionally vectored. |
+| [`read_write`](#read-write) | mod | `read` and `write`, optionally positioned, optionally vectored. |
 | [`Errno`](#errno) | struct |  |
-| [`retry_on_intr`](#retry_on_intr) | fn |  |
+| [`retry_on_intr`](#retry-on-intr) | fn |  |
 | [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
 | [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same underlying [file description] as `fd`. |
 | [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
 | [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file descriptor, with flags. |
-| [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
-| [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
-| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
-| [`ioctl_fioclex`](#ioctl_fioclex) | fn | `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag. |
-| [`ioctl_fionclex`](#ioctl_fionclex) | fn | `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag. |
-| [`ioctl_fionbio`](#ioctl_fionbio) | fn | `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode. |
-| [`ioctl_fionread`](#ioctl_fionread) | fn | `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read. |
+| [`fcntl_getfd`](#fcntl-getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
+| [`fcntl_setfd`](#fcntl-setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
+| [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
+| [`ioctl_fioclex`](#ioctl-fioclex) | fn | `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag. |
+| [`ioctl_fionclex`](#ioctl-fionclex) | fn | `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag. |
+| [`ioctl_fionbio`](#ioctl-fionbio) | fn | `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode. |
+| [`ioctl_fionread`](#ioctl-fionread) | fn | `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read. |
 | [`read`](#read) | fn | `read(fd, buf)`—Reads from a stream. |
 | [`write`](#write) | fn | `write(fd, buf)`—Writes to a stream. |
 | [`pread`](#pread) | fn | `pread(fd, buf, offset)`—Reads from a file at a given position. |
@@ -103,7 +103,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -172,7 +172,15 @@ but only holds an OS error code, and no extra error value.
 
 ## Functions
 
-*Defined in [`rustix-1.1.2/src/io/mod.rs:20`](../../../.source_1765210505/rustix-1.1.2/src/io/mod.rs#L20)*
+### `retry_on_intr`
+
+```rust
+fn retry_on_intr<T, F: FnMut() -> Result<T>>(f: F) -> Result<T>
+```
+
+*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../.source_1765210505/rustix-1.1.2/src/io/errno.rs#L67-L74)*
+
+Call `f` until it either succeeds or fails other than `Errno::INTR`.
 
 ### `close`
 
@@ -790,5 +798,13 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 
 ## Type Aliases
 
-*Defined in [`rustix-1.1.2/src/io/mod.rs:20`](../../../.source_1765210505/rustix-1.1.2/src/io/mod.rs#L20)*
+### `Result<T>`
+
+```rust
+type Result<T> = result::Result<T, Errno>;
+```
+
+*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../.source_1765210505/rustix-1.1.2/src/io/errno.rs#L15)*
+
+A specialized [`Result`](errno/index.md) type for `rustix` APIs.
 

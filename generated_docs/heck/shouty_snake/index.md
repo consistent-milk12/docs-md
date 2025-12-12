@@ -22,7 +22,7 @@ struct AsShoutySnakeCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L55)*
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 

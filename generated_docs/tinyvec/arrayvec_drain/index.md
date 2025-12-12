@@ -32,27 +32,27 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 
 #### Trait Implementations
 
-##### `impl<'a, T: 'a + Default> DoubleEndedIterator for ArrayVecDrain<'a, T>`
+##### `impl<T: 'a + Default> DoubleEndedIterator for ArrayVecDrain<'a, T>`
 
 - <span id="arrayvecdrain-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="arrayvecdrain-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T: 'a + Default> ExactSizeIterator for ArrayVecDrain<'a, T>`
+##### `impl<T: 'a + Default> ExactSizeIterator for ArrayVecDrain<'a, T>`
 
-##### `impl<'a, T: 'a + Default> FusedIterator for ArrayVecDrain<'a, T>`
+##### `impl<T: 'a + Default> FusedIterator for ArrayVecDrain<'a, T>`
 
-##### `impl<I> IntoIterator for ArrayVecDrain<'a, T>`
+##### `impl IntoIterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayvecdrain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayvecdrain-type-intoiter"></span>`type IntoIter = I`
+- <span id="arrayvecdrain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T: 'a + Default> Iterator for ArrayVecDrain<'a, T>`
+##### `impl<T: 'a + Default> Iterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-type-item"></span>`type Item = T`
+- <span id="arrayvecdrain-iterator-type-item"></span>`type Item = T`
 
 - <span id="arrayvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

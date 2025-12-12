@@ -38,8 +38,8 @@ The minimum supported Rust version is 1.70.0.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Stream`](#stream) | enum | possible stream sources |
-| [`supports_hyperlinks`](#supports_hyperlinks) | fn | Returns true if the current terminal, detected through various environment variables, is known to support hyperlink rendering. |
-| [`is_a_tty`](#is_a_tty) | fn |  |
+| [`supports_hyperlinks`](#supports-hyperlinks) | fn | Returns true if the current terminal, detected through various environment variables, is known to support hyperlink rendering. |
+| [`is_a_tty`](#is-a-tty) | fn |  |
 | [`on`](#on) | fn | Returns true if `stream` is a TTY, and the current terminal [supports_hyperlinks]. |
 
 ## Enums

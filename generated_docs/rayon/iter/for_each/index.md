@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ForEachConsumer`](#foreachconsumer) | struct |  |
-| [`for_each`](#for_each) | fn |  |
+| [`for_each`](#for-each) | fn |  |
 
 ## Structs
 
@@ -25,13 +25,13 @@ struct ForEachConsumer<'f, F> {
 
 #### Trait Implementations
 
-##### `impl<'f, F, T> Consumer for ForEachConsumer<'f, F>`
+##### `impl<F, T> Consumer for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-type-folder"></span>`type Folder = ForEachConsumer<'f, F>`
+- <span id="foreachconsumer-consumer-type-folder"></span>`type Folder = ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-type-reducer"></span>`type Reducer = NoopReducer`
+- <span id="foreachconsumer-consumer-type-reducer"></span>`type Reducer = NoopReducer`
 
-- <span id="foreachconsumer-type-result"></span>`type Result = ()`
+- <span id="foreachconsumer-consumer-type-result"></span>`type Result = ()`
 
 - <span id="foreachconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](../noop/index.md#noopreducer)
 
@@ -39,9 +39,9 @@ struct ForEachConsumer<'f, F> {
 
 - <span id="foreachconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<'f, F, T> Folder for ForEachConsumer<'f, F>`
+##### `impl<F, T> Folder for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-type-result"></span>`type Result = ()`
+- <span id="foreachconsumer-folder-type-result"></span>`type Result = ()`
 
 - <span id="foreachconsumer-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -51,13 +51,13 @@ struct ForEachConsumer<'f, F> {
 
 - <span id="foreachconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ForEachConsumer<'f, F>`
+##### `impl IntoEither for ForEachConsumer<'f, F>`
 
-##### `impl<T> Pointable for ForEachConsumer<'f, F>`
+##### `impl Pointable for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="foreachconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foreachconsumer-type-init"></span>`type Init = T`
+- <span id="foreachconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="foreachconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -67,7 +67,7 @@ struct ForEachConsumer<'f, F> {
 
 - <span id="foreachconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, F, T> UnindexedConsumer for ForEachConsumer<'f, F>`
+##### `impl<F, T> UnindexedConsumer for ForEachConsumer<'f, F>`
 
 - <span id="foreachconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 

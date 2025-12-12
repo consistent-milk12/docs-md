@@ -7,91 +7,91 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`atomic_load`](#atomic_load)
-  - [`atomic_load_seqcst`](#atomic_load_seqcst)
-  - [`atomic_store`](#atomic_store)
-  - [`atomic_store_non_seqcst`](#atomic_store_non_seqcst)
-  - [`atomic_store_seqcst`](#atomic_store_seqcst)
-  - [`atomic_compare_exchange`](#atomic_compare_exchange)
-  - [`atomic_compare_exchange_seqcst`](#atomic_compare_exchange_seqcst)
-  - [`atomic_swap`](#atomic_swap)
-  - [`atomic_swap_seqcst`](#atomic_swap_seqcst)
-  - [`atomic_add`](#atomic_add)
-  - [`atomic_add_seqcst`](#atomic_add_seqcst)
-  - [`atomic_sub`](#atomic_sub)
-  - [`atomic_sub_seqcst`](#atomic_sub_seqcst)
-  - [`atomic_and`](#atomic_and)
-  - [`atomic_and_seqcst`](#atomic_and_seqcst)
-  - [`atomic_nand`](#atomic_nand)
-  - [`atomic_nand_seqcst`](#atomic_nand_seqcst)
-  - [`atomic_or`](#atomic_or)
-  - [`atomic_or_seqcst`](#atomic_or_seqcst)
-  - [`atomic_xor`](#atomic_xor)
-  - [`atomic_xor_seqcst`](#atomic_xor_seqcst)
-  - [`atomic_max`](#atomic_max)
-  - [`atomic_max_seqcst`](#atomic_max_seqcst)
-  - [`atomic_umax`](#atomic_umax)
-  - [`atomic_umax_seqcst`](#atomic_umax_seqcst)
-  - [`atomic_min`](#atomic_min)
-  - [`atomic_min_seqcst`](#atomic_min_seqcst)
-  - [`atomic_umin`](#atomic_umin)
-  - [`atomic_umin_seqcst`](#atomic_umin_seqcst)
-  - [`atomic_not`](#atomic_not)
-  - [`atomic_not_seqcst`](#atomic_not_seqcst)
-  - [`atomic_neg`](#atomic_neg)
-  - [`atomic_neg_seqcst`](#atomic_neg_seqcst)
+  - [`atomic_load`](#atomic-load)
+  - [`atomic_load_seqcst`](#atomic-load-seqcst)
+  - [`atomic_store`](#atomic-store)
+  - [`atomic_store_non_seqcst`](#atomic-store-non-seqcst)
+  - [`atomic_store_seqcst`](#atomic-store-seqcst)
+  - [`atomic_compare_exchange`](#atomic-compare-exchange)
+  - [`atomic_compare_exchange_seqcst`](#atomic-compare-exchange-seqcst)
+  - [`atomic_swap`](#atomic-swap)
+  - [`atomic_swap_seqcst`](#atomic-swap-seqcst)
+  - [`atomic_add`](#atomic-add)
+  - [`atomic_add_seqcst`](#atomic-add-seqcst)
+  - [`atomic_sub`](#atomic-sub)
+  - [`atomic_sub_seqcst`](#atomic-sub-seqcst)
+  - [`atomic_and`](#atomic-and)
+  - [`atomic_and_seqcst`](#atomic-and-seqcst)
+  - [`atomic_nand`](#atomic-nand)
+  - [`atomic_nand_seqcst`](#atomic-nand-seqcst)
+  - [`atomic_or`](#atomic-or)
+  - [`atomic_or_seqcst`](#atomic-or-seqcst)
+  - [`atomic_xor`](#atomic-xor)
+  - [`atomic_xor_seqcst`](#atomic-xor-seqcst)
+  - [`atomic_max`](#atomic-max)
+  - [`atomic_max_seqcst`](#atomic-max-seqcst)
+  - [`atomic_umax`](#atomic-umax)
+  - [`atomic_umax_seqcst`](#atomic-umax-seqcst)
+  - [`atomic_min`](#atomic-min)
+  - [`atomic_min_seqcst`](#atomic-min-seqcst)
+  - [`atomic_umin`](#atomic-umin)
+  - [`atomic_umin_seqcst`](#atomic-umin-seqcst)
+  - [`atomic_not`](#atomic-not)
+  - [`atomic_not_seqcst`](#atomic-not-seqcst)
+  - [`atomic_neg`](#atomic-neg)
+  - [`atomic_neg_seqcst`](#atomic-neg-seqcst)
 - [Type Aliases](#type-aliases)
   - [`Udw`](#udw)
   - [`AtomicUdw`](#atomicudw)
   - [`AtomicIdw`](#atomicidw)
 - [Macros](#macros)
-  - [`debug_assert_outline_atomics!`](#debug_assert_outline_atomics)
-  - [`atomic_rmw_3!`](#atomic_rmw_3)
-  - [`atomic_rmw_2!`](#atomic_rmw_2)
+  - [`debug_assert_outline_atomics!`](#debug-assert-outline-atomics)
+  - [`atomic_rmw_3!`](#atomic-rmw-3)
+  - [`atomic_rmw_2!`](#atomic-rmw-2)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`atomic_load`](#atomic_load) | fn |  |
-| [`atomic_load_seqcst`](#atomic_load_seqcst) | fn |  |
-| [`atomic_store`](#atomic_store) | fn |  |
-| [`atomic_store_non_seqcst`](#atomic_store_non_seqcst) | fn |  |
-| [`atomic_store_seqcst`](#atomic_store_seqcst) | fn |  |
-| [`atomic_compare_exchange`](#atomic_compare_exchange) | fn |  |
-| [`atomic_compare_exchange_seqcst`](#atomic_compare_exchange_seqcst) | fn |  |
-| [`atomic_swap`](#atomic_swap) | fn |  |
-| [`atomic_swap_seqcst`](#atomic_swap_seqcst) | fn |  |
-| [`atomic_add`](#atomic_add) | fn |  |
-| [`atomic_add_seqcst`](#atomic_add_seqcst) | fn |  |
-| [`atomic_sub`](#atomic_sub) | fn |  |
-| [`atomic_sub_seqcst`](#atomic_sub_seqcst) | fn |  |
-| [`atomic_and`](#atomic_and) | fn |  |
-| [`atomic_and_seqcst`](#atomic_and_seqcst) | fn |  |
-| [`atomic_nand`](#atomic_nand) | fn |  |
-| [`atomic_nand_seqcst`](#atomic_nand_seqcst) | fn |  |
-| [`atomic_or`](#atomic_or) | fn |  |
-| [`atomic_or_seqcst`](#atomic_or_seqcst) | fn |  |
-| [`atomic_xor`](#atomic_xor) | fn |  |
-| [`atomic_xor_seqcst`](#atomic_xor_seqcst) | fn |  |
-| [`atomic_max`](#atomic_max) | fn |  |
-| [`atomic_max_seqcst`](#atomic_max_seqcst) | fn |  |
-| [`atomic_umax`](#atomic_umax) | fn |  |
-| [`atomic_umax_seqcst`](#atomic_umax_seqcst) | fn |  |
-| [`atomic_min`](#atomic_min) | fn |  |
-| [`atomic_min_seqcst`](#atomic_min_seqcst) | fn |  |
-| [`atomic_umin`](#atomic_umin) | fn |  |
-| [`atomic_umin_seqcst`](#atomic_umin_seqcst) | fn |  |
-| [`atomic_not`](#atomic_not) | fn |  |
-| [`atomic_not_seqcst`](#atomic_not_seqcst) | fn |  |
-| [`atomic_neg`](#atomic_neg) | fn |  |
-| [`atomic_neg_seqcst`](#atomic_neg_seqcst) | fn |  |
+| [`atomic_load`](#atomic-load) | fn |  |
+| [`atomic_load_seqcst`](#atomic-load-seqcst) | fn |  |
+| [`atomic_store`](#atomic-store) | fn |  |
+| [`atomic_store_non_seqcst`](#atomic-store-non-seqcst) | fn |  |
+| [`atomic_store_seqcst`](#atomic-store-seqcst) | fn |  |
+| [`atomic_compare_exchange`](#atomic-compare-exchange) | fn |  |
+| [`atomic_compare_exchange_seqcst`](#atomic-compare-exchange-seqcst) | fn |  |
+| [`atomic_swap`](#atomic-swap) | fn |  |
+| [`atomic_swap_seqcst`](#atomic-swap-seqcst) | fn |  |
+| [`atomic_add`](#atomic-add) | fn |  |
+| [`atomic_add_seqcst`](#atomic-add-seqcst) | fn |  |
+| [`atomic_sub`](#atomic-sub) | fn |  |
+| [`atomic_sub_seqcst`](#atomic-sub-seqcst) | fn |  |
+| [`atomic_and`](#atomic-and) | fn |  |
+| [`atomic_and_seqcst`](#atomic-and-seqcst) | fn |  |
+| [`atomic_nand`](#atomic-nand) | fn |  |
+| [`atomic_nand_seqcst`](#atomic-nand-seqcst) | fn |  |
+| [`atomic_or`](#atomic-or) | fn |  |
+| [`atomic_or_seqcst`](#atomic-or-seqcst) | fn |  |
+| [`atomic_xor`](#atomic-xor) | fn |  |
+| [`atomic_xor_seqcst`](#atomic-xor-seqcst) | fn |  |
+| [`atomic_max`](#atomic-max) | fn |  |
+| [`atomic_max_seqcst`](#atomic-max-seqcst) | fn |  |
+| [`atomic_umax`](#atomic-umax) | fn |  |
+| [`atomic_umax_seqcst`](#atomic-umax-seqcst) | fn |  |
+| [`atomic_min`](#atomic-min) | fn |  |
+| [`atomic_min_seqcst`](#atomic-min-seqcst) | fn |  |
+| [`atomic_umin`](#atomic-umin) | fn |  |
+| [`atomic_umin_seqcst`](#atomic-umin-seqcst) | fn |  |
+| [`atomic_not`](#atomic-not) | fn |  |
+| [`atomic_not_seqcst`](#atomic-not-seqcst) | fn |  |
+| [`atomic_neg`](#atomic-neg) | fn |  |
+| [`atomic_neg_seqcst`](#atomic-neg-seqcst) | fn |  |
 | [`Udw`](#udw) | type |  |
 | [`AtomicUdw`](#atomicudw) | type |  |
 | [`AtomicIdw`](#atomicidw) | type |  |
-| [`debug_assert_outline_atomics!`](#debug_assert_outline_atomics) | macro |  |
-| [`atomic_rmw_3!`](#atomic_rmw_3) | macro |  |
-| [`atomic_rmw_2!`](#atomic_rmw_2) | macro |  |
+| [`debug_assert_outline_atomics!`](#debug-assert-outline-atomics) | macro |  |
+| [`atomic_rmw_3!`](#atomic-rmw-3) | macro |  |
+| [`atomic_rmw_2!`](#atomic-rmw-2) | macro |  |
 
 ## Functions
 

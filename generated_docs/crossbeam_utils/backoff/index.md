@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Backoff`](#backoff) | struct | Performs exponential backoff in spin loops. |
-| [`SPIN_LIMIT`](#spin_limit) | const |  |
-| [`YIELD_LIMIT`](#yield_limit) | const |  |
+| [`SPIN_LIMIT`](#spin-limit) | const |  |
+| [`YIELD_LIMIT`](#yield-limit) | const |  |
 
 ## Structs
 

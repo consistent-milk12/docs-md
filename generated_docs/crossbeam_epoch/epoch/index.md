@@ -81,9 +81,9 @@ and a flag that represents whether it is pinned or unpinned.
 
 ##### `impl Pointable for Epoch`
 
-- <span id="epoch-const-align"></span>`const ALIGN: usize`
+- <span id="epoch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="epoch-type-init"></span>`type Init = T`
+- <span id="epoch-pointable-type-init"></span>`type Init = T`
 
 - <span id="epoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 
@@ -136,9 +136,9 @@ An atomic value that holds an `Epoch`.
 
 ##### `impl Pointable for AtomicEpoch`
 
-- <span id="atomicepoch-const-align"></span>`const ALIGN: usize`
+- <span id="atomicepoch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomicepoch-type-init"></span>`type Init = T`
+- <span id="atomicepoch-pointable-type-init"></span>`type Init = T`
 
 - <span id="atomicepoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 

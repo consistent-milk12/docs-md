@@ -10,14 +10,14 @@
   - [`Expr`](#expr)
 - [Functions](#functions)
   - [`parse`](#parse)
-  - [`parse_nightly`](#parse_nightly)
-  - [`parse_stable`](#parse_stable)
-  - [`parse_since`](#parse_since)
-  - [`parse_before`](#parse_before)
-  - [`parse_not`](#parse_not)
-  - [`parse_any`](#parse_any)
-  - [`parse_all`](#parse_all)
-  - [`parse_comma_separated`](#parse_comma_separated)
+  - [`parse_nightly`](#parse-nightly)
+  - [`parse_stable`](#parse-stable)
+  - [`parse_since`](#parse-since)
+  - [`parse_before`](#parse-before)
+  - [`parse_not`](#parse-not)
+  - [`parse_any`](#parse-any)
+  - [`parse_all`](#parse-all)
+  - [`parse_comma_separated`](#parse-comma-separated)
 
 ## Quick Reference
 
@@ -25,14 +25,14 @@
 |------|------|-------------|
 | [`Expr`](#expr) | enum |  |
 | [`parse`](#parse) | fn |  |
-| [`parse_nightly`](#parse_nightly) | fn |  |
-| [`parse_stable`](#parse_stable) | fn |  |
-| [`parse_since`](#parse_since) | fn |  |
-| [`parse_before`](#parse_before) | fn |  |
-| [`parse_not`](#parse_not) | fn |  |
-| [`parse_any`](#parse_any) | fn |  |
-| [`parse_all`](#parse_all) | fn |  |
-| [`parse_comma_separated`](#parse_comma_separated) | fn |  |
+| [`parse_nightly`](#parse-nightly) | fn |  |
+| [`parse_stable`](#parse-stable) | fn |  |
+| [`parse_since`](#parse-since) | fn |  |
+| [`parse_before`](#parse-before) | fn |  |
+| [`parse_not`](#parse-not) | fn |  |
+| [`parse_any`](#parse-any) | fn |  |
+| [`parse_all`](#parse-all) | fn |  |
+| [`parse_comma_separated`](#parse-comma-separated) | fn |  |
 
 ## Enums
 

@@ -9,28 +9,28 @@
 - [Enums](#enums)
   - [`Flag`](#flag)
 - [Functions](#functions)
-  - [`assert_app`](#assert_app)
-  - [`duplicate_tip`](#duplicate_tip)
-  - [`detect_duplicate_flags`](#detect_duplicate_flags)
-  - [`find_duplicates`](#find_duplicates)
-  - [`assert_app_flags`](#assert_app_flags)
-  - [`_verify_positionals`](#_verify_positionals)
-  - [`assert_arg`](#assert_arg)
-  - [`assert_arg_flags`](#assert_arg_flags)
+  - [`assert_app`](#assert-app)
+  - [`duplicate_tip`](#duplicate-tip)
+  - [`detect_duplicate_flags`](#detect-duplicate-flags)
+  - [`find_duplicates`](#find-duplicates)
+  - [`assert_app_flags`](#assert-app-flags)
+  - [`_verify_positionals`](#verify-positionals)
+  - [`assert_arg`](#assert-arg)
+  - [`assert_arg_flags`](#assert-arg-flags)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Flag`](#flag) | enum |  |
-| [`assert_app`](#assert_app) | fn |  |
-| [`duplicate_tip`](#duplicate_tip) | fn |  |
-| [`detect_duplicate_flags`](#detect_duplicate_flags) | fn |  |
-| [`find_duplicates`](#find_duplicates) | fn | Find duplicates in a sorted array. |
-| [`assert_app_flags`](#assert_app_flags) | fn |  |
-| [`_verify_positionals`](#_verify_positionals) | fn |  |
-| [`assert_arg`](#assert_arg) | fn |  |
-| [`assert_arg_flags`](#assert_arg_flags) | fn |  |
+| [`assert_app`](#assert-app) | fn |  |
+| [`duplicate_tip`](#duplicate-tip) | fn |  |
+| [`detect_duplicate_flags`](#detect-duplicate-flags) | fn |  |
+| [`find_duplicates`](#find-duplicates) | fn | Find duplicates in a sorted array. |
+| [`assert_app_flags`](#assert-app-flags) | fn |  |
+| [`_verify_positionals`](#verify-positionals) | fn |  |
+| [`assert_arg`](#assert-arg) | fn |  |
+| [`assert_arg_flags`](#assert-arg-flags) | fn |  |
 
 ## Enums
 

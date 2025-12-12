@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Panic`](#panic) | struct |  |
-| [`set_panic_hook`](#set_panic_hook) | fn | Tells miette to render panics using its rendering engine. |
+| [`set_panic_hook`](#set-panic-hook) | fn | Tells miette to render panics using its rendering engine. |
 
 ## Structs
 

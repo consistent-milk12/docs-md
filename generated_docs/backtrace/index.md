@@ -108,13 +108,13 @@ unwinding-based backtraces!
   - [`BytesOrWideString`](#bytesorwidestring)
   - [`PrintFmt`](#printfmt)
 - [Functions](#functions)
-  - [`trace_unsynchronized`](#trace_unsynchronized)
-  - [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized)
-  - [`resolve_unsynchronized`](#resolve_unsynchronized)
-  - [`clear_symbol_cache`](#clear_symbol_cache)
+  - [`trace_unsynchronized`](#trace-unsynchronized)
+  - [`resolve_frame_unsynchronized`](#resolve-frame-unsynchronized)
+  - [`resolve_unsynchronized`](#resolve-unsynchronized)
+  - [`clear_symbol_cache`](#clear-symbol-cache)
   - [`trace`](#trace)
   - [`resolve`](#resolve)
-  - [`resolve_frame`](#resolve_frame)
+  - [`resolve_frame`](#resolve-frame)
 
 ## Quick Reference
 
@@ -136,13 +136,13 @@ unwinding-based backtraces!
 | [`BacktraceSymbol`](#backtracesymbol) | struct |  |
 | [`BytesOrWideString`](#bytesorwidestring) | enum |  |
 | [`PrintFmt`](#printfmt) | enum |  |
-| [`trace_unsynchronized`](#trace_unsynchronized) | fn |  |
-| [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized) | fn |  |
-| [`resolve_unsynchronized`](#resolve_unsynchronized) | fn |  |
-| [`clear_symbol_cache`](#clear_symbol_cache) | fn |  |
+| [`trace_unsynchronized`](#trace-unsynchronized) | fn |  |
+| [`resolve_frame_unsynchronized`](#resolve-frame-unsynchronized) | fn |  |
+| [`resolve_unsynchronized`](#resolve-unsynchronized) | fn |  |
+| [`clear_symbol_cache`](#clear-symbol-cache) | fn |  |
 | [`trace`](#trace) | fn |  |
 | [`resolve`](#resolve) | fn |  |
-| [`resolve_frame`](#resolve_frame) | fn |  |
+| [`resolve_frame`](#resolve-frame) | fn |  |
 
 ## Modules
 
@@ -566,17 +566,237 @@ The styles of printing that we can print
 
 ## Functions
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:108`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L108)*
+### `trace_unsynchronized`
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:111`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L111)*
+```rust
+unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
+```
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:112`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L112)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../.source_1765210505/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:119`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L119)*
+Same as `trace`, only unsafe as it's unsynchronized.
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:126`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L126)*
+This function does not have synchronization guarantees but is available
+when the `std` feature of this crate isn't compiled in. See the `trace`
+function for more documentation and examples.
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:127`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L127)*
+# Panics
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:127`](../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L127)*
+See information on `trace` for caveats on `cb` panicking.
+
+### `resolve_frame_unsynchronized`
+
+```rust
+unsafe fn resolve_frame_unsynchronized<F>(frame: &super::backtrace::Frame, cb: F)
+where
+    F: FnMut(&Symbol)
+```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
+
+Same as `resolve_frame`, only unsafe as it's unsynchronized.
+
+This function does not have synchronization guarantees but is available
+when the `std` feature of this crate isn't compiled in. See the
+`resolve_frame` function for more documentation and examples.
+
+# Panics
+
+See information on `resolve_frame` for caveats on `cb` panicking.
+
+### `resolve_unsynchronized`
+
+```rust
+unsafe fn resolve_unsynchronized<F>(addr: *mut core::ffi::c_void, cb: F)
+where
+    F: FnMut(&Symbol)
+```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
+
+Same as `resolve`, only unsafe as it's unsynchronized.
+
+This function does not have synchronization guarantees but is available when
+the `std` feature of this crate isn't compiled in. See the `resolve`
+function for more documentation and examples.
+
+# Panics
+
+See information on `resolve` for caveats on `cb` panicking.
+
+### `clear_symbol_cache`
+
+```rust
+fn clear_symbol_cache()
+```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
+
+Attempt to reclaim that cached memory used to symbolicate addresses.
+
+This method will attempt to release any global data structures that have
+otherwise been cached globally or in the thread which typically represent
+parsed DWARF information or similar.
+
+# Caveats
+
+While this function is always available it doesn't actually do anything on
+most implementations. Libraries like dbghelp or libbacktrace do not provide
+facilities to deallocate state and manage the allocated memory. For now the
+`std` feature of this crate is the only feature where this
+function has any effect.
+
+### `trace`
+
+```rust
+fn trace<F: FnMut(&Frame) -> bool>(cb: F)
+```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../.source_1765210505/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
+
+Inspects the current call-stack, passing all active frames into the closure
+provided to calculate a stack trace.
+
+This function is the workhorse of this library in calculating the stack
+traces for a program. The given closure `cb` is yielded instances of a
+`Frame` which represent information about that call frame on the stack. The
+closure is yielded frames in a top-down fashion (most recently called
+functions first).
+
+The closure's return value is an indication of whether the backtrace should
+continue. A return value of `false` will terminate the backtrace and return
+immediately.
+
+Once a `Frame` is acquired you will likely want to call `backtrace::resolve`
+to convert the `ip` (instruction pointer) or symbol address to a `Symbol`
+through which the name and/or filename/line number can be learned.
+
+Note that this is a relatively low-level function and if you'd like to, for
+example, capture a backtrace to be inspected later, then the `Backtrace`
+type may be more appropriate.
+
+# Required features
+
+This function requires the `std` feature of the `backtrace` crate to be
+enabled, and the `std` feature is enabled by default.
+
+# Panics
+
+This function strives to never panic, but if the `cb` provided panics then
+some platforms will force a double panic to abort the process. Some
+platforms use a C library which internally uses callbacks which cannot be
+unwound through, so panicking from `cb` may trigger a process abort.
+
+# Example
+
+```rust
+extern crate backtrace;
+
+fn main() {
+    backtrace::trace(|frame| {
+        // ...
+
+        true // continue the backtrace
+    });
+}
+```
+
+### `resolve`
+
+```rust
+fn resolve<F: FnMut(&Symbol)>(addr: *mut core::ffi::c_void, cb: F)
+```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
+
+Resolve an address to a symbol, passing the symbol to the specified
+closure.
+
+This function will look up the given address in areas such as the local
+symbol table, dynamic symbol table, or DWARF debug info (depending on the
+activated implementation) to find symbols to yield.
+
+The closure may not be called if resolution could not be performed, and it
+also may be called more than once in the case of inlined functions.
+
+Symbols yielded represent the execution at the specified `addr`, returning
+file/line pairs for that address (if available).
+
+Note that if you have a `Frame` then it's recommended to use the
+`resolve_frame` function instead of this one.
+
+# Required features
+
+This function requires the `std` feature of the `backtrace` crate to be
+enabled, and the `std` feature is enabled by default.
+
+# Panics
+
+This function strives to never panic, but if the `cb` provided panics then
+some platforms will force a double panic to abort the process. Some
+platforms use a C library which internally uses callbacks which cannot be
+unwound through, so panicking from `cb` may trigger a process abort.
+
+# Example
+
+```rust
+extern crate backtrace;
+
+fn main() {
+    backtrace::trace(|frame| {
+        let ip = frame.ip();
+
+        backtrace::resolve(ip, |symbol| {
+            // ...
+        });
+
+        false // only look at the top frame
+    });
+}
+```
+
+### `resolve_frame`
+
+```rust
+fn resolve_frame<F: FnMut(&Symbol)>(frame: &super::backtrace::Frame, cb: F)
+```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
+
+Resolve a previously captured frame to a symbol, passing the symbol to the
+specified closure.
+
+This function performs the same function as `resolve` except that it takes a
+`Frame` as an argument instead of an address. This can allow some platform
+implementations of backtracing to provide more accurate symbol information
+or information about inline frames for example. It's recommended to use this
+if you can.
+
+# Required features
+
+This function requires the `std` feature of the `backtrace` crate to be
+enabled, and the `std` feature is enabled by default.
+
+# Panics
+
+This function strives to never panic, but if the `cb` provided panics then
+some platforms will force a double panic to abort the process. Some
+platforms use a C library which internally uses callbacks which cannot be
+unwound through, so panicking from `cb` may trigger a process abort.
+
+# Example
+
+```rust
+extern crate backtrace;
+
+fn main() {
+    backtrace::trace(|frame| {
+        backtrace::resolve_frame(frame, |symbol| {
+            // ...
+        });
+
+        false // only look at the top frame
+    });
+}
+```
 

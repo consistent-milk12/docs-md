@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`x86_64_ssse3`](#x86_64_ssse3) | mod |  |
-| [`x86_64_avx2`](#x86_64_avx2) | mod |  |
+| [`x86_64_ssse3`](#x86-64-ssse3) | mod |  |
+| [`x86_64_avx2`](#x86-64-avx2) | mod |  |
 | [`Vector`](#vector) | trait | A trait for describing vector operations used by vectorized searchers. |
 | [`FatVector`](#fatvector) | trait | This trait extends the `Vector` trait with additional operations to support Fat Teddy. |
 

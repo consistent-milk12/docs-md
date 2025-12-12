@@ -10,18 +10,18 @@
   - [`AutoHelp`](#autohelp)
   - [`HelpTemplate`](#helptemplate)
 - [Functions](#functions)
-  - [`positional_sort_key`](#positional_sort_key)
-  - [`option_sort_key`](#option_sort_key)
+  - [`positional_sort_key`](#positional-sort-key)
+  - [`option_sort_key`](#option-sort-key)
   - [`dimensions`](#dimensions)
-  - [`should_show_arg`](#should_show_arg)
-  - [`should_show_subcommand`](#should_show_subcommand)
+  - [`should_show_arg`](#should-show-arg)
+  - [`should_show_subcommand`](#should-show-subcommand)
 - [Type Aliases](#type-aliases)
   - [`ArgSortKey`](#argsortkey)
 - [Constants](#constants)
-  - [`DEFAULT_TEMPLATE`](#default_template)
-  - [`DEFAULT_NO_ARGS_TEMPLATE`](#default_no_args_template)
-  - [`SHORT_SIZE`](#short_size)
-  - [`NEXT_LINE_INDENT`](#next_line_indent)
+  - [`DEFAULT_TEMPLATE`](#default-template)
+  - [`DEFAULT_NO_ARGS_TEMPLATE`](#default-no-args-template)
+  - [`SHORT_SIZE`](#short-size)
+  - [`NEXT_LINE_INDENT`](#next-line-indent)
 
 ## Quick Reference
 
@@ -29,16 +29,16 @@
 |------|------|-------------|
 | [`AutoHelp`](#autohelp) | struct | `clap` auto-generated help writer |
 | [`HelpTemplate`](#helptemplate) | struct | Help template writer |
-| [`positional_sort_key`](#positional_sort_key) | fn |  |
-| [`option_sort_key`](#option_sort_key) | fn |  |
+| [`positional_sort_key`](#positional-sort-key) | fn |  |
+| [`option_sort_key`](#option-sort-key) | fn |  |
 | [`dimensions`](#dimensions) | fn |  |
-| [`should_show_arg`](#should_show_arg) | fn |  |
-| [`should_show_subcommand`](#should_show_subcommand) | fn |  |
+| [`should_show_arg`](#should-show-arg) | fn |  |
+| [`should_show_subcommand`](#should-show-subcommand) | fn |  |
 | [`ArgSortKey`](#argsortkey) | type |  |
-| [`DEFAULT_TEMPLATE`](#default_template) | const |  |
-| [`DEFAULT_NO_ARGS_TEMPLATE`](#default_no_args_template) | const |  |
-| [`SHORT_SIZE`](#short_size) | const |  |
-| [`NEXT_LINE_INDENT`](#next_line_indent) | const |  |
+| [`DEFAULT_TEMPLATE`](#default-template) | const |  |
+| [`DEFAULT_NO_ARGS_TEMPLATE`](#default-no-args-template) | const |  |
+| [`SHORT_SIZE`](#short-size) | const |  |
+| [`NEXT_LINE_INDENT`](#next-line-indent) | const |  |
 
 ## Structs
 

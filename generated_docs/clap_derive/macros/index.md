@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`format_err!`](#format_err) | macro |  |
+| [`format_err!`](#format-err) | macro |  |
 | [`abort!`](#abort) | macro |  |
-| [`abort_call_site!`](#abort_call_site) | macro |  |
+| [`abort_call_site!`](#abort-call-site) | macro |  |
 
 ## Macros
 

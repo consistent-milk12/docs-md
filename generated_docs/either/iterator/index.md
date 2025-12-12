@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`IterEither`](#itereither) | struct | Iterator that maps left or right iterators to corresponding `Either`-wrapped items. |
-| [`wrap_either!`](#wrap_either) | macro |  |
+| [`wrap_either!`](#wrap-either) | macro |  |
 
 ## Structs
 
@@ -59,19 +59,19 @@ and `factor_iter_mut` methods.
 
 ##### `impl<L, R> FusedIterator for IterEither<L, R>`
 
-##### `impl<T> IntoEither for IterEither<L, R>`
+##### `impl IntoEither for IterEither<L, R>`
 
-##### `impl<I> IntoIterator for IterEither<L, R>`
+##### `impl IntoIterator for IterEither<L, R>`
 
-- <span id="itereither-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itereither-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itereither-type-intoiter"></span>`type IntoIter = I`
+- <span id="itereither-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itereither-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<L, R> Iterator for IterEither<L, R>`
 
-- <span id="itereither-type-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
+- <span id="itereither-iterator-type-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
 
 - <span id="itereither-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

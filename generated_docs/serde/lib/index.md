@@ -108,7 +108,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../cargo_docs_md/error/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -288,17 +288,52 @@ It is also possible to implement your own version of `try_find`. See the
 
 ## Functions
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+### `convert`
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+```rust
+fn convert(&self) -> &T
+```
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+### `fmt`
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+```rust
+fn fmt(&mut self) -> &mut T
+```
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+### `FmtWrite`
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+```rust
+fn FmtWrite(self) -> U
+```
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+Calls `U::from(self)`.
+
+That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.
+
+### `PhantomData`
+
+```rust
+fn PhantomData(t: T) -> T
+```
+
+Returns the argument unchanged.
+
+### `result`
+
+```rust
+fn result(self) -> Result<U, <U as TryFrom>::Error>
+```
+
+### `String`
+
+```rust
+fn String(value: U) -> Result<T, <T as TryFrom>::Error>
+```
+
+### `ToString`
+
+```rust
+fn ToString(&self) -> TypeId
+```
 

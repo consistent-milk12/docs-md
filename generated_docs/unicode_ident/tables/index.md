@@ -10,9 +10,9 @@
 |------|------|-------------|
 | [`Align8`](#align8) | struct |  |
 | [`Align64`](#align64) | struct |  |
-| [`UNICODE_VERSION`](#unicode_version) | const |  |
-| [`ASCII_START`](#ascii_start) | const |  |
-| [`ASCII_CONTINUE`](#ascii_continue) | const |  |
+| [`UNICODE_VERSION`](#unicode-version) | const |  |
+| [`ASCII_START`](#ascii-start) | const |  |
+| [`ASCII_CONTINUE`](#ascii-continue) | const |  |
 | [`CHUNK`](#chunk) | const |  |
 
 ## Structs

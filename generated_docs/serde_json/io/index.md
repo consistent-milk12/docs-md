@@ -23,9 +23,25 @@ and/or now relying on OS-specific `std::backtrace::Backtrace`.
 
 ## Functions
 
-*Defined in [`serde_json-1.0.145/src/io/mod.rs:10`](../../../.source_1765210505/serde_json-1.0.145/src/io/mod.rs#L10)*
+### `ErrorKind`
 
-*Defined in [`serde_json-1.0.145/src/io/mod.rs:20`](../../../.source_1765210505/serde_json-1.0.145/src/io/mod.rs#L20)*
+```rust
+fn ErrorKind(&self) -> impl Iterator<Item = gimli::Range> + '_
+```
 
-*Defined in [`serde_json-1.0.145/src/io/mod.rs:20`](../../../.source_1765210505/serde_json-1.0.145/src/io/mod.rs#L20)*
+*Defined in [`addr2line-0.25.1/src/line.rs:121-126`](../../../.source_1765210505/addr2line-0.25.1/src/line.rs#L121-L126)*
+
+### `Bytes`
+
+```rust
+fn Bytes(self) -> u16
+```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:83-85`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L83-L85)*
+
+### `Read`
+
+```rust
+fn Read(&self) -> &T
+```
 

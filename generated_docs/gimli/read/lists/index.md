@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ListsHeader`](#listsheader) | struct |  |
-| [`parse_header`](#parse_header) | fn |  |
+| [`parse_header`](#parse-header) | fn |  |
 
 ## Structs
 

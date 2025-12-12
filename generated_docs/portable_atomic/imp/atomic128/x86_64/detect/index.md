@@ -14,17 +14,17 @@
   - [`set`](#set)
   - [`test`](#test)
   - [`detect`](#detect)
-  - [`__cpuid`](#__cpuid)
-  - [`_vender`](#_vender)
-  - [`_vendor_id`](#_vendor_id)
-  - [`_vendor_has_vmovdqa_atomic`](#_vendor_has_vmovdqa_atomic)
-  - [`_detect`](#_detect)
+  - [`__cpuid`](#cpuid)
+  - [`_vender`](#vender)
+  - [`_vendor_id`](#vendor-id)
+  - [`_vendor_has_vmovdqa_atomic`](#vendor-has-vmovdqa-atomic)
+  - [`_detect`](#detect)
 - [Constants](#constants)
-  - [`_VENDOR_ID_INTEL`](#_vendor_id_intel)
-  - [`_VENDOR_ID_INTEL2`](#_vendor_id_intel2)
-  - [`_VENDOR_ID_AMD`](#_vendor_id_amd)
-  - [`_VENDOR_ID_CENTAUR`](#_vendor_id_centaur)
-  - [`_VENDOR_ID_ZHAOXIN`](#_vendor_id_zhaoxin)
+  - [`_VENDOR_ID_INTEL`](#vendor-id-intel)
+  - [`_VENDOR_ID_INTEL2`](#vendor-id-intel2)
+  - [`_VENDOR_ID_AMD`](#vendor-id-amd)
+  - [`_VENDOR_ID_CENTAUR`](#vendor-id-centaur)
+  - [`_VENDOR_ID_ZHAOXIN`](#vendor-id-zhaoxin)
 - [Macros](#macros)
   - [`flags!`](#flags)
 
@@ -37,16 +37,16 @@
 | [`set`](#set) | fn |  |
 | [`test`](#test) | fn |  |
 | [`detect`](#detect) | fn |  |
-| [`__cpuid`](#__cpuid) | fn |  |
-| [`_vender`](#_vender) | fn |  |
-| [`_vendor_id`](#_vendor_id) | fn |  |
-| [`_vendor_has_vmovdqa_atomic`](#_vendor_has_vmovdqa_atomic) | fn |  |
-| [`_detect`](#_detect) | fn |  |
-| [`_VENDOR_ID_INTEL`](#_vendor_id_intel) | const |  |
-| [`_VENDOR_ID_INTEL2`](#_vendor_id_intel2) | const |  |
-| [`_VENDOR_ID_AMD`](#_vendor_id_amd) | const |  |
-| [`_VENDOR_ID_CENTAUR`](#_vendor_id_centaur) | const |  |
-| [`_VENDOR_ID_ZHAOXIN`](#_vendor_id_zhaoxin) | const |  |
+| [`__cpuid`](#cpuid) | fn |  |
+| [`_vender`](#vender) | fn |  |
+| [`_vendor_id`](#vendor-id) | fn |  |
+| [`_vendor_has_vmovdqa_atomic`](#vendor-has-vmovdqa-atomic) | fn |  |
+| [`_detect`](#detect) | fn |  |
+| [`_VENDOR_ID_INTEL`](#vendor-id-intel) | const |  |
+| [`_VENDOR_ID_INTEL2`](#vendor-id-intel2) | const |  |
+| [`_VENDOR_ID_AMD`](#vendor-id-amd) | const |  |
+| [`_VENDOR_ID_CENTAUR`](#vendor-id-centaur) | const |  |
+| [`_VENDOR_ID_ZHAOXIN`](#vendor-id-zhaoxin) | const |  |
 | [`flags!`](#flags) | macro |  |
 
 ## Structs

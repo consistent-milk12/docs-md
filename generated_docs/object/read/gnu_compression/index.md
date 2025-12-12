@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`compressed_file_range`](#compressed_file_range) | fn |  |
+| [`compressed_file_range`](#compressed-file-range) | fn |  |
 
 ## Functions
 

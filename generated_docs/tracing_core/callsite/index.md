@@ -114,10 +114,10 @@ additional performance optimizations.
 - [Traits](#traits)
   - [`Callsite`](#callsite)
 - [Functions](#functions)
-  - [`rebuild_interest_cache`](#rebuild_interest_cache)
+  - [`rebuild_interest_cache`](#rebuild-interest-cache)
   - [`register`](#register)
-  - [`register_dispatch`](#register_dispatch)
-  - [`rebuild_callsite_interest`](#rebuild_callsite_interest)
+  - [`register_dispatch`](#register-dispatch)
+  - [`rebuild_callsite_interest`](#rebuild-callsite-interest)
 
 ## Quick Reference
 
@@ -129,10 +129,10 @@ additional performance optimizations.
 | [`DefaultCallsite`](#defaultcallsite) | struct | A default [`Callsite`] implementation. |
 | [`Callsites`](#callsites) | struct |  |
 | [`Callsite`](#callsite) | trait | Trait implemented by callsites. |
-| [`rebuild_interest_cache`](#rebuild_interest_cache) | fn | Clear and reregister interest on every [`Callsite`] |
+| [`rebuild_interest_cache`](#rebuild-interest-cache) | fn | Clear and reregister interest on every [`Callsite`] |
 | [`register`](#register) | fn | Register a new [`Callsite`] with the global registry. |
-| [`register_dispatch`](#register_dispatch) | fn |  |
-| [`rebuild_callsite_interest`](#rebuild_callsite_interest) | fn |  |
+| [`register_dispatch`](#register-dispatch) | fn |  |
+| [`rebuild_callsite_interest`](#rebuild-callsite-interest) | fn |  |
 
 ## Modules
 

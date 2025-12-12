@@ -84,500 +84,500 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 - [Enums](#enums)
   - [`PtrauthKey`](#ptrauthkey)
 - [Functions](#functions)
-  - [`cpu_subtype_intel`](#cpu_subtype_intel)
-  - [`cpu_subtype_intel_family`](#cpu_subtype_intel_family)
-  - [`cpu_subtype_intel_model`](#cpu_subtype_intel_model)
+  - [`cpu_subtype_intel`](#cpu-subtype-intel)
+  - [`cpu_subtype_intel_family`](#cpu-subtype-intel-family)
+  - [`cpu_subtype_intel_model`](#cpu-subtype-intel-model)
 - [Constants](#constants)
-  - [`CPU_ARCH_MASK`](#cpu_arch_mask)
-  - [`CPU_ARCH_ABI64`](#cpu_arch_abi64)
-  - [`CPU_ARCH_ABI64_32`](#cpu_arch_abi64_32)
-  - [`CPU_TYPE_ANY`](#cpu_type_any)
-  - [`CPU_TYPE_VAX`](#cpu_type_vax)
-  - [`CPU_TYPE_MC680X0`](#cpu_type_mc680x0)
-  - [`CPU_TYPE_X86`](#cpu_type_x86)
-  - [`CPU_TYPE_X86_64`](#cpu_type_x86_64)
-  - [`CPU_TYPE_MIPS`](#cpu_type_mips)
-  - [`CPU_TYPE_MC98000`](#cpu_type_mc98000)
-  - [`CPU_TYPE_HPPA`](#cpu_type_hppa)
-  - [`CPU_TYPE_ARM`](#cpu_type_arm)
-  - [`CPU_TYPE_ARM64`](#cpu_type_arm64)
-  - [`CPU_TYPE_ARM64_32`](#cpu_type_arm64_32)
-  - [`CPU_TYPE_MC88000`](#cpu_type_mc88000)
-  - [`CPU_TYPE_SPARC`](#cpu_type_sparc)
-  - [`CPU_TYPE_I860`](#cpu_type_i860)
-  - [`CPU_TYPE_ALPHA`](#cpu_type_alpha)
-  - [`CPU_TYPE_POWERPC`](#cpu_type_powerpc)
-  - [`CPU_TYPE_POWERPC64`](#cpu_type_powerpc64)
-  - [`CPU_SUBTYPE_MASK`](#cpu_subtype_mask)
-  - [`CPU_SUBTYPE_LIB64`](#cpu_subtype_lib64)
-  - [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu_subtype_ptrauth_abi)
-  - [`CPU_SUBTYPE_ANY`](#cpu_subtype_any)
-  - [`CPU_SUBTYPE_MULTIPLE`](#cpu_subtype_multiple)
-  - [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu_subtype_little_endian)
-  - [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu_subtype_big_endian)
-  - [`CPU_SUBTYPE_VAX_ALL`](#cpu_subtype_vax_all)
-  - [`CPU_SUBTYPE_VAX780`](#cpu_subtype_vax780)
-  - [`CPU_SUBTYPE_VAX785`](#cpu_subtype_vax785)
-  - [`CPU_SUBTYPE_VAX750`](#cpu_subtype_vax750)
-  - [`CPU_SUBTYPE_VAX730`](#cpu_subtype_vax730)
-  - [`CPU_SUBTYPE_UVAXI`](#cpu_subtype_uvaxi)
-  - [`CPU_SUBTYPE_UVAXII`](#cpu_subtype_uvaxii)
-  - [`CPU_SUBTYPE_VAX8200`](#cpu_subtype_vax8200)
-  - [`CPU_SUBTYPE_VAX8500`](#cpu_subtype_vax8500)
-  - [`CPU_SUBTYPE_VAX8600`](#cpu_subtype_vax8600)
-  - [`CPU_SUBTYPE_VAX8650`](#cpu_subtype_vax8650)
-  - [`CPU_SUBTYPE_VAX8800`](#cpu_subtype_vax8800)
-  - [`CPU_SUBTYPE_UVAXIII`](#cpu_subtype_uvaxiii)
-  - [`CPU_SUBTYPE_MC680X0_ALL`](#cpu_subtype_mc680x0_all)
-  - [`CPU_SUBTYPE_MC68030`](#cpu_subtype_mc68030)
-  - [`CPU_SUBTYPE_MC68040`](#cpu_subtype_mc68040)
-  - [`CPU_SUBTYPE_MC68030_ONLY`](#cpu_subtype_mc68030_only)
-  - [`CPU_SUBTYPE_I386_ALL`](#cpu_subtype_i386_all)
-  - [`CPU_SUBTYPE_386`](#cpu_subtype_386)
-  - [`CPU_SUBTYPE_486`](#cpu_subtype_486)
-  - [`CPU_SUBTYPE_486SX`](#cpu_subtype_486sx)
-  - [`CPU_SUBTYPE_586`](#cpu_subtype_586)
-  - [`CPU_SUBTYPE_PENT`](#cpu_subtype_pent)
-  - [`CPU_SUBTYPE_PENTPRO`](#cpu_subtype_pentpro)
-  - [`CPU_SUBTYPE_PENTII_M3`](#cpu_subtype_pentii_m3)
-  - [`CPU_SUBTYPE_PENTII_M5`](#cpu_subtype_pentii_m5)
-  - [`CPU_SUBTYPE_CELERON`](#cpu_subtype_celeron)
-  - [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu_subtype_celeron_mobile)
-  - [`CPU_SUBTYPE_PENTIUM_3`](#cpu_subtype_pentium_3)
-  - [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu_subtype_pentium_3_m)
-  - [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu_subtype_pentium_3_xeon)
-  - [`CPU_SUBTYPE_PENTIUM_M`](#cpu_subtype_pentium_m)
-  - [`CPU_SUBTYPE_PENTIUM_4`](#cpu_subtype_pentium_4)
-  - [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu_subtype_pentium_4_m)
-  - [`CPU_SUBTYPE_ITANIUM`](#cpu_subtype_itanium)
-  - [`CPU_SUBTYPE_ITANIUM_2`](#cpu_subtype_itanium_2)
-  - [`CPU_SUBTYPE_XEON`](#cpu_subtype_xeon)
-  - [`CPU_SUBTYPE_XEON_MP`](#cpu_subtype_xeon_mp)
-  - [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu_subtype_intel_family_max)
-  - [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu_subtype_intel_model_all)
-  - [`CPU_SUBTYPE_X86_ALL`](#cpu_subtype_x86_all)
-  - [`CPU_SUBTYPE_X86_64_ALL`](#cpu_subtype_x86_64_all)
-  - [`CPU_SUBTYPE_X86_ARCH1`](#cpu_subtype_x86_arch1)
-  - [`CPU_SUBTYPE_X86_64_H`](#cpu_subtype_x86_64_h)
-  - [`CPU_SUBTYPE_MIPS_ALL`](#cpu_subtype_mips_all)
-  - [`CPU_SUBTYPE_MIPS_R2300`](#cpu_subtype_mips_r2300)
-  - [`CPU_SUBTYPE_MIPS_R2600`](#cpu_subtype_mips_r2600)
-  - [`CPU_SUBTYPE_MIPS_R2800`](#cpu_subtype_mips_r2800)
-  - [`CPU_SUBTYPE_MIPS_R2000A`](#cpu_subtype_mips_r2000a)
-  - [`CPU_SUBTYPE_MIPS_R2000`](#cpu_subtype_mips_r2000)
-  - [`CPU_SUBTYPE_MIPS_R3000A`](#cpu_subtype_mips_r3000a)
-  - [`CPU_SUBTYPE_MIPS_R3000`](#cpu_subtype_mips_r3000)
-  - [`CPU_SUBTYPE_MC98000_ALL`](#cpu_subtype_mc98000_all)
-  - [`CPU_SUBTYPE_MC98601`](#cpu_subtype_mc98601)
-  - [`CPU_SUBTYPE_HPPA_ALL`](#cpu_subtype_hppa_all)
-  - [`CPU_SUBTYPE_HPPA_7100LC`](#cpu_subtype_hppa_7100lc)
-  - [`CPU_SUBTYPE_MC88000_ALL`](#cpu_subtype_mc88000_all)
-  - [`CPU_SUBTYPE_MC88100`](#cpu_subtype_mc88100)
-  - [`CPU_SUBTYPE_MC88110`](#cpu_subtype_mc88110)
-  - [`CPU_SUBTYPE_SPARC_ALL`](#cpu_subtype_sparc_all)
-  - [`CPU_SUBTYPE_I860_ALL`](#cpu_subtype_i860_all)
-  - [`CPU_SUBTYPE_I860_860`](#cpu_subtype_i860_860)
-  - [`CPU_SUBTYPE_POWERPC_ALL`](#cpu_subtype_powerpc_all)
-  - [`CPU_SUBTYPE_POWERPC_601`](#cpu_subtype_powerpc_601)
-  - [`CPU_SUBTYPE_POWERPC_602`](#cpu_subtype_powerpc_602)
-  - [`CPU_SUBTYPE_POWERPC_603`](#cpu_subtype_powerpc_603)
-  - [`CPU_SUBTYPE_POWERPC_603E`](#cpu_subtype_powerpc_603e)
-  - [`CPU_SUBTYPE_POWERPC_603EV`](#cpu_subtype_powerpc_603ev)
-  - [`CPU_SUBTYPE_POWERPC_604`](#cpu_subtype_powerpc_604)
-  - [`CPU_SUBTYPE_POWERPC_604E`](#cpu_subtype_powerpc_604e)
-  - [`CPU_SUBTYPE_POWERPC_620`](#cpu_subtype_powerpc_620)
-  - [`CPU_SUBTYPE_POWERPC_750`](#cpu_subtype_powerpc_750)
-  - [`CPU_SUBTYPE_POWERPC_7400`](#cpu_subtype_powerpc_7400)
-  - [`CPU_SUBTYPE_POWERPC_7450`](#cpu_subtype_powerpc_7450)
-  - [`CPU_SUBTYPE_POWERPC_970`](#cpu_subtype_powerpc_970)
-  - [`CPU_SUBTYPE_ARM_ALL`](#cpu_subtype_arm_all)
-  - [`CPU_SUBTYPE_ARM_V4T`](#cpu_subtype_arm_v4t)
-  - [`CPU_SUBTYPE_ARM_V6`](#cpu_subtype_arm_v6)
-  - [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu_subtype_arm_v5tej)
-  - [`CPU_SUBTYPE_ARM_XSCALE`](#cpu_subtype_arm_xscale)
-  - [`CPU_SUBTYPE_ARM_V7`](#cpu_subtype_arm_v7)
-  - [`CPU_SUBTYPE_ARM_V7F`](#cpu_subtype_arm_v7f)
-  - [`CPU_SUBTYPE_ARM_V7S`](#cpu_subtype_arm_v7s)
-  - [`CPU_SUBTYPE_ARM_V7K`](#cpu_subtype_arm_v7k)
-  - [`CPU_SUBTYPE_ARM_V8`](#cpu_subtype_arm_v8)
-  - [`CPU_SUBTYPE_ARM_V6M`](#cpu_subtype_arm_v6m)
-  - [`CPU_SUBTYPE_ARM_V7M`](#cpu_subtype_arm_v7m)
-  - [`CPU_SUBTYPE_ARM_V7EM`](#cpu_subtype_arm_v7em)
-  - [`CPU_SUBTYPE_ARM_V8M`](#cpu_subtype_arm_v8m)
-  - [`CPU_SUBTYPE_ARM64_ALL`](#cpu_subtype_arm64_all)
-  - [`CPU_SUBTYPE_ARM64_V8`](#cpu_subtype_arm64_v8)
-  - [`CPU_SUBTYPE_ARM64E`](#cpu_subtype_arm64e)
-  - [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu_subtype_arm64_32_all)
-  - [`CPU_SUBTYPE_ARM64_32_V8`](#cpu_subtype_arm64_32_v8)
-  - [`VM_PROT_READ`](#vm_prot_read)
-  - [`VM_PROT_WRITE`](#vm_prot_write)
-  - [`VM_PROT_EXECUTE`](#vm_prot_execute)
-  - [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld_cache_mapping_auth_data)
-  - [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld_cache_mapping_dirty_data)
-  - [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld_cache_mapping_const_data)
-  - [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld_cache_mapping_text_stubs)
-  - [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld_cache_dynamic_config_data)
-  - [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld_cache_slide_page_attrs)
-  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld_cache_slide_page_attr_extra)
-  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_page_attr_no_rebase)
-  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld_cache_slide_page_attr_end)
-  - [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v3_page_attr_no_rebase)
-  - [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v5_page_attr_no_rebase)
-  - [`FAT_MAGIC`](#fat_magic)
-  - [`FAT_CIGAM`](#fat_cigam)
-  - [`FAT_MAGIC_64`](#fat_magic_64)
-  - [`FAT_CIGAM_64`](#fat_cigam_64)
-  - [`MH_MAGIC`](#mh_magic)
-  - [`MH_CIGAM`](#mh_cigam)
-  - [`MH_MAGIC_64`](#mh_magic_64)
-  - [`MH_CIGAM_64`](#mh_cigam_64)
-  - [`MH_OBJECT`](#mh_object)
-  - [`MH_EXECUTE`](#mh_execute)
-  - [`MH_FVMLIB`](#mh_fvmlib)
-  - [`MH_CORE`](#mh_core)
-  - [`MH_PRELOAD`](#mh_preload)
-  - [`MH_DYLIB`](#mh_dylib)
-  - [`MH_DYLINKER`](#mh_dylinker)
-  - [`MH_BUNDLE`](#mh_bundle)
-  - [`MH_DYLIB_STUB`](#mh_dylib_stub)
-  - [`MH_DSYM`](#mh_dsym)
-  - [`MH_KEXT_BUNDLE`](#mh_kext_bundle)
-  - [`MH_FILESET`](#mh_fileset)
-  - [`MH_NOUNDEFS`](#mh_noundefs)
-  - [`MH_INCRLINK`](#mh_incrlink)
-  - [`MH_DYLDLINK`](#mh_dyldlink)
-  - [`MH_BINDATLOAD`](#mh_bindatload)
-  - [`MH_PREBOUND`](#mh_prebound)
-  - [`MH_SPLIT_SEGS`](#mh_split_segs)
-  - [`MH_LAZY_INIT`](#mh_lazy_init)
-  - [`MH_TWOLEVEL`](#mh_twolevel)
-  - [`MH_FORCE_FLAT`](#mh_force_flat)
-  - [`MH_NOMULTIDEFS`](#mh_nomultidefs)
-  - [`MH_NOFIXPREBINDING`](#mh_nofixprebinding)
-  - [`MH_PREBINDABLE`](#mh_prebindable)
-  - [`MH_ALLMODSBOUND`](#mh_allmodsbound)
-  - [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh_subsections_via_symbols)
-  - [`MH_CANONICAL`](#mh_canonical)
-  - [`MH_WEAK_DEFINES`](#mh_weak_defines)
-  - [`MH_BINDS_TO_WEAK`](#mh_binds_to_weak)
-  - [`MH_ALLOW_STACK_EXECUTION`](#mh_allow_stack_execution)
-  - [`MH_ROOT_SAFE`](#mh_root_safe)
-  - [`MH_SETUID_SAFE`](#mh_setuid_safe)
-  - [`MH_NO_REEXPORTED_DYLIBS`](#mh_no_reexported_dylibs)
-  - [`MH_PIE`](#mh_pie)
-  - [`MH_DEAD_STRIPPABLE_DYLIB`](#mh_dead_strippable_dylib)
-  - [`MH_HAS_TLV_DESCRIPTORS`](#mh_has_tlv_descriptors)
-  - [`MH_NO_HEAP_EXECUTION`](#mh_no_heap_execution)
-  - [`MH_APP_EXTENSION_SAFE`](#mh_app_extension_safe)
-  - [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh_nlist_outofsync_with_dyldinfo)
-  - [`MH_SIM_SUPPORT`](#mh_sim_support)
-  - [`MH_DYLIB_IN_CACHE`](#mh_dylib_in_cache)
-  - [`LC_REQ_DYLD`](#lc_req_dyld)
-  - [`LC_SEGMENT`](#lc_segment)
-  - [`LC_SYMTAB`](#lc_symtab)
-  - [`LC_SYMSEG`](#lc_symseg)
-  - [`LC_THREAD`](#lc_thread)
-  - [`LC_UNIXTHREAD`](#lc_unixthread)
-  - [`LC_LOADFVMLIB`](#lc_loadfvmlib)
-  - [`LC_IDFVMLIB`](#lc_idfvmlib)
-  - [`LC_IDENT`](#lc_ident)
-  - [`LC_FVMFILE`](#lc_fvmfile)
-  - [`LC_PREPAGE`](#lc_prepage)
-  - [`LC_DYSYMTAB`](#lc_dysymtab)
-  - [`LC_LOAD_DYLIB`](#lc_load_dylib)
-  - [`LC_ID_DYLIB`](#lc_id_dylib)
-  - [`LC_LOAD_DYLINKER`](#lc_load_dylinker)
-  - [`LC_ID_DYLINKER`](#lc_id_dylinker)
-  - [`LC_PREBOUND_DYLIB`](#lc_prebound_dylib)
-  - [`LC_ROUTINES`](#lc_routines)
-  - [`LC_SUB_FRAMEWORK`](#lc_sub_framework)
-  - [`LC_SUB_UMBRELLA`](#lc_sub_umbrella)
-  - [`LC_SUB_CLIENT`](#lc_sub_client)
-  - [`LC_SUB_LIBRARY`](#lc_sub_library)
-  - [`LC_TWOLEVEL_HINTS`](#lc_twolevel_hints)
-  - [`LC_PREBIND_CKSUM`](#lc_prebind_cksum)
-  - [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib)
-  - [`LC_SEGMENT_64`](#lc_segment_64)
-  - [`LC_ROUTINES_64`](#lc_routines_64)
-  - [`LC_UUID`](#lc_uuid)
-  - [`LC_RPATH`](#lc_rpath)
-  - [`LC_CODE_SIGNATURE`](#lc_code_signature)
-  - [`LC_SEGMENT_SPLIT_INFO`](#lc_segment_split_info)
-  - [`LC_REEXPORT_DYLIB`](#lc_reexport_dylib)
-  - [`LC_LAZY_LOAD_DYLIB`](#lc_lazy_load_dylib)
-  - [`LC_ENCRYPTION_INFO`](#lc_encryption_info)
-  - [`LC_DYLD_INFO`](#lc_dyld_info)
-  - [`LC_DYLD_INFO_ONLY`](#lc_dyld_info_only)
-  - [`LC_LOAD_UPWARD_DYLIB`](#lc_load_upward_dylib)
-  - [`LC_VERSION_MIN_MACOSX`](#lc_version_min_macosx)
-  - [`LC_VERSION_MIN_IPHONEOS`](#lc_version_min_iphoneos)
-  - [`LC_FUNCTION_STARTS`](#lc_function_starts)
-  - [`LC_DYLD_ENVIRONMENT`](#lc_dyld_environment)
-  - [`LC_MAIN`](#lc_main)
-  - [`LC_DATA_IN_CODE`](#lc_data_in_code)
-  - [`LC_SOURCE_VERSION`](#lc_source_version)
-  - [`LC_DYLIB_CODE_SIGN_DRS`](#lc_dylib_code_sign_drs)
-  - [`LC_ENCRYPTION_INFO_64`](#lc_encryption_info_64)
-  - [`LC_LINKER_OPTION`](#lc_linker_option)
-  - [`LC_LINKER_OPTIMIZATION_HINT`](#lc_linker_optimization_hint)
-  - [`LC_VERSION_MIN_TVOS`](#lc_version_min_tvos)
-  - [`LC_VERSION_MIN_WATCHOS`](#lc_version_min_watchos)
-  - [`LC_NOTE`](#lc_note)
-  - [`LC_BUILD_VERSION`](#lc_build_version)
-  - [`LC_DYLD_EXPORTS_TRIE`](#lc_dyld_exports_trie)
-  - [`LC_DYLD_CHAINED_FIXUPS`](#lc_dyld_chained_fixups)
-  - [`LC_FILESET_ENTRY`](#lc_fileset_entry)
-  - [`SG_HIGHVM`](#sg_highvm)
-  - [`SG_FVMLIB`](#sg_fvmlib)
-  - [`SG_NORELOC`](#sg_noreloc)
-  - [`SG_PROTECTED_VERSION_1`](#sg_protected_version_1)
-  - [`SG_READ_ONLY`](#sg_read_only)
-  - [`SECTION_TYPE`](#section_type)
-  - [`SECTION_ATTRIBUTES`](#section_attributes)
-  - [`S_REGULAR`](#s_regular)
-  - [`S_ZEROFILL`](#s_zerofill)
-  - [`S_CSTRING_LITERALS`](#s_cstring_literals)
-  - [`S_4BYTE_LITERALS`](#s_4byte_literals)
-  - [`S_8BYTE_LITERALS`](#s_8byte_literals)
-  - [`S_LITERAL_POINTERS`](#s_literal_pointers)
-  - [`S_NON_LAZY_SYMBOL_POINTERS`](#s_non_lazy_symbol_pointers)
-  - [`S_LAZY_SYMBOL_POINTERS`](#s_lazy_symbol_pointers)
-  - [`S_SYMBOL_STUBS`](#s_symbol_stubs)
-  - [`S_MOD_INIT_FUNC_POINTERS`](#s_mod_init_func_pointers)
-  - [`S_MOD_TERM_FUNC_POINTERS`](#s_mod_term_func_pointers)
-  - [`S_COALESCED`](#s_coalesced)
-  - [`S_GB_ZEROFILL`](#s_gb_zerofill)
-  - [`S_INTERPOSING`](#s_interposing)
-  - [`S_16BYTE_LITERALS`](#s_16byte_literals)
-  - [`S_DTRACE_DOF`](#s_dtrace_dof)
-  - [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s_lazy_dylib_symbol_pointers)
-  - [`S_THREAD_LOCAL_REGULAR`](#s_thread_local_regular)
-  - [`S_THREAD_LOCAL_ZEROFILL`](#s_thread_local_zerofill)
-  - [`S_THREAD_LOCAL_VARIABLES`](#s_thread_local_variables)
-  - [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s_thread_local_variable_pointers)
-  - [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s_thread_local_init_function_pointers)
-  - [`S_INIT_FUNC_OFFSETS`](#s_init_func_offsets)
-  - [`SECTION_ATTRIBUTES_USR`](#section_attributes_usr)
-  - [`S_ATTR_PURE_INSTRUCTIONS`](#s_attr_pure_instructions)
-  - [`S_ATTR_NO_TOC`](#s_attr_no_toc)
-  - [`S_ATTR_STRIP_STATIC_SYMS`](#s_attr_strip_static_syms)
-  - [`S_ATTR_NO_DEAD_STRIP`](#s_attr_no_dead_strip)
-  - [`S_ATTR_LIVE_SUPPORT`](#s_attr_live_support)
-  - [`S_ATTR_SELF_MODIFYING_CODE`](#s_attr_self_modifying_code)
-  - [`S_ATTR_DEBUG`](#s_attr_debug)
-  - [`SECTION_ATTRIBUTES_SYS`](#section_attributes_sys)
-  - [`S_ATTR_SOME_INSTRUCTIONS`](#s_attr_some_instructions)
-  - [`S_ATTR_EXT_RELOC`](#s_attr_ext_reloc)
-  - [`S_ATTR_LOC_RELOC`](#s_attr_loc_reloc)
-  - [`SEG_PAGEZERO`](#seg_pagezero)
-  - [`SEG_TEXT`](#seg_text)
-  - [`SECT_TEXT`](#sect_text)
-  - [`SECT_FVMLIB_INIT0`](#sect_fvmlib_init0)
-  - [`SECT_FVMLIB_INIT1`](#sect_fvmlib_init1)
-  - [`SEG_DATA`](#seg_data)
-  - [`SECT_DATA`](#sect_data)
-  - [`SECT_BSS`](#sect_bss)
-  - [`SECT_COMMON`](#sect_common)
-  - [`SEG_OBJC`](#seg_objc)
-  - [`SECT_OBJC_SYMBOLS`](#sect_objc_symbols)
-  - [`SECT_OBJC_MODULES`](#sect_objc_modules)
-  - [`SECT_OBJC_STRINGS`](#sect_objc_strings)
-  - [`SECT_OBJC_REFS`](#sect_objc_refs)
-  - [`SEG_ICON`](#seg_icon)
-  - [`SECT_ICON_HEADER`](#sect_icon_header)
-  - [`SECT_ICON_TIFF`](#sect_icon_tiff)
-  - [`SEG_LINKEDIT`](#seg_linkedit)
-  - [`SEG_LINKINFO`](#seg_linkinfo)
-  - [`SEG_UNIXSTACK`](#seg_unixstack)
-  - [`SEG_IMPORT`](#seg_import)
-  - [`INDIRECT_SYMBOL_LOCAL`](#indirect_symbol_local)
-  - [`INDIRECT_SYMBOL_ABS`](#indirect_symbol_abs)
-  - [`PLATFORM_MACOS`](#platform_macos)
-  - [`PLATFORM_IOS`](#platform_ios)
-  - [`PLATFORM_TVOS`](#platform_tvos)
-  - [`PLATFORM_WATCHOS`](#platform_watchos)
-  - [`PLATFORM_BRIDGEOS`](#platform_bridgeos)
-  - [`PLATFORM_MACCATALYST`](#platform_maccatalyst)
-  - [`PLATFORM_IOSSIMULATOR`](#platform_iossimulator)
-  - [`PLATFORM_TVOSSIMULATOR`](#platform_tvossimulator)
-  - [`PLATFORM_WATCHOSSIMULATOR`](#platform_watchossimulator)
-  - [`PLATFORM_DRIVERKIT`](#platform_driverkit)
-  - [`PLATFORM_XROS`](#platform_xros)
-  - [`PLATFORM_XROSSIMULATOR`](#platform_xrossimulator)
-  - [`TOOL_CLANG`](#tool_clang)
-  - [`TOOL_SWIFT`](#tool_swift)
-  - [`TOOL_LD`](#tool_ld)
-  - [`REBASE_TYPE_POINTER`](#rebase_type_pointer)
-  - [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase_type_text_absolute32)
-  - [`REBASE_TYPE_TEXT_PCREL32`](#rebase_type_text_pcrel32)
-  - [`REBASE_OPCODE_MASK`](#rebase_opcode_mask)
-  - [`REBASE_IMMEDIATE_MASK`](#rebase_immediate_mask)
-  - [`REBASE_OPCODE_DONE`](#rebase_opcode_done)
-  - [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase_opcode_set_type_imm)
-  - [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase_opcode_set_segment_and_offset_uleb)
-  - [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase_opcode_add_addr_uleb)
-  - [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase_opcode_add_addr_imm_scaled)
-  - [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase_opcode_do_rebase_imm_times)
-  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase_opcode_do_rebase_uleb_times)
-  - [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase_opcode_do_rebase_add_addr_uleb)
-  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase_opcode_do_rebase_uleb_times_skipping_uleb)
-  - [`BIND_TYPE_POINTER`](#bind_type_pointer)
-  - [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind_type_text_absolute32)
-  - [`BIND_TYPE_TEXT_PCREL32`](#bind_type_text_pcrel32)
-  - [`BIND_SPECIAL_DYLIB_SELF`](#bind_special_dylib_self)
-  - [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind_special_dylib_main_executable)
-  - [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind_special_dylib_flat_lookup)
-  - [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind_special_dylib_weak_lookup)
-  - [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind_symbol_flags_weak_import)
-  - [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind_symbol_flags_non_weak_definition)
-  - [`BIND_OPCODE_MASK`](#bind_opcode_mask)
-  - [`BIND_IMMEDIATE_MASK`](#bind_immediate_mask)
-  - [`BIND_OPCODE_DONE`](#bind_opcode_done)
-  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind_opcode_set_dylib_ordinal_imm)
-  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind_opcode_set_dylib_ordinal_uleb)
-  - [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind_opcode_set_dylib_special_imm)
-  - [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind_opcode_set_symbol_trailing_flags_imm)
-  - [`BIND_OPCODE_SET_TYPE_IMM`](#bind_opcode_set_type_imm)
-  - [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind_opcode_set_addend_sleb)
-  - [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind_opcode_set_segment_and_offset_uleb)
-  - [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind_opcode_add_addr_uleb)
-  - [`BIND_OPCODE_DO_BIND`](#bind_opcode_do_bind)
-  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind_opcode_do_bind_add_addr_uleb)
-  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind_opcode_do_bind_add_addr_imm_scaled)
-  - [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind_opcode_do_bind_uleb_times_skipping_uleb)
-  - [`BIND_OPCODE_THREADED`](#bind_opcode_threaded)
-  - [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind_subopcode_threaded_set_bind_ordinal_table_size_uleb)
-  - [`BIND_SUBOPCODE_THREADED_APPLY`](#bind_subopcode_threaded_apply)
-  - [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export_symbol_flags_kind_mask)
-  - [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export_symbol_flags_kind_regular)
-  - [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export_symbol_flags_kind_thread_local)
-  - [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export_symbol_flags_kind_absolute)
-  - [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export_symbol_flags_weak_definition)
-  - [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export_symbol_flags_reexport)
-  - [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export_symbol_flags_stub_and_resolver)
-  - [`DICE_KIND_DATA`](#dice_kind_data)
-  - [`DICE_KIND_JUMP_TABLE8`](#dice_kind_jump_table8)
-  - [`DICE_KIND_JUMP_TABLE16`](#dice_kind_jump_table16)
-  - [`DICE_KIND_JUMP_TABLE32`](#dice_kind_jump_table32)
-  - [`DICE_KIND_ABS_JUMP_TABLE32`](#dice_kind_abs_jump_table32)
-  - [`N_STAB`](#n_stab)
-  - [`N_PEXT`](#n_pext)
-  - [`N_TYPE`](#n_type)
-  - [`N_EXT`](#n_ext)
-  - [`N_UNDF`](#n_undf)
-  - [`N_ABS`](#n_abs)
-  - [`N_SECT`](#n_sect)
-  - [`N_PBUD`](#n_pbud)
-  - [`N_INDR`](#n_indr)
-  - [`NO_SECT`](#no_sect)
-  - [`MAX_SECT`](#max_sect)
-  - [`REFERENCE_TYPE`](#reference_type)
-  - [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference_flag_undefined_non_lazy)
-  - [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference_flag_undefined_lazy)
-  - [`REFERENCE_FLAG_DEFINED`](#reference_flag_defined)
-  - [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference_flag_private_defined)
-  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference_flag_private_undefined_non_lazy)
-  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference_flag_private_undefined_lazy)
-  - [`REFERENCED_DYNAMICALLY`](#referenced_dynamically)
-  - [`SELF_LIBRARY_ORDINAL`](#self_library_ordinal)
-  - [`MAX_LIBRARY_ORDINAL`](#max_library_ordinal)
-  - [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic_lookup_ordinal)
-  - [`EXECUTABLE_ORDINAL`](#executable_ordinal)
-  - [`N_NO_DEAD_STRIP`](#n_no_dead_strip)
-  - [`N_DESC_DISCARDED`](#n_desc_discarded)
-  - [`N_WEAK_REF`](#n_weak_ref)
-  - [`N_WEAK_DEF`](#n_weak_def)
-  - [`N_REF_TO_WEAK`](#n_ref_to_weak)
-  - [`N_ARM_THUMB_DEF`](#n_arm_thumb_def)
-  - [`N_SYMBOL_RESOLVER`](#n_symbol_resolver)
-  - [`N_ALT_ENTRY`](#n_alt_entry)
-  - [`N_GSYM`](#n_gsym)
-  - [`N_FNAME`](#n_fname)
-  - [`N_FUN`](#n_fun)
-  - [`N_STSYM`](#n_stsym)
-  - [`N_LCSYM`](#n_lcsym)
-  - [`N_BNSYM`](#n_bnsym)
-  - [`N_AST`](#n_ast)
-  - [`N_OPT`](#n_opt)
-  - [`N_RSYM`](#n_rsym)
-  - [`N_SLINE`](#n_sline)
-  - [`N_ENSYM`](#n_ensym)
-  - [`N_SSYM`](#n_ssym)
-  - [`N_SO`](#n_so)
-  - [`N_OSO`](#n_oso)
-  - [`N_LSYM`](#n_lsym)
-  - [`N_BINCL`](#n_bincl)
-  - [`N_SOL`](#n_sol)
-  - [`N_PARAMS`](#n_params)
-  - [`N_VERSION`](#n_version)
-  - [`N_OLEVEL`](#n_olevel)
-  - [`N_PSYM`](#n_psym)
-  - [`N_EINCL`](#n_eincl)
-  - [`N_ENTRY`](#n_entry)
-  - [`N_LBRAC`](#n_lbrac)
-  - [`N_EXCL`](#n_excl)
-  - [`N_RBRAC`](#n_rbrac)
-  - [`N_BCOMM`](#n_bcomm)
-  - [`N_ECOMM`](#n_ecomm)
-  - [`N_ECOML`](#n_ecoml)
-  - [`N_LENG`](#n_leng)
-  - [`N_PC`](#n_pc)
-  - [`R_ABS`](#r_abs)
-  - [`R_SCATTERED`](#r_scattered)
-  - [`GENERIC_RELOC_VANILLA`](#generic_reloc_vanilla)
-  - [`GENERIC_RELOC_PAIR`](#generic_reloc_pair)
-  - [`GENERIC_RELOC_SECTDIFF`](#generic_reloc_sectdiff)
-  - [`GENERIC_RELOC_PB_LA_PTR`](#generic_reloc_pb_la_ptr)
-  - [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic_reloc_local_sectdiff)
-  - [`GENERIC_RELOC_TLV`](#generic_reloc_tlv)
-  - [`ARM_RELOC_VANILLA`](#arm_reloc_vanilla)
-  - [`ARM_RELOC_PAIR`](#arm_reloc_pair)
-  - [`ARM_RELOC_SECTDIFF`](#arm_reloc_sectdiff)
-  - [`ARM_RELOC_LOCAL_SECTDIFF`](#arm_reloc_local_sectdiff)
-  - [`ARM_RELOC_PB_LA_PTR`](#arm_reloc_pb_la_ptr)
-  - [`ARM_RELOC_BR24`](#arm_reloc_br24)
-  - [`ARM_THUMB_RELOC_BR22`](#arm_thumb_reloc_br22)
-  - [`ARM_THUMB_32BIT_BRANCH`](#arm_thumb_32bit_branch)
-  - [`ARM_RELOC_HALF`](#arm_reloc_half)
-  - [`ARM_RELOC_HALF_SECTDIFF`](#arm_reloc_half_sectdiff)
-  - [`ARM64_RELOC_UNSIGNED`](#arm64_reloc_unsigned)
-  - [`ARM64_RELOC_SUBTRACTOR`](#arm64_reloc_subtractor)
-  - [`ARM64_RELOC_BRANCH26`](#arm64_reloc_branch26)
-  - [`ARM64_RELOC_PAGE21`](#arm64_reloc_page21)
-  - [`ARM64_RELOC_PAGEOFF12`](#arm64_reloc_pageoff12)
-  - [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64_reloc_got_load_page21)
-  - [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64_reloc_got_load_pageoff12)
-  - [`ARM64_RELOC_POINTER_TO_GOT`](#arm64_reloc_pointer_to_got)
-  - [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64_reloc_tlvp_load_page21)
-  - [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64_reloc_tlvp_load_pageoff12)
-  - [`ARM64_RELOC_ADDEND`](#arm64_reloc_addend)
-  - [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64_reloc_authenticated_pointer)
-  - [`PPC_RELOC_VANILLA`](#ppc_reloc_vanilla)
-  - [`PPC_RELOC_PAIR`](#ppc_reloc_pair)
-  - [`PPC_RELOC_BR14`](#ppc_reloc_br14)
-  - [`PPC_RELOC_BR24`](#ppc_reloc_br24)
-  - [`PPC_RELOC_HI16`](#ppc_reloc_hi16)
-  - [`PPC_RELOC_LO16`](#ppc_reloc_lo16)
-  - [`PPC_RELOC_HA16`](#ppc_reloc_ha16)
-  - [`PPC_RELOC_LO14`](#ppc_reloc_lo14)
-  - [`PPC_RELOC_SECTDIFF`](#ppc_reloc_sectdiff)
-  - [`PPC_RELOC_PB_LA_PTR`](#ppc_reloc_pb_la_ptr)
-  - [`PPC_RELOC_HI16_SECTDIFF`](#ppc_reloc_hi16_sectdiff)
-  - [`PPC_RELOC_LO16_SECTDIFF`](#ppc_reloc_lo16_sectdiff)
-  - [`PPC_RELOC_HA16_SECTDIFF`](#ppc_reloc_ha16_sectdiff)
-  - [`PPC_RELOC_JBSR`](#ppc_reloc_jbsr)
-  - [`PPC_RELOC_LO14_SECTDIFF`](#ppc_reloc_lo14_sectdiff)
-  - [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc_reloc_local_sectdiff)
-  - [`X86_64_RELOC_UNSIGNED`](#x86_64_reloc_unsigned)
-  - [`X86_64_RELOC_SIGNED`](#x86_64_reloc_signed)
-  - [`X86_64_RELOC_BRANCH`](#x86_64_reloc_branch)
-  - [`X86_64_RELOC_GOT_LOAD`](#x86_64_reloc_got_load)
-  - [`X86_64_RELOC_GOT`](#x86_64_reloc_got)
-  - [`X86_64_RELOC_SUBTRACTOR`](#x86_64_reloc_subtractor)
-  - [`X86_64_RELOC_SIGNED_1`](#x86_64_reloc_signed_1)
-  - [`X86_64_RELOC_SIGNED_2`](#x86_64_reloc_signed_2)
-  - [`X86_64_RELOC_SIGNED_4`](#x86_64_reloc_signed_4)
-  - [`X86_64_RELOC_TLV`](#x86_64_reloc_tlv)
+  - [`CPU_ARCH_MASK`](#cpu-arch-mask)
+  - [`CPU_ARCH_ABI64`](#cpu-arch-abi64)
+  - [`CPU_ARCH_ABI64_32`](#cpu-arch-abi64-32)
+  - [`CPU_TYPE_ANY`](#cpu-type-any)
+  - [`CPU_TYPE_VAX`](#cpu-type-vax)
+  - [`CPU_TYPE_MC680X0`](#cpu-type-mc680x0)
+  - [`CPU_TYPE_X86`](#cpu-type-x86)
+  - [`CPU_TYPE_X86_64`](#cpu-type-x86-64)
+  - [`CPU_TYPE_MIPS`](#cpu-type-mips)
+  - [`CPU_TYPE_MC98000`](#cpu-type-mc98000)
+  - [`CPU_TYPE_HPPA`](#cpu-type-hppa)
+  - [`CPU_TYPE_ARM`](#cpu-type-arm)
+  - [`CPU_TYPE_ARM64`](#cpu-type-arm64)
+  - [`CPU_TYPE_ARM64_32`](#cpu-type-arm64-32)
+  - [`CPU_TYPE_MC88000`](#cpu-type-mc88000)
+  - [`CPU_TYPE_SPARC`](#cpu-type-sparc)
+  - [`CPU_TYPE_I860`](#cpu-type-i860)
+  - [`CPU_TYPE_ALPHA`](#cpu-type-alpha)
+  - [`CPU_TYPE_POWERPC`](#cpu-type-powerpc)
+  - [`CPU_TYPE_POWERPC64`](#cpu-type-powerpc64)
+  - [`CPU_SUBTYPE_MASK`](#cpu-subtype-mask)
+  - [`CPU_SUBTYPE_LIB64`](#cpu-subtype-lib64)
+  - [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu-subtype-ptrauth-abi)
+  - [`CPU_SUBTYPE_ANY`](#cpu-subtype-any)
+  - [`CPU_SUBTYPE_MULTIPLE`](#cpu-subtype-multiple)
+  - [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu-subtype-little-endian)
+  - [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu-subtype-big-endian)
+  - [`CPU_SUBTYPE_VAX_ALL`](#cpu-subtype-vax-all)
+  - [`CPU_SUBTYPE_VAX780`](#cpu-subtype-vax780)
+  - [`CPU_SUBTYPE_VAX785`](#cpu-subtype-vax785)
+  - [`CPU_SUBTYPE_VAX750`](#cpu-subtype-vax750)
+  - [`CPU_SUBTYPE_VAX730`](#cpu-subtype-vax730)
+  - [`CPU_SUBTYPE_UVAXI`](#cpu-subtype-uvaxi)
+  - [`CPU_SUBTYPE_UVAXII`](#cpu-subtype-uvaxii)
+  - [`CPU_SUBTYPE_VAX8200`](#cpu-subtype-vax8200)
+  - [`CPU_SUBTYPE_VAX8500`](#cpu-subtype-vax8500)
+  - [`CPU_SUBTYPE_VAX8600`](#cpu-subtype-vax8600)
+  - [`CPU_SUBTYPE_VAX8650`](#cpu-subtype-vax8650)
+  - [`CPU_SUBTYPE_VAX8800`](#cpu-subtype-vax8800)
+  - [`CPU_SUBTYPE_UVAXIII`](#cpu-subtype-uvaxiii)
+  - [`CPU_SUBTYPE_MC680X0_ALL`](#cpu-subtype-mc680x0-all)
+  - [`CPU_SUBTYPE_MC68030`](#cpu-subtype-mc68030)
+  - [`CPU_SUBTYPE_MC68040`](#cpu-subtype-mc68040)
+  - [`CPU_SUBTYPE_MC68030_ONLY`](#cpu-subtype-mc68030-only)
+  - [`CPU_SUBTYPE_I386_ALL`](#cpu-subtype-i386-all)
+  - [`CPU_SUBTYPE_386`](#cpu-subtype-386)
+  - [`CPU_SUBTYPE_486`](#cpu-subtype-486)
+  - [`CPU_SUBTYPE_486SX`](#cpu-subtype-486sx)
+  - [`CPU_SUBTYPE_586`](#cpu-subtype-586)
+  - [`CPU_SUBTYPE_PENT`](#cpu-subtype-pent)
+  - [`CPU_SUBTYPE_PENTPRO`](#cpu-subtype-pentpro)
+  - [`CPU_SUBTYPE_PENTII_M3`](#cpu-subtype-pentii-m3)
+  - [`CPU_SUBTYPE_PENTII_M5`](#cpu-subtype-pentii-m5)
+  - [`CPU_SUBTYPE_CELERON`](#cpu-subtype-celeron)
+  - [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu-subtype-celeron-mobile)
+  - [`CPU_SUBTYPE_PENTIUM_3`](#cpu-subtype-pentium-3)
+  - [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu-subtype-pentium-3-m)
+  - [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu-subtype-pentium-3-xeon)
+  - [`CPU_SUBTYPE_PENTIUM_M`](#cpu-subtype-pentium-m)
+  - [`CPU_SUBTYPE_PENTIUM_4`](#cpu-subtype-pentium-4)
+  - [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu-subtype-pentium-4-m)
+  - [`CPU_SUBTYPE_ITANIUM`](#cpu-subtype-itanium)
+  - [`CPU_SUBTYPE_ITANIUM_2`](#cpu-subtype-itanium-2)
+  - [`CPU_SUBTYPE_XEON`](#cpu-subtype-xeon)
+  - [`CPU_SUBTYPE_XEON_MP`](#cpu-subtype-xeon-mp)
+  - [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu-subtype-intel-family-max)
+  - [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu-subtype-intel-model-all)
+  - [`CPU_SUBTYPE_X86_ALL`](#cpu-subtype-x86-all)
+  - [`CPU_SUBTYPE_X86_64_ALL`](#cpu-subtype-x86-64-all)
+  - [`CPU_SUBTYPE_X86_ARCH1`](#cpu-subtype-x86-arch1)
+  - [`CPU_SUBTYPE_X86_64_H`](#cpu-subtype-x86-64-h)
+  - [`CPU_SUBTYPE_MIPS_ALL`](#cpu-subtype-mips-all)
+  - [`CPU_SUBTYPE_MIPS_R2300`](#cpu-subtype-mips-r2300)
+  - [`CPU_SUBTYPE_MIPS_R2600`](#cpu-subtype-mips-r2600)
+  - [`CPU_SUBTYPE_MIPS_R2800`](#cpu-subtype-mips-r2800)
+  - [`CPU_SUBTYPE_MIPS_R2000A`](#cpu-subtype-mips-r2000a)
+  - [`CPU_SUBTYPE_MIPS_R2000`](#cpu-subtype-mips-r2000)
+  - [`CPU_SUBTYPE_MIPS_R3000A`](#cpu-subtype-mips-r3000a)
+  - [`CPU_SUBTYPE_MIPS_R3000`](#cpu-subtype-mips-r3000)
+  - [`CPU_SUBTYPE_MC98000_ALL`](#cpu-subtype-mc98000-all)
+  - [`CPU_SUBTYPE_MC98601`](#cpu-subtype-mc98601)
+  - [`CPU_SUBTYPE_HPPA_ALL`](#cpu-subtype-hppa-all)
+  - [`CPU_SUBTYPE_HPPA_7100LC`](#cpu-subtype-hppa-7100lc)
+  - [`CPU_SUBTYPE_MC88000_ALL`](#cpu-subtype-mc88000-all)
+  - [`CPU_SUBTYPE_MC88100`](#cpu-subtype-mc88100)
+  - [`CPU_SUBTYPE_MC88110`](#cpu-subtype-mc88110)
+  - [`CPU_SUBTYPE_SPARC_ALL`](#cpu-subtype-sparc-all)
+  - [`CPU_SUBTYPE_I860_ALL`](#cpu-subtype-i860-all)
+  - [`CPU_SUBTYPE_I860_860`](#cpu-subtype-i860-860)
+  - [`CPU_SUBTYPE_POWERPC_ALL`](#cpu-subtype-powerpc-all)
+  - [`CPU_SUBTYPE_POWERPC_601`](#cpu-subtype-powerpc-601)
+  - [`CPU_SUBTYPE_POWERPC_602`](#cpu-subtype-powerpc-602)
+  - [`CPU_SUBTYPE_POWERPC_603`](#cpu-subtype-powerpc-603)
+  - [`CPU_SUBTYPE_POWERPC_603E`](#cpu-subtype-powerpc-603e)
+  - [`CPU_SUBTYPE_POWERPC_603EV`](#cpu-subtype-powerpc-603ev)
+  - [`CPU_SUBTYPE_POWERPC_604`](#cpu-subtype-powerpc-604)
+  - [`CPU_SUBTYPE_POWERPC_604E`](#cpu-subtype-powerpc-604e)
+  - [`CPU_SUBTYPE_POWERPC_620`](#cpu-subtype-powerpc-620)
+  - [`CPU_SUBTYPE_POWERPC_750`](#cpu-subtype-powerpc-750)
+  - [`CPU_SUBTYPE_POWERPC_7400`](#cpu-subtype-powerpc-7400)
+  - [`CPU_SUBTYPE_POWERPC_7450`](#cpu-subtype-powerpc-7450)
+  - [`CPU_SUBTYPE_POWERPC_970`](#cpu-subtype-powerpc-970)
+  - [`CPU_SUBTYPE_ARM_ALL`](#cpu-subtype-arm-all)
+  - [`CPU_SUBTYPE_ARM_V4T`](#cpu-subtype-arm-v4t)
+  - [`CPU_SUBTYPE_ARM_V6`](#cpu-subtype-arm-v6)
+  - [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu-subtype-arm-v5tej)
+  - [`CPU_SUBTYPE_ARM_XSCALE`](#cpu-subtype-arm-xscale)
+  - [`CPU_SUBTYPE_ARM_V7`](#cpu-subtype-arm-v7)
+  - [`CPU_SUBTYPE_ARM_V7F`](#cpu-subtype-arm-v7f)
+  - [`CPU_SUBTYPE_ARM_V7S`](#cpu-subtype-arm-v7s)
+  - [`CPU_SUBTYPE_ARM_V7K`](#cpu-subtype-arm-v7k)
+  - [`CPU_SUBTYPE_ARM_V8`](#cpu-subtype-arm-v8)
+  - [`CPU_SUBTYPE_ARM_V6M`](#cpu-subtype-arm-v6m)
+  - [`CPU_SUBTYPE_ARM_V7M`](#cpu-subtype-arm-v7m)
+  - [`CPU_SUBTYPE_ARM_V7EM`](#cpu-subtype-arm-v7em)
+  - [`CPU_SUBTYPE_ARM_V8M`](#cpu-subtype-arm-v8m)
+  - [`CPU_SUBTYPE_ARM64_ALL`](#cpu-subtype-arm64-all)
+  - [`CPU_SUBTYPE_ARM64_V8`](#cpu-subtype-arm64-v8)
+  - [`CPU_SUBTYPE_ARM64E`](#cpu-subtype-arm64e)
+  - [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu-subtype-arm64-32-all)
+  - [`CPU_SUBTYPE_ARM64_32_V8`](#cpu-subtype-arm64-32-v8)
+  - [`VM_PROT_READ`](#vm-prot-read)
+  - [`VM_PROT_WRITE`](#vm-prot-write)
+  - [`VM_PROT_EXECUTE`](#vm-prot-execute)
+  - [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld-cache-mapping-auth-data)
+  - [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld-cache-mapping-dirty-data)
+  - [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld-cache-mapping-const-data)
+  - [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld-cache-mapping-text-stubs)
+  - [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld-cache-dynamic-config-data)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld-cache-slide-page-attrs)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld-cache-slide-page-attr-extra)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-page-attr-no-rebase)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld-cache-slide-page-attr-end)
+  - [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-v3-page-attr-no-rebase)
+  - [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-v5-page-attr-no-rebase)
+  - [`FAT_MAGIC`](#fat-magic)
+  - [`FAT_CIGAM`](#fat-cigam)
+  - [`FAT_MAGIC_64`](#fat-magic-64)
+  - [`FAT_CIGAM_64`](#fat-cigam-64)
+  - [`MH_MAGIC`](#mh-magic)
+  - [`MH_CIGAM`](#mh-cigam)
+  - [`MH_MAGIC_64`](#mh-magic-64)
+  - [`MH_CIGAM_64`](#mh-cigam-64)
+  - [`MH_OBJECT`](#mh-object)
+  - [`MH_EXECUTE`](#mh-execute)
+  - [`MH_FVMLIB`](#mh-fvmlib)
+  - [`MH_CORE`](#mh-core)
+  - [`MH_PRELOAD`](#mh-preload)
+  - [`MH_DYLIB`](#mh-dylib)
+  - [`MH_DYLINKER`](#mh-dylinker)
+  - [`MH_BUNDLE`](#mh-bundle)
+  - [`MH_DYLIB_STUB`](#mh-dylib-stub)
+  - [`MH_DSYM`](#mh-dsym)
+  - [`MH_KEXT_BUNDLE`](#mh-kext-bundle)
+  - [`MH_FILESET`](#mh-fileset)
+  - [`MH_NOUNDEFS`](#mh-noundefs)
+  - [`MH_INCRLINK`](#mh-incrlink)
+  - [`MH_DYLDLINK`](#mh-dyldlink)
+  - [`MH_BINDATLOAD`](#mh-bindatload)
+  - [`MH_PREBOUND`](#mh-prebound)
+  - [`MH_SPLIT_SEGS`](#mh-split-segs)
+  - [`MH_LAZY_INIT`](#mh-lazy-init)
+  - [`MH_TWOLEVEL`](#mh-twolevel)
+  - [`MH_FORCE_FLAT`](#mh-force-flat)
+  - [`MH_NOMULTIDEFS`](#mh-nomultidefs)
+  - [`MH_NOFIXPREBINDING`](#mh-nofixprebinding)
+  - [`MH_PREBINDABLE`](#mh-prebindable)
+  - [`MH_ALLMODSBOUND`](#mh-allmodsbound)
+  - [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh-subsections-via-symbols)
+  - [`MH_CANONICAL`](#mh-canonical)
+  - [`MH_WEAK_DEFINES`](#mh-weak-defines)
+  - [`MH_BINDS_TO_WEAK`](#mh-binds-to-weak)
+  - [`MH_ALLOW_STACK_EXECUTION`](#mh-allow-stack-execution)
+  - [`MH_ROOT_SAFE`](#mh-root-safe)
+  - [`MH_SETUID_SAFE`](#mh-setuid-safe)
+  - [`MH_NO_REEXPORTED_DYLIBS`](#mh-no-reexported-dylibs)
+  - [`MH_PIE`](#mh-pie)
+  - [`MH_DEAD_STRIPPABLE_DYLIB`](#mh-dead-strippable-dylib)
+  - [`MH_HAS_TLV_DESCRIPTORS`](#mh-has-tlv-descriptors)
+  - [`MH_NO_HEAP_EXECUTION`](#mh-no-heap-execution)
+  - [`MH_APP_EXTENSION_SAFE`](#mh-app-extension-safe)
+  - [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh-nlist-outofsync-with-dyldinfo)
+  - [`MH_SIM_SUPPORT`](#mh-sim-support)
+  - [`MH_DYLIB_IN_CACHE`](#mh-dylib-in-cache)
+  - [`LC_REQ_DYLD`](#lc-req-dyld)
+  - [`LC_SEGMENT`](#lc-segment)
+  - [`LC_SYMTAB`](#lc-symtab)
+  - [`LC_SYMSEG`](#lc-symseg)
+  - [`LC_THREAD`](#lc-thread)
+  - [`LC_UNIXTHREAD`](#lc-unixthread)
+  - [`LC_LOADFVMLIB`](#lc-loadfvmlib)
+  - [`LC_IDFVMLIB`](#lc-idfvmlib)
+  - [`LC_IDENT`](#lc-ident)
+  - [`LC_FVMFILE`](#lc-fvmfile)
+  - [`LC_PREPAGE`](#lc-prepage)
+  - [`LC_DYSYMTAB`](#lc-dysymtab)
+  - [`LC_LOAD_DYLIB`](#lc-load-dylib)
+  - [`LC_ID_DYLIB`](#lc-id-dylib)
+  - [`LC_LOAD_DYLINKER`](#lc-load-dylinker)
+  - [`LC_ID_DYLINKER`](#lc-id-dylinker)
+  - [`LC_PREBOUND_DYLIB`](#lc-prebound-dylib)
+  - [`LC_ROUTINES`](#lc-routines)
+  - [`LC_SUB_FRAMEWORK`](#lc-sub-framework)
+  - [`LC_SUB_UMBRELLA`](#lc-sub-umbrella)
+  - [`LC_SUB_CLIENT`](#lc-sub-client)
+  - [`LC_SUB_LIBRARY`](#lc-sub-library)
+  - [`LC_TWOLEVEL_HINTS`](#lc-twolevel-hints)
+  - [`LC_PREBIND_CKSUM`](#lc-prebind-cksum)
+  - [`LC_LOAD_WEAK_DYLIB`](#lc-load-weak-dylib)
+  - [`LC_SEGMENT_64`](#lc-segment-64)
+  - [`LC_ROUTINES_64`](#lc-routines-64)
+  - [`LC_UUID`](#lc-uuid)
+  - [`LC_RPATH`](#lc-rpath)
+  - [`LC_CODE_SIGNATURE`](#lc-code-signature)
+  - [`LC_SEGMENT_SPLIT_INFO`](#lc-segment-split-info)
+  - [`LC_REEXPORT_DYLIB`](#lc-reexport-dylib)
+  - [`LC_LAZY_LOAD_DYLIB`](#lc-lazy-load-dylib)
+  - [`LC_ENCRYPTION_INFO`](#lc-encryption-info)
+  - [`LC_DYLD_INFO`](#lc-dyld-info)
+  - [`LC_DYLD_INFO_ONLY`](#lc-dyld-info-only)
+  - [`LC_LOAD_UPWARD_DYLIB`](#lc-load-upward-dylib)
+  - [`LC_VERSION_MIN_MACOSX`](#lc-version-min-macosx)
+  - [`LC_VERSION_MIN_IPHONEOS`](#lc-version-min-iphoneos)
+  - [`LC_FUNCTION_STARTS`](#lc-function-starts)
+  - [`LC_DYLD_ENVIRONMENT`](#lc-dyld-environment)
+  - [`LC_MAIN`](#lc-main)
+  - [`LC_DATA_IN_CODE`](#lc-data-in-code)
+  - [`LC_SOURCE_VERSION`](#lc-source-version)
+  - [`LC_DYLIB_CODE_SIGN_DRS`](#lc-dylib-code-sign-drs)
+  - [`LC_ENCRYPTION_INFO_64`](#lc-encryption-info-64)
+  - [`LC_LINKER_OPTION`](#lc-linker-option)
+  - [`LC_LINKER_OPTIMIZATION_HINT`](#lc-linker-optimization-hint)
+  - [`LC_VERSION_MIN_TVOS`](#lc-version-min-tvos)
+  - [`LC_VERSION_MIN_WATCHOS`](#lc-version-min-watchos)
+  - [`LC_NOTE`](#lc-note)
+  - [`LC_BUILD_VERSION`](#lc-build-version)
+  - [`LC_DYLD_EXPORTS_TRIE`](#lc-dyld-exports-trie)
+  - [`LC_DYLD_CHAINED_FIXUPS`](#lc-dyld-chained-fixups)
+  - [`LC_FILESET_ENTRY`](#lc-fileset-entry)
+  - [`SG_HIGHVM`](#sg-highvm)
+  - [`SG_FVMLIB`](#sg-fvmlib)
+  - [`SG_NORELOC`](#sg-noreloc)
+  - [`SG_PROTECTED_VERSION_1`](#sg-protected-version-1)
+  - [`SG_READ_ONLY`](#sg-read-only)
+  - [`SECTION_TYPE`](#section-type)
+  - [`SECTION_ATTRIBUTES`](#section-attributes)
+  - [`S_REGULAR`](#s-regular)
+  - [`S_ZEROFILL`](#s-zerofill)
+  - [`S_CSTRING_LITERALS`](#s-cstring-literals)
+  - [`S_4BYTE_LITERALS`](#s-4byte-literals)
+  - [`S_8BYTE_LITERALS`](#s-8byte-literals)
+  - [`S_LITERAL_POINTERS`](#s-literal-pointers)
+  - [`S_NON_LAZY_SYMBOL_POINTERS`](#s-non-lazy-symbol-pointers)
+  - [`S_LAZY_SYMBOL_POINTERS`](#s-lazy-symbol-pointers)
+  - [`S_SYMBOL_STUBS`](#s-symbol-stubs)
+  - [`S_MOD_INIT_FUNC_POINTERS`](#s-mod-init-func-pointers)
+  - [`S_MOD_TERM_FUNC_POINTERS`](#s-mod-term-func-pointers)
+  - [`S_COALESCED`](#s-coalesced)
+  - [`S_GB_ZEROFILL`](#s-gb-zerofill)
+  - [`S_INTERPOSING`](#s-interposing)
+  - [`S_16BYTE_LITERALS`](#s-16byte-literals)
+  - [`S_DTRACE_DOF`](#s-dtrace-dof)
+  - [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s-lazy-dylib-symbol-pointers)
+  - [`S_THREAD_LOCAL_REGULAR`](#s-thread-local-regular)
+  - [`S_THREAD_LOCAL_ZEROFILL`](#s-thread-local-zerofill)
+  - [`S_THREAD_LOCAL_VARIABLES`](#s-thread-local-variables)
+  - [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s-thread-local-variable-pointers)
+  - [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s-thread-local-init-function-pointers)
+  - [`S_INIT_FUNC_OFFSETS`](#s-init-func-offsets)
+  - [`SECTION_ATTRIBUTES_USR`](#section-attributes-usr)
+  - [`S_ATTR_PURE_INSTRUCTIONS`](#s-attr-pure-instructions)
+  - [`S_ATTR_NO_TOC`](#s-attr-no-toc)
+  - [`S_ATTR_STRIP_STATIC_SYMS`](#s-attr-strip-static-syms)
+  - [`S_ATTR_NO_DEAD_STRIP`](#s-attr-no-dead-strip)
+  - [`S_ATTR_LIVE_SUPPORT`](#s-attr-live-support)
+  - [`S_ATTR_SELF_MODIFYING_CODE`](#s-attr-self-modifying-code)
+  - [`S_ATTR_DEBUG`](#s-attr-debug)
+  - [`SECTION_ATTRIBUTES_SYS`](#section-attributes-sys)
+  - [`S_ATTR_SOME_INSTRUCTIONS`](#s-attr-some-instructions)
+  - [`S_ATTR_EXT_RELOC`](#s-attr-ext-reloc)
+  - [`S_ATTR_LOC_RELOC`](#s-attr-loc-reloc)
+  - [`SEG_PAGEZERO`](#seg-pagezero)
+  - [`SEG_TEXT`](#seg-text)
+  - [`SECT_TEXT`](#sect-text)
+  - [`SECT_FVMLIB_INIT0`](#sect-fvmlib-init0)
+  - [`SECT_FVMLIB_INIT1`](#sect-fvmlib-init1)
+  - [`SEG_DATA`](#seg-data)
+  - [`SECT_DATA`](#sect-data)
+  - [`SECT_BSS`](#sect-bss)
+  - [`SECT_COMMON`](#sect-common)
+  - [`SEG_OBJC`](#seg-objc)
+  - [`SECT_OBJC_SYMBOLS`](#sect-objc-symbols)
+  - [`SECT_OBJC_MODULES`](#sect-objc-modules)
+  - [`SECT_OBJC_STRINGS`](#sect-objc-strings)
+  - [`SECT_OBJC_REFS`](#sect-objc-refs)
+  - [`SEG_ICON`](#seg-icon)
+  - [`SECT_ICON_HEADER`](#sect-icon-header)
+  - [`SECT_ICON_TIFF`](#sect-icon-tiff)
+  - [`SEG_LINKEDIT`](#seg-linkedit)
+  - [`SEG_LINKINFO`](#seg-linkinfo)
+  - [`SEG_UNIXSTACK`](#seg-unixstack)
+  - [`SEG_IMPORT`](#seg-import)
+  - [`INDIRECT_SYMBOL_LOCAL`](#indirect-symbol-local)
+  - [`INDIRECT_SYMBOL_ABS`](#indirect-symbol-abs)
+  - [`PLATFORM_MACOS`](#platform-macos)
+  - [`PLATFORM_IOS`](#platform-ios)
+  - [`PLATFORM_TVOS`](#platform-tvos)
+  - [`PLATFORM_WATCHOS`](#platform-watchos)
+  - [`PLATFORM_BRIDGEOS`](#platform-bridgeos)
+  - [`PLATFORM_MACCATALYST`](#platform-maccatalyst)
+  - [`PLATFORM_IOSSIMULATOR`](#platform-iossimulator)
+  - [`PLATFORM_TVOSSIMULATOR`](#platform-tvossimulator)
+  - [`PLATFORM_WATCHOSSIMULATOR`](#platform-watchossimulator)
+  - [`PLATFORM_DRIVERKIT`](#platform-driverkit)
+  - [`PLATFORM_XROS`](#platform-xros)
+  - [`PLATFORM_XROSSIMULATOR`](#platform-xrossimulator)
+  - [`TOOL_CLANG`](#tool-clang)
+  - [`TOOL_SWIFT`](#tool-swift)
+  - [`TOOL_LD`](#tool-ld)
+  - [`REBASE_TYPE_POINTER`](#rebase-type-pointer)
+  - [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase-type-text-absolute32)
+  - [`REBASE_TYPE_TEXT_PCREL32`](#rebase-type-text-pcrel32)
+  - [`REBASE_OPCODE_MASK`](#rebase-opcode-mask)
+  - [`REBASE_IMMEDIATE_MASK`](#rebase-immediate-mask)
+  - [`REBASE_OPCODE_DONE`](#rebase-opcode-done)
+  - [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase-opcode-set-type-imm)
+  - [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase-opcode-set-segment-and-offset-uleb)
+  - [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase-opcode-add-addr-uleb)
+  - [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase-opcode-add-addr-imm-scaled)
+  - [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase-opcode-do-rebase-imm-times)
+  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase-opcode-do-rebase-uleb-times)
+  - [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase-opcode-do-rebase-add-addr-uleb)
+  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase-opcode-do-rebase-uleb-times-skipping-uleb)
+  - [`BIND_TYPE_POINTER`](#bind-type-pointer)
+  - [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind-type-text-absolute32)
+  - [`BIND_TYPE_TEXT_PCREL32`](#bind-type-text-pcrel32)
+  - [`BIND_SPECIAL_DYLIB_SELF`](#bind-special-dylib-self)
+  - [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind-special-dylib-main-executable)
+  - [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind-special-dylib-flat-lookup)
+  - [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind-special-dylib-weak-lookup)
+  - [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind-symbol-flags-weak-import)
+  - [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind-symbol-flags-non-weak-definition)
+  - [`BIND_OPCODE_MASK`](#bind-opcode-mask)
+  - [`BIND_IMMEDIATE_MASK`](#bind-immediate-mask)
+  - [`BIND_OPCODE_DONE`](#bind-opcode-done)
+  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind-opcode-set-dylib-ordinal-imm)
+  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind-opcode-set-dylib-ordinal-uleb)
+  - [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind-opcode-set-dylib-special-imm)
+  - [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind-opcode-set-symbol-trailing-flags-imm)
+  - [`BIND_OPCODE_SET_TYPE_IMM`](#bind-opcode-set-type-imm)
+  - [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind-opcode-set-addend-sleb)
+  - [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind-opcode-set-segment-and-offset-uleb)
+  - [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind-opcode-add-addr-uleb)
+  - [`BIND_OPCODE_DO_BIND`](#bind-opcode-do-bind)
+  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind-opcode-do-bind-add-addr-uleb)
+  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind-opcode-do-bind-add-addr-imm-scaled)
+  - [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind-opcode-do-bind-uleb-times-skipping-uleb)
+  - [`BIND_OPCODE_THREADED`](#bind-opcode-threaded)
+  - [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind-subopcode-threaded-set-bind-ordinal-table-size-uleb)
+  - [`BIND_SUBOPCODE_THREADED_APPLY`](#bind-subopcode-threaded-apply)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export-symbol-flags-kind-mask)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export-symbol-flags-kind-regular)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export-symbol-flags-kind-thread-local)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export-symbol-flags-kind-absolute)
+  - [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export-symbol-flags-weak-definition)
+  - [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export-symbol-flags-reexport)
+  - [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export-symbol-flags-stub-and-resolver)
+  - [`DICE_KIND_DATA`](#dice-kind-data)
+  - [`DICE_KIND_JUMP_TABLE8`](#dice-kind-jump-table8)
+  - [`DICE_KIND_JUMP_TABLE16`](#dice-kind-jump-table16)
+  - [`DICE_KIND_JUMP_TABLE32`](#dice-kind-jump-table32)
+  - [`DICE_KIND_ABS_JUMP_TABLE32`](#dice-kind-abs-jump-table32)
+  - [`N_STAB`](#n-stab)
+  - [`N_PEXT`](#n-pext)
+  - [`N_TYPE`](#n-type)
+  - [`N_EXT`](#n-ext)
+  - [`N_UNDF`](#n-undf)
+  - [`N_ABS`](#n-abs)
+  - [`N_SECT`](#n-sect)
+  - [`N_PBUD`](#n-pbud)
+  - [`N_INDR`](#n-indr)
+  - [`NO_SECT`](#no-sect)
+  - [`MAX_SECT`](#max-sect)
+  - [`REFERENCE_TYPE`](#reference-type)
+  - [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference-flag-undefined-non-lazy)
+  - [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference-flag-undefined-lazy)
+  - [`REFERENCE_FLAG_DEFINED`](#reference-flag-defined)
+  - [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference-flag-private-defined)
+  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference-flag-private-undefined-non-lazy)
+  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference-flag-private-undefined-lazy)
+  - [`REFERENCED_DYNAMICALLY`](#referenced-dynamically)
+  - [`SELF_LIBRARY_ORDINAL`](#self-library-ordinal)
+  - [`MAX_LIBRARY_ORDINAL`](#max-library-ordinal)
+  - [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic-lookup-ordinal)
+  - [`EXECUTABLE_ORDINAL`](#executable-ordinal)
+  - [`N_NO_DEAD_STRIP`](#n-no-dead-strip)
+  - [`N_DESC_DISCARDED`](#n-desc-discarded)
+  - [`N_WEAK_REF`](#n-weak-ref)
+  - [`N_WEAK_DEF`](#n-weak-def)
+  - [`N_REF_TO_WEAK`](#n-ref-to-weak)
+  - [`N_ARM_THUMB_DEF`](#n-arm-thumb-def)
+  - [`N_SYMBOL_RESOLVER`](#n-symbol-resolver)
+  - [`N_ALT_ENTRY`](#n-alt-entry)
+  - [`N_GSYM`](#n-gsym)
+  - [`N_FNAME`](#n-fname)
+  - [`N_FUN`](#n-fun)
+  - [`N_STSYM`](#n-stsym)
+  - [`N_LCSYM`](#n-lcsym)
+  - [`N_BNSYM`](#n-bnsym)
+  - [`N_AST`](#n-ast)
+  - [`N_OPT`](#n-opt)
+  - [`N_RSYM`](#n-rsym)
+  - [`N_SLINE`](#n-sline)
+  - [`N_ENSYM`](#n-ensym)
+  - [`N_SSYM`](#n-ssym)
+  - [`N_SO`](#n-so)
+  - [`N_OSO`](#n-oso)
+  - [`N_LSYM`](#n-lsym)
+  - [`N_BINCL`](#n-bincl)
+  - [`N_SOL`](#n-sol)
+  - [`N_PARAMS`](#n-params)
+  - [`N_VERSION`](#n-version)
+  - [`N_OLEVEL`](#n-olevel)
+  - [`N_PSYM`](#n-psym)
+  - [`N_EINCL`](#n-eincl)
+  - [`N_ENTRY`](#n-entry)
+  - [`N_LBRAC`](#n-lbrac)
+  - [`N_EXCL`](#n-excl)
+  - [`N_RBRAC`](#n-rbrac)
+  - [`N_BCOMM`](#n-bcomm)
+  - [`N_ECOMM`](#n-ecomm)
+  - [`N_ECOML`](#n-ecoml)
+  - [`N_LENG`](#n-leng)
+  - [`N_PC`](#n-pc)
+  - [`R_ABS`](#r-abs)
+  - [`R_SCATTERED`](#r-scattered)
+  - [`GENERIC_RELOC_VANILLA`](#generic-reloc-vanilla)
+  - [`GENERIC_RELOC_PAIR`](#generic-reloc-pair)
+  - [`GENERIC_RELOC_SECTDIFF`](#generic-reloc-sectdiff)
+  - [`GENERIC_RELOC_PB_LA_PTR`](#generic-reloc-pb-la-ptr)
+  - [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic-reloc-local-sectdiff)
+  - [`GENERIC_RELOC_TLV`](#generic-reloc-tlv)
+  - [`ARM_RELOC_VANILLA`](#arm-reloc-vanilla)
+  - [`ARM_RELOC_PAIR`](#arm-reloc-pair)
+  - [`ARM_RELOC_SECTDIFF`](#arm-reloc-sectdiff)
+  - [`ARM_RELOC_LOCAL_SECTDIFF`](#arm-reloc-local-sectdiff)
+  - [`ARM_RELOC_PB_LA_PTR`](#arm-reloc-pb-la-ptr)
+  - [`ARM_RELOC_BR24`](#arm-reloc-br24)
+  - [`ARM_THUMB_RELOC_BR22`](#arm-thumb-reloc-br22)
+  - [`ARM_THUMB_32BIT_BRANCH`](#arm-thumb-32bit-branch)
+  - [`ARM_RELOC_HALF`](#arm-reloc-half)
+  - [`ARM_RELOC_HALF_SECTDIFF`](#arm-reloc-half-sectdiff)
+  - [`ARM64_RELOC_UNSIGNED`](#arm64-reloc-unsigned)
+  - [`ARM64_RELOC_SUBTRACTOR`](#arm64-reloc-subtractor)
+  - [`ARM64_RELOC_BRANCH26`](#arm64-reloc-branch26)
+  - [`ARM64_RELOC_PAGE21`](#arm64-reloc-page21)
+  - [`ARM64_RELOC_PAGEOFF12`](#arm64-reloc-pageoff12)
+  - [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64-reloc-got-load-page21)
+  - [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64-reloc-got-load-pageoff12)
+  - [`ARM64_RELOC_POINTER_TO_GOT`](#arm64-reloc-pointer-to-got)
+  - [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64-reloc-tlvp-load-page21)
+  - [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64-reloc-tlvp-load-pageoff12)
+  - [`ARM64_RELOC_ADDEND`](#arm64-reloc-addend)
+  - [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64-reloc-authenticated-pointer)
+  - [`PPC_RELOC_VANILLA`](#ppc-reloc-vanilla)
+  - [`PPC_RELOC_PAIR`](#ppc-reloc-pair)
+  - [`PPC_RELOC_BR14`](#ppc-reloc-br14)
+  - [`PPC_RELOC_BR24`](#ppc-reloc-br24)
+  - [`PPC_RELOC_HI16`](#ppc-reloc-hi16)
+  - [`PPC_RELOC_LO16`](#ppc-reloc-lo16)
+  - [`PPC_RELOC_HA16`](#ppc-reloc-ha16)
+  - [`PPC_RELOC_LO14`](#ppc-reloc-lo14)
+  - [`PPC_RELOC_SECTDIFF`](#ppc-reloc-sectdiff)
+  - [`PPC_RELOC_PB_LA_PTR`](#ppc-reloc-pb-la-ptr)
+  - [`PPC_RELOC_HI16_SECTDIFF`](#ppc-reloc-hi16-sectdiff)
+  - [`PPC_RELOC_LO16_SECTDIFF`](#ppc-reloc-lo16-sectdiff)
+  - [`PPC_RELOC_HA16_SECTDIFF`](#ppc-reloc-ha16-sectdiff)
+  - [`PPC_RELOC_JBSR`](#ppc-reloc-jbsr)
+  - [`PPC_RELOC_LO14_SECTDIFF`](#ppc-reloc-lo14-sectdiff)
+  - [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc-reloc-local-sectdiff)
+  - [`X86_64_RELOC_UNSIGNED`](#x86-64-reloc-unsigned)
+  - [`X86_64_RELOC_SIGNED`](#x86-64-reloc-signed)
+  - [`X86_64_RELOC_BRANCH`](#x86-64-reloc-branch)
+  - [`X86_64_RELOC_GOT_LOAD`](#x86-64-reloc-got-load)
+  - [`X86_64_RELOC_GOT`](#x86-64-reloc-got)
+  - [`X86_64_RELOC_SUBTRACTOR`](#x86-64-reloc-subtractor)
+  - [`X86_64_RELOC_SIGNED_1`](#x86-64-reloc-signed-1)
+  - [`X86_64_RELOC_SIGNED_2`](#x86-64-reloc-signed-2)
+  - [`X86_64_RELOC_SIGNED_4`](#x86-64-reloc-signed-4)
+  - [`X86_64_RELOC_TLV`](#x86-64-reloc-tlv)
 
 ## Quick Reference
 
@@ -651,499 +651,499 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 | [`RelocationInfo`](#relocationinfo) | struct |  |
 | [`ScatteredRelocationInfo`](#scatteredrelocationinfo) | struct |  |
 | [`PtrauthKey`](#ptrauthkey) | enum | The key used to sign a pointer for authentication. |
-| [`cpu_subtype_intel`](#cpu_subtype_intel) | fn |  |
-| [`cpu_subtype_intel_family`](#cpu_subtype_intel_family) | fn |  |
-| [`cpu_subtype_intel_model`](#cpu_subtype_intel_model) | fn |  |
-| [`CPU_ARCH_MASK`](#cpu_arch_mask) | const | mask for architecture bits |
-| [`CPU_ARCH_ABI64`](#cpu_arch_abi64) | const | 64 bit ABI |
-| [`CPU_ARCH_ABI64_32`](#cpu_arch_abi64_32) | const | ABI for 64-bit hardware with 32-bit types; LP32 |
-| [`CPU_TYPE_ANY`](#cpu_type_any) | const |  |
-| [`CPU_TYPE_VAX`](#cpu_type_vax) | const |  |
-| [`CPU_TYPE_MC680X0`](#cpu_type_mc680x0) | const |  |
-| [`CPU_TYPE_X86`](#cpu_type_x86) | const |  |
-| [`CPU_TYPE_X86_64`](#cpu_type_x86_64) | const |  |
-| [`CPU_TYPE_MIPS`](#cpu_type_mips) | const |  |
-| [`CPU_TYPE_MC98000`](#cpu_type_mc98000) | const |  |
-| [`CPU_TYPE_HPPA`](#cpu_type_hppa) | const |  |
-| [`CPU_TYPE_ARM`](#cpu_type_arm) | const |  |
-| [`CPU_TYPE_ARM64`](#cpu_type_arm64) | const |  |
-| [`CPU_TYPE_ARM64_32`](#cpu_type_arm64_32) | const |  |
-| [`CPU_TYPE_MC88000`](#cpu_type_mc88000) | const |  |
-| [`CPU_TYPE_SPARC`](#cpu_type_sparc) | const |  |
-| [`CPU_TYPE_I860`](#cpu_type_i860) | const |  |
-| [`CPU_TYPE_ALPHA`](#cpu_type_alpha) | const |  |
-| [`CPU_TYPE_POWERPC`](#cpu_type_powerpc) | const |  |
-| [`CPU_TYPE_POWERPC64`](#cpu_type_powerpc64) | const |  |
-| [`CPU_SUBTYPE_MASK`](#cpu_subtype_mask) | const | mask for feature flags |
-| [`CPU_SUBTYPE_LIB64`](#cpu_subtype_lib64) | const | 64 bit libraries |
-| [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu_subtype_ptrauth_abi) | const | pointer authentication with versioned ABI |
-| [`CPU_SUBTYPE_ANY`](#cpu_subtype_any) | const | When selecting a slice, ANY will pick the slice with the best grading for the selected cpu_type_t, unlike the "ALL" subtypes, which are the slices that can run on any hardware for that cpu type. |
-| [`CPU_SUBTYPE_MULTIPLE`](#cpu_subtype_multiple) | const |  |
-| [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu_subtype_little_endian) | const |  |
-| [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu_subtype_big_endian) | const |  |
-| [`CPU_SUBTYPE_VAX_ALL`](#cpu_subtype_vax_all) | const |  |
-| [`CPU_SUBTYPE_VAX780`](#cpu_subtype_vax780) | const |  |
-| [`CPU_SUBTYPE_VAX785`](#cpu_subtype_vax785) | const |  |
-| [`CPU_SUBTYPE_VAX750`](#cpu_subtype_vax750) | const |  |
-| [`CPU_SUBTYPE_VAX730`](#cpu_subtype_vax730) | const |  |
-| [`CPU_SUBTYPE_UVAXI`](#cpu_subtype_uvaxi) | const |  |
-| [`CPU_SUBTYPE_UVAXII`](#cpu_subtype_uvaxii) | const |  |
-| [`CPU_SUBTYPE_VAX8200`](#cpu_subtype_vax8200) | const |  |
-| [`CPU_SUBTYPE_VAX8500`](#cpu_subtype_vax8500) | const |  |
-| [`CPU_SUBTYPE_VAX8600`](#cpu_subtype_vax8600) | const |  |
-| [`CPU_SUBTYPE_VAX8650`](#cpu_subtype_vax8650) | const |  |
-| [`CPU_SUBTYPE_VAX8800`](#cpu_subtype_vax8800) | const |  |
-| [`CPU_SUBTYPE_UVAXIII`](#cpu_subtype_uvaxiii) | const |  |
-| [`CPU_SUBTYPE_MC680X0_ALL`](#cpu_subtype_mc680x0_all) | const |  |
-| [`CPU_SUBTYPE_MC68030`](#cpu_subtype_mc68030) | const |  |
-| [`CPU_SUBTYPE_MC68040`](#cpu_subtype_mc68040) | const |  |
-| [`CPU_SUBTYPE_MC68030_ONLY`](#cpu_subtype_mc68030_only) | const |  |
-| [`CPU_SUBTYPE_I386_ALL`](#cpu_subtype_i386_all) | const |  |
-| [`CPU_SUBTYPE_386`](#cpu_subtype_386) | const |  |
-| [`CPU_SUBTYPE_486`](#cpu_subtype_486) | const |  |
-| [`CPU_SUBTYPE_486SX`](#cpu_subtype_486sx) | const |  |
-| [`CPU_SUBTYPE_586`](#cpu_subtype_586) | const |  |
-| [`CPU_SUBTYPE_PENT`](#cpu_subtype_pent) | const |  |
-| [`CPU_SUBTYPE_PENTPRO`](#cpu_subtype_pentpro) | const |  |
-| [`CPU_SUBTYPE_PENTII_M3`](#cpu_subtype_pentii_m3) | const |  |
-| [`CPU_SUBTYPE_PENTII_M5`](#cpu_subtype_pentii_m5) | const |  |
-| [`CPU_SUBTYPE_CELERON`](#cpu_subtype_celeron) | const |  |
-| [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu_subtype_celeron_mobile) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_3`](#cpu_subtype_pentium_3) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu_subtype_pentium_3_m) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu_subtype_pentium_3_xeon) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_M`](#cpu_subtype_pentium_m) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_4`](#cpu_subtype_pentium_4) | const |  |
-| [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu_subtype_pentium_4_m) | const |  |
-| [`CPU_SUBTYPE_ITANIUM`](#cpu_subtype_itanium) | const |  |
-| [`CPU_SUBTYPE_ITANIUM_2`](#cpu_subtype_itanium_2) | const |  |
-| [`CPU_SUBTYPE_XEON`](#cpu_subtype_xeon) | const |  |
-| [`CPU_SUBTYPE_XEON_MP`](#cpu_subtype_xeon_mp) | const |  |
-| [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu_subtype_intel_family_max) | const |  |
-| [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu_subtype_intel_model_all) | const |  |
-| [`CPU_SUBTYPE_X86_ALL`](#cpu_subtype_x86_all) | const |  |
-| [`CPU_SUBTYPE_X86_64_ALL`](#cpu_subtype_x86_64_all) | const |  |
-| [`CPU_SUBTYPE_X86_ARCH1`](#cpu_subtype_x86_arch1) | const |  |
-| [`CPU_SUBTYPE_X86_64_H`](#cpu_subtype_x86_64_h) | const | Haswell feature subset |
-| [`CPU_SUBTYPE_MIPS_ALL`](#cpu_subtype_mips_all) | const |  |
-| [`CPU_SUBTYPE_MIPS_R2300`](#cpu_subtype_mips_r2300) | const |  |
-| [`CPU_SUBTYPE_MIPS_R2600`](#cpu_subtype_mips_r2600) | const |  |
-| [`CPU_SUBTYPE_MIPS_R2800`](#cpu_subtype_mips_r2800) | const |  |
-| [`CPU_SUBTYPE_MIPS_R2000A`](#cpu_subtype_mips_r2000a) | const | pmax |
-| [`CPU_SUBTYPE_MIPS_R2000`](#cpu_subtype_mips_r2000) | const |  |
-| [`CPU_SUBTYPE_MIPS_R3000A`](#cpu_subtype_mips_r3000a) | const | 3max |
-| [`CPU_SUBTYPE_MIPS_R3000`](#cpu_subtype_mips_r3000) | const |  |
-| [`CPU_SUBTYPE_MC98000_ALL`](#cpu_subtype_mc98000_all) | const |  |
-| [`CPU_SUBTYPE_MC98601`](#cpu_subtype_mc98601) | const |  |
-| [`CPU_SUBTYPE_HPPA_ALL`](#cpu_subtype_hppa_all) | const |  |
-| [`CPU_SUBTYPE_HPPA_7100LC`](#cpu_subtype_hppa_7100lc) | const |  |
-| [`CPU_SUBTYPE_MC88000_ALL`](#cpu_subtype_mc88000_all) | const |  |
-| [`CPU_SUBTYPE_MC88100`](#cpu_subtype_mc88100) | const |  |
-| [`CPU_SUBTYPE_MC88110`](#cpu_subtype_mc88110) | const |  |
-| [`CPU_SUBTYPE_SPARC_ALL`](#cpu_subtype_sparc_all) | const |  |
-| [`CPU_SUBTYPE_I860_ALL`](#cpu_subtype_i860_all) | const |  |
-| [`CPU_SUBTYPE_I860_860`](#cpu_subtype_i860_860) | const |  |
-| [`CPU_SUBTYPE_POWERPC_ALL`](#cpu_subtype_powerpc_all) | const |  |
-| [`CPU_SUBTYPE_POWERPC_601`](#cpu_subtype_powerpc_601) | const |  |
-| [`CPU_SUBTYPE_POWERPC_602`](#cpu_subtype_powerpc_602) | const |  |
-| [`CPU_SUBTYPE_POWERPC_603`](#cpu_subtype_powerpc_603) | const |  |
-| [`CPU_SUBTYPE_POWERPC_603E`](#cpu_subtype_powerpc_603e) | const |  |
-| [`CPU_SUBTYPE_POWERPC_603EV`](#cpu_subtype_powerpc_603ev) | const |  |
-| [`CPU_SUBTYPE_POWERPC_604`](#cpu_subtype_powerpc_604) | const |  |
-| [`CPU_SUBTYPE_POWERPC_604E`](#cpu_subtype_powerpc_604e) | const |  |
-| [`CPU_SUBTYPE_POWERPC_620`](#cpu_subtype_powerpc_620) | const |  |
-| [`CPU_SUBTYPE_POWERPC_750`](#cpu_subtype_powerpc_750) | const |  |
-| [`CPU_SUBTYPE_POWERPC_7400`](#cpu_subtype_powerpc_7400) | const |  |
-| [`CPU_SUBTYPE_POWERPC_7450`](#cpu_subtype_powerpc_7450) | const |  |
-| [`CPU_SUBTYPE_POWERPC_970`](#cpu_subtype_powerpc_970) | const |  |
-| [`CPU_SUBTYPE_ARM_ALL`](#cpu_subtype_arm_all) | const |  |
-| [`CPU_SUBTYPE_ARM_V4T`](#cpu_subtype_arm_v4t) | const |  |
-| [`CPU_SUBTYPE_ARM_V6`](#cpu_subtype_arm_v6) | const |  |
-| [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu_subtype_arm_v5tej) | const |  |
-| [`CPU_SUBTYPE_ARM_XSCALE`](#cpu_subtype_arm_xscale) | const |  |
-| [`CPU_SUBTYPE_ARM_V7`](#cpu_subtype_arm_v7) | const | ARMv7-A and ARMv7-R |
-| [`CPU_SUBTYPE_ARM_V7F`](#cpu_subtype_arm_v7f) | const | Cortex A9 |
-| [`CPU_SUBTYPE_ARM_V7S`](#cpu_subtype_arm_v7s) | const | Swift |
-| [`CPU_SUBTYPE_ARM_V7K`](#cpu_subtype_arm_v7k) | const |  |
-| [`CPU_SUBTYPE_ARM_V8`](#cpu_subtype_arm_v8) | const |  |
-| [`CPU_SUBTYPE_ARM_V6M`](#cpu_subtype_arm_v6m) | const | Not meant to be run under xnu |
-| [`CPU_SUBTYPE_ARM_V7M`](#cpu_subtype_arm_v7m) | const | Not meant to be run under xnu |
-| [`CPU_SUBTYPE_ARM_V7EM`](#cpu_subtype_arm_v7em) | const | Not meant to be run under xnu |
-| [`CPU_SUBTYPE_ARM_V8M`](#cpu_subtype_arm_v8m) | const | Not meant to be run under xnu |
-| [`CPU_SUBTYPE_ARM64_ALL`](#cpu_subtype_arm64_all) | const |  |
-| [`CPU_SUBTYPE_ARM64_V8`](#cpu_subtype_arm64_v8) | const |  |
-| [`CPU_SUBTYPE_ARM64E`](#cpu_subtype_arm64e) | const |  |
-| [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu_subtype_arm64_32_all) | const |  |
-| [`CPU_SUBTYPE_ARM64_32_V8`](#cpu_subtype_arm64_32_v8) | const |  |
-| [`VM_PROT_READ`](#vm_prot_read) | const | read permission |
-| [`VM_PROT_WRITE`](#vm_prot_write) | const | write permission |
-| [`VM_PROT_EXECUTE`](#vm_prot_execute) | const | execute permission |
-| [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld_cache_mapping_auth_data) | const |  |
-| [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld_cache_mapping_dirty_data) | const |  |
-| [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld_cache_mapping_const_data) | const |  |
-| [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld_cache_mapping_text_stubs) | const |  |
-| [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld_cache_dynamic_config_data) | const |  |
-| [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld_cache_slide_page_attrs) | const |  |
-| [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld_cache_slide_page_attr_extra) | const |  |
-| [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_page_attr_no_rebase) | const |  |
-| [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld_cache_slide_page_attr_end) | const |  |
-| [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v3_page_attr_no_rebase) | const | Page has no rebasing. |
-| [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v5_page_attr_no_rebase) | const | Page has no rebasing. |
-| [`FAT_MAGIC`](#fat_magic) | const |  |
-| [`FAT_CIGAM`](#fat_cigam) | const | NXSwapLong(FAT_MAGIC) |
-| [`FAT_MAGIC_64`](#fat_magic_64) | const |  |
-| [`FAT_CIGAM_64`](#fat_cigam_64) | const | NXSwapLong(FAT_MAGIC_64) |
-| [`MH_MAGIC`](#mh_magic) | const | the mach magic number |
-| [`MH_CIGAM`](#mh_cigam) | const | NXSwapInt(MH_MAGIC) |
-| [`MH_MAGIC_64`](#mh_magic_64) | const | the 64-bit mach magic number |
-| [`MH_CIGAM_64`](#mh_cigam_64) | const | NXSwapInt(MH_MAGIC_64) |
-| [`MH_OBJECT`](#mh_object) | const | relocatable object file |
-| [`MH_EXECUTE`](#mh_execute) | const | demand paged executable file |
-| [`MH_FVMLIB`](#mh_fvmlib) | const | fixed VM shared library file |
-| [`MH_CORE`](#mh_core) | const | core file |
-| [`MH_PRELOAD`](#mh_preload) | const | preloaded executable file |
-| [`MH_DYLIB`](#mh_dylib) | const | dynamically bound shared library |
-| [`MH_DYLINKER`](#mh_dylinker) | const | dynamic link editor |
-| [`MH_BUNDLE`](#mh_bundle) | const | dynamically bound bundle file |
-| [`MH_DYLIB_STUB`](#mh_dylib_stub) | const | shared library stub for static linking only, no section contents |
-| [`MH_DSYM`](#mh_dsym) | const | companion file with only debug sections |
-| [`MH_KEXT_BUNDLE`](#mh_kext_bundle) | const | x86_64 kexts |
-| [`MH_FILESET`](#mh_fileset) | const | set of mach-o's |
-| [`MH_NOUNDEFS`](#mh_noundefs) | const | the object file has no undefined references |
-| [`MH_INCRLINK`](#mh_incrlink) | const | the object file is the output of an incremental link against a base file and can't be link edited again |
-| [`MH_DYLDLINK`](#mh_dyldlink) | const | the object file is input for the dynamic linker and can't be statically link edited again |
-| [`MH_BINDATLOAD`](#mh_bindatload) | const | the object file's undefined references are bound by the dynamic linker when loaded. |
-| [`MH_PREBOUND`](#mh_prebound) | const | the file has its dynamic undefined references prebound. |
-| [`MH_SPLIT_SEGS`](#mh_split_segs) | const | the file has its read-only and read-write segments split |
-| [`MH_LAZY_INIT`](#mh_lazy_init) | const | the shared library init routine is to be run lazily via catching memory faults to its writeable segments (obsolete) |
-| [`MH_TWOLEVEL`](#mh_twolevel) | const | the image is using two-level name space bindings |
-| [`MH_FORCE_FLAT`](#mh_force_flat) | const | the executable is forcing all images to use flat name space bindings |
-| [`MH_NOMULTIDEFS`](#mh_nomultidefs) | const | this umbrella guarantees no multiple definitions of symbols in its sub-images so the two-level namespace hints can always be used. |
-| [`MH_NOFIXPREBINDING`](#mh_nofixprebinding) | const | do not have dyld notify the prebinding agent about this executable |
-| [`MH_PREBINDABLE`](#mh_prebindable) | const | the binary is not prebound but can have its prebinding redone. |
-| [`MH_ALLMODSBOUND`](#mh_allmodsbound) | const | indicates that this binary binds to all two-level namespace modules of its dependent libraries. |
-| [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh_subsections_via_symbols) | const | safe to divide up the sections into sub-sections via symbols for dead code stripping |
-| [`MH_CANONICAL`](#mh_canonical) | const | the binary has been canonicalized via the unprebind operation |
-| [`MH_WEAK_DEFINES`](#mh_weak_defines) | const | the final linked image contains external weak symbols |
-| [`MH_BINDS_TO_WEAK`](#mh_binds_to_weak) | const | the final linked image uses weak symbols |
-| [`MH_ALLOW_STACK_EXECUTION`](#mh_allow_stack_execution) | const | When this bit is set, all stacks in the task will be given stack execution privilege. |
-| [`MH_ROOT_SAFE`](#mh_root_safe) | const | When this bit is set, the binary declares it is safe for use in processes with uid zero |
-| [`MH_SETUID_SAFE`](#mh_setuid_safe) | const | When this bit is set, the binary declares it is safe for use in processes when issetugid() is true |
-| [`MH_NO_REEXPORTED_DYLIBS`](#mh_no_reexported_dylibs) | const | When this bit is set on a dylib, the static linker does not need to examine dependent dylibs to see if any are re-exported |
-| [`MH_PIE`](#mh_pie) | const | When this bit is set, the OS will load the main executable at a random address. |
-| [`MH_DEAD_STRIPPABLE_DYLIB`](#mh_dead_strippable_dylib) | const | Only for use on dylibs. |
-| [`MH_HAS_TLV_DESCRIPTORS`](#mh_has_tlv_descriptors) | const | Contains a section of type S_THREAD_LOCAL_VARIABLES |
-| [`MH_NO_HEAP_EXECUTION`](#mh_no_heap_execution) | const | When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. |
-| [`MH_APP_EXTENSION_SAFE`](#mh_app_extension_safe) | const | The code was linked for use in an application extension. |
-| [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh_nlist_outofsync_with_dyldinfo) | const | The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info. |
-| [`MH_SIM_SUPPORT`](#mh_sim_support) | const | Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator. |
-| [`MH_DYLIB_IN_CACHE`](#mh_dylib_in_cache) | const | Only for use on dylibs. |
-| [`LC_REQ_DYLD`](#lc_req_dyld) | const |  |
-| [`LC_SEGMENT`](#lc_segment) | const | segment of this file to be mapped |
-| [`LC_SYMTAB`](#lc_symtab) | const | link-edit stab symbol table info |
-| [`LC_SYMSEG`](#lc_symseg) | const | link-edit gdb symbol table info (obsolete) |
-| [`LC_THREAD`](#lc_thread) | const | thread |
-| [`LC_UNIXTHREAD`](#lc_unixthread) | const | unix thread (includes a stack) |
-| [`LC_LOADFVMLIB`](#lc_loadfvmlib) | const | load a specified fixed VM shared library |
-| [`LC_IDFVMLIB`](#lc_idfvmlib) | const | fixed VM shared library identification |
-| [`LC_IDENT`](#lc_ident) | const | object identification info (obsolete) |
-| [`LC_FVMFILE`](#lc_fvmfile) | const | fixed VM file inclusion (internal use) |
-| [`LC_PREPAGE`](#lc_prepage) | const | prepage command (internal use) |
-| [`LC_DYSYMTAB`](#lc_dysymtab) | const | dynamic link-edit symbol table info |
-| [`LC_LOAD_DYLIB`](#lc_load_dylib) | const | load a dynamically linked shared library |
-| [`LC_ID_DYLIB`](#lc_id_dylib) | const | dynamically linked shared lib ident |
-| [`LC_LOAD_DYLINKER`](#lc_load_dylinker) | const | load a dynamic linker |
-| [`LC_ID_DYLINKER`](#lc_id_dylinker) | const | dynamic linker identification |
-| [`LC_PREBOUND_DYLIB`](#lc_prebound_dylib) | const | modules prebound for a dynamically linked shared library |
-| [`LC_ROUTINES`](#lc_routines) | const | image routines |
-| [`LC_SUB_FRAMEWORK`](#lc_sub_framework) | const | sub framework |
-| [`LC_SUB_UMBRELLA`](#lc_sub_umbrella) | const | sub umbrella |
-| [`LC_SUB_CLIENT`](#lc_sub_client) | const | sub client |
-| [`LC_SUB_LIBRARY`](#lc_sub_library) | const | sub library |
-| [`LC_TWOLEVEL_HINTS`](#lc_twolevel_hints) | const | two-level namespace lookup hints |
-| [`LC_PREBIND_CKSUM`](#lc_prebind_cksum) | const | prebind checksum |
-| [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib) | const | load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported). |
-| [`LC_SEGMENT_64`](#lc_segment_64) | const | 64-bit segment of this file to be mapped |
-| [`LC_ROUTINES_64`](#lc_routines_64) | const | 64-bit image routines |
-| [`LC_UUID`](#lc_uuid) | const | the uuid |
-| [`LC_RPATH`](#lc_rpath) | const | runpath additions |
-| [`LC_CODE_SIGNATURE`](#lc_code_signature) | const | local of code signature |
-| [`LC_SEGMENT_SPLIT_INFO`](#lc_segment_split_info) | const | local of info to split segments |
-| [`LC_REEXPORT_DYLIB`](#lc_reexport_dylib) | const | load and re-export dylib |
-| [`LC_LAZY_LOAD_DYLIB`](#lc_lazy_load_dylib) | const | delay load of dylib until first use |
-| [`LC_ENCRYPTION_INFO`](#lc_encryption_info) | const | encrypted segment information |
-| [`LC_DYLD_INFO`](#lc_dyld_info) | const | compressed dyld information |
-| [`LC_DYLD_INFO_ONLY`](#lc_dyld_info_only) | const | compressed dyld information only |
-| [`LC_LOAD_UPWARD_DYLIB`](#lc_load_upward_dylib) | const | load upward dylib |
-| [`LC_VERSION_MIN_MACOSX`](#lc_version_min_macosx) | const | build for MacOSX min OS version |
-| [`LC_VERSION_MIN_IPHONEOS`](#lc_version_min_iphoneos) | const | build for iPhoneOS min OS version |
-| [`LC_FUNCTION_STARTS`](#lc_function_starts) | const | compressed table of function start addresses |
-| [`LC_DYLD_ENVIRONMENT`](#lc_dyld_environment) | const | string for dyld to treat like environment variable |
-| [`LC_MAIN`](#lc_main) | const | replacement for LC_UNIXTHREAD |
-| [`LC_DATA_IN_CODE`](#lc_data_in_code) | const | table of non-instructions in __text |
-| [`LC_SOURCE_VERSION`](#lc_source_version) | const | source version used to build binary |
-| [`LC_DYLIB_CODE_SIGN_DRS`](#lc_dylib_code_sign_drs) | const | Code signing DRs copied from linked dylibs |
-| [`LC_ENCRYPTION_INFO_64`](#lc_encryption_info_64) | const | 64-bit encrypted segment information |
-| [`LC_LINKER_OPTION`](#lc_linker_option) | const | linker options in MH_OBJECT files |
-| [`LC_LINKER_OPTIMIZATION_HINT`](#lc_linker_optimization_hint) | const | optimization hints in MH_OBJECT files |
-| [`LC_VERSION_MIN_TVOS`](#lc_version_min_tvos) | const | build for AppleTV min OS version |
-| [`LC_VERSION_MIN_WATCHOS`](#lc_version_min_watchos) | const | build for Watch min OS version |
-| [`LC_NOTE`](#lc_note) | const | arbitrary data included within a Mach-O file |
-| [`LC_BUILD_VERSION`](#lc_build_version) | const | build for platform min OS version |
-| [`LC_DYLD_EXPORTS_TRIE`](#lc_dyld_exports_trie) | const | used with `LinkeditDataCommand`, payload is trie |
-| [`LC_DYLD_CHAINED_FIXUPS`](#lc_dyld_chained_fixups) | const | used with `LinkeditDataCommand` |
-| [`LC_FILESET_ENTRY`](#lc_fileset_entry) | const | used with `FilesetEntryCommand` |
-| [`SG_HIGHVM`](#sg_highvm) | const | the file contents for this segment is for the high part of the VM space, the low part is zero filled (for stacks in core files) |
-| [`SG_FVMLIB`](#sg_fvmlib) | const | this segment is the VM that is allocated by a fixed VM library, for overlap checking in the link editor |
-| [`SG_NORELOC`](#sg_noreloc) | const | this segment has nothing that was relocated in it and nothing relocated to it, that is it maybe safely replaced without relocation |
-| [`SG_PROTECTED_VERSION_1`](#sg_protected_version_1) | const | This segment is protected. |
-| [`SG_READ_ONLY`](#sg_read_only) | const | This segment is made read-only after fixups |
-| [`SECTION_TYPE`](#section_type) | const | 256 section types |
-| [`SECTION_ATTRIBUTES`](#section_attributes) | const | 24 section attributes |
-| [`S_REGULAR`](#s_regular) | const | regular section |
-| [`S_ZEROFILL`](#s_zerofill) | const | zero fill on demand section |
-| [`S_CSTRING_LITERALS`](#s_cstring_literals) | const | section with only literal C strings |
-| [`S_4BYTE_LITERALS`](#s_4byte_literals) | const | section with only 4 byte literals |
-| [`S_8BYTE_LITERALS`](#s_8byte_literals) | const | section with only 8 byte literals |
-| [`S_LITERAL_POINTERS`](#s_literal_pointers) | const | section with only pointers to literals |
-| [`S_NON_LAZY_SYMBOL_POINTERS`](#s_non_lazy_symbol_pointers) | const | section with only non-lazy symbol pointers |
-| [`S_LAZY_SYMBOL_POINTERS`](#s_lazy_symbol_pointers) | const | section with only lazy symbol pointers |
-| [`S_SYMBOL_STUBS`](#s_symbol_stubs) | const | section with only symbol stubs, byte size of stub in the reserved2 field |
-| [`S_MOD_INIT_FUNC_POINTERS`](#s_mod_init_func_pointers) | const | section with only function pointers for initialization |
-| [`S_MOD_TERM_FUNC_POINTERS`](#s_mod_term_func_pointers) | const | section with only function pointers for termination |
-| [`S_COALESCED`](#s_coalesced) | const | section contains symbols that are to be coalesced |
-| [`S_GB_ZEROFILL`](#s_gb_zerofill) | const | zero fill on demand section (that can be larger than 4 gigabytes) |
-| [`S_INTERPOSING`](#s_interposing) | const | section with only pairs of function pointers for interposing |
-| [`S_16BYTE_LITERALS`](#s_16byte_literals) | const | section with only 16 byte literals |
-| [`S_DTRACE_DOF`](#s_dtrace_dof) | const | section contains DTrace Object Format |
-| [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s_lazy_dylib_symbol_pointers) | const | section with only lazy symbol pointers to lazy loaded dylibs |
-| [`S_THREAD_LOCAL_REGULAR`](#s_thread_local_regular) | const | template of initial values for TLVs |
-| [`S_THREAD_LOCAL_ZEROFILL`](#s_thread_local_zerofill) | const | template of initial values for TLVs |
-| [`S_THREAD_LOCAL_VARIABLES`](#s_thread_local_variables) | const | TLV descriptors |
-| [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s_thread_local_variable_pointers) | const | pointers to TLV descriptors |
-| [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s_thread_local_init_function_pointers) | const | functions to call to initialize TLV values |
-| [`S_INIT_FUNC_OFFSETS`](#s_init_func_offsets) | const | 32-bit offsets to initializers |
-| [`SECTION_ATTRIBUTES_USR`](#section_attributes_usr) | const | User setable attributes |
-| [`S_ATTR_PURE_INSTRUCTIONS`](#s_attr_pure_instructions) | const | section contains only true machine instructions |
-| [`S_ATTR_NO_TOC`](#s_attr_no_toc) | const | section contains coalesced symbols that are not to be in a ranlib table of contents |
-| [`S_ATTR_STRIP_STATIC_SYMS`](#s_attr_strip_static_syms) | const | ok to strip static symbols in this section in files with the MH_DYLDLINK flag |
-| [`S_ATTR_NO_DEAD_STRIP`](#s_attr_no_dead_strip) | const | no dead stripping |
-| [`S_ATTR_LIVE_SUPPORT`](#s_attr_live_support) | const | blocks are live if they reference live blocks |
-| [`S_ATTR_SELF_MODIFYING_CODE`](#s_attr_self_modifying_code) | const | Used with i386 code stubs written on by dyld |
-| [`S_ATTR_DEBUG`](#s_attr_debug) | const | a debug section |
-| [`SECTION_ATTRIBUTES_SYS`](#section_attributes_sys) | const | system setable attributes |
-| [`S_ATTR_SOME_INSTRUCTIONS`](#s_attr_some_instructions) | const | section contains some machine instructions |
-| [`S_ATTR_EXT_RELOC`](#s_attr_ext_reloc) | const | section has external relocation entries |
-| [`S_ATTR_LOC_RELOC`](#s_attr_loc_reloc) | const | section has local relocation entries |
-| [`SEG_PAGEZERO`](#seg_pagezero) | const | the pagezero segment which has no protections and catches NULL references for MH_EXECUTE files |
-| [`SEG_TEXT`](#seg_text) | const | the tradition UNIX text segment |
-| [`SECT_TEXT`](#sect_text) | const | the real text part of the text section no headers, and no padding |
-| [`SECT_FVMLIB_INIT0`](#sect_fvmlib_init0) | const | the fvmlib initialization section |
-| [`SECT_FVMLIB_INIT1`](#sect_fvmlib_init1) | const | the section following the fvmlib initialization section |
-| [`SEG_DATA`](#seg_data) | const | the tradition UNIX data segment |
-| [`SECT_DATA`](#sect_data) | const | the real initialized data section no padding, no bss overlap |
-| [`SECT_BSS`](#sect_bss) | const | the real uninitialized data section no padding |
-| [`SECT_COMMON`](#sect_common) | const | the section common symbols are allocated in by the link editor |
-| [`SEG_OBJC`](#seg_objc) | const | objective-C runtime segment |
-| [`SECT_OBJC_SYMBOLS`](#sect_objc_symbols) | const | symbol table |
-| [`SECT_OBJC_MODULES`](#sect_objc_modules) | const | module information |
-| [`SECT_OBJC_STRINGS`](#sect_objc_strings) | const | string table |
-| [`SECT_OBJC_REFS`](#sect_objc_refs) | const | string table |
-| [`SEG_ICON`](#seg_icon) | const | the icon segment |
-| [`SECT_ICON_HEADER`](#sect_icon_header) | const | the icon headers |
-| [`SECT_ICON_TIFF`](#sect_icon_tiff) | const | the icons in tiff format |
-| [`SEG_LINKEDIT`](#seg_linkedit) | const | the segment containing all structs created and maintained by the link editor. |
-| [`SEG_LINKINFO`](#seg_linkinfo) | const | the segment overlapping with linkedit containing linking information |
-| [`SEG_UNIXSTACK`](#seg_unixstack) | const | the unix stack segment |
-| [`SEG_IMPORT`](#seg_import) | const | the segment for the self (dyld) modifying code stubs that has read, write and execute permissions |
-| [`INDIRECT_SYMBOL_LOCAL`](#indirect_symbol_local) | const |  |
-| [`INDIRECT_SYMBOL_ABS`](#indirect_symbol_abs) | const |  |
-| [`PLATFORM_MACOS`](#platform_macos) | const |  |
-| [`PLATFORM_IOS`](#platform_ios) | const |  |
-| [`PLATFORM_TVOS`](#platform_tvos) | const |  |
-| [`PLATFORM_WATCHOS`](#platform_watchos) | const |  |
-| [`PLATFORM_BRIDGEOS`](#platform_bridgeos) | const |  |
-| [`PLATFORM_MACCATALYST`](#platform_maccatalyst) | const |  |
-| [`PLATFORM_IOSSIMULATOR`](#platform_iossimulator) | const |  |
-| [`PLATFORM_TVOSSIMULATOR`](#platform_tvossimulator) | const |  |
-| [`PLATFORM_WATCHOSSIMULATOR`](#platform_watchossimulator) | const |  |
-| [`PLATFORM_DRIVERKIT`](#platform_driverkit) | const |  |
-| [`PLATFORM_XROS`](#platform_xros) | const |  |
-| [`PLATFORM_XROSSIMULATOR`](#platform_xrossimulator) | const |  |
-| [`TOOL_CLANG`](#tool_clang) | const |  |
-| [`TOOL_SWIFT`](#tool_swift) | const |  |
-| [`TOOL_LD`](#tool_ld) | const |  |
-| [`REBASE_TYPE_POINTER`](#rebase_type_pointer) | const |  |
-| [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase_type_text_absolute32) | const |  |
-| [`REBASE_TYPE_TEXT_PCREL32`](#rebase_type_text_pcrel32) | const |  |
-| [`REBASE_OPCODE_MASK`](#rebase_opcode_mask) | const |  |
-| [`REBASE_IMMEDIATE_MASK`](#rebase_immediate_mask) | const |  |
-| [`REBASE_OPCODE_DONE`](#rebase_opcode_done) | const |  |
-| [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase_opcode_set_type_imm) | const |  |
-| [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase_opcode_set_segment_and_offset_uleb) | const |  |
-| [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase_opcode_add_addr_uleb) | const |  |
-| [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase_opcode_add_addr_imm_scaled) | const |  |
-| [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase_opcode_do_rebase_imm_times) | const |  |
-| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase_opcode_do_rebase_uleb_times) | const |  |
-| [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase_opcode_do_rebase_add_addr_uleb) | const |  |
-| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase_opcode_do_rebase_uleb_times_skipping_uleb) | const |  |
-| [`BIND_TYPE_POINTER`](#bind_type_pointer) | const |  |
-| [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind_type_text_absolute32) | const |  |
-| [`BIND_TYPE_TEXT_PCREL32`](#bind_type_text_pcrel32) | const |  |
-| [`BIND_SPECIAL_DYLIB_SELF`](#bind_special_dylib_self) | const |  |
-| [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind_special_dylib_main_executable) | const |  |
-| [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind_special_dylib_flat_lookup) | const |  |
-| [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind_special_dylib_weak_lookup) | const |  |
-| [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind_symbol_flags_weak_import) | const |  |
-| [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind_symbol_flags_non_weak_definition) | const |  |
-| [`BIND_OPCODE_MASK`](#bind_opcode_mask) | const |  |
-| [`BIND_IMMEDIATE_MASK`](#bind_immediate_mask) | const |  |
-| [`BIND_OPCODE_DONE`](#bind_opcode_done) | const |  |
-| [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind_opcode_set_dylib_ordinal_imm) | const |  |
-| [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind_opcode_set_dylib_ordinal_uleb) | const |  |
-| [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind_opcode_set_dylib_special_imm) | const |  |
-| [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind_opcode_set_symbol_trailing_flags_imm) | const |  |
-| [`BIND_OPCODE_SET_TYPE_IMM`](#bind_opcode_set_type_imm) | const |  |
-| [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind_opcode_set_addend_sleb) | const |  |
-| [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind_opcode_set_segment_and_offset_uleb) | const |  |
-| [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind_opcode_add_addr_uleb) | const |  |
-| [`BIND_OPCODE_DO_BIND`](#bind_opcode_do_bind) | const |  |
-| [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind_opcode_do_bind_add_addr_uleb) | const |  |
-| [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind_opcode_do_bind_add_addr_imm_scaled) | const |  |
-| [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind_opcode_do_bind_uleb_times_skipping_uleb) | const |  |
-| [`BIND_OPCODE_THREADED`](#bind_opcode_threaded) | const |  |
-| [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind_subopcode_threaded_set_bind_ordinal_table_size_uleb) | const |  |
-| [`BIND_SUBOPCODE_THREADED_APPLY`](#bind_subopcode_threaded_apply) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export_symbol_flags_kind_mask) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export_symbol_flags_kind_regular) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export_symbol_flags_kind_thread_local) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export_symbol_flags_kind_absolute) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export_symbol_flags_weak_definition) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export_symbol_flags_reexport) | const |  |
-| [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export_symbol_flags_stub_and_resolver) | const |  |
-| [`DICE_KIND_DATA`](#dice_kind_data) | const |  |
-| [`DICE_KIND_JUMP_TABLE8`](#dice_kind_jump_table8) | const |  |
-| [`DICE_KIND_JUMP_TABLE16`](#dice_kind_jump_table16) | const |  |
-| [`DICE_KIND_JUMP_TABLE32`](#dice_kind_jump_table32) | const |  |
-| [`DICE_KIND_ABS_JUMP_TABLE32`](#dice_kind_abs_jump_table32) | const |  |
-| [`N_STAB`](#n_stab) | const | if any of these bits set, a symbolic debugging entry |
-| [`N_PEXT`](#n_pext) | const | private external symbol bit |
-| [`N_TYPE`](#n_type) | const | mask for the type bits |
-| [`N_EXT`](#n_ext) | const | external symbol bit, set for external symbols |
-| [`N_UNDF`](#n_undf) | const | undefined, n_sect == NO_SECT |
-| [`N_ABS`](#n_abs) | const | absolute, n_sect == NO_SECT |
-| [`N_SECT`](#n_sect) | const | defined in section number n_sect |
-| [`N_PBUD`](#n_pbud) | const | prebound undefined (defined in a dylib) |
-| [`N_INDR`](#n_indr) | const | indirect |
-| [`NO_SECT`](#no_sect) | const | symbol is not in any section |
-| [`MAX_SECT`](#max_sect) | const | 1 thru 255 inclusive |
-| [`REFERENCE_TYPE`](#reference_type) | const |  |
-| [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference_flag_undefined_non_lazy) | const |  |
-| [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference_flag_undefined_lazy) | const |  |
-| [`REFERENCE_FLAG_DEFINED`](#reference_flag_defined) | const |  |
-| [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference_flag_private_defined) | const |  |
-| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference_flag_private_undefined_non_lazy) | const |  |
-| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference_flag_private_undefined_lazy) | const |  |
-| [`REFERENCED_DYNAMICALLY`](#referenced_dynamically) | const |  |
-| [`SELF_LIBRARY_ORDINAL`](#self_library_ordinal) | const |  |
-| [`MAX_LIBRARY_ORDINAL`](#max_library_ordinal) | const |  |
-| [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic_lookup_ordinal) | const |  |
-| [`EXECUTABLE_ORDINAL`](#executable_ordinal) | const |  |
-| [`N_NO_DEAD_STRIP`](#n_no_dead_strip) | const | symbol is not to be dead stripped |
-| [`N_DESC_DISCARDED`](#n_desc_discarded) | const | symbol is discarded |
-| [`N_WEAK_REF`](#n_weak_ref) | const | symbol is weak referenced |
-| [`N_WEAK_DEF`](#n_weak_def) | const | coalesced symbol is a weak definition |
-| [`N_REF_TO_WEAK`](#n_ref_to_weak) | const | reference to a weak symbol |
-| [`N_ARM_THUMB_DEF`](#n_arm_thumb_def) | const | symbol is a Thumb function (ARM) |
-| [`N_SYMBOL_RESOLVER`](#n_symbol_resolver) | const |  |
-| [`N_ALT_ENTRY`](#n_alt_entry) | const |  |
-| [`N_GSYM`](#n_gsym) | const | global symbol: name,,NO_SECT,type,0 |
-| [`N_FNAME`](#n_fname) | const | procedure name (f77 kludge): name,,NO_SECT,0,0 |
-| [`N_FUN`](#n_fun) | const | procedure: name,,n_sect,linenumber,address |
-| [`N_STSYM`](#n_stsym) | const | static symbol: name,,n_sect,type,address |
-| [`N_LCSYM`](#n_lcsym) | const | .lcomm symbol: name,,n_sect,type,address |
-| [`N_BNSYM`](#n_bnsym) | const | begin nsect sym: 0,,n_sect,0,address |
-| [`N_AST`](#n_ast) | const | AST file path: name,,NO_SECT,0,0 |
-| [`N_OPT`](#n_opt) | const | emitted with gcc2_compiled and in gcc source |
-| [`N_RSYM`](#n_rsym) | const | register sym: name,,NO_SECT,type,register |
-| [`N_SLINE`](#n_sline) | const | src line: 0,,n_sect,linenumber,address |
-| [`N_ENSYM`](#n_ensym) | const | end nsect sym: 0,,n_sect,0,address |
-| [`N_SSYM`](#n_ssym) | const | structure elt: name,,NO_SECT,type,struct_offset |
-| [`N_SO`](#n_so) | const | source file name: name,,n_sect,0,address |
-| [`N_OSO`](#n_oso) | const | object file name: name,,0,0,st_mtime |
-| [`N_LSYM`](#n_lsym) | const | local sym: name,,NO_SECT,type,offset |
-| [`N_BINCL`](#n_bincl) | const | include file beginning: name,,NO_SECT,0,sum |
-| [`N_SOL`](#n_sol) | const | #included file name: name,,n_sect,0,address |
-| [`N_PARAMS`](#n_params) | const | compiler parameters: name,,NO_SECT,0,0 |
-| [`N_VERSION`](#n_version) | const | compiler version: name,,NO_SECT,0,0 |
-| [`N_OLEVEL`](#n_olevel) | const | compiler -O level: name,,NO_SECT,0,0 |
-| [`N_PSYM`](#n_psym) | const | parameter: name,,NO_SECT,type,offset |
-| [`N_EINCL`](#n_eincl) | const | include file end: name,,NO_SECT,0,0 |
-| [`N_ENTRY`](#n_entry) | const | alternate entry: name,,n_sect,linenumber,address |
-| [`N_LBRAC`](#n_lbrac) | const | left bracket: 0,,NO_SECT,nesting level,address |
-| [`N_EXCL`](#n_excl) | const | deleted include file: name,,NO_SECT,0,sum |
-| [`N_RBRAC`](#n_rbrac) | const | right bracket: 0,,NO_SECT,nesting level,address |
-| [`N_BCOMM`](#n_bcomm) | const | begin common: name,,NO_SECT,0,0 |
-| [`N_ECOMM`](#n_ecomm) | const | end common: name,,n_sect,0,0 |
-| [`N_ECOML`](#n_ecoml) | const | end common (local name): 0,,n_sect,0,address |
-| [`N_LENG`](#n_leng) | const | second stab entry with length information |
-| [`N_PC`](#n_pc) | const | global pascal symbol: name,,NO_SECT,subtype,line |
-| [`R_ABS`](#r_abs) | const | absolute relocation type for Mach-O files |
-| [`R_SCATTERED`](#r_scattered) | const | Bit set in `Relocation::r_word0` for scattered relocations. |
-| [`GENERIC_RELOC_VANILLA`](#generic_reloc_vanilla) | const | generic relocation as described above |
-| [`GENERIC_RELOC_PAIR`](#generic_reloc_pair) | const | Only follows a GENERIC_RELOC_SECTDIFF |
-| [`GENERIC_RELOC_SECTDIFF`](#generic_reloc_sectdiff) | const |  |
-| [`GENERIC_RELOC_PB_LA_PTR`](#generic_reloc_pb_la_ptr) | const | prebound lazy pointer |
-| [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic_reloc_local_sectdiff) | const |  |
-| [`GENERIC_RELOC_TLV`](#generic_reloc_tlv) | const | thread local variables |
-| [`ARM_RELOC_VANILLA`](#arm_reloc_vanilla) | const | generic relocation as described above |
-| [`ARM_RELOC_PAIR`](#arm_reloc_pair) | const | the second relocation entry of a pair |
-| [`ARM_RELOC_SECTDIFF`](#arm_reloc_sectdiff) | const | a PAIR follows with subtract symbol value |
-| [`ARM_RELOC_LOCAL_SECTDIFF`](#arm_reloc_local_sectdiff) | const | like ARM_RELOC_SECTDIFF, but the symbol referenced was local. |
-| [`ARM_RELOC_PB_LA_PTR`](#arm_reloc_pb_la_ptr) | const | prebound lazy pointer |
-| [`ARM_RELOC_BR24`](#arm_reloc_br24) | const | 24 bit branch displacement (to a word address) |
-| [`ARM_THUMB_RELOC_BR22`](#arm_thumb_reloc_br22) | const | 22 bit branch displacement (to a half-word address) |
-| [`ARM_THUMB_32BIT_BRANCH`](#arm_thumb_32bit_branch) | const | obsolete - a thumb 32-bit branch instruction possibly needing page-spanning branch workaround |
-| [`ARM_RELOC_HALF`](#arm_reloc_half) | const |  |
-| [`ARM_RELOC_HALF_SECTDIFF`](#arm_reloc_half_sectdiff) | const |  |
-| [`ARM64_RELOC_UNSIGNED`](#arm64_reloc_unsigned) | const | for pointers |
-| [`ARM64_RELOC_SUBTRACTOR`](#arm64_reloc_subtractor) | const | must be followed by a ARM64_RELOC_UNSIGNED |
-| [`ARM64_RELOC_BRANCH26`](#arm64_reloc_branch26) | const | a B/BL instruction with 26-bit displacement |
-| [`ARM64_RELOC_PAGE21`](#arm64_reloc_page21) | const | pc-rel distance to page of target |
-| [`ARM64_RELOC_PAGEOFF12`](#arm64_reloc_pageoff12) | const | offset within page, scaled by r_length |
-| [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64_reloc_got_load_page21) | const | pc-rel distance to page of GOT slot |
-| [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64_reloc_got_load_pageoff12) | const | offset within page of GOT slot, scaled by r_length |
-| [`ARM64_RELOC_POINTER_TO_GOT`](#arm64_reloc_pointer_to_got) | const | for pointers to GOT slots |
-| [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64_reloc_tlvp_load_page21) | const | pc-rel distance to page of TLVP slot |
-| [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64_reloc_tlvp_load_pageoff12) | const | offset within page of TLVP slot, scaled by r_length |
-| [`ARM64_RELOC_ADDEND`](#arm64_reloc_addend) | const | must be followed by PAGE21 or PAGEOFF12 |
-| [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64_reloc_authenticated_pointer) | const |  |
-| [`PPC_RELOC_VANILLA`](#ppc_reloc_vanilla) | const | generic relocation as described above |
-| [`PPC_RELOC_PAIR`](#ppc_reloc_pair) | const | the second relocation entry of a pair |
-| [`PPC_RELOC_BR14`](#ppc_reloc_br14) | const | 14 bit branch displacement (to a word address) |
-| [`PPC_RELOC_BR24`](#ppc_reloc_br24) | const | 24 bit branch displacement (to a word address) |
-| [`PPC_RELOC_HI16`](#ppc_reloc_hi16) | const | a PAIR follows with the low half |
-| [`PPC_RELOC_LO16`](#ppc_reloc_lo16) | const | a PAIR follows with the high half |
-| [`PPC_RELOC_HA16`](#ppc_reloc_ha16) | const | Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together with the low 16 bits sign extended first. |
-| [`PPC_RELOC_LO14`](#ppc_reloc_lo14) | const | Same as the LO16 except that the low 2 bits are not stored in the instruction and are always zero. |
-| [`PPC_RELOC_SECTDIFF`](#ppc_reloc_sectdiff) | const | a PAIR follows with subtract symbol value |
-| [`PPC_RELOC_PB_LA_PTR`](#ppc_reloc_pb_la_ptr) | const | prebound lazy pointer |
-| [`PPC_RELOC_HI16_SECTDIFF`](#ppc_reloc_hi16_sectdiff) | const | section difference forms of above. |
-| [`PPC_RELOC_LO16_SECTDIFF`](#ppc_reloc_lo16_sectdiff) | const | follows these with subtract symbol value |
-| [`PPC_RELOC_HA16_SECTDIFF`](#ppc_reloc_ha16_sectdiff) | const |  |
-| [`PPC_RELOC_JBSR`](#ppc_reloc_jbsr) | const |  |
-| [`PPC_RELOC_LO14_SECTDIFF`](#ppc_reloc_lo14_sectdiff) | const |  |
-| [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc_reloc_local_sectdiff) | const | like PPC_RELOC_SECTDIFF, but the symbol referenced was local. |
-| [`X86_64_RELOC_UNSIGNED`](#x86_64_reloc_unsigned) | const | for absolute addresses |
-| [`X86_64_RELOC_SIGNED`](#x86_64_reloc_signed) | const | for signed 32-bit displacement |
-| [`X86_64_RELOC_BRANCH`](#x86_64_reloc_branch) | const | a CALL/JMP instruction with 32-bit displacement |
-| [`X86_64_RELOC_GOT_LOAD`](#x86_64_reloc_got_load) | const | a MOVQ load of a GOT entry |
-| [`X86_64_RELOC_GOT`](#x86_64_reloc_got) | const | other GOT references |
-| [`X86_64_RELOC_SUBTRACTOR`](#x86_64_reloc_subtractor) | const | must be followed by a X86_64_RELOC_UNSIGNED |
-| [`X86_64_RELOC_SIGNED_1`](#x86_64_reloc_signed_1) | const | for signed 32-bit displacement with a -1 addend |
-| [`X86_64_RELOC_SIGNED_2`](#x86_64_reloc_signed_2) | const | for signed 32-bit displacement with a -2 addend |
-| [`X86_64_RELOC_SIGNED_4`](#x86_64_reloc_signed_4) | const | for signed 32-bit displacement with a -4 addend |
-| [`X86_64_RELOC_TLV`](#x86_64_reloc_tlv) | const | for thread local variables |
+| [`cpu_subtype_intel`](#cpu-subtype-intel) | fn |  |
+| [`cpu_subtype_intel_family`](#cpu-subtype-intel-family) | fn |  |
+| [`cpu_subtype_intel_model`](#cpu-subtype-intel-model) | fn |  |
+| [`CPU_ARCH_MASK`](#cpu-arch-mask) | const | mask for architecture bits |
+| [`CPU_ARCH_ABI64`](#cpu-arch-abi64) | const | 64 bit ABI |
+| [`CPU_ARCH_ABI64_32`](#cpu-arch-abi64-32) | const | ABI for 64-bit hardware with 32-bit types; LP32 |
+| [`CPU_TYPE_ANY`](#cpu-type-any) | const |  |
+| [`CPU_TYPE_VAX`](#cpu-type-vax) | const |  |
+| [`CPU_TYPE_MC680X0`](#cpu-type-mc680x0) | const |  |
+| [`CPU_TYPE_X86`](#cpu-type-x86) | const |  |
+| [`CPU_TYPE_X86_64`](#cpu-type-x86-64) | const |  |
+| [`CPU_TYPE_MIPS`](#cpu-type-mips) | const |  |
+| [`CPU_TYPE_MC98000`](#cpu-type-mc98000) | const |  |
+| [`CPU_TYPE_HPPA`](#cpu-type-hppa) | const |  |
+| [`CPU_TYPE_ARM`](#cpu-type-arm) | const |  |
+| [`CPU_TYPE_ARM64`](#cpu-type-arm64) | const |  |
+| [`CPU_TYPE_ARM64_32`](#cpu-type-arm64-32) | const |  |
+| [`CPU_TYPE_MC88000`](#cpu-type-mc88000) | const |  |
+| [`CPU_TYPE_SPARC`](#cpu-type-sparc) | const |  |
+| [`CPU_TYPE_I860`](#cpu-type-i860) | const |  |
+| [`CPU_TYPE_ALPHA`](#cpu-type-alpha) | const |  |
+| [`CPU_TYPE_POWERPC`](#cpu-type-powerpc) | const |  |
+| [`CPU_TYPE_POWERPC64`](#cpu-type-powerpc64) | const |  |
+| [`CPU_SUBTYPE_MASK`](#cpu-subtype-mask) | const | mask for feature flags |
+| [`CPU_SUBTYPE_LIB64`](#cpu-subtype-lib64) | const | 64 bit libraries |
+| [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu-subtype-ptrauth-abi) | const | pointer authentication with versioned ABI |
+| [`CPU_SUBTYPE_ANY`](#cpu-subtype-any) | const | When selecting a slice, ANY will pick the slice with the best grading for the selected cpu_type_t, unlike the "ALL" subtypes, which are the slices that can run on any hardware for that cpu type. |
+| [`CPU_SUBTYPE_MULTIPLE`](#cpu-subtype-multiple) | const |  |
+| [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu-subtype-little-endian) | const |  |
+| [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu-subtype-big-endian) | const |  |
+| [`CPU_SUBTYPE_VAX_ALL`](#cpu-subtype-vax-all) | const |  |
+| [`CPU_SUBTYPE_VAX780`](#cpu-subtype-vax780) | const |  |
+| [`CPU_SUBTYPE_VAX785`](#cpu-subtype-vax785) | const |  |
+| [`CPU_SUBTYPE_VAX750`](#cpu-subtype-vax750) | const |  |
+| [`CPU_SUBTYPE_VAX730`](#cpu-subtype-vax730) | const |  |
+| [`CPU_SUBTYPE_UVAXI`](#cpu-subtype-uvaxi) | const |  |
+| [`CPU_SUBTYPE_UVAXII`](#cpu-subtype-uvaxii) | const |  |
+| [`CPU_SUBTYPE_VAX8200`](#cpu-subtype-vax8200) | const |  |
+| [`CPU_SUBTYPE_VAX8500`](#cpu-subtype-vax8500) | const |  |
+| [`CPU_SUBTYPE_VAX8600`](#cpu-subtype-vax8600) | const |  |
+| [`CPU_SUBTYPE_VAX8650`](#cpu-subtype-vax8650) | const |  |
+| [`CPU_SUBTYPE_VAX8800`](#cpu-subtype-vax8800) | const |  |
+| [`CPU_SUBTYPE_UVAXIII`](#cpu-subtype-uvaxiii) | const |  |
+| [`CPU_SUBTYPE_MC680X0_ALL`](#cpu-subtype-mc680x0-all) | const |  |
+| [`CPU_SUBTYPE_MC68030`](#cpu-subtype-mc68030) | const |  |
+| [`CPU_SUBTYPE_MC68040`](#cpu-subtype-mc68040) | const |  |
+| [`CPU_SUBTYPE_MC68030_ONLY`](#cpu-subtype-mc68030-only) | const |  |
+| [`CPU_SUBTYPE_I386_ALL`](#cpu-subtype-i386-all) | const |  |
+| [`CPU_SUBTYPE_386`](#cpu-subtype-386) | const |  |
+| [`CPU_SUBTYPE_486`](#cpu-subtype-486) | const |  |
+| [`CPU_SUBTYPE_486SX`](#cpu-subtype-486sx) | const |  |
+| [`CPU_SUBTYPE_586`](#cpu-subtype-586) | const |  |
+| [`CPU_SUBTYPE_PENT`](#cpu-subtype-pent) | const |  |
+| [`CPU_SUBTYPE_PENTPRO`](#cpu-subtype-pentpro) | const |  |
+| [`CPU_SUBTYPE_PENTII_M3`](#cpu-subtype-pentii-m3) | const |  |
+| [`CPU_SUBTYPE_PENTII_M5`](#cpu-subtype-pentii-m5) | const |  |
+| [`CPU_SUBTYPE_CELERON`](#cpu-subtype-celeron) | const |  |
+| [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu-subtype-celeron-mobile) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3`](#cpu-subtype-pentium-3) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu-subtype-pentium-3-m) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu-subtype-pentium-3-xeon) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_M`](#cpu-subtype-pentium-m) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_4`](#cpu-subtype-pentium-4) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu-subtype-pentium-4-m) | const |  |
+| [`CPU_SUBTYPE_ITANIUM`](#cpu-subtype-itanium) | const |  |
+| [`CPU_SUBTYPE_ITANIUM_2`](#cpu-subtype-itanium-2) | const |  |
+| [`CPU_SUBTYPE_XEON`](#cpu-subtype-xeon) | const |  |
+| [`CPU_SUBTYPE_XEON_MP`](#cpu-subtype-xeon-mp) | const |  |
+| [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu-subtype-intel-family-max) | const |  |
+| [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu-subtype-intel-model-all) | const |  |
+| [`CPU_SUBTYPE_X86_ALL`](#cpu-subtype-x86-all) | const |  |
+| [`CPU_SUBTYPE_X86_64_ALL`](#cpu-subtype-x86-64-all) | const |  |
+| [`CPU_SUBTYPE_X86_ARCH1`](#cpu-subtype-x86-arch1) | const |  |
+| [`CPU_SUBTYPE_X86_64_H`](#cpu-subtype-x86-64-h) | const | Haswell feature subset |
+| [`CPU_SUBTYPE_MIPS_ALL`](#cpu-subtype-mips-all) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2300`](#cpu-subtype-mips-r2300) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2600`](#cpu-subtype-mips-r2600) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2800`](#cpu-subtype-mips-r2800) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2000A`](#cpu-subtype-mips-r2000a) | const | pmax |
+| [`CPU_SUBTYPE_MIPS_R2000`](#cpu-subtype-mips-r2000) | const |  |
+| [`CPU_SUBTYPE_MIPS_R3000A`](#cpu-subtype-mips-r3000a) | const | 3max |
+| [`CPU_SUBTYPE_MIPS_R3000`](#cpu-subtype-mips-r3000) | const |  |
+| [`CPU_SUBTYPE_MC98000_ALL`](#cpu-subtype-mc98000-all) | const |  |
+| [`CPU_SUBTYPE_MC98601`](#cpu-subtype-mc98601) | const |  |
+| [`CPU_SUBTYPE_HPPA_ALL`](#cpu-subtype-hppa-all) | const |  |
+| [`CPU_SUBTYPE_HPPA_7100LC`](#cpu-subtype-hppa-7100lc) | const |  |
+| [`CPU_SUBTYPE_MC88000_ALL`](#cpu-subtype-mc88000-all) | const |  |
+| [`CPU_SUBTYPE_MC88100`](#cpu-subtype-mc88100) | const |  |
+| [`CPU_SUBTYPE_MC88110`](#cpu-subtype-mc88110) | const |  |
+| [`CPU_SUBTYPE_SPARC_ALL`](#cpu-subtype-sparc-all) | const |  |
+| [`CPU_SUBTYPE_I860_ALL`](#cpu-subtype-i860-all) | const |  |
+| [`CPU_SUBTYPE_I860_860`](#cpu-subtype-i860-860) | const |  |
+| [`CPU_SUBTYPE_POWERPC_ALL`](#cpu-subtype-powerpc-all) | const |  |
+| [`CPU_SUBTYPE_POWERPC_601`](#cpu-subtype-powerpc-601) | const |  |
+| [`CPU_SUBTYPE_POWERPC_602`](#cpu-subtype-powerpc-602) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603`](#cpu-subtype-powerpc-603) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603E`](#cpu-subtype-powerpc-603e) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603EV`](#cpu-subtype-powerpc-603ev) | const |  |
+| [`CPU_SUBTYPE_POWERPC_604`](#cpu-subtype-powerpc-604) | const |  |
+| [`CPU_SUBTYPE_POWERPC_604E`](#cpu-subtype-powerpc-604e) | const |  |
+| [`CPU_SUBTYPE_POWERPC_620`](#cpu-subtype-powerpc-620) | const |  |
+| [`CPU_SUBTYPE_POWERPC_750`](#cpu-subtype-powerpc-750) | const |  |
+| [`CPU_SUBTYPE_POWERPC_7400`](#cpu-subtype-powerpc-7400) | const |  |
+| [`CPU_SUBTYPE_POWERPC_7450`](#cpu-subtype-powerpc-7450) | const |  |
+| [`CPU_SUBTYPE_POWERPC_970`](#cpu-subtype-powerpc-970) | const |  |
+| [`CPU_SUBTYPE_ARM_ALL`](#cpu-subtype-arm-all) | const |  |
+| [`CPU_SUBTYPE_ARM_V4T`](#cpu-subtype-arm-v4t) | const |  |
+| [`CPU_SUBTYPE_ARM_V6`](#cpu-subtype-arm-v6) | const |  |
+| [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu-subtype-arm-v5tej) | const |  |
+| [`CPU_SUBTYPE_ARM_XSCALE`](#cpu-subtype-arm-xscale) | const |  |
+| [`CPU_SUBTYPE_ARM_V7`](#cpu-subtype-arm-v7) | const | ARMv7-A and ARMv7-R |
+| [`CPU_SUBTYPE_ARM_V7F`](#cpu-subtype-arm-v7f) | const | Cortex A9 |
+| [`CPU_SUBTYPE_ARM_V7S`](#cpu-subtype-arm-v7s) | const | Swift |
+| [`CPU_SUBTYPE_ARM_V7K`](#cpu-subtype-arm-v7k) | const |  |
+| [`CPU_SUBTYPE_ARM_V8`](#cpu-subtype-arm-v8) | const |  |
+| [`CPU_SUBTYPE_ARM_V6M`](#cpu-subtype-arm-v6m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V7M`](#cpu-subtype-arm-v7m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V7EM`](#cpu-subtype-arm-v7em) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V8M`](#cpu-subtype-arm-v8m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM64_ALL`](#cpu-subtype-arm64-all) | const |  |
+| [`CPU_SUBTYPE_ARM64_V8`](#cpu-subtype-arm64-v8) | const |  |
+| [`CPU_SUBTYPE_ARM64E`](#cpu-subtype-arm64e) | const |  |
+| [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu-subtype-arm64-32-all) | const |  |
+| [`CPU_SUBTYPE_ARM64_32_V8`](#cpu-subtype-arm64-32-v8) | const |  |
+| [`VM_PROT_READ`](#vm-prot-read) | const | read permission |
+| [`VM_PROT_WRITE`](#vm-prot-write) | const | write permission |
+| [`VM_PROT_EXECUTE`](#vm-prot-execute) | const | execute permission |
+| [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld-cache-mapping-auth-data) | const |  |
+| [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld-cache-mapping-dirty-data) | const |  |
+| [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld-cache-mapping-const-data) | const |  |
+| [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld-cache-mapping-text-stubs) | const |  |
+| [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld-cache-dynamic-config-data) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld-cache-slide-page-attrs) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld-cache-slide-page-attr-extra) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-page-attr-no-rebase) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld-cache-slide-page-attr-end) | const |  |
+| [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-v3-page-attr-no-rebase) | const | Page has no rebasing. |
+| [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld-cache-slide-v5-page-attr-no-rebase) | const | Page has no rebasing. |
+| [`FAT_MAGIC`](#fat-magic) | const |  |
+| [`FAT_CIGAM`](#fat-cigam) | const | NXSwapLong(FAT_MAGIC) |
+| [`FAT_MAGIC_64`](#fat-magic-64) | const |  |
+| [`FAT_CIGAM_64`](#fat-cigam-64) | const | NXSwapLong(FAT_MAGIC_64) |
+| [`MH_MAGIC`](#mh-magic) | const | the mach magic number |
+| [`MH_CIGAM`](#mh-cigam) | const | NXSwapInt(MH_MAGIC) |
+| [`MH_MAGIC_64`](#mh-magic-64) | const | the 64-bit mach magic number |
+| [`MH_CIGAM_64`](#mh-cigam-64) | const | NXSwapInt(MH_MAGIC_64) |
+| [`MH_OBJECT`](#mh-object) | const | relocatable object file |
+| [`MH_EXECUTE`](#mh-execute) | const | demand paged executable file |
+| [`MH_FVMLIB`](#mh-fvmlib) | const | fixed VM shared library file |
+| [`MH_CORE`](#mh-core) | const | core file |
+| [`MH_PRELOAD`](#mh-preload) | const | preloaded executable file |
+| [`MH_DYLIB`](#mh-dylib) | const | dynamically bound shared library |
+| [`MH_DYLINKER`](#mh-dylinker) | const | dynamic link editor |
+| [`MH_BUNDLE`](#mh-bundle) | const | dynamically bound bundle file |
+| [`MH_DYLIB_STUB`](#mh-dylib-stub) | const | shared library stub for static linking only, no section contents |
+| [`MH_DSYM`](#mh-dsym) | const | companion file with only debug sections |
+| [`MH_KEXT_BUNDLE`](#mh-kext-bundle) | const | x86_64 kexts |
+| [`MH_FILESET`](#mh-fileset) | const | set of mach-o's |
+| [`MH_NOUNDEFS`](#mh-noundefs) | const | the object file has no undefined references |
+| [`MH_INCRLINK`](#mh-incrlink) | const | the object file is the output of an incremental link against a base file and can't be link edited again |
+| [`MH_DYLDLINK`](#mh-dyldlink) | const | the object file is input for the dynamic linker and can't be statically link edited again |
+| [`MH_BINDATLOAD`](#mh-bindatload) | const | the object file's undefined references are bound by the dynamic linker when loaded. |
+| [`MH_PREBOUND`](#mh-prebound) | const | the file has its dynamic undefined references prebound. |
+| [`MH_SPLIT_SEGS`](#mh-split-segs) | const | the file has its read-only and read-write segments split |
+| [`MH_LAZY_INIT`](#mh-lazy-init) | const | the shared library init routine is to be run lazily via catching memory faults to its writeable segments (obsolete) |
+| [`MH_TWOLEVEL`](#mh-twolevel) | const | the image is using two-level name space bindings |
+| [`MH_FORCE_FLAT`](#mh-force-flat) | const | the executable is forcing all images to use flat name space bindings |
+| [`MH_NOMULTIDEFS`](#mh-nomultidefs) | const | this umbrella guarantees no multiple definitions of symbols in its sub-images so the two-level namespace hints can always be used. |
+| [`MH_NOFIXPREBINDING`](#mh-nofixprebinding) | const | do not have dyld notify the prebinding agent about this executable |
+| [`MH_PREBINDABLE`](#mh-prebindable) | const | the binary is not prebound but can have its prebinding redone. |
+| [`MH_ALLMODSBOUND`](#mh-allmodsbound) | const | indicates that this binary binds to all two-level namespace modules of its dependent libraries. |
+| [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh-subsections-via-symbols) | const | safe to divide up the sections into sub-sections via symbols for dead code stripping |
+| [`MH_CANONICAL`](#mh-canonical) | const | the binary has been canonicalized via the unprebind operation |
+| [`MH_WEAK_DEFINES`](#mh-weak-defines) | const | the final linked image contains external weak symbols |
+| [`MH_BINDS_TO_WEAK`](#mh-binds-to-weak) | const | the final linked image uses weak symbols |
+| [`MH_ALLOW_STACK_EXECUTION`](#mh-allow-stack-execution) | const | When this bit is set, all stacks in the task will be given stack execution privilege. |
+| [`MH_ROOT_SAFE`](#mh-root-safe) | const | When this bit is set, the binary declares it is safe for use in processes with uid zero |
+| [`MH_SETUID_SAFE`](#mh-setuid-safe) | const | When this bit is set, the binary declares it is safe for use in processes when issetugid() is true |
+| [`MH_NO_REEXPORTED_DYLIBS`](#mh-no-reexported-dylibs) | const | When this bit is set on a dylib, the static linker does not need to examine dependent dylibs to see if any are re-exported |
+| [`MH_PIE`](#mh-pie) | const | When this bit is set, the OS will load the main executable at a random address. |
+| [`MH_DEAD_STRIPPABLE_DYLIB`](#mh-dead-strippable-dylib) | const | Only for use on dylibs. |
+| [`MH_HAS_TLV_DESCRIPTORS`](#mh-has-tlv-descriptors) | const | Contains a section of type S_THREAD_LOCAL_VARIABLES |
+| [`MH_NO_HEAP_EXECUTION`](#mh-no-heap-execution) | const | When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. |
+| [`MH_APP_EXTENSION_SAFE`](#mh-app-extension-safe) | const | The code was linked for use in an application extension. |
+| [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh-nlist-outofsync-with-dyldinfo) | const | The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info. |
+| [`MH_SIM_SUPPORT`](#mh-sim-support) | const | Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator. |
+| [`MH_DYLIB_IN_CACHE`](#mh-dylib-in-cache) | const | Only for use on dylibs. |
+| [`LC_REQ_DYLD`](#lc-req-dyld) | const |  |
+| [`LC_SEGMENT`](#lc-segment) | const | segment of this file to be mapped |
+| [`LC_SYMTAB`](#lc-symtab) | const | link-edit stab symbol table info |
+| [`LC_SYMSEG`](#lc-symseg) | const | link-edit gdb symbol table info (obsolete) |
+| [`LC_THREAD`](#lc-thread) | const | thread |
+| [`LC_UNIXTHREAD`](#lc-unixthread) | const | unix thread (includes a stack) |
+| [`LC_LOADFVMLIB`](#lc-loadfvmlib) | const | load a specified fixed VM shared library |
+| [`LC_IDFVMLIB`](#lc-idfvmlib) | const | fixed VM shared library identification |
+| [`LC_IDENT`](#lc-ident) | const | object identification info (obsolete) |
+| [`LC_FVMFILE`](#lc-fvmfile) | const | fixed VM file inclusion (internal use) |
+| [`LC_PREPAGE`](#lc-prepage) | const | prepage command (internal use) |
+| [`LC_DYSYMTAB`](#lc-dysymtab) | const | dynamic link-edit symbol table info |
+| [`LC_LOAD_DYLIB`](#lc-load-dylib) | const | load a dynamically linked shared library |
+| [`LC_ID_DYLIB`](#lc-id-dylib) | const | dynamically linked shared lib ident |
+| [`LC_LOAD_DYLINKER`](#lc-load-dylinker) | const | load a dynamic linker |
+| [`LC_ID_DYLINKER`](#lc-id-dylinker) | const | dynamic linker identification |
+| [`LC_PREBOUND_DYLIB`](#lc-prebound-dylib) | const | modules prebound for a dynamically linked shared library |
+| [`LC_ROUTINES`](#lc-routines) | const | image routines |
+| [`LC_SUB_FRAMEWORK`](#lc-sub-framework) | const | sub framework |
+| [`LC_SUB_UMBRELLA`](#lc-sub-umbrella) | const | sub umbrella |
+| [`LC_SUB_CLIENT`](#lc-sub-client) | const | sub client |
+| [`LC_SUB_LIBRARY`](#lc-sub-library) | const | sub library |
+| [`LC_TWOLEVEL_HINTS`](#lc-twolevel-hints) | const | two-level namespace lookup hints |
+| [`LC_PREBIND_CKSUM`](#lc-prebind-cksum) | const | prebind checksum |
+| [`LC_LOAD_WEAK_DYLIB`](#lc-load-weak-dylib) | const | load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported). |
+| [`LC_SEGMENT_64`](#lc-segment-64) | const | 64-bit segment of this file to be mapped |
+| [`LC_ROUTINES_64`](#lc-routines-64) | const | 64-bit image routines |
+| [`LC_UUID`](#lc-uuid) | const | the uuid |
+| [`LC_RPATH`](#lc-rpath) | const | runpath additions |
+| [`LC_CODE_SIGNATURE`](#lc-code-signature) | const | local of code signature |
+| [`LC_SEGMENT_SPLIT_INFO`](#lc-segment-split-info) | const | local of info to split segments |
+| [`LC_REEXPORT_DYLIB`](#lc-reexport-dylib) | const | load and re-export dylib |
+| [`LC_LAZY_LOAD_DYLIB`](#lc-lazy-load-dylib) | const | delay load of dylib until first use |
+| [`LC_ENCRYPTION_INFO`](#lc-encryption-info) | const | encrypted segment information |
+| [`LC_DYLD_INFO`](#lc-dyld-info) | const | compressed dyld information |
+| [`LC_DYLD_INFO_ONLY`](#lc-dyld-info-only) | const | compressed dyld information only |
+| [`LC_LOAD_UPWARD_DYLIB`](#lc-load-upward-dylib) | const | load upward dylib |
+| [`LC_VERSION_MIN_MACOSX`](#lc-version-min-macosx) | const | build for MacOSX min OS version |
+| [`LC_VERSION_MIN_IPHONEOS`](#lc-version-min-iphoneos) | const | build for iPhoneOS min OS version |
+| [`LC_FUNCTION_STARTS`](#lc-function-starts) | const | compressed table of function start addresses |
+| [`LC_DYLD_ENVIRONMENT`](#lc-dyld-environment) | const | string for dyld to treat like environment variable |
+| [`LC_MAIN`](#lc-main) | const | replacement for LC_UNIXTHREAD |
+| [`LC_DATA_IN_CODE`](#lc-data-in-code) | const | table of non-instructions in __text |
+| [`LC_SOURCE_VERSION`](#lc-source-version) | const | source version used to build binary |
+| [`LC_DYLIB_CODE_SIGN_DRS`](#lc-dylib-code-sign-drs) | const | Code signing DRs copied from linked dylibs |
+| [`LC_ENCRYPTION_INFO_64`](#lc-encryption-info-64) | const | 64-bit encrypted segment information |
+| [`LC_LINKER_OPTION`](#lc-linker-option) | const | linker options in MH_OBJECT files |
+| [`LC_LINKER_OPTIMIZATION_HINT`](#lc-linker-optimization-hint) | const | optimization hints in MH_OBJECT files |
+| [`LC_VERSION_MIN_TVOS`](#lc-version-min-tvos) | const | build for AppleTV min OS version |
+| [`LC_VERSION_MIN_WATCHOS`](#lc-version-min-watchos) | const | build for Watch min OS version |
+| [`LC_NOTE`](#lc-note) | const | arbitrary data included within a Mach-O file |
+| [`LC_BUILD_VERSION`](#lc-build-version) | const | build for platform min OS version |
+| [`LC_DYLD_EXPORTS_TRIE`](#lc-dyld-exports-trie) | const | used with `LinkeditDataCommand`, payload is trie |
+| [`LC_DYLD_CHAINED_FIXUPS`](#lc-dyld-chained-fixups) | const | used with `LinkeditDataCommand` |
+| [`LC_FILESET_ENTRY`](#lc-fileset-entry) | const | used with `FilesetEntryCommand` |
+| [`SG_HIGHVM`](#sg-highvm) | const | the file contents for this segment is for the high part of the VM space, the low part is zero filled (for stacks in core files) |
+| [`SG_FVMLIB`](#sg-fvmlib) | const | this segment is the VM that is allocated by a fixed VM library, for overlap checking in the link editor |
+| [`SG_NORELOC`](#sg-noreloc) | const | this segment has nothing that was relocated in it and nothing relocated to it, that is it maybe safely replaced without relocation |
+| [`SG_PROTECTED_VERSION_1`](#sg-protected-version-1) | const | This segment is protected. |
+| [`SG_READ_ONLY`](#sg-read-only) | const | This segment is made read-only after fixups |
+| [`SECTION_TYPE`](#section-type) | const | 256 section types |
+| [`SECTION_ATTRIBUTES`](#section-attributes) | const | 24 section attributes |
+| [`S_REGULAR`](#s-regular) | const | regular section |
+| [`S_ZEROFILL`](#s-zerofill) | const | zero fill on demand section |
+| [`S_CSTRING_LITERALS`](#s-cstring-literals) | const | section with only literal C strings |
+| [`S_4BYTE_LITERALS`](#s-4byte-literals) | const | section with only 4 byte literals |
+| [`S_8BYTE_LITERALS`](#s-8byte-literals) | const | section with only 8 byte literals |
+| [`S_LITERAL_POINTERS`](#s-literal-pointers) | const | section with only pointers to literals |
+| [`S_NON_LAZY_SYMBOL_POINTERS`](#s-non-lazy-symbol-pointers) | const | section with only non-lazy symbol pointers |
+| [`S_LAZY_SYMBOL_POINTERS`](#s-lazy-symbol-pointers) | const | section with only lazy symbol pointers |
+| [`S_SYMBOL_STUBS`](#s-symbol-stubs) | const | section with only symbol stubs, byte size of stub in the reserved2 field |
+| [`S_MOD_INIT_FUNC_POINTERS`](#s-mod-init-func-pointers) | const | section with only function pointers for initialization |
+| [`S_MOD_TERM_FUNC_POINTERS`](#s-mod-term-func-pointers) | const | section with only function pointers for termination |
+| [`S_COALESCED`](#s-coalesced) | const | section contains symbols that are to be coalesced |
+| [`S_GB_ZEROFILL`](#s-gb-zerofill) | const | zero fill on demand section (that can be larger than 4 gigabytes) |
+| [`S_INTERPOSING`](#s-interposing) | const | section with only pairs of function pointers for interposing |
+| [`S_16BYTE_LITERALS`](#s-16byte-literals) | const | section with only 16 byte literals |
+| [`S_DTRACE_DOF`](#s-dtrace-dof) | const | section contains DTrace Object Format |
+| [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s-lazy-dylib-symbol-pointers) | const | section with only lazy symbol pointers to lazy loaded dylibs |
+| [`S_THREAD_LOCAL_REGULAR`](#s-thread-local-regular) | const | template of initial values for TLVs |
+| [`S_THREAD_LOCAL_ZEROFILL`](#s-thread-local-zerofill) | const | template of initial values for TLVs |
+| [`S_THREAD_LOCAL_VARIABLES`](#s-thread-local-variables) | const | TLV descriptors |
+| [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s-thread-local-variable-pointers) | const | pointers to TLV descriptors |
+| [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s-thread-local-init-function-pointers) | const | functions to call to initialize TLV values |
+| [`S_INIT_FUNC_OFFSETS`](#s-init-func-offsets) | const | 32-bit offsets to initializers |
+| [`SECTION_ATTRIBUTES_USR`](#section-attributes-usr) | const | User setable attributes |
+| [`S_ATTR_PURE_INSTRUCTIONS`](#s-attr-pure-instructions) | const | section contains only true machine instructions |
+| [`S_ATTR_NO_TOC`](#s-attr-no-toc) | const | section contains coalesced symbols that are not to be in a ranlib table of contents |
+| [`S_ATTR_STRIP_STATIC_SYMS`](#s-attr-strip-static-syms) | const | ok to strip static symbols in this section in files with the MH_DYLDLINK flag |
+| [`S_ATTR_NO_DEAD_STRIP`](#s-attr-no-dead-strip) | const | no dead stripping |
+| [`S_ATTR_LIVE_SUPPORT`](#s-attr-live-support) | const | blocks are live if they reference live blocks |
+| [`S_ATTR_SELF_MODIFYING_CODE`](#s-attr-self-modifying-code) | const | Used with i386 code stubs written on by dyld |
+| [`S_ATTR_DEBUG`](#s-attr-debug) | const | a debug section |
+| [`SECTION_ATTRIBUTES_SYS`](#section-attributes-sys) | const | system setable attributes |
+| [`S_ATTR_SOME_INSTRUCTIONS`](#s-attr-some-instructions) | const | section contains some machine instructions |
+| [`S_ATTR_EXT_RELOC`](#s-attr-ext-reloc) | const | section has external relocation entries |
+| [`S_ATTR_LOC_RELOC`](#s-attr-loc-reloc) | const | section has local relocation entries |
+| [`SEG_PAGEZERO`](#seg-pagezero) | const | the pagezero segment which has no protections and catches NULL references for MH_EXECUTE files |
+| [`SEG_TEXT`](#seg-text) | const | the tradition UNIX text segment |
+| [`SECT_TEXT`](#sect-text) | const | the real text part of the text section no headers, and no padding |
+| [`SECT_FVMLIB_INIT0`](#sect-fvmlib-init0) | const | the fvmlib initialization section |
+| [`SECT_FVMLIB_INIT1`](#sect-fvmlib-init1) | const | the section following the fvmlib initialization section |
+| [`SEG_DATA`](#seg-data) | const | the tradition UNIX data segment |
+| [`SECT_DATA`](#sect-data) | const | the real initialized data section no padding, no bss overlap |
+| [`SECT_BSS`](#sect-bss) | const | the real uninitialized data section no padding |
+| [`SECT_COMMON`](#sect-common) | const | the section common symbols are allocated in by the link editor |
+| [`SEG_OBJC`](#seg-objc) | const | objective-C runtime segment |
+| [`SECT_OBJC_SYMBOLS`](#sect-objc-symbols) | const | symbol table |
+| [`SECT_OBJC_MODULES`](#sect-objc-modules) | const | module information |
+| [`SECT_OBJC_STRINGS`](#sect-objc-strings) | const | string table |
+| [`SECT_OBJC_REFS`](#sect-objc-refs) | const | string table |
+| [`SEG_ICON`](#seg-icon) | const | the icon segment |
+| [`SECT_ICON_HEADER`](#sect-icon-header) | const | the icon headers |
+| [`SECT_ICON_TIFF`](#sect-icon-tiff) | const | the icons in tiff format |
+| [`SEG_LINKEDIT`](#seg-linkedit) | const | the segment containing all structs created and maintained by the link editor. |
+| [`SEG_LINKINFO`](#seg-linkinfo) | const | the segment overlapping with linkedit containing linking information |
+| [`SEG_UNIXSTACK`](#seg-unixstack) | const | the unix stack segment |
+| [`SEG_IMPORT`](#seg-import) | const | the segment for the self (dyld) modifying code stubs that has read, write and execute permissions |
+| [`INDIRECT_SYMBOL_LOCAL`](#indirect-symbol-local) | const |  |
+| [`INDIRECT_SYMBOL_ABS`](#indirect-symbol-abs) | const |  |
+| [`PLATFORM_MACOS`](#platform-macos) | const |  |
+| [`PLATFORM_IOS`](#platform-ios) | const |  |
+| [`PLATFORM_TVOS`](#platform-tvos) | const |  |
+| [`PLATFORM_WATCHOS`](#platform-watchos) | const |  |
+| [`PLATFORM_BRIDGEOS`](#platform-bridgeos) | const |  |
+| [`PLATFORM_MACCATALYST`](#platform-maccatalyst) | const |  |
+| [`PLATFORM_IOSSIMULATOR`](#platform-iossimulator) | const |  |
+| [`PLATFORM_TVOSSIMULATOR`](#platform-tvossimulator) | const |  |
+| [`PLATFORM_WATCHOSSIMULATOR`](#platform-watchossimulator) | const |  |
+| [`PLATFORM_DRIVERKIT`](#platform-driverkit) | const |  |
+| [`PLATFORM_XROS`](#platform-xros) | const |  |
+| [`PLATFORM_XROSSIMULATOR`](#platform-xrossimulator) | const |  |
+| [`TOOL_CLANG`](#tool-clang) | const |  |
+| [`TOOL_SWIFT`](#tool-swift) | const |  |
+| [`TOOL_LD`](#tool-ld) | const |  |
+| [`REBASE_TYPE_POINTER`](#rebase-type-pointer) | const |  |
+| [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase-type-text-absolute32) | const |  |
+| [`REBASE_TYPE_TEXT_PCREL32`](#rebase-type-text-pcrel32) | const |  |
+| [`REBASE_OPCODE_MASK`](#rebase-opcode-mask) | const |  |
+| [`REBASE_IMMEDIATE_MASK`](#rebase-immediate-mask) | const |  |
+| [`REBASE_OPCODE_DONE`](#rebase-opcode-done) | const |  |
+| [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase-opcode-set-type-imm) | const |  |
+| [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase-opcode-set-segment-and-offset-uleb) | const |  |
+| [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase-opcode-add-addr-uleb) | const |  |
+| [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase-opcode-add-addr-imm-scaled) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase-opcode-do-rebase-imm-times) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase-opcode-do-rebase-uleb-times) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase-opcode-do-rebase-add-addr-uleb) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase-opcode-do-rebase-uleb-times-skipping-uleb) | const |  |
+| [`BIND_TYPE_POINTER`](#bind-type-pointer) | const |  |
+| [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind-type-text-absolute32) | const |  |
+| [`BIND_TYPE_TEXT_PCREL32`](#bind-type-text-pcrel32) | const |  |
+| [`BIND_SPECIAL_DYLIB_SELF`](#bind-special-dylib-self) | const |  |
+| [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind-special-dylib-main-executable) | const |  |
+| [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind-special-dylib-flat-lookup) | const |  |
+| [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind-special-dylib-weak-lookup) | const |  |
+| [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind-symbol-flags-weak-import) | const |  |
+| [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind-symbol-flags-non-weak-definition) | const |  |
+| [`BIND_OPCODE_MASK`](#bind-opcode-mask) | const |  |
+| [`BIND_IMMEDIATE_MASK`](#bind-immediate-mask) | const |  |
+| [`BIND_OPCODE_DONE`](#bind-opcode-done) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind-opcode-set-dylib-ordinal-imm) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind-opcode-set-dylib-ordinal-uleb) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind-opcode-set-dylib-special-imm) | const |  |
+| [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind-opcode-set-symbol-trailing-flags-imm) | const |  |
+| [`BIND_OPCODE_SET_TYPE_IMM`](#bind-opcode-set-type-imm) | const |  |
+| [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind-opcode-set-addend-sleb) | const |  |
+| [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind-opcode-set-segment-and-offset-uleb) | const |  |
+| [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind-opcode-add-addr-uleb) | const |  |
+| [`BIND_OPCODE_DO_BIND`](#bind-opcode-do-bind) | const |  |
+| [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind-opcode-do-bind-add-addr-uleb) | const |  |
+| [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind-opcode-do-bind-add-addr-imm-scaled) | const |  |
+| [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind-opcode-do-bind-uleb-times-skipping-uleb) | const |  |
+| [`BIND_OPCODE_THREADED`](#bind-opcode-threaded) | const |  |
+| [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind-subopcode-threaded-set-bind-ordinal-table-size-uleb) | const |  |
+| [`BIND_SUBOPCODE_THREADED_APPLY`](#bind-subopcode-threaded-apply) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export-symbol-flags-kind-mask) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export-symbol-flags-kind-regular) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export-symbol-flags-kind-thread-local) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export-symbol-flags-kind-absolute) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export-symbol-flags-weak-definition) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export-symbol-flags-reexport) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export-symbol-flags-stub-and-resolver) | const |  |
+| [`DICE_KIND_DATA`](#dice-kind-data) | const |  |
+| [`DICE_KIND_JUMP_TABLE8`](#dice-kind-jump-table8) | const |  |
+| [`DICE_KIND_JUMP_TABLE16`](#dice-kind-jump-table16) | const |  |
+| [`DICE_KIND_JUMP_TABLE32`](#dice-kind-jump-table32) | const |  |
+| [`DICE_KIND_ABS_JUMP_TABLE32`](#dice-kind-abs-jump-table32) | const |  |
+| [`N_STAB`](#n-stab) | const | if any of these bits set, a symbolic debugging entry |
+| [`N_PEXT`](#n-pext) | const | private external symbol bit |
+| [`N_TYPE`](#n-type) | const | mask for the type bits |
+| [`N_EXT`](#n-ext) | const | external symbol bit, set for external symbols |
+| [`N_UNDF`](#n-undf) | const | undefined, n_sect == NO_SECT |
+| [`N_ABS`](#n-abs) | const | absolute, n_sect == NO_SECT |
+| [`N_SECT`](#n-sect) | const | defined in section number n_sect |
+| [`N_PBUD`](#n-pbud) | const | prebound undefined (defined in a dylib) |
+| [`N_INDR`](#n-indr) | const | indirect |
+| [`NO_SECT`](#no-sect) | const | symbol is not in any section |
+| [`MAX_SECT`](#max-sect) | const | 1 thru 255 inclusive |
+| [`REFERENCE_TYPE`](#reference-type) | const |  |
+| [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference-flag-undefined-non-lazy) | const |  |
+| [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference-flag-undefined-lazy) | const |  |
+| [`REFERENCE_FLAG_DEFINED`](#reference-flag-defined) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference-flag-private-defined) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference-flag-private-undefined-non-lazy) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference-flag-private-undefined-lazy) | const |  |
+| [`REFERENCED_DYNAMICALLY`](#referenced-dynamically) | const |  |
+| [`SELF_LIBRARY_ORDINAL`](#self-library-ordinal) | const |  |
+| [`MAX_LIBRARY_ORDINAL`](#max-library-ordinal) | const |  |
+| [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic-lookup-ordinal) | const |  |
+| [`EXECUTABLE_ORDINAL`](#executable-ordinal) | const |  |
+| [`N_NO_DEAD_STRIP`](#n-no-dead-strip) | const | symbol is not to be dead stripped |
+| [`N_DESC_DISCARDED`](#n-desc-discarded) | const | symbol is discarded |
+| [`N_WEAK_REF`](#n-weak-ref) | const | symbol is weak referenced |
+| [`N_WEAK_DEF`](#n-weak-def) | const | coalesced symbol is a weak definition |
+| [`N_REF_TO_WEAK`](#n-ref-to-weak) | const | reference to a weak symbol |
+| [`N_ARM_THUMB_DEF`](#n-arm-thumb-def) | const | symbol is a Thumb function (ARM) |
+| [`N_SYMBOL_RESOLVER`](#n-symbol-resolver) | const |  |
+| [`N_ALT_ENTRY`](#n-alt-entry) | const |  |
+| [`N_GSYM`](#n-gsym) | const | global symbol: name,,NO_SECT,type,0 |
+| [`N_FNAME`](#n-fname) | const | procedure name (f77 kludge): name,,NO_SECT,0,0 |
+| [`N_FUN`](#n-fun) | const | procedure: name,,n_sect,linenumber,address |
+| [`N_STSYM`](#n-stsym) | const | static symbol: name,,n_sect,type,address |
+| [`N_LCSYM`](#n-lcsym) | const | .lcomm symbol: name,,n_sect,type,address |
+| [`N_BNSYM`](#n-bnsym) | const | begin nsect sym: 0,,n_sect,0,address |
+| [`N_AST`](#n-ast) | const | AST file path: name,,NO_SECT,0,0 |
+| [`N_OPT`](#n-opt) | const | emitted with gcc2_compiled and in gcc source |
+| [`N_RSYM`](#n-rsym) | const | register sym: name,,NO_SECT,type,register |
+| [`N_SLINE`](#n-sline) | const | src line: 0,,n_sect,linenumber,address |
+| [`N_ENSYM`](#n-ensym) | const | end nsect sym: 0,,n_sect,0,address |
+| [`N_SSYM`](#n-ssym) | const | structure elt: name,,NO_SECT,type,struct_offset |
+| [`N_SO`](#n-so) | const | source file name: name,,n_sect,0,address |
+| [`N_OSO`](#n-oso) | const | object file name: name,,0,0,st_mtime |
+| [`N_LSYM`](#n-lsym) | const | local sym: name,,NO_SECT,type,offset |
+| [`N_BINCL`](#n-bincl) | const | include file beginning: name,,NO_SECT,0,sum |
+| [`N_SOL`](#n-sol) | const | #included file name: name,,n_sect,0,address |
+| [`N_PARAMS`](#n-params) | const | compiler parameters: name,,NO_SECT,0,0 |
+| [`N_VERSION`](#n-version) | const | compiler version: name,,NO_SECT,0,0 |
+| [`N_OLEVEL`](#n-olevel) | const | compiler -O level: name,,NO_SECT,0,0 |
+| [`N_PSYM`](#n-psym) | const | parameter: name,,NO_SECT,type,offset |
+| [`N_EINCL`](#n-eincl) | const | include file end: name,,NO_SECT,0,0 |
+| [`N_ENTRY`](#n-entry) | const | alternate entry: name,,n_sect,linenumber,address |
+| [`N_LBRAC`](#n-lbrac) | const | left bracket: 0,,NO_SECT,nesting level,address |
+| [`N_EXCL`](#n-excl) | const | deleted include file: name,,NO_SECT,0,sum |
+| [`N_RBRAC`](#n-rbrac) | const | right bracket: 0,,NO_SECT,nesting level,address |
+| [`N_BCOMM`](#n-bcomm) | const | begin common: name,,NO_SECT,0,0 |
+| [`N_ECOMM`](#n-ecomm) | const | end common: name,,n_sect,0,0 |
+| [`N_ECOML`](#n-ecoml) | const | end common (local name): 0,,n_sect,0,address |
+| [`N_LENG`](#n-leng) | const | second stab entry with length information |
+| [`N_PC`](#n-pc) | const | global pascal symbol: name,,NO_SECT,subtype,line |
+| [`R_ABS`](#r-abs) | const | absolute relocation type for Mach-O files |
+| [`R_SCATTERED`](#r-scattered) | const | Bit set in `Relocation::r_word0` for scattered relocations. |
+| [`GENERIC_RELOC_VANILLA`](#generic-reloc-vanilla) | const | generic relocation as described above |
+| [`GENERIC_RELOC_PAIR`](#generic-reloc-pair) | const | Only follows a GENERIC_RELOC_SECTDIFF |
+| [`GENERIC_RELOC_SECTDIFF`](#generic-reloc-sectdiff) | const |  |
+| [`GENERIC_RELOC_PB_LA_PTR`](#generic-reloc-pb-la-ptr) | const | prebound lazy pointer |
+| [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic-reloc-local-sectdiff) | const |  |
+| [`GENERIC_RELOC_TLV`](#generic-reloc-tlv) | const | thread local variables |
+| [`ARM_RELOC_VANILLA`](#arm-reloc-vanilla) | const | generic relocation as described above |
+| [`ARM_RELOC_PAIR`](#arm-reloc-pair) | const | the second relocation entry of a pair |
+| [`ARM_RELOC_SECTDIFF`](#arm-reloc-sectdiff) | const | a PAIR follows with subtract symbol value |
+| [`ARM_RELOC_LOCAL_SECTDIFF`](#arm-reloc-local-sectdiff) | const | like ARM_RELOC_SECTDIFF, but the symbol referenced was local. |
+| [`ARM_RELOC_PB_LA_PTR`](#arm-reloc-pb-la-ptr) | const | prebound lazy pointer |
+| [`ARM_RELOC_BR24`](#arm-reloc-br24) | const | 24 bit branch displacement (to a word address) |
+| [`ARM_THUMB_RELOC_BR22`](#arm-thumb-reloc-br22) | const | 22 bit branch displacement (to a half-word address) |
+| [`ARM_THUMB_32BIT_BRANCH`](#arm-thumb-32bit-branch) | const | obsolete - a thumb 32-bit branch instruction possibly needing page-spanning branch workaround |
+| [`ARM_RELOC_HALF`](#arm-reloc-half) | const |  |
+| [`ARM_RELOC_HALF_SECTDIFF`](#arm-reloc-half-sectdiff) | const |  |
+| [`ARM64_RELOC_UNSIGNED`](#arm64-reloc-unsigned) | const | for pointers |
+| [`ARM64_RELOC_SUBTRACTOR`](#arm64-reloc-subtractor) | const | must be followed by a ARM64_RELOC_UNSIGNED |
+| [`ARM64_RELOC_BRANCH26`](#arm64-reloc-branch26) | const | a B/BL instruction with 26-bit displacement |
+| [`ARM64_RELOC_PAGE21`](#arm64-reloc-page21) | const | pc-rel distance to page of target |
+| [`ARM64_RELOC_PAGEOFF12`](#arm64-reloc-pageoff12) | const | offset within page, scaled by r_length |
+| [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64-reloc-got-load-page21) | const | pc-rel distance to page of GOT slot |
+| [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64-reloc-got-load-pageoff12) | const | offset within page of GOT slot, scaled by r_length |
+| [`ARM64_RELOC_POINTER_TO_GOT`](#arm64-reloc-pointer-to-got) | const | for pointers to GOT slots |
+| [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64-reloc-tlvp-load-page21) | const | pc-rel distance to page of TLVP slot |
+| [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64-reloc-tlvp-load-pageoff12) | const | offset within page of TLVP slot, scaled by r_length |
+| [`ARM64_RELOC_ADDEND`](#arm64-reloc-addend) | const | must be followed by PAGE21 or PAGEOFF12 |
+| [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64-reloc-authenticated-pointer) | const |  |
+| [`PPC_RELOC_VANILLA`](#ppc-reloc-vanilla) | const | generic relocation as described above |
+| [`PPC_RELOC_PAIR`](#ppc-reloc-pair) | const | the second relocation entry of a pair |
+| [`PPC_RELOC_BR14`](#ppc-reloc-br14) | const | 14 bit branch displacement (to a word address) |
+| [`PPC_RELOC_BR24`](#ppc-reloc-br24) | const | 24 bit branch displacement (to a word address) |
+| [`PPC_RELOC_HI16`](#ppc-reloc-hi16) | const | a PAIR follows with the low half |
+| [`PPC_RELOC_LO16`](#ppc-reloc-lo16) | const | a PAIR follows with the high half |
+| [`PPC_RELOC_HA16`](#ppc-reloc-ha16) | const | Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together with the low 16 bits sign extended first. |
+| [`PPC_RELOC_LO14`](#ppc-reloc-lo14) | const | Same as the LO16 except that the low 2 bits are not stored in the instruction and are always zero. |
+| [`PPC_RELOC_SECTDIFF`](#ppc-reloc-sectdiff) | const | a PAIR follows with subtract symbol value |
+| [`PPC_RELOC_PB_LA_PTR`](#ppc-reloc-pb-la-ptr) | const | prebound lazy pointer |
+| [`PPC_RELOC_HI16_SECTDIFF`](#ppc-reloc-hi16-sectdiff) | const | section difference forms of above. |
+| [`PPC_RELOC_LO16_SECTDIFF`](#ppc-reloc-lo16-sectdiff) | const | follows these with subtract symbol value |
+| [`PPC_RELOC_HA16_SECTDIFF`](#ppc-reloc-ha16-sectdiff) | const |  |
+| [`PPC_RELOC_JBSR`](#ppc-reloc-jbsr) | const |  |
+| [`PPC_RELOC_LO14_SECTDIFF`](#ppc-reloc-lo14-sectdiff) | const |  |
+| [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc-reloc-local-sectdiff) | const | like PPC_RELOC_SECTDIFF, but the symbol referenced was local. |
+| [`X86_64_RELOC_UNSIGNED`](#x86-64-reloc-unsigned) | const | for absolute addresses |
+| [`X86_64_RELOC_SIGNED`](#x86-64-reloc-signed) | const | for signed 32-bit displacement |
+| [`X86_64_RELOC_BRANCH`](#x86-64-reloc-branch) | const | a CALL/JMP instruction with 32-bit displacement |
+| [`X86_64_RELOC_GOT_LOAD`](#x86-64-reloc-got-load) | const | a MOVQ load of a GOT entry |
+| [`X86_64_RELOC_GOT`](#x86-64-reloc-got) | const | other GOT references |
+| [`X86_64_RELOC_SUBTRACTOR`](#x86-64-reloc-subtractor) | const | must be followed by a X86_64_RELOC_UNSIGNED |
+| [`X86_64_RELOC_SIGNED_1`](#x86-64-reloc-signed-1) | const | for signed 32-bit displacement with a -1 addend |
+| [`X86_64_RELOC_SIGNED_2`](#x86-64-reloc-signed-2) | const | for signed 32-bit displacement with a -2 addend |
+| [`X86_64_RELOC_SIGNED_4`](#x86-64-reloc-signed-4) | const | for signed 32-bit displacement with a -4 addend |
+| [`X86_64_RELOC_TLV`](#x86-64-reloc-tlv) | const | for thread local variables |
 
 ## Structs
 
@@ -1974,9 +1974,9 @@ struct FatArch32 {
 
 ##### `impl FatArch for FatArch32`
 
-- <span id="fatarch32-type-word"></span>`type Word = u32`
+- <span id="fatarch32-fatarch-type-word"></span>`type Word = u32`
 
-- <span id="fatarch32-const-magic"></span>`const MAGIC: u32`
+- <span id="fatarch32-fatarch-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -2045,9 +2045,9 @@ struct FatArch64 {
 
 ##### `impl FatArch for FatArch64`
 
-- <span id="fatarch64-type-word"></span>`type Word = u64`
+- <span id="fatarch64-fatarch-type-word"></span>`type Word = u64`
 
-- <span id="fatarch64-const-magic"></span>`const MAGIC: u32`
+- <span id="fatarch64-fatarch-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -2125,15 +2125,15 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader32<Endian>`
 
-- <span id="machomachheader32-type-word"></span>`type Word = u32`
+- <span id="machomachheader32-machheader-type-word"></span>`type Word = u32`
 
-- <span id="machomachheader32-type-endian"></span>`type Endian = Endian`
+- <span id="machomachheader32-machheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="machomachheader32-type-segment"></span>`type Segment = SegmentCommand32<Endian>`
+- <span id="machomachheader32-machheader-type-segment"></span>`type Segment = SegmentCommand32<Endian>`
 
-- <span id="machomachheader32-type-section"></span>`type Section = Section32<Endian>`
+- <span id="machomachheader32-machheader-type-section"></span>`type Section = Section32<Endian>`
 
-- <span id="machomachheader32-type-nlist"></span>`type Nlist = Nlist32<Endian>`
+- <span id="machomachheader32-machheader-type-nlist"></span>`type Nlist = Nlist32<Endian>`
 
 - <span id="machomachheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2226,15 +2226,15 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader64<Endian>`
 
-- <span id="machomachheader64-type-word"></span>`type Word = u64`
+- <span id="machomachheader64-machheader-type-word"></span>`type Word = u64`
 
-- <span id="machomachheader64-type-endian"></span>`type Endian = Endian`
+- <span id="machomachheader64-machheader-type-endian"></span>`type Endian = Endian`
 
-- <span id="machomachheader64-type-segment"></span>`type Segment = SegmentCommand64<Endian>`
+- <span id="machomachheader64-machheader-type-segment"></span>`type Segment = SegmentCommand64<Endian>`
 
-- <span id="machomachheader64-type-section"></span>`type Section = Section64<Endian>`
+- <span id="machomachheader64-machheader-type-section"></span>`type Section = Section64<Endian>`
 
-- <span id="machomachheader64-type-nlist"></span>`type Nlist = Nlist64<Endian>`
+- <span id="machomachheader64-machheader-type-nlist"></span>`type Nlist = Nlist64<Endian>`
 
 - <span id="machomachheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2446,11 +2446,11 @@ reflected in `cmdsize`.
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand32<Endian>`
 
-- <span id="machosegmentcommand32-type-word"></span>`type Word = u32`
+- <span id="machosegmentcommand32-segment-type-word"></span>`type Word = u32`
 
-- <span id="machosegmentcommand32-type-endian"></span>`type Endian = Endian`
+- <span id="machosegmentcommand32-segment-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosegmentcommand32-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand32-segment-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
 - <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
@@ -2565,11 +2565,11 @@ command and their size is reflected in `cmdsize`.
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand64<Endian>`
 
-- <span id="machosegmentcommand64-type-word"></span>`type Word = u64`
+- <span id="machosegmentcommand64-segment-type-word"></span>`type Word = u64`
 
-- <span id="machosegmentcommand64-type-endian"></span>`type Endian = Endian`
+- <span id="machosegmentcommand64-segment-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosegmentcommand64-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand64-segment-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
 - <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md#loadcommanddata), [`Segment`](../read/macho/index.md#segment), [`Result`](../index.md#result)
 
@@ -2679,9 +2679,9 @@ struct Section32<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section32<Endian>`
 
-- <span id="machosection32-type-word"></span>`type Word = u32`
+- <span id="machosection32-section-type-word"></span>`type Word = u32`
 
-- <span id="machosection32-type-endian"></span>`type Endian = Endian`
+- <span id="machosection32-section-type-endian"></span>`type Endian = Endian`
 
 - <span id="machosection32-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
@@ -2790,9 +2790,9 @@ struct Section64<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section64<Endian>`
 
-- <span id="machosection64-type-word"></span>`type Word = u64`
+- <span id="machosection64-section-type-word"></span>`type Word = u64`
 
-- <span id="machosection64-type-endian"></span>`type Endian = Endian`
+- <span id="machosection64-section-type-endian"></span>`type Endian = Endian`
 
 - <span id="machosection64-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
@@ -4785,9 +4785,9 @@ struct Nlist32<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist32<Endian>`
 
-- <span id="machonlist32-type-word"></span>`type Word = u32`
+- <span id="machonlist32-nlist-type-word"></span>`type Word = u32`
 
-- <span id="machonlist32-type-endian"></span>`type Endian = Endian`
+- <span id="machonlist32-nlist-type-endian"></span>`type Endian = Endian`
 
 - <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 
@@ -4851,9 +4851,9 @@ struct Nlist64<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist64<Endian>`
 
-- <span id="machonlist64-type-word"></span>`type Word = u64`
+- <span id="machonlist64-nlist-type-word"></span>`type Word = u64`
 
-- <span id="machonlist64-type-endian"></span>`type Endian = Endian`
+- <span id="machonlist64-nlist-type-endian"></span>`type Endian = Endian`
 
 - <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md#nlist)
 

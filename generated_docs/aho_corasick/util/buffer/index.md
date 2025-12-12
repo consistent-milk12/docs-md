@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Buffer`](#buffer) | struct | A fairly simple roll buffer for supporting stream searches. |
-| [`DEFAULT_BUFFER_CAPACITY`](#default_buffer_capacity) | const | The default buffer capacity that we use for the stream buffer. |
+| [`DEFAULT_BUFFER_CAPACITY`](#default-buffer-capacity) | const | The default buffer capacity that we use for the stream buffer. |
 
 ## Structs
 

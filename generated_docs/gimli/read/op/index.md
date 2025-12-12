@@ -24,8 +24,8 @@ Functions for parsing and evaluating DWARF expressions.
 - [Traits](#traits)
   - [`EvaluationStorage`](#evaluationstorage)
 - [Functions](#functions)
-  - [`compute_pc`](#compute_pc)
-  - [`generic_type`](#generic_type)
+  - [`compute_pc`](#compute-pc)
+  - [`generic_type`](#generic-type)
 
 ## Quick Reference
 
@@ -43,8 +43,8 @@ Functions for parsing and evaluating DWARF expressions.
 | [`EvaluationWaiting`](#evaluationwaiting) | enum |  |
 | [`EvaluationResult`](#evaluationresult) | enum | The state of an `Evaluation` after evaluating a DWARF expression. |
 | [`EvaluationStorage`](#evaluationstorage) | trait | Specification of what storage should be used for [`Evaluation`]. |
-| [`compute_pc`](#compute_pc) | fn |  |
-| [`generic_type`](#generic_type) | fn |  |
+| [`compute_pc`](#compute-pc) | fn |  |
+| [`generic_type`](#generic-type) | fn |  |
 
 ## Structs
 

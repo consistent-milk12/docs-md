@@ -13,7 +13,7 @@
 | [`BacktraceFrame`](#backtraceframe) | struct | Captured version of a frame in a backtrace. |
 | [`BacktraceSymbol`](#backtracesymbol) | struct | Captured version of a symbol in a backtrace. |
 | [`Frame`](#frame) | enum |  |
-| [`_assert_send_sync`](#_assert_send_sync) | fn |  |
+| [`_assert_send_sync`](#assert-send-sync) | fn |  |
 
 ## Structs
 

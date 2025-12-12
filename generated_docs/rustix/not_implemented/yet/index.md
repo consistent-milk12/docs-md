@@ -16,29 +16,29 @@ incomplete list of such functions.
   - [`tgkill`](#tgkill)
   - [`raise`](#raise)
   - [`sysctl`](#sysctl)
-  - [`mq_open`](#mq_open)
-  - [`mq_send`](#mq_send)
-  - [`mq_unlink`](#mq_unlink)
+  - [`mq_open`](#mq-open)
+  - [`mq_send`](#mq-send)
+  - [`mq_unlink`](#mq-unlink)
   - [`recvmmsg`](#recvmmsg)
   - [`cachestat`](#cachestat)
-  - [`fanotify_init`](#fanotify_init)
-  - [`fanotify_mark`](#fanotify_mark)
+  - [`fanotify_init`](#fanotify-init)
+  - [`fanotify_mark`](#fanotify-mark)
   - [`getifaddrs`](#getifaddrs)
   - [`signalfd`](#signalfd)
-  - [`mount_setattr`](#mount_setattr)
-  - [`extattr_delete_fd`](#extattr_delete_fd)
-  - [`extattr_delete_link`](#extattr_delete_link)
-  - [`extattr_get_fd`](#extattr_get_fd)
-  - [`extattr_get_link`](#extattr_get_link)
-  - [`extattr_list_fd`](#extattr_list_fd)
-  - [`extattr_list_link`](#extattr_list_link)
-  - [`extattr_set_fd`](#extattr_set_fd)
-  - [`extattr_set_link`](#extattr_set_link)
-  - [`get_mempolicy`](#get_mempolicy)
+  - [`mount_setattr`](#mount-setattr)
+  - [`extattr_delete_fd`](#extattr-delete-fd)
+  - [`extattr_delete_link`](#extattr-delete-link)
+  - [`extattr_get_fd`](#extattr-get-fd)
+  - [`extattr_get_link`](#extattr-get-link)
+  - [`extattr_list_fd`](#extattr-list-fd)
+  - [`extattr_list_link`](#extattr-list-link)
+  - [`extattr_set_fd`](#extattr-set-fd)
+  - [`extattr_set_link`](#extattr-set-link)
+  - [`get_mempolicy`](#get-mempolicy)
   - [`mbind`](#mbind)
-  - [`set_mempolicy`](#set_mempolicy)
-  - [`migrate_pages`](#migrate_pages)
-  - [`move_pages`](#move_pages)
+  - [`set_mempolicy`](#set-mempolicy)
+  - [`migrate_pages`](#migrate-pages)
+  - [`move_pages`](#move-pages)
   - [`fchmodat2`](#fchmodat2)
   - [`shmat`](#shmat)
   - [`shmdt`](#shmdt)
@@ -52,29 +52,29 @@ incomplete list of such functions.
 | [`tgkill`](#tgkill) | fn | See the [module comment](self). |
 | [`raise`](#raise) | fn | See the [module comment](self). |
 | [`sysctl`](#sysctl) | fn | See the [module comment](self). |
-| [`mq_open`](#mq_open) | fn | See the [module comment](self). |
-| [`mq_send`](#mq_send) | fn | See the [module comment](self). |
-| [`mq_unlink`](#mq_unlink) | fn | See the [module comment](self). |
+| [`mq_open`](#mq-open) | fn | See the [module comment](self). |
+| [`mq_send`](#mq-send) | fn | See the [module comment](self). |
+| [`mq_unlink`](#mq-unlink) | fn | See the [module comment](self). |
 | [`recvmmsg`](#recvmmsg) | fn | See the [module comment](self). |
 | [`cachestat`](#cachestat) | fn | See the [module comment](self). |
-| [`fanotify_init`](#fanotify_init) | fn | See the [module comment](self). |
-| [`fanotify_mark`](#fanotify_mark) | fn | See the [module comment](self). |
+| [`fanotify_init`](#fanotify-init) | fn | See the [module comment](self). |
+| [`fanotify_mark`](#fanotify-mark) | fn | See the [module comment](self). |
 | [`getifaddrs`](#getifaddrs) | fn | See the [module comment](self). |
 | [`signalfd`](#signalfd) | fn | See the [module comment](self). |
-| [`mount_setattr`](#mount_setattr) | fn | See the [module comment](self). |
-| [`extattr_delete_fd`](#extattr_delete_fd) | fn | See the [module comment](self). |
-| [`extattr_delete_link`](#extattr_delete_link) | fn | See the [module comment](self). |
-| [`extattr_get_fd`](#extattr_get_fd) | fn | See the [module comment](self). |
-| [`extattr_get_link`](#extattr_get_link) | fn | See the [module comment](self). |
-| [`extattr_list_fd`](#extattr_list_fd) | fn | See the [module comment](self). |
-| [`extattr_list_link`](#extattr_list_link) | fn | See the [module comment](self). |
-| [`extattr_set_fd`](#extattr_set_fd) | fn | See the [module comment](self). |
-| [`extattr_set_link`](#extattr_set_link) | fn | See the [module comment](self). |
-| [`get_mempolicy`](#get_mempolicy) | fn | See the [module comment](self). |
+| [`mount_setattr`](#mount-setattr) | fn | See the [module comment](self). |
+| [`extattr_delete_fd`](#extattr-delete-fd) | fn | See the [module comment](self). |
+| [`extattr_delete_link`](#extattr-delete-link) | fn | See the [module comment](self). |
+| [`extattr_get_fd`](#extattr-get-fd) | fn | See the [module comment](self). |
+| [`extattr_get_link`](#extattr-get-link) | fn | See the [module comment](self). |
+| [`extattr_list_fd`](#extattr-list-fd) | fn | See the [module comment](self). |
+| [`extattr_list_link`](#extattr-list-link) | fn | See the [module comment](self). |
+| [`extattr_set_fd`](#extattr-set-fd) | fn | See the [module comment](self). |
+| [`extattr_set_link`](#extattr-set-link) | fn | See the [module comment](self). |
+| [`get_mempolicy`](#get-mempolicy) | fn | See the [module comment](self). |
 | [`mbind`](#mbind) | fn | See the [module comment](self). |
-| [`set_mempolicy`](#set_mempolicy) | fn | See the [module comment](self). |
-| [`migrate_pages`](#migrate_pages) | fn | See the [module comment](self). |
-| [`move_pages`](#move_pages) | fn | See the [module comment](self). |
+| [`set_mempolicy`](#set-mempolicy) | fn | See the [module comment](self). |
+| [`migrate_pages`](#migrate-pages) | fn | See the [module comment](self). |
+| [`move_pages`](#move-pages) | fn | See the [module comment](self). |
 | [`fchmodat2`](#fchmodat2) | fn | See the [module comment](self). |
 | [`shmat`](#shmat) | fn | See the [module comment](self). |
 | [`shmdt`](#shmdt) | fn | See the [module comment](self). |

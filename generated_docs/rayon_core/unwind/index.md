@@ -13,8 +13,8 @@ accidental panics in the rayon code itself.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`AbortIfPanic`](#abortifpanic) | struct |  |
-| [`halt_unwinding`](#halt_unwinding) | fn | Executes `f` and captures any panic, translating that panic into a `Err` result. |
-| [`resume_unwinding`](#resume_unwinding) | fn |  |
+| [`halt_unwinding`](#halt-unwinding) | fn | Executes `f` and captures any panic, translating that panic into a `Err` result. |
+| [`resume_unwinding`](#resume-unwinding) | fn |  |
 
 ## Structs
 
@@ -34,9 +34,9 @@ struct AbortIfPanic;
 
 ##### `impl Pointable for AbortIfPanic`
 
-- <span id="abortifpanic-const-align"></span>`const ALIGN: usize`
+- <span id="abortifpanic-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="abortifpanic-type-init"></span>`type Init = T`
+- <span id="abortifpanic-pointable-type-init"></span>`type Init = T`
 
 - <span id="abortifpanic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

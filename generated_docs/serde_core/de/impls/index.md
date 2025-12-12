@@ -8,8 +8,8 @@
 
 - [Modules](#modules)
   - [`range`](#range)
-  - [`range_from`](#range_from)
-  - [`range_to`](#range_to)
+  - [`range_from`](#range-from)
+  - [`range_to`](#range-to)
 - [Structs](#structs)
   - [`UnitVisitor`](#unitvisitor)
   - [`BoolVisitor`](#boolvisitor)
@@ -30,36 +30,36 @@
 - [Enums](#enums)
   - [`OsStringKind`](#osstringkind)
 - [Functions](#functions)
-  - [`nop_reserve`](#nop_reserve)
+  - [`nop_reserve`](#nop-reserve)
 - [Macros](#macros)
-  - [`impl_deserialize_num!`](#impl_deserialize_num)
-  - [`num_self!`](#num_self)
-  - [`num_as_self!`](#num_as_self)
-  - [`num_as_copysign_self!`](#num_as_copysign_self)
-  - [`int_to_int!`](#int_to_int)
-  - [`int_to_uint!`](#int_to_uint)
-  - [`uint_to_self!`](#uint_to_self)
-  - [`num_128!`](#num_128)
-  - [`forwarded_impl!`](#forwarded_impl)
-  - [`seq_impl!`](#seq_impl)
-  - [`array_impls!`](#array_impls)
-  - [`tuple_impls!`](#tuple_impls)
-  - [`tuple_impl_body!`](#tuple_impl_body)
-  - [`map_impl!`](#map_impl)
-  - [`parse_ip_impl!`](#parse_ip_impl)
-  - [`variant_identifier!`](#variant_identifier)
-  - [`deserialize_enum!`](#deserialize_enum)
-  - [`parse_socket_impl!`](#parse_socket_impl)
-  - [`box_forwarded_impl!`](#box_forwarded_impl)
-  - [`atomic_impl!`](#atomic_impl)
+  - [`impl_deserialize_num!`](#impl-deserialize-num)
+  - [`num_self!`](#num-self)
+  - [`num_as_self!`](#num-as-self)
+  - [`num_as_copysign_self!`](#num-as-copysign-self)
+  - [`int_to_int!`](#int-to-int)
+  - [`int_to_uint!`](#int-to-uint)
+  - [`uint_to_self!`](#uint-to-self)
+  - [`num_128!`](#num-128)
+  - [`forwarded_impl!`](#forwarded-impl)
+  - [`seq_impl!`](#seq-impl)
+  - [`array_impls!`](#array-impls)
+  - [`tuple_impls!`](#tuple-impls)
+  - [`tuple_impl_body!`](#tuple-impl-body)
+  - [`map_impl!`](#map-impl)
+  - [`parse_ip_impl!`](#parse-ip-impl)
+  - [`variant_identifier!`](#variant-identifier)
+  - [`deserialize_enum!`](#deserialize-enum)
+  - [`parse_socket_impl!`](#parse-socket-impl)
+  - [`box_forwarded_impl!`](#box-forwarded-impl)
+  - [`atomic_impl!`](#atomic-impl)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`range`](#range) | mod |  |
-| [`range_from`](#range_from) | mod |  |
-| [`range_to`](#range_to) | mod |  |
+| [`range_from`](#range-from) | mod |  |
+| [`range_to`](#range-to) | mod |  |
 | [`UnitVisitor`](#unitvisitor) | struct |  |
 | [`BoolVisitor`](#boolvisitor) | struct |  |
 | [`CharVisitor`](#charvisitor) | struct |  |
@@ -77,27 +77,27 @@
 | [`OsStringVisitor`](#osstringvisitor) | struct |  |
 | [`FromStrVisitor`](#fromstrvisitor) | struct |  |
 | [`OsStringKind`](#osstringkind) | enum |  |
-| [`nop_reserve`](#nop_reserve) | fn |  |
-| [`impl_deserialize_num!`](#impl_deserialize_num) | macro |  |
-| [`num_self!`](#num_self) | macro |  |
-| [`num_as_self!`](#num_as_self) | macro |  |
-| [`num_as_copysign_self!`](#num_as_copysign_self) | macro |  |
-| [`int_to_int!`](#int_to_int) | macro |  |
-| [`int_to_uint!`](#int_to_uint) | macro |  |
-| [`uint_to_self!`](#uint_to_self) | macro |  |
-| [`num_128!`](#num_128) | macro |  |
-| [`forwarded_impl!`](#forwarded_impl) | macro |  |
-| [`seq_impl!`](#seq_impl) | macro |  |
-| [`array_impls!`](#array_impls) | macro |  |
-| [`tuple_impls!`](#tuple_impls) | macro |  |
-| [`tuple_impl_body!`](#tuple_impl_body) | macro |  |
-| [`map_impl!`](#map_impl) | macro |  |
-| [`parse_ip_impl!`](#parse_ip_impl) | macro |  |
-| [`variant_identifier!`](#variant_identifier) | macro |  |
-| [`deserialize_enum!`](#deserialize_enum) | macro |  |
-| [`parse_socket_impl!`](#parse_socket_impl) | macro |  |
-| [`box_forwarded_impl!`](#box_forwarded_impl) | macro |  |
-| [`atomic_impl!`](#atomic_impl) | macro |  |
+| [`nop_reserve`](#nop-reserve) | fn |  |
+| [`impl_deserialize_num!`](#impl-deserialize-num) | macro |  |
+| [`num_self!`](#num-self) | macro |  |
+| [`num_as_self!`](#num-as-self) | macro |  |
+| [`num_as_copysign_self!`](#num-as-copysign-self) | macro |  |
+| [`int_to_int!`](#int-to-int) | macro |  |
+| [`int_to_uint!`](#int-to-uint) | macro |  |
+| [`uint_to_self!`](#uint-to-self) | macro |  |
+| [`num_128!`](#num-128) | macro |  |
+| [`forwarded_impl!`](#forwarded-impl) | macro |  |
+| [`seq_impl!`](#seq-impl) | macro |  |
+| [`array_impls!`](#array-impls) | macro |  |
+| [`tuple_impls!`](#tuple-impls) | macro |  |
+| [`tuple_impl_body!`](#tuple-impl-body) | macro |  |
+| [`map_impl!`](#map-impl) | macro |  |
+| [`parse_ip_impl!`](#parse-ip-impl) | macro |  |
+| [`variant_identifier!`](#variant-identifier) | macro |  |
+| [`deserialize_enum!`](#deserialize-enum) | macro |  |
+| [`parse_socket_impl!`](#parse-socket-impl) | macro |  |
+| [`box_forwarded_impl!`](#box-forwarded-impl) | macro |  |
+| [`atomic_impl!`](#atomic-impl) | macro |  |
 
 ## Modules
 
@@ -123,7 +123,7 @@ struct UnitVisitor;
 
 ##### `impl Visitor for UnitVisitor`
 
-- <span id="unitvisitor-type-value"></span>`type Value = ()`
+- <span id="unitvisitor-visitor-type-value"></span>`type Value = ()`
 
 - <span id="unitvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -145,7 +145,7 @@ struct BoolVisitor;
 
 ##### `impl Visitor for BoolVisitor`
 
-- <span id="boolvisitor-type-value"></span>`type Value = bool`
+- <span id="boolvisitor-visitor-type-value"></span>`type Value = bool`
 
 - <span id="boolvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -167,7 +167,7 @@ struct CharVisitor;
 
 ##### `impl Visitor for CharVisitor`
 
-- <span id="charvisitor-type-value"></span>`type Value = char`
+- <span id="charvisitor-visitor-type-value"></span>`type Value = char`
 
 - <span id="charvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -191,7 +191,7 @@ struct StringVisitor;
 
 ##### `impl Visitor for StringVisitor`
 
-- <span id="stringvisitor-type-value"></span>`type Value = String`
+- <span id="stringvisitor-visitor-type-value"></span>`type Value = String`
 
 - <span id="stringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -219,7 +219,7 @@ struct StringInPlaceVisitor<'a>(&'a mut String);
 
 ##### `impl Visitor for StringInPlaceVisitor<'a>`
 
-- <span id="stringinplacevisitor-type-value"></span>`type Value = ()`
+- <span id="stringinplacevisitor-visitor-type-value"></span>`type Value = ()`
 
 - <span id="stringinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -247,7 +247,7 @@ struct StrVisitor;
 
 ##### `impl Visitor for StrVisitor`
 
-- <span id="strvisitor-type-value"></span>`type Value = &'a str`
+- <span id="strvisitor-visitor-type-value"></span>`type Value = &'a str`
 
 - <span id="strvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -271,7 +271,7 @@ struct BytesVisitor;
 
 ##### `impl Visitor for BytesVisitor`
 
-- <span id="bytesvisitor-type-value"></span>`type Value = &'a [u8]`
+- <span id="bytesvisitor-visitor-type-value"></span>`type Value = &'a [u8]`
 
 - <span id="bytesvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -295,7 +295,7 @@ struct CStringVisitor;
 
 ##### `impl Visitor for CStringVisitor`
 
-- <span id="cstringvisitor-type-value"></span>`type Value = CString`
+- <span id="cstringvisitor-visitor-type-value"></span>`type Value = CString`
 
 - <span id="cstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -321,13 +321,13 @@ struct OptionVisitor<T> {
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for OptionVisitor<T>`
+##### `impl<T> Expected for OptionVisitor<T>`
 
 - <span id="optionvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for OptionVisitor<T>`
+##### `impl<T> Visitor for OptionVisitor<T>`
 
-- <span id="optionvisitor-type-value"></span>`type Value = Option<T>`
+- <span id="optionvisitor-visitor-type-value"></span>`type Value = Option<T>`
 
 - <span id="optionvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -349,13 +349,13 @@ struct PhantomDataVisitor<T: ?Sized> {
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for PhantomDataVisitor<T>`
+##### `impl<T> Expected for PhantomDataVisitor<T>`
 
 - <span id="phantomdatavisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for PhantomDataVisitor<T>`
+##### `impl<T> Visitor for PhantomDataVisitor<T>`
 
-- <span id="phantomdatavisitor-type-value"></span>`type Value = PhantomData<T>`
+- <span id="phantomdatavisitor-visitor-type-value"></span>`type Value = PhantomData<T>`
 
 - <span id="phantomdatavisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -377,13 +377,13 @@ struct ArrayVisitor<A> {
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for ArrayVisitor<A>`
+##### `impl Expected for ArrayVisitor<A>`
 
 - <span id="arrayvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for ArrayVisitor<[T; 0]>`
+##### `impl<T> Visitor for ArrayVisitor<[T; 0]>`
 
-- <span id="arrayvisitor-type-value"></span>`type Value = [T; 0]`
+- <span id="arrayvisitor-visitor-type-value"></span>`type Value = [T; 0]`
 
 - <span id="arrayvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -399,13 +399,13 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for ArrayInPlaceVisitor<'a, A>`
+##### `impl Expected for ArrayInPlaceVisitor<'a, A>`
 
 - <span id="arrayinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 1]>`
+##### `impl<T> Visitor for ArrayInPlaceVisitor<'a, [T; 1]>`
 
-- <span id="arrayinplacevisitor-type-value"></span>`type Value = ()`
+- <span id="arrayinplacevisitor-visitor-type-value"></span>`type Value = ()`
 
 - <span id="arrayinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -427,7 +427,7 @@ struct PathVisitor;
 
 ##### `impl Visitor for PathVisitor`
 
-- <span id="pathvisitor-type-value"></span>`type Value = &'a Path`
+- <span id="pathvisitor-visitor-type-value"></span>`type Value = &'a Path`
 
 - <span id="pathvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -451,7 +451,7 @@ struct PathBufVisitor;
 
 ##### `impl Visitor for PathBufVisitor`
 
-- <span id="pathbufvisitor-type-value"></span>`type Value = PathBuf`
+- <span id="pathbufvisitor-visitor-type-value"></span>`type Value = PathBuf`
 
 - <span id="pathbufvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -479,7 +479,7 @@ struct OsStringVisitor;
 
 ##### `impl Visitor for OsStringVisitor`
 
-- <span id="osstringvisitor-type-value"></span>`type Value = OsString`
+- <span id="osstringvisitor-visitor-type-value"></span>`type Value = OsString`
 
 - <span id="osstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -502,13 +502,13 @@ struct FromStrVisitor<T> {
 
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for FromStrVisitor<T>`
+##### `impl<T> Expected for FromStrVisitor<T>`
 
 - <span id="fromstrvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for FromStrVisitor<T>`
+##### `impl<T> Visitor for FromStrVisitor<T>`
 
-- <span id="fromstrvisitor-type-value"></span>`type Value = T`
+- <span id="fromstrvisitor-visitor-type-value"></span>`type Value = T`
 
 - <span id="fromstrvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

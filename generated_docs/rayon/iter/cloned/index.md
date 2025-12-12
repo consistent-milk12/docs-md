@@ -44,7 +44,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 
 - <span id="cloned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
+##### `impl<I> IndexedParallelIterator for Cloned<I>`
 
 - <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -52,29 +52,29 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 
 - <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Cloned<I>`
+##### `impl IntoEither for Cloned<I>`
 
-##### `impl<T> IntoParallelIterator for Cloned<I>`
+##### `impl IntoParallelIterator for Cloned<I>`
 
-- <span id="cloned-type-iter"></span>`type Iter = T`
+- <span id="cloned-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="cloned-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="cloned-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
+##### `impl<I> ParallelIterator for Cloned<I>`
 
-- <span id="cloned-type-item"></span>`type Item = T`
+- <span id="cloned-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Cloned<I>`
+##### `impl Pointable for Cloned<I>`
 
-- <span id="cloned-const-align"></span>`const ALIGN: usize`
+- <span id="cloned-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cloned-type-init"></span>`type Init = T`
+- <span id="cloned-pointable-type-init"></span>`type Init = T`
 
 - <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -96,13 +96,13 @@ struct ClonedProducer<P> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for ClonedProducer<P>`
+##### `impl IntoEither for ClonedProducer<P>`
 
-##### `impl<T> Pointable for ClonedProducer<P>`
+##### `impl Pointable for ClonedProducer<P>`
 
-- <span id="clonedproducer-const-align"></span>`const ALIGN: usize`
+- <span id="clonedproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedproducer-type-init"></span>`type Init = T`
+- <span id="clonedproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="clonedproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -112,11 +112,11 @@ struct ClonedProducer<P> {
 
 - <span id="clonedproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, T, P> Producer for ClonedProducer<P>`
+##### `impl<P> Producer for ClonedProducer<P>`
 
-- <span id="clonedproducer-type-item"></span>`type Item = T`
+- <span id="clonedproducer-producer-type-item"></span>`type Item = T`
 
-- <span id="clonedproducer-type-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
+- <span id="clonedproducer-producer-type-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
 
 - <span id="clonedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -144,13 +144,13 @@ struct ClonedConsumer<C> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, C> Consumer for ClonedConsumer<C>`
+##### `impl<T, C> Consumer for ClonedConsumer<C>`
 
-- <span id="clonedconsumer-type-folder"></span>`type Folder = ClonedFolder<<C as Consumer>::Folder>`
+- <span id="clonedconsumer-consumer-type-folder"></span>`type Folder = ClonedFolder<<C as Consumer>::Folder>`
 
-- <span id="clonedconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="clonedconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="clonedconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="clonedconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="clonedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -158,13 +158,13 @@ struct ClonedConsumer<C> {
 
 - <span id="clonedconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ClonedConsumer<C>`
+##### `impl IntoEither for ClonedConsumer<C>`
 
-##### `impl<T> Pointable for ClonedConsumer<C>`
+##### `impl Pointable for ClonedConsumer<C>`
 
-- <span id="clonedconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="clonedconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedconsumer-type-init"></span>`type Init = T`
+- <span id="clonedconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="clonedconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -174,7 +174,7 @@ struct ClonedConsumer<C> {
 
 - <span id="clonedconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a, T, C> UnindexedConsumer for ClonedConsumer<C>`
+##### `impl<T, C> UnindexedConsumer for ClonedConsumer<C>`
 
 - <span id="clonedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -192,9 +192,9 @@ struct ClonedFolder<F> {
 
 #### Trait Implementations
 
-##### `impl<'a, T, F> Folder for ClonedFolder<F>`
+##### `impl<T, F> Folder for ClonedFolder<F>`
 
-- <span id="clonedfolder-type-result"></span>`type Result = <F as Folder>::Result`
+- <span id="clonedfolder-folder-type-result"></span>`type Result = <F as Folder>::Result`
 
 - <span id="clonedfolder-consume"></span>`fn consume(self, item: &'a T) -> Self`
 
@@ -204,13 +204,13 @@ struct ClonedFolder<F> {
 
 - <span id="clonedfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ClonedFolder<F>`
+##### `impl IntoEither for ClonedFolder<F>`
 
-##### `impl<T> Pointable for ClonedFolder<F>`
+##### `impl Pointable for ClonedFolder<F>`
 
-- <span id="clonedfolder-const-align"></span>`const ALIGN: usize`
+- <span id="clonedfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedfolder-type-init"></span>`type Init = T`
+- <span id="clonedfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="clonedfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

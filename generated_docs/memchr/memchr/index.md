@@ -17,19 +17,19 @@
   - [`memrchr2`](#memrchr2)
   - [`memchr3`](#memchr3)
   - [`memrchr3`](#memrchr3)
-  - [`memchr_iter`](#memchr_iter)
-  - [`memrchr_iter`](#memrchr_iter)
-  - [`memchr2_iter`](#memchr2_iter)
-  - [`memrchr2_iter`](#memrchr2_iter)
-  - [`memchr3_iter`](#memchr3_iter)
-  - [`memrchr3_iter`](#memrchr3_iter)
-  - [`memchr_raw`](#memchr_raw)
-  - [`memrchr_raw`](#memrchr_raw)
-  - [`memchr2_raw`](#memchr2_raw)
-  - [`memrchr2_raw`](#memrchr2_raw)
-  - [`memchr3_raw`](#memchr3_raw)
-  - [`memrchr3_raw`](#memrchr3_raw)
-  - [`count_raw`](#count_raw)
+  - [`memchr_iter`](#memchr-iter)
+  - [`memrchr_iter`](#memrchr-iter)
+  - [`memchr2_iter`](#memchr2-iter)
+  - [`memrchr2_iter`](#memrchr2-iter)
+  - [`memchr3_iter`](#memchr3-iter)
+  - [`memrchr3_iter`](#memrchr3-iter)
+  - [`memchr_raw`](#memchr-raw)
+  - [`memrchr_raw`](#memrchr-raw)
+  - [`memchr2_raw`](#memchr2-raw)
+  - [`memrchr2_raw`](#memrchr2-raw)
+  - [`memchr3_raw`](#memchr3-raw)
+  - [`memrchr3_raw`](#memrchr3-raw)
+  - [`count_raw`](#count-raw)
 
 ## Quick Reference
 
@@ -44,19 +44,19 @@
 | [`memrchr2`](#memrchr2) | fn | Search for the last occurrence of two possible bytes in a haystack. |
 | [`memchr3`](#memchr3) | fn | Search for the first occurrence of three possible bytes in a haystack. |
 | [`memrchr3`](#memrchr3) | fn | Search for the last occurrence of three possible bytes in a haystack. |
-| [`memchr_iter`](#memchr_iter) | fn | Returns an iterator over all occurrences of the needle in a haystack. |
-| [`memrchr_iter`](#memrchr_iter) | fn | Returns an iterator over all occurrences of the needle in a haystack, in reverse. |
-| [`memchr2_iter`](#memchr2_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
-| [`memrchr2_iter`](#memrchr2_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
-| [`memchr3_iter`](#memchr3_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
-| [`memrchr3_iter`](#memrchr3_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
-| [`memchr_raw`](#memchr_raw) | fn | memchr, but using raw pointers to represent the haystack. |
-| [`memrchr_raw`](#memrchr_raw) | fn | memrchr, but using raw pointers to represent the haystack. |
-| [`memchr2_raw`](#memchr2_raw) | fn | memchr2, but using raw pointers to represent the haystack. |
-| [`memrchr2_raw`](#memrchr2_raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
-| [`memchr3_raw`](#memchr3_raw) | fn | memchr3, but using raw pointers to represent the haystack. |
-| [`memrchr3_raw`](#memrchr3_raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
-| [`count_raw`](#count_raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
+| [`memchr_iter`](#memchr-iter) | fn | Returns an iterator over all occurrences of the needle in a haystack. |
+| [`memrchr_iter`](#memrchr-iter) | fn | Returns an iterator over all occurrences of the needle in a haystack, in reverse. |
+| [`memchr2_iter`](#memchr2-iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
+| [`memrchr2_iter`](#memrchr2-iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
+| [`memchr3_iter`](#memchr3-iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
+| [`memrchr3_iter`](#memrchr3-iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
+| [`memchr_raw`](#memchr-raw) | fn | memchr, but using raw pointers to represent the haystack. |
+| [`memrchr_raw`](#memrchr-raw) | fn | memrchr, but using raw pointers to represent the haystack. |
+| [`memchr2_raw`](#memchr2-raw) | fn | memchr2, but using raw pointers to represent the haystack. |
+| [`memrchr2_raw`](#memrchr2-raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
+| [`memchr3_raw`](#memchr3-raw) | fn | memchr3, but using raw pointers to represent the haystack. |
+| [`memrchr3_raw`](#memrchr3-raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
+| [`count_raw`](#count-raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
 
 ## Structs
 
@@ -104,15 +104,15 @@ searched.
 
 ##### `impl IntoIterator for Memchr<'h>`
 
-- <span id="memchr-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr-type-intoiter"></span>`type IntoIter = I`
+- <span id="memchr-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr<'h>`
 
-- <span id="memchr-type-item"></span>`type Item = usize`
+- <span id="memchr-iterator-type-item"></span>`type Item = usize`
 
 - <span id="memchr-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -165,15 +165,15 @@ searched.
 
 ##### `impl IntoIterator for Memchr2<'h>`
 
-- <span id="memchr2-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr2-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr2-type-intoiter"></span>`type IntoIter = I`
+- <span id="memchr2-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr2-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr2<'h>`
 
-- <span id="memchr2-type-item"></span>`type Item = usize`
+- <span id="memchr2-iterator-type-item"></span>`type Item = usize`
 
 - <span id="memchr2-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -225,15 +225,15 @@ searched.
 
 ##### `impl IntoIterator for Memchr3<'h>`
 
-- <span id="memchr3-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr3-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr3-type-intoiter"></span>`type IntoIter = I`
+- <span id="memchr3-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr3-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Memchr3<'h>`
 
-- <span id="memchr3-type-item"></span>`type Item = usize`
+- <span id="memchr3-iterator-type-item"></span>`type Item = usize`
 
 - <span id="memchr3-next"></span>`fn next(&mut self) -> Option<usize>`
 

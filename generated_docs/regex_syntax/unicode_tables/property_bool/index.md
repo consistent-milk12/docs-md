@@ -7,143 +7,143 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
-  - [`ASCII_HEX_DIGIT`](#ascii_hex_digit)
+  - [`BY_NAME`](#by-name)
+  - [`ASCII_HEX_DIGIT`](#ascii-hex-digit)
   - [`ALPHABETIC`](#alphabetic)
-  - [`BIDI_CONTROL`](#bidi_control)
-  - [`BIDI_MIRRORED`](#bidi_mirrored)
-  - [`CASE_IGNORABLE`](#case_ignorable)
+  - [`BIDI_CONTROL`](#bidi-control)
+  - [`BIDI_MIRRORED`](#bidi-mirrored)
+  - [`CASE_IGNORABLE`](#case-ignorable)
   - [`CASED`](#cased)
-  - [`CHANGES_WHEN_CASEFOLDED`](#changes_when_casefolded)
-  - [`CHANGES_WHEN_CASEMAPPED`](#changes_when_casemapped)
-  - [`CHANGES_WHEN_LOWERCASED`](#changes_when_lowercased)
-  - [`CHANGES_WHEN_TITLECASED`](#changes_when_titlecased)
-  - [`CHANGES_WHEN_UPPERCASED`](#changes_when_uppercased)
+  - [`CHANGES_WHEN_CASEFOLDED`](#changes-when-casefolded)
+  - [`CHANGES_WHEN_CASEMAPPED`](#changes-when-casemapped)
+  - [`CHANGES_WHEN_LOWERCASED`](#changes-when-lowercased)
+  - [`CHANGES_WHEN_TITLECASED`](#changes-when-titlecased)
+  - [`CHANGES_WHEN_UPPERCASED`](#changes-when-uppercased)
   - [`DASH`](#dash)
-  - [`DEFAULT_IGNORABLE_CODE_POINT`](#default_ignorable_code_point)
+  - [`DEFAULT_IGNORABLE_CODE_POINT`](#default-ignorable-code-point)
   - [`DEPRECATED`](#deprecated)
   - [`DIACRITIC`](#diacritic)
   - [`EMOJI`](#emoji)
-  - [`EMOJI_COMPONENT`](#emoji_component)
-  - [`EMOJI_MODIFIER`](#emoji_modifier)
-  - [`EMOJI_MODIFIER_BASE`](#emoji_modifier_base)
-  - [`EMOJI_PRESENTATION`](#emoji_presentation)
-  - [`EXTENDED_PICTOGRAPHIC`](#extended_pictographic)
+  - [`EMOJI_COMPONENT`](#emoji-component)
+  - [`EMOJI_MODIFIER`](#emoji-modifier)
+  - [`EMOJI_MODIFIER_BASE`](#emoji-modifier-base)
+  - [`EMOJI_PRESENTATION`](#emoji-presentation)
+  - [`EXTENDED_PICTOGRAPHIC`](#extended-pictographic)
   - [`EXTENDER`](#extender)
-  - [`GRAPHEME_BASE`](#grapheme_base)
-  - [`GRAPHEME_EXTEND`](#grapheme_extend)
-  - [`GRAPHEME_LINK`](#grapheme_link)
-  - [`HEX_DIGIT`](#hex_digit)
+  - [`GRAPHEME_BASE`](#grapheme-base)
+  - [`GRAPHEME_EXTEND`](#grapheme-extend)
+  - [`GRAPHEME_LINK`](#grapheme-link)
+  - [`HEX_DIGIT`](#hex-digit)
   - [`HYPHEN`](#hyphen)
-  - [`IDS_BINARY_OPERATOR`](#ids_binary_operator)
-  - [`IDS_TRINARY_OPERATOR`](#ids_trinary_operator)
-  - [`IDS_UNARY_OPERATOR`](#ids_unary_operator)
-  - [`ID_COMPAT_MATH_CONTINUE`](#id_compat_math_continue)
-  - [`ID_COMPAT_MATH_START`](#id_compat_math_start)
-  - [`ID_CONTINUE`](#id_continue)
-  - [`ID_START`](#id_start)
+  - [`IDS_BINARY_OPERATOR`](#ids-binary-operator)
+  - [`IDS_TRINARY_OPERATOR`](#ids-trinary-operator)
+  - [`IDS_UNARY_OPERATOR`](#ids-unary-operator)
+  - [`ID_COMPAT_MATH_CONTINUE`](#id-compat-math-continue)
+  - [`ID_COMPAT_MATH_START`](#id-compat-math-start)
+  - [`ID_CONTINUE`](#id-continue)
+  - [`ID_START`](#id-start)
   - [`IDEOGRAPHIC`](#ideographic)
   - [`INCB`](#incb)
-  - [`JOIN_CONTROL`](#join_control)
-  - [`LOGICAL_ORDER_EXCEPTION`](#logical_order_exception)
+  - [`JOIN_CONTROL`](#join-control)
+  - [`LOGICAL_ORDER_EXCEPTION`](#logical-order-exception)
   - [`LOWERCASE`](#lowercase)
   - [`MATH`](#math)
-  - [`MODIFIER_COMBINING_MARK`](#modifier_combining_mark)
-  - [`NONCHARACTER_CODE_POINT`](#noncharacter_code_point)
-  - [`OTHER_ALPHABETIC`](#other_alphabetic)
-  - [`OTHER_DEFAULT_IGNORABLE_CODE_POINT`](#other_default_ignorable_code_point)
-  - [`OTHER_GRAPHEME_EXTEND`](#other_grapheme_extend)
-  - [`OTHER_ID_CONTINUE`](#other_id_continue)
-  - [`OTHER_ID_START`](#other_id_start)
-  - [`OTHER_LOWERCASE`](#other_lowercase)
-  - [`OTHER_MATH`](#other_math)
-  - [`OTHER_UPPERCASE`](#other_uppercase)
-  - [`PATTERN_SYNTAX`](#pattern_syntax)
-  - [`PATTERN_WHITE_SPACE`](#pattern_white_space)
-  - [`PREPENDED_CONCATENATION_MARK`](#prepended_concatenation_mark)
-  - [`QUOTATION_MARK`](#quotation_mark)
+  - [`MODIFIER_COMBINING_MARK`](#modifier-combining-mark)
+  - [`NONCHARACTER_CODE_POINT`](#noncharacter-code-point)
+  - [`OTHER_ALPHABETIC`](#other-alphabetic)
+  - [`OTHER_DEFAULT_IGNORABLE_CODE_POINT`](#other-default-ignorable-code-point)
+  - [`OTHER_GRAPHEME_EXTEND`](#other-grapheme-extend)
+  - [`OTHER_ID_CONTINUE`](#other-id-continue)
+  - [`OTHER_ID_START`](#other-id-start)
+  - [`OTHER_LOWERCASE`](#other-lowercase)
+  - [`OTHER_MATH`](#other-math)
+  - [`OTHER_UPPERCASE`](#other-uppercase)
+  - [`PATTERN_SYNTAX`](#pattern-syntax)
+  - [`PATTERN_WHITE_SPACE`](#pattern-white-space)
+  - [`PREPENDED_CONCATENATION_MARK`](#prepended-concatenation-mark)
+  - [`QUOTATION_MARK`](#quotation-mark)
   - [`RADICAL`](#radical)
-  - [`REGIONAL_INDICATOR`](#regional_indicator)
-  - [`SENTENCE_TERMINAL`](#sentence_terminal)
-  - [`SOFT_DOTTED`](#soft_dotted)
-  - [`TERMINAL_PUNCTUATION`](#terminal_punctuation)
-  - [`UNIFIED_IDEOGRAPH`](#unified_ideograph)
+  - [`REGIONAL_INDICATOR`](#regional-indicator)
+  - [`SENTENCE_TERMINAL`](#sentence-terminal)
+  - [`SOFT_DOTTED`](#soft-dotted)
+  - [`TERMINAL_PUNCTUATION`](#terminal-punctuation)
+  - [`UNIFIED_IDEOGRAPH`](#unified-ideograph)
   - [`UPPERCASE`](#uppercase)
-  - [`VARIATION_SELECTOR`](#variation_selector)
-  - [`WHITE_SPACE`](#white_space)
-  - [`XID_CONTINUE`](#xid_continue)
-  - [`XID_START`](#xid_start)
+  - [`VARIATION_SELECTOR`](#variation-selector)
+  - [`WHITE_SPACE`](#white-space)
+  - [`XID_CONTINUE`](#xid-continue)
+  - [`XID_START`](#xid-start)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
-| [`ASCII_HEX_DIGIT`](#ascii_hex_digit) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
+| [`ASCII_HEX_DIGIT`](#ascii-hex-digit) | const |  |
 | [`ALPHABETIC`](#alphabetic) | const |  |
-| [`BIDI_CONTROL`](#bidi_control) | const |  |
-| [`BIDI_MIRRORED`](#bidi_mirrored) | const |  |
-| [`CASE_IGNORABLE`](#case_ignorable) | const |  |
+| [`BIDI_CONTROL`](#bidi-control) | const |  |
+| [`BIDI_MIRRORED`](#bidi-mirrored) | const |  |
+| [`CASE_IGNORABLE`](#case-ignorable) | const |  |
 | [`CASED`](#cased) | const |  |
-| [`CHANGES_WHEN_CASEFOLDED`](#changes_when_casefolded) | const |  |
-| [`CHANGES_WHEN_CASEMAPPED`](#changes_when_casemapped) | const |  |
-| [`CHANGES_WHEN_LOWERCASED`](#changes_when_lowercased) | const |  |
-| [`CHANGES_WHEN_TITLECASED`](#changes_when_titlecased) | const |  |
-| [`CHANGES_WHEN_UPPERCASED`](#changes_when_uppercased) | const |  |
+| [`CHANGES_WHEN_CASEFOLDED`](#changes-when-casefolded) | const |  |
+| [`CHANGES_WHEN_CASEMAPPED`](#changes-when-casemapped) | const |  |
+| [`CHANGES_WHEN_LOWERCASED`](#changes-when-lowercased) | const |  |
+| [`CHANGES_WHEN_TITLECASED`](#changes-when-titlecased) | const |  |
+| [`CHANGES_WHEN_UPPERCASED`](#changes-when-uppercased) | const |  |
 | [`DASH`](#dash) | const |  |
-| [`DEFAULT_IGNORABLE_CODE_POINT`](#default_ignorable_code_point) | const |  |
+| [`DEFAULT_IGNORABLE_CODE_POINT`](#default-ignorable-code-point) | const |  |
 | [`DEPRECATED`](#deprecated) | const |  |
 | [`DIACRITIC`](#diacritic) | const |  |
 | [`EMOJI`](#emoji) | const |  |
-| [`EMOJI_COMPONENT`](#emoji_component) | const |  |
-| [`EMOJI_MODIFIER`](#emoji_modifier) | const |  |
-| [`EMOJI_MODIFIER_BASE`](#emoji_modifier_base) | const |  |
-| [`EMOJI_PRESENTATION`](#emoji_presentation) | const |  |
-| [`EXTENDED_PICTOGRAPHIC`](#extended_pictographic) | const |  |
+| [`EMOJI_COMPONENT`](#emoji-component) | const |  |
+| [`EMOJI_MODIFIER`](#emoji-modifier) | const |  |
+| [`EMOJI_MODIFIER_BASE`](#emoji-modifier-base) | const |  |
+| [`EMOJI_PRESENTATION`](#emoji-presentation) | const |  |
+| [`EXTENDED_PICTOGRAPHIC`](#extended-pictographic) | const |  |
 | [`EXTENDER`](#extender) | const |  |
-| [`GRAPHEME_BASE`](#grapheme_base) | const |  |
-| [`GRAPHEME_EXTEND`](#grapheme_extend) | const |  |
-| [`GRAPHEME_LINK`](#grapheme_link) | const |  |
-| [`HEX_DIGIT`](#hex_digit) | const |  |
+| [`GRAPHEME_BASE`](#grapheme-base) | const |  |
+| [`GRAPHEME_EXTEND`](#grapheme-extend) | const |  |
+| [`GRAPHEME_LINK`](#grapheme-link) | const |  |
+| [`HEX_DIGIT`](#hex-digit) | const |  |
 | [`HYPHEN`](#hyphen) | const |  |
-| [`IDS_BINARY_OPERATOR`](#ids_binary_operator) | const |  |
-| [`IDS_TRINARY_OPERATOR`](#ids_trinary_operator) | const |  |
-| [`IDS_UNARY_OPERATOR`](#ids_unary_operator) | const |  |
-| [`ID_COMPAT_MATH_CONTINUE`](#id_compat_math_continue) | const |  |
-| [`ID_COMPAT_MATH_START`](#id_compat_math_start) | const |  |
-| [`ID_CONTINUE`](#id_continue) | const |  |
-| [`ID_START`](#id_start) | const |  |
+| [`IDS_BINARY_OPERATOR`](#ids-binary-operator) | const |  |
+| [`IDS_TRINARY_OPERATOR`](#ids-trinary-operator) | const |  |
+| [`IDS_UNARY_OPERATOR`](#ids-unary-operator) | const |  |
+| [`ID_COMPAT_MATH_CONTINUE`](#id-compat-math-continue) | const |  |
+| [`ID_COMPAT_MATH_START`](#id-compat-math-start) | const |  |
+| [`ID_CONTINUE`](#id-continue) | const |  |
+| [`ID_START`](#id-start) | const |  |
 | [`IDEOGRAPHIC`](#ideographic) | const |  |
 | [`INCB`](#incb) | const |  |
-| [`JOIN_CONTROL`](#join_control) | const |  |
-| [`LOGICAL_ORDER_EXCEPTION`](#logical_order_exception) | const |  |
+| [`JOIN_CONTROL`](#join-control) | const |  |
+| [`LOGICAL_ORDER_EXCEPTION`](#logical-order-exception) | const |  |
 | [`LOWERCASE`](#lowercase) | const |  |
 | [`MATH`](#math) | const |  |
-| [`MODIFIER_COMBINING_MARK`](#modifier_combining_mark) | const |  |
-| [`NONCHARACTER_CODE_POINT`](#noncharacter_code_point) | const |  |
-| [`OTHER_ALPHABETIC`](#other_alphabetic) | const |  |
-| [`OTHER_DEFAULT_IGNORABLE_CODE_POINT`](#other_default_ignorable_code_point) | const |  |
-| [`OTHER_GRAPHEME_EXTEND`](#other_grapheme_extend) | const |  |
-| [`OTHER_ID_CONTINUE`](#other_id_continue) | const |  |
-| [`OTHER_ID_START`](#other_id_start) | const |  |
-| [`OTHER_LOWERCASE`](#other_lowercase) | const |  |
-| [`OTHER_MATH`](#other_math) | const |  |
-| [`OTHER_UPPERCASE`](#other_uppercase) | const |  |
-| [`PATTERN_SYNTAX`](#pattern_syntax) | const |  |
-| [`PATTERN_WHITE_SPACE`](#pattern_white_space) | const |  |
-| [`PREPENDED_CONCATENATION_MARK`](#prepended_concatenation_mark) | const |  |
-| [`QUOTATION_MARK`](#quotation_mark) | const |  |
+| [`MODIFIER_COMBINING_MARK`](#modifier-combining-mark) | const |  |
+| [`NONCHARACTER_CODE_POINT`](#noncharacter-code-point) | const |  |
+| [`OTHER_ALPHABETIC`](#other-alphabetic) | const |  |
+| [`OTHER_DEFAULT_IGNORABLE_CODE_POINT`](#other-default-ignorable-code-point) | const |  |
+| [`OTHER_GRAPHEME_EXTEND`](#other-grapheme-extend) | const |  |
+| [`OTHER_ID_CONTINUE`](#other-id-continue) | const |  |
+| [`OTHER_ID_START`](#other-id-start) | const |  |
+| [`OTHER_LOWERCASE`](#other-lowercase) | const |  |
+| [`OTHER_MATH`](#other-math) | const |  |
+| [`OTHER_UPPERCASE`](#other-uppercase) | const |  |
+| [`PATTERN_SYNTAX`](#pattern-syntax) | const |  |
+| [`PATTERN_WHITE_SPACE`](#pattern-white-space) | const |  |
+| [`PREPENDED_CONCATENATION_MARK`](#prepended-concatenation-mark) | const |  |
+| [`QUOTATION_MARK`](#quotation-mark) | const |  |
 | [`RADICAL`](#radical) | const |  |
-| [`REGIONAL_INDICATOR`](#regional_indicator) | const |  |
-| [`SENTENCE_TERMINAL`](#sentence_terminal) | const |  |
-| [`SOFT_DOTTED`](#soft_dotted) | const |  |
-| [`TERMINAL_PUNCTUATION`](#terminal_punctuation) | const |  |
-| [`UNIFIED_IDEOGRAPH`](#unified_ideograph) | const |  |
+| [`REGIONAL_INDICATOR`](#regional-indicator) | const |  |
+| [`SENTENCE_TERMINAL`](#sentence-terminal) | const |  |
+| [`SOFT_DOTTED`](#soft-dotted) | const |  |
+| [`TERMINAL_PUNCTUATION`](#terminal-punctuation) | const |  |
+| [`UNIFIED_IDEOGRAPH`](#unified-ideograph) | const |  |
 | [`UPPERCASE`](#uppercase) | const |  |
-| [`VARIATION_SELECTOR`](#variation_selector) | const |  |
-| [`WHITE_SPACE`](#white_space) | const |  |
-| [`XID_CONTINUE`](#xid_continue) | const |  |
-| [`XID_START`](#xid_start) | const |  |
+| [`VARIATION_SELECTOR`](#variation-selector) | const |  |
+| [`WHITE_SPACE`](#white-space) | const |  |
+| [`XID_CONTINUE`](#xid-continue) | const |  |
+| [`XID_START`](#xid-start) | const |  |
 
 ## Constants
 

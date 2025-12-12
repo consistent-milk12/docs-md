@@ -49,21 +49,21 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSegmentIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSegmentIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elfsegmentiterator-iterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
 - <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -95,11 +95,11 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSegment<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSegment<'data, 'file, Elf, R>`
 
 - <span id="elfsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
+##### `impl<Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
 
 - <span id="elfsegment-address"></span>`fn address(&self) -> u64`
 
@@ -119,7 +119,7 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 - <span id="elfsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Elf, R> Sealed for ElfSegment<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Sealed for ElfSegment<'data, 'file, Elf, R>`
 
 ## Traits
 

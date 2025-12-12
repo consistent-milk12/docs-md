@@ -11,8 +11,8 @@ See [`short_frames_strict`][] for details.
 | [`Backtraceish`](#backtraceish) | trait |  |
 | [`Frameish`](#frameish) | trait |  |
 | [`Symbolish`](#symbolish) | trait |  |
-| [`short_frames_strict`](#short_frames_strict) | fn | Gets an iterator over the frames that are part of Rust's "short backtrace" range. |
-| [`short_frames_strict_impl`](#short_frames_strict_impl) | fn |  |
+| [`short_frames_strict`](#short-frames-strict) | fn | Gets an iterator over the frames that are part of Rust's "short backtrace" range. |
+| [`short_frames_strict_impl`](#short-frames-strict-impl) | fn |  |
 
 ## Traits
 

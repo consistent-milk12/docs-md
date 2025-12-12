@@ -23,35 +23,90 @@ The processor applies transformations in this order:
 
 Links inside code blocks are protected from transformation.
 
-## Contents
-
-- [Structs](#structs)
-  - [`DocLinkProcessor`](#doclinkprocessor)
-- [Functions](#functions)
-  - [`convert_html_links`](#convert_html_links)
-  - [`strip_duplicate_title`](#strip_duplicate_title)
-  - [`strip_reference_definitions`](#strip_reference_definitions)
-  - [`unhide_code_lines`](#unhide_code_lines)
-  - [`detect_fence`](#detect_fence)
-  - [`convert_path_reference_links`](#convert_path_reference_links)
-  - [`replace_with_regex`](#replace_with_regex)
-  - [`replace_with_regex_checked`](#replace_with_regex_checked)
-
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
+| [`CodeBlockTracker`](#codeblocktracker) | struct | Tracks code block state while processing documentation line by line. |
 | [`DocLinkProcessor`](#doclinkprocessor) | struct | Processes doc comments to resolve intra-doc links to markdown links. |
-| [`convert_html_links`](#convert_html_links) | fn | Convert HTML-style rustdoc links to markdown anchors. |
-| [`strip_duplicate_title`](#strip_duplicate_title) | fn | Strip duplicate title from documentation. |
-| [`strip_reference_definitions`](#strip_reference_definitions) | fn | Strip markdown reference definition lines. |
-| [`unhide_code_lines`](#unhide_code_lines) | fn | Unhide rustdoc hidden lines in code blocks and add language identifiers. |
-| [`detect_fence`](#detect_fence) | fn | Detect a code fence and return the fence string. |
-| [`convert_path_reference_links`](#convert_path_reference_links) | fn | Convert path-style reference links to inline code. |
-| [`replace_with_regex`](#replace_with_regex) | fn | Replace regex matches using a closure. |
-| [`replace_with_regex_checked`](#replace_with_regex_checked) | fn | Replace regex matches with access to the text after the match. |
+| [`DocLinkUtils`](#doclinkutils) | struct | Utility functions for document links |
+| [`LineKind`](#linekind) | enum | Classification of a line during code block processing. |
 
 ## Structs
+
+### `CodeBlockTracker`
+
+```rust
+struct CodeBlockTracker {
+    fence: Option<&'static str>,
+}
+```
+
+*Defined in `src/generator/doc_links.rs:271-275`*
+
+Tracks code block state while processing documentation line by line.
+
+This provides a clean state machine for fence tracking that both
+`unhide_code_lines` and `process_links_protected` can use, avoiding
+duplicated inline fence detection logic.
+
+# Example
+
+```text
+let mut tracker = CodeBlockTracker::new();
+
+for line in docs.lines() {
+    match tracker.classify(line) {
+        LineKind::OpeningFence { bare } => { /* handle opening */ }
+        LineKind::CodeContent => { /* process hidden lines, etc. */ }
+        LineKind::ClosingFence => { /* output as-is */ }
+        LineKind::Text => { /* process links */ }
+    }
+}
+```
+
+# Fence Matching
+
+The tracker correctly handles mismatched fences:
+- `~~~` inside a ```` ``` ```` block is treated as content, not a closing fence
+- Only the same fence style closes a block
+
+#### Fields
+
+- **`fence`**: `Option<&'static str>`
+
+  Current fence string if inside a code block (`Some("```")` or `Some("~~~")`).
+  `None` when outside any code block.
+
+#### Implementations
+
+- <span id="codeblocktracker-new"></span>`const fn new() -> Self`
+
+- <span id="codeblocktracker-classify"></span>`fn classify(&mut self, line: &str) -> LineKind` — [`LineKind`](#linekind)
+
+#### Trait Implementations
+
+##### `impl Instrument for CodeBlockTracker`
+
+##### `impl IntoEither for CodeBlockTracker`
+
+##### `impl OwoColorize for CodeBlockTracker`
+
+##### `impl Pointable for CodeBlockTracker`
+
+- <span id="codeblocktracker-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="codeblocktracker-pointable-type-init"></span>`type Init = T`
+
+- <span id="codeblocktracker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="codeblocktracker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="codeblocktracker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="codeblocktracker-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for CodeBlockTracker`
 
 ### `DocLinkProcessor<'a>`
 
@@ -64,7 +119,7 @@ struct DocLinkProcessor<'a> {
 }
 ```
 
-*Defined in `src/generator/doc_links.rs:418-431`*
+*Defined in `src/generator/doc_links.rs:365-378`*
 
 Processes doc comments to resolve intra-doc links to markdown links.
 
@@ -138,6 +193,8 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
 
+- <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
+
 - <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
 - <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
@@ -162,9 +219,9 @@ Links inside fenced code blocks are not processed.
 
 ##### `impl Pointable for DocLinkProcessor<'a>`
 
-- <span id="doclinkprocessor-const-align"></span>`const ALIGN: usize`
+- <span id="doclinkprocessor-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="doclinkprocessor-type-init"></span>`type Init = T`
+- <span id="doclinkprocessor-pointable-type-init"></span>`type Init = T`
 
 - <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -176,124 +233,153 @@ Links inside fenced code blocks are not processed.
 
 ##### `impl WithSubscriber for DocLinkProcessor<'a>`
 
-## Functions
-
-### `convert_html_links`
+### `DocLinkUtils`
 
 ```rust
-fn convert_html_links(docs: &str) -> String
+struct DocLinkUtils;
 ```
 
-*Defined in `src/generator/doc_links.rs:220-234`*
+*Defined in `src/generator/doc_links.rs:1051`*
 
-Convert HTML-style rustdoc links to markdown anchors.
+Utility functions for document links
 
-Transforms links like:
-- `(#numberprefix)` -> `(#numberprefix)`
-- `(#foo-bar)` -> `(#foo-bar)` (type-method anchor)
+#### Implementations
 
-This is useful for multi-crate documentation where the full processor
-context may not be available.
+- <span id="doclinkutils-convert-html-links"></span>`fn convert_html_links(docs: &str) -> String`
 
-### `strip_duplicate_title`
+- <span id="doclinkutils-strip-duplicate-title"></span>`fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str`
+
+- <span id="doclinkutils-strip-reference-definitions"></span>`fn strip_reference_definitions(docs: &str) -> String`
+
+- <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
+
+- <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
+
+- <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+- <span id="doclinkutils-replace-with-regex-checked"></span>`fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+#### Trait Implementations
+
+##### `impl Instrument for DocLinkUtils`
+
+##### `impl IntoEither for DocLinkUtils`
+
+##### `impl OwoColorize for DocLinkUtils`
+
+##### `impl Pointable for DocLinkUtils`
+
+- <span id="doclinkutils-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="doclinkutils-pointable-type-init"></span>`type Init = T`
+
+- <span id="doclinkutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="doclinkutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="doclinkutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="doclinkutils-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for DocLinkUtils`
+
+## Enums
+
+### `LineKind`
 
 ```rust
-fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str
+enum LineKind {
+    OpeningFence {
+        bare: bool,
+    },
+    ClosingFence,
+    CodeContent,
+    Text,
+}
 ```
 
-*Defined in `src/generator/doc_links.rs:251-279`*
+*Defined in `src/generator/doc_links.rs:230-243`*
 
-Strip duplicate title from documentation.
+Classification of a line during code block processing.
 
-Some crate/module docs start with `# title` which duplicates the generated
-`# Crate 'name'` or `# Module 'name'` heading.
+Used by [`CodeBlockTracker`](#codeblocktracker) to provide rich information about each line,
+enabling callers to handle fences and content appropriately.
 
-# Arguments
+# Processing Flow
 
-* `docs` - The documentation string to process
-* `item_name` - The name of the crate or module being documented
-
-# Returns
-
-The docs with the leading title removed if it matches the item name,
-otherwise the original docs unchanged.
-
-### `strip_reference_definitions`
-
-```rust
-fn strip_reference_definitions(docs: &str) -> String
+```text
+Input Line          │ State Before │ Returns             │ State After
+────────────────────┼──────────────┼─────────────────────┼─────────────
+"```"               │ Outside      │ OpeningFence(bare)  │ Inside(```)
+"```rust"           │ Outside      │ OpeningFence(!bare) │ Inside(```)
+"let x = 1;"        │ Inside(```)  │ CodeContent         │ Inside(```)
+"```"               │ Inside(```)  │ ClosingFence        │ Outside
+"regular text"      │ Outside      │ Text                │ Outside
+"~~~"               │ Inside(```)  │ CodeContent         │ Inside(```) ← mismatched!
 ```
 
-*Defined in `src/generator/doc_links.rs:285-287`*
+#### Variants
 
-Strip markdown reference definition lines.
+- **`OpeningFence`**
 
-Removes lines like `[`Name`](#name): path::to::item` which are no longer needed
-after intra-doc links are processed.
+  Opening code fence (``` or ~~~).
+  `bare` is true if the fence has no language specifier (exactly "```" or "~~~").
 
-### `unhide_code_lines`
+- **`ClosingFence`**
 
-```rust
-fn unhide_code_lines(docs: &str) -> String
-```
+  Closing code fence matching the opening fence.
 
-*Defined in `src/generator/doc_links.rs:297-358`*
+- **`CodeContent`**
 
-Unhide rustdoc hidden lines in code blocks and add language identifiers.
+  Content inside a code block (not a fence line).
 
-This function performs two transformations on code blocks:
-1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-   but compiled. We remove the prefix to show the full example.
-2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-   examples are Rust code.
+- **`Text`**
 
-### `detect_fence`
+  Regular text outside any code block.
 
-```rust
-fn detect_fence(trimmed: &str) -> Option<&'static str>
-```
+#### Trait Implementations
 
-*Defined in `src/generator/doc_links.rs:361-369`*
+##### `impl Clone for LineKind`
 
-Detect a code fence and return the fence string.
+- <span id="linekind-clone"></span>`fn clone(&self) -> LineKind` — [`LineKind`](#linekind)
 
-### `convert_path_reference_links`
+##### `impl Copy for LineKind`
 
-```rust
-fn convert_path_reference_links(docs: &str) -> String
-```
+##### `impl Debug for LineKind`
 
-*Defined in `src/generator/doc_links.rs:379-390`*
+- <span id="linekind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-Convert path-style reference links to inline code.
+##### `impl Eq for LineKind`
 
-Transforms: ```ProgressTracker```
-Into: `` `ProgressTracker` ``
+##### `impl<K> Equivalent for LineKind`
 
-Without full link resolution context, we can't create valid anchors,
-so we preserve the display text as inline code.
+- <span id="linekind-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
-### `replace_with_regex`
+##### `impl Instrument for LineKind`
 
-```rust
-fn replace_with_regex<F>(text: &str, re: &regex::Regex, replacer: F) -> String
-where
-    F: Fn(&regex::Captures<'_>) -> String
-```
+##### `impl IntoEither for LineKind`
 
-*Defined in `src/generator/doc_links.rs:1110-1128`*
+##### `impl OwoColorize for LineKind`
 
-Replace regex matches using a closure.
+##### `impl PartialEq for LineKind`
 
-### `replace_with_regex_checked`
+- <span id="linekind-eq"></span>`fn eq(&self, other: &LineKind) -> bool` — [`LineKind`](#linekind)
 
-```rust
-fn replace_with_regex_checked<F>(text: &str, re: &regex::Regex, replacer: F) -> String
-where
-    F: Fn(&regex::Captures<'_>, &str) -> String
-```
+##### `impl Pointable for LineKind`
 
-*Defined in `src/generator/doc_links.rs:1131-1151`*
+- <span id="linekind-pointable-const-align"></span>`const ALIGN: usize`
 
-Replace regex matches with access to the text after the match.
+- <span id="linekind-pointable-type-init"></span>`type Init = T`
+
+- <span id="linekind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="linekind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="linekind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="linekind-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl StructuralPartialEq for LineKind`
+
+##### `impl WithSubscriber for LineKind`
 

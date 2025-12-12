@@ -139,7 +139,7 @@ long as doing so complies with this policy.
   - [`Callsite`](#callsite)
   - [`Subscriber`](#subscriber)
 - [Macros](#macros)
-  - [`identify_callsite!`](#identify_callsite)
+  - [`identify_callsite!`](#identify-callsite)
   - [`metadata!`](#metadata)
 
 ## Quick Reference
@@ -166,7 +166,7 @@ long as doing so complies with this policy.
 | [`Interest`](#interest) | struct |  |
 | [`Callsite`](#callsite) | trait |  |
 | [`Subscriber`](#subscriber) | trait |  |
-| [`identify_callsite!`](#identify_callsite) | macro | Statically constructs an [`Identifier`] for the provided [`Callsite`]. |
+| [`identify_callsite!`](#identify-callsite) | macro | Statically constructs an [`Identifier`] for the provided [`Callsite`]. |
 | [`metadata!`](#metadata) | macro | Statically constructs new span [metadata]. |
 
 ## Modules
@@ -538,7 +538,7 @@ recorded in.
 
 ##### `impl FromStr for Level`
 
-- <span id="level-type-err"></span>`type Err = ParseLevelError`
+- <span id="level-fromstr-type-err"></span>`type Err = ParseLevelError`
 
 - <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md#parselevelerror)
 
@@ -648,7 +648,7 @@ and `LevelFilter`s interact.
 
 ##### `impl FromStr for LevelFilter`
 
-- <span id="levelfilter-type-err"></span>`type Err = ParseLevelFilterError`
+- <span id="levelfilter-fromstr-type-err"></span>`type Err = ParseLevelFilterError`
 
 - <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 

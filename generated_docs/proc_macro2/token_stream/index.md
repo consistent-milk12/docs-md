@@ -72,15 +72,15 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl FromStr for TokenStream`
 
-- <span id="tokenstream-type-err"></span>`type Err = LexError`
+- <span id="tokenstream-fromstr-type-err"></span>`type Err = LexError`
 
 - <span id="tokenstream-from-str"></span>`fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md#tokenstream), [`LexError`](../index.md#lexerror)
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-intoiterator-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="tokenstream-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
@@ -130,15 +130,15 @@ delimited groups, and returns whole groups as token trees.
 
 ##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = TokenTree`
+- <span id="intoiter-iterator-type-item"></span>`type Item = TokenTree`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md#tokentree)
 

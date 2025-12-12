@@ -41,9 +41,9 @@ struct OnceLock<T> {
 
 ##### `impl<T> Pointable for OnceLock<T>`
 
-- <span id="oncelock-const-align"></span>`const ALIGN: usize`
+- <span id="oncelock-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="oncelock-type-init"></span>`type Init = T`
+- <span id="oncelock-pointable-type-init"></span>`type Init = T`
 
 - <span id="oncelock-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md#pointable)
 

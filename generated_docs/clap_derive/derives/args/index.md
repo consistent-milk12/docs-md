@@ -8,14 +8,14 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`derive_args`](#derive_args) | fn |  |
-| [`gen_for_struct`](#gen_for_struct) | fn |  |
-| [`gen_augment`](#gen_augment) | fn | Generate a block of code to add arguments/subcommands corresponding to the `fields` to an cmd. |
-| [`gen_constructor`](#gen_constructor) | fn |  |
-| [`gen_updater`](#gen_updater) | fn |  |
-| [`gen_parsers`](#gen_parsers) | fn |  |
-| [`raw_deprecated`](#raw_deprecated) | fn |  |
-| [`collect_args_fields`](#collect_args_fields) | fn |  |
+| [`derive_args`](#derive-args) | fn |  |
+| [`gen_for_struct`](#gen-for-struct) | fn |  |
+| [`gen_augment`](#gen-augment) | fn | Generate a block of code to add arguments/subcommands corresponding to the `fields` to an cmd. |
+| [`gen_constructor`](#gen-constructor) | fn |  |
+| [`gen_updater`](#gen-updater) | fn |  |
+| [`gen_parsers`](#gen-parsers) | fn |  |
+| [`raw_deprecated`](#raw-deprecated) | fn |  |
+| [`collect_args_fields`](#collect-args-fields) | fn |  |
 
 ## Functions
 

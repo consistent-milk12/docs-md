@@ -13,15 +13,15 @@
   - [`Waiter`](#waiter)
   - [`Guard`](#guard)
 - [Functions](#functions)
-  - [`initialize_or_wait`](#initialize_or_wait)
+  - [`initialize_or_wait`](#initialize-or-wait)
   - [`wait`](#wait)
 - [Constants](#constants)
   - [`INCOMPLETE`](#incomplete)
   - [`RUNNING`](#running)
   - [`COMPLETE`](#complete)
-  - [`INCOMPLETE_PTR`](#incomplete_ptr)
-  - [`COMPLETE_PTR`](#complete_ptr)
-  - [`STATE_MASK`](#state_mask)
+  - [`INCOMPLETE_PTR`](#incomplete-ptr)
+  - [`COMPLETE_PTR`](#complete-ptr)
+  - [`STATE_MASK`](#state-mask)
 
 ## Quick Reference
 
@@ -31,14 +31,14 @@
 | [`OnceCell`](#oncecell) | struct |  |
 | [`Waiter`](#waiter) | struct | Representation of a node in the linked list of waiters in the RUNNING state. |
 | [`Guard`](#guard) | struct | Drains and notifies the queue of waiters on drop. |
-| [`initialize_or_wait`](#initialize_or_wait) | fn |  |
+| [`initialize_or_wait`](#initialize-or-wait) | fn |  |
 | [`wait`](#wait) | fn |  |
 | [`INCOMPLETE`](#incomplete) | const |  |
 | [`RUNNING`](#running) | const |  |
 | [`COMPLETE`](#complete) | const |  |
-| [`INCOMPLETE_PTR`](#incomplete_ptr) | const |  |
-| [`COMPLETE_PTR`](#complete_ptr) | const |  |
-| [`STATE_MASK`](#state_mask) | const |  |
+| [`INCOMPLETE_PTR`](#incomplete-ptr) | const |  |
+| [`COMPLETE_PTR`](#complete-ptr) | const |  |
+| [`STATE_MASK`](#state-mask) | const |  |
 
 ## Modules
 

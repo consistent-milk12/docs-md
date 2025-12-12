@@ -26,20 +26,20 @@ Functions for parsing DWARF `.debug_info` and `.debug_types` sections.
   - [`UnitType`](#unittype)
   - [`AttributeValue`](#attributevalue)
 - [Functions](#functions)
-  - [`parse_unit_type`](#parse_unit_type)
-  - [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset)
-  - [`parse_debug_info_offset`](#parse_debug_info_offset)
-  - [`parse_unit_header`](#parse_unit_header)
-  - [`parse_dwo_id`](#parse_dwo_id)
-  - [`length_u8_value`](#length_u8_value)
-  - [`length_u16_value`](#length_u16_value)
-  - [`length_u32_value`](#length_u32_value)
-  - [`length_uleb128_value`](#length_uleb128_value)
-  - [`allow_section_offset`](#allow_section_offset)
-  - [`parse_attribute`](#parse_attribute)
-  - [`skip_attributes`](#skip_attributes)
-  - [`parse_type_signature`](#parse_type_signature)
-  - [`parse_type_offset`](#parse_type_offset)
+  - [`parse_unit_type`](#parse-unit-type)
+  - [`parse_debug_abbrev_offset`](#parse-debug-abbrev-offset)
+  - [`parse_debug_info_offset`](#parse-debug-info-offset)
+  - [`parse_unit_header`](#parse-unit-header)
+  - [`parse_dwo_id`](#parse-dwo-id)
+  - [`length_u8_value`](#length-u8-value)
+  - [`length_u16_value`](#length-u16-value)
+  - [`length_u32_value`](#length-u32-value)
+  - [`length_uleb128_value`](#length-uleb128-value)
+  - [`allow_section_offset`](#allow-section-offset)
+  - [`parse_attribute`](#parse-attribute)
+  - [`skip_attributes`](#skip-attributes)
+  - [`parse_type_signature`](#parse-type-signature)
+  - [`parse_type_offset`](#parse-type-offset)
 
 ## Quick Reference
 
@@ -60,20 +60,20 @@ Functions for parsing DWARF `.debug_info` and `.debug_types` sections.
 | [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter) | struct | An iterator over the type-units of this `.debug_types` section. |
 | [`UnitType`](#unittype) | enum | This enum specifies the type of the unit and any type specific data carried in the header (e.g. the type signature/type offset of a type unit). |
 | [`AttributeValue`](#attributevalue) | enum | The value of an attribute in a `DebuggingInformationEntry`. |
-| [`parse_unit_type`](#parse_unit_type) | fn | Parse the unit type from the unit header. |
-| [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
-| [`parse_debug_info_offset`](#parse_debug_info_offset) | fn | Parse the `debug_info_offset` in the arange header. |
-| [`parse_unit_header`](#parse_unit_header) | fn | Parse a unit header. |
-| [`parse_dwo_id`](#parse_dwo_id) | fn | Parse a dwo_id from a header |
-| [`length_u8_value`](#length_u8_value) | fn |  |
-| [`length_u16_value`](#length_u16_value) | fn |  |
-| [`length_u32_value`](#length_u32_value) | fn |  |
-| [`length_uleb128_value`](#length_uleb128_value) | fn |  |
-| [`allow_section_offset`](#allow_section_offset) | fn |  |
-| [`parse_attribute`](#parse_attribute) | fn |  |
-| [`skip_attributes`](#skip_attributes) | fn |  |
-| [`parse_type_signature`](#parse_type_signature) | fn | Parse a type unit header's unique type signature. |
-| [`parse_type_offset`](#parse_type_offset) | fn | Parse a type unit header's type offset. |
+| [`parse_unit_type`](#parse-unit-type) | fn | Parse the unit type from the unit header. |
+| [`parse_debug_abbrev_offset`](#parse-debug-abbrev-offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
+| [`parse_debug_info_offset`](#parse-debug-info-offset) | fn | Parse the `debug_info_offset` in the arange header. |
+| [`parse_unit_header`](#parse-unit-header) | fn | Parse a unit header. |
+| [`parse_dwo_id`](#parse-dwo-id) | fn | Parse a dwo_id from a header |
+| [`length_u8_value`](#length-u8-value) | fn |  |
+| [`length_u16_value`](#length-u16-value) | fn |  |
+| [`length_u32_value`](#length-u32-value) | fn |  |
+| [`length_uleb128_value`](#length-uleb128-value) | fn |  |
+| [`allow_section_offset`](#allow-section-offset) | fn |  |
+| [`parse_attribute`](#parse-attribute) | fn |  |
+| [`skip_attributes`](#skip-attributes) | fn |  |
+| [`parse_type_signature`](#parse-type-signature) | fn | Parse a type unit header's unique type signature. |
+| [`parse_type_offset`](#parse-type-offset) | fn | Parse a type unit header's type offset. |
 
 ## Structs
 
@@ -240,11 +240,11 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R, Offset> Clone for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
+##### `impl<R, Offset> Clone for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
 - <span id="debugginginformationentry-clone"></span>`fn clone(&self) -> DebuggingInformationEntry<'abbrev, 'unit, R, Offset>` — [`DebuggingInformationEntry`](../index.md#debugginginformationentry)
 
-##### `impl<'abbrev, 'unit, R, Offset> Debug for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
+##### `impl<R, Offset> Debug for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
 - <span id="debugginginformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -333,13 +333,13 @@ Can be [used with
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'entry, 'unit, R: clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
 - <span id="attrsiter-clone"></span>`fn clone(&self) -> AttrsIter<'abbrev, 'entry, 'unit, R>` — [`AttrsIter`](../index.md#attrsiter)
 
-##### `impl<'abbrev, 'entry, 'unit, R: marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
-##### `impl<'abbrev, 'entry, 'unit, R: fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
 - <span id="attrsiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -427,11 +427,11 @@ unreachable!()
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesRaw<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesRaw<'abbrev, 'unit, R>`
 
 - <span id="entriesraw-clone"></span>`fn clone(&self) -> EntriesRaw<'abbrev, 'unit, R>` — [`EntriesRaw`](../index.md#entriesraw)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesRaw<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesRaw<'abbrev, 'unit, R>`
 
 - <span id="entriesraw-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -477,11 +477,11 @@ end of the current tree depth.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesCursor<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesCursor<'abbrev, 'unit, R>`
 
 - <span id="entriescursor-clone"></span>`fn clone(&self) -> EntriesCursor<'abbrev, 'unit, R>` — [`EntriesCursor`](../index.md#entriescursor)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesCursor<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesCursor<'abbrev, 'unit, R>`
 
 - <span id="entriescursor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -553,11 +553,11 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, R> Clone for EntriesTree<'abbrev, 'unit, R>`
+##### `impl<R> Clone for EntriesTree<'abbrev, 'unit, R>`
 
 - <span id="entriestree-clone"></span>`fn clone(&self) -> EntriesTree<'abbrev, 'unit, R>` — [`EntriesTree`](../index.md#entriestree)
 
-##### `impl<'abbrev, 'unit, R> Debug for EntriesTree<'abbrev, 'unit, R>`
+##### `impl<R> Debug for EntriesTree<'abbrev, 'unit, R>`
 
 - <span id="entriestree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -587,7 +587,7 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
 
 - <span id="entriestreenode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -617,7 +617,7 @@ which allow recursive traversal of grandchildren, etc.
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
 
 - <span id="entriestreeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

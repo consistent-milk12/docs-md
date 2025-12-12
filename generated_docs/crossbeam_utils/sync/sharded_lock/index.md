@@ -14,10 +14,10 @@
   - [`ThreadIndices`](#threadindices)
   - [`Registration`](#registration)
 - [Functions](#functions)
-  - [`current_index`](#current_index)
-  - [`thread_indices`](#thread_indices)
+  - [`current_index`](#current-index)
+  - [`thread_indices`](#thread-indices)
 - [Constants](#constants)
-  - [`NUM_SHARDS`](#num_shards)
+  - [`NUM_SHARDS`](#num-shards)
   - [`REGISTRATION`](#registration)
 
 ## Quick Reference
@@ -30,9 +30,9 @@
 | [`ShardedLockWriteGuard`](#shardedlockwriteguard) | struct | A guard used to release the exclusive write access of a [`ShardedLock`] when dropped. |
 | [`ThreadIndices`](#threadindices) | struct | The global registry keeping track of registered threads and indices. |
 | [`Registration`](#registration) | struct | A registration of a thread with an index. |
-| [`current_index`](#current_index) | fn | Returns a `usize` that identifies the current thread. |
-| [`thread_indices`](#thread_indices) | fn |  |
-| [`NUM_SHARDS`](#num_shards) | const | The number of shards per sharded lock. |
+| [`current_index`](#current-index) | fn | Returns a `usize` that identifies the current thread. |
+| [`thread_indices`](#thread-indices) | fn |  |
+| [`NUM_SHARDS`](#num-shards) | const | The number of shards per sharded lock. |
 | [`REGISTRATION`](#registration) | const |  |
 
 ## Structs
@@ -176,7 +176,7 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-deref-type-target"></span>`type Target = T`
 
 - <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -184,9 +184,9 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 - <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
+##### `impl<T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
@@ -215,7 +215,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-deref-type-target"></span>`type Target = T`
 
 - <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -231,9 +231,9 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 - <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
 
-##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
+##### `impl<T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 

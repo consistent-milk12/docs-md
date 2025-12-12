@@ -46,27 +46,27 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../index.m
 
 - <span id="fold-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Fold<I, ID, F>`
+##### `impl IntoEither for Fold<I, ID, F>`
 
-##### `impl<T> IntoParallelIterator for Fold<I, ID, F>`
+##### `impl IntoParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-type-iter"></span>`type Iter = T`
+- <span id="fold-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="fold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="fold-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="fold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<U, I, ID, F> ParallelIterator for Fold<I, ID, F>`
+##### `impl<I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-type-item"></span>`type Item = U`
+- <span id="fold-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Fold<I, ID, F>`
+##### `impl Pointable for Fold<I, ID, F>`
 
-- <span id="fold-const-align"></span>`const ALIGN: usize`
+- <span id="fold-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="fold-type-init"></span>`type Init = T`
+- <span id="fold-pointable-type-init"></span>`type Init = T`
 
 - <span id="fold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,13 +90,13 @@ struct FoldConsumer<'c, C, ID, F> {
 
 #### Trait Implementations
 
-##### `impl<'r, U, T, C, ID, F> Consumer for FoldConsumer<'r, C, ID, F>`
+##### `impl<T, C, ID, F> Consumer for FoldConsumer<'r, C, ID, F>`
 
-- <span id="foldconsumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="foldconsumer-consumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="foldconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="foldconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="foldconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="foldconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="foldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -104,13 +104,13 @@ struct FoldConsumer<'c, C, ID, F> {
 
 - <span id="foldconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FoldConsumer<'c, C, ID, F>`
+##### `impl IntoEither for FoldConsumer<'c, C, ID, F>`
 
-##### `impl<T> Pointable for FoldConsumer<'c, C, ID, F>`
+##### `impl Pointable for FoldConsumer<'c, C, ID, F>`
 
-- <span id="foldconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="foldconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldconsumer-type-init"></span>`type Init = T`
+- <span id="foldconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,7 +120,7 @@ struct FoldConsumer<'c, C, ID, F> {
 
 - <span id="foldconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'r, U, T, C, ID, F> UnindexedConsumer for FoldConsumer<'r, C, ID, F>`
+##### `impl<T, C, ID, F> UnindexedConsumer for FoldConsumer<'r, C, ID, F>`
 
 - <span id="foldconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -140,9 +140,9 @@ struct FoldFolder<'r, C, ID, F> {
 
 #### Trait Implementations
 
-##### `impl<'r, C, ID, F, T> Folder for FoldFolder<'r, C, ID, F>`
+##### `impl<C, ID, F, T> Folder for FoldFolder<'r, C, ID, F>`
 
-- <span id="foldfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="foldfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="foldfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -152,13 +152,13 @@ struct FoldFolder<'r, C, ID, F> {
 
 - <span id="foldfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FoldFolder<'r, C, ID, F>`
+##### `impl IntoEither for FoldFolder<'r, C, ID, F>`
 
-##### `impl<T> Pointable for FoldFolder<'r, C, ID, F>`
+##### `impl Pointable for FoldFolder<'r, C, ID, F>`
 
-- <span id="foldfolder-const-align"></span>`const ALIGN: usize`
+- <span id="foldfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldfolder-type-init"></span>`type Init = T`
+- <span id="foldfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -198,27 +198,27 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../in
 
 - <span id="foldwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for FoldWith<I, U, F>`
+##### `impl IntoEither for FoldWith<I, U, F>`
 
-##### `impl<T> IntoParallelIterator for FoldWith<I, U, F>`
+##### `impl IntoParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-type-iter"></span>`type Iter = T`
+- <span id="foldwith-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="foldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldwith-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-type-item"></span>`type Item = U`
+- <span id="foldwith-paralleliterator-type-item"></span>`type Item = U`
 
 - <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for FoldWith<I, U, F>`
+##### `impl Pointable for FoldWith<I, U, F>`
 
-- <span id="foldwith-const-align"></span>`const ALIGN: usize`
+- <span id="foldwith-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwith-type-init"></span>`type Init = T`
+- <span id="foldwith-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -242,13 +242,13 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 #### Trait Implementations
 
-##### `impl<'r, U, T, C, F> Consumer for FoldWithConsumer<'r, C, U, F>`
+##### `impl<U, T, C, F> Consumer for FoldWithConsumer<'r, C, U, F>`
 
-- <span id="foldwithconsumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="foldwithconsumer-consumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="foldwithconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="foldwithconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="foldwithconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="foldwithconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="foldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -256,13 +256,13 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 - <span id="foldwithconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FoldWithConsumer<'c, C, U, F>`
+##### `impl IntoEither for FoldWithConsumer<'c, C, U, F>`
 
-##### `impl<T> Pointable for FoldWithConsumer<'c, C, U, F>`
+##### `impl Pointable for FoldWithConsumer<'c, C, U, F>`
 
-- <span id="foldwithconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="foldwithconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwithconsumer-type-init"></span>`type Init = T`
+- <span id="foldwithconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="foldwithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -272,7 +272,7 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 - <span id="foldwithconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'r, U, T, C, F> UnindexedConsumer for FoldWithConsumer<'r, C, U, F>`
+##### `impl<U, T, C, F> UnindexedConsumer for FoldWithConsumer<'r, C, U, F>`
 
 - <span id="foldwithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 

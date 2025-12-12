@@ -26,8 +26,8 @@ beefier algorithm (like Two-Way) even starts.
 | [`Finder`](#finder) | struct | A forward substring searcher using the Rabin-Karp algorithm. |
 | [`FinderRev`](#finderrev) | struct | A reverse substring searcher using the Rabin-Karp algorithm. |
 | [`Hash`](#hash) | struct | A Rabin-Karp hash. |
-| [`is_fast`](#is_fast) | fn | Whether RK is believed to be very fast for the given needle/haystack. |
-| [`is_equal_raw`](#is_equal_raw) | fn | Returns true when `x[i] == y[i]` for all `0 <= i < n`. |
+| [`is_fast`](#is-fast) | fn | Whether RK is believed to be very fast for the given needle/haystack. |
+| [`is_equal_raw`](#is-equal-raw) | fn | Returns true when `x[i] == y[i]` for all `0 <= i < n`. |
 
 ## Structs
 

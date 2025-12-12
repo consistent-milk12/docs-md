@@ -121,23 +121,23 @@ struct Iter<'a, K, V> {
 
 #### Trait Implementations
 
-##### `impl<'a, K, V> DoubleEndedIterator for Iter<'a, K, V>`
+##### `impl<K, V> DoubleEndedIterator for Iter<'a, K, V>`
 
 - <span id="iter-next-back"></span>`fn next_back(&mut self) -> Option<(&'a K, &'a V)>`
 
 ##### `impl<K, V> ExactSizeIterator for Iter<'_, K, V>`
 
-##### `impl<I> IntoIterator for Iter<'a, K, V>`
+##### `impl IntoIterator for Iter<'a, K, V>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
+##### `impl<K, V> Iterator for Iter<'a, K, V>`
 
-- <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="iter-iterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
@@ -156,23 +156,23 @@ struct IterMut<'a, K, V> {
 
 #### Trait Implementations
 
-##### `impl<'a, K, V> DoubleEndedIterator for IterMut<'a, K, V>`
+##### `impl<K, V> DoubleEndedIterator for IterMut<'a, K, V>`
 
 - <span id="itermut-next-back"></span>`fn next_back(&mut self) -> Option<(&'a K, &'a mut V)>`
 
 ##### `impl<K, V> ExactSizeIterator for IterMut<'_, K, V>`
 
-##### `impl<I> IntoIterator for IterMut<'a, K, V>`
+##### `impl IntoIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
+##### `impl<K, V> Iterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
+- <span id="itermut-iterator-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 

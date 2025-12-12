@@ -11,19 +11,19 @@
   - [`heap`](#heap)
   - [`inline`](#inline)
   - [`iter`](#iter)
-  - [`last_utf8_char`](#last_utf8_char)
+  - [`last_utf8_char`](#last-utf8-char)
   - [`num`](#num)
-  - [`static_str`](#static_str)
+  - [`static_str`](#static-str)
   - [`traits`](#traits)
 - [Structs](#structs)
   - [`Repr`](#repr)
 - [Functions](#functions)
-  - [`ensure_read`](#ensure_read)
+  - [`ensure_read`](#ensure-read)
 - [Constants](#constants)
-  - [`MAX_SIZE`](#max_size)
-  - [`HEAP_MASK`](#heap_mask)
-  - [`STATIC_STR_MASK`](#static_str_mask)
-  - [`LENGTH_MASK`](#length_mask)
+  - [`MAX_SIZE`](#max-size)
+  - [`HEAP_MASK`](#heap-mask)
+  - [`STATIC_STR_MASK`](#static-str-mask)
+  - [`LENGTH_MASK`](#length-mask)
   - [`EMPTY`](#empty)
 
 ## Quick Reference
@@ -34,16 +34,16 @@
 | [`heap`](#heap) | mod |  |
 | [`inline`](#inline) | mod |  |
 | [`iter`](#iter) | mod | Implementations of the [`FromIterator`] trait to make building [`Repr`]s more ergonomic |
-| [`last_utf8_char`](#last_utf8_char) | mod |  |
+| [`last_utf8_char`](#last-utf8-char) | mod |  |
 | [`num`](#num) | mod | Implementations for efficiently converting a number into a [`Repr`] |
-| [`static_str`](#static_str) | mod |  |
+| [`static_str`](#static-str) | mod |  |
 | [`traits`](#traits) | mod |  |
 | [`Repr`](#repr) | struct |  |
-| [`ensure_read`](#ensure_read) | fn | Returns the supplied value, and ensures that the value is eagerly loaded into a register. |
-| [`MAX_SIZE`](#max_size) | const | The max size of a string we can fit inline |
-| [`HEAP_MASK`](#heap_mask) | const | Used as a discriminant to identify different variants |
-| [`STATIC_STR_MASK`](#static_str_mask) | const | Used for `StaticStr` variant |
-| [`LENGTH_MASK`](#length_mask) | const | When our string is stored inline, we represent the length of the string in the last byte, offset by `LENGTH_MASK` |
+| [`ensure_read`](#ensure-read) | fn | Returns the supplied value, and ensures that the value is eagerly loaded into a register. |
+| [`MAX_SIZE`](#max-size) | const | The max size of a string we can fit inline |
+| [`HEAP_MASK`](#heap-mask) | const | Used as a discriminant to identify different variants |
+| [`STATIC_STR_MASK`](#static-str-mask) | const | Used for `StaticStr` variant |
+| [`LENGTH_MASK`](#length-mask) | const | When our string is stored inline, we represent the length of the string in the last byte, offset by `LENGTH_MASK` |
 | [`EMPTY`](#empty) | const |  |
 
 ## Modules

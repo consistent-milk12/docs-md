@@ -98,17 +98,17 @@ Returned by `FileHeader::sections`.
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
+##### `impl<Elf: clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
 
 - <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md#sectiontable)
 
-##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
+##### `impl<Elf: marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
+##### `impl<Elf: fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
 
 - <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SectionTable<'data, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Default for SectionTable<'data, Elf, R>`
 
 - <span id="sectiontable-default"></span>`fn default() -> Self`
 
@@ -134,21 +134,21 @@ An iterator for the sections in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSectionIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-type-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
+- <span id="elfsectioniterator-iterator-type-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
 
 - <span id="elfsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -193,13 +193,13 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSection<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSection<'data, 'file, Elf, R>`
 
 - <span id="elfsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
+##### `impl<Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elfsection-type-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elfsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
@@ -235,7 +235,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="elfsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md#sectionflags)
 
-##### `impl<'data, 'file, Elf, R> Sealed for ElfSection<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Sealed for ElfSection<'data, 'file, Elf, R>`
 
 ## Traits
 

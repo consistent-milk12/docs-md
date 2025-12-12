@@ -12,16 +12,16 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`types`](#types)
   - [`prelude`](#prelude)
   - [`common`](#common)
-  - [`linux_uapi`](#linux_uapi)
+  - [`linux_uapi`](#linux-uapi)
   - [`glibc`](#glibc)
-  - [`linux_like`](#linux_like)
+  - [`linux_like`](#linux-like)
 - [Structs](#structs)
   - [`group`](#group)
   - [`utimbuf`](#utimbuf)
   - [`timeval`](#timeval)
   - [`rlimit`](#rlimit)
   - [`rusage`](#rusage)
-  - [`ipv6_mreq`](#ipv6_mreq)
+  - [`ipv6_mreq`](#ipv6-mreq)
   - [`hostent`](#hostent)
   - [`iovec`](#iovec)
   - [`pollfd`](#pollfd)
@@ -32,12 +32,12 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`tms`](#tms)
   - [`servent`](#servent)
   - [`protoent`](#protoent)
-  - [`in6_addr`](#in6_addr)
+  - [`in6_addr`](#in6-addr)
 - [Enums](#enums)
   - [`DIR`](#dir)
   - [`FILE`](#file)
 - [Functions](#functions)
-  - [`c_void`](#c_void)
+  - [`c_void`](#c-void)
   - [`isalnum`](#isalnum)
   - [`isalpha`](#isalpha)
   - [`iscntrl`](#iscntrl)
@@ -98,7 +98,7 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`free`](#free)
   - [`abort`](#abort)
   - [`exit`](#exit)
-  - [`_exit`](#_exit)
+  - [`_exit`](#exit)
   - [`system`](#system)
   - [`getenv`](#getenv)
   - [`strcpy`](#strcpy)
@@ -123,7 +123,7 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`strnlen`](#strnlen)
   - [`strerror`](#strerror)
   - [`strtok`](#strtok)
-  - [`strtok_r`](#strtok_r)
+  - [`strtok_r`](#strtok-r)
   - [`strxfrm`](#strxfrm)
   - [`strsignal`](#strsignal)
   - [`wcslen`](#wcslen)
@@ -144,8 +144,8 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`fscanf`](#fscanf)
   - [`scanf`](#scanf)
   - [`sscanf`](#sscanf)
-  - [`getchar_unlocked`](#getchar_unlocked)
-  - [`putchar_unlocked`](#putchar_unlocked)
+  - [`getchar_unlocked`](#getchar-unlocked)
+  - [`putchar_unlocked`](#putchar-unlocked)
   - [`socket`](#socket)
   - [`connect`](#connect)
   - [`listen`](#listen)
@@ -213,8 +213,8 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`lseek`](#lseek)
   - [`pathconf`](#pathconf)
   - [`pipe`](#pipe)
-  - [`posix_memalign`](#posix_memalign)
-  - [`aligned_alloc`](#aligned_alloc)
+  - [`posix_memalign`](#posix-memalign)
+  - [`aligned_alloc`](#aligned-alloc)
   - [`read`](#read)
   - [`rmdir`](#rmdir)
   - [`seteuid`](#seteuid)
@@ -230,7 +230,7 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`tcgetpgrp`](#tcgetpgrp)
   - [`tcsetpgrp`](#tcsetpgrp)
   - [`ttyname`](#ttyname)
-  - [`ttyname_r`](#ttyname_r)
+  - [`ttyname_r`](#ttyname-r)
   - [`unlink`](#unlink)
   - [`wait`](#wait)
   - [`waitpid`](#waitpid)
@@ -247,8 +247,8 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`munlockall`](#munlockall)
   - [`mmap`](#mmap)
   - [`munmap`](#munmap)
-  - [`if_nametoindex`](#if_nametoindex)
-  - [`if_indextoname`](#if_indextoname)
+  - [`if_nametoindex`](#if-nametoindex)
+  - [`if_indextoname`](#if-indextoname)
   - [`lstat`](#lstat)
   - [`fsync`](#fsync)
   - [`setenv`](#setenv)
@@ -260,46 +260,46 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`getrusage`](#getrusage)
   - [`realpath`](#realpath)
   - [`times`](#times)
-  - [`pthread_self`](#pthread_self)
-  - [`pthread_equal`](#pthread_equal)
-  - [`pthread_join`](#pthread_join)
-  - [`pthread_exit`](#pthread_exit)
-  - [`pthread_attr_init`](#pthread_attr_init)
-  - [`pthread_attr_destroy`](#pthread_attr_destroy)
-  - [`pthread_attr_getstacksize`](#pthread_attr_getstacksize)
-  - [`pthread_attr_setstacksize`](#pthread_attr_setstacksize)
-  - [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate)
-  - [`pthread_detach`](#pthread_detach)
-  - [`sched_yield`](#sched_yield)
-  - [`pthread_key_create`](#pthread_key_create)
-  - [`pthread_key_delete`](#pthread_key_delete)
-  - [`pthread_getspecific`](#pthread_getspecific)
-  - [`pthread_setspecific`](#pthread_setspecific)
-  - [`pthread_mutex_init`](#pthread_mutex_init)
-  - [`pthread_mutex_destroy`](#pthread_mutex_destroy)
-  - [`pthread_mutex_lock`](#pthread_mutex_lock)
-  - [`pthread_mutex_trylock`](#pthread_mutex_trylock)
-  - [`pthread_mutex_unlock`](#pthread_mutex_unlock)
-  - [`pthread_mutexattr_init`](#pthread_mutexattr_init)
-  - [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy)
-  - [`pthread_mutexattr_settype`](#pthread_mutexattr_settype)
-  - [`pthread_cond_init`](#pthread_cond_init)
-  - [`pthread_cond_wait`](#pthread_cond_wait)
-  - [`pthread_cond_timedwait`](#pthread_cond_timedwait)
-  - [`pthread_cond_signal`](#pthread_cond_signal)
-  - [`pthread_cond_broadcast`](#pthread_cond_broadcast)
-  - [`pthread_cond_destroy`](#pthread_cond_destroy)
-  - [`pthread_condattr_init`](#pthread_condattr_init)
-  - [`pthread_condattr_destroy`](#pthread_condattr_destroy)
-  - [`pthread_rwlock_init`](#pthread_rwlock_init)
-  - [`pthread_rwlock_destroy`](#pthread_rwlock_destroy)
-  - [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock)
-  - [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock)
-  - [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock)
-  - [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock)
-  - [`pthread_rwlock_unlock`](#pthread_rwlock_unlock)
-  - [`pthread_rwlockattr_init`](#pthread_rwlockattr_init)
-  - [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy)
+  - [`pthread_self`](#pthread-self)
+  - [`pthread_equal`](#pthread-equal)
+  - [`pthread_join`](#pthread-join)
+  - [`pthread_exit`](#pthread-exit)
+  - [`pthread_attr_init`](#pthread-attr-init)
+  - [`pthread_attr_destroy`](#pthread-attr-destroy)
+  - [`pthread_attr_getstacksize`](#pthread-attr-getstacksize)
+  - [`pthread_attr_setstacksize`](#pthread-attr-setstacksize)
+  - [`pthread_attr_setdetachstate`](#pthread-attr-setdetachstate)
+  - [`pthread_detach`](#pthread-detach)
+  - [`sched_yield`](#sched-yield)
+  - [`pthread_key_create`](#pthread-key-create)
+  - [`pthread_key_delete`](#pthread-key-delete)
+  - [`pthread_getspecific`](#pthread-getspecific)
+  - [`pthread_setspecific`](#pthread-setspecific)
+  - [`pthread_mutex_init`](#pthread-mutex-init)
+  - [`pthread_mutex_destroy`](#pthread-mutex-destroy)
+  - [`pthread_mutex_lock`](#pthread-mutex-lock)
+  - [`pthread_mutex_trylock`](#pthread-mutex-trylock)
+  - [`pthread_mutex_unlock`](#pthread-mutex-unlock)
+  - [`pthread_mutexattr_init`](#pthread-mutexattr-init)
+  - [`pthread_mutexattr_destroy`](#pthread-mutexattr-destroy)
+  - [`pthread_mutexattr_settype`](#pthread-mutexattr-settype)
+  - [`pthread_cond_init`](#pthread-cond-init)
+  - [`pthread_cond_wait`](#pthread-cond-wait)
+  - [`pthread_cond_timedwait`](#pthread-cond-timedwait)
+  - [`pthread_cond_signal`](#pthread-cond-signal)
+  - [`pthread_cond_broadcast`](#pthread-cond-broadcast)
+  - [`pthread_cond_destroy`](#pthread-cond-destroy)
+  - [`pthread_condattr_init`](#pthread-condattr-init)
+  - [`pthread_condattr_destroy`](#pthread-condattr-destroy)
+  - [`pthread_rwlock_init`](#pthread-rwlock-init)
+  - [`pthread_rwlock_destroy`](#pthread-rwlock-destroy)
+  - [`pthread_rwlock_rdlock`](#pthread-rwlock-rdlock)
+  - [`pthread_rwlock_tryrdlock`](#pthread-rwlock-tryrdlock)
+  - [`pthread_rwlock_wrlock`](#pthread-rwlock-wrlock)
+  - [`pthread_rwlock_trywrlock`](#pthread-rwlock-trywrlock)
+  - [`pthread_rwlock_unlock`](#pthread-rwlock-unlock)
+  - [`pthread_rwlockattr_init`](#pthread-rwlockattr-init)
+  - [`pthread_rwlockattr_destroy`](#pthread-rwlockattr-destroy)
   - [`getsockopt`](#getsockopt)
   - [`raise`](#raise)
   - [`utimes`](#utimes)
@@ -310,10 +310,10 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`getaddrinfo`](#getaddrinfo)
   - [`freeaddrinfo`](#freeaddrinfo)
   - [`hstrerror`](#hstrerror)
-  - [`gai_strerror`](#gai_strerror)
-  - [`res_init`](#res_init)
-  - [`gmtime_r`](#gmtime_r)
-  - [`localtime_r`](#localtime_r)
+  - [`gai_strerror`](#gai-strerror)
+  - [`res_init`](#res-init)
+  - [`gmtime_r`](#gmtime-r)
+  - [`localtime_r`](#localtime-r)
   - [`mktime`](#mktime)
   - [`time`](#time)
   - [`gmtime`](#gmtime)
@@ -338,9 +338,9 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`select`](#select)
   - [`setlocale`](#setlocale)
   - [`localeconv`](#localeconv)
-  - [`sem_wait`](#sem_wait)
-  - [`sem_trywait`](#sem_trywait)
-  - [`sem_post`](#sem_post)
+  - [`sem_wait`](#sem-wait)
+  - [`sem_trywait`](#sem-trywait)
+  - [`sem_post`](#sem-post)
   - [`statvfs`](#statvfs)
   - [`fstatvfs`](#fstatvfs)
   - [`sigemptyset`](#sigemptyset)
@@ -374,7 +374,7 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`syslog`](#syslog)
   - [`nice`](#nice)
   - [`grantpt`](#grantpt)
-  - [`posix_openpt`](#posix_openpt)
+  - [`posix_openpt`](#posix-openpt)
   - [`ptsname`](#ptsname)
   - [`unlockpt`](#unlockpt)
   - [`strcasestr`](#strcasestr)
@@ -386,16 +386,16 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`confstr`](#confstr)
   - [`dladdr`](#dladdr)
   - [`flock`](#flock)
-  - [`open_wmemstream`](#open_wmemstream)
+  - [`open_wmemstream`](#open-wmemstream)
   - [`getsid`](#getsid)
   - [`pause`](#pause)
   - [`mkdirat`](#mkdirat)
   - [`openat`](#openat)
   - [`fdopendir`](#fdopendir)
-  - [`readdir_r`](#readdir_r)
+  - [`readdir_r`](#readdir-r)
   - [`readlinkat`](#readlinkat)
   - [`fmemopen`](#fmemopen)
-  - [`open_memstream`](#open_memstream)
+  - [`open_memstream`](#open-memstream)
   - [`atexit`](#atexit)
   - [`sigaction`](#sigaction)
   - [`readlink`](#readlink)
@@ -408,122 +408,122 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`ntohl`](#ntohl)
   - [`ntohs`](#ntohs)
 - [Type Aliases](#type-aliases)
-  - [`c_schar`](#c_schar)
-  - [`c_uchar`](#c_uchar)
-  - [`c_short`](#c_short)
-  - [`c_ushort`](#c_ushort)
-  - [`c_longlong`](#c_longlong)
-  - [`c_ulonglong`](#c_ulonglong)
-  - [`c_float`](#c_float)
-  - [`c_double`](#c_double)
-  - [`c_char`](#c_char)
-  - [`c_int`](#c_int)
-  - [`c_uint`](#c_uint)
-  - [`c_long`](#c_long)
-  - [`c_ulong`](#c_ulong)
-  - [`int8_t`](#int8_t)
-  - [`int16_t`](#int16_t)
-  - [`int32_t`](#int32_t)
-  - [`int64_t`](#int64_t)
-  - [`uint8_t`](#uint8_t)
-  - [`uint16_t`](#uint16_t)
-  - [`uint32_t`](#uint32_t)
-  - [`uint64_t`](#uint64_t)
-  - [`intmax_t`](#intmax_t)
-  - [`uintmax_t`](#uintmax_t)
-  - [`size_t`](#size_t)
-  - [`ptrdiff_t`](#ptrdiff_t)
-  - [`intptr_t`](#intptr_t)
-  - [`uintptr_t`](#uintptr_t)
-  - [`ssize_t`](#ssize_t)
-  - [`pid_t`](#pid_t)
-  - [`in_addr_t`](#in_addr_t)
-  - [`in_port_t`](#in_port_t)
-  - [`sighandler_t`](#sighandler_t)
-  - [`cc_t`](#cc_t)
-  - [`uid_t`](#uid_t)
-  - [`gid_t`](#gid_t)
-  - [`locale_t`](#locale_t)
+  - [`c_schar`](#c-schar)
+  - [`c_uchar`](#c-uchar)
+  - [`c_short`](#c-short)
+  - [`c_ushort`](#c-ushort)
+  - [`c_longlong`](#c-longlong)
+  - [`c_ulonglong`](#c-ulonglong)
+  - [`c_float`](#c-float)
+  - [`c_double`](#c-double)
+  - [`c_char`](#c-char)
+  - [`c_int`](#c-int)
+  - [`c_uint`](#c-uint)
+  - [`c_long`](#c-long)
+  - [`c_ulong`](#c-ulong)
+  - [`int8_t`](#int8-t)
+  - [`int16_t`](#int16-t)
+  - [`int32_t`](#int32-t)
+  - [`int64_t`](#int64-t)
+  - [`uint8_t`](#uint8-t)
+  - [`uint16_t`](#uint16-t)
+  - [`uint32_t`](#uint32-t)
+  - [`uint64_t`](#uint64-t)
+  - [`intmax_t`](#intmax-t)
+  - [`uintmax_t`](#uintmax-t)
+  - [`size_t`](#size-t)
+  - [`ptrdiff_t`](#ptrdiff-t)
+  - [`intptr_t`](#intptr-t)
+  - [`uintptr_t`](#uintptr-t)
+  - [`ssize_t`](#ssize-t)
+  - [`pid_t`](#pid-t)
+  - [`in_addr_t`](#in-addr-t)
+  - [`in_port_t`](#in-port-t)
+  - [`sighandler_t`](#sighandler-t)
+  - [`cc_t`](#cc-t)
+  - [`uid_t`](#uid-t)
+  - [`gid_t`](#gid-t)
+  - [`locale_t`](#locale-t)
 - [Constants](#constants)
-  - [`INT_MIN`](#int_min)
-  - [`INT_MAX`](#int_max)
-  - [`SIG_DFL`](#sig_dfl)
-  - [`SIG_IGN`](#sig_ign)
-  - [`SIG_ERR`](#sig_err)
-  - [`DT_UNKNOWN`](#dt_unknown)
-  - [`DT_FIFO`](#dt_fifo)
-  - [`DT_CHR`](#dt_chr)
-  - [`DT_DIR`](#dt_dir)
-  - [`DT_BLK`](#dt_blk)
-  - [`DT_REG`](#dt_reg)
-  - [`DT_LNK`](#dt_lnk)
-  - [`DT_SOCK`](#dt_sock)
-  - [`FD_CLOEXEC`](#fd_cloexec)
+  - [`INT_MIN`](#int-min)
+  - [`INT_MAX`](#int-max)
+  - [`SIG_DFL`](#sig-dfl)
+  - [`SIG_IGN`](#sig-ign)
+  - [`SIG_ERR`](#sig-err)
+  - [`DT_UNKNOWN`](#dt-unknown)
+  - [`DT_FIFO`](#dt-fifo)
+  - [`DT_CHR`](#dt-chr)
+  - [`DT_DIR`](#dt-dir)
+  - [`DT_BLK`](#dt-blk)
+  - [`DT_REG`](#dt-reg)
+  - [`DT_LNK`](#dt-lnk)
+  - [`DT_SOCK`](#dt-sock)
+  - [`FD_CLOEXEC`](#fd-cloexec)
   - [`USRQUOTA`](#usrquota)
   - [`GRPQUOTA`](#grpquota)
   - [`SIGIOT`](#sigiot)
-  - [`S_ISUID`](#s_isuid)
-  - [`S_ISGID`](#s_isgid)
-  - [`S_ISVTX`](#s_isvtx)
-  - [`IF_NAMESIZE`](#if_namesize)
+  - [`S_ISUID`](#s-isuid)
+  - [`S_ISGID`](#s-isgid)
+  - [`S_ISVTX`](#s-isvtx)
+  - [`IF_NAMESIZE`](#if-namesize)
   - [`IFNAMSIZ`](#ifnamsiz)
-  - [`LOG_EMERG`](#log_emerg)
-  - [`LOG_ALERT`](#log_alert)
-  - [`LOG_CRIT`](#log_crit)
-  - [`LOG_ERR`](#log_err)
-  - [`LOG_WARNING`](#log_warning)
-  - [`LOG_NOTICE`](#log_notice)
-  - [`LOG_INFO`](#log_info)
-  - [`LOG_DEBUG`](#log_debug)
-  - [`LOG_KERN`](#log_kern)
-  - [`LOG_USER`](#log_user)
-  - [`LOG_MAIL`](#log_mail)
-  - [`LOG_DAEMON`](#log_daemon)
-  - [`LOG_AUTH`](#log_auth)
-  - [`LOG_SYSLOG`](#log_syslog)
-  - [`LOG_LPR`](#log_lpr)
-  - [`LOG_NEWS`](#log_news)
-  - [`LOG_UUCP`](#log_uucp)
-  - [`LOG_LOCAL0`](#log_local0)
-  - [`LOG_LOCAL1`](#log_local1)
-  - [`LOG_LOCAL2`](#log_local2)
-  - [`LOG_LOCAL3`](#log_local3)
-  - [`LOG_LOCAL4`](#log_local4)
-  - [`LOG_LOCAL5`](#log_local5)
-  - [`LOG_LOCAL6`](#log_local6)
-  - [`LOG_LOCAL7`](#log_local7)
-  - [`LOG_PID`](#log_pid)
-  - [`LOG_CONS`](#log_cons)
-  - [`LOG_ODELAY`](#log_odelay)
-  - [`LOG_NDELAY`](#log_ndelay)
-  - [`LOG_NOWAIT`](#log_nowait)
-  - [`LOG_PRIMASK`](#log_primask)
-  - [`LOG_FACMASK`](#log_facmask)
-  - [`PRIO_MIN`](#prio_min)
-  - [`PRIO_MAX`](#prio_max)
-  - [`IPPROTO_ICMP`](#ipproto_icmp)
-  - [`IPPROTO_ICMPV6`](#ipproto_icmpv6)
-  - [`IPPROTO_TCP`](#ipproto_tcp)
-  - [`IPPROTO_UDP`](#ipproto_udp)
-  - [`IPPROTO_IP`](#ipproto_ip)
-  - [`IPPROTO_IPV6`](#ipproto_ipv6)
-  - [`INADDR_LOOPBACK`](#inaddr_loopback)
-  - [`INADDR_ANY`](#inaddr_any)
-  - [`INADDR_BROADCAST`](#inaddr_broadcast)
-  - [`INADDR_NONE`](#inaddr_none)
-  - [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init)
-  - [`IN6ADDR_ANY_INIT`](#in6addr_any_init)
-  - [`ARPOP_REQUEST`](#arpop_request)
-  - [`ARPOP_REPLY`](#arpop_reply)
-  - [`ATF_COM`](#atf_com)
-  - [`ATF_PERM`](#atf_perm)
-  - [`ATF_PUBL`](#atf_publ)
-  - [`ATF_USETRAILERS`](#atf_usetrailers)
-  - [`FNM_PERIOD`](#fnm_period)
-  - [`FNM_NOMATCH`](#fnm_nomatch)
-  - [`FNM_CASEFOLD`](#fnm_casefold)
-  - [`FNM_PATHNAME`](#fnm_pathname)
-  - [`FNM_NOESCAPE`](#fnm_noescape)
+  - [`LOG_EMERG`](#log-emerg)
+  - [`LOG_ALERT`](#log-alert)
+  - [`LOG_CRIT`](#log-crit)
+  - [`LOG_ERR`](#log-err)
+  - [`LOG_WARNING`](#log-warning)
+  - [`LOG_NOTICE`](#log-notice)
+  - [`LOG_INFO`](#log-info)
+  - [`LOG_DEBUG`](#log-debug)
+  - [`LOG_KERN`](#log-kern)
+  - [`LOG_USER`](#log-user)
+  - [`LOG_MAIL`](#log-mail)
+  - [`LOG_DAEMON`](#log-daemon)
+  - [`LOG_AUTH`](#log-auth)
+  - [`LOG_SYSLOG`](#log-syslog)
+  - [`LOG_LPR`](#log-lpr)
+  - [`LOG_NEWS`](#log-news)
+  - [`LOG_UUCP`](#log-uucp)
+  - [`LOG_LOCAL0`](#log-local0)
+  - [`LOG_LOCAL1`](#log-local1)
+  - [`LOG_LOCAL2`](#log-local2)
+  - [`LOG_LOCAL3`](#log-local3)
+  - [`LOG_LOCAL4`](#log-local4)
+  - [`LOG_LOCAL5`](#log-local5)
+  - [`LOG_LOCAL6`](#log-local6)
+  - [`LOG_LOCAL7`](#log-local7)
+  - [`LOG_PID`](#log-pid)
+  - [`LOG_CONS`](#log-cons)
+  - [`LOG_ODELAY`](#log-odelay)
+  - [`LOG_NDELAY`](#log-ndelay)
+  - [`LOG_NOWAIT`](#log-nowait)
+  - [`LOG_PRIMASK`](#log-primask)
+  - [`LOG_FACMASK`](#log-facmask)
+  - [`PRIO_MIN`](#prio-min)
+  - [`PRIO_MAX`](#prio-max)
+  - [`IPPROTO_ICMP`](#ipproto-icmp)
+  - [`IPPROTO_ICMPV6`](#ipproto-icmpv6)
+  - [`IPPROTO_TCP`](#ipproto-tcp)
+  - [`IPPROTO_UDP`](#ipproto-udp)
+  - [`IPPROTO_IP`](#ipproto-ip)
+  - [`IPPROTO_IPV6`](#ipproto-ipv6)
+  - [`INADDR_LOOPBACK`](#inaddr-loopback)
+  - [`INADDR_ANY`](#inaddr-any)
+  - [`INADDR_BROADCAST`](#inaddr-broadcast)
+  - [`INADDR_NONE`](#inaddr-none)
+  - [`IN6ADDR_LOOPBACK_INIT`](#in6addr-loopback-init)
+  - [`IN6ADDR_ANY_INIT`](#in6addr-any-init)
+  - [`ARPOP_REQUEST`](#arpop-request)
+  - [`ARPOP_REPLY`](#arpop-reply)
+  - [`ATF_COM`](#atf-com)
+  - [`ATF_PERM`](#atf-perm)
+  - [`ATF_PUBL`](#atf-publ)
+  - [`ATF_USETRAILERS`](#atf-usetrailers)
+  - [`FNM_PERIOD`](#fnm-period)
+  - [`FNM_NOMATCH`](#fnm-nomatch)
+  - [`FNM_CASEFOLD`](#fnm-casefold)
+  - [`FNM_PATHNAME`](#fnm-pathname)
+  - [`FNM_NOESCAPE`](#fnm-noescape)
 
 ## Quick Reference
 
@@ -536,15 +536,15 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`types`](#types) | mod | Platform-agnostic support types. |
 | [`prelude`](#prelude) | mod | Frequently-used types that are available on all platforms |
 | [`common`](#common) | mod | Interfaces that are common across multiple platforms |
-| [`linux_uapi`](#linux_uapi) | mod | This directory maps to `include/uapi` in the Linux source tree. |
+| [`linux_uapi`](#linux-uapi) | mod | This directory maps to `include/uapi` in the Linux source tree. |
 | [`glibc`](#glibc) | mod | GNU libc. |
-| [`linux_like`](#linux_like) | mod |  |
+| [`linux_like`](#linux-like) | mod |  |
 | [`group`](#group) | struct |  |
 | [`utimbuf`](#utimbuf) | struct |  |
 | [`timeval`](#timeval) | struct |  |
 | [`rlimit`](#rlimit) | struct |  |
 | [`rusage`](#rusage) | struct |  |
-| [`ipv6_mreq`](#ipv6_mreq) | struct |  |
+| [`ipv6_mreq`](#ipv6-mreq) | struct |  |
 | [`hostent`](#hostent) | struct |  |
 | [`iovec`](#iovec) | struct |  |
 | [`pollfd`](#pollfd) | struct |  |
@@ -555,10 +555,10 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`tms`](#tms) | struct |  |
 | [`servent`](#servent) | struct |  |
 | [`protoent`](#protoent) | struct |  |
-| [`in6_addr`](#in6_addr) | struct |  |
+| [`in6_addr`](#in6-addr) | struct |  |
 | [`DIR`](#dir) | enum |  |
 | [`FILE`](#file) | enum |  |
-| [`c_void`](#c_void) | fn |  |
+| [`c_void`](#c-void) | fn |  |
 | [`isalnum`](#isalnum) | fn |  |
 | [`isalpha`](#isalpha) | fn |  |
 | [`iscntrl`](#iscntrl) | fn |  |
@@ -619,7 +619,7 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`free`](#free) | fn |  |
 | [`abort`](#abort) | fn |  |
 | [`exit`](#exit) | fn |  |
-| [`_exit`](#_exit) | fn |  |
+| [`_exit`](#exit) | fn |  |
 | [`system`](#system) | fn |  |
 | [`getenv`](#getenv) | fn |  |
 | [`strcpy`](#strcpy) | fn |  |
@@ -644,7 +644,7 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`strnlen`](#strnlen) | fn |  |
 | [`strerror`](#strerror) | fn |  |
 | [`strtok`](#strtok) | fn |  |
-| [`strtok_r`](#strtok_r) | fn |  |
+| [`strtok_r`](#strtok-r) | fn |  |
 | [`strxfrm`](#strxfrm) | fn |  |
 | [`strsignal`](#strsignal) | fn |  |
 | [`wcslen`](#wcslen) | fn |  |
@@ -665,8 +665,8 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`fscanf`](#fscanf) | fn |  |
 | [`scanf`](#scanf) | fn |  |
 | [`sscanf`](#sscanf) | fn |  |
-| [`getchar_unlocked`](#getchar_unlocked) | fn |  |
-| [`putchar_unlocked`](#putchar_unlocked) | fn |  |
+| [`getchar_unlocked`](#getchar-unlocked) | fn |  |
+| [`putchar_unlocked`](#putchar-unlocked) | fn |  |
 | [`socket`](#socket) | fn |  |
 | [`connect`](#connect) | fn |  |
 | [`listen`](#listen) | fn |  |
@@ -734,8 +734,8 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`lseek`](#lseek) | fn |  |
 | [`pathconf`](#pathconf) | fn |  |
 | [`pipe`](#pipe) | fn |  |
-| [`posix_memalign`](#posix_memalign) | fn |  |
-| [`aligned_alloc`](#aligned_alloc) | fn |  |
+| [`posix_memalign`](#posix-memalign) | fn |  |
+| [`aligned_alloc`](#aligned-alloc) | fn |  |
 | [`read`](#read) | fn |  |
 | [`rmdir`](#rmdir) | fn |  |
 | [`seteuid`](#seteuid) | fn |  |
@@ -751,7 +751,7 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`tcgetpgrp`](#tcgetpgrp) | fn |  |
 | [`tcsetpgrp`](#tcsetpgrp) | fn |  |
 | [`ttyname`](#ttyname) | fn |  |
-| [`ttyname_r`](#ttyname_r) | fn |  |
+| [`ttyname_r`](#ttyname-r) | fn |  |
 | [`unlink`](#unlink) | fn |  |
 | [`wait`](#wait) | fn |  |
 | [`waitpid`](#waitpid) | fn |  |
@@ -768,8 +768,8 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`munlockall`](#munlockall) | fn |  |
 | [`mmap`](#mmap) | fn |  |
 | [`munmap`](#munmap) | fn |  |
-| [`if_nametoindex`](#if_nametoindex) | fn |  |
-| [`if_indextoname`](#if_indextoname) | fn |  |
+| [`if_nametoindex`](#if-nametoindex) | fn |  |
+| [`if_indextoname`](#if-indextoname) | fn |  |
 | [`lstat`](#lstat) | fn |  |
 | [`fsync`](#fsync) | fn |  |
 | [`setenv`](#setenv) | fn |  |
@@ -781,46 +781,46 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`getrusage`](#getrusage) | fn |  |
 | [`realpath`](#realpath) | fn |  |
 | [`times`](#times) | fn |  |
-| [`pthread_self`](#pthread_self) | fn |  |
-| [`pthread_equal`](#pthread_equal) | fn |  |
-| [`pthread_join`](#pthread_join) | fn |  |
-| [`pthread_exit`](#pthread_exit) | fn |  |
-| [`pthread_attr_init`](#pthread_attr_init) | fn |  |
-| [`pthread_attr_destroy`](#pthread_attr_destroy) | fn |  |
-| [`pthread_attr_getstacksize`](#pthread_attr_getstacksize) | fn |  |
-| [`pthread_attr_setstacksize`](#pthread_attr_setstacksize) | fn |  |
-| [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate) | fn |  |
-| [`pthread_detach`](#pthread_detach) | fn |  |
-| [`sched_yield`](#sched_yield) | fn |  |
-| [`pthread_key_create`](#pthread_key_create) | fn |  |
-| [`pthread_key_delete`](#pthread_key_delete) | fn |  |
-| [`pthread_getspecific`](#pthread_getspecific) | fn |  |
-| [`pthread_setspecific`](#pthread_setspecific) | fn |  |
-| [`pthread_mutex_init`](#pthread_mutex_init) | fn |  |
-| [`pthread_mutex_destroy`](#pthread_mutex_destroy) | fn |  |
-| [`pthread_mutex_lock`](#pthread_mutex_lock) | fn |  |
-| [`pthread_mutex_trylock`](#pthread_mutex_trylock) | fn |  |
-| [`pthread_mutex_unlock`](#pthread_mutex_unlock) | fn |  |
-| [`pthread_mutexattr_init`](#pthread_mutexattr_init) | fn |  |
-| [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy) | fn |  |
-| [`pthread_mutexattr_settype`](#pthread_mutexattr_settype) | fn |  |
-| [`pthread_cond_init`](#pthread_cond_init) | fn |  |
-| [`pthread_cond_wait`](#pthread_cond_wait) | fn |  |
-| [`pthread_cond_timedwait`](#pthread_cond_timedwait) | fn |  |
-| [`pthread_cond_signal`](#pthread_cond_signal) | fn |  |
-| [`pthread_cond_broadcast`](#pthread_cond_broadcast) | fn |  |
-| [`pthread_cond_destroy`](#pthread_cond_destroy) | fn |  |
-| [`pthread_condattr_init`](#pthread_condattr_init) | fn |  |
-| [`pthread_condattr_destroy`](#pthread_condattr_destroy) | fn |  |
-| [`pthread_rwlock_init`](#pthread_rwlock_init) | fn |  |
-| [`pthread_rwlock_destroy`](#pthread_rwlock_destroy) | fn |  |
-| [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock) | fn |  |
-| [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock) | fn |  |
-| [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock) | fn |  |
-| [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock) | fn |  |
-| [`pthread_rwlock_unlock`](#pthread_rwlock_unlock) | fn |  |
-| [`pthread_rwlockattr_init`](#pthread_rwlockattr_init) | fn |  |
-| [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy) | fn |  |
+| [`pthread_self`](#pthread-self) | fn |  |
+| [`pthread_equal`](#pthread-equal) | fn |  |
+| [`pthread_join`](#pthread-join) | fn |  |
+| [`pthread_exit`](#pthread-exit) | fn |  |
+| [`pthread_attr_init`](#pthread-attr-init) | fn |  |
+| [`pthread_attr_destroy`](#pthread-attr-destroy) | fn |  |
+| [`pthread_attr_getstacksize`](#pthread-attr-getstacksize) | fn |  |
+| [`pthread_attr_setstacksize`](#pthread-attr-setstacksize) | fn |  |
+| [`pthread_attr_setdetachstate`](#pthread-attr-setdetachstate) | fn |  |
+| [`pthread_detach`](#pthread-detach) | fn |  |
+| [`sched_yield`](#sched-yield) | fn |  |
+| [`pthread_key_create`](#pthread-key-create) | fn |  |
+| [`pthread_key_delete`](#pthread-key-delete) | fn |  |
+| [`pthread_getspecific`](#pthread-getspecific) | fn |  |
+| [`pthread_setspecific`](#pthread-setspecific) | fn |  |
+| [`pthread_mutex_init`](#pthread-mutex-init) | fn |  |
+| [`pthread_mutex_destroy`](#pthread-mutex-destroy) | fn |  |
+| [`pthread_mutex_lock`](#pthread-mutex-lock) | fn |  |
+| [`pthread_mutex_trylock`](#pthread-mutex-trylock) | fn |  |
+| [`pthread_mutex_unlock`](#pthread-mutex-unlock) | fn |  |
+| [`pthread_mutexattr_init`](#pthread-mutexattr-init) | fn |  |
+| [`pthread_mutexattr_destroy`](#pthread-mutexattr-destroy) | fn |  |
+| [`pthread_mutexattr_settype`](#pthread-mutexattr-settype) | fn |  |
+| [`pthread_cond_init`](#pthread-cond-init) | fn |  |
+| [`pthread_cond_wait`](#pthread-cond-wait) | fn |  |
+| [`pthread_cond_timedwait`](#pthread-cond-timedwait) | fn |  |
+| [`pthread_cond_signal`](#pthread-cond-signal) | fn |  |
+| [`pthread_cond_broadcast`](#pthread-cond-broadcast) | fn |  |
+| [`pthread_cond_destroy`](#pthread-cond-destroy) | fn |  |
+| [`pthread_condattr_init`](#pthread-condattr-init) | fn |  |
+| [`pthread_condattr_destroy`](#pthread-condattr-destroy) | fn |  |
+| [`pthread_rwlock_init`](#pthread-rwlock-init) | fn |  |
+| [`pthread_rwlock_destroy`](#pthread-rwlock-destroy) | fn |  |
+| [`pthread_rwlock_rdlock`](#pthread-rwlock-rdlock) | fn |  |
+| [`pthread_rwlock_tryrdlock`](#pthread-rwlock-tryrdlock) | fn |  |
+| [`pthread_rwlock_wrlock`](#pthread-rwlock-wrlock) | fn |  |
+| [`pthread_rwlock_trywrlock`](#pthread-rwlock-trywrlock) | fn |  |
+| [`pthread_rwlock_unlock`](#pthread-rwlock-unlock) | fn |  |
+| [`pthread_rwlockattr_init`](#pthread-rwlockattr-init) | fn |  |
+| [`pthread_rwlockattr_destroy`](#pthread-rwlockattr-destroy) | fn |  |
 | [`getsockopt`](#getsockopt) | fn |  |
 | [`raise`](#raise) | fn |  |
 | [`utimes`](#utimes) | fn |  |
@@ -831,10 +831,10 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`getaddrinfo`](#getaddrinfo) | fn |  |
 | [`freeaddrinfo`](#freeaddrinfo) | fn |  |
 | [`hstrerror`](#hstrerror) | fn |  |
-| [`gai_strerror`](#gai_strerror) | fn |  |
-| [`res_init`](#res_init) | fn |  |
-| [`gmtime_r`](#gmtime_r) | fn |  |
-| [`localtime_r`](#localtime_r) | fn |  |
+| [`gai_strerror`](#gai-strerror) | fn |  |
+| [`res_init`](#res-init) | fn |  |
+| [`gmtime_r`](#gmtime-r) | fn |  |
+| [`localtime_r`](#localtime-r) | fn |  |
 | [`mktime`](#mktime) | fn |  |
 | [`time`](#time) | fn |  |
 | [`gmtime`](#gmtime) | fn |  |
@@ -859,9 +859,9 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`select`](#select) | fn |  |
 | [`setlocale`](#setlocale) | fn |  |
 | [`localeconv`](#localeconv) | fn |  |
-| [`sem_wait`](#sem_wait) | fn |  |
-| [`sem_trywait`](#sem_trywait) | fn |  |
-| [`sem_post`](#sem_post) | fn |  |
+| [`sem_wait`](#sem-wait) | fn |  |
+| [`sem_trywait`](#sem-trywait) | fn |  |
+| [`sem_post`](#sem-post) | fn |  |
 | [`statvfs`](#statvfs) | fn |  |
 | [`fstatvfs`](#fstatvfs) | fn |  |
 | [`sigemptyset`](#sigemptyset) | fn |  |
@@ -895,7 +895,7 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`syslog`](#syslog) | fn |  |
 | [`nice`](#nice) | fn |  |
 | [`grantpt`](#grantpt) | fn |  |
-| [`posix_openpt`](#posix_openpt) | fn |  |
+| [`posix_openpt`](#posix-openpt) | fn |  |
 | [`ptsname`](#ptsname) | fn |  |
 | [`unlockpt`](#unlockpt) | fn |  |
 | [`strcasestr`](#strcasestr) | fn |  |
@@ -907,16 +907,16 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`confstr`](#confstr) | fn |  |
 | [`dladdr`](#dladdr) | fn |  |
 | [`flock`](#flock) | fn |  |
-| [`open_wmemstream`](#open_wmemstream) | fn |  |
+| [`open_wmemstream`](#open-wmemstream) | fn |  |
 | [`getsid`](#getsid) | fn |  |
 | [`pause`](#pause) | fn |  |
 | [`mkdirat`](#mkdirat) | fn |  |
 | [`openat`](#openat) | fn |  |
 | [`fdopendir`](#fdopendir) | fn |  |
-| [`readdir_r`](#readdir_r) | fn | The 64-bit libc on Solaris and illumos only has readdir_r. |
+| [`readdir_r`](#readdir-r) | fn | The 64-bit libc on Solaris and illumos only has readdir_r. |
 | [`readlinkat`](#readlinkat) | fn |  |
 | [`fmemopen`](#fmemopen) | fn |  |
-| [`open_memstream`](#open_memstream) | fn |  |
+| [`open_memstream`](#open-memstream) | fn |  |
 | [`atexit`](#atexit) | fn |  |
 | [`sigaction`](#sigaction) | fn |  |
 | [`readlink`](#readlink) | fn |  |
@@ -928,121 +928,121 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`htons`](#htons) | fn |  |
 | [`ntohl`](#ntohl) | fn |  |
 | [`ntohs`](#ntohs) | fn |  |
-| [`c_schar`](#c_schar) | type |  |
-| [`c_uchar`](#c_uchar) | type |  |
-| [`c_short`](#c_short) | type |  |
-| [`c_ushort`](#c_ushort) | type |  |
-| [`c_longlong`](#c_longlong) | type |  |
-| [`c_ulonglong`](#c_ulonglong) | type |  |
-| [`c_float`](#c_float) | type |  |
-| [`c_double`](#c_double) | type |  |
-| [`c_char`](#c_char) | type |  |
-| [`c_int`](#c_int) | type |  |
-| [`c_uint`](#c_uint) | type |  |
-| [`c_long`](#c_long) | type |  |
-| [`c_ulong`](#c_ulong) | type |  |
-| [`int8_t`](#int8_t) | type |  |
-| [`int16_t`](#int16_t) | type |  |
-| [`int32_t`](#int32_t) | type |  |
-| [`int64_t`](#int64_t) | type |  |
-| [`uint8_t`](#uint8_t) | type |  |
-| [`uint16_t`](#uint16_t) | type |  |
-| [`uint32_t`](#uint32_t) | type |  |
-| [`uint64_t`](#uint64_t) | type |  |
-| [`intmax_t`](#intmax_t) | type |  |
-| [`uintmax_t`](#uintmax_t) | type |  |
-| [`size_t`](#size_t) | type |  |
-| [`ptrdiff_t`](#ptrdiff_t) | type |  |
-| [`intptr_t`](#intptr_t) | type |  |
-| [`uintptr_t`](#uintptr_t) | type |  |
-| [`ssize_t`](#ssize_t) | type |  |
-| [`pid_t`](#pid_t) | type |  |
-| [`in_addr_t`](#in_addr_t) | type |  |
-| [`in_port_t`](#in_port_t) | type |  |
-| [`sighandler_t`](#sighandler_t) | type |  |
-| [`cc_t`](#cc_t) | type |  |
-| [`uid_t`](#uid_t) | type |  |
-| [`gid_t`](#gid_t) | type |  |
-| [`locale_t`](#locale_t) | type |  |
-| [`INT_MIN`](#int_min) | const |  |
-| [`INT_MAX`](#int_max) | const |  |
-| [`SIG_DFL`](#sig_dfl) | const |  |
-| [`SIG_IGN`](#sig_ign) | const |  |
-| [`SIG_ERR`](#sig_err) | const |  |
-| [`DT_UNKNOWN`](#dt_unknown) | const |  |
-| [`DT_FIFO`](#dt_fifo) | const |  |
-| [`DT_CHR`](#dt_chr) | const |  |
-| [`DT_DIR`](#dt_dir) | const |  |
-| [`DT_BLK`](#dt_blk) | const |  |
-| [`DT_REG`](#dt_reg) | const |  |
-| [`DT_LNK`](#dt_lnk) | const |  |
-| [`DT_SOCK`](#dt_sock) | const |  |
-| [`FD_CLOEXEC`](#fd_cloexec) | const |  |
+| [`c_schar`](#c-schar) | type |  |
+| [`c_uchar`](#c-uchar) | type |  |
+| [`c_short`](#c-short) | type |  |
+| [`c_ushort`](#c-ushort) | type |  |
+| [`c_longlong`](#c-longlong) | type |  |
+| [`c_ulonglong`](#c-ulonglong) | type |  |
+| [`c_float`](#c-float) | type |  |
+| [`c_double`](#c-double) | type |  |
+| [`c_char`](#c-char) | type |  |
+| [`c_int`](#c-int) | type |  |
+| [`c_uint`](#c-uint) | type |  |
+| [`c_long`](#c-long) | type |  |
+| [`c_ulong`](#c-ulong) | type |  |
+| [`int8_t`](#int8-t) | type |  |
+| [`int16_t`](#int16-t) | type |  |
+| [`int32_t`](#int32-t) | type |  |
+| [`int64_t`](#int64-t) | type |  |
+| [`uint8_t`](#uint8-t) | type |  |
+| [`uint16_t`](#uint16-t) | type |  |
+| [`uint32_t`](#uint32-t) | type |  |
+| [`uint64_t`](#uint64-t) | type |  |
+| [`intmax_t`](#intmax-t) | type |  |
+| [`uintmax_t`](#uintmax-t) | type |  |
+| [`size_t`](#size-t) | type |  |
+| [`ptrdiff_t`](#ptrdiff-t) | type |  |
+| [`intptr_t`](#intptr-t) | type |  |
+| [`uintptr_t`](#uintptr-t) | type |  |
+| [`ssize_t`](#ssize-t) | type |  |
+| [`pid_t`](#pid-t) | type |  |
+| [`in_addr_t`](#in-addr-t) | type |  |
+| [`in_port_t`](#in-port-t) | type |  |
+| [`sighandler_t`](#sighandler-t) | type |  |
+| [`cc_t`](#cc-t) | type |  |
+| [`uid_t`](#uid-t) | type |  |
+| [`gid_t`](#gid-t) | type |  |
+| [`locale_t`](#locale-t) | type |  |
+| [`INT_MIN`](#int-min) | const |  |
+| [`INT_MAX`](#int-max) | const |  |
+| [`SIG_DFL`](#sig-dfl) | const |  |
+| [`SIG_IGN`](#sig-ign) | const |  |
+| [`SIG_ERR`](#sig-err) | const |  |
+| [`DT_UNKNOWN`](#dt-unknown) | const |  |
+| [`DT_FIFO`](#dt-fifo) | const |  |
+| [`DT_CHR`](#dt-chr) | const |  |
+| [`DT_DIR`](#dt-dir) | const |  |
+| [`DT_BLK`](#dt-blk) | const |  |
+| [`DT_REG`](#dt-reg) | const |  |
+| [`DT_LNK`](#dt-lnk) | const |  |
+| [`DT_SOCK`](#dt-sock) | const |  |
+| [`FD_CLOEXEC`](#fd-cloexec) | const |  |
 | [`USRQUOTA`](#usrquota) | const |  |
 | [`GRPQUOTA`](#grpquota) | const |  |
 | [`SIGIOT`](#sigiot) | const |  |
-| [`S_ISUID`](#s_isuid) | const |  |
-| [`S_ISGID`](#s_isgid) | const |  |
-| [`S_ISVTX`](#s_isvtx) | const |  |
-| [`IF_NAMESIZE`](#if_namesize) | const |  |
+| [`S_ISUID`](#s-isuid) | const |  |
+| [`S_ISGID`](#s-isgid) | const |  |
+| [`S_ISVTX`](#s-isvtx) | const |  |
+| [`IF_NAMESIZE`](#if-namesize) | const |  |
 | [`IFNAMSIZ`](#ifnamsiz) | const |  |
-| [`LOG_EMERG`](#log_emerg) | const |  |
-| [`LOG_ALERT`](#log_alert) | const |  |
-| [`LOG_CRIT`](#log_crit) | const |  |
-| [`LOG_ERR`](#log_err) | const |  |
-| [`LOG_WARNING`](#log_warning) | const |  |
-| [`LOG_NOTICE`](#log_notice) | const |  |
-| [`LOG_INFO`](#log_info) | const |  |
-| [`LOG_DEBUG`](#log_debug) | const |  |
-| [`LOG_KERN`](#log_kern) | const |  |
-| [`LOG_USER`](#log_user) | const |  |
-| [`LOG_MAIL`](#log_mail) | const |  |
-| [`LOG_DAEMON`](#log_daemon) | const |  |
-| [`LOG_AUTH`](#log_auth) | const |  |
-| [`LOG_SYSLOG`](#log_syslog) | const |  |
-| [`LOG_LPR`](#log_lpr) | const |  |
-| [`LOG_NEWS`](#log_news) | const |  |
-| [`LOG_UUCP`](#log_uucp) | const |  |
-| [`LOG_LOCAL0`](#log_local0) | const |  |
-| [`LOG_LOCAL1`](#log_local1) | const |  |
-| [`LOG_LOCAL2`](#log_local2) | const |  |
-| [`LOG_LOCAL3`](#log_local3) | const |  |
-| [`LOG_LOCAL4`](#log_local4) | const |  |
-| [`LOG_LOCAL5`](#log_local5) | const |  |
-| [`LOG_LOCAL6`](#log_local6) | const |  |
-| [`LOG_LOCAL7`](#log_local7) | const |  |
-| [`LOG_PID`](#log_pid) | const |  |
-| [`LOG_CONS`](#log_cons) | const |  |
-| [`LOG_ODELAY`](#log_odelay) | const |  |
-| [`LOG_NDELAY`](#log_ndelay) | const |  |
-| [`LOG_NOWAIT`](#log_nowait) | const |  |
-| [`LOG_PRIMASK`](#log_primask) | const |  |
-| [`LOG_FACMASK`](#log_facmask) | const |  |
-| [`PRIO_MIN`](#prio_min) | const |  |
-| [`PRIO_MAX`](#prio_max) | const |  |
-| [`IPPROTO_ICMP`](#ipproto_icmp) | const |  |
-| [`IPPROTO_ICMPV6`](#ipproto_icmpv6) | const |  |
-| [`IPPROTO_TCP`](#ipproto_tcp) | const |  |
-| [`IPPROTO_UDP`](#ipproto_udp) | const |  |
-| [`IPPROTO_IP`](#ipproto_ip) | const |  |
-| [`IPPROTO_IPV6`](#ipproto_ipv6) | const |  |
-| [`INADDR_LOOPBACK`](#inaddr_loopback) | const |  |
-| [`INADDR_ANY`](#inaddr_any) | const |  |
-| [`INADDR_BROADCAST`](#inaddr_broadcast) | const |  |
-| [`INADDR_NONE`](#inaddr_none) | const |  |
-| [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init) | const |  |
-| [`IN6ADDR_ANY_INIT`](#in6addr_any_init) | const |  |
-| [`ARPOP_REQUEST`](#arpop_request) | const |  |
-| [`ARPOP_REPLY`](#arpop_reply) | const |  |
-| [`ATF_COM`](#atf_com) | const |  |
-| [`ATF_PERM`](#atf_perm) | const |  |
-| [`ATF_PUBL`](#atf_publ) | const |  |
-| [`ATF_USETRAILERS`](#atf_usetrailers) | const |  |
-| [`FNM_PERIOD`](#fnm_period) | const |  |
-| [`FNM_NOMATCH`](#fnm_nomatch) | const |  |
-| [`FNM_CASEFOLD`](#fnm_casefold) | const |  |
-| [`FNM_PATHNAME`](#fnm_pathname) | const |  |
-| [`FNM_NOESCAPE`](#fnm_noescape) | const |  |
+| [`LOG_EMERG`](#log-emerg) | const |  |
+| [`LOG_ALERT`](#log-alert) | const |  |
+| [`LOG_CRIT`](#log-crit) | const |  |
+| [`LOG_ERR`](#log-err) | const |  |
+| [`LOG_WARNING`](#log-warning) | const |  |
+| [`LOG_NOTICE`](#log-notice) | const |  |
+| [`LOG_INFO`](#log-info) | const |  |
+| [`LOG_DEBUG`](#log-debug) | const |  |
+| [`LOG_KERN`](#log-kern) | const |  |
+| [`LOG_USER`](#log-user) | const |  |
+| [`LOG_MAIL`](#log-mail) | const |  |
+| [`LOG_DAEMON`](#log-daemon) | const |  |
+| [`LOG_AUTH`](#log-auth) | const |  |
+| [`LOG_SYSLOG`](#log-syslog) | const |  |
+| [`LOG_LPR`](#log-lpr) | const |  |
+| [`LOG_NEWS`](#log-news) | const |  |
+| [`LOG_UUCP`](#log-uucp) | const |  |
+| [`LOG_LOCAL0`](#log-local0) | const |  |
+| [`LOG_LOCAL1`](#log-local1) | const |  |
+| [`LOG_LOCAL2`](#log-local2) | const |  |
+| [`LOG_LOCAL3`](#log-local3) | const |  |
+| [`LOG_LOCAL4`](#log-local4) | const |  |
+| [`LOG_LOCAL5`](#log-local5) | const |  |
+| [`LOG_LOCAL6`](#log-local6) | const |  |
+| [`LOG_LOCAL7`](#log-local7) | const |  |
+| [`LOG_PID`](#log-pid) | const |  |
+| [`LOG_CONS`](#log-cons) | const |  |
+| [`LOG_ODELAY`](#log-odelay) | const |  |
+| [`LOG_NDELAY`](#log-ndelay) | const |  |
+| [`LOG_NOWAIT`](#log-nowait) | const |  |
+| [`LOG_PRIMASK`](#log-primask) | const |  |
+| [`LOG_FACMASK`](#log-facmask) | const |  |
+| [`PRIO_MIN`](#prio-min) | const |  |
+| [`PRIO_MAX`](#prio-max) | const |  |
+| [`IPPROTO_ICMP`](#ipproto-icmp) | const |  |
+| [`IPPROTO_ICMPV6`](#ipproto-icmpv6) | const |  |
+| [`IPPROTO_TCP`](#ipproto-tcp) | const |  |
+| [`IPPROTO_UDP`](#ipproto-udp) | const |  |
+| [`IPPROTO_IP`](#ipproto-ip) | const |  |
+| [`IPPROTO_IPV6`](#ipproto-ipv6) | const |  |
+| [`INADDR_LOOPBACK`](#inaddr-loopback) | const |  |
+| [`INADDR_ANY`](#inaddr-any) | const |  |
+| [`INADDR_BROADCAST`](#inaddr-broadcast) | const |  |
+| [`INADDR_NONE`](#inaddr-none) | const |  |
+| [`IN6ADDR_LOOPBACK_INIT`](#in6addr-loopback-init) | const |  |
+| [`IN6ADDR_ANY_INIT`](#in6addr-any-init) | const |  |
+| [`ARPOP_REQUEST`](#arpop-request) | const |  |
+| [`ARPOP_REPLY`](#arpop-reply) | const |  |
+| [`ATF_COM`](#atf-com) | const |  |
+| [`ATF_PERM`](#atf-perm) | const |  |
+| [`ATF_PUBL`](#atf-publ) | const |  |
+| [`ATF_USETRAILERS`](#atf-usetrailers) | const |  |
+| [`FNM_PERIOD`](#fnm-period) | const |  |
+| [`FNM_NOMATCH`](#fnm-nomatch) | const |  |
+| [`FNM_CASEFOLD`](#fnm-casefold) | const |  |
+| [`FNM_PATHNAME`](#fnm-pathname) | const |  |
+| [`FNM_NOESCAPE`](#fnm-noescape) | const |  |
 
 ## Modules
 
@@ -1521,7 +1521,11 @@ enum FILE {
 
 ## Functions
 
-*Defined in [`libc-0.2.178/src/lib.rs:45`](../../.source_1765210505/libc-0.2.178/src/lib.rs#L45)*
+### `c_void`
+
+```rust
+fn c_void(self) -> Result<U, <U as TryFrom>::Error>
+```
 
 ### `isalnum`
 

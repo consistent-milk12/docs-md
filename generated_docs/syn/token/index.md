@@ -199,12 +199,12 @@ Every keyword and punctuation token supports the following operations.
 - [Traits](#traits)
   - [`Token`](#token)
 - [Macros](#macros)
-  - [`impl_low_level_token!`](#impl_low_level_token)
-  - [`define_keywords!`](#define_keywords)
-  - [`impl_deref_if_len_is_1!`](#impl_deref_if_len_is_1)
-  - [`define_punctuation_structs!`](#define_punctuation_structs)
-  - [`define_punctuation!`](#define_punctuation)
-  - [`define_delimiters!`](#define_delimiters)
+  - [`impl_low_level_token!`](#impl-low-level-token)
+  - [`define_keywords!`](#define-keywords)
+  - [`impl_deref_if_len_is_1!`](#impl-deref-if-len-is-1)
+  - [`define_punctuation_structs!`](#define-punctuation-structs)
+  - [`define_punctuation!`](#define-punctuation)
+  - [`define_delimiters!`](#define-delimiters)
 
 ## Quick Reference
 
@@ -316,12 +316,12 @@ Every keyword and punctuation token supports the following operations.
 | [`Bracket`](#bracket) | struct | `[`&hellip;`]` |
 | [`Paren`](#paren) | struct | `(`&hellip;`)` |
 | [`Token`](#token) | trait | Marker trait for types that represent single tokens. |
-| [`impl_low_level_token!`](#impl_low_level_token) | macro |  |
-| [`define_keywords!`](#define_keywords) | macro |  |
-| [`impl_deref_if_len_is_1!`](#impl_deref_if_len_is_1) | macro |  |
-| [`define_punctuation_structs!`](#define_punctuation_structs) | macro |  |
-| [`define_punctuation!`](#define_punctuation) | macro |  |
-| [`define_delimiters!`](#define_delimiters) | macro |  |
+| [`impl_low_level_token!`](#impl-low-level-token) | macro |  |
+| [`define_keywords!`](#define-keywords) | macro |  |
+| [`impl_deref_if_len_is_1!`](#impl-deref-if-len-is-1) | macro |  |
+| [`define_punctuation_structs!`](#define-punctuation-structs) | macro |  |
+| [`define_punctuation!`](#define-punctuation) | macro |  |
+| [`define_delimiters!`](#define-delimiters) | macro |  |
 
 ## Modules
 
@@ -366,7 +366,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Underscore`
 
-- <span id="underscore-type-target"></span>`type Target = WithSpan`
+- <span id="underscore-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="underscore-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -390,7 +390,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Underscore`
 
-- <span id="underscore-type-target"></span>`type Target = T`
+- <span id="underscore-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Underscore`
 
@@ -3561,7 +3561,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for And`
 
-- <span id="and-type-target"></span>`type Target = WithSpan`
+- <span id="and-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="and-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3585,7 +3585,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for And`
 
-- <span id="and-type-target"></span>`type Target = T`
+- <span id="and-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for And`
 
@@ -3758,7 +3758,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for At`
 
-- <span id="at-type-target"></span>`type Target = WithSpan`
+- <span id="at-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="at-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3782,7 +3782,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for At`
 
-- <span id="at-type-target"></span>`type Target = T`
+- <span id="at-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for At`
 
@@ -3833,7 +3833,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Caret`
 
-- <span id="caret-type-target"></span>`type Target = WithSpan`
+- <span id="caret-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="caret-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3857,7 +3857,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Caret`
 
-- <span id="caret-type-target"></span>`type Target = T`
+- <span id="caret-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Caret`
 
@@ -3969,7 +3969,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Colon`
 
-- <span id="colon-type-target"></span>`type Target = WithSpan`
+- <span id="colon-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="colon-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3993,7 +3993,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Colon`
 
-- <span id="colon-type-target"></span>`type Target = T`
+- <span id="colon-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Colon`
 
@@ -4044,7 +4044,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Comma`
 
-- <span id="comma-type-target"></span>`type Target = WithSpan`
+- <span id="comma-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="comma-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4068,7 +4068,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Comma`
 
-- <span id="comma-type-target"></span>`type Target = T`
+- <span id="comma-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Comma`
 
@@ -4119,7 +4119,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Dollar`
 
-- <span id="dollar-type-target"></span>`type Target = WithSpan`
+- <span id="dollar-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="dollar-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4143,7 +4143,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Dollar`
 
-- <span id="dollar-type-target"></span>`type Target = T`
+- <span id="dollar-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Dollar`
 
@@ -4194,7 +4194,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Dot`
 
-- <span id="dot-type-target"></span>`type Target = WithSpan`
+- <span id="dot-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="dot-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4218,7 +4218,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Dot`
 
-- <span id="dot-type-target"></span>`type Target = T`
+- <span id="dot-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Dot`
 
@@ -4452,7 +4452,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Eq`
 
-- <span id="eq-type-target"></span>`type Target = WithSpan`
+- <span id="eq-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="eq-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4476,7 +4476,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Eq`
 
-- <span id="eq-type-target"></span>`type Target = T`
+- <span id="eq-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Eq`
 
@@ -4710,7 +4710,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Gt`
 
-- <span id="gt-type-target"></span>`type Target = WithSpan`
+- <span id="gt-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="gt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4734,7 +4734,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Gt`
 
-- <span id="gt-type-target"></span>`type Target = T`
+- <span id="gt-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Gt`
 
@@ -4907,7 +4907,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Lt`
 
-- <span id="lt-type-target"></span>`type Target = WithSpan`
+- <span id="lt-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="lt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4931,7 +4931,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Lt`
 
-- <span id="lt-type-target"></span>`type Target = T`
+- <span id="lt-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Lt`
 
@@ -4982,7 +4982,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Minus`
 
-- <span id="minus-type-target"></span>`type Target = WithSpan`
+- <span id="minus-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="minus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5006,7 +5006,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Minus`
 
-- <span id="minus-type-target"></span>`type Target = T`
+- <span id="minus-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Minus`
 
@@ -5179,7 +5179,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Not`
 
-- <span id="not-type-target"></span>`type Target = WithSpan`
+- <span id="not-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="not-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5203,7 +5203,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Not`
 
-- <span id="not-type-target"></span>`type Target = T`
+- <span id="not-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Not`
 
@@ -5254,7 +5254,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Or`
 
-- <span id="or-type-target"></span>`type Target = WithSpan`
+- <span id="or-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="or-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5278,7 +5278,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Or`
 
-- <span id="or-type-target"></span>`type Target = T`
+- <span id="or-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Or`
 
@@ -5512,7 +5512,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Percent`
 
-- <span id="percent-type-target"></span>`type Target = WithSpan`
+- <span id="percent-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="percent-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5536,7 +5536,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Percent`
 
-- <span id="percent-type-target"></span>`type Target = T`
+- <span id="percent-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Percent`
 
@@ -5648,7 +5648,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Plus`
 
-- <span id="plus-type-target"></span>`type Target = WithSpan`
+- <span id="plus-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="plus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5672,7 +5672,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Plus`
 
-- <span id="plus-type-target"></span>`type Target = T`
+- <span id="plus-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Plus`
 
@@ -5784,7 +5784,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Pound`
 
-- <span id="pound-type-target"></span>`type Target = WithSpan`
+- <span id="pound-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="pound-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5808,7 +5808,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Pound`
 
-- <span id="pound-type-target"></span>`type Target = T`
+- <span id="pound-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Pound`
 
@@ -5859,7 +5859,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Question`
 
-- <span id="question-type-target"></span>`type Target = WithSpan`
+- <span id="question-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="question-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5883,7 +5883,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Question`
 
-- <span id="question-type-target"></span>`type Target = T`
+- <span id="question-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Question`
 
@@ -5995,7 +5995,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Semi`
 
-- <span id="semi-type-target"></span>`type Target = WithSpan`
+- <span id="semi-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="semi-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6019,7 +6019,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Semi`
 
-- <span id="semi-type-target"></span>`type Target = T`
+- <span id="semi-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Semi`
 
@@ -6314,7 +6314,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Slash`
 
-- <span id="slash-type-target"></span>`type Target = WithSpan`
+- <span id="slash-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="slash-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6338,7 +6338,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Slash`
 
-- <span id="slash-type-target"></span>`type Target = T`
+- <span id="slash-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Slash`
 
@@ -6450,7 +6450,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Star`
 
-- <span id="star-type-target"></span>`type Target = WithSpan`
+- <span id="star-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="star-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6474,7 +6474,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Star`
 
-- <span id="star-type-target"></span>`type Target = T`
+- <span id="star-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Star`
 
@@ -6586,7 +6586,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Tilde`
 
-- <span id="tilde-type-target"></span>`type Target = WithSpan`
+- <span id="tilde-deref-type-target"></span>`type Target = WithSpan`
 
 - <span id="tilde-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6610,7 +6610,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Receiver for Tilde`
 
-- <span id="tilde-type-target"></span>`type Target = T`
+- <span id="tilde-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Tilde`
 

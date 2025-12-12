@@ -22,41 +22,41 @@ for deserializing [dense DFAs](crate::dfa::dense::DFA) using correct alignment.
 - [Traits](#traits)
   - [`Endian`](#endian)
 - [Functions](#functions)
-  - [`u32s_to_state_ids`](#u32s_to_state_ids)
-  - [`u32s_to_state_ids_mut`](#u32s_to_state_ids_mut)
-  - [`u32s_to_pattern_ids`](#u32s_to_pattern_ids)
-  - [`check_alignment`](#check_alignment)
-  - [`skip_initial_padding`](#skip_initial_padding)
-  - [`alloc_aligned_buffer`](#alloc_aligned_buffer)
-  - [`read_label`](#read_label)
-  - [`write_label`](#write_label)
-  - [`write_label_len`](#write_label_len)
-  - [`read_endianness_check`](#read_endianness_check)
-  - [`write_endianness_check`](#write_endianness_check)
-  - [`write_endianness_check_len`](#write_endianness_check_len)
-  - [`read_version`](#read_version)
-  - [`write_version`](#write_version)
-  - [`write_version_len`](#write_version_len)
-  - [`read_pattern_id`](#read_pattern_id)
-  - [`read_pattern_id_unchecked`](#read_pattern_id_unchecked)
-  - [`write_pattern_id`](#write_pattern_id)
-  - [`try_read_state_id`](#try_read_state_id)
-  - [`read_state_id`](#read_state_id)
-  - [`read_state_id_unchecked`](#read_state_id_unchecked)
-  - [`write_state_id`](#write_state_id)
-  - [`try_read_u16_as_usize`](#try_read_u16_as_usize)
-  - [`try_read_u32_as_usize`](#try_read_u32_as_usize)
-  - [`try_read_u16`](#try_read_u16)
-  - [`try_read_u32`](#try_read_u32)
-  - [`try_read_u128`](#try_read_u128)
-  - [`read_u16`](#read_u16)
-  - [`read_u32`](#read_u32)
-  - [`read_u128`](#read_u128)
-  - [`check_slice_len`](#check_slice_len)
+  - [`u32s_to_state_ids`](#u32s-to-state-ids)
+  - [`u32s_to_state_ids_mut`](#u32s-to-state-ids-mut)
+  - [`u32s_to_pattern_ids`](#u32s-to-pattern-ids)
+  - [`check_alignment`](#check-alignment)
+  - [`skip_initial_padding`](#skip-initial-padding)
+  - [`alloc_aligned_buffer`](#alloc-aligned-buffer)
+  - [`read_label`](#read-label)
+  - [`write_label`](#write-label)
+  - [`write_label_len`](#write-label-len)
+  - [`read_endianness_check`](#read-endianness-check)
+  - [`write_endianness_check`](#write-endianness-check)
+  - [`write_endianness_check_len`](#write-endianness-check-len)
+  - [`read_version`](#read-version)
+  - [`write_version`](#write-version)
+  - [`write_version_len`](#write-version-len)
+  - [`read_pattern_id`](#read-pattern-id)
+  - [`read_pattern_id_unchecked`](#read-pattern-id-unchecked)
+  - [`write_pattern_id`](#write-pattern-id)
+  - [`try_read_state_id`](#try-read-state-id)
+  - [`read_state_id`](#read-state-id)
+  - [`read_state_id_unchecked`](#read-state-id-unchecked)
+  - [`write_state_id`](#write-state-id)
+  - [`try_read_u16_as_usize`](#try-read-u16-as-usize)
+  - [`try_read_u32_as_usize`](#try-read-u32-as-usize)
+  - [`try_read_u16`](#try-read-u16)
+  - [`try_read_u32`](#try-read-u32)
+  - [`try_read_u128`](#try-read-u128)
+  - [`read_u16`](#read-u16)
+  - [`read_u32`](#read-u32)
+  - [`read_u128`](#read-u128)
+  - [`check_slice_len`](#check-slice-len)
   - [`mul`](#mul)
   - [`add`](#add)
   - [`shl`](#shl)
-  - [`padding_len`](#padding_len)
+  - [`padding_len`](#padding-len)
 - [Type Aliases](#type-aliases)
   - [`NE`](#ne)
 
@@ -71,41 +71,41 @@ for deserializing [dense DFAs](crate::dfa::dense::DFA) using correct alignment.
 | [`LE`](#le) | enum | Little endian writing. |
 | [`BE`](#be) | enum | Big endian writing. |
 | [`Endian`](#endian) | trait | A simple trait for writing code generic over endianness. |
-| [`u32s_to_state_ids`](#u32s_to_state_ids) | fn | Safely converts a `&[u32]` to `&[StateID]` with zero cost. |
-| [`u32s_to_state_ids_mut`](#u32s_to_state_ids_mut) | fn | Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost. |
-| [`u32s_to_pattern_ids`](#u32s_to_pattern_ids) | fn | Safely converts a `&[u32]` to `&[PatternID]` with zero cost. |
-| [`check_alignment`](#check_alignment) | fn | Checks that the given slice has an alignment that matches `T`. |
-| [`skip_initial_padding`](#skip_initial_padding) | fn | Reads a possibly empty amount of padding, up to 7 bytes, from the beginning of the given slice. |
-| [`alloc_aligned_buffer`](#alloc_aligned_buffer) | fn | Allocate a byte buffer of the given size, along with some initial padding such that `buf[padding..]` has the same alignment as `T`, where the alignment of `T` must be at most `8`. |
-| [`read_label`](#read_label) | fn | Reads a NUL terminated label starting at the beginning of the given slice. |
-| [`write_label`](#write_label) | fn | Writes the given label to the buffer as a NUL terminated string. |
-| [`write_label_len`](#write_label_len) | fn | Returns the total number of bytes (including padding) that would be written for the given label. |
-| [`read_endianness_check`](#read_endianness_check) | fn | Reads the endianness check from the beginning of the given slice and confirms that the endianness of the serialized object matches the expected endianness. |
-| [`write_endianness_check`](#write_endianness_check) | fn | Writes 0xFEFF as an integer using the given endianness. |
-| [`write_endianness_check_len`](#write_endianness_check_len) | fn | Returns the number of bytes written by the endianness check. |
-| [`read_version`](#read_version) | fn | Reads a version number from the beginning of the given slice and confirms that is matches the expected version number given. |
-| [`write_version`](#write_version) | fn | Writes the given version number to the beginning of the given slice. |
-| [`write_version_len`](#write_version_len) | fn | Returns the number of bytes written by writing the version number. |
-| [`read_pattern_id`](#read_pattern_id) | fn | Reads a pattern ID from the given slice. |
-| [`read_pattern_id_unchecked`](#read_pattern_id_unchecked) | fn | Reads a pattern ID from the given slice. |
-| [`write_pattern_id`](#write_pattern_id) | fn | Write the given pattern ID to the beginning of the given slice of bytes using the specified endianness. |
-| [`try_read_state_id`](#try_read_state_id) | fn | Attempts to read a state ID from the given slice. |
-| [`read_state_id`](#read_state_id) | fn | Reads a state ID from the given slice. |
-| [`read_state_id_unchecked`](#read_state_id_unchecked) | fn | Reads a state ID from the given slice. |
-| [`write_state_id`](#write_state_id) | fn | Write the given state ID to the beginning of the given slice of bytes using the specified endianness. |
-| [`try_read_u16_as_usize`](#try_read_u16_as_usize) | fn | Try to read a u16 as a usize from the beginning of the given slice in native endian format. |
-| [`try_read_u32_as_usize`](#try_read_u32_as_usize) | fn | Try to read a u32 as a usize from the beginning of the given slice in native endian format. |
-| [`try_read_u16`](#try_read_u16) | fn | Try to read a u16 from the beginning of the given slice in native endian format. |
-| [`try_read_u32`](#try_read_u32) | fn | Try to read a u32 from the beginning of the given slice in native endian format. |
-| [`try_read_u128`](#try_read_u128) | fn | Try to read a u128 from the beginning of the given slice in native endian format. |
-| [`read_u16`](#read_u16) | fn | Read a u16 from the beginning of the given slice in native endian format. |
-| [`read_u32`](#read_u32) | fn | Read a u32 from the beginning of the given slice in native endian format. |
-| [`read_u128`](#read_u128) | fn | Read a u128 from the beginning of the given slice in native endian format. |
-| [`check_slice_len`](#check_slice_len) | fn | Checks that the given slice has some minimal length. |
+| [`u32s_to_state_ids`](#u32s-to-state-ids) | fn | Safely converts a `&[u32]` to `&[StateID]` with zero cost. |
+| [`u32s_to_state_ids_mut`](#u32s-to-state-ids-mut) | fn | Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost. |
+| [`u32s_to_pattern_ids`](#u32s-to-pattern-ids) | fn | Safely converts a `&[u32]` to `&[PatternID]` with zero cost. |
+| [`check_alignment`](#check-alignment) | fn | Checks that the given slice has an alignment that matches `T`. |
+| [`skip_initial_padding`](#skip-initial-padding) | fn | Reads a possibly empty amount of padding, up to 7 bytes, from the beginning of the given slice. |
+| [`alloc_aligned_buffer`](#alloc-aligned-buffer) | fn | Allocate a byte buffer of the given size, along with some initial padding such that `buf[padding..]` has the same alignment as `T`, where the alignment of `T` must be at most `8`. |
+| [`read_label`](#read-label) | fn | Reads a NUL terminated label starting at the beginning of the given slice. |
+| [`write_label`](#write-label) | fn | Writes the given label to the buffer as a NUL terminated string. |
+| [`write_label_len`](#write-label-len) | fn | Returns the total number of bytes (including padding) that would be written for the given label. |
+| [`read_endianness_check`](#read-endianness-check) | fn | Reads the endianness check from the beginning of the given slice and confirms that the endianness of the serialized object matches the expected endianness. |
+| [`write_endianness_check`](#write-endianness-check) | fn | Writes 0xFEFF as an integer using the given endianness. |
+| [`write_endianness_check_len`](#write-endianness-check-len) | fn | Returns the number of bytes written by the endianness check. |
+| [`read_version`](#read-version) | fn | Reads a version number from the beginning of the given slice and confirms that is matches the expected version number given. |
+| [`write_version`](#write-version) | fn | Writes the given version number to the beginning of the given slice. |
+| [`write_version_len`](#write-version-len) | fn | Returns the number of bytes written by writing the version number. |
+| [`read_pattern_id`](#read-pattern-id) | fn | Reads a pattern ID from the given slice. |
+| [`read_pattern_id_unchecked`](#read-pattern-id-unchecked) | fn | Reads a pattern ID from the given slice. |
+| [`write_pattern_id`](#write-pattern-id) | fn | Write the given pattern ID to the beginning of the given slice of bytes using the specified endianness. |
+| [`try_read_state_id`](#try-read-state-id) | fn | Attempts to read a state ID from the given slice. |
+| [`read_state_id`](#read-state-id) | fn | Reads a state ID from the given slice. |
+| [`read_state_id_unchecked`](#read-state-id-unchecked) | fn | Reads a state ID from the given slice. |
+| [`write_state_id`](#write-state-id) | fn | Write the given state ID to the beginning of the given slice of bytes using the specified endianness. |
+| [`try_read_u16_as_usize`](#try-read-u16-as-usize) | fn | Try to read a u16 as a usize from the beginning of the given slice in native endian format. |
+| [`try_read_u32_as_usize`](#try-read-u32-as-usize) | fn | Try to read a u32 as a usize from the beginning of the given slice in native endian format. |
+| [`try_read_u16`](#try-read-u16) | fn | Try to read a u16 from the beginning of the given slice in native endian format. |
+| [`try_read_u32`](#try-read-u32) | fn | Try to read a u32 from the beginning of the given slice in native endian format. |
+| [`try_read_u128`](#try-read-u128) | fn | Try to read a u128 from the beginning of the given slice in native endian format. |
+| [`read_u16`](#read-u16) | fn | Read a u16 from the beginning of the given slice in native endian format. |
+| [`read_u32`](#read-u32) | fn | Read a u32 from the beginning of the given slice in native endian format. |
+| [`read_u128`](#read-u128) | fn | Read a u128 from the beginning of the given slice in native endian format. |
+| [`check_slice_len`](#check-slice-len) | fn | Checks that the given slice has some minimal length. |
 | [`mul`](#mul) | fn | Multiply the given numbers, and on overflow, return an error that includes 'what' in the error message. |
 | [`add`](#add) | fn | Add the given numbers, and on overflow, return an error that includes 'what' in the error message. |
 | [`shl`](#shl) | fn | Shift `a` left by `b`, and on overflow, return an error that includes 'what' in the error message. |
-| [`padding_len`](#padding_len) | fn | Returns the number of additional bytes required to add to the given length in order to make the total length a multiple of 4. |
+| [`padding_len`](#padding-len) | fn | Returns the number of additional bytes required to add to the given length in order to make the total length a multiple of 4. |
 | [`NE`](#ne) | type |  |
 
 ## Structs

@@ -8,11 +8,11 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`terminal_width`](#terminal_width) | fn |  |
-| [`supports_hyperlinks`](#supports_hyperlinks) | fn |  |
-| [`supports_color`](#supports_color) | fn |  |
-| [`supports_color_has_16m`](#supports_color_has_16m) | fn |  |
-| [`supports_unicode`](#supports_unicode) | fn |  |
+| [`terminal_width`](#terminal-width) | fn |  |
+| [`supports_hyperlinks`](#supports-hyperlinks) | fn |  |
+| [`supports_color`](#supports-color) | fn |  |
+| [`supports_color_has_16m`](#supports-color-has-16m) | fn |  |
+| [`supports_unicode`](#supports-unicode) | fn |  |
 
 ## Functions
 

@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`this_type`](#this_type) | fn |  |
-| [`this_value`](#this_value) | fn |  |
+| [`this_type`](#this-type) | fn |  |
+| [`this_value`](#this-value) | fn |  |
 
 ## Functions
 

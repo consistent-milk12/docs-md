@@ -13,25 +13,25 @@
   - [`WhereClauseLocation`](#whereclauselocation)
   - [`FnArgOrVariadic`](#fnargorvariadic)
 - [Functions](#functions)
-  - [`parse_rest_of_item`](#parse_rest_of_item)
-  - [`parse_macro2`](#parse_macro2)
-  - [`parse_item_use`](#parse_item_use)
-  - [`parse_use_tree`](#parse_use_tree)
-  - [`peek_signature`](#peek_signature)
-  - [`parse_signature`](#parse_signature)
-  - [`parse_rest_of_fn`](#parse_rest_of_fn)
-  - [`parse_fn_arg_or_variadic`](#parse_fn_arg_or_variadic)
-  - [`parse_fn_args`](#parse_fn_args)
-  - [`parse_foreign_item_type`](#parse_foreign_item_type)
-  - [`parse_item_type`](#parse_item_type)
-  - [`parse_trait_or_trait_alias`](#parse_trait_or_trait_alias)
-  - [`parse_rest_of_trait`](#parse_rest_of_trait)
-  - [`parse_start_of_trait_alias`](#parse_start_of_trait_alias)
-  - [`parse_rest_of_trait_alias`](#parse_rest_of_trait_alias)
-  - [`parse_trait_item_type`](#parse_trait_item_type)
-  - [`parse_impl`](#parse_impl)
-  - [`parse_impl_item_fn`](#parse_impl_item_fn)
-  - [`parse_impl_item_type`](#parse_impl_item_type)
+  - [`parse_rest_of_item`](#parse-rest-of-item)
+  - [`parse_macro2`](#parse-macro2)
+  - [`parse_item_use`](#parse-item-use)
+  - [`parse_use_tree`](#parse-use-tree)
+  - [`peek_signature`](#peek-signature)
+  - [`parse_signature`](#parse-signature)
+  - [`parse_rest_of_fn`](#parse-rest-of-fn)
+  - [`parse_fn_arg_or_variadic`](#parse-fn-arg-or-variadic)
+  - [`parse_fn_args`](#parse-fn-args)
+  - [`parse_foreign_item_type`](#parse-foreign-item-type)
+  - [`parse_item_type`](#parse-item-type)
+  - [`parse_trait_or_trait_alias`](#parse-trait-or-trait-alias)
+  - [`parse_rest_of_trait`](#parse-rest-of-trait)
+  - [`parse_start_of_trait_alias`](#parse-start-of-trait-alias)
+  - [`parse_rest_of_trait_alias`](#parse-rest-of-trait-alias)
+  - [`parse_trait_item_type`](#parse-trait-item-type)
+  - [`parse_impl`](#parse-impl)
+  - [`parse_impl_item_fn`](#parse-impl-item-fn)
+  - [`parse_impl_item_type`](#parse-impl-item-type)
 
 ## Quick Reference
 
@@ -41,25 +41,25 @@
 | [`TypeDefaultness`](#typedefaultness) | enum |  |
 | [`WhereClauseLocation`](#whereclauselocation) | enum |  |
 | [`FnArgOrVariadic`](#fnargorvariadic) | enum |  |
-| [`parse_rest_of_item`](#parse_rest_of_item) | fn |  |
-| [`parse_macro2`](#parse_macro2) | fn |  |
-| [`parse_item_use`](#parse_item_use) | fn |  |
-| [`parse_use_tree`](#parse_use_tree) | fn |  |
-| [`peek_signature`](#peek_signature) | fn |  |
-| [`parse_signature`](#parse_signature) | fn |  |
-| [`parse_rest_of_fn`](#parse_rest_of_fn) | fn |  |
-| [`parse_fn_arg_or_variadic`](#parse_fn_arg_or_variadic) | fn |  |
-| [`parse_fn_args`](#parse_fn_args) | fn |  |
-| [`parse_foreign_item_type`](#parse_foreign_item_type) | fn |  |
-| [`parse_item_type`](#parse_item_type) | fn |  |
-| [`parse_trait_or_trait_alias`](#parse_trait_or_trait_alias) | fn |  |
-| [`parse_rest_of_trait`](#parse_rest_of_trait) | fn |  |
-| [`parse_start_of_trait_alias`](#parse_start_of_trait_alias) | fn |  |
-| [`parse_rest_of_trait_alias`](#parse_rest_of_trait_alias) | fn |  |
-| [`parse_trait_item_type`](#parse_trait_item_type) | fn |  |
-| [`parse_impl`](#parse_impl) | fn |  |
-| [`parse_impl_item_fn`](#parse_impl_item_fn) | fn |  |
-| [`parse_impl_item_type`](#parse_impl_item_type) | fn |  |
+| [`parse_rest_of_item`](#parse-rest-of-item) | fn |  |
+| [`parse_macro2`](#parse-macro2) | fn |  |
+| [`parse_item_use`](#parse-item-use) | fn |  |
+| [`parse_use_tree`](#parse-use-tree) | fn |  |
+| [`peek_signature`](#peek-signature) | fn |  |
+| [`parse_signature`](#parse-signature) | fn |  |
+| [`parse_rest_of_fn`](#parse-rest-of-fn) | fn |  |
+| [`parse_fn_arg_or_variadic`](#parse-fn-arg-or-variadic) | fn |  |
+| [`parse_fn_args`](#parse-fn-args) | fn |  |
+| [`parse_foreign_item_type`](#parse-foreign-item-type) | fn |  |
+| [`parse_item_type`](#parse-item-type) | fn |  |
+| [`parse_trait_or_trait_alias`](#parse-trait-or-trait-alias) | fn |  |
+| [`parse_rest_of_trait`](#parse-rest-of-trait) | fn |  |
+| [`parse_start_of_trait_alias`](#parse-start-of-trait-alias) | fn |  |
+| [`parse_rest_of_trait_alias`](#parse-rest-of-trait-alias) | fn |  |
+| [`parse_trait_item_type`](#parse-trait-item-type) | fn |  |
+| [`parse_impl`](#parse-impl) | fn |  |
+| [`parse_impl_item_fn`](#parse-impl-item-fn) | fn |  |
+| [`parse_impl_item_type`](#parse-impl-item-type) | fn |  |
 
 ## Structs
 

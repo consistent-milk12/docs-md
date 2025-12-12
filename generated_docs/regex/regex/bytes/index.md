@@ -22,7 +22,7 @@
 - [Traits](#traits)
   - [`Replacer`](#replacer)
 - [Functions](#functions)
-  - [`no_expansion`](#no_expansion)
+  - [`no_expansion`](#no-expansion)
 
 ## Quick Reference
 
@@ -41,7 +41,7 @@
 | [`ReplacerRef`](#replacerref) | struct | A by-reference adaptor for a [`Replacer`]. |
 | [`NoExpand`](#noexpand) | struct | A helper type for forcing literal string replacement. |
 | [`Replacer`](#replacer) | trait | A trait for types that can be used to replace matches in a haystack. |
-| [`no_expansion`](#no_expansion) | fn | Quickly checks the given replacement string for whether interpolation should be done on it. |
+| [`no_expansion`](#no-expansion) | fn | Quickly checks the given replacement string for whether interpolation should be done on it. |
 
 ## Structs
 
@@ -188,7 +188,7 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 ##### `impl FromStr for Regex`
 
-- <span id="regex-type-err"></span>`type Err = Error`
+- <span id="regex-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md#error)
 
@@ -379,7 +379,7 @@ assert_eq!(b"y", &caps["last"]);
 
 ##### `impl Index for Captures<'h>`
 
-- <span id="captures-type-output"></span>`type Output = [u8]`
+- <span id="captures-index-type-output"></span>`type Output = [u8]`
 
 - <span id="captures-index"></span>`fn index<'a>(self: &'a Self, i: usize) -> &'a [u8]`
 
@@ -483,15 +483,15 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl IntoIterator for Matches<'r, 'h>`
 
-- <span id="matches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matches-type-intoiter"></span>`type IntoIter = I`
+- <span id="matches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Matches<'r, 'h>`
 
-- <span id="matches-type-item"></span>`type Item = Match<'h>`
+- <span id="matches-iterator-type-item"></span>`type Item = Match<'h>`
 
 - <span id="matches-next"></span>`fn next(&mut self) -> Option<Match<'h>>` — [`Match`](#match)
 
@@ -534,15 +534,15 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl IntoIterator for CaptureMatches<'r, 'h>`
 
-- <span id="capturematches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturematches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturematches-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturematches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturematches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CaptureMatches<'r, 'h>`
 
-- <span id="capturematches-type-item"></span>`type Item = Captures<'h>`
+- <span id="capturematches-iterator-type-item"></span>`type Item = Captures<'h>`
 
 - <span id="capturematches-next"></span>`fn next(&mut self) -> Option<Captures<'h>>` — [`Captures`](#captures)
 
@@ -582,15 +582,15 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl IntoIterator for Split<'r, 'h>`
 
-- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-type-intoiter"></span>`type IntoIter = I`
+- <span id="split-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Split<'r, 'h>`
 
-- <span id="split-type-item"></span>`type Item = &'h [u8]`
+- <span id="split-iterator-type-item"></span>`type Item = &'h [u8]`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<&'h [u8]>`
 
@@ -634,15 +634,15 @@ by the `limit` parameter to `Regex::splitn`.
 
 ##### `impl IntoIterator for SplitN<'r, 'h>`
 
-- <span id="splitn-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splitn-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splitn-type-intoiter"></span>`type IntoIter = I`
+- <span id="splitn-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splitn-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SplitN<'r, 'h>`
 
-- <span id="splitn-type-item"></span>`type Item = &'h [u8]`
+- <span id="splitn-iterator-type-item"></span>`type Item = &'h [u8]`
 
 - <span id="splitn-next"></span>`fn next(&mut self) -> Option<&'h [u8]>`
 
@@ -683,15 +683,15 @@ This iterator is created by `Regex::capture_names`.
 
 ##### `impl IntoIterator for CaptureNames<'r>`
 
-- <span id="capturenames-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturenames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturenames-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturenames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturenames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CaptureNames<'r>`
 
-- <span id="capturenames-type-item"></span>`type Item = Option<&'r str>`
+- <span id="capturenames-iterator-type-item"></span>`type Item = Option<&'r str>`
 
 - <span id="capturenames-next"></span>`fn next(&mut self) -> Option<Option<&'r str>>`
 
@@ -743,15 +743,15 @@ matched haystack.
 
 ##### `impl IntoIterator for SubCaptureMatches<'c, 'h>`
 
-- <span id="subcapturematches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="subcapturematches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="subcapturematches-type-intoiter"></span>`type IntoIter = I`
+- <span id="subcapturematches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="subcapturematches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SubCaptureMatches<'c, 'h>`
 
-- <span id="subcapturematches-type-item"></span>`type Item = Option<Match<'h>>`
+- <span id="subcapturematches-iterator-type-item"></span>`type Item = Option<Match<'h>>`
 
 - <span id="subcapturematches-next"></span>`fn next(&mut self) -> Option<Option<Match<'h>>>` — [`Match`](#match)
 
@@ -776,11 +776,11 @@ This type is created by `Replacer::by_ref`.
 
 #### Trait Implementations
 
-##### `impl<'a, R: fmt::Debug + ?Sized> Debug for ReplacerRef<'a, R>`
+##### `impl<R: fmt::Debug + ?Sized> Debug for ReplacerRef<'a, R>`
 
 - <span id="replacerref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
+##### `impl<R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
 
 - <span id="replacerref-replace-append"></span>`fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut Vec<u8>)` — [`Captures`](#captures)
 

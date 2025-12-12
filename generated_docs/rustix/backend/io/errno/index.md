@@ -19,26 +19,26 @@ this restricted range of values.
 - [Structs](#structs)
   - [`Errno`](#errno)
 - [Functions](#functions)
-  - [`try_decode_c_int`](#try_decode_c_int)
-  - [`try_decode_c_uint`](#try_decode_c_uint)
-  - [`try_decode_usize`](#try_decode_usize)
-  - [`try_decode_void_star`](#try_decode_void_star)
-  - [`try_decode_u64`](#try_decode_u64)
-  - [`try_decode_raw_fd`](#try_decode_raw_fd)
-  - [`try_decode_void`](#try_decode_void)
+  - [`try_decode_c_int`](#try-decode-c-int)
+  - [`try_decode_c_uint`](#try-decode-c-uint)
+  - [`try_decode_usize`](#try-decode-usize)
+  - [`try_decode_void_star`](#try-decode-void-star)
+  - [`try_decode_u64`](#try-decode-u64)
+  - [`try_decode_raw_fd`](#try-decode-raw-fd)
+  - [`try_decode_void`](#try-decode-void)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Errno`](#errno) | struct | `errno`—An error code. |
-| [`try_decode_c_int`](#try_decode_c_int) | fn | Check for an error from the result of a syscall which encodes a `c::c_int` on success. |
-| [`try_decode_c_uint`](#try_decode_c_uint) | fn | Check for an error from the result of a syscall which encodes a `c::c_uint` on success. |
-| [`try_decode_usize`](#try_decode_usize) | fn | Check for an error from the result of a syscall which encodes a `usize` on success. |
-| [`try_decode_void_star`](#try_decode_void_star) | fn | Check for an error from the result of a syscall which encodes a `*mut c_void` on success. |
-| [`try_decode_u64`](#try_decode_u64) | fn | Check for an error from the result of a syscall which encodes a `u64` on success. |
-| [`try_decode_raw_fd`](#try_decode_raw_fd) | fn | Check for an error from the result of a syscall which encodes a file descriptor on success. |
-| [`try_decode_void`](#try_decode_void) | fn | Check for an error from the result of a syscall which encodes no value on success. |
+| [`try_decode_c_int`](#try-decode-c-int) | fn | Check for an error from the result of a syscall which encodes a `c::c_int` on success. |
+| [`try_decode_c_uint`](#try-decode-c-uint) | fn | Check for an error from the result of a syscall which encodes a `c::c_uint` on success. |
+| [`try_decode_usize`](#try-decode-usize) | fn | Check for an error from the result of a syscall which encodes a `usize` on success. |
+| [`try_decode_void_star`](#try-decode-void-star) | fn | Check for an error from the result of a syscall which encodes a `*mut c_void` on success. |
+| [`try_decode_u64`](#try-decode-u64) | fn | Check for an error from the result of a syscall which encodes a `u64` on success. |
+| [`try_decode_raw_fd`](#try-decode-raw-fd) | fn | Check for an error from the result of a syscall which encodes a file descriptor on success. |
+| [`try_decode_void`](#try-decode-void) | fn | Check for an error from the result of a syscall which encodes no value on success. |
 
 ## Structs
 
@@ -52,7 +52,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References

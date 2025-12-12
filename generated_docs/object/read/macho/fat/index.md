@@ -81,9 +81,9 @@ struct FatArch32 {
 
 ##### `impl FatArch for FatArch32`
 
-- <span id="fatarch32-type-word"></span>`type Word = u32`
+- <span id="fatarch32-fatarch-type-word"></span>`type Word = u32`
 
-- <span id="fatarch32-const-magic"></span>`const MAGIC: u32`
+- <span id="fatarch32-fatarch-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -152,9 +152,9 @@ struct FatArch64 {
 
 ##### `impl FatArch for FatArch64`
 
-- <span id="fatarch64-type-word"></span>`type Word = u64`
+- <span id="fatarch64-fatarch-type-word"></span>`type Word = u64`
 
-- <span id="fatarch64-const-magic"></span>`const MAGIC: u32`
+- <span id="fatarch64-fatarch-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -229,11 +229,11 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 
 #### Trait Implementations
 
-##### `impl<'data, Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
+##### `impl<Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
 
 - <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](../index.md#machofatfile)
 
-##### `impl<'data, Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
+##### `impl<Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
 
 - <span id="machofatfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

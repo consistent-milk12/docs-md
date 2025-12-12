@@ -51,29 +51,29 @@ see its documentation for more information.
 
 - <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for ZipEq<A, B>`
+##### `impl IntoEither for ZipEq<A, B>`
 
-##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
+##### `impl IntoParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-type-iter"></span>`type Iter = T`
+- <span id="zipeq-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="zipeq-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zipeq-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zipeq-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="zipeq-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for ZipEq<A, B>`
+##### `impl Pointable for ZipEq<A, B>`
 
-- <span id="zipeq-const-align"></span>`const ALIGN: usize`
+- <span id="zipeq-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipeq-type-init"></span>`type Init = T`
+- <span id="zipeq-pointable-type-init"></span>`type Init = T`
 
 - <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

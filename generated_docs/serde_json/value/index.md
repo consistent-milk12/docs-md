@@ -101,7 +101,7 @@ untyped_example().unwrap();
   - [`de`](#de)
   - [`from`](#from)
   - [`index`](#index)
-  - [`partial_eq`](#partial_eq)
+  - [`partial_eq`](#partial-eq)
   - [`ser`](#ser)
 - [Structs](#structs)
   - [`Serializer`](#serializer)
@@ -112,9 +112,9 @@ untyped_example().unwrap();
 - [Traits](#traits)
   - [`Index`](#index)
 - [Functions](#functions)
-  - [`parse_index`](#parse_index)
-  - [`to_value`](#to_value)
-  - [`from_value`](#from_value)
+  - [`parse_index`](#parse-index)
+  - [`to_value`](#to-value)
+  - [`from_value`](#from-value)
 
 ## Quick Reference
 
@@ -123,16 +123,16 @@ untyped_example().unwrap();
 | [`de`](#de) | mod |  |
 | [`from`](#from) | mod |  |
 | [`index`](#index) | mod |  |
-| [`partial_eq`](#partial_eq) | mod |  |
+| [`partial_eq`](#partial-eq) | mod |  |
 | [`ser`](#ser) | mod |  |
 | [`Serializer`](#serializer) | struct |  |
 | [`Map`](#map) | struct |  |
 | [`Number`](#number) | struct |  |
 | [`Value`](#value) | enum | Represents any valid JSON value. |
 | [`Index`](#index) | trait |  |
-| [`parse_index`](#parse_index) | fn |  |
-| [`to_value`](#to_value) | fn | Convert a `T` into `serde_json::Value` which is an enum that can represent any valid JSON data. |
-| [`from_value`](#from_value) | fn | Interpret a `serde_json::Value` as an instance of type `T`. |
+| [`parse_index`](#parse-index) | fn |  |
+| [`to_value`](#to-value) | fn | Convert a `T` into `serde_json::Value` which is an enum that can represent any valid JSON data. |
+| [`from_value`](#from-value) | fn | Interpret a `serde_json::Value` as an instance of type `T`. |
 
 ## Modules
 
@@ -177,23 +177,23 @@ where
 
 ##### `impl Serializer for Serializer`
 
-- <span id="serializer-type-ok"></span>`type Ok = Value`
+- <span id="serializer-serializer-type-ok"></span>`type Ok = Value`
 
-- <span id="serializer-type-error"></span>`type Error = Error`
+- <span id="serializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="serializer-type-serializeseq"></span>`type SerializeSeq = SerializeVec`
+- <span id="serializer-serializer-type-serializeseq"></span>`type SerializeSeq = SerializeVec`
 
-- <span id="serializer-type-serializetuple"></span>`type SerializeTuple = SerializeVec`
+- <span id="serializer-serializer-type-serializetuple"></span>`type SerializeTuple = SerializeVec`
 
-- <span id="serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = SerializeVec`
+- <span id="serializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = SerializeVec`
 
-- <span id="serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = SerializeTupleVariant`
+- <span id="serializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = SerializeTupleVariant`
 
-- <span id="serializer-type-serializemap"></span>`type SerializeMap = SerializeMap`
+- <span id="serializer-serializer-type-serializemap"></span>`type SerializeMap = SerializeMap`
 
-- <span id="serializer-type-serializestruct"></span>`type SerializeStruct = SerializeMap`
+- <span id="serializer-serializer-type-serializestruct"></span>`type SerializeStruct = SerializeMap`
 
-- <span id="serializer-type-serializestructvariant"></span>`type SerializeStructVariant = SerializeStructVariant`
+- <span id="serializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = SerializeStructVariant`
 
 - <span id="serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<Value>` — [`Result`](../error/index.md#result), [`Value`](#value)
 
@@ -335,11 +335,11 @@ Represents a JSON key/value type.
 
 - <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Map<K, V>`
+##### `impl DeserializeOwned for Map<K, V>`
 
 ##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-error"></span>`type Error = Error`
+- <span id="cratemapmap-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -415,7 +415,7 @@ Represents a JSON key/value type.
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-err"></span>`type Err = Error`
+- <span id="cratemapmap-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
@@ -423,27 +423,27 @@ Represents a JSON key/value type.
 
 - <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-output"></span>`type Output = Value`
+- <span id="map-index-type-output"></span>`type Output = Value`
 
 - <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](#value)
 
-##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](#value)
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
 ##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
+- <span id="a-map-intoiterator-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
+- <span id="a-map-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
 - <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -513,7 +513,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl Deserializer for Number`
 
-- <span id="number-type-error"></span>`type Error = Error`
+- <span id="number-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="number-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md#error)
 
@@ -585,7 +585,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl FromStr for crate::number::Number`
 
-- <span id="cratenumbernumber-type-err"></span>`type Err = Error`
+- <span id="cratenumbernumber-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratenumbernumber-from-str"></span>`fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
 
@@ -724,7 +724,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Deserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-type-error"></span>`type Error = Error`
+- <span id="cratevaluevalue-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="cratevaluevalue-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md#error)
 
@@ -794,13 +794,13 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Eq for Value`
 
-##### `impl FromIterator for super::Value`
+##### `impl<T: Into<super::Value>> FromIterator for super::Value`
 
 - <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::value::Value`
 
-- <span id="cratevaluevalue-type-err"></span>`type Err = Error`
+- <span id="cratevaluevalue-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratevaluevalue-from-str"></span>`fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](#value), [`Error`](../error/index.md#error)
 
@@ -808,19 +808,19 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 - <span id="value-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl Index for super::Value`
+##### `impl<I> Index for super::Value`
 
-- <span id="supervalue-type-output"></span>`type Output = Value`
+- <span id="supervalue-index-type-output"></span>`type Output = Value`
 
 - <span id="supervalue-index"></span>`fn index(&self, index: I) -> &Value` — [`Value`](#value)
 
-##### `impl IndexMut for super::Value`
+##### `impl<I> IndexMut for super::Value`
 
 - <span id="supervalue-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut Value` — [`Value`](#value)
 
 ##### `impl IntoDeserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-type-deserializer"></span>`type Deserializer = Value`
+- <span id="cratevaluevalue-intodeserializer-type-deserializer"></span>`type Deserializer = Value`
 
 - <span id="cratevaluevalue-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 

@@ -112,7 +112,7 @@ pin-project supports this.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`pin_project!`](#pin_project) | macro | A macro that creates a projection type covering all the fields of struct. |
+| [`pin_project!`](#pin-project) | macro | A macro that creates a projection type covering all the fields of struct. |
 
 ## Macros
 

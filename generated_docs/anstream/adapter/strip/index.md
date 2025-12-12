@@ -16,13 +16,13 @@
   - [`Utf8Parser`](#utf8parser)
   - [`VtUtf8Receiver`](#vtutf8receiver)
 - [Functions](#functions)
-  - [`strip_str`](#strip_str)
-  - [`next_str`](#next_str)
-  - [`from_utf8_unchecked`](#from_utf8_unchecked)
-  - [`is_utf8_continuation`](#is_utf8_continuation)
-  - [`strip_bytes`](#strip_bytes)
-  - [`next_bytes`](#next_bytes)
-  - [`is_printable_bytes`](#is_printable_bytes)
+  - [`strip_str`](#strip-str)
+  - [`next_str`](#next-str)
+  - [`from_utf8_unchecked`](#from-utf8-unchecked)
+  - [`is_utf8_continuation`](#is-utf8-continuation)
+  - [`strip_bytes`](#strip-bytes)
+  - [`next_bytes`](#next-bytes)
+  - [`is_printable_bytes`](#is-printable-bytes)
 
 ## Quick Reference
 
@@ -36,13 +36,13 @@
 | [`StripBytesIter`](#stripbytesiter) | struct | See [`StripBytes`] |
 | [`Utf8Parser`](#utf8parser) | struct |  |
 | [`VtUtf8Receiver`](#vtutf8receiver) | struct |  |
-| [`strip_str`](#strip_str) | fn | Strip ANSI escapes from a `&str`, returning the printable content |
-| [`next_str`](#next_str) | fn |  |
-| [`from_utf8_unchecked`](#from_utf8_unchecked) | fn |  |
-| [`is_utf8_continuation`](#is_utf8_continuation) | fn |  |
-| [`strip_bytes`](#strip_bytes) | fn | Strip ANSI escapes from bytes, returning the printable content |
-| [`next_bytes`](#next_bytes) | fn |  |
-| [`is_printable_bytes`](#is_printable_bytes) | fn |  |
+| [`strip_str`](#strip-str) | fn | Strip ANSI escapes from a `&str`, returning the printable content |
+| [`next_str`](#next-str) | fn |  |
+| [`from_utf8_unchecked`](#from-utf8-unchecked) | fn |  |
+| [`is_utf8_continuation`](#is-utf8-continuation) | fn |  |
+| [`strip_bytes`](#strip-bytes) | fn | Strip ANSI escapes from bytes, returning the printable content |
+| [`next_bytes`](#next-bytes) | fn |  |
+| [`is_printable_bytes`](#is-printable-bytes) | fn |  |
 
 ## Structs
 
@@ -87,15 +87,15 @@ See [`strip_str`](#strip-str)
 
 ##### `impl IntoIterator for StrippedStr<'s>`
 
-- <span id="strippedstr-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedstr-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedstr-type-intoiter"></span>`type IntoIter = I`
+- <span id="strippedstr-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedstr-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StrippedStr<'s>`
 
-- <span id="strippedstr-type-item"></span>`type Item = &'s str`
+- <span id="strippedstr-iterator-type-item"></span>`type Item = &'s str`
 
 - <span id="strippedstr-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -172,15 +172,15 @@ See [`StripStr`](#stripstr)
 
 ##### `impl IntoIterator for StripStrIter<'s>`
 
-- <span id="stripstriter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripstriter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripstriter-type-intoiter"></span>`type IntoIter = I`
+- <span id="stripstriter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripstriter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StripStrIter<'s>`
 
-- <span id="stripstriter-type-item"></span>`type Item = &'s str`
+- <span id="stripstriter-iterator-type-item"></span>`type Item = &'s str`
 
 - <span id="stripstriter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -232,15 +232,15 @@ See [`strip_bytes`](#strip-bytes)
 
 ##### `impl IntoIterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedbytes-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedbytes-type-intoiter"></span>`type IntoIter = I`
+- <span id="strippedbytes-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedbytes-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-type-item"></span>`type Item = &'s [u8]`
+- <span id="strippedbytes-iterator-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="strippedbytes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -315,15 +315,15 @@ See [`StripBytes`](#stripbytes)
 
 ##### `impl IntoIterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripbytesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripbytesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="stripbytesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-type-item"></span>`type Item = &'s [u8]`
+- <span id="stripbytesiter-iterator-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="stripbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

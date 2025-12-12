@@ -11,17 +11,17 @@
   - [`Counters`](#counters)
   - [`JobsEventCounter`](#jobseventcounter)
 - [Functions](#functions)
-  - [`select_thread`](#select_thread)
-  - [`select_jec`](#select_jec)
+  - [`select_thread`](#select-thread)
+  - [`select_jec`](#select-jec)
 - [Constants](#constants)
-  - [`THREADS_BITS`](#threads_bits)
-  - [`SLEEPING_SHIFT`](#sleeping_shift)
-  - [`INACTIVE_SHIFT`](#inactive_shift)
-  - [`JEC_SHIFT`](#jec_shift)
-  - [`THREADS_MAX`](#threads_max)
-  - [`ONE_SLEEPING`](#one_sleeping)
-  - [`ONE_INACTIVE`](#one_inactive)
-  - [`ONE_JEC`](#one_jec)
+  - [`THREADS_BITS`](#threads-bits)
+  - [`SLEEPING_SHIFT`](#sleeping-shift)
+  - [`INACTIVE_SHIFT`](#inactive-shift)
+  - [`JEC_SHIFT`](#jec-shift)
+  - [`THREADS_MAX`](#threads-max)
+  - [`ONE_SLEEPING`](#one-sleeping)
+  - [`ONE_INACTIVE`](#one-inactive)
+  - [`ONE_JEC`](#one-jec)
 
 ## Quick Reference
 
@@ -30,16 +30,16 @@
 | [`AtomicCounters`](#atomiccounters) | struct |  |
 | [`Counters`](#counters) | struct |  |
 | [`JobsEventCounter`](#jobseventcounter) | struct | A value read from the **Jobs Event Counter**. |
-| [`select_thread`](#select_thread) | fn |  |
-| [`select_jec`](#select_jec) | fn |  |
-| [`THREADS_BITS`](#threads_bits) | const | Number of bits used for the thread counters. |
-| [`SLEEPING_SHIFT`](#sleeping_shift) | const | Bits to shift to select the sleeping threads (used with `select_bits`). |
-| [`INACTIVE_SHIFT`](#inactive_shift) | const | Bits to shift to select the inactive threads (used with `select_bits`). |
-| [`JEC_SHIFT`](#jec_shift) | const | Bits to shift to select the JEC (use JOBS_BITS). |
-| [`THREADS_MAX`](#threads_max) | const | Max value for the thread counters. |
-| [`ONE_SLEEPING`](#one_sleeping) | const | Constant that can be added to add one sleeping thread. |
-| [`ONE_INACTIVE`](#one_inactive) | const | Constant that can be added to add one inactive thread. |
-| [`ONE_JEC`](#one_jec) | const | Constant that can be added to add one to the JEC. |
+| [`select_thread`](#select-thread) | fn |  |
+| [`select_jec`](#select-jec) | fn |  |
+| [`THREADS_BITS`](#threads-bits) | const | Number of bits used for the thread counters. |
+| [`SLEEPING_SHIFT`](#sleeping-shift) | const | Bits to shift to select the sleeping threads (used with `select_bits`). |
+| [`INACTIVE_SHIFT`](#inactive-shift) | const | Bits to shift to select the inactive threads (used with `select_bits`). |
+| [`JEC_SHIFT`](#jec-shift) | const | Bits to shift to select the JEC (use JOBS_BITS). |
+| [`THREADS_MAX`](#threads-max) | const | Max value for the thread counters. |
+| [`ONE_SLEEPING`](#one-sleeping) | const | Constant that can be added to add one sleeping thread. |
+| [`ONE_INACTIVE`](#one-inactive) | const | Constant that can be added to add one inactive thread. |
+| [`ONE_JEC`](#one-jec) | const | Constant that can be added to add one to the JEC. |
 
 ## Structs
 
@@ -91,9 +91,9 @@ struct AtomicCounters {
 
 ##### `impl Pointable for AtomicCounters`
 
-- <span id="atomiccounters-const-align"></span>`const ALIGN: usize`
+- <span id="atomiccounters-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomiccounters-type-init"></span>`type Init = T`
+- <span id="atomiccounters-pointable-type-init"></span>`type Init = T`
 
 - <span id="atomiccounters-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -141,9 +141,9 @@ struct Counters {
 
 ##### `impl Pointable for Counters`
 
-- <span id="counters-const-align"></span>`const ALIGN: usize`
+- <span id="counters-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="counters-type-init"></span>`type Init = T`
+- <span id="counters-pointable-type-init"></span>`type Init = T`
 
 - <span id="counters-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -197,9 +197,9 @@ coverage of how the jobs event counter works.
 
 ##### `impl Pointable for JobsEventCounter`
 
-- <span id="jobseventcounter-const-align"></span>`const ALIGN: usize`
+- <span id="jobseventcounter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobseventcounter-type-init"></span>`type Init = T`
+- <span id="jobseventcounter-pointable-type-init"></span>`type Init = T`
 
 - <span id="jobseventcounter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

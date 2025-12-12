@@ -75,9 +75,9 @@ struct RcVecBuilder<T> {
 
 ##### `impl<T> IntoIterator for RcVecBuilder<T>`
 
-- <span id="rcvecbuilder-type-item"></span>`type Item = T`
+- <span id="rcvecbuilder-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="rcvecbuilder-type-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
+- <span id="rcvecbuilder-intoiterator-type-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
 
 - <span id="rcvecbuilder-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -117,17 +117,17 @@ struct RcVecIntoIter<T> {
 
 - <span id="rcvecintoiter-clone"></span>`fn clone(&self) -> RcVecIntoIter<T>` — [`RcVecIntoIter`](#rcvecintoiter)
 
-##### `impl<I> IntoIterator for RcVecIntoIter<T>`
+##### `impl IntoIterator for RcVecIntoIter<T>`
 
-- <span id="rcvecintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rcvecintoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rcvecintoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="rcvecintoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rcvecintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RcVecIntoIter<T>`
 
-- <span id="rcvecintoiter-type-item"></span>`type Item = T`
+- <span id="rcvecintoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="rcvecintoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -43,15 +43,15 @@ This struct is used internally by the library.
 
 ##### `impl IntoIterator for NonEmptyLines<'a>`
 
-- <span id="nonemptylines-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="nonemptylines-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="nonemptylines-type-intoiter"></span>`type IntoIter = I`
+- <span id="nonemptylines-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="nonemptylines-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NonEmptyLines<'a>`
 
-- <span id="nonemptylines-type-item"></span>`type Item = (&'a str, Option<LineEnding>)`
+- <span id="nonemptylines-iterator-type-item"></span>`type Item = (&'a str, Option<LineEnding>)`
 
 - <span id="nonemptylines-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

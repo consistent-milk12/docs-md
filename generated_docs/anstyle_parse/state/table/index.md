@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`STATE_CHANGES`](#state_changes) | const |  |
+| [`STATE_CHANGES`](#state-changes) | const |  |
 
 ## Constants
 

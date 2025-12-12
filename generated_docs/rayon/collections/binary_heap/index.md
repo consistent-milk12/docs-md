@@ -52,15 +52,15 @@ Parallel iterator over a binary heap
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-type-iter"></span>`type Iter = T`
+- <span id="intoiter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -68,9 +68,9 @@ Parallel iterator over a binary heap
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-const-align"></span>`const ALIGN: usize`
+- <span id="intoiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-type-init"></span>`type Init = T`
+- <span id="intoiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -98,11 +98,11 @@ Parallel iterator over an immutable reference to a binary heap
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, T: fmt::Debug> Debug for Iter<'a, T>`
+##### `impl<T: fmt::Debug> Debug for Iter<'a, T>`
 
 - <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T: Sync + 'a> IndexedParallelIterator for Iter<'a, T>`
+##### `impl<T: Sync + 'a> IndexedParallelIterator for Iter<'a, T>`
 
 - <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -114,15 +114,15 @@ Parallel iterator over an immutable reference to a binary heap
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-type-iter"></span>`type Iter = T`
+- <span id="iter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, T: Sync + 'a> ParallelIterator for Iter<'a, T>`
+##### `impl<T: Sync + 'a> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-type-item"></span>`type Item = &'a T`
+- <span id="iter-paralleliterator-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -130,9 +130,9 @@ Parallel iterator over an immutable reference to a binary heap
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-const-align"></span>`const ALIGN: usize`
+- <span id="iter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-type-init"></span>`type Init = T`
+- <span id="iter-pointable-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -157,7 +157,7 @@ but keeps the total capacity.
 
 #### Trait Implementations
 
-##### `impl<'a, T: fmt::Debug> Debug for Drain<'a, T>`
+##### `impl<T: fmt::Debug> Debug for Drain<'a, T>`
 
 - <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -177,15 +177,15 @@ but keeps the total capacity.
 
 ##### `impl<T> IntoParallelIterator for Drain<'a, T>`
 
-- <span id="drain-type-iter"></span>`type Iter = T`
+- <span id="drain-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Ord + Send> ParallelIterator for Drain<'_, T>`
 
-- <span id="drain-type-item"></span>`type Item = T`
+- <span id="drain-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -193,9 +193,9 @@ but keeps the total capacity.
 
 ##### `impl<T> Pointable for Drain<'a, T>`
 
-- <span id="drain-const-align"></span>`const ALIGN: usize`
+- <span id="drain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-type-init"></span>`type Init = T`
+- <span id="drain-pointable-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

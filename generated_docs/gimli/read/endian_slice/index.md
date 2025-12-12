@@ -54,41 +54,41 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Trait Implementations
 
-##### `impl<'input, Endian> Clone for EndianSlice<'input, Endian>`
+##### `impl<Endian> Clone for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-clone"></span>`fn clone(&self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md#endianslice)
 
-##### `impl<'input, Endian> Copy for EndianSlice<'input, Endian>`
+##### `impl<Endian> Copy for EndianSlice<'input, Endian>`
 
-##### `impl<'input, Endian: Endianity> Debug for EndianSlice<'input, Endian>`
+##### `impl<Endian: Endianity> Debug for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
-##### `impl<'input, Endian> Default for EndianSlice<'input, Endian>`
+##### `impl<Endian> Default for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-default"></span>`fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md#endianslice)
 
-##### `impl<'input, Endian> Deref for EndianSlice<'input, Endian>`
+##### `impl<Endian> Deref for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-target"></span>`type Target = [u8]`
+- <span id="endianslice-deref-type-target"></span>`type Target = [u8]`
 
 - <span id="endianslice-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<'input, Endian> Eq for EndianSlice<'input, Endian>`
+##### `impl<Endian> Eq for EndianSlice<'input, Endian>`
 
-##### `impl<'input, Endian> Hash for EndianSlice<'input, Endian>`
+##### `impl<Endian> Hash for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'input, Endian> PartialEq for EndianSlice<'input, Endian>`
+##### `impl<Endian> PartialEq for EndianSlice<'input, Endian>`
 
 - <span id="endianslice-eq"></span>`fn eq(&self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](../index.md#endianslice)
 
-##### `impl<'input, Endian> Reader for EndianSlice<'input, Endian>`
+##### `impl<Endian> Reader for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-endian"></span>`type Endian = Endian`
+- <span id="endianslice-reader-type-endian"></span>`type Endian = Endian`
 
-- <span id="endianslice-type-offset"></span>`type Offset = usize`
+- <span id="endianslice-reader-type-offset"></span>`type Offset = usize`
 
 - <span id="endianslice-endian"></span>`fn endian(&self) -> Endian`
 
@@ -120,11 +120,11 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 - <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../../index.md#result)
 
-##### `impl<P, T> Receiver for EndianSlice<'input, Endian>`
+##### `impl Receiver for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-type-target"></span>`type Target = T`
+- <span id="endianslice-receiver-type-target"></span>`type Target = T`
 
-##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
+##### `impl<Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
 
 ### `DebugBytes<'input>`
 

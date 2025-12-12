@@ -128,21 +128,21 @@ back in the pool once it's dropped.
 
 #### Trait Implementations
 
-##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
+##### `impl<T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'a, T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
+##### `impl<T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-type-target"></span>`type Target = T`
+- <span id="poolguard-deref-type-target"></span>`type Target = T`
 
 - <span id="poolguard-deref"></span>`fn deref(&self) -> &T`
 
-##### `impl<'a, T: Send, F: Fn() -> T> DerefMut for PoolGuard<'a, T, F>`
+##### `impl<T: Send, F: Fn() -> T> DerefMut for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
-##### `impl<P, T> Receiver for PoolGuard<'a, T, F>`
+##### `impl<T> Receiver for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-type-target"></span>`type Target = T`
+- <span id="poolguard-receiver-type-target"></span>`type Target = T`
 

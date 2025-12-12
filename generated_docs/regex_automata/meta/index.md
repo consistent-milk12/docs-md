@@ -52,7 +52,7 @@ level routines such as `Regex::search_with`.
   - [`limited`](#limited)
   - [`literal`](#literal)
   - [`regex`](#regex)
-  - [`reverse_inner`](#reverse_inner)
+  - [`reverse_inner`](#reverse-inner)
   - [`stopat`](#stopat)
   - [`strategy`](#strategy)
   - [`wrappers`](#wrappers)
@@ -75,7 +75,7 @@ level routines such as `Regex::search_with`.
 | [`limited`](#limited) | mod | This module defines two bespoke reverse DFA searching routines. |
 | [`literal`](#literal) | mod |  |
 | [`regex`](#regex) | mod |  |
-| [`reverse_inner`](#reverse_inner) | mod | A module dedicated to plucking inner literals out of a regex pattern, and then constructing a prefilter for them. |
+| [`reverse_inner`](#reverse-inner) | mod | A module dedicated to plucking inner literals out of a regex pattern, and then constructing a prefilter for them. |
 | [`stopat`](#stopat) | mod | This module defines two bespoke forward DFA search routines. |
 | [`strategy`](#strategy) | mod |  |
 | [`wrappers`](#wrappers) | mod | This module contains a boat load of wrappers around each of our internal regex engines. |
@@ -416,15 +416,15 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 ##### `impl IntoIterator for CapturesMatches<'r, 'h>`
 
-- <span id="capturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturesmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CapturesMatches<'r, 'h>`
 
-- <span id="capturesmatches-type-item"></span>`type Item = Captures`
+- <span id="capturesmatches-iterator-type-item"></span>`type Item = Captures`
 
 - <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../util/captures/index.md#captures)
 
@@ -603,15 +603,15 @@ This iterator can be created with the `Regex::find_iter` method.
 
 ##### `impl IntoIterator for FindMatches<'r, 'h>`
 
-- <span id="findmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="findmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FindMatches<'r, 'h>`
 
-- <span id="findmatches-type-item"></span>`type Item = Match`
+- <span id="findmatches-iterator-type-item"></span>`type Item = Match`
 
 - <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md#match)
 
@@ -897,15 +897,15 @@ This iterator can be created with the `Regex::split` method.
 
 ##### `impl IntoIterator for Split<'r, 'h>`
 
-- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-type-intoiter"></span>`type IntoIter = I`
+- <span id="split-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Split<'r, 'h>`
 
-- <span id="split-type-item"></span>`type Item = Span`
+- <span id="split-iterator-type-item"></span>`type Item = Span`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md#span)
 
@@ -946,15 +946,15 @@ This iterator can be created with the `Regex::splitn` method.
 
 ##### `impl IntoIterator for SplitN<'r, 'h>`
 
-- <span id="splitn-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splitn-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splitn-type-intoiter"></span>`type IntoIter = I`
+- <span id="splitn-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splitn-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SplitN<'r, 'h>`
 
-- <span id="splitn-type-item"></span>`type Item = Span`
+- <span id="splitn-iterator-type-item"></span>`type Item = Span`
 
 - <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md#span)
 

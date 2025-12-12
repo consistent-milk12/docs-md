@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`const_argument`](#const_argument) | fn |  |
+| [`const_argument`](#const-argument) | fn |  |
 | [`qpath`](#qpath) | fn |  |
 
 ## Functions

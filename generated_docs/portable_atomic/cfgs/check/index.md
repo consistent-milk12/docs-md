@@ -8,13 +8,13 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`_Atomic8`](#_atomic8) | type |  |
-| [`_Atomic16`](#_atomic16) | type |  |
-| [`_Atomic32`](#_atomic32) | type |  |
-| [`_Atomic64`](#_atomic64) | type |  |
-| [`_Atomic128`](#_atomic128) | type |  |
-| [`_AtomicPtr`](#_atomicptr) | type |  |
-| [`__AtomicPtr`](#__atomicptr) | type |  |
+| [`_Atomic8`](#atomic8) | type |  |
+| [`_Atomic16`](#atomic16) | type |  |
+| [`_Atomic32`](#atomic32) | type |  |
+| [`_Atomic64`](#atomic64) | type |  |
+| [`_Atomic128`](#atomic128) | type |  |
+| [`_AtomicPtr`](#atomicptr) | type |  |
+| [`__AtomicPtr`](#atomicptr) | type |  |
 
 ## Type Aliases
 

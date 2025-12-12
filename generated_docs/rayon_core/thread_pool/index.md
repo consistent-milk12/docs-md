@@ -13,10 +13,10 @@ the [`ThreadPool`](#threadpool) type (see that struct for details).
 |------|------|-------------|
 | [`ThreadPool`](#threadpool) | struct | Represents a user-created [thread pool]. |
 | [`Yield`](#yield) | enum | Result of [`yield_now()`] or [`yield_local()`]. |
-| [`current_thread_index`](#current_thread_index) | fn | If called from a Rayon worker thread, returns the index of that thread within its current pool; if not called from a Rayon thread, returns `None`. |
-| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn | If called from a Rayon worker thread, indicates whether that thread's local deque still has pending tasks. |
-| [`yield_now`](#yield_now) | fn | Cooperatively yields execution to Rayon. |
-| [`yield_local`](#yield_local) | fn | Cooperatively yields execution to local Rayon work. |
+| [`current_thread_index`](#current-thread-index) | fn | If called from a Rayon worker thread, returns the index of that thread within its current pool; if not called from a Rayon thread, returns `None`. |
+| [`current_thread_has_pending_tasks`](#current-thread-has-pending-tasks) | fn | If called from a Rayon worker thread, indicates whether that thread's local deque still has pending tasks. |
+| [`yield_now`](#yield-now) | fn | Cooperatively yields execution to Rayon. |
+| [`yield_local`](#yield-local) | fn | Cooperatively yields execution to local Rayon work. |
 
 ## Structs
 
@@ -105,9 +105,9 @@ terminate.
 
 ##### `impl Pointable for ThreadPool`
 
-- <span id="threadpool-const-align"></span>`const ALIGN: usize`
+- <span id="threadpool-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadpool-type-init"></span>`type Init = T`
+- <span id="threadpool-pointable-type-init"></span>`type Init = T`
 
 - <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -162,9 +162,9 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 ##### `impl Pointable for Yield`
 
-- <span id="yield-const-align"></span>`const ALIGN: usize`
+- <span id="yield-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="yield-type-init"></span>`type Init = T`
+- <span id="yield-pointable-type-init"></span>`type Init = T`
 
 - <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

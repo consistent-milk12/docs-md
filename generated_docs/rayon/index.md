@@ -78,22 +78,22 @@ See [the Rayon FAQ][faq].
 - [Modules](#modules)
   - [`delegate`](#delegate)
   - [`private`](#private)
-  - [`split_producer`](#split_producer)
+  - [`split_producer`](#split-producer)
   - [`array`](#array)
   - [`collections`](#collections)
   - [`iter`](#iter)
   - [`option`](#option)
   - [`prelude`](#prelude)
   - [`range`](#range)
-  - [`range_inclusive`](#range_inclusive)
+  - [`range_inclusive`](#range-inclusive)
   - [`result`](#result)
   - [`slice`](#slice)
   - [`str`](#str)
   - [`string`](#string)
   - [`vec`](#vec)
   - [`math`](#math)
-  - [`par_either`](#par_either)
-  - [`compile_fail`](#compile_fail)
+  - [`par_either`](#par-either)
+  - [`compile_fail`](#compile-fail)
 - [Structs](#structs)
   - [`SendPtr`](#sendptr)
 - [Functions](#functions)
@@ -103,8 +103,8 @@ See [the Rayon FAQ][faq].
   - [`ThreadPoolBuildError`](#threadpoolbuilderror)
   - [`ThreadPoolBuilder`](#threadpoolbuilder)
   - [`broadcast`](#broadcast)
-  - [`in_place_scope_fifo`](#in_place_scope_fifo)
-  - [`scope_fifo`](#scope_fifo)
+  - [`in_place_scope_fifo`](#in-place-scope-fifo)
+  - [`scope_fifo`](#scope-fifo)
   - [`spawn`](#spawn)
   - [`Yield`](#yield)
 
@@ -114,22 +114,22 @@ See [the Rayon FAQ][faq].
 |------|------|-------------|
 | [`delegate`](#delegate) | mod | Macros for delegating newtype iterators to inner types. |
 | [`private`](#private) | mod | The public parts of this private module are used to create traits that cannot be implemented outside of our own crate. |
-| [`split_producer`](#split_producer) | mod | Common splitter for strings and slices |
+| [`split_producer`](#split-producer) | mod | Common splitter for strings and slices |
 | [`array`](#array) | mod | Parallel iterator types for [arrays] (`[T; N]`) |
 | [`collections`](#collections) | mod | Parallel iterator types for [standard collections] |
 | [`iter`](#iter) | mod | Traits for writing parallel programs using an iterator-style interface |
 | [`option`](#option) | mod | Parallel iterator types for [options] |
 | [`prelude`](#prelude) | mod | The rayon prelude imports the various `ParallelIterator` traits. |
 | [`range`](#range) | mod | Parallel iterator types for [ranges], the type for values created by `a..b` expressions |
-| [`range_inclusive`](#range_inclusive) | mod | Parallel iterator types for [inclusive ranges], the type for values created by `a..=b` expressions |
+| [`range_inclusive`](#range-inclusive) | mod | Parallel iterator types for [inclusive ranges], the type for values created by `a..=b` expressions |
 | [`result`](#result) | mod | Parallel iterator types for [results] |
 | [`slice`](#slice) | mod | Parallel iterator types for [slices] |
 | [`str`](#str) | mod | Parallel iterator types for [strings] |
 | [`string`](#string) | mod | This module contains the parallel iterator types for owned strings (`String`). |
 | [`vec`](#vec) | mod | Parallel iterator types for [vectors] (`Vec<T>`) |
 | [`math`](#math) | mod |  |
-| [`par_either`](#par_either) | mod |  |
-| [`compile_fail`](#compile_fail) | mod |  |
+| [`par_either`](#par-either) | mod |  |
+| [`compile_fail`](#compile-fail) | mod |  |
 | [`SendPtr`](#sendptr) | struct | We need to transmit raw pointers across threads. |
 | [`FnContext`](#fncontext) | fn |  |
 | [`ThreadBuilder`](#threadbuilder) | fn |  |
@@ -137,8 +137,8 @@ See [the Rayon FAQ][faq].
 | [`ThreadPoolBuildError`](#threadpoolbuilderror) | fn |  |
 | [`ThreadPoolBuilder`](#threadpoolbuilder) | fn |  |
 | [`broadcast`](#broadcast) | fn |  |
-| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
-| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`in_place_scope_fifo`](#in-place-scope-fifo) | fn |  |
+| [`scope_fifo`](#scope-fifo) | fn |  |
 | [`spawn`](#spawn) | fn |  |
 | [`Yield`](#yield) | fn |  |
 
@@ -198,9 +198,9 @@ not unsound on its own, although it does partly lift the unconditional
 
 ##### `impl<T> Pointable for SendPtr<T>`
 
-- <span id="sendptr-const-align"></span>`const ALIGN: usize`
+- <span id="sendptr-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sendptr-type-init"></span>`type Init = T`
+- <span id="sendptr-pointable-type-init"></span>`type Init = T`
 
 - <span id="sendptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -216,23 +216,101 @@ not unsound on its own, although it does partly lift the unconditional
 
 ## Functions
 
-*Defined in [`rayon-1.11.0/src/lib.rs:112`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L112)*
+### `FnContext`
 
-*Defined in [`rayon-1.11.0/src/lib.rs:113`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L113)*
+```rust
+fn FnContext(&self) -> Format
+```
 
-*Defined in [`rayon-1.11.0/src/lib.rs:114`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L114)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:418-420`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L418-L420)*
 
-*Defined in [`rayon-1.11.0/src/lib.rs:115`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L115)*
+Whether this compilation unit is encoded in 64- or 32-bit DWARF.
 
-*Defined in [`rayon-1.11.0/src/lib.rs:116`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L116)*
+### `ThreadBuilder`
 
-*Defined in [`rayon-1.11.0/src/lib.rs:117`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L117)*
+```rust
+fn ThreadBuilder(&self, offset: UnitOffset<Offset>) -> bool
+```
 
-*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:427-435`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L427-L435)*
 
-*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+### `ThreadPool`
 
-*Defined in [`rayon-1.11.0/src/lib.rs:122`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L122)*
+```rust
+fn ThreadPool(&self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>
+```
 
-*Defined in [`rayon-1.11.0/src/lib.rs:123`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L123)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:456-464`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L456-L464)*
+
+Get the underlying bytes for the supplied range.
+
+### `ThreadPoolBuildError`
+
+```rust
+fn ThreadPoolBuildError<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:478-486`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L478-L486)*
+
+Read the `DebuggingInformationEntry` at the given offset.
+
+### `ThreadPoolBuilder`
+
+```rust
+fn ThreadPoolBuilder<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:504-517`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L504-L517)*
+
+Navigate this compilation unit's `DebuggingInformationEntry`s
+starting at the given offset.
+
+### `broadcast`
+
+```rust
+fn broadcast<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:534-549`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L534-L549)*
+
+Read the raw data that defines the Debugging Information Entries.
+
+### `in_place_scope_fifo`
+
+```rust
+fn in_place_scope_fifo(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L302)*
+
+### `scope_fifo`
+
+```rust
+fn scope_fifo(&self) -> UnitHeader<R, Offset>
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:302`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L302)*
+
+### `spawn`
+
+```rust
+fn spawn<R, Offset>(input: &mut R, unit_offset: crate::common::UnitSectionOffset<Offset>) -> crate::read::Result<UnitHeader<R>>
+where
+    R: Reader<Offset = Offset>,
+    Offset: ReaderOffset
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+
+Parse a unit header.
+
+### `Yield`
+
+```rust
+fn Yield(offset: UnitOffset<Offset>, attrs_slice: R, abbrev: &'abbrev Abbreviation, unit: &'unit UnitHeader<R, Offset>) -> Self
+```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:665-678`](../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L665-L678)*
+
+Construct a new `DebuggingInformationEntry`.
 

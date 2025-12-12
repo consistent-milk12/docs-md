@@ -33,21 +33,21 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -20,11 +20,11 @@ Castaway provides the following key macros:
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`lifetime_free`](#lifetime_free) | mod |  |
+| [`lifetime_free`](#lifetime-free) | mod |  |
 | [`utils`](#utils) | mod | Low-level utility functions. |
 | [`LifetimeFree`](#lifetimefree) | trait |  |
 | [`cast!`](#cast) | macro | Attempt to cast the result of an expression into a given concrete type. |
-| [`match_type!`](#match_type) | macro | Match the result of an expression against multiple concrete types. |
+| [`match_type!`](#match-type) | macro | Match the result of an expression against multiple concrete types. |
 
 ## Modules
 

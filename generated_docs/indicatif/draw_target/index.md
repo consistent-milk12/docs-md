@@ -18,9 +18,9 @@
   - [`LineAdjust`](#lineadjust)
   - [`LineType`](#linetype)
 - [Functions](#functions)
-  - [`visual_line_count`](#visual_line_count)
+  - [`visual_line_count`](#visual-line-count)
 - [Constants](#constants)
-  - [`MAX_BURST`](#max_burst)
+  - [`MAX_BURST`](#max-burst)
 
 ## Quick Reference
 
@@ -35,8 +35,8 @@
 | [`Drawable`](#drawable) | enum |  |
 | [`LineAdjust`](#lineadjust) | enum |  |
 | [`LineType`](#linetype) | enum |  |
-| [`visual_line_count`](#visual_line_count) | fn | Calculate the number of visual lines in the given lines, after accounting for line wrapping and non-printable characters. |
-| [`MAX_BURST`](#max_burst) | const |  |
+| [`visual_line_count`](#visual-line-count) | fn | Calculate the number of visual lines in the given lines, after accounting for line wrapping and non-printable characters. |
+| [`MAX_BURST`](#max-burst) | const |  |
 
 ## Structs
 
@@ -123,7 +123,7 @@ struct DrawStateWrapper<'a> {
 
 ##### `impl Deref for DrawStateWrapper<'_>`
 
-- <span id="drawstatewrapper-type-target"></span>`type Target = DrawState`
+- <span id="drawstatewrapper-deref-type-target"></span>`type Target = DrawState`
 
 - <span id="drawstatewrapper-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -137,7 +137,7 @@ struct DrawStateWrapper<'a> {
 
 ##### `impl Receiver for DrawStateWrapper<'a>`
 
-- <span id="drawstatewrapper-type-target"></span>`type Target = T`
+- <span id="drawstatewrapper-receiver-type-target"></span>`type Target = T`
 
 ### `RateLimiter`
 
@@ -233,7 +233,7 @@ struct VisualLines(usize);
 
 ##### `impl Add for VisualLines`
 
-- <span id="visuallines-type-output"></span>`type Output = VisualLines`
+- <span id="visuallines-add-type-output"></span>`type Output = VisualLines`
 
 - <span id="visuallines-add"></span>`fn add(self, rhs: Self) -> <Self as >::Output`
 
@@ -273,7 +273,7 @@ struct VisualLines(usize);
 
 ##### `impl Sub for VisualLines`
 
-- <span id="visuallines-type-output"></span>`type Output = VisualLines`
+- <span id="visuallines-sub-type-output"></span>`type Output = VisualLines`
 
 - <span id="visuallines-sub"></span>`fn sub(self, rhs: Self) -> <Self as >::Output`
 

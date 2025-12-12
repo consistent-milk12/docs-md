@@ -14,11 +14,11 @@
   - [`RecordType`](#recordtype)
   - [`AsyncKind`](#asynckind)
 - [Functions](#functions)
-  - [`gen_function`](#gen_function)
-  - [`gen_block`](#gen_block)
-  - [`param_names`](#param_names)
-  - [`path_to_string`](#path_to_string)
-  - [`erase_impl_trait`](#erase_impl_trait)
+  - [`gen_function`](#gen-function)
+  - [`gen_block`](#gen-block)
+  - [`param_names`](#param-names)
+  - [`path_to_string`](#path-to-string)
+  - [`erase_impl_trait`](#erase-impl-trait)
 
 ## Quick Reference
 
@@ -29,11 +29,11 @@
 | [`ImplTraitEraser`](#impltraiteraser) | struct |  |
 | [`RecordType`](#recordtype) | enum | Indicates whether a field should be recorded as `Value` or `Debug`. |
 | [`AsyncKind`](#asynckind) | enum | The specific async code pattern that was detected |
-| [`gen_function`](#gen_function) | fn | Given an existing function, generate an instrumented version of that function |
-| [`gen_block`](#gen_block) | fn | Instrument a block |
-| [`param_names`](#param_names) | fn |  |
-| [`path_to_string`](#path_to_string) | fn |  |
-| [`erase_impl_trait`](#erase_impl_trait) | fn |  |
+| [`gen_function`](#gen-function) | fn | Given an existing function, generate an instrumented version of that function |
+| [`gen_block`](#gen-block) | fn | Instrument a block |
+| [`param_names`](#param-names) | fn |  |
+| [`path_to_string`](#path-to-string) | fn |  |
+| [`erase_impl_trait`](#erase-impl-trait) | fn |  |
 
 ## Structs
 

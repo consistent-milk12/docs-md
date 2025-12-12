@@ -32,21 +32,21 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machorelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machorelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machorelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machorelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machorelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="machorelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="machorelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

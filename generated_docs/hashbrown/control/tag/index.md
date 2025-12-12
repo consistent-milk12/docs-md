@@ -51,7 +51,7 @@ Single tag in a control group.
 
 ##### `impl Eq for Tag`
 
-##### `impl Equivalent for Tag`
+##### `impl<K> Equivalent for Tag`
 
 - <span id="tag-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 

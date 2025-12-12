@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cfg_has_atomic_cas_or_amo32!`](#cfg_has_atomic_cas_or_amo32) | macro |  |
-| [`cfg_has_atomic_cas_or_amo8!`](#cfg_has_atomic_cas_or_amo8) | macro |  |
+| [`cfg_has_atomic_cas_or_amo32!`](#cfg-has-atomic-cas-or-amo32) | macro |  |
+| [`cfg_has_atomic_cas_or_amo8!`](#cfg-has-atomic-cas-or-amo8) | macro |  |
 
 ## Macros
 

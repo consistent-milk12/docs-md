@@ -30,7 +30,7 @@ parameters, which integers are owned or borrowed file descriptors, etc.
 | [`io`](#io) | mod |  |
 | [`termios`](#termios) | mod |  |
 | [`c`](#c) | mod | Adapt the Linux API to resemble a POSIX-style libc API. |
-| [`MAX_IOV`](#max_iov) | const | The maximum number of buffers that can be passed into a vectored I/O system call on the current platform. |
+| [`MAX_IOV`](#max-iov) | const | The maximum number of buffers that can be passed into a vectored I/O system call on the current platform. |
 
 ## Modules
 

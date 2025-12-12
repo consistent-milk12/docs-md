@@ -11,7 +11,7 @@
 | [`Formatter`](#formatter) | struct | A helper type for formatting nice error messages. |
 | [`Spans`](#spans) | struct | This type represents an arbitrary number of error spans in a way that makes it convenient to notate the regex pattern. |
 | [`Error`](#error) | enum | This error type encompasses any error that can be returned by this crate. |
-| [`repeat_char`](#repeat_char) | fn |  |
+| [`repeat_char`](#repeat-char) | fn |  |
 
 ## Structs
 
@@ -55,15 +55,15 @@ markers pointing out the position where an error occurred.
 
 #### Trait Implementations
 
-##### `impl<'e, E: fmt::Debug> Debug for Formatter<'e, E>`
+##### `impl<E: fmt::Debug> Debug for Formatter<'e, E>`
 
 - <span id="formatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'e, E: core::fmt::Display> Display for Formatter<'e, E>`
+##### `impl<E: core::fmt::Display> Display for Formatter<'e, E>`
 
 - <span id="formatter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for Formatter<'e, E>`
+##### `impl ToString for Formatter<'e, E>`
 
 - <span id="formatter-to-string"></span>`fn to_string(&self) -> String`
 

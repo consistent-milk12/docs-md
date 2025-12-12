@@ -33,11 +33,11 @@ struct SumConsumer<S: Send> {
 
 ##### `impl<S, T> Consumer for SumConsumer<S>`
 
-- <span id="sumconsumer-type-folder"></span>`type Folder = SumFolder<S>`
+- <span id="sumconsumer-consumer-type-folder"></span>`type Folder = SumFolder<S>`
 
-- <span id="sumconsumer-type-reducer"></span>`type Reducer = SumConsumer<S>`
+- <span id="sumconsumer-consumer-type-reducer"></span>`type Reducer = SumConsumer<S>`
 
-- <span id="sumconsumer-type-result"></span>`type Result = S`
+- <span id="sumconsumer-consumer-type-result"></span>`type Result = S`
 
 - <span id="sumconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -45,13 +45,13 @@ struct SumConsumer<S: Send> {
 
 - <span id="sumconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for SumConsumer<S>`
+##### `impl IntoEither for SumConsumer<S>`
 
-##### `impl<T> Pointable for SumConsumer<S>`
+##### `impl Pointable for SumConsumer<S>`
 
-- <span id="sumconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="sumconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sumconsumer-type-init"></span>`type Init = T`
+- <span id="sumconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="sumconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -87,7 +87,7 @@ struct SumFolder<S> {
 
 ##### `impl<S, T> Folder for SumFolder<S>`
 
-- <span id="sumfolder-type-result"></span>`type Result = S`
+- <span id="sumfolder-folder-type-result"></span>`type Result = S`
 
 - <span id="sumfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -97,13 +97,13 @@ struct SumFolder<S> {
 
 - <span id="sumfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for SumFolder<S>`
+##### `impl IntoEither for SumFolder<S>`
 
-##### `impl<T> Pointable for SumFolder<S>`
+##### `impl Pointable for SumFolder<S>`
 
-- <span id="sumfolder-const-align"></span>`const ALIGN: usize`
+- <span id="sumfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sumfolder-type-init"></span>`type Init = T`
+- <span id="sumfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="sumfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

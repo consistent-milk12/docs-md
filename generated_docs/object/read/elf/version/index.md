@@ -129,15 +129,15 @@ Returned by [`SectionTable::versions`](super::SectionTable::versions).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VersionTable<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for VersionTable<'data, Elf>`
 
 - <span id="versiontable-clone"></span>`fn clone(&self) -> VersionTable<'data, Elf>` — [`VersionTable`](../index.md#versiontable)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VersionTable<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for VersionTable<'data, Elf>`
 
 - <span id="versiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Elf: FileHeader> Default for VersionTable<'data, Elf>`
+##### `impl<Elf: FileHeader> Default for VersionTable<'data, Elf>`
 
 - <span id="versiontable-default"></span>`fn default() -> Self`
 
@@ -164,25 +164,25 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdefIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for VerdefIterator<'data, Elf>`
 
 - <span id="verdefiterator-clone"></span>`fn clone(&self) -> VerdefIterator<'data, Elf>` — [`VerdefIterator`](../index.md#verdefiterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdefIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for VerdefIterator<'data, Elf>`
 
 - <span id="verdefiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for VerdefIterator<'data, Elf>`
+##### `impl IntoIterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdefiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdefiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="verdefiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdefiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for VerdefIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-type-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
+- <span id="verdefiterator-iterator-type-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
 
 - <span id="verdefiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -210,25 +210,25 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERD
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdauxIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for VerdauxIterator<'data, Elf>`
 
 - <span id="verdauxiterator-clone"></span>`fn clone(&self) -> VerdauxIterator<'data, Elf>` — [`VerdauxIterator`](../index.md#verdauxiterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdauxIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for VerdauxIterator<'data, Elf>`
 
 - <span id="verdauxiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for VerdauxIterator<'data, Elf>`
+##### `impl IntoIterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdauxiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdauxiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="verdauxiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for VerdauxIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-type-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="verdauxiterator-iterator-type-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -255,25 +255,25 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/inde
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerneedIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for VerneedIterator<'data, Elf>`
 
 - <span id="verneediterator-clone"></span>`fn clone(&self) -> VerneedIterator<'data, Elf>` — [`VerneedIterator`](../index.md#verneediterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerneedIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for VerneedIterator<'data, Elf>`
 
 - <span id="verneediterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for VerneedIterator<'data, Elf>`
+##### `impl IntoIterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verneediterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verneediterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="verneediterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verneediterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for VerneedIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-type-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
+- <span id="verneediterator-iterator-type-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
 
 - <span id="verneediterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -301,25 +301,25 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERN
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VernauxIterator<'data, Elf>`
+##### `impl<Elf: clone::Clone + FileHeader> Clone for VernauxIterator<'data, Elf>`
 
 - <span id="vernauxiterator-clone"></span>`fn clone(&self) -> VernauxIterator<'data, Elf>` — [`VernauxIterator`](../index.md#vernauxiterator)
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VernauxIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for VernauxIterator<'data, Elf>`
 
 - <span id="vernauxiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for VernauxIterator<'data, Elf>`
+##### `impl IntoIterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="vernauxiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="vernauxiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="vernauxiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="vernauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for VernauxIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-type-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="vernauxiterator-iterator-type-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -359,7 +359,7 @@ The result of trying to apply a prefix to a floating-point value.
 
 ##### `impl<T: str::FromStr> FromStr for super::NumberPrefix<T>`
 
-- <span id="supernumberprefix-type-err"></span>`type Err = NumberPrefixParseError`
+- <span id="supernumberprefix-fromstr-type-err"></span>`type Err = NumberPrefixParseError`
 
 - <span id="supernumberprefix-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 

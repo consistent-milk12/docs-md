@@ -34,7 +34,7 @@ where
 
 ##### `impl<T, F> Deref for ScopeGuard<T, F>`
 
-- <span id="scopeguard-type-target"></span>`type Target = T`
+- <span id="scopeguard-deref-type-target"></span>`type Target = T`
 
 - <span id="scopeguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -46,9 +46,9 @@ where
 
 - <span id="scopeguard-drop"></span>`fn drop(&mut self)`
 
-##### `impl<P, T> Receiver for ScopeGuard<T, F>`
+##### `impl<T> Receiver for ScopeGuard<T, F>`
 
-- <span id="scopeguard-type-target"></span>`type Target = T`
+- <span id="scopeguard-receiver-type-target"></span>`type Target = T`
 
 ## Functions
 

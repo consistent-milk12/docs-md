@@ -13,9 +13,9 @@
   - [`ByteString`](#bytestring)
   - [`StringTable`](#stringtable)
 - [Functions](#functions)
-  - [`debug_list_bytes`](#debug_list_bytes)
+  - [`debug_list_bytes`](#debug-list-bytes)
   - [`align`](#align)
-  - [`data_range`](#data_range)
+  - [`data_range`](#data-range)
 
 ## Quick Reference
 
@@ -26,9 +26,9 @@
 | [`DebugLen`](#debuglen) | struct |  |
 | [`ByteString`](#bytestring) | struct | A newtype for byte strings. |
 | [`StringTable`](#stringtable) | struct | A table of zero-terminated strings. |
-| [`debug_list_bytes`](#debug_list_bytes) | fn |  |
+| [`debug_list_bytes`](#debug-list-bytes) | fn |  |
 | [`align`](#align) | fn |  |
-| [`data_range`](#data_range) | fn |  |
+| [`data_range`](#data-range) | fn |  |
 
 ## Structs
 
@@ -192,17 +192,17 @@ This is used by most file formats for strings such as section names and symbol n
 
 #### Trait Implementations
 
-##### `impl<'data, R> Clone for StringTable<'data, R>`
+##### `impl<R> Clone for StringTable<'data, R>`
 
 - <span id="stringtable-clone"></span>`fn clone(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md#stringtable)
 
-##### `impl<'data, R> Copy for StringTable<'data, R>`
+##### `impl<R> Copy for StringTable<'data, R>`
 
-##### `impl<'data, R> Debug for StringTable<'data, R>`
+##### `impl<R> Debug for StringTable<'data, R>`
 
 - <span id="stringtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, R: ReadRef<'data>> Default for StringTable<'data, R>`
+##### `impl<R: ReadRef<'data>> Default for StringTable<'data, R>`
 
 - <span id="stringtable-default"></span>`fn default() -> Self`
 

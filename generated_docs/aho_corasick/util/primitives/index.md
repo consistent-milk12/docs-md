@@ -45,7 +45,7 @@ either a 32-bit integer or a `usize` (e.g., on 16-bit targets).
 - [Traits](#traits)
   - [`IteratorIndexExt`](#iteratorindexext)
 - [Macros](#macros)
-  - [`index_type_impls!`](#index_type_impls)
+  - [`index_type_impls!`](#index-type-impls)
 
 ## Quick Reference
 
@@ -63,7 +63,7 @@ either a 32-bit integer or a `usize` (e.g., on 16-bit targets).
 | [`StateIDIter`](#stateiditer) | struct |  |
 | [`WithStateIDIter`](#withstateiditer) | struct | An iterator adapter that is like std::iter::Enumerate, but attaches small index values instead. |
 | [`IteratorIndexExt`](#iteratorindexext) | trait | A utility trait that defines a couple of adapters for making it convenient to access indices as "small index" types. |
-| [`index_type_impls!`](#index_type_impls) | macro |  |
+| [`index_type_impls!`](#index-type-impls) | macro |  |
 
 ## Structs
 
@@ -191,7 +191,7 @@ in panics or silent logical errors.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: SmallIndex) -> &T` — [`SmallIndex`](#smallindex)
 
@@ -283,15 +283,15 @@ struct SmallIndexIter {
 
 ##### `impl IntoIterator for SmallIndexIter`
 
-- <span id="smallindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="smallindexiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="smallindexiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="smallindexiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="smallindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SmallIndexIter`
 
-- <span id="smallindexiter-type-item"></span>`type Item = SmallIndex`
+- <span id="smallindexiter-iterator-type-item"></span>`type Item = SmallIndex`
 
 - <span id="smallindexiter-next"></span>`fn next(&mut self) -> Option<SmallIndex>` — [`SmallIndex`](#smallindex)
 
@@ -381,7 +381,7 @@ panics or silent logical errors.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](#patternid)
 
@@ -489,7 +489,7 @@ panics or silent logical errors.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](#stateid)
 
@@ -583,15 +583,15 @@ struct PatternIDIter(SmallIndexIter);
 
 ##### `impl IntoIterator for PatternIDIter`
 
-- <span id="patterniditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="patterniditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternIDIter`
 
-- <span id="patterniditer-type-item"></span>`type Item = PatternID`
+- <span id="patterniditer-iterator-type-item"></span>`type Item = PatternID`
 
 - <span id="patterniditer-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](#patternid)
 
@@ -627,15 +627,15 @@ iterator is representable in the corresponding small index type.
 
 ##### `impl<I> IntoIterator for WithPatternIDIter<I>`
 
-- <span id="withpatterniditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="withpatterniditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="withpatterniditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="withpatterniditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="withpatterniditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithPatternIDIter<I>`
 
-- <span id="withpatterniditer-type-item"></span>`type Item = (PatternID, <I as Iterator>::Item)`
+- <span id="withpatterniditer-iterator-type-item"></span>`type Item = (PatternID, <I as Iterator>::Item)`
 
 - <span id="withpatterniditer-next"></span>`fn next(&mut self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](#patternid)
 
@@ -711,15 +711,15 @@ struct StateIDIter(SmallIndexIter);
 
 ##### `impl IntoIterator for StateIDIter`
 
-- <span id="stateiditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stateiditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stateiditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="stateiditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stateiditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StateIDIter`
 
-- <span id="stateiditer-type-item"></span>`type Item = StateID`
+- <span id="stateiditer-iterator-type-item"></span>`type Item = StateID`
 
 - <span id="stateiditer-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](#stateid)
 
@@ -755,15 +755,15 @@ iterator is representable in the corresponding small index type.
 
 ##### `impl<I> IntoIterator for WithStateIDIter<I>`
 
-- <span id="withstateiditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="withstateiditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="withstateiditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="withstateiditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="withstateiditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithStateIDIter<I>`
 
-- <span id="withstateiditer-type-item"></span>`type Item = (StateID, <I as Iterator>::Item)`
+- <span id="withstateiditer-iterator-type-item"></span>`type Item = (StateID, <I as Iterator>::Item)`
 
 - <span id="withstateiditer-next"></span>`fn next(&mut self) -> Option<(StateID, <I as >::Item)>` — [`StateID`](#stateid)
 

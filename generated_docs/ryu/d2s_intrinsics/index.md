@@ -11,11 +11,11 @@
 | [`div5`](#div5) | fn |  |
 | [`div10`](#div10) | fn |  |
 | [`div100`](#div100) | fn |  |
-| [`pow5_factor`](#pow5_factor) | fn |  |
-| [`multiple_of_power_of_5`](#multiple_of_power_of_5) | fn |  |
-| [`multiple_of_power_of_2`](#multiple_of_power_of_2) | fn |  |
-| [`mul_shift_64`](#mul_shift_64) | fn |  |
-| [`mul_shift_all_64`](#mul_shift_all_64) | fn |  |
+| [`pow5_factor`](#pow5-factor) | fn |  |
+| [`multiple_of_power_of_5`](#multiple-of-power-of-5) | fn |  |
+| [`multiple_of_power_of_2`](#multiple-of-power-of-2) | fn |  |
+| [`mul_shift_64`](#mul-shift-64) | fn |  |
+| [`mul_shift_all_64`](#mul-shift-all-64) | fn |  |
 
 ## Functions
 

@@ -84,11 +84,11 @@ notation.
   - [`buffer`](#buffer)
   - [`common`](#common)
   - [`d2s`](#d2s)
-  - [`d2s_full_table`](#d2s_full_table)
-  - [`d2s_intrinsics`](#d2s_intrinsics)
-  - [`digit_table`](#digit_table)
+  - [`d2s_full_table`](#d2s-full-table)
+  - [`d2s_intrinsics`](#d2s-intrinsics)
+  - [`digit_table`](#digit-table)
   - [`f2s`](#f2s)
-  - [`f2s_intrinsics`](#f2s_intrinsics)
+  - [`f2s_intrinsics`](#f2s-intrinsics)
   - [`pretty`](#pretty)
   - [`raw`](#raw)
 - [Structs](#structs)
@@ -103,11 +103,11 @@ notation.
 | [`buffer`](#buffer) | mod |  |
 | [`common`](#common) | mod |  |
 | [`d2s`](#d2s) | mod |  |
-| [`d2s_full_table`](#d2s_full_table) | mod |  |
-| [`d2s_intrinsics`](#d2s_intrinsics) | mod |  |
-| [`digit_table`](#digit_table) | mod |  |
+| [`d2s_full_table`](#d2s-full-table) | mod |  |
+| [`d2s_intrinsics`](#d2s-intrinsics) | mod |  |
+| [`digit_table`](#digit-table) | mod |  |
 | [`f2s`](#f2s) | mod |  |
-| [`f2s_intrinsics`](#f2s_intrinsics) | mod |  |
+| [`f2s_intrinsics`](#f2s-intrinsics) | mod |  |
 | [`pretty`](#pretty) | mod |  |
 | [`raw`](#raw) | mod | Unsafe functions that mirror the API of the C implementation of Ryū. |
 | [`Buffer`](#buffer) | struct |  |

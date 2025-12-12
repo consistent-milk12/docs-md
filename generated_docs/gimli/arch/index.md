@@ -13,7 +13,7 @@
   - [`MIPS`](#mips)
   - [`RiscV`](#riscv)
   - [`X86`](#x86)
-  - [`X86_64`](#x86_64)
+  - [`X86_64`](#x86-64)
   - [`PowerPc64`](#powerpc64)
 - [Macros](#macros)
   - [`registers!`](#registers)
@@ -28,7 +28,7 @@
 | [`MIPS`](#mips) | struct | MIPS architecture specific definitions. |
 | [`RiscV`](#riscv) | struct | RISC-V architecture specific definitions. |
 | [`X86`](#x86) | struct | Intel i386 architecture specific definitions. |
-| [`X86_64`](#x86_64) | struct | AMD64 architecture specific definitions. |
+| [`X86_64`](#x86-64) | struct | AMD64 architecture specific definitions. |
 | [`PowerPc64`](#powerpc64) | struct | PowerPC 64bit |
 | [`registers!`](#registers) | macro |  |
 

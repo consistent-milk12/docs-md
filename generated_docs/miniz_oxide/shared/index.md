@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`HUFFMAN_LENGTH_ORDER`](#huffman_length_order) | const |  |
+| [`HUFFMAN_LENGTH_ORDER`](#huffman-length-order) | const |  |
 
 ## Constants
 

@@ -64,9 +64,9 @@ mask bits.
 
 ##### `impl IntoIterator for BitMask`
 
-- <span id="bitmask-type-item"></span>`type Item = usize`
+- <span id="bitmask-intoiterator-type-item"></span>`type Item = usize`
 
-- <span id="bitmask-type-intoiter"></span>`type IntoIter = BitMaskIter`
+- <span id="bitmask-intoiterator-type-intoiter"></span>`type IntoIter = BitMaskIter`
 
 - <span id="bitmask-into-iter"></span>`fn into_iter(self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
 
@@ -89,15 +89,15 @@ bits.
 
 ##### `impl IntoIterator for BitMaskIter`
 
-- <span id="bitmaskiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bitmaskiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bitmaskiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="bitmaskiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bitmaskiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for BitMaskIter`
 
-- <span id="bitmaskiter-type-item"></span>`type Item = usize`
+- <span id="bitmaskiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="bitmaskiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

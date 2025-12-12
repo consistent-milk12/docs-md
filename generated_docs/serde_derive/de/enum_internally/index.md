@@ -16,7 +16,7 @@ enum Enum {}
 | Item | Kind | Description |
 |------|------|-------------|
 | [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(tag)]` attribute |
-| [`deserialize_internally_tagged_variant`](#deserialize_internally_tagged_variant) | fn |  |
+| [`deserialize_internally_tagged_variant`](#deserialize-internally-tagged-variant) | fn |  |
 
 ## Functions
 

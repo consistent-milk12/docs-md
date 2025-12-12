@@ -55,10 +55,10 @@ assert_eq!(val, 98765);
 | Item | Kind | Description |
 |------|------|-------------|
 | [`read`](#read) | mod | A module for reading signed and unsigned integers that have been LEB128 encoded. |
-| [`low_bits_of_byte`](#low_bits_of_byte) | fn |  |
-| [`low_bits_of_u64`](#low_bits_of_u64) | fn |  |
-| [`CONTINUATION_BIT`](#continuation_bit) | const |  |
-| [`SIGN_BIT`](#sign_bit) | const |  |
+| [`low_bits_of_byte`](#low-bits-of-byte) | fn |  |
+| [`low_bits_of_u64`](#low-bits-of-u64) | fn |  |
+| [`CONTINUATION_BIT`](#continuation-bit) | const |  |
+| [`SIGN_BIT`](#sign-bit) | const |  |
 
 ## Modules
 

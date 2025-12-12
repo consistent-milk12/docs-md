@@ -43,13 +43,13 @@ word.
 
 - [Modules](#modules)
   - [`kebab`](#kebab)
-  - [`lower_camel`](#lower_camel)
-  - [`shouty_kebab`](#shouty_kebab)
-  - [`shouty_snake`](#shouty_snake)
+  - [`lower_camel`](#lower-camel)
+  - [`shouty_kebab`](#shouty-kebab)
+  - [`shouty_snake`](#shouty-snake)
   - [`snake`](#snake)
   - [`title`](#title)
   - [`train`](#train)
-  - [`upper_camel`](#upper_camel)
+  - [`upper_camel`](#upper-camel)
 - [Structs](#structs)
   - [`AsKebabCase`](#askebabcase)
   - [`AsLowerCamelCase`](#aslowercamelcase)
@@ -85,13 +85,13 @@ word.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`kebab`](#kebab) | mod |  |
-| [`lower_camel`](#lower_camel) | mod |  |
-| [`shouty_kebab`](#shouty_kebab) | mod |  |
-| [`shouty_snake`](#shouty_snake) | mod |  |
+| [`lower_camel`](#lower-camel) | mod |  |
+| [`shouty_kebab`](#shouty-kebab) | mod |  |
+| [`shouty_snake`](#shouty-snake) | mod |  |
 | [`snake`](#snake) | mod |  |
 | [`title`](#title) | mod |  |
 | [`train`](#train) | mod |  |
-| [`upper_camel`](#upper_camel) | mod |  |
+| [`upper_camel`](#upper-camel) | mod |  |
 | [`AsKebabCase`](#askebabcase) | struct |  |
 | [`AsLowerCamelCase`](#aslowercamelcase) | struct |  |
 | [`AsShoutyKebabCase`](#asshoutykebabcase) | struct |  |
@@ -140,7 +140,7 @@ struct AsKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/kebab.rs:40`](../../.source_1765210505/heck-0.5.0/src/kebab.rs#L40)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -169,7 +169,7 @@ struct AsLowerCamelCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../.source_1765210505/heck-0.5.0/src/lower_camel.rs#L44)*
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -198,7 +198,7 @@ struct AsShoutyKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../.source_1765210505/heck-0.5.0/src/shouty_kebab.rs#L41)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -227,7 +227,7 @@ struct AsShoutySnakeCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L55)*
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -256,7 +256,7 @@ struct AsShoutySnekCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L55)*
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -285,7 +285,7 @@ struct AsSnakeCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/snake.rs:55`](../../.source_1765210505/heck-0.5.0/src/snake.rs#L55)*
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -314,7 +314,7 @@ struct AsSnekCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/snake.rs:55`](../../.source_1765210505/heck-0.5.0/src/snake.rs#L55)*
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -343,7 +343,7 @@ struct AsTitleCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/title.rs:44`](../../.source_1765210505/heck-0.5.0/src/title.rs#L44)*
 
-This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -372,7 +372,7 @@ struct AsTrainCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/train.rs:41`](../../.source_1765210505/heck-0.5.0/src/train.rs#L41)*
 
-This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -401,7 +401,7 @@ struct AsUpperCamelCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L57)*
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -430,7 +430,7 @@ struct AsPascalCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L57)*
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 

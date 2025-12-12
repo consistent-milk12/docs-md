@@ -15,7 +15,7 @@ level crate API.
 |------|------|-------------|
 | [`all`](#all) | mod | Contains architecture independent routines. |
 | [`generic`](#generic) | mod | This module defines "generic" routines that can be specialized to specific architectures. |
-| [`x86_64`](#x86_64) | mod | Vector algorithms for the `x86_64` target. |
+| [`x86_64`](#x86-64) | mod | Vector algorithms for the `x86_64` target. |
 
 ## Modules
 

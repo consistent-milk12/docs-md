@@ -55,11 +55,11 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 - [Type Aliases](#type-aliases)
   - [`Error`](#error)
 - [Constants](#constants)
-  - [`INTERNAL_ERROR_MSG`](#internal_error_msg)
+  - [`INTERNAL_ERROR_MSG`](#internal-error-msg)
 - [Macros](#macros)
   - [`command!`](#command)
   - [`arg!`](#arg)
-  - [`value_parser!`](#value_parser)
+  - [`value_parser!`](#value-parser)
 
 ## Quick Reference
 
@@ -88,10 +88,10 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 | [`Subcommand`](#subcommand) | trait |  |
 | [`ValueEnum`](#valueenum) | trait |  |
 | [`Error`](#error) | type | Command Line Argument Parser Error |
-| [`INTERNAL_ERROR_MSG`](#internal_error_msg) | const |  |
+| [`INTERNAL_ERROR_MSG`](#internal-error-msg) | const |  |
 | [`command!`](#command) | macro | Requires `cargo` feature flag to be enabled. |
 | [`arg!`](#arg) | macro | Create an [`Arg`] from a usage string. |
-| [`value_parser!`](#value_parser) | macro | Select a [`ValueParser`] implementation from the intended type |
+| [`value_parser!`](#value-parser) | macro | Select a [`ValueParser`] implementation from the intended type |
 
 ## Modules
 
@@ -272,7 +272,7 @@ let m = Command::new("My Program")
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md#id)
 
@@ -729,7 +729,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Index for Command`
 
-- <span id="command-type-output"></span>`type Output = Arg`
+- <span id="command-index-type-output"></span>`type Output = Arg`
 
 - <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md#id)
 
@@ -1300,7 +1300,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl FromStr for ValueHint`
 
-- <span id="valuehint-type-err"></span>`type Err = String`
+- <span id="valuehint-fromstr-type-err"></span>`type Err = String`
 
 - <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 
@@ -1416,7 +1416,7 @@ Represents the color preferences for program output
 
 ##### `impl FromStr for ColorChoice`
 
-- <span id="colorchoice-type-err"></span>`type Err = String`
+- <span id="colorchoice-fromstr-type-err"></span>`type Err = String`
 
 - <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 

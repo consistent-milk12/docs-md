@@ -75,17 +75,17 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<T, A: Allocator> FusedIterator for IntoIter<T, A>`
 
-##### `impl<I> IntoIterator for IntoIter<T, A>`
+##### `impl IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
 

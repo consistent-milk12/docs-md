@@ -180,9 +180,9 @@ assert_eq!(q.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Injector<T>`
 
-- <span id="injector-const-align"></span>`const ALIGN: usize`
+- <span id="injector-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="injector-type-init"></span>`type Init = T`
+- <span id="injector-pointable-type-init"></span>`type Init = T`
 
 - <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -266,9 +266,9 @@ assert_eq!(s.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Stealer<T>`
 
-- <span id="stealer-const-align"></span>`const ALIGN: usize`
+- <span id="stealer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="stealer-type-init"></span>`type Init = T`
+- <span id="stealer-pointable-type-init"></span>`type Init = T`
 
 - <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -382,9 +382,9 @@ assert_eq!(w.pop(), Some(2));
 
 ##### `impl<T> Pointable for Worker<T>`
 
-- <span id="worker-const-align"></span>`const ALIGN: usize`
+- <span id="worker-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="worker-type-init"></span>`type Init = T`
+- <span id="worker-pointable-type-init"></span>`type Init = T`
 
 - <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -479,9 +479,9 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 ##### `impl<T> Pointable for Steal<T>`
 
-- <span id="steal-const-align"></span>`const ALIGN: usize`
+- <span id="steal-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="steal-type-init"></span>`type Init = T`
+- <span id="steal-pointable-type-init"></span>`type Init = T`
 
 - <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -13,16 +13,16 @@
 - [Traits](#traits)
   - [`ErrorFormatter`](#errorformatter)
 - [Functions](#functions)
-  - [`start_error`](#start_error)
-  - [`write_dynamic_context`](#write_dynamic_context)
-  - [`write_values_list`](#write_values_list)
-  - [`format_error_message`](#format_error_message)
-  - [`singular_or_plural`](#singular_or_plural)
-  - [`put_usage`](#put_usage)
-  - [`get_help_flag`](#get_help_flag)
-  - [`get_user_help_flag`](#get_user_help_flag)
-  - [`try_help`](#try_help)
-  - [`did_you_mean`](#did_you_mean)
+  - [`start_error`](#start-error)
+  - [`write_dynamic_context`](#write-dynamic-context)
+  - [`write_values_list`](#write-values-list)
+  - [`format_error_message`](#format-error-message)
+  - [`singular_or_plural`](#singular-or-plural)
+  - [`put_usage`](#put-usage)
+  - [`get_help_flag`](#get-help-flag)
+  - [`get_user_help_flag`](#get-user-help-flag)
+  - [`try_help`](#try-help)
+  - [`did_you_mean`](#did-you-mean)
 
 ## Quick Reference
 
@@ -32,16 +32,16 @@
 | [`RichFormatter`](#richformatter) | struct | Richly formatted error context |
 | [`Escape`](#escape) | struct |  |
 | [`ErrorFormatter`](#errorformatter) | trait | Defines how to format an error for displaying to the user |
-| [`start_error`](#start_error) | fn |  |
-| [`write_dynamic_context`](#write_dynamic_context) | fn |  |
-| [`write_values_list`](#write_values_list) | fn |  |
-| [`format_error_message`](#format_error_message) | fn |  |
-| [`singular_or_plural`](#singular_or_plural) | fn | Returns the singular or plural form on the verb to be based on the argument's value. |
-| [`put_usage`](#put_usage) | fn |  |
-| [`get_help_flag`](#get_help_flag) | fn |  |
-| [`get_user_help_flag`](#get_user_help_flag) | fn |  |
-| [`try_help`](#try_help) | fn |  |
-| [`did_you_mean`](#did_you_mean) | fn |  |
+| [`start_error`](#start-error) | fn |  |
+| [`write_dynamic_context`](#write-dynamic-context) | fn |  |
+| [`write_values_list`](#write-values-list) | fn |  |
+| [`format_error_message`](#format-error-message) | fn |  |
+| [`singular_or_plural`](#singular-or-plural) | fn | Returns the singular or plural form on the verb to be based on the argument's value. |
+| [`put_usage`](#put-usage) | fn |  |
+| [`get_help_flag`](#get-help-flag) | fn |  |
+| [`get_user_help_flag`](#get-user-help-flag) | fn |  |
+| [`try_help`](#try-help) | fn |  |
+| [`did_you_mean`](#did-you-mean) | fn |  |
 
 ## Structs
 

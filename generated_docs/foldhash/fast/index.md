@@ -83,7 +83,7 @@ A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHa
 
 ##### `impl BuildHasher for RandomState`
 
-- <span id="randomstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="randomstate-buildhasher-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="randomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
@@ -128,7 +128,7 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 ##### `impl BuildHasher for SeedableRandomState`
 
-- <span id="seedablerandomstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="seedablerandomstate-buildhasher-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="seedablerandomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
@@ -166,7 +166,7 @@ Not recommended unless you absolutely need determinism.
 
 ##### `impl BuildHasher for FixedState`
 
-- <span id="fixedstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="fixedstate-buildhasher-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="fixedstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 

@@ -49,7 +49,7 @@ A raw pointer that owns its pointee
 
 ##### `impl<T> Copy for Own<T>`
 
-##### `impl<D> OwoColorize for Own<T>`
+##### `impl OwoColorize for Own<T>`
 
 ##### `impl<T> Send for Own<T>`
 
@@ -92,7 +92,7 @@ A raw pointer that represents a shared borrow of its pointee
 
 ##### `impl<T> Copy for Ref<'_, T>`
 
-##### `impl<D> OwoColorize for Ref<'a, T>`
+##### `impl OwoColorize for Ref<'a, T>`
 
 ### `Mut<'a, T>`
 
@@ -127,7 +127,7 @@ A raw pointer that represents a unique borrow of its pointee
 
 ##### `impl<T> Copy for Mut<'_, T>`
 
-##### `impl<D> OwoColorize for Mut<'a, T>`
+##### `impl OwoColorize for Mut<'a, T>`
 
 ## Traits
 

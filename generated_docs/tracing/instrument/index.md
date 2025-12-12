@@ -61,21 +61,21 @@ trait's documentation for details.
 
 ##### `impl<T: Future> Future for WithDispatch<T>`
 
-- <span id="withdispatch-type-output"></span>`type Output = <T as Future>::Output`
+- <span id="withdispatch-future-type-output"></span>`type Output = <T as Future>::Output`
 
 - <span id="withdispatch-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
 ##### `impl<T> Instrument for WithDispatch<T>`
 
-##### `impl<F> IntoFuture for WithDispatch<T>`
+##### `impl IntoFuture for WithDispatch<T>`
 
-- <span id="withdispatch-type-output"></span>`type Output = <F as Future>::Output`
+- <span id="withdispatch-intofuture-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="withdispatch-type-intofuture"></span>`type IntoFuture = F`
+- <span id="withdispatch-intofuture-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="withdispatch-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
-##### `impl<'__pin, T> Unpin for WithDispatch<T>`
+##### `impl<T> Unpin for WithDispatch<T>`
 
 ##### `impl<T> WithSubscriber for WithDispatch<T>`
 
@@ -129,21 +129,21 @@ trait's documentation for details.
 
 ##### `impl<T: Future> Future for Instrumented<T>`
 
-- <span id="instrumented-type-output"></span>`type Output = <T as Future>::Output`
+- <span id="instrumented-future-type-output"></span>`type Output = <T as Future>::Output`
 
 - <span id="instrumented-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
 ##### `impl<T> Instrument for Instrumented<T>`
 
-##### `impl<F> IntoFuture for Instrumented<T>`
+##### `impl IntoFuture for Instrumented<T>`
 
-- <span id="instrumented-type-output"></span>`type Output = <F as Future>::Output`
+- <span id="instrumented-intofuture-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="instrumented-type-intofuture"></span>`type IntoFuture = F`
+- <span id="instrumented-intofuture-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="instrumented-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
-##### `impl<'__pin, T> Unpin for Instrumented<T>`
+##### `impl<T> Unpin for Instrumented<T>`
 
 ##### `impl<T> WithSubscriber for Instrumented<T>`
 

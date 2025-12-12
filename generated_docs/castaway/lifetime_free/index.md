@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`alloc_impls`](#alloc_impls) | mod |  |
+| [`alloc_impls`](#alloc-impls) | mod |  |
 | [`LifetimeFree`](#lifetimefree) | trait | Marker trait for types that do not contain any lifetime parameters. |
-| [`tuple_impls!`](#tuple_impls) | macro |  |
+| [`tuple_impls!`](#tuple-impls) | macro |  |
 
 ## Modules
 

@@ -50,7 +50,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 - [Modules](#modules)
   - [`file`](#file)
   - [`section`](#section)
-  - [`data_directory`](#data_directory)
+  - [`data_directory`](#data-directory)
   - [`export`](#export)
   - [`import`](#import)
   - [`relocation`](#relocation)
@@ -94,8 +94,8 @@ fn main() -> Result<(), Box<dyn Error>> {
   - [`ImageOptionalHeader`](#imageoptionalheader)
   - [`ImageThunkData`](#imagethunkdata)
 - [Functions](#functions)
-  - [`optional_header_magic`](#optional_header_magic)
-  - [`parse_ordinal`](#parse_ordinal)
+  - [`optional_header_magic`](#optional-header-magic)
+  - [`parse_ordinal`](#parse-ordinal)
   - [`memmem`](#memmem)
 - [Type Aliases](#type-aliases)
   - [`PeFile32`](#pefile32)
@@ -121,7 +121,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 |------|------|-------------|
 | [`file`](#file) | mod |  |
 | [`section`](#section) | mod |  |
-| [`data_directory`](#data_directory) | mod |  |
+| [`data_directory`](#data-directory) | mod |  |
 | [`export`](#export) | mod |  |
 | [`import`](#import) | mod |  |
 | [`relocation`](#relocation) | mod |  |
@@ -161,8 +161,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`ImageNtHeaders`](#imagentheaders) | trait | A trait for generic access to [`pe::ImageNtHeaders32`] and [`pe::ImageNtHeaders64`]. |
 | [`ImageOptionalHeader`](#imageoptionalheader) | trait | A trait for generic access to [`pe::ImageOptionalHeader32`] and [`pe::ImageOptionalHeader64`]. |
 | [`ImageThunkData`](#imagethunkdata) | trait | A trait for generic access to [`pe::ImageThunkData32`] and [`pe::ImageThunkData64`]. |
-| [`optional_header_magic`](#optional_header_magic) | fn | Find the optional header and read its `magic` field. |
-| [`parse_ordinal`](#parse_ordinal) | fn |  |
+| [`optional_header_magic`](#optional-header-magic) | fn | Find the optional header and read its `magic` field. |
+| [`parse_ordinal`](#parse-ordinal) | fn |  |
 | [`memmem`](#memmem) | fn | Find the offset of the first occurrence of needle in the data. |
 | [`PeFile32`](#pefile32) | type | A PE32 (32-bit) image file. |
 | [`PeFile64`](#pefile64) | type | A PE32+ (64-bit) image file. |
@@ -292,11 +292,11 @@ Returned by `CoffHeader::symbols` and
 
 #### Trait Implementations
 
-##### `impl<'data, R, Coff> Debug for SymbolTable<'data, R, Coff>`
+##### `impl<R, Coff> Debug for SymbolTable<'data, R, Coff>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, R: ReadRef<'data>, Coff: CoffHeader> Default for SymbolTable<'data, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Default for SymbolTable<'data, R, Coff>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
 
@@ -347,31 +347,31 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Trait Implementations
 
-##### `impl<'data, Pe, R> Debug for PeFile<'data, Pe, R>`
+##### `impl<Pe, R> Debug for PeFile<'data, Pe, R>`
 
 - <span id="pefile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Pe, R> Object for PeFile<'data, Pe, R>`
+##### `impl<Pe, R> Object for PeFile<'data, Pe, R>`
 
-- <span id="pefile-type-segment"></span>`type Segment = PeSegment<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-segment"></span>`type Segment = PeSegment<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-segmentiterator"></span>`type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-segmentiterator"></span>`type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-section"></span>`type Section = PeSection<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-section"></span>`type Section = PeSection<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-sectioniterator"></span>`type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-sectioniterator"></span>`type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-comdat"></span>`type Comdat = PeComdat<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-comdat"></span>`type Comdat = PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-comdatiterator"></span>`type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
+- <span id="pefile-object-type-comdatiterator"></span>`type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R>`
+- <span id="pefile-object-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R>`
 
-- <span id="pefile-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
+- <span id="pefile-object-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
 
-- <span id="pefile-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R>`
+- <span id="pefile-object-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R>`
 
-- <span id="pefile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="pefile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
@@ -419,7 +419,7 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="pefile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
-##### `impl<'data, Pe, R> Sealed for PeFile<'data, Pe, R>`
+##### `impl<Pe, R> Sealed for PeFile<'data, Pe, R>`
 
 ### `PeComdatIterator<'data, 'file, Pe, R>`
 
@@ -440,21 +440,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeComdatIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeComdatIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
+##### `impl IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pecomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pecomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="pecomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pecomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Pe, R> Iterator for PeComdatIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Iterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-type-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
+- <span id="pecomdatiterator-iterator-type-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
 
 - <span id="pecomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -477,13 +477,13 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeComdat<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeComdat<'data, 'file, Pe, R>`
 
 - <span id="pecomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
+##### `impl<Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pecomdat-type-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
+- <span id="pecomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
@@ -495,7 +495,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="pecomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Pe, R> Sealed for PeComdat<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Sealed for PeComdat<'data, 'file, Pe, R>`
 
 ### `PeComdatSectionIterator<'data, 'file, Pe, R>`
 
@@ -516,21 +516,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeComdatSectionIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
+##### `impl IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pecomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pecomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="pecomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pecomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Pe, R> Iterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Iterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="pecomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="pecomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -552,21 +552,21 @@ An iterator for the loadable sections in a [`PeFile`](#pefile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeSegmentIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeSegmentIterator<'data, 'file, Pe, R>`
 
 - <span id="pesegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
+##### `impl IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- <span id="pesegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pesegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pesegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="pesegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pesegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Pe, R> Iterator for PeSegmentIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Iterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- <span id="pesegmentiterator-type-item"></span>`type Item = PeSegment<'data, 'file, Pe, R>`
+- <span id="pesegmentiterator-iterator-type-item"></span>`type Item = PeSegment<'data, 'file, Pe, R>`
 
 - <span id="pesegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -596,11 +596,11 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeSegment<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeSegment<'data, 'file, Pe, R>`
 
 - <span id="pesegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
+##### `impl<Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
 
 - <span id="pesegment-address"></span>`fn address(&self) -> u64`
 
@@ -620,7 +620,7 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="pesegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Pe, R> Sealed for PeSegment<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Sealed for PeSegment<'data, 'file, Pe, R>`
 
 ### `PeSectionIterator<'data, 'file, Pe, R>`
 
@@ -640,21 +640,21 @@ An iterator for the sections in a [`PeFile`](#pefile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeSectionIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeSectionIterator<'data, 'file, Pe, R>`
 
 - <span id="pesectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
+##### `impl IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pesectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pesectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pesectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="pesectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pesectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Pe, R> Iterator for PeSectionIterator<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Iterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pesectioniterator-type-item"></span>`type Item = PeSection<'data, 'file, Pe, R>`
+- <span id="pesectioniterator-iterator-type-item"></span>`type Item = PeSection<'data, 'file, Pe, R>`
 
 - <span id="pesectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -685,13 +685,13 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Pe, R> Debug for PeSection<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Debug for PeSection<'data, 'file, Pe, R>`
 
 - <span id="pesection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
+##### `impl<Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
 
-- <span id="pesection-type-relocationiterator"></span>`type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
+- <span id="pesection-objectsection-type-relocationiterator"></span>`type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
 
 - <span id="pesection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
@@ -727,7 +727,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="pesection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
-##### `impl<'data, 'file, Pe, R> Sealed for PeSection<'data, 'file, Pe, R>`
+##### `impl<Pe, R> Sealed for PeSection<'data, 'file, Pe, R>`
 
 ### `PeRelocationIterator<'data, 'file, R>`
 
@@ -743,21 +743,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
 
 - <span id="perelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PeRelocationIterator<'data, 'file, R>`
+##### `impl IntoIterator for PeRelocationIterator<'data, 'file, R>`
 
-- <span id="perelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="perelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="perelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="perelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="perelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R> Iterator for PeRelocationIterator<'data, 'file, R>`
+##### `impl<R> Iterator for PeRelocationIterator<'data, 'file, R>`
 
-- <span id="perelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="perelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="perelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -991,15 +991,15 @@ A fallible iterator for the descriptors in the import data directory.
 
 ##### `impl IntoIterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="importdescriptoriterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="importdescriptoriterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="importdescriptoriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="importdescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-type-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
+- <span id="importdescriptoriterator-iterator-type-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
 
 - <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1103,15 +1103,15 @@ A fallible iterator for the descriptors in the delay-load data directory.
 
 ##### `impl IntoIterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="delayloaddescriptoriterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="delayloaddescriptoriterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="delayloaddescriptoriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="delayloaddescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
+- <span id="delayloaddescriptoriterator-iterator-type-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
 
 - <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1155,15 +1155,15 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 
 ##### `impl IntoIterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationblockiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationblockiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="relocationblockiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationblockiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-type-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
+- <span id="relocationblockiterator-iterator-type-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
 
 - <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1199,15 +1199,15 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 ##### `impl IntoIterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="relocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-type-item"></span>`type Item = Relocation`
+- <span id="relocationiterator-iterator-type-item"></span>`type Item = Relocation`
 
 - <span id="relocationiterator-next"></span>`fn next(&mut self) -> Option<Relocation>` — [`Relocation`](#relocation)
 

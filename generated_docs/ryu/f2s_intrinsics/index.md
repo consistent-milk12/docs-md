@@ -7,28 +7,28 @@
 ## Contents
 
 - [Functions](#functions)
-  - [`pow5factor_32`](#pow5factor_32)
-  - [`multiple_of_power_of_5_32`](#multiple_of_power_of_5_32)
-  - [`multiple_of_power_of_2_32`](#multiple_of_power_of_2_32)
-  - [`mul_shift_32`](#mul_shift_32)
-  - [`mul_pow5_inv_div_pow2`](#mul_pow5_inv_div_pow2)
-  - [`mul_pow5_div_pow2`](#mul_pow5_div_pow2)
+  - [`pow5factor_32`](#pow5factor-32)
+  - [`multiple_of_power_of_5_32`](#multiple-of-power-of-5-32)
+  - [`multiple_of_power_of_2_32`](#multiple-of-power-of-2-32)
+  - [`mul_shift_32`](#mul-shift-32)
+  - [`mul_pow5_inv_div_pow2`](#mul-pow5-inv-div-pow2)
+  - [`mul_pow5_div_pow2`](#mul-pow5-div-pow2)
 - [Constants](#constants)
-  - [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount)
-  - [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount)
+  - [`FLOAT_POW5_INV_BITCOUNT`](#float-pow5-inv-bitcount)
+  - [`FLOAT_POW5_BITCOUNT`](#float-pow5-bitcount)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`pow5factor_32`](#pow5factor_32) | fn |  |
-| [`multiple_of_power_of_5_32`](#multiple_of_power_of_5_32) | fn |  |
-| [`multiple_of_power_of_2_32`](#multiple_of_power_of_2_32) | fn |  |
-| [`mul_shift_32`](#mul_shift_32) | fn |  |
-| [`mul_pow5_inv_div_pow2`](#mul_pow5_inv_div_pow2) | fn |  |
-| [`mul_pow5_div_pow2`](#mul_pow5_div_pow2) | fn |  |
-| [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount) | const |  |
-| [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount) | const |  |
+| [`pow5factor_32`](#pow5factor-32) | fn |  |
+| [`multiple_of_power_of_5_32`](#multiple-of-power-of-5-32) | fn |  |
+| [`multiple_of_power_of_2_32`](#multiple-of-power-of-2-32) | fn |  |
+| [`mul_shift_32`](#mul-shift-32) | fn |  |
+| [`mul_pow5_inv_div_pow2`](#mul-pow5-inv-div-pow2) | fn |  |
+| [`mul_pow5_div_pow2`](#mul-pow5-div-pow2) | fn |  |
+| [`FLOAT_POW5_INV_BITCOUNT`](#float-pow5-inv-bitcount) | const |  |
+| [`FLOAT_POW5_BITCOUNT`](#float-pow5-bitcount) | const |  |
 
 ## Functions
 

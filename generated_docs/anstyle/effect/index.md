@@ -87,7 +87,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl BitOr for Effects`
 
-- <span id="effects-type-output"></span>`type Output = Effects`
+- <span id="effects-bitor-type-output"></span>`type Output = Effects`
 
 - <span id="effects-bitor"></span>`fn bitor(self, rhs: Self) -> Self`
 
@@ -131,7 +131,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Sub for Effects`
 
-- <span id="effects-type-output"></span>`type Output = Effects`
+- <span id="effects-sub-type-output"></span>`type Output = Effects`
 
 - <span id="effects-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -209,15 +209,15 @@ Enumerate each enabled value in [`Effects`](../index.md)
 
 ##### `impl IntoIterator for EffectIter`
 
-- <span id="effectiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="effectiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
-- <span id="effectiter-type-item"></span>`type Item = Effects`
+- <span id="effectiter-iterator-type-item"></span>`type Item = Effects`
 
 - <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -252,15 +252,15 @@ struct EffectIndexIter {
 
 ##### `impl IntoIterator for EffectIndexIter`
 
-- <span id="effectindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectindexiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectindexiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="effectindexiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
-- <span id="effectindexiter-type-item"></span>`type Item = usize`
+- <span id="effectindexiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

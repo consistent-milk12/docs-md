@@ -122,12 +122,12 @@ containers, but can be turned off for `#![no_std]` crates.
 - [Structs](#structs)
   - [`SharedSeed`](#sharedseed)
 - [Functions](#functions)
-  - [`folded_multiply`](#folded_multiply)
-  - [`rotate_right`](#rotate_right)
-  - [`cold_path`](#cold_path)
-  - [`hash_bytes_short`](#hash_bytes_short)
+  - [`folded_multiply`](#folded-multiply)
+  - [`rotate_right`](#rotate-right)
+  - [`cold_path`](#cold-path)
+  - [`hash_bytes_short`](#hash-bytes-short)
   - [`load`](#load)
-  - [`hash_bytes_long`](#hash_bytes_long)
+  - [`hash_bytes_long`](#hash-bytes-long)
 - [Constants](#constants)
   - [`ARBITRARY0`](#arbitrary0)
   - [`ARBITRARY1`](#arbitrary1)
@@ -150,12 +150,12 @@ containers, but can be turned off for `#![no_std]` crates.
 | [`quality`](#quality) | mod | The foldhash implementation optimized for quality. |
 | [`seed`](#seed) | mod |  |
 | [`SharedSeed`](#sharedseed) | struct |  |
-| [`folded_multiply`](#folded_multiply) | fn |  |
-| [`rotate_right`](#rotate_right) | fn |  |
-| [`cold_path`](#cold_path) | fn |  |
-| [`hash_bytes_short`](#hash_bytes_short) | fn | Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16. |
+| [`folded_multiply`](#folded-multiply) | fn |  |
+| [`rotate_right`](#rotate-right) | fn |  |
+| [`cold_path`](#cold-path) | fn |  |
+| [`hash_bytes_short`](#hash-bytes-short) | fn | Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16. |
 | [`load`](#load) | fn | Load 8 bytes into a u64 word at the given offset. |
-| [`hash_bytes_long`](#hash_bytes_long) | fn | Hashes strings > 16 bytes. |
+| [`hash_bytes_long`](#hash-bytes-long) | fn | Hashes strings > 16 bytes. |
 | [`ARBITRARY0`](#arbitrary0) | const |  |
 | [`ARBITRARY1`](#arbitrary1) | const |  |
 | [`ARBITRARY2`](#arbitrary2) | const |  |

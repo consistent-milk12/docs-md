@@ -37,11 +37,11 @@ expected match frequency.
   - [`Three`](#three)
   - [`ThreeIter`](#threeiter)
 - [Functions](#functions)
-  - [`has_zero_byte`](#has_zero_byte)
+  - [`has_zero_byte`](#has-zero-byte)
   - [`splat`](#splat)
 - [Constants](#constants)
-  - [`USIZE_BYTES`](#usize_bytes)
-  - [`USIZE_ALIGN`](#usize_align)
+  - [`USIZE_BYTES`](#usize-bytes)
+  - [`USIZE_ALIGN`](#usize-align)
 
 ## Quick Reference
 
@@ -53,10 +53,10 @@ expected match frequency.
 | [`TwoIter`](#twoiter) | struct | An iterator over all occurrences of two possible bytes in a haystack. |
 | [`Three`](#three) | struct | Finds all occurrences of three bytes in a haystack. |
 | [`ThreeIter`](#threeiter) | struct | An iterator over all occurrences of three possible bytes in a haystack. |
-| [`has_zero_byte`](#has_zero_byte) | fn | Return `true` if `x` contains any zero byte. |
+| [`has_zero_byte`](#has-zero-byte) | fn | Return `true` if `x` contains any zero byte. |
 | [`splat`](#splat) | fn | Repeat the given byte into a word size number. |
-| [`USIZE_BYTES`](#usize_bytes) | const | The number of bytes in a single `usize` value. |
-| [`USIZE_ALIGN`](#usize_align) | const | The bits that must be zero for a `*const usize` to be properly aligned. |
+| [`USIZE_BYTES`](#usize-bytes) | const | The number of bytes in a single `usize` value. |
+| [`USIZE_ALIGN`](#usize-align) | const | The bits that must be zero for a `*const usize` to be properly aligned. |
 
 ## Structs
 
@@ -158,15 +158,15 @@ The lifetime parameters are as follows:
 
 ##### `impl IntoIterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="oneiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="oneiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="oneiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="oneiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-type-item"></span>`type Item = usize`
+- <span id="oneiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="oneiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -272,15 +272,15 @@ The lifetime parameters are as follows:
 
 ##### `impl IntoIterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="twoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="twoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="twoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="twoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-type-item"></span>`type Item = usize`
+- <span id="twoiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="twoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -386,15 +386,15 @@ The lifetime parameters are as follows:
 
 ##### `impl IntoIterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="threeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="threeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="threeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="threeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-type-item"></span>`type Item = usize`
+- <span id="threeiter-iterator-type-item"></span>`type Item = usize`
 
 - <span id="threeiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

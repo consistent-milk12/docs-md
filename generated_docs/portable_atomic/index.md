@@ -217,21 +217,21 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 - [Functions](#functions)
   - [`Ordering`](#ordering)
 - [Macros](#macros)
-  - [`cfg_has_atomic_ptr!`](#cfg_has_atomic_ptr)
-  - [`cfg_no_atomic_ptr!`](#cfg_no_atomic_ptr)
-  - [`atomic_int!`](#atomic_int)
-  - [`cfg_has_atomic_8!`](#cfg_has_atomic_8)
-  - [`cfg_no_atomic_8!`](#cfg_no_atomic_8)
-  - [`cfg_has_atomic_16!`](#cfg_has_atomic_16)
-  - [`cfg_no_atomic_16!`](#cfg_no_atomic_16)
-  - [`cfg_has_atomic_32!`](#cfg_has_atomic_32)
-  - [`cfg_no_atomic_32!`](#cfg_no_atomic_32)
-  - [`cfg_has_atomic_64!`](#cfg_has_atomic_64)
-  - [`cfg_no_atomic_64!`](#cfg_no_atomic_64)
-  - [`cfg_has_atomic_128!`](#cfg_has_atomic_128)
-  - [`cfg_no_atomic_128!`](#cfg_no_atomic_128)
-  - [`cfg_has_atomic_cas!`](#cfg_has_atomic_cas)
-  - [`cfg_no_atomic_cas!`](#cfg_no_atomic_cas)
+  - [`cfg_has_atomic_ptr!`](#cfg-has-atomic-ptr)
+  - [`cfg_no_atomic_ptr!`](#cfg-no-atomic-ptr)
+  - [`atomic_int!`](#atomic-int)
+  - [`cfg_has_atomic_8!`](#cfg-has-atomic-8)
+  - [`cfg_no_atomic_8!`](#cfg-no-atomic-8)
+  - [`cfg_has_atomic_16!`](#cfg-has-atomic-16)
+  - [`cfg_no_atomic_16!`](#cfg-no-atomic-16)
+  - [`cfg_has_atomic_32!`](#cfg-has-atomic-32)
+  - [`cfg_no_atomic_32!`](#cfg-no-atomic-32)
+  - [`cfg_has_atomic_64!`](#cfg-has-atomic-64)
+  - [`cfg_no_atomic_64!`](#cfg-no-atomic-64)
+  - [`cfg_has_atomic_128!`](#cfg-has-atomic-128)
+  - [`cfg_no_atomic_128!`](#cfg-no-atomic-128)
+  - [`cfg_has_atomic_cas!`](#cfg-has-atomic-cas)
+  - [`cfg_no_atomic_cas!`](#cfg-no-atomic-cas)
 
 ## Quick Reference
 
@@ -256,21 +256,21 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 | [`AtomicI128`](#atomici128) | struct | An integer type which can be safely shared between threads. |
 | [`AtomicU128`](#atomicu128) | struct | An integer type which can be safely shared between threads. |
 | [`Ordering`](#ordering) | fn |  |
-| [`cfg_has_atomic_ptr!`](#cfg_has_atomic_ptr) | macro |  |
-| [`cfg_no_atomic_ptr!`](#cfg_no_atomic_ptr) | macro |  |
-| [`atomic_int!`](#atomic_int) | macro |  |
-| [`cfg_has_atomic_8!`](#cfg_has_atomic_8) | macro |  |
-| [`cfg_no_atomic_8!`](#cfg_no_atomic_8) | macro |  |
-| [`cfg_has_atomic_16!`](#cfg_has_atomic_16) | macro |  |
-| [`cfg_no_atomic_16!`](#cfg_no_atomic_16) | macro |  |
-| [`cfg_has_atomic_32!`](#cfg_has_atomic_32) | macro |  |
-| [`cfg_no_atomic_32!`](#cfg_no_atomic_32) | macro |  |
-| [`cfg_has_atomic_64!`](#cfg_has_atomic_64) | macro |  |
-| [`cfg_no_atomic_64!`](#cfg_no_atomic_64) | macro |  |
-| [`cfg_has_atomic_128!`](#cfg_has_atomic_128) | macro |  |
-| [`cfg_no_atomic_128!`](#cfg_no_atomic_128) | macro |  |
-| [`cfg_has_atomic_cas!`](#cfg_has_atomic_cas) | macro |  |
-| [`cfg_no_atomic_cas!`](#cfg_no_atomic_cas) | macro |  |
+| [`cfg_has_atomic_ptr!`](#cfg-has-atomic-ptr) | macro |  |
+| [`cfg_no_atomic_ptr!`](#cfg-no-atomic-ptr) | macro |  |
+| [`atomic_int!`](#atomic-int) | macro |  |
+| [`cfg_has_atomic_8!`](#cfg-has-atomic-8) | macro |  |
+| [`cfg_no_atomic_8!`](#cfg-no-atomic-8) | macro |  |
+| [`cfg_has_atomic_16!`](#cfg-has-atomic-16) | macro |  |
+| [`cfg_no_atomic_16!`](#cfg-no-atomic-16) | macro |  |
+| [`cfg_has_atomic_32!`](#cfg-has-atomic-32) | macro |  |
+| [`cfg_no_atomic_32!`](#cfg-no-atomic-32) | macro |  |
+| [`cfg_has_atomic_64!`](#cfg-has-atomic-64) | macro |  |
+| [`cfg_no_atomic_64!`](#cfg-no-atomic-64) | macro |  |
+| [`cfg_has_atomic_128!`](#cfg-has-atomic-128) | macro |  |
+| [`cfg_no_atomic_128!`](#cfg-no-atomic-128) | macro |  |
+| [`cfg_has_atomic_cas!`](#cfg-has-atomic-cas) | macro |  |
+| [`cfg_no_atomic_cas!`](#cfg-no-atomic-cas) | macro |  |
 
 ## Modules
 
@@ -1651,17 +1651,21 @@ atomic instructions or locks will be used.
 
 ## Functions
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:483`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L483)*
+### `Ordering`
+
+```rust
+fn Ordering(self) -> Result<U, <U as TryFrom>::Error>
+```
 
 ## Macros
 
-### `unnamed!`
+### `cfg_has_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:471`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L471)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
-### `unnamed!`
+### `cfg_no_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:471`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L471)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
 
 ### `atomic_int!`
 

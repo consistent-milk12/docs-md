@@ -12,11 +12,11 @@ These define bits for a bitmask argument.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`TINFL_FLAG_PARSE_ZLIB_HEADER`](#tinfl_flag_parse_zlib_header) | const | Should we try to parse a zlib header? |
-| [`TINFL_FLAG_HAS_MORE_INPUT`](#tinfl_flag_has_more_input) | const | There will be more input that hasn't been given to the decompressor yet. |
-| [`TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`](#tinfl_flag_using_non_wrapping_output_buf) | const | The output buffer should not wrap around. |
-| [`TINFL_FLAG_COMPUTE_ADLER32`](#tinfl_flag_compute_adler32) | const | Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream. |
-| [`TINFL_FLAG_IGNORE_ADLER32`](#tinfl_flag_ignore_adler32) | const | Ignore adler32 checksum even if we are inflating a zlib stream. |
+| [`TINFL_FLAG_PARSE_ZLIB_HEADER`](#tinfl-flag-parse-zlib-header) | const | Should we try to parse a zlib header? |
+| [`TINFL_FLAG_HAS_MORE_INPUT`](#tinfl-flag-has-more-input) | const | There will be more input that hasn't been given to the decompressor yet. |
+| [`TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`](#tinfl-flag-using-non-wrapping-output-buf) | const | The output buffer should not wrap around. |
+| [`TINFL_FLAG_COMPUTE_ADLER32`](#tinfl-flag-compute-adler32) | const | Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream. |
+| [`TINFL_FLAG_IGNORE_ADLER32`](#tinfl-flag-ignore-adler32) | const | Ignore adler32 checksum even if we are inflating a zlib stream. |
 
 ## Constants
 

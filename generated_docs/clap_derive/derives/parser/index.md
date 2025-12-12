@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`derive_parser`](#derive_parser) | fn |  |
-| [`gen_for_struct`](#gen_for_struct) | fn |  |
-| [`gen_for_enum`](#gen_for_enum) | fn |  |
+| [`derive_parser`](#derive-parser) | fn |  |
+| [`gen_for_struct`](#gen-for-struct) | fn |  |
+| [`gen_for_enum`](#gen-for-enum) | fn |  |
 
 ## Functions
 

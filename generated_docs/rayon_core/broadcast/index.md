@@ -10,9 +10,9 @@
 |------|------|-------------|
 | [`BroadcastContext`](#broadcastcontext) | struct | Provides context to a closure called by `broadcast`. |
 | [`broadcast`](#broadcast) | fn | Executes `op` within every thread in the current thread pool. |
-| [`spawn_broadcast`](#spawn_broadcast) | fn | Spawns an asynchronous task on every thread in this thread pool. |
-| [`broadcast_in`](#broadcast_in) | fn | Execute `op` on every thread in the pool. |
-| [`spawn_broadcast_in`](#spawn_broadcast_in) | fn | Execute `op` on every thread in the pool. |
+| [`spawn_broadcast`](#spawn-broadcast) | fn | Spawns an asynchronous task on every thread in this thread pool. |
+| [`broadcast_in`](#broadcast-in) | fn | Execute `op` on every thread in the pool. |
+| [`spawn_broadcast_in`](#spawn-broadcast-in) | fn | Execute `op` on every thread in the pool. |
 
 ## Structs
 
@@ -51,9 +51,9 @@ Provides context to a closure called by `broadcast`.
 
 ##### `impl Pointable for BroadcastContext<'a>`
 
-- <span id="broadcastcontext-const-align"></span>`const ALIGN: usize`
+- <span id="broadcastcontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="broadcastcontext-type-init"></span>`type Init = T`
+- <span id="broadcastcontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

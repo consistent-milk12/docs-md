@@ -111,9 +111,9 @@ assert!(!epoch::is_pinned());
 
 ##### `impl Pointable for Guard`
 
-- <span id="guard-const-align"></span>`const ALIGN: usize`
+- <span id="guard-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="guard-type-init"></span>`type Init = T`
+- <span id="guard-pointable-type-init"></span>`type Init = T`
 
 - <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md#pointable)
 

@@ -52,8 +52,8 @@ with the `regex-syntax` crate.
   - [`int`](#int)
   - [`memchr`](#memchr)
   - [`search`](#search)
-  - [`sparse_set`](#sparse_set)
-  - [`unicode_data`](#unicode_data)
+  - [`sparse_set`](#sparse-set)
+  - [`unicode_data`](#unicode-data)
   - [`utf8`](#utf8)
 
 ## Quick Reference
@@ -78,8 +78,8 @@ with the `regex-syntax` crate.
 | [`int`](#int) | mod | This module provides several integer oriented traits for converting between both fixed size integers and integers whose size varies based on the target (like `usize`). |
 | [`memchr`](#memchr) | mod | This module defines simple wrapper routines for the memchr functions from the `memchr` crate. |
 | [`search`](#search) | mod | Types and routines that support the search APIs of most regex engines. |
-| [`sparse_set`](#sparse_set) | mod | This module defines a sparse set data structure. |
-| [`unicode_data`](#unicode_data) | mod |  |
+| [`sparse_set`](#sparse-set) | mod | This module defines a sparse set data structure. |
+| [`unicode_data`](#unicode-data) | mod |  |
 | [`utf8`](#utf8) | mod | Utilities for dealing with UTF-8. |
 
 ## Modules

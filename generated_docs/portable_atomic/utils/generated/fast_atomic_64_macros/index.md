@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cfg_has_fast_atomic_64!`](#cfg_has_fast_atomic_64) | macro |  |
-| [`cfg_no_fast_atomic_64!`](#cfg_no_fast_atomic_64) | macro |  |
+| [`cfg_has_fast_atomic_64!`](#cfg-has-fast-atomic-64) | macro |  |
+| [`cfg_no_fast_atomic_64!`](#cfg-no-fast-atomic-64) | macro |  |
 
 ## Macros
 

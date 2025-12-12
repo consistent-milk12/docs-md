@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`io_safety`](#io_safety) | mod |  |
+| [`io_safety`](#io-safety) | mod |  |
 
 ## Modules
 

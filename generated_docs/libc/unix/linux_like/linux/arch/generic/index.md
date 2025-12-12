@@ -9,99 +9,99 @@
 - [Structs](#structs)
   - [`termios2`](#termios2)
 - [Constants](#constants)
-  - [`SOL_SOCKET`](#sol_socket)
-  - [`SO_REUSEADDR`](#so_reuseaddr)
-  - [`SO_TYPE`](#so_type)
-  - [`SO_ERROR`](#so_error)
-  - [`SO_DONTROUTE`](#so_dontroute)
-  - [`SO_BROADCAST`](#so_broadcast)
-  - [`SO_SNDBUF`](#so_sndbuf)
-  - [`SO_RCVBUF`](#so_rcvbuf)
-  - [`SO_KEEPALIVE`](#so_keepalive)
-  - [`SO_OOBINLINE`](#so_oobinline)
-  - [`SO_NO_CHECK`](#so_no_check)
-  - [`SO_PRIORITY`](#so_priority)
-  - [`SO_LINGER`](#so_linger)
-  - [`SO_BSDCOMPAT`](#so_bsdcompat)
-  - [`SO_REUSEPORT`](#so_reuseport)
-  - [`SO_PASSCRED`](#so_passcred)
-  - [`SO_PEERCRED`](#so_peercred)
-  - [`SO_RCVLOWAT`](#so_rcvlowat)
-  - [`SO_SNDLOWAT`](#so_sndlowat)
-  - [`SO_SECURITY_AUTHENTICATION`](#so_security_authentication)
-  - [`SO_SECURITY_ENCRYPTION_TRANSPORT`](#so_security_encryption_transport)
-  - [`SO_SECURITY_ENCRYPTION_NETWORK`](#so_security_encryption_network)
-  - [`SO_BINDTODEVICE`](#so_bindtodevice)
-  - [`SO_ATTACH_FILTER`](#so_attach_filter)
-  - [`SO_DETACH_FILTER`](#so_detach_filter)
-  - [`SO_GET_FILTER`](#so_get_filter)
-  - [`SO_PEERNAME`](#so_peername)
-  - [`SO_TIMESTAMP_OLD`](#so_timestamp_old)
-  - [`SO_TIMESTAMPNS_OLD`](#so_timestampns_old)
-  - [`SO_TIMESTAMPING_OLD`](#so_timestamping_old)
-  - [`SO_RCVTIMEO_OLD`](#so_rcvtimeo_old)
-  - [`SO_SNDTIMEO_OLD`](#so_sndtimeo_old)
-  - [`SO_TIMESTAMP`](#so_timestamp)
-  - [`SO_TIMESTAMPNS`](#so_timestampns)
-  - [`SO_TIMESTAMPING`](#so_timestamping)
-  - [`SO_RCVTIMEO`](#so_rcvtimeo)
-  - [`SO_SNDTIMEO`](#so_sndtimeo)
-  - [`SO_ACCEPTCONN`](#so_acceptconn)
-  - [`SO_PEERSEC`](#so_peersec)
-  - [`SO_SNDBUFFORCE`](#so_sndbufforce)
-  - [`SO_RCVBUFFORCE`](#so_rcvbufforce)
-  - [`SO_PASSSEC`](#so_passsec)
-  - [`SO_MARK`](#so_mark)
-  - [`SO_PROTOCOL`](#so_protocol)
-  - [`SO_DOMAIN`](#so_domain)
-  - [`SO_RXQ_OVFL`](#so_rxq_ovfl)
-  - [`SO_WIFI_STATUS`](#so_wifi_status)
-  - [`SCM_WIFI_STATUS`](#scm_wifi_status)
-  - [`SO_PEEK_OFF`](#so_peek_off)
-  - [`SO_NOFCS`](#so_nofcs)
-  - [`SO_LOCK_FILTER`](#so_lock_filter)
-  - [`SO_SELECT_ERR_QUEUE`](#so_select_err_queue)
-  - [`SO_BUSY_POLL`](#so_busy_poll)
-  - [`SO_MAX_PACING_RATE`](#so_max_pacing_rate)
-  - [`SO_BPF_EXTENSIONS`](#so_bpf_extensions)
-  - [`SO_INCOMING_CPU`](#so_incoming_cpu)
-  - [`SO_ATTACH_BPF`](#so_attach_bpf)
-  - [`SO_DETACH_BPF`](#so_detach_bpf)
-  - [`SO_ATTACH_REUSEPORT_CBPF`](#so_attach_reuseport_cbpf)
-  - [`SO_ATTACH_REUSEPORT_EBPF`](#so_attach_reuseport_ebpf)
-  - [`SO_CNX_ADVICE`](#so_cnx_advice)
-  - [`SCM_TIMESTAMPING_OPT_STATS`](#scm_timestamping_opt_stats)
-  - [`SO_MEMINFO`](#so_meminfo)
-  - [`SO_INCOMING_NAPI_ID`](#so_incoming_napi_id)
-  - [`SO_COOKIE`](#so_cookie)
-  - [`SCM_TIMESTAMPING_PKTINFO`](#scm_timestamping_pktinfo)
-  - [`SO_PEERGROUPS`](#so_peergroups)
-  - [`SO_ZEROCOPY`](#so_zerocopy)
-  - [`SO_TXTIME`](#so_txtime)
-  - [`SCM_TXTIME`](#scm_txtime)
-  - [`SO_BINDTOIFINDEX`](#so_bindtoifindex)
-  - [`SO_TIMESTAMP_NEW`](#so_timestamp_new)
-  - [`SO_TIMESTAMPNS_NEW`](#so_timestampns_new)
-  - [`SO_TIMESTAMPING_NEW`](#so_timestamping_new)
-  - [`SO_RCVTIMEO_NEW`](#so_rcvtimeo_new)
-  - [`SO_SNDTIMEO_NEW`](#so_sndtimeo_new)
-  - [`SO_DETACH_REUSEPORT_BPF`](#so_detach_reuseport_bpf)
-  - [`SO_PREFER_BUSY_POLL`](#so_prefer_busy_poll)
-  - [`SO_BUSY_POLL_BUDGET`](#so_busy_poll_budget)
-  - [`SO_NETNS_COOKIE`](#so_netns_cookie)
-  - [`SO_BUF_LOCK`](#so_buf_lock)
-  - [`SO_RESERVE_MEM`](#so_reserve_mem)
-  - [`SO_TXREHASH`](#so_txrehash)
-  - [`SO_RCVMARK`](#so_rcvmark)
-  - [`SO_PASSPIDFD`](#so_passpidfd)
-  - [`SO_PEERPIDFD`](#so_peerpidfd)
-  - [`SO_DEVMEM_LINEAR`](#so_devmem_linear)
-  - [`SO_DEVMEM_DMABUF`](#so_devmem_dmabuf)
-  - [`SO_DEVMEM_DONTNEED`](#so_devmem_dontneed)
-  - [`SCM_TIMESTAMPNS`](#scm_timestampns)
-  - [`SCM_TIMESTAMPING`](#scm_timestamping)
-  - [`SCM_DEVMEM_LINEAR`](#scm_devmem_linear)
-  - [`SCM_DEVMEM_DMABUF`](#scm_devmem_dmabuf)
+  - [`SOL_SOCKET`](#sol-socket)
+  - [`SO_REUSEADDR`](#so-reuseaddr)
+  - [`SO_TYPE`](#so-type)
+  - [`SO_ERROR`](#so-error)
+  - [`SO_DONTROUTE`](#so-dontroute)
+  - [`SO_BROADCAST`](#so-broadcast)
+  - [`SO_SNDBUF`](#so-sndbuf)
+  - [`SO_RCVBUF`](#so-rcvbuf)
+  - [`SO_KEEPALIVE`](#so-keepalive)
+  - [`SO_OOBINLINE`](#so-oobinline)
+  - [`SO_NO_CHECK`](#so-no-check)
+  - [`SO_PRIORITY`](#so-priority)
+  - [`SO_LINGER`](#so-linger)
+  - [`SO_BSDCOMPAT`](#so-bsdcompat)
+  - [`SO_REUSEPORT`](#so-reuseport)
+  - [`SO_PASSCRED`](#so-passcred)
+  - [`SO_PEERCRED`](#so-peercred)
+  - [`SO_RCVLOWAT`](#so-rcvlowat)
+  - [`SO_SNDLOWAT`](#so-sndlowat)
+  - [`SO_SECURITY_AUTHENTICATION`](#so-security-authentication)
+  - [`SO_SECURITY_ENCRYPTION_TRANSPORT`](#so-security-encryption-transport)
+  - [`SO_SECURITY_ENCRYPTION_NETWORK`](#so-security-encryption-network)
+  - [`SO_BINDTODEVICE`](#so-bindtodevice)
+  - [`SO_ATTACH_FILTER`](#so-attach-filter)
+  - [`SO_DETACH_FILTER`](#so-detach-filter)
+  - [`SO_GET_FILTER`](#so-get-filter)
+  - [`SO_PEERNAME`](#so-peername)
+  - [`SO_TIMESTAMP_OLD`](#so-timestamp-old)
+  - [`SO_TIMESTAMPNS_OLD`](#so-timestampns-old)
+  - [`SO_TIMESTAMPING_OLD`](#so-timestamping-old)
+  - [`SO_RCVTIMEO_OLD`](#so-rcvtimeo-old)
+  - [`SO_SNDTIMEO_OLD`](#so-sndtimeo-old)
+  - [`SO_TIMESTAMP`](#so-timestamp)
+  - [`SO_TIMESTAMPNS`](#so-timestampns)
+  - [`SO_TIMESTAMPING`](#so-timestamping)
+  - [`SO_RCVTIMEO`](#so-rcvtimeo)
+  - [`SO_SNDTIMEO`](#so-sndtimeo)
+  - [`SO_ACCEPTCONN`](#so-acceptconn)
+  - [`SO_PEERSEC`](#so-peersec)
+  - [`SO_SNDBUFFORCE`](#so-sndbufforce)
+  - [`SO_RCVBUFFORCE`](#so-rcvbufforce)
+  - [`SO_PASSSEC`](#so-passsec)
+  - [`SO_MARK`](#so-mark)
+  - [`SO_PROTOCOL`](#so-protocol)
+  - [`SO_DOMAIN`](#so-domain)
+  - [`SO_RXQ_OVFL`](#so-rxq-ovfl)
+  - [`SO_WIFI_STATUS`](#so-wifi-status)
+  - [`SCM_WIFI_STATUS`](#scm-wifi-status)
+  - [`SO_PEEK_OFF`](#so-peek-off)
+  - [`SO_NOFCS`](#so-nofcs)
+  - [`SO_LOCK_FILTER`](#so-lock-filter)
+  - [`SO_SELECT_ERR_QUEUE`](#so-select-err-queue)
+  - [`SO_BUSY_POLL`](#so-busy-poll)
+  - [`SO_MAX_PACING_RATE`](#so-max-pacing-rate)
+  - [`SO_BPF_EXTENSIONS`](#so-bpf-extensions)
+  - [`SO_INCOMING_CPU`](#so-incoming-cpu)
+  - [`SO_ATTACH_BPF`](#so-attach-bpf)
+  - [`SO_DETACH_BPF`](#so-detach-bpf)
+  - [`SO_ATTACH_REUSEPORT_CBPF`](#so-attach-reuseport-cbpf)
+  - [`SO_ATTACH_REUSEPORT_EBPF`](#so-attach-reuseport-ebpf)
+  - [`SO_CNX_ADVICE`](#so-cnx-advice)
+  - [`SCM_TIMESTAMPING_OPT_STATS`](#scm-timestamping-opt-stats)
+  - [`SO_MEMINFO`](#so-meminfo)
+  - [`SO_INCOMING_NAPI_ID`](#so-incoming-napi-id)
+  - [`SO_COOKIE`](#so-cookie)
+  - [`SCM_TIMESTAMPING_PKTINFO`](#scm-timestamping-pktinfo)
+  - [`SO_PEERGROUPS`](#so-peergroups)
+  - [`SO_ZEROCOPY`](#so-zerocopy)
+  - [`SO_TXTIME`](#so-txtime)
+  - [`SCM_TXTIME`](#scm-txtime)
+  - [`SO_BINDTOIFINDEX`](#so-bindtoifindex)
+  - [`SO_TIMESTAMP_NEW`](#so-timestamp-new)
+  - [`SO_TIMESTAMPNS_NEW`](#so-timestampns-new)
+  - [`SO_TIMESTAMPING_NEW`](#so-timestamping-new)
+  - [`SO_RCVTIMEO_NEW`](#so-rcvtimeo-new)
+  - [`SO_SNDTIMEO_NEW`](#so-sndtimeo-new)
+  - [`SO_DETACH_REUSEPORT_BPF`](#so-detach-reuseport-bpf)
+  - [`SO_PREFER_BUSY_POLL`](#so-prefer-busy-poll)
+  - [`SO_BUSY_POLL_BUDGET`](#so-busy-poll-budget)
+  - [`SO_NETNS_COOKIE`](#so-netns-cookie)
+  - [`SO_BUF_LOCK`](#so-buf-lock)
+  - [`SO_RESERVE_MEM`](#so-reserve-mem)
+  - [`SO_TXREHASH`](#so-txrehash)
+  - [`SO_RCVMARK`](#so-rcvmark)
+  - [`SO_PASSPIDFD`](#so-passpidfd)
+  - [`SO_PEERPIDFD`](#so-peerpidfd)
+  - [`SO_DEVMEM_LINEAR`](#so-devmem-linear)
+  - [`SO_DEVMEM_DMABUF`](#so-devmem-dmabuf)
+  - [`SO_DEVMEM_DONTNEED`](#so-devmem-dontneed)
+  - [`SCM_TIMESTAMPNS`](#scm-timestampns)
+  - [`SCM_TIMESTAMPING`](#scm-timestamping)
+  - [`SCM_DEVMEM_LINEAR`](#scm-devmem-linear)
+  - [`SCM_DEVMEM_DMABUF`](#scm-devmem-dmabuf)
   - [`TCGETS`](#tcgets)
   - [`TCSETS`](#tcsets)
   - [`TCSETSW`](#tcsetsw)
@@ -181,138 +181,138 @@
   - [`BLKSSZGET`](#blksszget)
   - [`BLKPBSZGET`](#blkpbszget)
   - [`FIOQSIZE`](#fioqsize)
-  - [`TIOCM_LE`](#tiocm_le)
-  - [`TIOCM_DTR`](#tiocm_dtr)
-  - [`TIOCM_RTS`](#tiocm_rts)
-  - [`TIOCM_ST`](#tiocm_st)
-  - [`TIOCM_SR`](#tiocm_sr)
-  - [`TIOCM_CTS`](#tiocm_cts)
-  - [`TIOCM_CAR`](#tiocm_car)
-  - [`TIOCM_CD`](#tiocm_cd)
-  - [`TIOCM_RNG`](#tiocm_rng)
-  - [`TIOCM_RI`](#tiocm_ri)
-  - [`TIOCM_DSR`](#tiocm_dsr)
+  - [`TIOCM_LE`](#tiocm-le)
+  - [`TIOCM_DTR`](#tiocm-dtr)
+  - [`TIOCM_RTS`](#tiocm-rts)
+  - [`TIOCM_ST`](#tiocm-st)
+  - [`TIOCM_SR`](#tiocm-sr)
+  - [`TIOCM_CTS`](#tiocm-cts)
+  - [`TIOCM_CAR`](#tiocm-car)
+  - [`TIOCM_CD`](#tiocm-cd)
+  - [`TIOCM_RNG`](#tiocm-rng)
+  - [`TIOCM_RI`](#tiocm-ri)
+  - [`TIOCM_DSR`](#tiocm-dsr)
   - [`BOTHER`](#bother)
   - [`IBSHIFT`](#ibshift)
   - [`IUCLC`](#iuclc)
-  - [`RLIMIT_CPU`](#rlimit_cpu)
-  - [`RLIMIT_FSIZE`](#rlimit_fsize)
-  - [`RLIMIT_DATA`](#rlimit_data)
-  - [`RLIMIT_STACK`](#rlimit_stack)
-  - [`RLIMIT_CORE`](#rlimit_core)
-  - [`RLIMIT_RSS`](#rlimit_rss)
-  - [`RLIMIT_NPROC`](#rlimit_nproc)
-  - [`RLIMIT_NOFILE`](#rlimit_nofile)
-  - [`RLIMIT_MEMLOCK`](#rlimit_memlock)
-  - [`RLIMIT_AS`](#rlimit_as)
-  - [`RLIMIT_LOCKS`](#rlimit_locks)
-  - [`RLIMIT_SIGPENDING`](#rlimit_sigpending)
-  - [`RLIMIT_MSGQUEUE`](#rlimit_msgqueue)
-  - [`RLIMIT_NICE`](#rlimit_nice)
-  - [`RLIMIT_RTPRIO`](#rlimit_rtprio)
-  - [`RLIMIT_RTTIME`](#rlimit_rttime)
-  - [`RLIMIT_NLIMITS`](#rlimit_nlimits)
-  - [`RLIM_NLIMITS`](#rlim_nlimits)
-  - [`RLIM_INFINITY`](#rlim_infinity)
+  - [`RLIMIT_CPU`](#rlimit-cpu)
+  - [`RLIMIT_FSIZE`](#rlimit-fsize)
+  - [`RLIMIT_DATA`](#rlimit-data)
+  - [`RLIMIT_STACK`](#rlimit-stack)
+  - [`RLIMIT_CORE`](#rlimit-core)
+  - [`RLIMIT_RSS`](#rlimit-rss)
+  - [`RLIMIT_NPROC`](#rlimit-nproc)
+  - [`RLIMIT_NOFILE`](#rlimit-nofile)
+  - [`RLIMIT_MEMLOCK`](#rlimit-memlock)
+  - [`RLIMIT_AS`](#rlimit-as)
+  - [`RLIMIT_LOCKS`](#rlimit-locks)
+  - [`RLIMIT_SIGPENDING`](#rlimit-sigpending)
+  - [`RLIMIT_MSGQUEUE`](#rlimit-msgqueue)
+  - [`RLIMIT_NICE`](#rlimit-nice)
+  - [`RLIMIT_RTPRIO`](#rlimit-rtprio)
+  - [`RLIMIT_RTTIME`](#rlimit-rttime)
+  - [`RLIMIT_NLIMITS`](#rlimit-nlimits)
+  - [`RLIM_NLIMITS`](#rlim-nlimits)
+  - [`RLIM_INFINITY`](#rlim-infinity)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`termios2`](#termios2) | struct |  |
-| [`SOL_SOCKET`](#sol_socket) | const |  |
-| [`SO_REUSEADDR`](#so_reuseaddr) | const |  |
-| [`SO_TYPE`](#so_type) | const |  |
-| [`SO_ERROR`](#so_error) | const |  |
-| [`SO_DONTROUTE`](#so_dontroute) | const |  |
-| [`SO_BROADCAST`](#so_broadcast) | const |  |
-| [`SO_SNDBUF`](#so_sndbuf) | const |  |
-| [`SO_RCVBUF`](#so_rcvbuf) | const |  |
-| [`SO_KEEPALIVE`](#so_keepalive) | const |  |
-| [`SO_OOBINLINE`](#so_oobinline) | const |  |
-| [`SO_NO_CHECK`](#so_no_check) | const |  |
-| [`SO_PRIORITY`](#so_priority) | const |  |
-| [`SO_LINGER`](#so_linger) | const |  |
-| [`SO_BSDCOMPAT`](#so_bsdcompat) | const |  |
-| [`SO_REUSEPORT`](#so_reuseport) | const |  |
-| [`SO_PASSCRED`](#so_passcred) | const |  |
-| [`SO_PEERCRED`](#so_peercred) | const |  |
-| [`SO_RCVLOWAT`](#so_rcvlowat) | const |  |
-| [`SO_SNDLOWAT`](#so_sndlowat) | const |  |
-| [`SO_SECURITY_AUTHENTICATION`](#so_security_authentication) | const |  |
-| [`SO_SECURITY_ENCRYPTION_TRANSPORT`](#so_security_encryption_transport) | const |  |
-| [`SO_SECURITY_ENCRYPTION_NETWORK`](#so_security_encryption_network) | const |  |
-| [`SO_BINDTODEVICE`](#so_bindtodevice) | const |  |
-| [`SO_ATTACH_FILTER`](#so_attach_filter) | const |  |
-| [`SO_DETACH_FILTER`](#so_detach_filter) | const |  |
-| [`SO_GET_FILTER`](#so_get_filter) | const |  |
-| [`SO_PEERNAME`](#so_peername) | const |  |
-| [`SO_TIMESTAMP_OLD`](#so_timestamp_old) | const |  |
-| [`SO_TIMESTAMPNS_OLD`](#so_timestampns_old) | const |  |
-| [`SO_TIMESTAMPING_OLD`](#so_timestamping_old) | const |  |
-| [`SO_RCVTIMEO_OLD`](#so_rcvtimeo_old) | const |  |
-| [`SO_SNDTIMEO_OLD`](#so_sndtimeo_old) | const |  |
-| [`SO_TIMESTAMP`](#so_timestamp) | const |  |
-| [`SO_TIMESTAMPNS`](#so_timestampns) | const |  |
-| [`SO_TIMESTAMPING`](#so_timestamping) | const |  |
-| [`SO_RCVTIMEO`](#so_rcvtimeo) | const |  |
-| [`SO_SNDTIMEO`](#so_sndtimeo) | const |  |
-| [`SO_ACCEPTCONN`](#so_acceptconn) | const |  |
-| [`SO_PEERSEC`](#so_peersec) | const |  |
-| [`SO_SNDBUFFORCE`](#so_sndbufforce) | const |  |
-| [`SO_RCVBUFFORCE`](#so_rcvbufforce) | const |  |
-| [`SO_PASSSEC`](#so_passsec) | const |  |
-| [`SO_MARK`](#so_mark) | const |  |
-| [`SO_PROTOCOL`](#so_protocol) | const |  |
-| [`SO_DOMAIN`](#so_domain) | const |  |
-| [`SO_RXQ_OVFL`](#so_rxq_ovfl) | const |  |
-| [`SO_WIFI_STATUS`](#so_wifi_status) | const |  |
-| [`SCM_WIFI_STATUS`](#scm_wifi_status) | const |  |
-| [`SO_PEEK_OFF`](#so_peek_off) | const |  |
-| [`SO_NOFCS`](#so_nofcs) | const |  |
-| [`SO_LOCK_FILTER`](#so_lock_filter) | const |  |
-| [`SO_SELECT_ERR_QUEUE`](#so_select_err_queue) | const |  |
-| [`SO_BUSY_POLL`](#so_busy_poll) | const |  |
-| [`SO_MAX_PACING_RATE`](#so_max_pacing_rate) | const |  |
-| [`SO_BPF_EXTENSIONS`](#so_bpf_extensions) | const |  |
-| [`SO_INCOMING_CPU`](#so_incoming_cpu) | const |  |
-| [`SO_ATTACH_BPF`](#so_attach_bpf) | const |  |
-| [`SO_DETACH_BPF`](#so_detach_bpf) | const |  |
-| [`SO_ATTACH_REUSEPORT_CBPF`](#so_attach_reuseport_cbpf) | const |  |
-| [`SO_ATTACH_REUSEPORT_EBPF`](#so_attach_reuseport_ebpf) | const |  |
-| [`SO_CNX_ADVICE`](#so_cnx_advice) | const |  |
-| [`SCM_TIMESTAMPING_OPT_STATS`](#scm_timestamping_opt_stats) | const |  |
-| [`SO_MEMINFO`](#so_meminfo) | const |  |
-| [`SO_INCOMING_NAPI_ID`](#so_incoming_napi_id) | const |  |
-| [`SO_COOKIE`](#so_cookie) | const |  |
-| [`SCM_TIMESTAMPING_PKTINFO`](#scm_timestamping_pktinfo) | const |  |
-| [`SO_PEERGROUPS`](#so_peergroups) | const |  |
-| [`SO_ZEROCOPY`](#so_zerocopy) | const |  |
-| [`SO_TXTIME`](#so_txtime) | const |  |
-| [`SCM_TXTIME`](#scm_txtime) | const |  |
-| [`SO_BINDTOIFINDEX`](#so_bindtoifindex) | const |  |
-| [`SO_TIMESTAMP_NEW`](#so_timestamp_new) | const |  |
-| [`SO_TIMESTAMPNS_NEW`](#so_timestampns_new) | const |  |
-| [`SO_TIMESTAMPING_NEW`](#so_timestamping_new) | const |  |
-| [`SO_RCVTIMEO_NEW`](#so_rcvtimeo_new) | const |  |
-| [`SO_SNDTIMEO_NEW`](#so_sndtimeo_new) | const |  |
-| [`SO_DETACH_REUSEPORT_BPF`](#so_detach_reuseport_bpf) | const |  |
-| [`SO_PREFER_BUSY_POLL`](#so_prefer_busy_poll) | const |  |
-| [`SO_BUSY_POLL_BUDGET`](#so_busy_poll_budget) | const |  |
-| [`SO_NETNS_COOKIE`](#so_netns_cookie) | const |  |
-| [`SO_BUF_LOCK`](#so_buf_lock) | const |  |
-| [`SO_RESERVE_MEM`](#so_reserve_mem) | const |  |
-| [`SO_TXREHASH`](#so_txrehash) | const |  |
-| [`SO_RCVMARK`](#so_rcvmark) | const |  |
-| [`SO_PASSPIDFD`](#so_passpidfd) | const |  |
-| [`SO_PEERPIDFD`](#so_peerpidfd) | const |  |
-| [`SO_DEVMEM_LINEAR`](#so_devmem_linear) | const |  |
-| [`SO_DEVMEM_DMABUF`](#so_devmem_dmabuf) | const |  |
-| [`SO_DEVMEM_DONTNEED`](#so_devmem_dontneed) | const |  |
-| [`SCM_TIMESTAMPNS`](#scm_timestampns) | const |  |
-| [`SCM_TIMESTAMPING`](#scm_timestamping) | const |  |
-| [`SCM_DEVMEM_LINEAR`](#scm_devmem_linear) | const |  |
-| [`SCM_DEVMEM_DMABUF`](#scm_devmem_dmabuf) | const |  |
+| [`SOL_SOCKET`](#sol-socket) | const |  |
+| [`SO_REUSEADDR`](#so-reuseaddr) | const |  |
+| [`SO_TYPE`](#so-type) | const |  |
+| [`SO_ERROR`](#so-error) | const |  |
+| [`SO_DONTROUTE`](#so-dontroute) | const |  |
+| [`SO_BROADCAST`](#so-broadcast) | const |  |
+| [`SO_SNDBUF`](#so-sndbuf) | const |  |
+| [`SO_RCVBUF`](#so-rcvbuf) | const |  |
+| [`SO_KEEPALIVE`](#so-keepalive) | const |  |
+| [`SO_OOBINLINE`](#so-oobinline) | const |  |
+| [`SO_NO_CHECK`](#so-no-check) | const |  |
+| [`SO_PRIORITY`](#so-priority) | const |  |
+| [`SO_LINGER`](#so-linger) | const |  |
+| [`SO_BSDCOMPAT`](#so-bsdcompat) | const |  |
+| [`SO_REUSEPORT`](#so-reuseport) | const |  |
+| [`SO_PASSCRED`](#so-passcred) | const |  |
+| [`SO_PEERCRED`](#so-peercred) | const |  |
+| [`SO_RCVLOWAT`](#so-rcvlowat) | const |  |
+| [`SO_SNDLOWAT`](#so-sndlowat) | const |  |
+| [`SO_SECURITY_AUTHENTICATION`](#so-security-authentication) | const |  |
+| [`SO_SECURITY_ENCRYPTION_TRANSPORT`](#so-security-encryption-transport) | const |  |
+| [`SO_SECURITY_ENCRYPTION_NETWORK`](#so-security-encryption-network) | const |  |
+| [`SO_BINDTODEVICE`](#so-bindtodevice) | const |  |
+| [`SO_ATTACH_FILTER`](#so-attach-filter) | const |  |
+| [`SO_DETACH_FILTER`](#so-detach-filter) | const |  |
+| [`SO_GET_FILTER`](#so-get-filter) | const |  |
+| [`SO_PEERNAME`](#so-peername) | const |  |
+| [`SO_TIMESTAMP_OLD`](#so-timestamp-old) | const |  |
+| [`SO_TIMESTAMPNS_OLD`](#so-timestampns-old) | const |  |
+| [`SO_TIMESTAMPING_OLD`](#so-timestamping-old) | const |  |
+| [`SO_RCVTIMEO_OLD`](#so-rcvtimeo-old) | const |  |
+| [`SO_SNDTIMEO_OLD`](#so-sndtimeo-old) | const |  |
+| [`SO_TIMESTAMP`](#so-timestamp) | const |  |
+| [`SO_TIMESTAMPNS`](#so-timestampns) | const |  |
+| [`SO_TIMESTAMPING`](#so-timestamping) | const |  |
+| [`SO_RCVTIMEO`](#so-rcvtimeo) | const |  |
+| [`SO_SNDTIMEO`](#so-sndtimeo) | const |  |
+| [`SO_ACCEPTCONN`](#so-acceptconn) | const |  |
+| [`SO_PEERSEC`](#so-peersec) | const |  |
+| [`SO_SNDBUFFORCE`](#so-sndbufforce) | const |  |
+| [`SO_RCVBUFFORCE`](#so-rcvbufforce) | const |  |
+| [`SO_PASSSEC`](#so-passsec) | const |  |
+| [`SO_MARK`](#so-mark) | const |  |
+| [`SO_PROTOCOL`](#so-protocol) | const |  |
+| [`SO_DOMAIN`](#so-domain) | const |  |
+| [`SO_RXQ_OVFL`](#so-rxq-ovfl) | const |  |
+| [`SO_WIFI_STATUS`](#so-wifi-status) | const |  |
+| [`SCM_WIFI_STATUS`](#scm-wifi-status) | const |  |
+| [`SO_PEEK_OFF`](#so-peek-off) | const |  |
+| [`SO_NOFCS`](#so-nofcs) | const |  |
+| [`SO_LOCK_FILTER`](#so-lock-filter) | const |  |
+| [`SO_SELECT_ERR_QUEUE`](#so-select-err-queue) | const |  |
+| [`SO_BUSY_POLL`](#so-busy-poll) | const |  |
+| [`SO_MAX_PACING_RATE`](#so-max-pacing-rate) | const |  |
+| [`SO_BPF_EXTENSIONS`](#so-bpf-extensions) | const |  |
+| [`SO_INCOMING_CPU`](#so-incoming-cpu) | const |  |
+| [`SO_ATTACH_BPF`](#so-attach-bpf) | const |  |
+| [`SO_DETACH_BPF`](#so-detach-bpf) | const |  |
+| [`SO_ATTACH_REUSEPORT_CBPF`](#so-attach-reuseport-cbpf) | const |  |
+| [`SO_ATTACH_REUSEPORT_EBPF`](#so-attach-reuseport-ebpf) | const |  |
+| [`SO_CNX_ADVICE`](#so-cnx-advice) | const |  |
+| [`SCM_TIMESTAMPING_OPT_STATS`](#scm-timestamping-opt-stats) | const |  |
+| [`SO_MEMINFO`](#so-meminfo) | const |  |
+| [`SO_INCOMING_NAPI_ID`](#so-incoming-napi-id) | const |  |
+| [`SO_COOKIE`](#so-cookie) | const |  |
+| [`SCM_TIMESTAMPING_PKTINFO`](#scm-timestamping-pktinfo) | const |  |
+| [`SO_PEERGROUPS`](#so-peergroups) | const |  |
+| [`SO_ZEROCOPY`](#so-zerocopy) | const |  |
+| [`SO_TXTIME`](#so-txtime) | const |  |
+| [`SCM_TXTIME`](#scm-txtime) | const |  |
+| [`SO_BINDTOIFINDEX`](#so-bindtoifindex) | const |  |
+| [`SO_TIMESTAMP_NEW`](#so-timestamp-new) | const |  |
+| [`SO_TIMESTAMPNS_NEW`](#so-timestampns-new) | const |  |
+| [`SO_TIMESTAMPING_NEW`](#so-timestamping-new) | const |  |
+| [`SO_RCVTIMEO_NEW`](#so-rcvtimeo-new) | const |  |
+| [`SO_SNDTIMEO_NEW`](#so-sndtimeo-new) | const |  |
+| [`SO_DETACH_REUSEPORT_BPF`](#so-detach-reuseport-bpf) | const |  |
+| [`SO_PREFER_BUSY_POLL`](#so-prefer-busy-poll) | const |  |
+| [`SO_BUSY_POLL_BUDGET`](#so-busy-poll-budget) | const |  |
+| [`SO_NETNS_COOKIE`](#so-netns-cookie) | const |  |
+| [`SO_BUF_LOCK`](#so-buf-lock) | const |  |
+| [`SO_RESERVE_MEM`](#so-reserve-mem) | const |  |
+| [`SO_TXREHASH`](#so-txrehash) | const |  |
+| [`SO_RCVMARK`](#so-rcvmark) | const |  |
+| [`SO_PASSPIDFD`](#so-passpidfd) | const |  |
+| [`SO_PEERPIDFD`](#so-peerpidfd) | const |  |
+| [`SO_DEVMEM_LINEAR`](#so-devmem-linear) | const |  |
+| [`SO_DEVMEM_DMABUF`](#so-devmem-dmabuf) | const |  |
+| [`SO_DEVMEM_DONTNEED`](#so-devmem-dontneed) | const |  |
+| [`SCM_TIMESTAMPNS`](#scm-timestampns) | const |  |
+| [`SCM_TIMESTAMPING`](#scm-timestamping) | const |  |
+| [`SCM_DEVMEM_LINEAR`](#scm-devmem-linear) | const |  |
+| [`SCM_DEVMEM_DMABUF`](#scm-devmem-dmabuf) | const |  |
 | [`TCGETS`](#tcgets) | const |  |
 | [`TCSETS`](#tcsets) | const |  |
 | [`TCSETSW`](#tcsetsw) | const |  |
@@ -392,39 +392,39 @@
 | [`BLKSSZGET`](#blksszget) | const |  |
 | [`BLKPBSZGET`](#blkpbszget) | const |  |
 | [`FIOQSIZE`](#fioqsize) | const |  |
-| [`TIOCM_LE`](#tiocm_le) | const |  |
-| [`TIOCM_DTR`](#tiocm_dtr) | const |  |
-| [`TIOCM_RTS`](#tiocm_rts) | const |  |
-| [`TIOCM_ST`](#tiocm_st) | const |  |
-| [`TIOCM_SR`](#tiocm_sr) | const |  |
-| [`TIOCM_CTS`](#tiocm_cts) | const |  |
-| [`TIOCM_CAR`](#tiocm_car) | const |  |
-| [`TIOCM_CD`](#tiocm_cd) | const |  |
-| [`TIOCM_RNG`](#tiocm_rng) | const |  |
-| [`TIOCM_RI`](#tiocm_ri) | const |  |
-| [`TIOCM_DSR`](#tiocm_dsr) | const |  |
+| [`TIOCM_LE`](#tiocm-le) | const |  |
+| [`TIOCM_DTR`](#tiocm-dtr) | const |  |
+| [`TIOCM_RTS`](#tiocm-rts) | const |  |
+| [`TIOCM_ST`](#tiocm-st) | const |  |
+| [`TIOCM_SR`](#tiocm-sr) | const |  |
+| [`TIOCM_CTS`](#tiocm-cts) | const |  |
+| [`TIOCM_CAR`](#tiocm-car) | const |  |
+| [`TIOCM_CD`](#tiocm-cd) | const |  |
+| [`TIOCM_RNG`](#tiocm-rng) | const |  |
+| [`TIOCM_RI`](#tiocm-ri) | const |  |
+| [`TIOCM_DSR`](#tiocm-dsr) | const |  |
 | [`BOTHER`](#bother) | const |  |
 | [`IBSHIFT`](#ibshift) | const |  |
 | [`IUCLC`](#iuclc) | const |  |
-| [`RLIMIT_CPU`](#rlimit_cpu) | const |  |
-| [`RLIMIT_FSIZE`](#rlimit_fsize) | const |  |
-| [`RLIMIT_DATA`](#rlimit_data) | const |  |
-| [`RLIMIT_STACK`](#rlimit_stack) | const |  |
-| [`RLIMIT_CORE`](#rlimit_core) | const |  |
-| [`RLIMIT_RSS`](#rlimit_rss) | const |  |
-| [`RLIMIT_NPROC`](#rlimit_nproc) | const |  |
-| [`RLIMIT_NOFILE`](#rlimit_nofile) | const |  |
-| [`RLIMIT_MEMLOCK`](#rlimit_memlock) | const |  |
-| [`RLIMIT_AS`](#rlimit_as) | const |  |
-| [`RLIMIT_LOCKS`](#rlimit_locks) | const |  |
-| [`RLIMIT_SIGPENDING`](#rlimit_sigpending) | const |  |
-| [`RLIMIT_MSGQUEUE`](#rlimit_msgqueue) | const |  |
-| [`RLIMIT_NICE`](#rlimit_nice) | const |  |
-| [`RLIMIT_RTPRIO`](#rlimit_rtprio) | const |  |
-| [`RLIMIT_RTTIME`](#rlimit_rttime) | const |  |
-| [`RLIMIT_NLIMITS`](#rlimit_nlimits) | const |  |
-| [`RLIM_NLIMITS`](#rlim_nlimits) | const |  |
-| [`RLIM_INFINITY`](#rlim_infinity) | const |  |
+| [`RLIMIT_CPU`](#rlimit-cpu) | const |  |
+| [`RLIMIT_FSIZE`](#rlimit-fsize) | const |  |
+| [`RLIMIT_DATA`](#rlimit-data) | const |  |
+| [`RLIMIT_STACK`](#rlimit-stack) | const |  |
+| [`RLIMIT_CORE`](#rlimit-core) | const |  |
+| [`RLIMIT_RSS`](#rlimit-rss) | const |  |
+| [`RLIMIT_NPROC`](#rlimit-nproc) | const |  |
+| [`RLIMIT_NOFILE`](#rlimit-nofile) | const |  |
+| [`RLIMIT_MEMLOCK`](#rlimit-memlock) | const |  |
+| [`RLIMIT_AS`](#rlimit-as) | const |  |
+| [`RLIMIT_LOCKS`](#rlimit-locks) | const |  |
+| [`RLIMIT_SIGPENDING`](#rlimit-sigpending) | const |  |
+| [`RLIMIT_MSGQUEUE`](#rlimit-msgqueue) | const |  |
+| [`RLIMIT_NICE`](#rlimit-nice) | const |  |
+| [`RLIMIT_RTPRIO`](#rlimit-rtprio) | const |  |
+| [`RLIMIT_RTTIME`](#rlimit-rttime) | const |  |
+| [`RLIMIT_NLIMITS`](#rlimit-nlimits) | const |  |
+| [`RLIM_NLIMITS`](#rlim-nlimits) | const |  |
+| [`RLIM_INFINITY`](#rlim-infinity) | const |  |
 
 ## Structs
 

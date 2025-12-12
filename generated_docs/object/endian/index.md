@@ -30,7 +30,7 @@ Types for compile-time and run-time endianness.
   - [`I32`](#i32)
   - [`I64`](#i64)
 - [Macros](#macros)
-  - [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod)
+  - [`unsafe_impl_endian_pod!`](#unsafe-impl-endian-pod)
 
 ## Quick Reference
 
@@ -53,7 +53,7 @@ Types for compile-time and run-time endianness.
 | [`I16`](#i16) | type | An `i16` value with an externally specified endianness of type `E`. |
 | [`I32`](#i32) | type | An `i32` value with an externally specified endianness of type `E`. |
 | [`I64`](#i64) | type | An `i64` value with an externally specified endianness of type `E`. |
-| [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod) | macro |  |
+| [`unsafe_impl_endian_pod!`](#unsafe-impl-endian-pod) | macro |  |
 
 ## Structs
 

@@ -28,13 +28,13 @@
   - [`SizedTypeProperties`](#sizedtypeproperties)
   - [`RawTableClone`](#rawtableclone)
 - [Functions](#functions)
-  - [`offset_from`](#offset_from)
+  - [`offset_from`](#offset-from)
   - [`h1`](#h1)
-  - [`capacity_to_buckets`](#capacity_to_buckets)
-  - [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure_bucket_bytes_at_least_ctrl_align)
-  - [`bucket_mask_to_capacity`](#bucket_mask_to_capacity)
-  - [`prev_pow2`](#prev_pow2)
-  - [`maximum_buckets_in`](#maximum_buckets_in)
+  - [`capacity_to_buckets`](#capacity-to-buckets)
+  - [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure-bucket-bytes-at-least-ctrl-align)
+  - [`bucket_mask_to_capacity`](#bucket-mask-to-capacity)
+  - [`prev_pow2`](#prev-pow2)
+  - [`maximum_buckets_in`](#maximum-buckets-in)
 
 ## Quick Reference
 
@@ -57,13 +57,13 @@
 | [`Fallibility`](#fallibility) | enum | Whether memory allocation errors should return an error or abort. |
 | [`SizedTypeProperties`](#sizedtypeproperties) | trait |  |
 | [`RawTableClone`](#rawtableclone) | trait | Specialization of `clone_from` for `Copy` types |
-| [`offset_from`](#offset_from) | fn |  |
+| [`offset_from`](#offset-from) | fn |  |
 | [`h1`](#h1) | fn | Primary hash function, used to select the initial bucket to probe from. |
-| [`capacity_to_buckets`](#capacity_to_buckets) | fn | Returns the number of buckets needed to hold the given number of items, taking the maximum load factor into account. |
-| [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure_bucket_bytes_at_least_ctrl_align) | fn |  |
-| [`bucket_mask_to_capacity`](#bucket_mask_to_capacity) | fn | Returns the maximum effective capacity for the given bucket mask, taking the maximum load factor into account. |
-| [`prev_pow2`](#prev_pow2) | fn | Find the previous power of 2. |
-| [`maximum_buckets_in`](#maximum_buckets_in) | fn | Finds the largest number of buckets that can fit in `allocation_size` provided the given TableLayout. |
+| [`capacity_to_buckets`](#capacity-to-buckets) | fn | Returns the number of buckets needed to hold the given number of items, taking the maximum load factor into account. |
+| [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure-bucket-bytes-at-least-ctrl-align) | fn |  |
+| [`bucket_mask_to_capacity`](#bucket-mask-to-capacity) | fn | Returns the maximum effective capacity for the given bucket mask, taking the maximum load factor into account. |
+| [`prev_pow2`](#prev-pow2) | fn | Find the previous power of 2. |
+| [`maximum_buckets_in`](#maximum-buckets-in) | fn | Finds the largest number of buckets that can fit in `allocation_size` provided the given TableLayout. |
 
 ## Modules
 
@@ -214,9 +214,9 @@ A raw hash table with an unsafe API.
 
 ##### `impl<T, A: Allocator> IntoIterator for RawTable<T, A>`
 
-- <span id="rawtable-type-item"></span>`type Item = T`
+- <span id="rawtable-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="rawtable-type-intoiter"></span>`type IntoIter = RawIntoIter<T, A>`
+- <span id="rawtable-intoiterator-type-intoiter"></span>`type IntoIter = RawIntoIter<T, A>`
 
 - <span id="rawtable-into-iter"></span>`fn into_iter(self) -> RawIntoIter<T, A>` — [`RawIntoIter`](#rawintoiter)
 
@@ -282,17 +282,17 @@ not track an item count.
 
 ##### `impl<T> FusedIterator for RawIterRange<T>`
 
-##### `impl<I> IntoIterator for RawIterRange<T>`
+##### `impl IntoIterator for RawIterRange<T>`
 
-- <span id="rawiterrange-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterrange-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterrange-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterrange-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterrange-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterRange<T>`
 
-- <span id="rawiterrange-type-item"></span>`type Item = Bucket<T>`
+- <span id="rawiterrange-iterator-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiterrange-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -344,17 +344,17 @@ must observe several rules when using it:
 
 ##### `impl<T> FusedIterator for RawIter<T>`
 
-##### `impl<I> IntoIterator for RawIter<T>`
+##### `impl IntoIterator for RawIter<T>`
 
-- <span id="rawiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIter<T>`
 
-- <span id="rawiter-type-item"></span>`type Item = Bucket<T>`
+- <span id="rawiter-iterator-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiter-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -408,15 +408,15 @@ must observe several rules when using it:
 
 ##### `impl IntoIterator for FullBucketsIndices`
 
-- <span id="fullbucketsindices-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="fullbucketsindices-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="fullbucketsindices-type-intoiter"></span>`type IntoIter = I`
+- <span id="fullbucketsindices-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="fullbucketsindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FullBucketsIndices`
 
-- <span id="fullbucketsindices-type-item"></span>`type Item = usize`
+- <span id="fullbucketsindices-iterator-type-item"></span>`type Item = usize`
 
 - <span id="fullbucketsindices-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -454,17 +454,17 @@ Iterator which consumes a table and returns elements.
 
 ##### `impl<T, A: Allocator> FusedIterator for RawIntoIter<T, A>`
 
-##### `impl<I> IntoIterator for RawIntoIter<T, A>`
+##### `impl IntoIterator for RawIntoIter<T, A>`
 
-- <span id="rawintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawintoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawintoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawintoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawIntoIter<T, A>`
 
-- <span id="rawintoiter-type-item"></span>`type Item = T`
+- <span id="rawintoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="rawintoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -503,17 +503,17 @@ Iterator which consumes elements without freeing the table storage.
 
 ##### `impl<T, A: Allocator> FusedIterator for RawDrain<'_, T, A>`
 
-##### `impl<I> IntoIterator for RawDrain<'a, T, A>`
+##### `impl IntoIterator for RawDrain<'a, T, A>`
 
-- <span id="rawdrain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawdrain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawdrain-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawdrain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawDrain<'_, T, A>`
 
-- <span id="rawdrain-type-item"></span>`type Item = T`
+- <span id="rawdrain-iterator-type-item"></span>`type Item = T`
 
 - <span id="rawdrain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -565,17 +565,17 @@ must observe several rules when using it:
 
 - <span id="rawiterhash-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoIterator for RawIterHash<T>`
+##### `impl IntoIterator for RawIterHash<T>`
 
-- <span id="rawiterhash-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterhash-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterhash-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterhash-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterhash-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterHash<T>`
 
-- <span id="rawiterhash-type-item"></span>`type Item = Bucket<T>`
+- <span id="rawiterhash-iterator-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiterhash-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -610,15 +610,15 @@ struct RawIterHashIndices {
 
 ##### `impl IntoIterator for RawIterHashIndices`
 
-- <span id="rawiterhashindices-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterhashindices-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterhashindices-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterhashindices-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterhashindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawIterHashIndices`
 
-- <span id="rawiterhashindices-type-item"></span>`type Item = usize`
+- <span id="rawiterhashindices-iterator-type-item"></span>`type Item = usize`
 
 - <span id="rawiterhashindices-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

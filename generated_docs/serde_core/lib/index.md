@@ -190,23 +190,78 @@ where
 
 ## Functions
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+### `Cell`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+```rust
+fn Cell(&self) -> &T
+```
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+### `RefCell`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+```rust
+unsafe fn RefCell(&self, dest: *mut u8)
+```
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+### `Reverse`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+```rust
+fn Reverse(&mut self) -> &mut T
+```
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+### `Debug`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+```rust
+fn Debug(self) -> U
+```
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+Calls `U::from(self)`.
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.
+
+### `Debug`
+
+```rust
+fn Debug(t: T) -> T
+```
+
+Returns the argument unchanged.
+
+### `FmtWrite`
+
+```rust
+fn FmtWrite(self) -> Result<U, <U as TryFrom>::Error>
+```
+
+### `Bound`
+
+```rust
+fn Bound(value: U) -> Result<T, <T as TryFrom>::Error>
+```
+
+### `RangeTo`
+
+```rust
+fn RangeTo(&self) -> U32X4
+```
+
+*Defined in [`adler2-2.0.1/src/algo.rs:111`](../../../.source_1765210505/adler2-2.0.1/src/algo.rs#L111)*
+
+### `LinkedList`
+
+```rust
+fn LinkedList(location: Location<'ctx>) -> Self
+```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:62-64`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L62-L64)*
+
+### `CString`
+
+```rust
+fn CString(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>
+```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:84-145`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L84-L145)*
+
+Advances the iterator and returns the next frame.
 

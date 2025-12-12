@@ -16,7 +16,7 @@
   - [`Strategy`](#strategy)
 - [Functions](#functions)
   - [`new`](#new)
-  - [`copy_match_to_slots`](#copy_match_to_slots)
+  - [`copy_match_to_slots`](#copy-match-to-slots)
 
 ## Quick Reference
 
@@ -29,7 +29,7 @@
 | [`ReverseInner`](#reverseinner) | struct |  |
 | [`Strategy`](#strategy) | trait | A trait that represents a single meta strategy. |
 | [`new`](#new) | fn |  |
-| [`copy_match_to_slots`](#copy_match_to_slots) | fn | Copies the offsets in the given match to the corresponding positions in `slots`. |
+| [`copy_match_to_slots`](#copy-match-to-slots) | fn | Copies the offsets in the given match to the corresponding positions in `slots`. |
 
 ## Structs
 

@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -135,10 +135,10 @@ be forwarded to the visitor's `record_debug` method.
   - [`display`](#display)
   - [`debug`](#debug)
 - [Macros](#macros)
-  - [`impl_values!`](#impl_values)
-  - [`ty_to_nonzero!`](#ty_to_nonzero)
-  - [`impl_one_value!`](#impl_one_value)
-  - [`impl_value!`](#impl_value)
+  - [`impl_values!`](#impl-values)
+  - [`ty_to_nonzero!`](#ty-to-nonzero)
+  - [`impl_one_value!`](#impl-one-value)
+  - [`impl_value!`](#impl-value)
 
 ## Quick Reference
 
@@ -158,10 +158,10 @@ be forwarded to the visitor's `record_debug` method.
 | [`Value`](#value) | trait | A field value of an erased type. |
 | [`display`](#display) | fn | Wraps a type implementing `fmt::Display` as a `Value` that can be recorded using its `Display` implementation. |
 | [`debug`](#debug) | fn | Wraps a type implementing `fmt::Debug` as a `Value` that can be recorded using its `Debug` implementation. |
-| [`impl_values!`](#impl_values) | macro |  |
-| [`ty_to_nonzero!`](#ty_to_nonzero) | macro |  |
-| [`impl_one_value!`](#impl_one_value) | macro |  |
-| [`impl_value!`](#impl_value) | macro |  |
+| [`impl_values!`](#impl-values) | macro |  |
+| [`ty_to_nonzero!`](#ty-to-nonzero) | macro |  |
+| [`impl_one_value!`](#impl-one-value) | macro |  |
+| [`impl_value!`](#impl-value) | macro |  |
 
 ## Modules
 
@@ -326,9 +326,9 @@ callsites. However, the equality of field names is checked in debug builds.
 
 ##### `impl IntoIterator for &FieldSet`
 
-- <span id="fieldset-type-intoiter"></span>`type IntoIter = Iter`
+- <span id="fieldset-intoiterator-type-intoiter"></span>`type IntoIter = Iter`
 
-- <span id="fieldset-type-item"></span>`type Item = Field`
+- <span id="fieldset-intoiterator-type-item"></span>`type Item = Field`
 
 - <span id="fieldset-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -402,15 +402,15 @@ An iterator over a set of fields.
 
 ##### `impl IntoIterator for Iter`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter`
 
-- <span id="iter-type-item"></span>`type Item = Field`
+- <span id="iter-iterator-type-item"></span>`type Item = Field`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](#field)
 

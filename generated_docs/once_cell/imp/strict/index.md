@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`addr`](#addr) | fn |  |
-| [`with_addr`](#with_addr) | fn |  |
-| [`map_addr`](#map_addr) | fn |  |
+| [`with_addr`](#with-addr) | fn |  |
+| [`map_addr`](#map-addr) | fn |  |
 
 ## Functions
 

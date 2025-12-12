@@ -42,7 +42,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunks-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: fmt::Debug> Debug for Chunks<'data, T>`
+##### `impl<T: fmt::Debug> Debug for Chunks<'data, T>`
 
 - <span id="chunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -58,15 +58,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T> IntoParallelIterator for Chunks<'data, T>`
 
-- <span id="chunks-type-iter"></span>`type Iter = T`
+- <span id="chunks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T: Sync> ParallelIterator for Chunks<'data, T>`
+##### `impl<T: Sync> ParallelIterator for Chunks<'data, T>`
 
-- <span id="chunks-type-item"></span>`type Item = &'data [T]`
+- <span id="chunks-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
 - <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -74,9 +74,9 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T> Pointable for Chunks<'data, T>`
 
-- <span id="chunks-const-align"></span>`const ALIGN: usize`
+- <span id="chunks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunks-type-init"></span>`type Init = T`
+- <span id="chunks-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -103,9 +103,9 @@ struct ChunksProducer<'data, T: Sync> {
 
 ##### `impl<T> Pointable for ChunksProducer<'data, T>`
 
-- <span id="chunksproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunksproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksproducer-type-init"></span>`type Init = T`
+- <span id="chunksproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -115,11 +115,11 @@ struct ChunksProducer<'data, T: Sync> {
 
 - <span id="chunksproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'data, T: 'data + Sync> Producer for ChunksProducer<'data, T>`
+##### `impl<T: 'data + Sync> Producer for ChunksProducer<'data, T>`
 
-- <span id="chunksproducer-type-item"></span>`type Item = &'data [T]`
+- <span id="chunksproducer-producer-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunksproducer-type-intoiter"></span>`type IntoIter = Chunks<'data, T>`
+- <span id="chunksproducer-producer-type-intoiter"></span>`type IntoIter = Chunks<'data, T>`
 
 - <span id="chunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
@@ -151,7 +151,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 - <span id="chunksexact-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: fmt::Debug> Debug for ChunksExact<'data, T>`
+##### `impl<T: fmt::Debug> Debug for ChunksExact<'data, T>`
 
 - <span id="chunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -167,15 +167,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T> IntoParallelIterator for ChunksExact<'data, T>`
 
-- <span id="chunksexact-type-iter"></span>`type Iter = T`
+- <span id="chunksexact-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunksexact-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunksexact-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T: Sync> ParallelIterator for ChunksExact<'data, T>`
+##### `impl<T: Sync> ParallelIterator for ChunksExact<'data, T>`
 
-- <span id="chunksexact-type-item"></span>`type Item = &'data [T]`
+- <span id="chunksexact-paralleliterator-type-item"></span>`type Item = &'data [T]`
 
 - <span id="chunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -183,9 +183,9 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 ##### `impl<T> Pointable for ChunksExact<'data, T>`
 
-- <span id="chunksexact-const-align"></span>`const ALIGN: usize`
+- <span id="chunksexact-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksexact-type-init"></span>`type Init = T`
+- <span id="chunksexact-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -212,9 +212,9 @@ struct ChunksExactProducer<'data, T: Sync> {
 
 ##### `impl<T> Pointable for ChunksExactProducer<'data, T>`
 
-- <span id="chunksexactproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunksexactproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksexactproducer-type-init"></span>`type Init = T`
+- <span id="chunksexactproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksexactproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -224,11 +224,11 @@ struct ChunksExactProducer<'data, T: Sync> {
 
 - <span id="chunksexactproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'data, T: 'data + Sync> Producer for ChunksExactProducer<'data, T>`
+##### `impl<T: 'data + Sync> Producer for ChunksExactProducer<'data, T>`
 
-- <span id="chunksexactproducer-type-item"></span>`type Item = &'data [T]`
+- <span id="chunksexactproducer-producer-type-item"></span>`type Item = &'data [T]`
 
-- <span id="chunksexactproducer-type-intoiter"></span>`type IntoIter = ChunksExact<'data, T>`
+- <span id="chunksexactproducer-producer-type-intoiter"></span>`type IntoIter = ChunksExact<'data, T>`
 
 - <span id="chunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
@@ -253,7 +253,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 #### Trait Implementations
 
-##### `impl<'data, T: fmt::Debug> Debug for ChunksMut<'data, T>`
+##### `impl<T: fmt::Debug> Debug for ChunksMut<'data, T>`
 
 - <span id="chunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -269,15 +269,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T> IntoParallelIterator for ChunksMut<'data, T>`
 
-- <span id="chunksmut-type-iter"></span>`type Iter = T`
+- <span id="chunksmut-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunksmut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunksmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T: Send> ParallelIterator for ChunksMut<'data, T>`
+##### `impl<T: Send> ParallelIterator for ChunksMut<'data, T>`
 
-- <span id="chunksmut-type-item"></span>`type Item = &'data mut [T]`
+- <span id="chunksmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="chunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -285,9 +285,9 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T> Pointable for ChunksMut<'data, T>`
 
-- <span id="chunksmut-const-align"></span>`const ALIGN: usize`
+- <span id="chunksmut-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksmut-type-init"></span>`type Init = T`
+- <span id="chunksmut-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -314,9 +314,9 @@ struct ChunksMutProducer<'data, T: Send> {
 
 ##### `impl<T> Pointable for ChunksMutProducer<'data, T>`
 
-- <span id="chunksmutproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunksmutproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksmutproducer-type-init"></span>`type Init = T`
+- <span id="chunksmutproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -326,11 +326,11 @@ struct ChunksMutProducer<'data, T: Send> {
 
 - <span id="chunksmutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'data, T: 'data + Send> Producer for ChunksMutProducer<'data, T>`
+##### `impl<T: 'data + Send> Producer for ChunksMutProducer<'data, T>`
 
-- <span id="chunksmutproducer-type-item"></span>`type Item = &'data mut [T]`
+- <span id="chunksmutproducer-producer-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksmutproducer-type-intoiter"></span>`type IntoIter = ChunksMut<'data, T>`
+- <span id="chunksmutproducer-producer-type-intoiter"></span>`type IntoIter = ChunksMut<'data, T>`
 
 - <span id="chunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 
@@ -362,7 +362,7 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 #### Trait Implementations
 
-##### `impl<'data, T: fmt::Debug> Debug for ChunksExactMut<'data, T>`
+##### `impl<T: fmt::Debug> Debug for ChunksExactMut<'data, T>`
 
 - <span id="chunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -378,15 +378,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T> IntoParallelIterator for ChunksExactMut<'data, T>`
 
-- <span id="chunksexactmut-type-iter"></span>`type Iter = T`
+- <span id="chunksexactmut-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunksexactmut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunksexactmut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'data, T: Send> ParallelIterator for ChunksExactMut<'data, T>`
+##### `impl<T: Send> ParallelIterator for ChunksExactMut<'data, T>`
 
-- <span id="chunksexactmut-type-item"></span>`type Item = &'data mut [T]`
+- <span id="chunksexactmut-paralleliterator-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="chunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
@@ -394,9 +394,9 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 ##### `impl<T> Pointable for ChunksExactMut<'data, T>`
 
-- <span id="chunksexactmut-const-align"></span>`const ALIGN: usize`
+- <span id="chunksexactmut-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksexactmut-type-init"></span>`type Init = T`
+- <span id="chunksexactmut-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -423,9 +423,9 @@ struct ChunksExactMutProducer<'data, T: Send> {
 
 ##### `impl<T> Pointable for ChunksExactMutProducer<'data, T>`
 
-- <span id="chunksexactmutproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunksexactmutproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunksexactmutproducer-type-init"></span>`type Init = T`
+- <span id="chunksexactmutproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunksexactmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -435,11 +435,11 @@ struct ChunksExactMutProducer<'data, T: Send> {
 
 - <span id="chunksexactmutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'data, T: 'data + Send> Producer for ChunksExactMutProducer<'data, T>`
+##### `impl<T: 'data + Send> Producer for ChunksExactMutProducer<'data, T>`
 
-- <span id="chunksexactmutproducer-type-item"></span>`type Item = &'data mut [T]`
+- <span id="chunksexactmutproducer-producer-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="chunksexactmutproducer-type-intoiter"></span>`type IntoIter = ChunksExactMut<'data, T>`
+- <span id="chunksexactmutproducer-producer-type-intoiter"></span>`type IntoIter = ChunksExactMut<'data, T>`
 
 - <span id="chunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md#producer)
 

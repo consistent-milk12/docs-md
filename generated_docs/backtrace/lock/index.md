@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`LockGuard`](#lockguard) | struct | A "Maybe" LockGuard |
 | [`lock`](#lock) | fn | Acquire a partially unsound(!!!) global re-entrant lock over backtrace's internals. |
-| [`LOCK_HELD`](#lock_held) | const |  |
+| [`LOCK_HELD`](#lock-held) | const |  |
 
 ## Structs
 

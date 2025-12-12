@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`print_const_argument`](#print_const_argument) | fn |  |
+| [`print_const_argument`](#print-const-argument) | fn |  |
 
 ## Functions
 

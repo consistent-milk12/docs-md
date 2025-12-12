@@ -8,7 +8,7 @@
 |------|------|-------------|
 | [`sealed`](#sealed) | mod |  |
 | [`IsTerminal`](#isterminal) | trait | Trait to determine if a descriptor/handle refers to a terminal/tty. |
-| [`impl_is_terminal!`](#impl_is_terminal) | macro |  |
+| [`impl_is_terminal!`](#impl-is-terminal) | macro |  |
 
 ## Modules
 

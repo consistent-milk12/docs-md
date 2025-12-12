@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Display`](#display) | struct |  |
-| [`explicit_named_args`](#explicit_named_args) | fn |  |
-| [`take_int`](#take_int) | fn |  |
-| [`take_ident`](#take_ident) | fn |  |
-| [`parse_token_expr`](#parse_token_expr) | fn |  |
+| [`explicit_named_args`](#explicit-named-args) | fn |  |
+| [`take_int`](#take-int) | fn |  |
+| [`take_ident`](#take-ident) | fn |  |
+| [`parse_token_expr`](#parse-token-expr) | fn |  |
 
 ## Structs
 

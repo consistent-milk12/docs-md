@@ -9,44 +9,44 @@
 - [Enums](#enums)
   - [`PatRangeBound`](#patrangebound)
 - [Functions](#functions)
-  - [`multi_pat_impl`](#multi_pat_impl)
-  - [`pat_path_or_macro_or_struct_or_range`](#pat_path_or_macro_or_struct_or_range)
-  - [`pat_wild`](#pat_wild)
-  - [`pat_box`](#pat_box)
-  - [`pat_ident`](#pat_ident)
-  - [`pat_tuple_struct`](#pat_tuple_struct)
-  - [`pat_struct`](#pat_struct)
-  - [`field_pat`](#field_pat)
-  - [`pat_range`](#pat_range)
-  - [`pat_range_half_open`](#pat_range_half_open)
-  - [`pat_paren_or_tuple`](#pat_paren_or_tuple)
-  - [`pat_reference`](#pat_reference)
-  - [`pat_lit_or_range`](#pat_lit_or_range)
-  - [`pat_range_bound`](#pat_range_bound)
-  - [`pat_slice`](#pat_slice)
-  - [`pat_const`](#pat_const)
+  - [`multi_pat_impl`](#multi-pat-impl)
+  - [`pat_path_or_macro_or_struct_or_range`](#pat-path-or-macro-or-struct-or-range)
+  - [`pat_wild`](#pat-wild)
+  - [`pat_box`](#pat-box)
+  - [`pat_ident`](#pat-ident)
+  - [`pat_tuple_struct`](#pat-tuple-struct)
+  - [`pat_struct`](#pat-struct)
+  - [`field_pat`](#field-pat)
+  - [`pat_range`](#pat-range)
+  - [`pat_range_half_open`](#pat-range-half-open)
+  - [`pat_paren_or_tuple`](#pat-paren-or-tuple)
+  - [`pat_reference`](#pat-reference)
+  - [`pat_lit_or_range`](#pat-lit-or-range)
+  - [`pat_range_bound`](#pat-range-bound)
+  - [`pat_slice`](#pat-slice)
+  - [`pat_const`](#pat-const)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`PatRangeBound`](#patrangebound) | enum |  |
-| [`multi_pat_impl`](#multi_pat_impl) | fn |  |
-| [`pat_path_or_macro_or_struct_or_range`](#pat_path_or_macro_or_struct_or_range) | fn |  |
-| [`pat_wild`](#pat_wild) | fn |  |
-| [`pat_box`](#pat_box) | fn |  |
-| [`pat_ident`](#pat_ident) | fn |  |
-| [`pat_tuple_struct`](#pat_tuple_struct) | fn |  |
-| [`pat_struct`](#pat_struct) | fn |  |
-| [`field_pat`](#field_pat) | fn |  |
-| [`pat_range`](#pat_range) | fn |  |
-| [`pat_range_half_open`](#pat_range_half_open) | fn |  |
-| [`pat_paren_or_tuple`](#pat_paren_or_tuple) | fn |  |
-| [`pat_reference`](#pat_reference) | fn |  |
-| [`pat_lit_or_range`](#pat_lit_or_range) | fn |  |
-| [`pat_range_bound`](#pat_range_bound) | fn |  |
-| [`pat_slice`](#pat_slice) | fn |  |
-| [`pat_const`](#pat_const) | fn |  |
+| [`multi_pat_impl`](#multi-pat-impl) | fn |  |
+| [`pat_path_or_macro_or_struct_or_range`](#pat-path-or-macro-or-struct-or-range) | fn |  |
+| [`pat_wild`](#pat-wild) | fn |  |
+| [`pat_box`](#pat-box) | fn |  |
+| [`pat_ident`](#pat-ident) | fn |  |
+| [`pat_tuple_struct`](#pat-tuple-struct) | fn |  |
+| [`pat_struct`](#pat-struct) | fn |  |
+| [`field_pat`](#field-pat) | fn |  |
+| [`pat_range`](#pat-range) | fn |  |
+| [`pat_range_half_open`](#pat-range-half-open) | fn |  |
+| [`pat_paren_or_tuple`](#pat-paren-or-tuple) | fn |  |
+| [`pat_reference`](#pat-reference) | fn |  |
+| [`pat_lit_or_range`](#pat-lit-or-range) | fn |  |
+| [`pat_range_bound`](#pat-range-bound) | fn |  |
+| [`pat_slice`](#pat-slice) | fn |  |
+| [`pat_const`](#pat-const) | fn |  |
 
 ## Enums
 

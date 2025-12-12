@@ -29,7 +29,7 @@ struct DisplayError<M>(M);
 
 - <span id="displayerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for DisplayError<M>`
+##### `impl Diag for DisplayError<M>`
 
 - <span id="displayerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
@@ -41,13 +41,13 @@ struct DisplayError<M>(M);
 
 ##### `impl<M> Error for DisplayError<M>`
 
-##### `impl<D> OwoColorize for DisplayError<M>`
+##### `impl OwoColorize for DisplayError<M>`
 
-##### `impl<T> ToString for DisplayError<M>`
+##### `impl ToString for DisplayError<M>`
 
 - <span id="displayerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for DisplayError<M>`
+##### `impl TraitKind for DisplayError<M>`
 
 ### `MessageError<M>`
 
@@ -63,7 +63,7 @@ struct MessageError<M>(M);
 
 - <span id="messageerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for MessageError<M>`
+##### `impl Diag for MessageError<M>`
 
 - <span id="messageerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md#report)
 
@@ -75,13 +75,13 @@ struct MessageError<M>(M);
 
 ##### `impl<M> Error for MessageError<M>`
 
-##### `impl<D> OwoColorize for MessageError<M>`
+##### `impl OwoColorize for MessageError<M>`
 
-##### `impl<T> ToString for MessageError<M>`
+##### `impl ToString for MessageError<M>`
 
 - <span id="messageerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for MessageError<M>`
+##### `impl TraitKind for MessageError<M>`
 
 ### `BoxedError`
 
@@ -186,9 +186,9 @@ struct WithSourceCode<E, C> {
 
 - <span id="withsourcecode-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
-##### `impl<D> OwoColorize for WithSourceCode<E, C>`
+##### `impl OwoColorize for WithSourceCode<E, C>`
 
-##### `impl<T> ToString for WithSourceCode<E, C>`
+##### `impl ToString for WithSourceCode<E, C>`
 
 - <span id="withsourcecode-to-string"></span>`fn to_string(&self) -> String`
 

@@ -21,7 +21,7 @@ struct AsShoutyKebabCase<T: AsRef<str>>(T);
 
 *Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../../.source_1765210505/heck-0.5.0/src/shouty_kebab.rs#L41)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 

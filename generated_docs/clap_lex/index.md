@@ -125,8 +125,8 @@ println!("{args:?}");
 - [Traits](#traits)
   - [`OsStrExt`](#osstrext)
 - [Functions](#functions)
-  - [`split_nonutf8_once`](#split_nonutf8_once)
-  - [`is_number`](#is_number)
+  - [`split_nonutf8_once`](#split-nonutf8-once)
+  - [`is_number`](#is-number)
 
 ## Quick Reference
 
@@ -139,8 +139,8 @@ println!("{args:?}");
 | [`ParsedArg`](#parsedarg) | struct | Command-line Argument |
 | [`ShortFlags`](#shortflags) | struct | Walk through short flags within a [`ParsedArg`] |
 | [`OsStrExt`](#osstrext) | trait |  |
-| [`split_nonutf8_once`](#split_nonutf8_once) | fn |  |
-| [`is_number`](#is_number) | fn |  |
+| [`split_nonutf8_once`](#split-nonutf8-once) | fn |  |
+| [`is_number`](#is-number) | fn |  |
 
 ## Modules
 
@@ -391,15 +391,15 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 ##### `impl IntoIterator for ShortFlags<'s>`
 
-- <span id="shortflags-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="shortflags-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="shortflags-type-intoiter"></span>`type IntoIter = I`
+- <span id="shortflags-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="shortflags-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ShortFlags<'s>`
 
-- <span id="shortflags-type-item"></span>`type Item = Result<char, &'s OsStr>`
+- <span id="shortflags-iterator-type-item"></span>`type Item = Result<char, &'s OsStr>`
 
 - <span id="shortflags-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

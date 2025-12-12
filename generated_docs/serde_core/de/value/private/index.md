@@ -14,8 +14,8 @@
 - [Traits](#traits)
   - [`Pair`](#pair)
 - [Functions](#functions)
-  - [`unit_only`](#unit_only)
-  - [`map_as_enum`](#map_as_enum)
+  - [`unit_only`](#unit-only)
+  - [`map_as_enum`](#map-as-enum)
 - [Type Aliases](#type-aliases)
   - [`First`](#first)
   - [`Second`](#second)
@@ -29,8 +29,8 @@
 | [`SeedTupleVariant`](#seedtuplevariant) | struct |  |
 | [`SeedStructVariant`](#seedstructvariant) | struct |  |
 | [`Pair`](#pair) | trait | Avoid having to restate the generic types on `MapDeserializer`. |
-| [`unit_only`](#unit_only) | fn |  |
-| [`map_as_enum`](#map_as_enum) | fn |  |
+| [`unit_only`](#unit-only) | fn |  |
+| [`map_as_enum`](#map-as-enum) | fn |  |
 | [`First`](#first) | type |  |
 | [`Second`](#second) | type |  |
 
@@ -48,9 +48,9 @@ struct UnitOnly<E> {
 
 #### Trait Implementations
 
-##### `impl<'de, E> VariantAccess for UnitOnly<E>`
+##### `impl<E> VariantAccess for UnitOnly<E>`
 
-- <span id="unitonly-type-error"></span>`type Error = E`
+- <span id="unitonly-variantaccess-type-error"></span>`type Error = E`
 
 - <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
 
@@ -72,9 +72,9 @@ struct MapAsEnum<A> {
 
 #### Trait Implementations
 
-##### `impl<'de, A> VariantAccess for MapAsEnum<A>`
+##### `impl<A> VariantAccess for MapAsEnum<A>`
 
-- <span id="mapasenum-type-error"></span>`type Error = <A as MapAccess>::Error`
+- <span id="mapasenum-variantaccess-type-error"></span>`type Error = <A as MapAccess>::Error`
 
 - <span id="mapasenum-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md#variantaccess)
 
@@ -97,9 +97,9 @@ struct SeedTupleVariant<V> {
 
 #### Trait Implementations
 
-##### `impl<'de, V> DeserializeSeed for SeedTupleVariant<V>`
+##### `impl<V> DeserializeSeed for SeedTupleVariant<V>`
 
-- <span id="seedtuplevariant-type-value"></span>`type Value = <V as Visitor>::Value`
+- <span id="seedtuplevariant-deserializeseed-type-value"></span>`type Value = <V as Visitor>::Value`
 
 - <span id="seedtuplevariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
 
@@ -115,9 +115,9 @@ struct SeedStructVariant<V> {
 
 #### Trait Implementations
 
-##### `impl<'de, V> DeserializeSeed for SeedStructVariant<V>`
+##### `impl<V> DeserializeSeed for SeedStructVariant<V>`
 
-- <span id="seedstructvariant-type-value"></span>`type Value = <V as Visitor>::Value`
+- <span id="seedstructvariant-deserializeseed-type-value"></span>`type Value = <V as Visitor>::Value`
 
 - <span id="seedstructvariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md#deserializeseed)
 

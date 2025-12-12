@@ -16,9 +16,9 @@ destructed on thread exit, which in turn unregisters the thread.
 |------|------|-------------|
 | [`collector`](#collector) | fn |  |
 | [`pin`](#pin) | fn | Pins the current thread. |
-| [`is_pinned`](#is_pinned) | fn | Returns `true` if the current thread is pinned. |
-| [`default_collector`](#default_collector) | fn | Returns the default global collector. |
-| [`with_handle`](#with_handle) | fn |  |
+| [`is_pinned`](#is-pinned) | fn | Returns `true` if the current thread is pinned. |
+| [`default_collector`](#default-collector) | fn | Returns the default global collector. |
+| [`with_handle`](#with-handle) | fn |  |
 | [`HANDLE`](#handle) | const | The per-thread participant for the default garbage collector. |
 
 ## Functions

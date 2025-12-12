@@ -10,7 +10,7 @@
   - [`context`](#context)
   - [`error`](#error)
   - [`fmt`](#fmt)
-  - [`into_diagnostic`](#into_diagnostic)
+  - [`into_diagnostic`](#into-diagnostic)
   - [`kind`](#kind)
   - [`macros`](#macros)
   - [`ptr`](#ptr)
@@ -26,9 +26,9 @@
   - [`WrapErr`](#wraperr)
   - [`IntoDiagnostic`](#intodiagnostic)
 - [Functions](#functions)
-  - [`set_hook`](#set_hook)
-  - [`capture_handler`](#capture_handler)
-  - [`get_default_printer`](#get_default_printer)
+  - [`set_hook`](#set-hook)
+  - [`capture_handler`](#capture-handler)
+  - [`get_default_printer`](#get-default-printer)
 - [Type Aliases](#type-aliases)
   - [`ErrorHook`](#errorhook)
   - [`Result`](#result)
@@ -40,7 +40,7 @@
 | [`context`](#context) | mod |  |
 | [`error`](#error) | mod |  |
 | [`fmt`](#fmt) | mod |  |
-| [`into_diagnostic`](#into_diagnostic) | mod |  |
+| [`into_diagnostic`](#into-diagnostic) | mod |  |
 | [`kind`](#kind) | mod |  |
 | [`macros`](#macros) | mod |  |
 | [`ptr`](#ptr) | mod |  |
@@ -53,9 +53,9 @@
 | [`ReportHandler`](#reporthandler) | trait | Error Report Handler trait for customizing `miette::Report` |
 | [`WrapErr`](#wraperr) | trait | Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`]. |
 | [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing [`std::error::Error`] to a [`Result<T, Report>`]. |
-| [`set_hook`](#set_hook) | fn | Set the error hook. |
-| [`capture_handler`](#capture_handler) | fn |  |
-| [`get_default_printer`](#get_default_printer) | fn |  |
+| [`set_hook`](#set-hook) | fn | Set the error hook. |
+| [`capture_handler`](#capture-handler) | fn |  |
+| [`get_default_printer`](#get-default-printer) | fn |  |
 | [`ErrorHook`](#errorhook) | type |  |
 | [`Result`](#result) | type | type alias for `Result<T, Report>` |
 
@@ -142,7 +142,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-deref-type-target"></span>`type Target = dyn Diagnostic + Sync + Send`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -166,7 +166,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Receiver for Report`
 
-- <span id="report-type-target"></span>`type Target = T`
+- <span id="report-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
@@ -248,7 +248,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-deref-type-target"></span>`type Target = dyn Diagnostic + Sync + Send`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -272,7 +272,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Receiver for Report`
 
-- <span id="report-type-target"></span>`type Target = T`
+- <span id="report-receiver-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
@@ -817,12 +817,12 @@ trait IntoDiagnostic<T, E> { ... }
 *Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
+[`std::error::Error`](../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -830,7 +830,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
+  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../cargo_docs_md/error/index.md)s
 
 #### Implementors
 

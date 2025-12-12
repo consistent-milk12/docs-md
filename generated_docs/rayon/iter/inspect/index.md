@@ -54,29 +54,29 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../inde
 
 - <span id="inspect-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Inspect<I, F>`
+##### `impl IntoEither for Inspect<I, F>`
 
-##### `impl<T> IntoParallelIterator for Inspect<I, F>`
+##### `impl IntoParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-type-iter"></span>`type Iter = T`
+- <span id="inspect-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="inspect-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="inspect-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="inspect-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="inspect-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="inspect-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Inspect<I, F>`
+##### `impl Pointable for Inspect<I, F>`
 
-- <span id="inspect-const-align"></span>`const ALIGN: usize`
+- <span id="inspect-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspect-type-init"></span>`type Init = T`
+- <span id="inspect-pointable-type-init"></span>`type Init = T`
 
 - <span id="inspect-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -99,13 +99,13 @@ struct InspectProducer<'f, P, F> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for InspectProducer<'f, P, F>`
+##### `impl IntoEither for InspectProducer<'f, P, F>`
 
-##### `impl<T> Pointable for InspectProducer<'f, P, F>`
+##### `impl Pointable for InspectProducer<'f, P, F>`
 
-- <span id="inspectproducer-const-align"></span>`const ALIGN: usize`
+- <span id="inspectproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspectproducer-type-init"></span>`type Init = T`
+- <span id="inspectproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="inspectproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -115,11 +115,11 @@ struct InspectProducer<'f, P, F> {
 
 - <span id="inspectproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, P, F> Producer for InspectProducer<'f, P, F>`
+##### `impl<P, F> Producer for InspectProducer<'f, P, F>`
 
-- <span id="inspectproducer-type-item"></span>`type Item = <P as Producer>::Item`
+- <span id="inspectproducer-producer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="inspectproducer-type-intoiter"></span>`type IntoIter = Inspect<<P as Producer>::IntoIter, &'f F>`
+- <span id="inspectproducer-producer-type-intoiter"></span>`type IntoIter = Inspect<<P as Producer>::IntoIter, &'f F>`
 
 - <span id="inspectproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -148,13 +148,13 @@ struct InspectConsumer<'f, C, F> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C, F> Consumer for InspectConsumer<'f, C, F>`
+##### `impl<T, C, F> Consumer for InspectConsumer<'f, C, F>`
 
-- <span id="inspectconsumer-type-folder"></span>`type Folder = InspectFolder<'f, <C as Consumer>::Folder, F>`
+- <span id="inspectconsumer-consumer-type-folder"></span>`type Folder = InspectFolder<'f, <C as Consumer>::Folder, F>`
 
-- <span id="inspectconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="inspectconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="inspectconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="inspectconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="inspectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -162,13 +162,13 @@ struct InspectConsumer<'f, C, F> {
 
 - <span id="inspectconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for InspectConsumer<'f, C, F>`
+##### `impl IntoEither for InspectConsumer<'f, C, F>`
 
-##### `impl<T> Pointable for InspectConsumer<'f, C, F>`
+##### `impl Pointable for InspectConsumer<'f, C, F>`
 
-- <span id="inspectconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="inspectconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspectconsumer-type-init"></span>`type Init = T`
+- <span id="inspectconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="inspectconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -178,7 +178,7 @@ struct InspectConsumer<'f, C, F> {
 
 - <span id="inspectconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, T, C, F> UnindexedConsumer for InspectConsumer<'f, C, F>`
+##### `impl<T, C, F> UnindexedConsumer for InspectConsumer<'f, C, F>`
 
 - <span id="inspectconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -197,9 +197,9 @@ struct InspectFolder<'f, C, F> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C, F> Folder for InspectFolder<'f, C, F>`
+##### `impl<T, C, F> Folder for InspectFolder<'f, C, F>`
 
-- <span id="inspectfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="inspectfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="inspectfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -209,13 +209,13 @@ struct InspectFolder<'f, C, F> {
 
 - <span id="inspectfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for InspectFolder<'f, C, F>`
+##### `impl IntoEither for InspectFolder<'f, C, F>`
 
-##### `impl<T> Pointable for InspectFolder<'f, C, F>`
+##### `impl Pointable for InspectFolder<'f, C, F>`
 
-- <span id="inspectfolder-const-align"></span>`const ALIGN: usize`
+- <span id="inspectfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspectfolder-type-init"></span>`type Init = T`
+- <span id="inspectfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="inspectfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

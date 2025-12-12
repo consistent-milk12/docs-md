@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`check_non_field_attrs`](#check_non_field_attrs) | fn |  |
-| [`check_field_attrs`](#check_field_attrs) | fn |  |
-| [`contains_non_static_lifetime`](#contains_non_static_lifetime) | fn |  |
+| [`check_non_field_attrs`](#check-non-field-attrs) | fn |  |
+| [`check_field_attrs`](#check-field-attrs) | fn |  |
+| [`contains_non_static_lifetime`](#contains-non-static-lifetime) | fn |  |
 
 ## Functions
 

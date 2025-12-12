@@ -93,712 +93,712 @@ This module is based heavily on "winnt.h" (10.0.17763.0).
   - [`ImportObjectHeader`](#importobjectheader)
   - [`ImageCor20Header`](#imagecor20header)
 - [Constants](#constants)
-  - [`IMAGE_DOS_SIGNATURE`](#image_dos_signature)
-  - [`IMAGE_OS2_SIGNATURE`](#image_os2_signature)
-  - [`IMAGE_OS2_SIGNATURE_LE`](#image_os2_signature_le)
-  - [`IMAGE_VXD_SIGNATURE`](#image_vxd_signature)
-  - [`IMAGE_NT_SIGNATURE`](#image_nt_signature)
-  - [`IMAGE_SIZEOF_FILE_HEADER`](#image_sizeof_file_header)
-  - [`IMAGE_FILE_RELOCS_STRIPPED`](#image_file_relocs_stripped)
-  - [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image_file_executable_image)
-  - [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image_file_line_nums_stripped)
-  - [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image_file_local_syms_stripped)
-  - [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image_file_aggresive_ws_trim)
-  - [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image_file_large_address_aware)
-  - [`IMAGE_FILE_BYTES_REVERSED_LO`](#image_file_bytes_reversed_lo)
-  - [`IMAGE_FILE_32BIT_MACHINE`](#image_file_32bit_machine)
-  - [`IMAGE_FILE_DEBUG_STRIPPED`](#image_file_debug_stripped)
-  - [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image_file_removable_run_from_swap)
-  - [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image_file_net_run_from_swap)
-  - [`IMAGE_FILE_SYSTEM`](#image_file_system)
-  - [`IMAGE_FILE_DLL`](#image_file_dll)
-  - [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image_file_up_system_only)
-  - [`IMAGE_FILE_BYTES_REVERSED_HI`](#image_file_bytes_reversed_hi)
-  - [`IMAGE_FILE_MACHINE_UNKNOWN`](#image_file_machine_unknown)
-  - [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image_file_machine_target_host)
-  - [`IMAGE_FILE_MACHINE_I386`](#image_file_machine_i386)
-  - [`IMAGE_FILE_MACHINE_R3000`](#image_file_machine_r3000)
-  - [`IMAGE_FILE_MACHINE_R4000`](#image_file_machine_r4000)
-  - [`IMAGE_FILE_MACHINE_R10000`](#image_file_machine_r10000)
-  - [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image_file_machine_wcemipsv2)
-  - [`IMAGE_FILE_MACHINE_ALPHA`](#image_file_machine_alpha)
-  - [`IMAGE_FILE_MACHINE_SH3`](#image_file_machine_sh3)
-  - [`IMAGE_FILE_MACHINE_SH3DSP`](#image_file_machine_sh3dsp)
-  - [`IMAGE_FILE_MACHINE_SH3E`](#image_file_machine_sh3e)
-  - [`IMAGE_FILE_MACHINE_SH4`](#image_file_machine_sh4)
-  - [`IMAGE_FILE_MACHINE_SH5`](#image_file_machine_sh5)
-  - [`IMAGE_FILE_MACHINE_ARM`](#image_file_machine_arm)
-  - [`IMAGE_FILE_MACHINE_THUMB`](#image_file_machine_thumb)
-  - [`IMAGE_FILE_MACHINE_ARMNT`](#image_file_machine_armnt)
-  - [`IMAGE_FILE_MACHINE_AM33`](#image_file_machine_am33)
-  - [`IMAGE_FILE_MACHINE_POWERPC`](#image_file_machine_powerpc)
-  - [`IMAGE_FILE_MACHINE_POWERPCFP`](#image_file_machine_powerpcfp)
-  - [`IMAGE_FILE_MACHINE_POWERPCBE`](#image_file_machine_powerpcbe)
-  - [`IMAGE_FILE_MACHINE_IA64`](#image_file_machine_ia64)
-  - [`IMAGE_FILE_MACHINE_MIPS16`](#image_file_machine_mips16)
-  - [`IMAGE_FILE_MACHINE_ALPHA64`](#image_file_machine_alpha64)
-  - [`IMAGE_FILE_MACHINE_MIPSFPU`](#image_file_machine_mipsfpu)
-  - [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image_file_machine_mipsfpu16)
-  - [`IMAGE_FILE_MACHINE_AXP64`](#image_file_machine_axp64)
-  - [`IMAGE_FILE_MACHINE_TRICORE`](#image_file_machine_tricore)
-  - [`IMAGE_FILE_MACHINE_CEF`](#image_file_machine_cef)
-  - [`IMAGE_FILE_MACHINE_EBC`](#image_file_machine_ebc)
-  - [`IMAGE_FILE_MACHINE_AMD64`](#image_file_machine_amd64)
-  - [`IMAGE_FILE_MACHINE_M32R`](#image_file_machine_m32r)
-  - [`IMAGE_FILE_MACHINE_ARM64`](#image_file_machine_arm64)
-  - [`IMAGE_FILE_MACHINE_ARM64EC`](#image_file_machine_arm64ec)
-  - [`IMAGE_FILE_MACHINE_CEE`](#image_file_machine_cee)
-  - [`IMAGE_FILE_MACHINE_RISCV32`](#image_file_machine_riscv32)
-  - [`IMAGE_FILE_MACHINE_RISCV64`](#image_file_machine_riscv64)
-  - [`IMAGE_FILE_MACHINE_RISCV128`](#image_file_machine_riscv128)
-  - [`IMAGE_FILE_MACHINE_ARM64X`](#image_file_machine_arm64x)
-  - [`IMAGE_FILE_MACHINE_CHPE_X86`](#image_file_machine_chpe_x86)
-  - [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image_numberof_directory_entries)
-  - [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image_nt_optional_hdr32_magic)
-  - [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image_nt_optional_hdr64_magic)
-  - [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image_rom_optional_hdr_magic)
-  - [`IMAGE_SUBSYSTEM_UNKNOWN`](#image_subsystem_unknown)
-  - [`IMAGE_SUBSYSTEM_NATIVE`](#image_subsystem_native)
-  - [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image_subsystem_windows_gui)
-  - [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image_subsystem_windows_cui)
-  - [`IMAGE_SUBSYSTEM_OS2_CUI`](#image_subsystem_os2_cui)
-  - [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image_subsystem_posix_cui)
-  - [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image_subsystem_native_windows)
-  - [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image_subsystem_windows_ce_gui)
-  - [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image_subsystem_efi_application)
-  - [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image_subsystem_efi_boot_service_driver)
-  - [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image_subsystem_efi_runtime_driver)
-  - [`IMAGE_SUBSYSTEM_EFI_ROM`](#image_subsystem_efi_rom)
-  - [`IMAGE_SUBSYSTEM_XBOX`](#image_subsystem_xbox)
-  - [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image_subsystem_windows_boot_application)
-  - [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image_subsystem_xbox_code_catalog)
-  - [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image_dllcharacteristics_high_entropy_va)
-  - [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image_dllcharacteristics_dynamic_base)
-  - [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image_dllcharacteristics_force_integrity)
-  - [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image_dllcharacteristics_nx_compat)
-  - [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image_dllcharacteristics_no_isolation)
-  - [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image_dllcharacteristics_no_seh)
-  - [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image_dllcharacteristics_no_bind)
-  - [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image_dllcharacteristics_appcontainer)
-  - [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image_dllcharacteristics_wdm_driver)
-  - [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image_dllcharacteristics_guard_cf)
-  - [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image_dllcharacteristics_terminal_server_aware)
-  - [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image_directory_entry_export)
-  - [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image_directory_entry_import)
-  - [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image_directory_entry_resource)
-  - [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image_directory_entry_exception)
-  - [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image_directory_entry_security)
-  - [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image_directory_entry_basereloc)
-  - [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image_directory_entry_debug)
-  - [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image_directory_entry_architecture)
-  - [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image_directory_entry_globalptr)
-  - [`IMAGE_DIRECTORY_ENTRY_TLS`](#image_directory_entry_tls)
-  - [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image_directory_entry_load_config)
-  - [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image_directory_entry_bound_import)
-  - [`IMAGE_DIRECTORY_ENTRY_IAT`](#image_directory_entry_iat)
-  - [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image_directory_entry_delay_import)
-  - [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image_directory_entry_com_descriptor)
-  - [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon_object_header_bigobj_class_id)
-  - [`IMAGE_SIZEOF_SHORT_NAME`](#image_sizeof_short_name)
-  - [`IMAGE_SIZEOF_SECTION_HEADER`](#image_sizeof_section_header)
-  - [`IMAGE_SCN_TYPE_NO_PAD`](#image_scn_type_no_pad)
-  - [`IMAGE_SCN_CNT_CODE`](#image_scn_cnt_code)
-  - [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image_scn_cnt_initialized_data)
-  - [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image_scn_cnt_uninitialized_data)
-  - [`IMAGE_SCN_LNK_OTHER`](#image_scn_lnk_other)
-  - [`IMAGE_SCN_LNK_INFO`](#image_scn_lnk_info)
-  - [`IMAGE_SCN_LNK_REMOVE`](#image_scn_lnk_remove)
-  - [`IMAGE_SCN_LNK_COMDAT`](#image_scn_lnk_comdat)
-  - [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image_scn_no_defer_spec_exc)
-  - [`IMAGE_SCN_GPREL`](#image_scn_gprel)
-  - [`IMAGE_SCN_MEM_FARDATA`](#image_scn_mem_fardata)
-  - [`IMAGE_SCN_MEM_PURGEABLE`](#image_scn_mem_purgeable)
-  - [`IMAGE_SCN_MEM_16BIT`](#image_scn_mem_16bit)
-  - [`IMAGE_SCN_MEM_LOCKED`](#image_scn_mem_locked)
-  - [`IMAGE_SCN_MEM_PRELOAD`](#image_scn_mem_preload)
-  - [`IMAGE_SCN_ALIGN_1BYTES`](#image_scn_align_1bytes)
-  - [`IMAGE_SCN_ALIGN_2BYTES`](#image_scn_align_2bytes)
-  - [`IMAGE_SCN_ALIGN_4BYTES`](#image_scn_align_4bytes)
-  - [`IMAGE_SCN_ALIGN_8BYTES`](#image_scn_align_8bytes)
-  - [`IMAGE_SCN_ALIGN_16BYTES`](#image_scn_align_16bytes)
-  - [`IMAGE_SCN_ALIGN_32BYTES`](#image_scn_align_32bytes)
-  - [`IMAGE_SCN_ALIGN_64BYTES`](#image_scn_align_64bytes)
-  - [`IMAGE_SCN_ALIGN_128BYTES`](#image_scn_align_128bytes)
-  - [`IMAGE_SCN_ALIGN_256BYTES`](#image_scn_align_256bytes)
-  - [`IMAGE_SCN_ALIGN_512BYTES`](#image_scn_align_512bytes)
-  - [`IMAGE_SCN_ALIGN_1024BYTES`](#image_scn_align_1024bytes)
-  - [`IMAGE_SCN_ALIGN_2048BYTES`](#image_scn_align_2048bytes)
-  - [`IMAGE_SCN_ALIGN_4096BYTES`](#image_scn_align_4096bytes)
-  - [`IMAGE_SCN_ALIGN_8192BYTES`](#image_scn_align_8192bytes)
-  - [`IMAGE_SCN_ALIGN_MASK`](#image_scn_align_mask)
-  - [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image_scn_lnk_nreloc_ovfl)
-  - [`IMAGE_SCN_MEM_DISCARDABLE`](#image_scn_mem_discardable)
-  - [`IMAGE_SCN_MEM_NOT_CACHED`](#image_scn_mem_not_cached)
-  - [`IMAGE_SCN_MEM_NOT_PAGED`](#image_scn_mem_not_paged)
-  - [`IMAGE_SCN_MEM_SHARED`](#image_scn_mem_shared)
-  - [`IMAGE_SCN_MEM_EXECUTE`](#image_scn_mem_execute)
-  - [`IMAGE_SCN_MEM_READ`](#image_scn_mem_read)
-  - [`IMAGE_SCN_MEM_WRITE`](#image_scn_mem_write)
-  - [`IMAGE_SCN_SCALE_INDEX`](#image_scn_scale_index)
-  - [`IMAGE_SIZEOF_SYMBOL`](#image_sizeof_symbol)
-  - [`IMAGE_SIZEOF_SYMBOL_EX`](#image_sizeof_symbol_ex)
-  - [`IMAGE_SYM_UNDEFINED`](#image_sym_undefined)
-  - [`IMAGE_SYM_ABSOLUTE`](#image_sym_absolute)
-  - [`IMAGE_SYM_DEBUG`](#image_sym_debug)
-  - [`IMAGE_SYM_SECTION_MAX`](#image_sym_section_max)
-  - [`IMAGE_SYM_SECTION_MAX_EX`](#image_sym_section_max_ex)
-  - [`IMAGE_SYM_TYPE_NULL`](#image_sym_type_null)
-  - [`IMAGE_SYM_TYPE_VOID`](#image_sym_type_void)
-  - [`IMAGE_SYM_TYPE_CHAR`](#image_sym_type_char)
-  - [`IMAGE_SYM_TYPE_SHORT`](#image_sym_type_short)
-  - [`IMAGE_SYM_TYPE_INT`](#image_sym_type_int)
-  - [`IMAGE_SYM_TYPE_LONG`](#image_sym_type_long)
-  - [`IMAGE_SYM_TYPE_FLOAT`](#image_sym_type_float)
-  - [`IMAGE_SYM_TYPE_DOUBLE`](#image_sym_type_double)
-  - [`IMAGE_SYM_TYPE_STRUCT`](#image_sym_type_struct)
-  - [`IMAGE_SYM_TYPE_UNION`](#image_sym_type_union)
-  - [`IMAGE_SYM_TYPE_ENUM`](#image_sym_type_enum)
-  - [`IMAGE_SYM_TYPE_MOE`](#image_sym_type_moe)
-  - [`IMAGE_SYM_TYPE_BYTE`](#image_sym_type_byte)
-  - [`IMAGE_SYM_TYPE_WORD`](#image_sym_type_word)
-  - [`IMAGE_SYM_TYPE_UINT`](#image_sym_type_uint)
-  - [`IMAGE_SYM_TYPE_DWORD`](#image_sym_type_dword)
-  - [`IMAGE_SYM_TYPE_PCODE`](#image_sym_type_pcode)
-  - [`IMAGE_SYM_DTYPE_NULL`](#image_sym_dtype_null)
-  - [`IMAGE_SYM_DTYPE_POINTER`](#image_sym_dtype_pointer)
-  - [`IMAGE_SYM_DTYPE_FUNCTION`](#image_sym_dtype_function)
-  - [`IMAGE_SYM_DTYPE_ARRAY`](#image_sym_dtype_array)
-  - [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image_sym_class_end_of_function)
-  - [`IMAGE_SYM_CLASS_NULL`](#image_sym_class_null)
-  - [`IMAGE_SYM_CLASS_AUTOMATIC`](#image_sym_class_automatic)
-  - [`IMAGE_SYM_CLASS_EXTERNAL`](#image_sym_class_external)
-  - [`IMAGE_SYM_CLASS_STATIC`](#image_sym_class_static)
-  - [`IMAGE_SYM_CLASS_REGISTER`](#image_sym_class_register)
-  - [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image_sym_class_external_def)
-  - [`IMAGE_SYM_CLASS_LABEL`](#image_sym_class_label)
-  - [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image_sym_class_undefined_label)
-  - [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image_sym_class_member_of_struct)
-  - [`IMAGE_SYM_CLASS_ARGUMENT`](#image_sym_class_argument)
-  - [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image_sym_class_struct_tag)
-  - [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image_sym_class_member_of_union)
-  - [`IMAGE_SYM_CLASS_UNION_TAG`](#image_sym_class_union_tag)
-  - [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image_sym_class_type_definition)
-  - [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image_sym_class_undefined_static)
-  - [`IMAGE_SYM_CLASS_ENUM_TAG`](#image_sym_class_enum_tag)
-  - [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image_sym_class_member_of_enum)
-  - [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image_sym_class_register_param)
-  - [`IMAGE_SYM_CLASS_BIT_FIELD`](#image_sym_class_bit_field)
-  - [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image_sym_class_far_external)
-  - [`IMAGE_SYM_CLASS_BLOCK`](#image_sym_class_block)
-  - [`IMAGE_SYM_CLASS_FUNCTION`](#image_sym_class_function)
-  - [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image_sym_class_end_of_struct)
-  - [`IMAGE_SYM_CLASS_FILE`](#image_sym_class_file)
-  - [`IMAGE_SYM_CLASS_SECTION`](#image_sym_class_section)
-  - [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image_sym_class_weak_external)
-  - [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image_sym_class_clr_token)
-  - [`N_BTMASK`](#n_btmask)
-  - [`N_TMASK`](#n_tmask)
-  - [`N_TMASK1`](#n_tmask1)
-  - [`N_TMASK2`](#n_tmask2)
-  - [`N_BTSHFT`](#n_btshft)
-  - [`N_TSHIFT`](#n_tshift)
-  - [`IMAGE_SYM_DTYPE_SHIFT`](#image_sym_dtype_shift)
-  - [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image_aux_symbol_type_token_def)
-  - [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image_comdat_select_noduplicates)
-  - [`IMAGE_COMDAT_SELECT_ANY`](#image_comdat_select_any)
-  - [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image_comdat_select_same_size)
-  - [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image_comdat_select_exact_match)
-  - [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image_comdat_select_associative)
-  - [`IMAGE_COMDAT_SELECT_LARGEST`](#image_comdat_select_largest)
-  - [`IMAGE_COMDAT_SELECT_NEWEST`](#image_comdat_select_newest)
-  - [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image_weak_extern_search_nolibrary)
-  - [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image_weak_extern_search_library)
-  - [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image_weak_extern_search_alias)
-  - [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image_weak_extern_anti_dependency)
-  - [`IMAGE_REL_I386_ABSOLUTE`](#image_rel_i386_absolute)
-  - [`IMAGE_REL_I386_DIR16`](#image_rel_i386_dir16)
-  - [`IMAGE_REL_I386_REL16`](#image_rel_i386_rel16)
-  - [`IMAGE_REL_I386_DIR32`](#image_rel_i386_dir32)
-  - [`IMAGE_REL_I386_DIR32NB`](#image_rel_i386_dir32nb)
-  - [`IMAGE_REL_I386_SEG12`](#image_rel_i386_seg12)
-  - [`IMAGE_REL_I386_SECTION`](#image_rel_i386_section)
-  - [`IMAGE_REL_I386_SECREL`](#image_rel_i386_secrel)
-  - [`IMAGE_REL_I386_TOKEN`](#image_rel_i386_token)
-  - [`IMAGE_REL_I386_SECREL7`](#image_rel_i386_secrel7)
-  - [`IMAGE_REL_I386_REL32`](#image_rel_i386_rel32)
-  - [`IMAGE_REL_MIPS_ABSOLUTE`](#image_rel_mips_absolute)
-  - [`IMAGE_REL_MIPS_REFHALF`](#image_rel_mips_refhalf)
-  - [`IMAGE_REL_MIPS_REFWORD`](#image_rel_mips_refword)
-  - [`IMAGE_REL_MIPS_JMPADDR`](#image_rel_mips_jmpaddr)
-  - [`IMAGE_REL_MIPS_REFHI`](#image_rel_mips_refhi)
-  - [`IMAGE_REL_MIPS_REFLO`](#image_rel_mips_reflo)
-  - [`IMAGE_REL_MIPS_GPREL`](#image_rel_mips_gprel)
-  - [`IMAGE_REL_MIPS_LITERAL`](#image_rel_mips_literal)
-  - [`IMAGE_REL_MIPS_SECTION`](#image_rel_mips_section)
-  - [`IMAGE_REL_MIPS_SECREL`](#image_rel_mips_secrel)
-  - [`IMAGE_REL_MIPS_SECRELLO`](#image_rel_mips_secrello)
-  - [`IMAGE_REL_MIPS_SECRELHI`](#image_rel_mips_secrelhi)
-  - [`IMAGE_REL_MIPS_TOKEN`](#image_rel_mips_token)
-  - [`IMAGE_REL_MIPS_JMPADDR16`](#image_rel_mips_jmpaddr16)
-  - [`IMAGE_REL_MIPS_REFWORDNB`](#image_rel_mips_refwordnb)
-  - [`IMAGE_REL_MIPS_PAIR`](#image_rel_mips_pair)
-  - [`IMAGE_REL_ALPHA_ABSOLUTE`](#image_rel_alpha_absolute)
-  - [`IMAGE_REL_ALPHA_REFLONG`](#image_rel_alpha_reflong)
-  - [`IMAGE_REL_ALPHA_REFQUAD`](#image_rel_alpha_refquad)
-  - [`IMAGE_REL_ALPHA_GPREL32`](#image_rel_alpha_gprel32)
-  - [`IMAGE_REL_ALPHA_LITERAL`](#image_rel_alpha_literal)
-  - [`IMAGE_REL_ALPHA_LITUSE`](#image_rel_alpha_lituse)
-  - [`IMAGE_REL_ALPHA_GPDISP`](#image_rel_alpha_gpdisp)
-  - [`IMAGE_REL_ALPHA_BRADDR`](#image_rel_alpha_braddr)
-  - [`IMAGE_REL_ALPHA_HINT`](#image_rel_alpha_hint)
-  - [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image_rel_alpha_inline_reflong)
-  - [`IMAGE_REL_ALPHA_REFHI`](#image_rel_alpha_refhi)
-  - [`IMAGE_REL_ALPHA_REFLO`](#image_rel_alpha_reflo)
-  - [`IMAGE_REL_ALPHA_PAIR`](#image_rel_alpha_pair)
-  - [`IMAGE_REL_ALPHA_MATCH`](#image_rel_alpha_match)
-  - [`IMAGE_REL_ALPHA_SECTION`](#image_rel_alpha_section)
-  - [`IMAGE_REL_ALPHA_SECREL`](#image_rel_alpha_secrel)
-  - [`IMAGE_REL_ALPHA_REFLONGNB`](#image_rel_alpha_reflongnb)
-  - [`IMAGE_REL_ALPHA_SECRELLO`](#image_rel_alpha_secrello)
-  - [`IMAGE_REL_ALPHA_SECRELHI`](#image_rel_alpha_secrelhi)
-  - [`IMAGE_REL_ALPHA_REFQ3`](#image_rel_alpha_refq3)
-  - [`IMAGE_REL_ALPHA_REFQ2`](#image_rel_alpha_refq2)
-  - [`IMAGE_REL_ALPHA_REFQ1`](#image_rel_alpha_refq1)
-  - [`IMAGE_REL_ALPHA_GPRELLO`](#image_rel_alpha_gprello)
-  - [`IMAGE_REL_ALPHA_GPRELHI`](#image_rel_alpha_gprelhi)
-  - [`IMAGE_REL_PPC_ABSOLUTE`](#image_rel_ppc_absolute)
-  - [`IMAGE_REL_PPC_ADDR64`](#image_rel_ppc_addr64)
-  - [`IMAGE_REL_PPC_ADDR32`](#image_rel_ppc_addr32)
-  - [`IMAGE_REL_PPC_ADDR24`](#image_rel_ppc_addr24)
-  - [`IMAGE_REL_PPC_ADDR16`](#image_rel_ppc_addr16)
-  - [`IMAGE_REL_PPC_ADDR14`](#image_rel_ppc_addr14)
-  - [`IMAGE_REL_PPC_REL24`](#image_rel_ppc_rel24)
-  - [`IMAGE_REL_PPC_REL14`](#image_rel_ppc_rel14)
-  - [`IMAGE_REL_PPC_TOCREL16`](#image_rel_ppc_tocrel16)
-  - [`IMAGE_REL_PPC_TOCREL14`](#image_rel_ppc_tocrel14)
-  - [`IMAGE_REL_PPC_ADDR32NB`](#image_rel_ppc_addr32nb)
-  - [`IMAGE_REL_PPC_SECREL`](#image_rel_ppc_secrel)
-  - [`IMAGE_REL_PPC_SECTION`](#image_rel_ppc_section)
-  - [`IMAGE_REL_PPC_IFGLUE`](#image_rel_ppc_ifglue)
-  - [`IMAGE_REL_PPC_IMGLUE`](#image_rel_ppc_imglue)
-  - [`IMAGE_REL_PPC_SECREL16`](#image_rel_ppc_secrel16)
-  - [`IMAGE_REL_PPC_REFHI`](#image_rel_ppc_refhi)
-  - [`IMAGE_REL_PPC_REFLO`](#image_rel_ppc_reflo)
-  - [`IMAGE_REL_PPC_PAIR`](#image_rel_ppc_pair)
-  - [`IMAGE_REL_PPC_SECRELLO`](#image_rel_ppc_secrello)
-  - [`IMAGE_REL_PPC_SECRELHI`](#image_rel_ppc_secrelhi)
-  - [`IMAGE_REL_PPC_GPREL`](#image_rel_ppc_gprel)
-  - [`IMAGE_REL_PPC_TOKEN`](#image_rel_ppc_token)
-  - [`IMAGE_REL_PPC_TYPEMASK`](#image_rel_ppc_typemask)
-  - [`IMAGE_REL_PPC_NEG`](#image_rel_ppc_neg)
-  - [`IMAGE_REL_PPC_BRTAKEN`](#image_rel_ppc_brtaken)
-  - [`IMAGE_REL_PPC_BRNTAKEN`](#image_rel_ppc_brntaken)
-  - [`IMAGE_REL_PPC_TOCDEFN`](#image_rel_ppc_tocdefn)
-  - [`IMAGE_REL_SH3_ABSOLUTE`](#image_rel_sh3_absolute)
-  - [`IMAGE_REL_SH3_DIRECT16`](#image_rel_sh3_direct16)
-  - [`IMAGE_REL_SH3_DIRECT32`](#image_rel_sh3_direct32)
-  - [`IMAGE_REL_SH3_DIRECT8`](#image_rel_sh3_direct8)
-  - [`IMAGE_REL_SH3_DIRECT8_WORD`](#image_rel_sh3_direct8_word)
-  - [`IMAGE_REL_SH3_DIRECT8_LONG`](#image_rel_sh3_direct8_long)
-  - [`IMAGE_REL_SH3_DIRECT4`](#image_rel_sh3_direct4)
-  - [`IMAGE_REL_SH3_DIRECT4_WORD`](#image_rel_sh3_direct4_word)
-  - [`IMAGE_REL_SH3_DIRECT4_LONG`](#image_rel_sh3_direct4_long)
-  - [`IMAGE_REL_SH3_PCREL8_WORD`](#image_rel_sh3_pcrel8_word)
-  - [`IMAGE_REL_SH3_PCREL8_LONG`](#image_rel_sh3_pcrel8_long)
-  - [`IMAGE_REL_SH3_PCREL12_WORD`](#image_rel_sh3_pcrel12_word)
-  - [`IMAGE_REL_SH3_STARTOF_SECTION`](#image_rel_sh3_startof_section)
-  - [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image_rel_sh3_sizeof_section)
-  - [`IMAGE_REL_SH3_SECTION`](#image_rel_sh3_section)
-  - [`IMAGE_REL_SH3_SECREL`](#image_rel_sh3_secrel)
-  - [`IMAGE_REL_SH3_DIRECT32_NB`](#image_rel_sh3_direct32_nb)
-  - [`IMAGE_REL_SH3_GPREL4_LONG`](#image_rel_sh3_gprel4_long)
-  - [`IMAGE_REL_SH3_TOKEN`](#image_rel_sh3_token)
-  - [`IMAGE_REL_SHM_PCRELPT`](#image_rel_shm_pcrelpt)
-  - [`IMAGE_REL_SHM_REFLO`](#image_rel_shm_reflo)
-  - [`IMAGE_REL_SHM_REFHALF`](#image_rel_shm_refhalf)
-  - [`IMAGE_REL_SHM_RELLO`](#image_rel_shm_rello)
-  - [`IMAGE_REL_SHM_RELHALF`](#image_rel_shm_relhalf)
-  - [`IMAGE_REL_SHM_PAIR`](#image_rel_shm_pair)
-  - [`IMAGE_REL_SH_NOMODE`](#image_rel_sh_nomode)
-  - [`IMAGE_REL_ARM_ABSOLUTE`](#image_rel_arm_absolute)
-  - [`IMAGE_REL_ARM_ADDR32`](#image_rel_arm_addr32)
-  - [`IMAGE_REL_ARM_ADDR32NB`](#image_rel_arm_addr32nb)
-  - [`IMAGE_REL_ARM_BRANCH24`](#image_rel_arm_branch24)
-  - [`IMAGE_REL_ARM_BRANCH11`](#image_rel_arm_branch11)
-  - [`IMAGE_REL_ARM_TOKEN`](#image_rel_arm_token)
-  - [`IMAGE_REL_ARM_GPREL12`](#image_rel_arm_gprel12)
-  - [`IMAGE_REL_ARM_GPREL7`](#image_rel_arm_gprel7)
-  - [`IMAGE_REL_ARM_BLX24`](#image_rel_arm_blx24)
-  - [`IMAGE_REL_ARM_BLX11`](#image_rel_arm_blx11)
-  - [`IMAGE_REL_ARM_REL32`](#image_rel_arm_rel32)
-  - [`IMAGE_REL_ARM_SECTION`](#image_rel_arm_section)
-  - [`IMAGE_REL_ARM_SECREL`](#image_rel_arm_secrel)
-  - [`IMAGE_REL_ARM_MOV32A`](#image_rel_arm_mov32a)
-  - [`IMAGE_REL_ARM_MOV32`](#image_rel_arm_mov32)
-  - [`IMAGE_REL_ARM_MOV32T`](#image_rel_arm_mov32t)
-  - [`IMAGE_REL_THUMB_MOV32`](#image_rel_thumb_mov32)
-  - [`IMAGE_REL_ARM_BRANCH20T`](#image_rel_arm_branch20t)
-  - [`IMAGE_REL_THUMB_BRANCH20`](#image_rel_thumb_branch20)
-  - [`IMAGE_REL_ARM_BRANCH24T`](#image_rel_arm_branch24t)
-  - [`IMAGE_REL_THUMB_BRANCH24`](#image_rel_thumb_branch24)
-  - [`IMAGE_REL_ARM_BLX23T`](#image_rel_arm_blx23t)
-  - [`IMAGE_REL_THUMB_BLX23`](#image_rel_thumb_blx23)
-  - [`IMAGE_REL_AM_ABSOLUTE`](#image_rel_am_absolute)
-  - [`IMAGE_REL_AM_ADDR32`](#image_rel_am_addr32)
-  - [`IMAGE_REL_AM_ADDR32NB`](#image_rel_am_addr32nb)
-  - [`IMAGE_REL_AM_CALL32`](#image_rel_am_call32)
-  - [`IMAGE_REL_AM_FUNCINFO`](#image_rel_am_funcinfo)
-  - [`IMAGE_REL_AM_REL32_1`](#image_rel_am_rel32_1)
-  - [`IMAGE_REL_AM_REL32_2`](#image_rel_am_rel32_2)
-  - [`IMAGE_REL_AM_SECREL`](#image_rel_am_secrel)
-  - [`IMAGE_REL_AM_SECTION`](#image_rel_am_section)
-  - [`IMAGE_REL_AM_TOKEN`](#image_rel_am_token)
-  - [`IMAGE_REL_ARM64_ABSOLUTE`](#image_rel_arm64_absolute)
-  - [`IMAGE_REL_ARM64_ADDR32`](#image_rel_arm64_addr32)
-  - [`IMAGE_REL_ARM64_ADDR32NB`](#image_rel_arm64_addr32nb)
-  - [`IMAGE_REL_ARM64_BRANCH26`](#image_rel_arm64_branch26)
-  - [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image_rel_arm64_pagebase_rel21)
-  - [`IMAGE_REL_ARM64_REL21`](#image_rel_arm64_rel21)
-  - [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image_rel_arm64_pageoffset_12a)
-  - [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image_rel_arm64_pageoffset_12l)
-  - [`IMAGE_REL_ARM64_SECREL`](#image_rel_arm64_secrel)
-  - [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image_rel_arm64_secrel_low12a)
-  - [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image_rel_arm64_secrel_high12a)
-  - [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image_rel_arm64_secrel_low12l)
-  - [`IMAGE_REL_ARM64_TOKEN`](#image_rel_arm64_token)
-  - [`IMAGE_REL_ARM64_SECTION`](#image_rel_arm64_section)
-  - [`IMAGE_REL_ARM64_ADDR64`](#image_rel_arm64_addr64)
-  - [`IMAGE_REL_ARM64_BRANCH19`](#image_rel_arm64_branch19)
-  - [`IMAGE_REL_ARM64_BRANCH14`](#image_rel_arm64_branch14)
-  - [`IMAGE_REL_ARM64_REL32`](#image_rel_arm64_rel32)
-  - [`IMAGE_REL_AMD64_ABSOLUTE`](#image_rel_amd64_absolute)
-  - [`IMAGE_REL_AMD64_ADDR64`](#image_rel_amd64_addr64)
-  - [`IMAGE_REL_AMD64_ADDR32`](#image_rel_amd64_addr32)
-  - [`IMAGE_REL_AMD64_ADDR32NB`](#image_rel_amd64_addr32nb)
-  - [`IMAGE_REL_AMD64_REL32`](#image_rel_amd64_rel32)
-  - [`IMAGE_REL_AMD64_REL32_1`](#image_rel_amd64_rel32_1)
-  - [`IMAGE_REL_AMD64_REL32_2`](#image_rel_amd64_rel32_2)
-  - [`IMAGE_REL_AMD64_REL32_3`](#image_rel_amd64_rel32_3)
-  - [`IMAGE_REL_AMD64_REL32_4`](#image_rel_amd64_rel32_4)
-  - [`IMAGE_REL_AMD64_REL32_5`](#image_rel_amd64_rel32_5)
-  - [`IMAGE_REL_AMD64_SECTION`](#image_rel_amd64_section)
-  - [`IMAGE_REL_AMD64_SECREL`](#image_rel_amd64_secrel)
-  - [`IMAGE_REL_AMD64_SECREL7`](#image_rel_amd64_secrel7)
-  - [`IMAGE_REL_AMD64_TOKEN`](#image_rel_amd64_token)
-  - [`IMAGE_REL_AMD64_SREL32`](#image_rel_amd64_srel32)
-  - [`IMAGE_REL_AMD64_PAIR`](#image_rel_amd64_pair)
-  - [`IMAGE_REL_AMD64_SSPAN32`](#image_rel_amd64_sspan32)
-  - [`IMAGE_REL_AMD64_EHANDLER`](#image_rel_amd64_ehandler)
-  - [`IMAGE_REL_AMD64_IMPORT_BR`](#image_rel_amd64_import_br)
-  - [`IMAGE_REL_AMD64_IMPORT_CALL`](#image_rel_amd64_import_call)
-  - [`IMAGE_REL_AMD64_CFG_BR`](#image_rel_amd64_cfg_br)
-  - [`IMAGE_REL_AMD64_CFG_BR_REX`](#image_rel_amd64_cfg_br_rex)
-  - [`IMAGE_REL_AMD64_CFG_CALL`](#image_rel_amd64_cfg_call)
-  - [`IMAGE_REL_AMD64_INDIR_BR`](#image_rel_amd64_indir_br)
-  - [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image_rel_amd64_indir_br_rex)
-  - [`IMAGE_REL_AMD64_INDIR_CALL`](#image_rel_amd64_indir_call)
-  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image_rel_amd64_indir_br_switchtable_first)
-  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image_rel_amd64_indir_br_switchtable_last)
-  - [`IMAGE_REL_IA64_ABSOLUTE`](#image_rel_ia64_absolute)
-  - [`IMAGE_REL_IA64_IMM14`](#image_rel_ia64_imm14)
-  - [`IMAGE_REL_IA64_IMM22`](#image_rel_ia64_imm22)
-  - [`IMAGE_REL_IA64_IMM64`](#image_rel_ia64_imm64)
-  - [`IMAGE_REL_IA64_DIR32`](#image_rel_ia64_dir32)
-  - [`IMAGE_REL_IA64_DIR64`](#image_rel_ia64_dir64)
-  - [`IMAGE_REL_IA64_PCREL21B`](#image_rel_ia64_pcrel21b)
-  - [`IMAGE_REL_IA64_PCREL21M`](#image_rel_ia64_pcrel21m)
-  - [`IMAGE_REL_IA64_PCREL21F`](#image_rel_ia64_pcrel21f)
-  - [`IMAGE_REL_IA64_GPREL22`](#image_rel_ia64_gprel22)
-  - [`IMAGE_REL_IA64_LTOFF22`](#image_rel_ia64_ltoff22)
-  - [`IMAGE_REL_IA64_SECTION`](#image_rel_ia64_section)
-  - [`IMAGE_REL_IA64_SECREL22`](#image_rel_ia64_secrel22)
-  - [`IMAGE_REL_IA64_SECREL64I`](#image_rel_ia64_secrel64i)
-  - [`IMAGE_REL_IA64_SECREL32`](#image_rel_ia64_secrel32)
-  - [`IMAGE_REL_IA64_DIR32NB`](#image_rel_ia64_dir32nb)
-  - [`IMAGE_REL_IA64_SREL14`](#image_rel_ia64_srel14)
-  - [`IMAGE_REL_IA64_SREL22`](#image_rel_ia64_srel22)
-  - [`IMAGE_REL_IA64_SREL32`](#image_rel_ia64_srel32)
-  - [`IMAGE_REL_IA64_UREL32`](#image_rel_ia64_urel32)
-  - [`IMAGE_REL_IA64_PCREL60X`](#image_rel_ia64_pcrel60x)
-  - [`IMAGE_REL_IA64_PCREL60B`](#image_rel_ia64_pcrel60b)
-  - [`IMAGE_REL_IA64_PCREL60F`](#image_rel_ia64_pcrel60f)
-  - [`IMAGE_REL_IA64_PCREL60I`](#image_rel_ia64_pcrel60i)
-  - [`IMAGE_REL_IA64_PCREL60M`](#image_rel_ia64_pcrel60m)
-  - [`IMAGE_REL_IA64_IMMGPREL64`](#image_rel_ia64_immgprel64)
-  - [`IMAGE_REL_IA64_TOKEN`](#image_rel_ia64_token)
-  - [`IMAGE_REL_IA64_GPREL32`](#image_rel_ia64_gprel32)
-  - [`IMAGE_REL_IA64_ADDEND`](#image_rel_ia64_addend)
-  - [`IMAGE_REL_CEF_ABSOLUTE`](#image_rel_cef_absolute)
-  - [`IMAGE_REL_CEF_ADDR32`](#image_rel_cef_addr32)
-  - [`IMAGE_REL_CEF_ADDR64`](#image_rel_cef_addr64)
-  - [`IMAGE_REL_CEF_ADDR32NB`](#image_rel_cef_addr32nb)
-  - [`IMAGE_REL_CEF_SECTION`](#image_rel_cef_section)
-  - [`IMAGE_REL_CEF_SECREL`](#image_rel_cef_secrel)
-  - [`IMAGE_REL_CEF_TOKEN`](#image_rel_cef_token)
-  - [`IMAGE_REL_CEE_ABSOLUTE`](#image_rel_cee_absolute)
-  - [`IMAGE_REL_CEE_ADDR32`](#image_rel_cee_addr32)
-  - [`IMAGE_REL_CEE_ADDR64`](#image_rel_cee_addr64)
-  - [`IMAGE_REL_CEE_ADDR32NB`](#image_rel_cee_addr32nb)
-  - [`IMAGE_REL_CEE_SECTION`](#image_rel_cee_section)
-  - [`IMAGE_REL_CEE_SECREL`](#image_rel_cee_secrel)
-  - [`IMAGE_REL_CEE_TOKEN`](#image_rel_cee_token)
-  - [`IMAGE_REL_M32R_ABSOLUTE`](#image_rel_m32r_absolute)
-  - [`IMAGE_REL_M32R_ADDR32`](#image_rel_m32r_addr32)
-  - [`IMAGE_REL_M32R_ADDR32NB`](#image_rel_m32r_addr32nb)
-  - [`IMAGE_REL_M32R_ADDR24`](#image_rel_m32r_addr24)
-  - [`IMAGE_REL_M32R_GPREL16`](#image_rel_m32r_gprel16)
-  - [`IMAGE_REL_M32R_PCREL24`](#image_rel_m32r_pcrel24)
-  - [`IMAGE_REL_M32R_PCREL16`](#image_rel_m32r_pcrel16)
-  - [`IMAGE_REL_M32R_PCREL8`](#image_rel_m32r_pcrel8)
-  - [`IMAGE_REL_M32R_REFHALF`](#image_rel_m32r_refhalf)
-  - [`IMAGE_REL_M32R_REFHI`](#image_rel_m32r_refhi)
-  - [`IMAGE_REL_M32R_REFLO`](#image_rel_m32r_reflo)
-  - [`IMAGE_REL_M32R_PAIR`](#image_rel_m32r_pair)
-  - [`IMAGE_REL_M32R_SECTION`](#image_rel_m32r_section)
-  - [`IMAGE_REL_M32R_SECREL32`](#image_rel_m32r_secrel32)
-  - [`IMAGE_REL_M32R_TOKEN`](#image_rel_m32r_token)
-  - [`IMAGE_REL_EBC_ABSOLUTE`](#image_rel_ebc_absolute)
-  - [`IMAGE_REL_EBC_ADDR32NB`](#image_rel_ebc_addr32nb)
-  - [`IMAGE_REL_EBC_REL32`](#image_rel_ebc_rel32)
-  - [`IMAGE_REL_EBC_SECTION`](#image_rel_ebc_section)
-  - [`IMAGE_REL_EBC_SECREL`](#image_rel_ebc_secrel)
-  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch_enc_i17_imm7b_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch_enc_i17_imm7b_size_x)
-  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch_enc_i17_imm7b_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch_enc_i17_imm7b_val_pos_x)
-  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch_enc_i17_imm9d_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch_enc_i17_imm9d_size_x)
-  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch_enc_i17_imm9d_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch_enc_i17_imm9d_val_pos_x)
-  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch_enc_i17_imm5c_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch_enc_i17_imm5c_size_x)
-  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch_enc_i17_imm5c_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch_enc_i17_imm5c_val_pos_x)
-  - [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch_enc_i17_ic_inst_word_x)
-  - [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch_enc_i17_ic_size_x)
-  - [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch_enc_i17_ic_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch_enc_i17_ic_val_pos_x)
-  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch_enc_i17_imm41a_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch_enc_i17_imm41a_size_x)
-  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch_enc_i17_imm41a_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch_enc_i17_imm41a_val_pos_x)
-  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch_enc_i17_imm41b_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch_enc_i17_imm41b_size_x)
-  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch_enc_i17_imm41b_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch_enc_i17_imm41b_val_pos_x)
-  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch_enc_i17_imm41c_inst_word_x)
-  - [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch_enc_i17_imm41c_size_x)
-  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch_enc_i17_imm41c_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch_enc_i17_imm41c_val_pos_x)
-  - [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch_enc_i17_sign_inst_word_x)
-  - [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch_enc_i17_sign_size_x)
-  - [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch_enc_i17_sign_inst_word_pos_x)
-  - [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch_enc_i17_sign_val_pos_x)
-  - [`X3_OPCODE_INST_WORD_X`](#x3_opcode_inst_word_x)
-  - [`X3_OPCODE_SIZE_X`](#x3_opcode_size_x)
-  - [`X3_OPCODE_INST_WORD_POS_X`](#x3_opcode_inst_word_pos_x)
-  - [`X3_OPCODE_SIGN_VAL_POS_X`](#x3_opcode_sign_val_pos_x)
-  - [`X3_I_INST_WORD_X`](#x3_i_inst_word_x)
-  - [`X3_I_SIZE_X`](#x3_i_size_x)
-  - [`X3_I_INST_WORD_POS_X`](#x3_i_inst_word_pos_x)
-  - [`X3_I_SIGN_VAL_POS_X`](#x3_i_sign_val_pos_x)
-  - [`X3_D_WH_INST_WORD_X`](#x3_d_wh_inst_word_x)
-  - [`X3_D_WH_SIZE_X`](#x3_d_wh_size_x)
-  - [`X3_D_WH_INST_WORD_POS_X`](#x3_d_wh_inst_word_pos_x)
-  - [`X3_D_WH_SIGN_VAL_POS_X`](#x3_d_wh_sign_val_pos_x)
-  - [`X3_IMM20_INST_WORD_X`](#x3_imm20_inst_word_x)
-  - [`X3_IMM20_SIZE_X`](#x3_imm20_size_x)
-  - [`X3_IMM20_INST_WORD_POS_X`](#x3_imm20_inst_word_pos_x)
-  - [`X3_IMM20_SIGN_VAL_POS_X`](#x3_imm20_sign_val_pos_x)
-  - [`X3_IMM39_1_INST_WORD_X`](#x3_imm39_1_inst_word_x)
-  - [`X3_IMM39_1_SIZE_X`](#x3_imm39_1_size_x)
-  - [`X3_IMM39_1_INST_WORD_POS_X`](#x3_imm39_1_inst_word_pos_x)
-  - [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3_imm39_1_sign_val_pos_x)
-  - [`X3_IMM39_2_INST_WORD_X`](#x3_imm39_2_inst_word_x)
-  - [`X3_IMM39_2_SIZE_X`](#x3_imm39_2_size_x)
-  - [`X3_IMM39_2_INST_WORD_POS_X`](#x3_imm39_2_inst_word_pos_x)
-  - [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3_imm39_2_sign_val_pos_x)
-  - [`X3_P_INST_WORD_X`](#x3_p_inst_word_x)
-  - [`X3_P_SIZE_X`](#x3_p_size_x)
-  - [`X3_P_INST_WORD_POS_X`](#x3_p_inst_word_pos_x)
-  - [`X3_P_SIGN_VAL_POS_X`](#x3_p_sign_val_pos_x)
-  - [`X3_TMPLT_INST_WORD_X`](#x3_tmplt_inst_word_x)
-  - [`X3_TMPLT_SIZE_X`](#x3_tmplt_size_x)
-  - [`X3_TMPLT_INST_WORD_POS_X`](#x3_tmplt_inst_word_pos_x)
-  - [`X3_TMPLT_SIGN_VAL_POS_X`](#x3_tmplt_sign_val_pos_x)
-  - [`X3_BTYPE_QP_INST_WORD_X`](#x3_btype_qp_inst_word_x)
-  - [`X3_BTYPE_QP_SIZE_X`](#x3_btype_qp_size_x)
-  - [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3_btype_qp_inst_word_pos_x)
-  - [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3_btype_qp_inst_val_pos_x)
-  - [`X3_EMPTY_INST_WORD_X`](#x3_empty_inst_word_x)
-  - [`X3_EMPTY_SIZE_X`](#x3_empty_size_x)
-  - [`X3_EMPTY_INST_WORD_POS_X`](#x3_empty_inst_word_pos_x)
-  - [`X3_EMPTY_INST_VAL_POS_X`](#x3_empty_inst_val_pos_x)
-  - [`IMAGE_REL_BASED_ABSOLUTE`](#image_rel_based_absolute)
-  - [`IMAGE_REL_BASED_HIGH`](#image_rel_based_high)
-  - [`IMAGE_REL_BASED_LOW`](#image_rel_based_low)
-  - [`IMAGE_REL_BASED_HIGHLOW`](#image_rel_based_highlow)
-  - [`IMAGE_REL_BASED_HIGHADJ`](#image_rel_based_highadj)
-  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image_rel_based_machine_specific_5)
-  - [`IMAGE_REL_BASED_RESERVED`](#image_rel_based_reserved)
-  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image_rel_based_machine_specific_7)
-  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image_rel_based_machine_specific_8)
-  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image_rel_based_machine_specific_9)
-  - [`IMAGE_REL_BASED_DIR64`](#image_rel_based_dir64)
-  - [`IMAGE_REL_BASED_IA64_IMM64`](#image_rel_based_ia64_imm64)
-  - [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image_rel_based_mips_jmpaddr)
-  - [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image_rel_based_mips_jmpaddr16)
-  - [`IMAGE_REL_BASED_ARM_MOV32`](#image_rel_based_arm_mov32)
-  - [`IMAGE_REL_BASED_THUMB_MOV32`](#image_rel_based_thumb_mov32)
-  - [`IMAGE_REL_BASED_RISCV_HIGH20`](#image_rel_based_riscv_high20)
-  - [`IMAGE_REL_BASED_RISCV_LOW12I`](#image_rel_based_riscv_low12i)
-  - [`IMAGE_REL_BASED_RISCV_LOW12S`](#image_rel_based_riscv_low12s)
-  - [`IMAGE_ARCHIVE_START_SIZE`](#image_archive_start_size)
-  - [`IMAGE_ARCHIVE_START`](#image_archive_start)
-  - [`IMAGE_ARCHIVE_END`](#image_archive_end)
-  - [`IMAGE_ARCHIVE_PAD`](#image_archive_pad)
-  - [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image_archive_linker_member)
-  - [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image_archive_longnames_member)
-  - [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image_archive_hybridmap_member)
-  - [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image_sizeof_archive_member_hdr)
-  - [`IMAGE_ORDINAL_FLAG64`](#image_ordinal_flag64)
-  - [`IMAGE_ORDINAL_FLAG32`](#image_ordinal_flag32)
-  - [`IMAGE_DELAYLOAD_RVA_BASED`](#image_delayload_rva_based)
-  - [`IMAGE_RESOURCE_NAME_IS_STRING`](#image_resource_name_is_string)
-  - [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image_resource_data_is_directory)
-  - [`RT_CURSOR`](#rt_cursor)
-  - [`RT_BITMAP`](#rt_bitmap)
-  - [`RT_ICON`](#rt_icon)
-  - [`RT_MENU`](#rt_menu)
-  - [`RT_DIALOG`](#rt_dialog)
-  - [`RT_STRING`](#rt_string)
-  - [`RT_FONTDIR`](#rt_fontdir)
-  - [`RT_FONT`](#rt_font)
-  - [`RT_ACCELERATOR`](#rt_accelerator)
-  - [`RT_RCDATA`](#rt_rcdata)
-  - [`RT_MESSAGETABLE`](#rt_messagetable)
-  - [`RT_GROUP_CURSOR`](#rt_group_cursor)
-  - [`RT_GROUP_ICON`](#rt_group_icon)
-  - [`RT_VERSION`](#rt_version)
-  - [`RT_DLGINCLUDE`](#rt_dlginclude)
-  - [`RT_PLUGPLAY`](#rt_plugplay)
-  - [`RT_VXD`](#rt_vxd)
-  - [`RT_ANICURSOR`](#rt_anicursor)
-  - [`RT_ANIICON`](#rt_aniicon)
-  - [`RT_HTML`](#rt_html)
-  - [`RT_MANIFEST`](#rt_manifest)
-  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image_dynamic_relocation_guard_rf_prologue)
-  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image_dynamic_relocation_guard_rf_epilogue)
-  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_import_control_transfer)
-  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_indir_control_transfer)
-  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image_dynamic_relocation_guard_switchtable_branch)
-  - [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image_hot_patch_base_obligatory)
-  - [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image_hot_patch_base_can_roll_back)
-  - [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image_hot_patch_chunk_inverse)
-  - [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image_hot_patch_chunk_obligatory)
-  - [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image_hot_patch_chunk_reserved)
-  - [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image_hot_patch_chunk_type)
-  - [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image_hot_patch_chunk_source_rva)
-  - [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image_hot_patch_chunk_target_rva)
-  - [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image_hot_patch_chunk_size)
-  - [`IMAGE_HOT_PATCH_NONE`](#image_hot_patch_none)
-  - [`IMAGE_HOT_PATCH_FUNCTION`](#image_hot_patch_function)
-  - [`IMAGE_HOT_PATCH_ABSOLUTE`](#image_hot_patch_absolute)
-  - [`IMAGE_HOT_PATCH_REL32`](#image_hot_patch_rel32)
-  - [`IMAGE_HOT_PATCH_CALL_TARGET`](#image_hot_patch_call_target)
-  - [`IMAGE_HOT_PATCH_INDIRECT`](#image_hot_patch_indirect)
-  - [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image_hot_patch_no_call_target)
-  - [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image_hot_patch_dynamic_value)
-  - [`IMAGE_GUARD_CF_INSTRUMENTED`](#image_guard_cf_instrumented)
-  - [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image_guard_cfw_instrumented)
-  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image_guard_cf_function_table_present)
-  - [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image_guard_security_cookie_unused)
-  - [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image_guard_protect_delayload_iat)
-  - [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image_guard_delayload_iat_in_its_own_section)
-  - [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image_guard_cf_export_suppression_info_present)
-  - [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image_guard_cf_enable_export_suppression)
-  - [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image_guard_cf_longjump_table_present)
-  - [`IMAGE_GUARD_RF_INSTRUMENTED`](#image_guard_rf_instrumented)
-  - [`IMAGE_GUARD_RF_ENABLE`](#image_guard_rf_enable)
-  - [`IMAGE_GUARD_RF_STRICT`](#image_guard_rf_strict)
-  - [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image_guard_retpoline_present)
-  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image_guard_cf_function_table_size_mask)
-  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image_guard_cf_function_table_size_shift)
-  - [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image_guard_flag_fid_suppressed)
-  - [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image_guard_flag_export_suppressed)
-  - [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image_enclave_long_id_length)
-  - [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image_enclave_short_id_length)
-  - [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image_enclave_policy_debuggable)
-  - [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image_enclave_flag_primary_image)
-  - [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image_enclave_import_match_none)
-  - [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image_enclave_import_match_unique_id)
-  - [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image_enclave_import_match_author_id)
-  - [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image_enclave_import_match_family_id)
-  - [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image_enclave_import_match_image_id)
-  - [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image_debug_type_unknown)
-  - [`IMAGE_DEBUG_TYPE_COFF`](#image_debug_type_coff)
-  - [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image_debug_type_codeview)
-  - [`IMAGE_DEBUG_TYPE_FPO`](#image_debug_type_fpo)
-  - [`IMAGE_DEBUG_TYPE_MISC`](#image_debug_type_misc)
-  - [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image_debug_type_exception)
-  - [`IMAGE_DEBUG_TYPE_FIXUP`](#image_debug_type_fixup)
-  - [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image_debug_type_omap_to_src)
-  - [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image_debug_type_omap_from_src)
-  - [`IMAGE_DEBUG_TYPE_BORLAND`](#image_debug_type_borland)
-  - [`IMAGE_DEBUG_TYPE_RESERVED10`](#image_debug_type_reserved10)
-  - [`IMAGE_DEBUG_TYPE_CLSID`](#image_debug_type_clsid)
-  - [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image_debug_type_vc_feature)
-  - [`IMAGE_DEBUG_TYPE_POGO`](#image_debug_type_pogo)
-  - [`IMAGE_DEBUG_TYPE_ILTCG`](#image_debug_type_iltcg)
-  - [`IMAGE_DEBUG_TYPE_MPX`](#image_debug_type_mpx)
-  - [`IMAGE_DEBUG_TYPE_REPRO`](#image_debug_type_repro)
-  - [`FRAME_FPO`](#frame_fpo)
-  - [`FRAME_TRAP`](#frame_trap)
-  - [`FRAME_TSS`](#frame_tss)
-  - [`FRAME_NONFPO`](#frame_nonfpo)
-  - [`IMAGE_DEBUG_MISC_EXENAME`](#image_debug_misc_exename)
-  - [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image_separate_debug_signature)
-  - [`NON_PAGED_DEBUG_SIGNATURE`](#non_paged_debug_signature)
-  - [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image_separate_debug_flags_mask)
-  - [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image_separate_debug_mismatch)
-  - [`IMPORT_OBJECT_HDR_SIG2`](#import_object_hdr_sig2)
-  - [`IMPORT_OBJECT_TYPE_MASK`](#import_object_type_mask)
-  - [`IMPORT_OBJECT_TYPE_SHIFT`](#import_object_type_shift)
-  - [`IMPORT_OBJECT_CODE`](#import_object_code)
-  - [`IMPORT_OBJECT_DATA`](#import_object_data)
-  - [`IMPORT_OBJECT_CONST`](#import_object_const)
-  - [`IMPORT_OBJECT_NAME_MASK`](#import_object_name_mask)
-  - [`IMPORT_OBJECT_NAME_SHIFT`](#import_object_name_shift)
-  - [`IMPORT_OBJECT_ORDINAL`](#import_object_ordinal)
-  - [`IMPORT_OBJECT_NAME`](#import_object_name)
-  - [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import_object_name_no_prefix)
-  - [`IMPORT_OBJECT_NAME_UNDECORATE`](#import_object_name_undecorate)
-  - [`IMPORT_OBJECT_NAME_EXPORTAS`](#import_object_name_exportas)
-  - [`COMIMAGE_FLAGS_ILONLY`](#comimage_flags_ilonly)
-  - [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage_flags_32bitrequired)
-  - [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage_flags_il_library)
-  - [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage_flags_strongnamesigned)
-  - [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage_flags_native_entrypoint)
-  - [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage_flags_trackdebugdata)
-  - [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage_flags_32bitpreferred)
-  - [`COR_VERSION_MAJOR_V2`](#cor_version_major_v2)
-  - [`COR_VERSION_MAJOR`](#cor_version_major)
-  - [`COR_VERSION_MINOR`](#cor_version_minor)
-  - [`COR_DELETED_NAME_LENGTH`](#cor_deleted_name_length)
-  - [`COR_VTABLEGAP_NAME_LENGTH`](#cor_vtablegap_name_length)
-  - [`NATIVE_TYPE_MAX_CB`](#native_type_max_cb)
-  - [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor_ilmethod_sect_small_max_datasize)
-  - [`IMAGE_COR_MIH_METHODRVA`](#image_cor_mih_methodrva)
-  - [`IMAGE_COR_MIH_EHRVA`](#image_cor_mih_ehrva)
-  - [`IMAGE_COR_MIH_BASICBLOCK`](#image_cor_mih_basicblock)
-  - [`COR_VTABLE_32BIT`](#cor_vtable_32bit)
-  - [`COR_VTABLE_64BIT`](#cor_vtable_64bit)
-  - [`COR_VTABLE_FROM_UNMANAGED`](#cor_vtable_from_unmanaged)
-  - [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor_vtable_from_unmanaged_retain_appdomain)
-  - [`COR_VTABLE_CALL_MOST_DERIVED`](#cor_vtable_call_most_derived)
-  - [`IMAGE_COR_EATJ_THUNK_SIZE`](#image_cor_eatj_thunk_size)
-  - [`MAX_CLASS_NAME`](#max_class_name)
-  - [`MAX_PACKAGE_NAME`](#max_package_name)
+  - [`IMAGE_DOS_SIGNATURE`](#image-dos-signature)
+  - [`IMAGE_OS2_SIGNATURE`](#image-os2-signature)
+  - [`IMAGE_OS2_SIGNATURE_LE`](#image-os2-signature-le)
+  - [`IMAGE_VXD_SIGNATURE`](#image-vxd-signature)
+  - [`IMAGE_NT_SIGNATURE`](#image-nt-signature)
+  - [`IMAGE_SIZEOF_FILE_HEADER`](#image-sizeof-file-header)
+  - [`IMAGE_FILE_RELOCS_STRIPPED`](#image-file-relocs-stripped)
+  - [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image-file-executable-image)
+  - [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image-file-line-nums-stripped)
+  - [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image-file-local-syms-stripped)
+  - [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image-file-aggresive-ws-trim)
+  - [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image-file-large-address-aware)
+  - [`IMAGE_FILE_BYTES_REVERSED_LO`](#image-file-bytes-reversed-lo)
+  - [`IMAGE_FILE_32BIT_MACHINE`](#image-file-32bit-machine)
+  - [`IMAGE_FILE_DEBUG_STRIPPED`](#image-file-debug-stripped)
+  - [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image-file-removable-run-from-swap)
+  - [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image-file-net-run-from-swap)
+  - [`IMAGE_FILE_SYSTEM`](#image-file-system)
+  - [`IMAGE_FILE_DLL`](#image-file-dll)
+  - [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image-file-up-system-only)
+  - [`IMAGE_FILE_BYTES_REVERSED_HI`](#image-file-bytes-reversed-hi)
+  - [`IMAGE_FILE_MACHINE_UNKNOWN`](#image-file-machine-unknown)
+  - [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image-file-machine-target-host)
+  - [`IMAGE_FILE_MACHINE_I386`](#image-file-machine-i386)
+  - [`IMAGE_FILE_MACHINE_R3000`](#image-file-machine-r3000)
+  - [`IMAGE_FILE_MACHINE_R4000`](#image-file-machine-r4000)
+  - [`IMAGE_FILE_MACHINE_R10000`](#image-file-machine-r10000)
+  - [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image-file-machine-wcemipsv2)
+  - [`IMAGE_FILE_MACHINE_ALPHA`](#image-file-machine-alpha)
+  - [`IMAGE_FILE_MACHINE_SH3`](#image-file-machine-sh3)
+  - [`IMAGE_FILE_MACHINE_SH3DSP`](#image-file-machine-sh3dsp)
+  - [`IMAGE_FILE_MACHINE_SH3E`](#image-file-machine-sh3e)
+  - [`IMAGE_FILE_MACHINE_SH4`](#image-file-machine-sh4)
+  - [`IMAGE_FILE_MACHINE_SH5`](#image-file-machine-sh5)
+  - [`IMAGE_FILE_MACHINE_ARM`](#image-file-machine-arm)
+  - [`IMAGE_FILE_MACHINE_THUMB`](#image-file-machine-thumb)
+  - [`IMAGE_FILE_MACHINE_ARMNT`](#image-file-machine-armnt)
+  - [`IMAGE_FILE_MACHINE_AM33`](#image-file-machine-am33)
+  - [`IMAGE_FILE_MACHINE_POWERPC`](#image-file-machine-powerpc)
+  - [`IMAGE_FILE_MACHINE_POWERPCFP`](#image-file-machine-powerpcfp)
+  - [`IMAGE_FILE_MACHINE_POWERPCBE`](#image-file-machine-powerpcbe)
+  - [`IMAGE_FILE_MACHINE_IA64`](#image-file-machine-ia64)
+  - [`IMAGE_FILE_MACHINE_MIPS16`](#image-file-machine-mips16)
+  - [`IMAGE_FILE_MACHINE_ALPHA64`](#image-file-machine-alpha64)
+  - [`IMAGE_FILE_MACHINE_MIPSFPU`](#image-file-machine-mipsfpu)
+  - [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image-file-machine-mipsfpu16)
+  - [`IMAGE_FILE_MACHINE_AXP64`](#image-file-machine-axp64)
+  - [`IMAGE_FILE_MACHINE_TRICORE`](#image-file-machine-tricore)
+  - [`IMAGE_FILE_MACHINE_CEF`](#image-file-machine-cef)
+  - [`IMAGE_FILE_MACHINE_EBC`](#image-file-machine-ebc)
+  - [`IMAGE_FILE_MACHINE_AMD64`](#image-file-machine-amd64)
+  - [`IMAGE_FILE_MACHINE_M32R`](#image-file-machine-m32r)
+  - [`IMAGE_FILE_MACHINE_ARM64`](#image-file-machine-arm64)
+  - [`IMAGE_FILE_MACHINE_ARM64EC`](#image-file-machine-arm64ec)
+  - [`IMAGE_FILE_MACHINE_CEE`](#image-file-machine-cee)
+  - [`IMAGE_FILE_MACHINE_RISCV32`](#image-file-machine-riscv32)
+  - [`IMAGE_FILE_MACHINE_RISCV64`](#image-file-machine-riscv64)
+  - [`IMAGE_FILE_MACHINE_RISCV128`](#image-file-machine-riscv128)
+  - [`IMAGE_FILE_MACHINE_ARM64X`](#image-file-machine-arm64x)
+  - [`IMAGE_FILE_MACHINE_CHPE_X86`](#image-file-machine-chpe-x86)
+  - [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image-numberof-directory-entries)
+  - [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image-nt-optional-hdr32-magic)
+  - [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image-nt-optional-hdr64-magic)
+  - [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image-rom-optional-hdr-magic)
+  - [`IMAGE_SUBSYSTEM_UNKNOWN`](#image-subsystem-unknown)
+  - [`IMAGE_SUBSYSTEM_NATIVE`](#image-subsystem-native)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image-subsystem-windows-gui)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image-subsystem-windows-cui)
+  - [`IMAGE_SUBSYSTEM_OS2_CUI`](#image-subsystem-os2-cui)
+  - [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image-subsystem-posix-cui)
+  - [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image-subsystem-native-windows)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image-subsystem-windows-ce-gui)
+  - [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image-subsystem-efi-application)
+  - [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image-subsystem-efi-boot-service-driver)
+  - [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image-subsystem-efi-runtime-driver)
+  - [`IMAGE_SUBSYSTEM_EFI_ROM`](#image-subsystem-efi-rom)
+  - [`IMAGE_SUBSYSTEM_XBOX`](#image-subsystem-xbox)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image-subsystem-windows-boot-application)
+  - [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image-subsystem-xbox-code-catalog)
+  - [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image-dllcharacteristics-high-entropy-va)
+  - [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image-dllcharacteristics-dynamic-base)
+  - [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image-dllcharacteristics-force-integrity)
+  - [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image-dllcharacteristics-nx-compat)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image-dllcharacteristics-no-isolation)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image-dllcharacteristics-no-seh)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image-dllcharacteristics-no-bind)
+  - [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image-dllcharacteristics-appcontainer)
+  - [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image-dllcharacteristics-wdm-driver)
+  - [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image-dllcharacteristics-guard-cf)
+  - [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image-dllcharacteristics-terminal-server-aware)
+  - [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image-directory-entry-export)
+  - [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image-directory-entry-import)
+  - [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image-directory-entry-resource)
+  - [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image-directory-entry-exception)
+  - [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image-directory-entry-security)
+  - [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image-directory-entry-basereloc)
+  - [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image-directory-entry-debug)
+  - [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image-directory-entry-architecture)
+  - [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image-directory-entry-globalptr)
+  - [`IMAGE_DIRECTORY_ENTRY_TLS`](#image-directory-entry-tls)
+  - [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image-directory-entry-load-config)
+  - [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image-directory-entry-bound-import)
+  - [`IMAGE_DIRECTORY_ENTRY_IAT`](#image-directory-entry-iat)
+  - [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image-directory-entry-delay-import)
+  - [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image-directory-entry-com-descriptor)
+  - [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon-object-header-bigobj-class-id)
+  - [`IMAGE_SIZEOF_SHORT_NAME`](#image-sizeof-short-name)
+  - [`IMAGE_SIZEOF_SECTION_HEADER`](#image-sizeof-section-header)
+  - [`IMAGE_SCN_TYPE_NO_PAD`](#image-scn-type-no-pad)
+  - [`IMAGE_SCN_CNT_CODE`](#image-scn-cnt-code)
+  - [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image-scn-cnt-initialized-data)
+  - [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image-scn-cnt-uninitialized-data)
+  - [`IMAGE_SCN_LNK_OTHER`](#image-scn-lnk-other)
+  - [`IMAGE_SCN_LNK_INFO`](#image-scn-lnk-info)
+  - [`IMAGE_SCN_LNK_REMOVE`](#image-scn-lnk-remove)
+  - [`IMAGE_SCN_LNK_COMDAT`](#image-scn-lnk-comdat)
+  - [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image-scn-no-defer-spec-exc)
+  - [`IMAGE_SCN_GPREL`](#image-scn-gprel)
+  - [`IMAGE_SCN_MEM_FARDATA`](#image-scn-mem-fardata)
+  - [`IMAGE_SCN_MEM_PURGEABLE`](#image-scn-mem-purgeable)
+  - [`IMAGE_SCN_MEM_16BIT`](#image-scn-mem-16bit)
+  - [`IMAGE_SCN_MEM_LOCKED`](#image-scn-mem-locked)
+  - [`IMAGE_SCN_MEM_PRELOAD`](#image-scn-mem-preload)
+  - [`IMAGE_SCN_ALIGN_1BYTES`](#image-scn-align-1bytes)
+  - [`IMAGE_SCN_ALIGN_2BYTES`](#image-scn-align-2bytes)
+  - [`IMAGE_SCN_ALIGN_4BYTES`](#image-scn-align-4bytes)
+  - [`IMAGE_SCN_ALIGN_8BYTES`](#image-scn-align-8bytes)
+  - [`IMAGE_SCN_ALIGN_16BYTES`](#image-scn-align-16bytes)
+  - [`IMAGE_SCN_ALIGN_32BYTES`](#image-scn-align-32bytes)
+  - [`IMAGE_SCN_ALIGN_64BYTES`](#image-scn-align-64bytes)
+  - [`IMAGE_SCN_ALIGN_128BYTES`](#image-scn-align-128bytes)
+  - [`IMAGE_SCN_ALIGN_256BYTES`](#image-scn-align-256bytes)
+  - [`IMAGE_SCN_ALIGN_512BYTES`](#image-scn-align-512bytes)
+  - [`IMAGE_SCN_ALIGN_1024BYTES`](#image-scn-align-1024bytes)
+  - [`IMAGE_SCN_ALIGN_2048BYTES`](#image-scn-align-2048bytes)
+  - [`IMAGE_SCN_ALIGN_4096BYTES`](#image-scn-align-4096bytes)
+  - [`IMAGE_SCN_ALIGN_8192BYTES`](#image-scn-align-8192bytes)
+  - [`IMAGE_SCN_ALIGN_MASK`](#image-scn-align-mask)
+  - [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image-scn-lnk-nreloc-ovfl)
+  - [`IMAGE_SCN_MEM_DISCARDABLE`](#image-scn-mem-discardable)
+  - [`IMAGE_SCN_MEM_NOT_CACHED`](#image-scn-mem-not-cached)
+  - [`IMAGE_SCN_MEM_NOT_PAGED`](#image-scn-mem-not-paged)
+  - [`IMAGE_SCN_MEM_SHARED`](#image-scn-mem-shared)
+  - [`IMAGE_SCN_MEM_EXECUTE`](#image-scn-mem-execute)
+  - [`IMAGE_SCN_MEM_READ`](#image-scn-mem-read)
+  - [`IMAGE_SCN_MEM_WRITE`](#image-scn-mem-write)
+  - [`IMAGE_SCN_SCALE_INDEX`](#image-scn-scale-index)
+  - [`IMAGE_SIZEOF_SYMBOL`](#image-sizeof-symbol)
+  - [`IMAGE_SIZEOF_SYMBOL_EX`](#image-sizeof-symbol-ex)
+  - [`IMAGE_SYM_UNDEFINED`](#image-sym-undefined)
+  - [`IMAGE_SYM_ABSOLUTE`](#image-sym-absolute)
+  - [`IMAGE_SYM_DEBUG`](#image-sym-debug)
+  - [`IMAGE_SYM_SECTION_MAX`](#image-sym-section-max)
+  - [`IMAGE_SYM_SECTION_MAX_EX`](#image-sym-section-max-ex)
+  - [`IMAGE_SYM_TYPE_NULL`](#image-sym-type-null)
+  - [`IMAGE_SYM_TYPE_VOID`](#image-sym-type-void)
+  - [`IMAGE_SYM_TYPE_CHAR`](#image-sym-type-char)
+  - [`IMAGE_SYM_TYPE_SHORT`](#image-sym-type-short)
+  - [`IMAGE_SYM_TYPE_INT`](#image-sym-type-int)
+  - [`IMAGE_SYM_TYPE_LONG`](#image-sym-type-long)
+  - [`IMAGE_SYM_TYPE_FLOAT`](#image-sym-type-float)
+  - [`IMAGE_SYM_TYPE_DOUBLE`](#image-sym-type-double)
+  - [`IMAGE_SYM_TYPE_STRUCT`](#image-sym-type-struct)
+  - [`IMAGE_SYM_TYPE_UNION`](#image-sym-type-union)
+  - [`IMAGE_SYM_TYPE_ENUM`](#image-sym-type-enum)
+  - [`IMAGE_SYM_TYPE_MOE`](#image-sym-type-moe)
+  - [`IMAGE_SYM_TYPE_BYTE`](#image-sym-type-byte)
+  - [`IMAGE_SYM_TYPE_WORD`](#image-sym-type-word)
+  - [`IMAGE_SYM_TYPE_UINT`](#image-sym-type-uint)
+  - [`IMAGE_SYM_TYPE_DWORD`](#image-sym-type-dword)
+  - [`IMAGE_SYM_TYPE_PCODE`](#image-sym-type-pcode)
+  - [`IMAGE_SYM_DTYPE_NULL`](#image-sym-dtype-null)
+  - [`IMAGE_SYM_DTYPE_POINTER`](#image-sym-dtype-pointer)
+  - [`IMAGE_SYM_DTYPE_FUNCTION`](#image-sym-dtype-function)
+  - [`IMAGE_SYM_DTYPE_ARRAY`](#image-sym-dtype-array)
+  - [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image-sym-class-end-of-function)
+  - [`IMAGE_SYM_CLASS_NULL`](#image-sym-class-null)
+  - [`IMAGE_SYM_CLASS_AUTOMATIC`](#image-sym-class-automatic)
+  - [`IMAGE_SYM_CLASS_EXTERNAL`](#image-sym-class-external)
+  - [`IMAGE_SYM_CLASS_STATIC`](#image-sym-class-static)
+  - [`IMAGE_SYM_CLASS_REGISTER`](#image-sym-class-register)
+  - [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image-sym-class-external-def)
+  - [`IMAGE_SYM_CLASS_LABEL`](#image-sym-class-label)
+  - [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image-sym-class-undefined-label)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image-sym-class-member-of-struct)
+  - [`IMAGE_SYM_CLASS_ARGUMENT`](#image-sym-class-argument)
+  - [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image-sym-class-struct-tag)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image-sym-class-member-of-union)
+  - [`IMAGE_SYM_CLASS_UNION_TAG`](#image-sym-class-union-tag)
+  - [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image-sym-class-type-definition)
+  - [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image-sym-class-undefined-static)
+  - [`IMAGE_SYM_CLASS_ENUM_TAG`](#image-sym-class-enum-tag)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image-sym-class-member-of-enum)
+  - [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image-sym-class-register-param)
+  - [`IMAGE_SYM_CLASS_BIT_FIELD`](#image-sym-class-bit-field)
+  - [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image-sym-class-far-external)
+  - [`IMAGE_SYM_CLASS_BLOCK`](#image-sym-class-block)
+  - [`IMAGE_SYM_CLASS_FUNCTION`](#image-sym-class-function)
+  - [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image-sym-class-end-of-struct)
+  - [`IMAGE_SYM_CLASS_FILE`](#image-sym-class-file)
+  - [`IMAGE_SYM_CLASS_SECTION`](#image-sym-class-section)
+  - [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image-sym-class-weak-external)
+  - [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image-sym-class-clr-token)
+  - [`N_BTMASK`](#n-btmask)
+  - [`N_TMASK`](#n-tmask)
+  - [`N_TMASK1`](#n-tmask1)
+  - [`N_TMASK2`](#n-tmask2)
+  - [`N_BTSHFT`](#n-btshft)
+  - [`N_TSHIFT`](#n-tshift)
+  - [`IMAGE_SYM_DTYPE_SHIFT`](#image-sym-dtype-shift)
+  - [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image-aux-symbol-type-token-def)
+  - [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image-comdat-select-noduplicates)
+  - [`IMAGE_COMDAT_SELECT_ANY`](#image-comdat-select-any)
+  - [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image-comdat-select-same-size)
+  - [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image-comdat-select-exact-match)
+  - [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image-comdat-select-associative)
+  - [`IMAGE_COMDAT_SELECT_LARGEST`](#image-comdat-select-largest)
+  - [`IMAGE_COMDAT_SELECT_NEWEST`](#image-comdat-select-newest)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image-weak-extern-search-nolibrary)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image-weak-extern-search-library)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image-weak-extern-search-alias)
+  - [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image-weak-extern-anti-dependency)
+  - [`IMAGE_REL_I386_ABSOLUTE`](#image-rel-i386-absolute)
+  - [`IMAGE_REL_I386_DIR16`](#image-rel-i386-dir16)
+  - [`IMAGE_REL_I386_REL16`](#image-rel-i386-rel16)
+  - [`IMAGE_REL_I386_DIR32`](#image-rel-i386-dir32)
+  - [`IMAGE_REL_I386_DIR32NB`](#image-rel-i386-dir32nb)
+  - [`IMAGE_REL_I386_SEG12`](#image-rel-i386-seg12)
+  - [`IMAGE_REL_I386_SECTION`](#image-rel-i386-section)
+  - [`IMAGE_REL_I386_SECREL`](#image-rel-i386-secrel)
+  - [`IMAGE_REL_I386_TOKEN`](#image-rel-i386-token)
+  - [`IMAGE_REL_I386_SECREL7`](#image-rel-i386-secrel7)
+  - [`IMAGE_REL_I386_REL32`](#image-rel-i386-rel32)
+  - [`IMAGE_REL_MIPS_ABSOLUTE`](#image-rel-mips-absolute)
+  - [`IMAGE_REL_MIPS_REFHALF`](#image-rel-mips-refhalf)
+  - [`IMAGE_REL_MIPS_REFWORD`](#image-rel-mips-refword)
+  - [`IMAGE_REL_MIPS_JMPADDR`](#image-rel-mips-jmpaddr)
+  - [`IMAGE_REL_MIPS_REFHI`](#image-rel-mips-refhi)
+  - [`IMAGE_REL_MIPS_REFLO`](#image-rel-mips-reflo)
+  - [`IMAGE_REL_MIPS_GPREL`](#image-rel-mips-gprel)
+  - [`IMAGE_REL_MIPS_LITERAL`](#image-rel-mips-literal)
+  - [`IMAGE_REL_MIPS_SECTION`](#image-rel-mips-section)
+  - [`IMAGE_REL_MIPS_SECREL`](#image-rel-mips-secrel)
+  - [`IMAGE_REL_MIPS_SECRELLO`](#image-rel-mips-secrello)
+  - [`IMAGE_REL_MIPS_SECRELHI`](#image-rel-mips-secrelhi)
+  - [`IMAGE_REL_MIPS_TOKEN`](#image-rel-mips-token)
+  - [`IMAGE_REL_MIPS_JMPADDR16`](#image-rel-mips-jmpaddr16)
+  - [`IMAGE_REL_MIPS_REFWORDNB`](#image-rel-mips-refwordnb)
+  - [`IMAGE_REL_MIPS_PAIR`](#image-rel-mips-pair)
+  - [`IMAGE_REL_ALPHA_ABSOLUTE`](#image-rel-alpha-absolute)
+  - [`IMAGE_REL_ALPHA_REFLONG`](#image-rel-alpha-reflong)
+  - [`IMAGE_REL_ALPHA_REFQUAD`](#image-rel-alpha-refquad)
+  - [`IMAGE_REL_ALPHA_GPREL32`](#image-rel-alpha-gprel32)
+  - [`IMAGE_REL_ALPHA_LITERAL`](#image-rel-alpha-literal)
+  - [`IMAGE_REL_ALPHA_LITUSE`](#image-rel-alpha-lituse)
+  - [`IMAGE_REL_ALPHA_GPDISP`](#image-rel-alpha-gpdisp)
+  - [`IMAGE_REL_ALPHA_BRADDR`](#image-rel-alpha-braddr)
+  - [`IMAGE_REL_ALPHA_HINT`](#image-rel-alpha-hint)
+  - [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image-rel-alpha-inline-reflong)
+  - [`IMAGE_REL_ALPHA_REFHI`](#image-rel-alpha-refhi)
+  - [`IMAGE_REL_ALPHA_REFLO`](#image-rel-alpha-reflo)
+  - [`IMAGE_REL_ALPHA_PAIR`](#image-rel-alpha-pair)
+  - [`IMAGE_REL_ALPHA_MATCH`](#image-rel-alpha-match)
+  - [`IMAGE_REL_ALPHA_SECTION`](#image-rel-alpha-section)
+  - [`IMAGE_REL_ALPHA_SECREL`](#image-rel-alpha-secrel)
+  - [`IMAGE_REL_ALPHA_REFLONGNB`](#image-rel-alpha-reflongnb)
+  - [`IMAGE_REL_ALPHA_SECRELLO`](#image-rel-alpha-secrello)
+  - [`IMAGE_REL_ALPHA_SECRELHI`](#image-rel-alpha-secrelhi)
+  - [`IMAGE_REL_ALPHA_REFQ3`](#image-rel-alpha-refq3)
+  - [`IMAGE_REL_ALPHA_REFQ2`](#image-rel-alpha-refq2)
+  - [`IMAGE_REL_ALPHA_REFQ1`](#image-rel-alpha-refq1)
+  - [`IMAGE_REL_ALPHA_GPRELLO`](#image-rel-alpha-gprello)
+  - [`IMAGE_REL_ALPHA_GPRELHI`](#image-rel-alpha-gprelhi)
+  - [`IMAGE_REL_PPC_ABSOLUTE`](#image-rel-ppc-absolute)
+  - [`IMAGE_REL_PPC_ADDR64`](#image-rel-ppc-addr64)
+  - [`IMAGE_REL_PPC_ADDR32`](#image-rel-ppc-addr32)
+  - [`IMAGE_REL_PPC_ADDR24`](#image-rel-ppc-addr24)
+  - [`IMAGE_REL_PPC_ADDR16`](#image-rel-ppc-addr16)
+  - [`IMAGE_REL_PPC_ADDR14`](#image-rel-ppc-addr14)
+  - [`IMAGE_REL_PPC_REL24`](#image-rel-ppc-rel24)
+  - [`IMAGE_REL_PPC_REL14`](#image-rel-ppc-rel14)
+  - [`IMAGE_REL_PPC_TOCREL16`](#image-rel-ppc-tocrel16)
+  - [`IMAGE_REL_PPC_TOCREL14`](#image-rel-ppc-tocrel14)
+  - [`IMAGE_REL_PPC_ADDR32NB`](#image-rel-ppc-addr32nb)
+  - [`IMAGE_REL_PPC_SECREL`](#image-rel-ppc-secrel)
+  - [`IMAGE_REL_PPC_SECTION`](#image-rel-ppc-section)
+  - [`IMAGE_REL_PPC_IFGLUE`](#image-rel-ppc-ifglue)
+  - [`IMAGE_REL_PPC_IMGLUE`](#image-rel-ppc-imglue)
+  - [`IMAGE_REL_PPC_SECREL16`](#image-rel-ppc-secrel16)
+  - [`IMAGE_REL_PPC_REFHI`](#image-rel-ppc-refhi)
+  - [`IMAGE_REL_PPC_REFLO`](#image-rel-ppc-reflo)
+  - [`IMAGE_REL_PPC_PAIR`](#image-rel-ppc-pair)
+  - [`IMAGE_REL_PPC_SECRELLO`](#image-rel-ppc-secrello)
+  - [`IMAGE_REL_PPC_SECRELHI`](#image-rel-ppc-secrelhi)
+  - [`IMAGE_REL_PPC_GPREL`](#image-rel-ppc-gprel)
+  - [`IMAGE_REL_PPC_TOKEN`](#image-rel-ppc-token)
+  - [`IMAGE_REL_PPC_TYPEMASK`](#image-rel-ppc-typemask)
+  - [`IMAGE_REL_PPC_NEG`](#image-rel-ppc-neg)
+  - [`IMAGE_REL_PPC_BRTAKEN`](#image-rel-ppc-brtaken)
+  - [`IMAGE_REL_PPC_BRNTAKEN`](#image-rel-ppc-brntaken)
+  - [`IMAGE_REL_PPC_TOCDEFN`](#image-rel-ppc-tocdefn)
+  - [`IMAGE_REL_SH3_ABSOLUTE`](#image-rel-sh3-absolute)
+  - [`IMAGE_REL_SH3_DIRECT16`](#image-rel-sh3-direct16)
+  - [`IMAGE_REL_SH3_DIRECT32`](#image-rel-sh3-direct32)
+  - [`IMAGE_REL_SH3_DIRECT8`](#image-rel-sh3-direct8)
+  - [`IMAGE_REL_SH3_DIRECT8_WORD`](#image-rel-sh3-direct8-word)
+  - [`IMAGE_REL_SH3_DIRECT8_LONG`](#image-rel-sh3-direct8-long)
+  - [`IMAGE_REL_SH3_DIRECT4`](#image-rel-sh3-direct4)
+  - [`IMAGE_REL_SH3_DIRECT4_WORD`](#image-rel-sh3-direct4-word)
+  - [`IMAGE_REL_SH3_DIRECT4_LONG`](#image-rel-sh3-direct4-long)
+  - [`IMAGE_REL_SH3_PCREL8_WORD`](#image-rel-sh3-pcrel8-word)
+  - [`IMAGE_REL_SH3_PCREL8_LONG`](#image-rel-sh3-pcrel8-long)
+  - [`IMAGE_REL_SH3_PCREL12_WORD`](#image-rel-sh3-pcrel12-word)
+  - [`IMAGE_REL_SH3_STARTOF_SECTION`](#image-rel-sh3-startof-section)
+  - [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image-rel-sh3-sizeof-section)
+  - [`IMAGE_REL_SH3_SECTION`](#image-rel-sh3-section)
+  - [`IMAGE_REL_SH3_SECREL`](#image-rel-sh3-secrel)
+  - [`IMAGE_REL_SH3_DIRECT32_NB`](#image-rel-sh3-direct32-nb)
+  - [`IMAGE_REL_SH3_GPREL4_LONG`](#image-rel-sh3-gprel4-long)
+  - [`IMAGE_REL_SH3_TOKEN`](#image-rel-sh3-token)
+  - [`IMAGE_REL_SHM_PCRELPT`](#image-rel-shm-pcrelpt)
+  - [`IMAGE_REL_SHM_REFLO`](#image-rel-shm-reflo)
+  - [`IMAGE_REL_SHM_REFHALF`](#image-rel-shm-refhalf)
+  - [`IMAGE_REL_SHM_RELLO`](#image-rel-shm-rello)
+  - [`IMAGE_REL_SHM_RELHALF`](#image-rel-shm-relhalf)
+  - [`IMAGE_REL_SHM_PAIR`](#image-rel-shm-pair)
+  - [`IMAGE_REL_SH_NOMODE`](#image-rel-sh-nomode)
+  - [`IMAGE_REL_ARM_ABSOLUTE`](#image-rel-arm-absolute)
+  - [`IMAGE_REL_ARM_ADDR32`](#image-rel-arm-addr32)
+  - [`IMAGE_REL_ARM_ADDR32NB`](#image-rel-arm-addr32nb)
+  - [`IMAGE_REL_ARM_BRANCH24`](#image-rel-arm-branch24)
+  - [`IMAGE_REL_ARM_BRANCH11`](#image-rel-arm-branch11)
+  - [`IMAGE_REL_ARM_TOKEN`](#image-rel-arm-token)
+  - [`IMAGE_REL_ARM_GPREL12`](#image-rel-arm-gprel12)
+  - [`IMAGE_REL_ARM_GPREL7`](#image-rel-arm-gprel7)
+  - [`IMAGE_REL_ARM_BLX24`](#image-rel-arm-blx24)
+  - [`IMAGE_REL_ARM_BLX11`](#image-rel-arm-blx11)
+  - [`IMAGE_REL_ARM_REL32`](#image-rel-arm-rel32)
+  - [`IMAGE_REL_ARM_SECTION`](#image-rel-arm-section)
+  - [`IMAGE_REL_ARM_SECREL`](#image-rel-arm-secrel)
+  - [`IMAGE_REL_ARM_MOV32A`](#image-rel-arm-mov32a)
+  - [`IMAGE_REL_ARM_MOV32`](#image-rel-arm-mov32)
+  - [`IMAGE_REL_ARM_MOV32T`](#image-rel-arm-mov32t)
+  - [`IMAGE_REL_THUMB_MOV32`](#image-rel-thumb-mov32)
+  - [`IMAGE_REL_ARM_BRANCH20T`](#image-rel-arm-branch20t)
+  - [`IMAGE_REL_THUMB_BRANCH20`](#image-rel-thumb-branch20)
+  - [`IMAGE_REL_ARM_BRANCH24T`](#image-rel-arm-branch24t)
+  - [`IMAGE_REL_THUMB_BRANCH24`](#image-rel-thumb-branch24)
+  - [`IMAGE_REL_ARM_BLX23T`](#image-rel-arm-blx23t)
+  - [`IMAGE_REL_THUMB_BLX23`](#image-rel-thumb-blx23)
+  - [`IMAGE_REL_AM_ABSOLUTE`](#image-rel-am-absolute)
+  - [`IMAGE_REL_AM_ADDR32`](#image-rel-am-addr32)
+  - [`IMAGE_REL_AM_ADDR32NB`](#image-rel-am-addr32nb)
+  - [`IMAGE_REL_AM_CALL32`](#image-rel-am-call32)
+  - [`IMAGE_REL_AM_FUNCINFO`](#image-rel-am-funcinfo)
+  - [`IMAGE_REL_AM_REL32_1`](#image-rel-am-rel32-1)
+  - [`IMAGE_REL_AM_REL32_2`](#image-rel-am-rel32-2)
+  - [`IMAGE_REL_AM_SECREL`](#image-rel-am-secrel)
+  - [`IMAGE_REL_AM_SECTION`](#image-rel-am-section)
+  - [`IMAGE_REL_AM_TOKEN`](#image-rel-am-token)
+  - [`IMAGE_REL_ARM64_ABSOLUTE`](#image-rel-arm64-absolute)
+  - [`IMAGE_REL_ARM64_ADDR32`](#image-rel-arm64-addr32)
+  - [`IMAGE_REL_ARM64_ADDR32NB`](#image-rel-arm64-addr32nb)
+  - [`IMAGE_REL_ARM64_BRANCH26`](#image-rel-arm64-branch26)
+  - [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image-rel-arm64-pagebase-rel21)
+  - [`IMAGE_REL_ARM64_REL21`](#image-rel-arm64-rel21)
+  - [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image-rel-arm64-pageoffset-12a)
+  - [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image-rel-arm64-pageoffset-12l)
+  - [`IMAGE_REL_ARM64_SECREL`](#image-rel-arm64-secrel)
+  - [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image-rel-arm64-secrel-low12a)
+  - [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image-rel-arm64-secrel-high12a)
+  - [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image-rel-arm64-secrel-low12l)
+  - [`IMAGE_REL_ARM64_TOKEN`](#image-rel-arm64-token)
+  - [`IMAGE_REL_ARM64_SECTION`](#image-rel-arm64-section)
+  - [`IMAGE_REL_ARM64_ADDR64`](#image-rel-arm64-addr64)
+  - [`IMAGE_REL_ARM64_BRANCH19`](#image-rel-arm64-branch19)
+  - [`IMAGE_REL_ARM64_BRANCH14`](#image-rel-arm64-branch14)
+  - [`IMAGE_REL_ARM64_REL32`](#image-rel-arm64-rel32)
+  - [`IMAGE_REL_AMD64_ABSOLUTE`](#image-rel-amd64-absolute)
+  - [`IMAGE_REL_AMD64_ADDR64`](#image-rel-amd64-addr64)
+  - [`IMAGE_REL_AMD64_ADDR32`](#image-rel-amd64-addr32)
+  - [`IMAGE_REL_AMD64_ADDR32NB`](#image-rel-amd64-addr32nb)
+  - [`IMAGE_REL_AMD64_REL32`](#image-rel-amd64-rel32)
+  - [`IMAGE_REL_AMD64_REL32_1`](#image-rel-amd64-rel32-1)
+  - [`IMAGE_REL_AMD64_REL32_2`](#image-rel-amd64-rel32-2)
+  - [`IMAGE_REL_AMD64_REL32_3`](#image-rel-amd64-rel32-3)
+  - [`IMAGE_REL_AMD64_REL32_4`](#image-rel-amd64-rel32-4)
+  - [`IMAGE_REL_AMD64_REL32_5`](#image-rel-amd64-rel32-5)
+  - [`IMAGE_REL_AMD64_SECTION`](#image-rel-amd64-section)
+  - [`IMAGE_REL_AMD64_SECREL`](#image-rel-amd64-secrel)
+  - [`IMAGE_REL_AMD64_SECREL7`](#image-rel-amd64-secrel7)
+  - [`IMAGE_REL_AMD64_TOKEN`](#image-rel-amd64-token)
+  - [`IMAGE_REL_AMD64_SREL32`](#image-rel-amd64-srel32)
+  - [`IMAGE_REL_AMD64_PAIR`](#image-rel-amd64-pair)
+  - [`IMAGE_REL_AMD64_SSPAN32`](#image-rel-amd64-sspan32)
+  - [`IMAGE_REL_AMD64_EHANDLER`](#image-rel-amd64-ehandler)
+  - [`IMAGE_REL_AMD64_IMPORT_BR`](#image-rel-amd64-import-br)
+  - [`IMAGE_REL_AMD64_IMPORT_CALL`](#image-rel-amd64-import-call)
+  - [`IMAGE_REL_AMD64_CFG_BR`](#image-rel-amd64-cfg-br)
+  - [`IMAGE_REL_AMD64_CFG_BR_REX`](#image-rel-amd64-cfg-br-rex)
+  - [`IMAGE_REL_AMD64_CFG_CALL`](#image-rel-amd64-cfg-call)
+  - [`IMAGE_REL_AMD64_INDIR_BR`](#image-rel-amd64-indir-br)
+  - [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image-rel-amd64-indir-br-rex)
+  - [`IMAGE_REL_AMD64_INDIR_CALL`](#image-rel-amd64-indir-call)
+  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image-rel-amd64-indir-br-switchtable-first)
+  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image-rel-amd64-indir-br-switchtable-last)
+  - [`IMAGE_REL_IA64_ABSOLUTE`](#image-rel-ia64-absolute)
+  - [`IMAGE_REL_IA64_IMM14`](#image-rel-ia64-imm14)
+  - [`IMAGE_REL_IA64_IMM22`](#image-rel-ia64-imm22)
+  - [`IMAGE_REL_IA64_IMM64`](#image-rel-ia64-imm64)
+  - [`IMAGE_REL_IA64_DIR32`](#image-rel-ia64-dir32)
+  - [`IMAGE_REL_IA64_DIR64`](#image-rel-ia64-dir64)
+  - [`IMAGE_REL_IA64_PCREL21B`](#image-rel-ia64-pcrel21b)
+  - [`IMAGE_REL_IA64_PCREL21M`](#image-rel-ia64-pcrel21m)
+  - [`IMAGE_REL_IA64_PCREL21F`](#image-rel-ia64-pcrel21f)
+  - [`IMAGE_REL_IA64_GPREL22`](#image-rel-ia64-gprel22)
+  - [`IMAGE_REL_IA64_LTOFF22`](#image-rel-ia64-ltoff22)
+  - [`IMAGE_REL_IA64_SECTION`](#image-rel-ia64-section)
+  - [`IMAGE_REL_IA64_SECREL22`](#image-rel-ia64-secrel22)
+  - [`IMAGE_REL_IA64_SECREL64I`](#image-rel-ia64-secrel64i)
+  - [`IMAGE_REL_IA64_SECREL32`](#image-rel-ia64-secrel32)
+  - [`IMAGE_REL_IA64_DIR32NB`](#image-rel-ia64-dir32nb)
+  - [`IMAGE_REL_IA64_SREL14`](#image-rel-ia64-srel14)
+  - [`IMAGE_REL_IA64_SREL22`](#image-rel-ia64-srel22)
+  - [`IMAGE_REL_IA64_SREL32`](#image-rel-ia64-srel32)
+  - [`IMAGE_REL_IA64_UREL32`](#image-rel-ia64-urel32)
+  - [`IMAGE_REL_IA64_PCREL60X`](#image-rel-ia64-pcrel60x)
+  - [`IMAGE_REL_IA64_PCREL60B`](#image-rel-ia64-pcrel60b)
+  - [`IMAGE_REL_IA64_PCREL60F`](#image-rel-ia64-pcrel60f)
+  - [`IMAGE_REL_IA64_PCREL60I`](#image-rel-ia64-pcrel60i)
+  - [`IMAGE_REL_IA64_PCREL60M`](#image-rel-ia64-pcrel60m)
+  - [`IMAGE_REL_IA64_IMMGPREL64`](#image-rel-ia64-immgprel64)
+  - [`IMAGE_REL_IA64_TOKEN`](#image-rel-ia64-token)
+  - [`IMAGE_REL_IA64_GPREL32`](#image-rel-ia64-gprel32)
+  - [`IMAGE_REL_IA64_ADDEND`](#image-rel-ia64-addend)
+  - [`IMAGE_REL_CEF_ABSOLUTE`](#image-rel-cef-absolute)
+  - [`IMAGE_REL_CEF_ADDR32`](#image-rel-cef-addr32)
+  - [`IMAGE_REL_CEF_ADDR64`](#image-rel-cef-addr64)
+  - [`IMAGE_REL_CEF_ADDR32NB`](#image-rel-cef-addr32nb)
+  - [`IMAGE_REL_CEF_SECTION`](#image-rel-cef-section)
+  - [`IMAGE_REL_CEF_SECREL`](#image-rel-cef-secrel)
+  - [`IMAGE_REL_CEF_TOKEN`](#image-rel-cef-token)
+  - [`IMAGE_REL_CEE_ABSOLUTE`](#image-rel-cee-absolute)
+  - [`IMAGE_REL_CEE_ADDR32`](#image-rel-cee-addr32)
+  - [`IMAGE_REL_CEE_ADDR64`](#image-rel-cee-addr64)
+  - [`IMAGE_REL_CEE_ADDR32NB`](#image-rel-cee-addr32nb)
+  - [`IMAGE_REL_CEE_SECTION`](#image-rel-cee-section)
+  - [`IMAGE_REL_CEE_SECREL`](#image-rel-cee-secrel)
+  - [`IMAGE_REL_CEE_TOKEN`](#image-rel-cee-token)
+  - [`IMAGE_REL_M32R_ABSOLUTE`](#image-rel-m32r-absolute)
+  - [`IMAGE_REL_M32R_ADDR32`](#image-rel-m32r-addr32)
+  - [`IMAGE_REL_M32R_ADDR32NB`](#image-rel-m32r-addr32nb)
+  - [`IMAGE_REL_M32R_ADDR24`](#image-rel-m32r-addr24)
+  - [`IMAGE_REL_M32R_GPREL16`](#image-rel-m32r-gprel16)
+  - [`IMAGE_REL_M32R_PCREL24`](#image-rel-m32r-pcrel24)
+  - [`IMAGE_REL_M32R_PCREL16`](#image-rel-m32r-pcrel16)
+  - [`IMAGE_REL_M32R_PCREL8`](#image-rel-m32r-pcrel8)
+  - [`IMAGE_REL_M32R_REFHALF`](#image-rel-m32r-refhalf)
+  - [`IMAGE_REL_M32R_REFHI`](#image-rel-m32r-refhi)
+  - [`IMAGE_REL_M32R_REFLO`](#image-rel-m32r-reflo)
+  - [`IMAGE_REL_M32R_PAIR`](#image-rel-m32r-pair)
+  - [`IMAGE_REL_M32R_SECTION`](#image-rel-m32r-section)
+  - [`IMAGE_REL_M32R_SECREL32`](#image-rel-m32r-secrel32)
+  - [`IMAGE_REL_M32R_TOKEN`](#image-rel-m32r-token)
+  - [`IMAGE_REL_EBC_ABSOLUTE`](#image-rel-ebc-absolute)
+  - [`IMAGE_REL_EBC_ADDR32NB`](#image-rel-ebc-addr32nb)
+  - [`IMAGE_REL_EBC_REL32`](#image-rel-ebc-rel32)
+  - [`IMAGE_REL_EBC_SECTION`](#image-rel-ebc-section)
+  - [`IMAGE_REL_EBC_SECREL`](#image-rel-ebc-secrel)
+  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch-enc-i17-imm7b-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch-enc-i17-imm7b-size-x)
+  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch-enc-i17-imm7b-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch-enc-i17-imm7b-val-pos-x)
+  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch-enc-i17-imm9d-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch-enc-i17-imm9d-size-x)
+  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch-enc-i17-imm9d-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch-enc-i17-imm9d-val-pos-x)
+  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch-enc-i17-imm5c-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch-enc-i17-imm5c-size-x)
+  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch-enc-i17-imm5c-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch-enc-i17-imm5c-val-pos-x)
+  - [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch-enc-i17-ic-inst-word-x)
+  - [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch-enc-i17-ic-size-x)
+  - [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch-enc-i17-ic-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch-enc-i17-ic-val-pos-x)
+  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch-enc-i17-imm41a-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch-enc-i17-imm41a-size-x)
+  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch-enc-i17-imm41a-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch-enc-i17-imm41a-val-pos-x)
+  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch-enc-i17-imm41b-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch-enc-i17-imm41b-size-x)
+  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch-enc-i17-imm41b-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch-enc-i17-imm41b-val-pos-x)
+  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch-enc-i17-imm41c-inst-word-x)
+  - [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch-enc-i17-imm41c-size-x)
+  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch-enc-i17-imm41c-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch-enc-i17-imm41c-val-pos-x)
+  - [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch-enc-i17-sign-inst-word-x)
+  - [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch-enc-i17-sign-size-x)
+  - [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch-enc-i17-sign-inst-word-pos-x)
+  - [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch-enc-i17-sign-val-pos-x)
+  - [`X3_OPCODE_INST_WORD_X`](#x3-opcode-inst-word-x)
+  - [`X3_OPCODE_SIZE_X`](#x3-opcode-size-x)
+  - [`X3_OPCODE_INST_WORD_POS_X`](#x3-opcode-inst-word-pos-x)
+  - [`X3_OPCODE_SIGN_VAL_POS_X`](#x3-opcode-sign-val-pos-x)
+  - [`X3_I_INST_WORD_X`](#x3-i-inst-word-x)
+  - [`X3_I_SIZE_X`](#x3-i-size-x)
+  - [`X3_I_INST_WORD_POS_X`](#x3-i-inst-word-pos-x)
+  - [`X3_I_SIGN_VAL_POS_X`](#x3-i-sign-val-pos-x)
+  - [`X3_D_WH_INST_WORD_X`](#x3-d-wh-inst-word-x)
+  - [`X3_D_WH_SIZE_X`](#x3-d-wh-size-x)
+  - [`X3_D_WH_INST_WORD_POS_X`](#x3-d-wh-inst-word-pos-x)
+  - [`X3_D_WH_SIGN_VAL_POS_X`](#x3-d-wh-sign-val-pos-x)
+  - [`X3_IMM20_INST_WORD_X`](#x3-imm20-inst-word-x)
+  - [`X3_IMM20_SIZE_X`](#x3-imm20-size-x)
+  - [`X3_IMM20_INST_WORD_POS_X`](#x3-imm20-inst-word-pos-x)
+  - [`X3_IMM20_SIGN_VAL_POS_X`](#x3-imm20-sign-val-pos-x)
+  - [`X3_IMM39_1_INST_WORD_X`](#x3-imm39-1-inst-word-x)
+  - [`X3_IMM39_1_SIZE_X`](#x3-imm39-1-size-x)
+  - [`X3_IMM39_1_INST_WORD_POS_X`](#x3-imm39-1-inst-word-pos-x)
+  - [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3-imm39-1-sign-val-pos-x)
+  - [`X3_IMM39_2_INST_WORD_X`](#x3-imm39-2-inst-word-x)
+  - [`X3_IMM39_2_SIZE_X`](#x3-imm39-2-size-x)
+  - [`X3_IMM39_2_INST_WORD_POS_X`](#x3-imm39-2-inst-word-pos-x)
+  - [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3-imm39-2-sign-val-pos-x)
+  - [`X3_P_INST_WORD_X`](#x3-p-inst-word-x)
+  - [`X3_P_SIZE_X`](#x3-p-size-x)
+  - [`X3_P_INST_WORD_POS_X`](#x3-p-inst-word-pos-x)
+  - [`X3_P_SIGN_VAL_POS_X`](#x3-p-sign-val-pos-x)
+  - [`X3_TMPLT_INST_WORD_X`](#x3-tmplt-inst-word-x)
+  - [`X3_TMPLT_SIZE_X`](#x3-tmplt-size-x)
+  - [`X3_TMPLT_INST_WORD_POS_X`](#x3-tmplt-inst-word-pos-x)
+  - [`X3_TMPLT_SIGN_VAL_POS_X`](#x3-tmplt-sign-val-pos-x)
+  - [`X3_BTYPE_QP_INST_WORD_X`](#x3-btype-qp-inst-word-x)
+  - [`X3_BTYPE_QP_SIZE_X`](#x3-btype-qp-size-x)
+  - [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3-btype-qp-inst-word-pos-x)
+  - [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3-btype-qp-inst-val-pos-x)
+  - [`X3_EMPTY_INST_WORD_X`](#x3-empty-inst-word-x)
+  - [`X3_EMPTY_SIZE_X`](#x3-empty-size-x)
+  - [`X3_EMPTY_INST_WORD_POS_X`](#x3-empty-inst-word-pos-x)
+  - [`X3_EMPTY_INST_VAL_POS_X`](#x3-empty-inst-val-pos-x)
+  - [`IMAGE_REL_BASED_ABSOLUTE`](#image-rel-based-absolute)
+  - [`IMAGE_REL_BASED_HIGH`](#image-rel-based-high)
+  - [`IMAGE_REL_BASED_LOW`](#image-rel-based-low)
+  - [`IMAGE_REL_BASED_HIGHLOW`](#image-rel-based-highlow)
+  - [`IMAGE_REL_BASED_HIGHADJ`](#image-rel-based-highadj)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image-rel-based-machine-specific-5)
+  - [`IMAGE_REL_BASED_RESERVED`](#image-rel-based-reserved)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image-rel-based-machine-specific-7)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image-rel-based-machine-specific-8)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image-rel-based-machine-specific-9)
+  - [`IMAGE_REL_BASED_DIR64`](#image-rel-based-dir64)
+  - [`IMAGE_REL_BASED_IA64_IMM64`](#image-rel-based-ia64-imm64)
+  - [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image-rel-based-mips-jmpaddr)
+  - [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image-rel-based-mips-jmpaddr16)
+  - [`IMAGE_REL_BASED_ARM_MOV32`](#image-rel-based-arm-mov32)
+  - [`IMAGE_REL_BASED_THUMB_MOV32`](#image-rel-based-thumb-mov32)
+  - [`IMAGE_REL_BASED_RISCV_HIGH20`](#image-rel-based-riscv-high20)
+  - [`IMAGE_REL_BASED_RISCV_LOW12I`](#image-rel-based-riscv-low12i)
+  - [`IMAGE_REL_BASED_RISCV_LOW12S`](#image-rel-based-riscv-low12s)
+  - [`IMAGE_ARCHIVE_START_SIZE`](#image-archive-start-size)
+  - [`IMAGE_ARCHIVE_START`](#image-archive-start)
+  - [`IMAGE_ARCHIVE_END`](#image-archive-end)
+  - [`IMAGE_ARCHIVE_PAD`](#image-archive-pad)
+  - [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image-archive-linker-member)
+  - [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image-archive-longnames-member)
+  - [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image-archive-hybridmap-member)
+  - [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image-sizeof-archive-member-hdr)
+  - [`IMAGE_ORDINAL_FLAG64`](#image-ordinal-flag64)
+  - [`IMAGE_ORDINAL_FLAG32`](#image-ordinal-flag32)
+  - [`IMAGE_DELAYLOAD_RVA_BASED`](#image-delayload-rva-based)
+  - [`IMAGE_RESOURCE_NAME_IS_STRING`](#image-resource-name-is-string)
+  - [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image-resource-data-is-directory)
+  - [`RT_CURSOR`](#rt-cursor)
+  - [`RT_BITMAP`](#rt-bitmap)
+  - [`RT_ICON`](#rt-icon)
+  - [`RT_MENU`](#rt-menu)
+  - [`RT_DIALOG`](#rt-dialog)
+  - [`RT_STRING`](#rt-string)
+  - [`RT_FONTDIR`](#rt-fontdir)
+  - [`RT_FONT`](#rt-font)
+  - [`RT_ACCELERATOR`](#rt-accelerator)
+  - [`RT_RCDATA`](#rt-rcdata)
+  - [`RT_MESSAGETABLE`](#rt-messagetable)
+  - [`RT_GROUP_CURSOR`](#rt-group-cursor)
+  - [`RT_GROUP_ICON`](#rt-group-icon)
+  - [`RT_VERSION`](#rt-version)
+  - [`RT_DLGINCLUDE`](#rt-dlginclude)
+  - [`RT_PLUGPLAY`](#rt-plugplay)
+  - [`RT_VXD`](#rt-vxd)
+  - [`RT_ANICURSOR`](#rt-anicursor)
+  - [`RT_ANIICON`](#rt-aniicon)
+  - [`RT_HTML`](#rt-html)
+  - [`RT_MANIFEST`](#rt-manifest)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image-dynamic-relocation-guard-rf-prologue)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image-dynamic-relocation-guard-rf-epilogue)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image-dynamic-relocation-guard-import-control-transfer)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image-dynamic-relocation-guard-indir-control-transfer)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image-dynamic-relocation-guard-switchtable-branch)
+  - [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image-hot-patch-base-obligatory)
+  - [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image-hot-patch-base-can-roll-back)
+  - [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image-hot-patch-chunk-inverse)
+  - [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image-hot-patch-chunk-obligatory)
+  - [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image-hot-patch-chunk-reserved)
+  - [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image-hot-patch-chunk-type)
+  - [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image-hot-patch-chunk-source-rva)
+  - [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image-hot-patch-chunk-target-rva)
+  - [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image-hot-patch-chunk-size)
+  - [`IMAGE_HOT_PATCH_NONE`](#image-hot-patch-none)
+  - [`IMAGE_HOT_PATCH_FUNCTION`](#image-hot-patch-function)
+  - [`IMAGE_HOT_PATCH_ABSOLUTE`](#image-hot-patch-absolute)
+  - [`IMAGE_HOT_PATCH_REL32`](#image-hot-patch-rel32)
+  - [`IMAGE_HOT_PATCH_CALL_TARGET`](#image-hot-patch-call-target)
+  - [`IMAGE_HOT_PATCH_INDIRECT`](#image-hot-patch-indirect)
+  - [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image-hot-patch-no-call-target)
+  - [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image-hot-patch-dynamic-value)
+  - [`IMAGE_GUARD_CF_INSTRUMENTED`](#image-guard-cf-instrumented)
+  - [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image-guard-cfw-instrumented)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image-guard-cf-function-table-present)
+  - [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image-guard-security-cookie-unused)
+  - [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image-guard-protect-delayload-iat)
+  - [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image-guard-delayload-iat-in-its-own-section)
+  - [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image-guard-cf-export-suppression-info-present)
+  - [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image-guard-cf-enable-export-suppression)
+  - [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image-guard-cf-longjump-table-present)
+  - [`IMAGE_GUARD_RF_INSTRUMENTED`](#image-guard-rf-instrumented)
+  - [`IMAGE_GUARD_RF_ENABLE`](#image-guard-rf-enable)
+  - [`IMAGE_GUARD_RF_STRICT`](#image-guard-rf-strict)
+  - [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image-guard-retpoline-present)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image-guard-cf-function-table-size-mask)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image-guard-cf-function-table-size-shift)
+  - [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image-guard-flag-fid-suppressed)
+  - [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image-guard-flag-export-suppressed)
+  - [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image-enclave-long-id-length)
+  - [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image-enclave-short-id-length)
+  - [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image-enclave-policy-debuggable)
+  - [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image-enclave-flag-primary-image)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image-enclave-import-match-none)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image-enclave-import-match-unique-id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image-enclave-import-match-author-id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image-enclave-import-match-family-id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image-enclave-import-match-image-id)
+  - [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image-debug-type-unknown)
+  - [`IMAGE_DEBUG_TYPE_COFF`](#image-debug-type-coff)
+  - [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image-debug-type-codeview)
+  - [`IMAGE_DEBUG_TYPE_FPO`](#image-debug-type-fpo)
+  - [`IMAGE_DEBUG_TYPE_MISC`](#image-debug-type-misc)
+  - [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image-debug-type-exception)
+  - [`IMAGE_DEBUG_TYPE_FIXUP`](#image-debug-type-fixup)
+  - [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image-debug-type-omap-to-src)
+  - [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image-debug-type-omap-from-src)
+  - [`IMAGE_DEBUG_TYPE_BORLAND`](#image-debug-type-borland)
+  - [`IMAGE_DEBUG_TYPE_RESERVED10`](#image-debug-type-reserved10)
+  - [`IMAGE_DEBUG_TYPE_CLSID`](#image-debug-type-clsid)
+  - [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image-debug-type-vc-feature)
+  - [`IMAGE_DEBUG_TYPE_POGO`](#image-debug-type-pogo)
+  - [`IMAGE_DEBUG_TYPE_ILTCG`](#image-debug-type-iltcg)
+  - [`IMAGE_DEBUG_TYPE_MPX`](#image-debug-type-mpx)
+  - [`IMAGE_DEBUG_TYPE_REPRO`](#image-debug-type-repro)
+  - [`FRAME_FPO`](#frame-fpo)
+  - [`FRAME_TRAP`](#frame-trap)
+  - [`FRAME_TSS`](#frame-tss)
+  - [`FRAME_NONFPO`](#frame-nonfpo)
+  - [`IMAGE_DEBUG_MISC_EXENAME`](#image-debug-misc-exename)
+  - [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image-separate-debug-signature)
+  - [`NON_PAGED_DEBUG_SIGNATURE`](#non-paged-debug-signature)
+  - [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image-separate-debug-flags-mask)
+  - [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image-separate-debug-mismatch)
+  - [`IMPORT_OBJECT_HDR_SIG2`](#import-object-hdr-sig2)
+  - [`IMPORT_OBJECT_TYPE_MASK`](#import-object-type-mask)
+  - [`IMPORT_OBJECT_TYPE_SHIFT`](#import-object-type-shift)
+  - [`IMPORT_OBJECT_CODE`](#import-object-code)
+  - [`IMPORT_OBJECT_DATA`](#import-object-data)
+  - [`IMPORT_OBJECT_CONST`](#import-object-const)
+  - [`IMPORT_OBJECT_NAME_MASK`](#import-object-name-mask)
+  - [`IMPORT_OBJECT_NAME_SHIFT`](#import-object-name-shift)
+  - [`IMPORT_OBJECT_ORDINAL`](#import-object-ordinal)
+  - [`IMPORT_OBJECT_NAME`](#import-object-name)
+  - [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import-object-name-no-prefix)
+  - [`IMPORT_OBJECT_NAME_UNDECORATE`](#import-object-name-undecorate)
+  - [`IMPORT_OBJECT_NAME_EXPORTAS`](#import-object-name-exportas)
+  - [`COMIMAGE_FLAGS_ILONLY`](#comimage-flags-ilonly)
+  - [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage-flags-32bitrequired)
+  - [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage-flags-il-library)
+  - [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage-flags-strongnamesigned)
+  - [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage-flags-native-entrypoint)
+  - [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage-flags-trackdebugdata)
+  - [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage-flags-32bitpreferred)
+  - [`COR_VERSION_MAJOR_V2`](#cor-version-major-v2)
+  - [`COR_VERSION_MAJOR`](#cor-version-major)
+  - [`COR_VERSION_MINOR`](#cor-version-minor)
+  - [`COR_DELETED_NAME_LENGTH`](#cor-deleted-name-length)
+  - [`COR_VTABLEGAP_NAME_LENGTH`](#cor-vtablegap-name-length)
+  - [`NATIVE_TYPE_MAX_CB`](#native-type-max-cb)
+  - [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor-ilmethod-sect-small-max-datasize)
+  - [`IMAGE_COR_MIH_METHODRVA`](#image-cor-mih-methodrva)
+  - [`IMAGE_COR_MIH_EHRVA`](#image-cor-mih-ehrva)
+  - [`IMAGE_COR_MIH_BASICBLOCK`](#image-cor-mih-basicblock)
+  - [`COR_VTABLE_32BIT`](#cor-vtable-32bit)
+  - [`COR_VTABLE_64BIT`](#cor-vtable-64bit)
+  - [`COR_VTABLE_FROM_UNMANAGED`](#cor-vtable-from-unmanaged)
+  - [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor-vtable-from-unmanaged-retain-appdomain)
+  - [`COR_VTABLE_CALL_MOST_DERIVED`](#cor-vtable-call-most-derived)
+  - [`IMAGE_COR_EATJ_THUNK_SIZE`](#image-cor-eatj-thunk-size)
+  - [`MAX_CLASS_NAME`](#max-class-name)
+  - [`MAX_PACKAGE_NAME`](#max-package-name)
 
 ## Quick Reference
 
@@ -882,712 +882,712 @@ This module is based heavily on "winnt.h" (10.0.17763.0).
 | [`ImageArchitectureEntry`](#imagearchitectureentry) | struct |  |
 | [`ImportObjectHeader`](#importobjectheader) | struct |  |
 | [`ImageCor20Header`](#imagecor20header) | struct |  |
-| [`IMAGE_DOS_SIGNATURE`](#image_dos_signature) | const | MZ |
-| [`IMAGE_OS2_SIGNATURE`](#image_os2_signature) | const | NE |
-| [`IMAGE_OS2_SIGNATURE_LE`](#image_os2_signature_le) | const | LE |
-| [`IMAGE_VXD_SIGNATURE`](#image_vxd_signature) | const | LE |
-| [`IMAGE_NT_SIGNATURE`](#image_nt_signature) | const | PE00 |
-| [`IMAGE_SIZEOF_FILE_HEADER`](#image_sizeof_file_header) | const |  |
-| [`IMAGE_FILE_RELOCS_STRIPPED`](#image_file_relocs_stripped) | const | Relocation info stripped from file. |
-| [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image_file_executable_image) | const | File is executable  (i.e. no unresolved external references). |
-| [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image_file_line_nums_stripped) | const | Line numbers stripped from file. |
-| [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image_file_local_syms_stripped) | const | Local symbols stripped from file. |
-| [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image_file_aggresive_ws_trim) | const | Aggressively trim working set |
-| [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image_file_large_address_aware) | const | App can handle >2gb addresses |
-| [`IMAGE_FILE_BYTES_REVERSED_LO`](#image_file_bytes_reversed_lo) | const | Bytes of machine word are reversed. |
-| [`IMAGE_FILE_32BIT_MACHINE`](#image_file_32bit_machine) | const | 32 bit word machine. |
-| [`IMAGE_FILE_DEBUG_STRIPPED`](#image_file_debug_stripped) | const | Debugging info stripped from file in .DBG file |
-| [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image_file_removable_run_from_swap) | const | If Image is on removable media, copy and run from the swap file. |
-| [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image_file_net_run_from_swap) | const | If Image is on Net, copy and run from the swap file. |
-| [`IMAGE_FILE_SYSTEM`](#image_file_system) | const | System File. |
-| [`IMAGE_FILE_DLL`](#image_file_dll) | const | File is a DLL. |
-| [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image_file_up_system_only) | const | File should only be run on a UP machine |
-| [`IMAGE_FILE_BYTES_REVERSED_HI`](#image_file_bytes_reversed_hi) | const | Bytes of machine word are reversed. |
-| [`IMAGE_FILE_MACHINE_UNKNOWN`](#image_file_machine_unknown) | const |  |
-| [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image_file_machine_target_host) | const | Useful for indicating we want to interact with the host and not a WoW guest. |
-| [`IMAGE_FILE_MACHINE_I386`](#image_file_machine_i386) | const | Intel 386. |
-| [`IMAGE_FILE_MACHINE_R3000`](#image_file_machine_r3000) | const | MIPS little-endian, 0x160 big-endian |
-| [`IMAGE_FILE_MACHINE_R4000`](#image_file_machine_r4000) | const | MIPS little-endian |
-| [`IMAGE_FILE_MACHINE_R10000`](#image_file_machine_r10000) | const | MIPS little-endian |
-| [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image_file_machine_wcemipsv2) | const | MIPS little-endian WCE v2 |
-| [`IMAGE_FILE_MACHINE_ALPHA`](#image_file_machine_alpha) | const | Alpha_AXP |
-| [`IMAGE_FILE_MACHINE_SH3`](#image_file_machine_sh3) | const | SH3 little-endian |
-| [`IMAGE_FILE_MACHINE_SH3DSP`](#image_file_machine_sh3dsp) | const |  |
-| [`IMAGE_FILE_MACHINE_SH3E`](#image_file_machine_sh3e) | const | SH3E little-endian |
-| [`IMAGE_FILE_MACHINE_SH4`](#image_file_machine_sh4) | const | SH4 little-endian |
-| [`IMAGE_FILE_MACHINE_SH5`](#image_file_machine_sh5) | const | SH5 |
-| [`IMAGE_FILE_MACHINE_ARM`](#image_file_machine_arm) | const | ARM Little-Endian |
-| [`IMAGE_FILE_MACHINE_THUMB`](#image_file_machine_thumb) | const | ARM Thumb/Thumb-2 Little-Endian |
-| [`IMAGE_FILE_MACHINE_ARMNT`](#image_file_machine_armnt) | const | ARM Thumb-2 Little-Endian |
-| [`IMAGE_FILE_MACHINE_AM33`](#image_file_machine_am33) | const |  |
-| [`IMAGE_FILE_MACHINE_POWERPC`](#image_file_machine_powerpc) | const | IBM PowerPC Little-Endian |
-| [`IMAGE_FILE_MACHINE_POWERPCFP`](#image_file_machine_powerpcfp) | const |  |
-| [`IMAGE_FILE_MACHINE_POWERPCBE`](#image_file_machine_powerpcbe) | const | IBM PowerPC Big-Endian |
-| [`IMAGE_FILE_MACHINE_IA64`](#image_file_machine_ia64) | const | Intel 64 |
-| [`IMAGE_FILE_MACHINE_MIPS16`](#image_file_machine_mips16) | const | MIPS |
-| [`IMAGE_FILE_MACHINE_ALPHA64`](#image_file_machine_alpha64) | const | ALPHA64 |
-| [`IMAGE_FILE_MACHINE_MIPSFPU`](#image_file_machine_mipsfpu) | const | MIPS |
-| [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image_file_machine_mipsfpu16) | const | MIPS |
-| [`IMAGE_FILE_MACHINE_AXP64`](#image_file_machine_axp64) | const |  |
-| [`IMAGE_FILE_MACHINE_TRICORE`](#image_file_machine_tricore) | const | Infineon |
-| [`IMAGE_FILE_MACHINE_CEF`](#image_file_machine_cef) | const |  |
-| [`IMAGE_FILE_MACHINE_EBC`](#image_file_machine_ebc) | const | EFI Byte Code |
-| [`IMAGE_FILE_MACHINE_AMD64`](#image_file_machine_amd64) | const | AMD64 (K8) |
-| [`IMAGE_FILE_MACHINE_M32R`](#image_file_machine_m32r) | const | M32R little-endian |
-| [`IMAGE_FILE_MACHINE_ARM64`](#image_file_machine_arm64) | const | ARM64 Little-Endian |
-| [`IMAGE_FILE_MACHINE_ARM64EC`](#image_file_machine_arm64ec) | const | ARM64EC ("Emulation Compatible") |
-| [`IMAGE_FILE_MACHINE_CEE`](#image_file_machine_cee) | const |  |
-| [`IMAGE_FILE_MACHINE_RISCV32`](#image_file_machine_riscv32) | const | RISCV32 |
-| [`IMAGE_FILE_MACHINE_RISCV64`](#image_file_machine_riscv64) | const | RISCV64 |
-| [`IMAGE_FILE_MACHINE_RISCV128`](#image_file_machine_riscv128) | const | RISCV128 |
-| [`IMAGE_FILE_MACHINE_ARM64X`](#image_file_machine_arm64x) | const | ARM64X (Mixed ARM64 and ARM64EC) |
-| [`IMAGE_FILE_MACHINE_CHPE_X86`](#image_file_machine_chpe_x86) | const | CHPE x86 ("Compiled Hybrid Portable Executable") |
-| [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image_numberof_directory_entries) | const |  |
-| [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image_nt_optional_hdr32_magic) | const |  |
-| [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image_nt_optional_hdr64_magic) | const |  |
-| [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image_rom_optional_hdr_magic) | const |  |
-| [`IMAGE_SUBSYSTEM_UNKNOWN`](#image_subsystem_unknown) | const | Unknown subsystem. |
-| [`IMAGE_SUBSYSTEM_NATIVE`](#image_subsystem_native) | const | Image doesn't require a subsystem. |
-| [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image_subsystem_windows_gui) | const | Image runs in the Windows GUI subsystem. |
-| [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image_subsystem_windows_cui) | const | Image runs in the Windows character subsystem. |
-| [`IMAGE_SUBSYSTEM_OS2_CUI`](#image_subsystem_os2_cui) | const | image runs in the OS/2 character subsystem. |
-| [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image_subsystem_posix_cui) | const | image runs in the Posix character subsystem. |
-| [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image_subsystem_native_windows) | const | image is a native Win9x driver. |
-| [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image_subsystem_windows_ce_gui) | const | Image runs in the Windows CE subsystem. |
-| [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image_subsystem_efi_application) | const |  |
-| [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image_subsystem_efi_boot_service_driver) | const |  |
-| [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image_subsystem_efi_runtime_driver) | const |  |
-| [`IMAGE_SUBSYSTEM_EFI_ROM`](#image_subsystem_efi_rom) | const |  |
-| [`IMAGE_SUBSYSTEM_XBOX`](#image_subsystem_xbox) | const |  |
-| [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image_subsystem_windows_boot_application) | const |  |
-| [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image_subsystem_xbox_code_catalog) | const |  |
-| [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image_dllcharacteristics_high_entropy_va) | const | Image can handle a high entropy 64-bit virtual address space. |
-| [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image_dllcharacteristics_dynamic_base) | const | DLL can move. |
-| [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image_dllcharacteristics_force_integrity) | const | Code Integrity Image |
-| [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image_dllcharacteristics_nx_compat) | const | Image is NX compatible |
-| [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image_dllcharacteristics_no_isolation) | const | Image understands isolation and doesn't want it |
-| [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image_dllcharacteristics_no_seh) | const | Image does not use SEH. |
-| [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image_dllcharacteristics_no_bind) | const | Do not bind this image. |
-| [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image_dllcharacteristics_appcontainer) | const | Image should execute in an AppContainer |
-| [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image_dllcharacteristics_wdm_driver) | const | Driver uses WDM model |
-| [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image_dllcharacteristics_guard_cf) | const | Image supports Control Flow Guard. |
-| [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image_dllcharacteristics_terminal_server_aware) | const |  |
-| [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image_directory_entry_export) | const | Export Directory |
-| [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image_directory_entry_import) | const | Import Directory |
-| [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image_directory_entry_resource) | const | Resource Directory |
-| [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image_directory_entry_exception) | const | Exception Directory |
-| [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image_directory_entry_security) | const | Security Directory |
-| [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image_directory_entry_basereloc) | const | Base Relocation Table |
-| [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image_directory_entry_debug) | const | Debug Directory |
-| [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image_directory_entry_architecture) | const | Architecture Specific Data |
-| [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image_directory_entry_globalptr) | const | RVA of GP |
-| [`IMAGE_DIRECTORY_ENTRY_TLS`](#image_directory_entry_tls) | const | TLS Directory |
-| [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image_directory_entry_load_config) | const | Load Configuration Directory |
-| [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image_directory_entry_bound_import) | const | Bound Import Directory in headers |
-| [`IMAGE_DIRECTORY_ENTRY_IAT`](#image_directory_entry_iat) | const | Import Address Table |
-| [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image_directory_entry_delay_import) | const | Delay Load Import Descriptors |
-| [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image_directory_entry_com_descriptor) | const | COM Runtime descriptor |
-| [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon_object_header_bigobj_class_id) | const | The required value of `AnonObjectHeaderBigobj::class_id`. |
-| [`IMAGE_SIZEOF_SHORT_NAME`](#image_sizeof_short_name) | const |  |
-| [`IMAGE_SIZEOF_SECTION_HEADER`](#image_sizeof_section_header) | const |  |
-| [`IMAGE_SCN_TYPE_NO_PAD`](#image_scn_type_no_pad) | const | Reserved. |
-| [`IMAGE_SCN_CNT_CODE`](#image_scn_cnt_code) | const | Section contains code. |
-| [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image_scn_cnt_initialized_data) | const | Section contains initialized data. |
-| [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image_scn_cnt_uninitialized_data) | const | Section contains uninitialized data. |
-| [`IMAGE_SCN_LNK_OTHER`](#image_scn_lnk_other) | const | Reserved. |
-| [`IMAGE_SCN_LNK_INFO`](#image_scn_lnk_info) | const | Section contains comments or some other type of information. |
-| [`IMAGE_SCN_LNK_REMOVE`](#image_scn_lnk_remove) | const | Section contents will not become part of image. |
-| [`IMAGE_SCN_LNK_COMDAT`](#image_scn_lnk_comdat) | const | Section contents comdat. |
-| [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image_scn_no_defer_spec_exc) | const | Reset speculative exceptions handling bits in the TLB entries for this section. |
-| [`IMAGE_SCN_GPREL`](#image_scn_gprel) | const | Section content can be accessed relative to GP |
-| [`IMAGE_SCN_MEM_FARDATA`](#image_scn_mem_fardata) | const |  |
-| [`IMAGE_SCN_MEM_PURGEABLE`](#image_scn_mem_purgeable) | const |  |
-| [`IMAGE_SCN_MEM_16BIT`](#image_scn_mem_16bit) | const |  |
-| [`IMAGE_SCN_MEM_LOCKED`](#image_scn_mem_locked) | const |  |
-| [`IMAGE_SCN_MEM_PRELOAD`](#image_scn_mem_preload) | const |  |
-| [`IMAGE_SCN_ALIGN_1BYTES`](#image_scn_align_1bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_2BYTES`](#image_scn_align_2bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_4BYTES`](#image_scn_align_4bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_8BYTES`](#image_scn_align_8bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_16BYTES`](#image_scn_align_16bytes) | const | Default alignment if no others are specified. |
-| [`IMAGE_SCN_ALIGN_32BYTES`](#image_scn_align_32bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_64BYTES`](#image_scn_align_64bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_128BYTES`](#image_scn_align_128bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_256BYTES`](#image_scn_align_256bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_512BYTES`](#image_scn_align_512bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_1024BYTES`](#image_scn_align_1024bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_2048BYTES`](#image_scn_align_2048bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_4096BYTES`](#image_scn_align_4096bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_8192BYTES`](#image_scn_align_8192bytes) | const |  |
-| [`IMAGE_SCN_ALIGN_MASK`](#image_scn_align_mask) | const |  |
-| [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image_scn_lnk_nreloc_ovfl) | const | Section contains extended relocations. |
-| [`IMAGE_SCN_MEM_DISCARDABLE`](#image_scn_mem_discardable) | const | Section can be discarded. |
-| [`IMAGE_SCN_MEM_NOT_CACHED`](#image_scn_mem_not_cached) | const | Section is not cacheable. |
-| [`IMAGE_SCN_MEM_NOT_PAGED`](#image_scn_mem_not_paged) | const | Section is not pageable. |
-| [`IMAGE_SCN_MEM_SHARED`](#image_scn_mem_shared) | const | Section is shareable. |
-| [`IMAGE_SCN_MEM_EXECUTE`](#image_scn_mem_execute) | const | Section is executable. |
-| [`IMAGE_SCN_MEM_READ`](#image_scn_mem_read) | const | Section is readable. |
-| [`IMAGE_SCN_MEM_WRITE`](#image_scn_mem_write) | const | Section is writeable. |
-| [`IMAGE_SCN_SCALE_INDEX`](#image_scn_scale_index) | const | Tls index is scaled |
-| [`IMAGE_SIZEOF_SYMBOL`](#image_sizeof_symbol) | const |  |
-| [`IMAGE_SIZEOF_SYMBOL_EX`](#image_sizeof_symbol_ex) | const |  |
-| [`IMAGE_SYM_UNDEFINED`](#image_sym_undefined) | const | Symbol is undefined or is common. |
-| [`IMAGE_SYM_ABSOLUTE`](#image_sym_absolute) | const | Symbol is an absolute value. |
-| [`IMAGE_SYM_DEBUG`](#image_sym_debug) | const | Symbol is a special debug item. |
-| [`IMAGE_SYM_SECTION_MAX`](#image_sym_section_max) | const | Values 0xFF00-0xFFFF are special |
-| [`IMAGE_SYM_SECTION_MAX_EX`](#image_sym_section_max_ex) | const |  |
-| [`IMAGE_SYM_TYPE_NULL`](#image_sym_type_null) | const | no type. |
-| [`IMAGE_SYM_TYPE_VOID`](#image_sym_type_void) | const |  |
-| [`IMAGE_SYM_TYPE_CHAR`](#image_sym_type_char) | const | type character. |
-| [`IMAGE_SYM_TYPE_SHORT`](#image_sym_type_short) | const | type short integer. |
-| [`IMAGE_SYM_TYPE_INT`](#image_sym_type_int) | const |  |
-| [`IMAGE_SYM_TYPE_LONG`](#image_sym_type_long) | const |  |
-| [`IMAGE_SYM_TYPE_FLOAT`](#image_sym_type_float) | const |  |
-| [`IMAGE_SYM_TYPE_DOUBLE`](#image_sym_type_double) | const |  |
-| [`IMAGE_SYM_TYPE_STRUCT`](#image_sym_type_struct) | const |  |
-| [`IMAGE_SYM_TYPE_UNION`](#image_sym_type_union) | const |  |
-| [`IMAGE_SYM_TYPE_ENUM`](#image_sym_type_enum) | const | enumeration. |
-| [`IMAGE_SYM_TYPE_MOE`](#image_sym_type_moe) | const | member of enumeration. |
-| [`IMAGE_SYM_TYPE_BYTE`](#image_sym_type_byte) | const |  |
-| [`IMAGE_SYM_TYPE_WORD`](#image_sym_type_word) | const |  |
-| [`IMAGE_SYM_TYPE_UINT`](#image_sym_type_uint) | const |  |
-| [`IMAGE_SYM_TYPE_DWORD`](#image_sym_type_dword) | const |  |
-| [`IMAGE_SYM_TYPE_PCODE`](#image_sym_type_pcode) | const |  |
-| [`IMAGE_SYM_DTYPE_NULL`](#image_sym_dtype_null) | const | no derived type. |
-| [`IMAGE_SYM_DTYPE_POINTER`](#image_sym_dtype_pointer) | const | pointer. |
-| [`IMAGE_SYM_DTYPE_FUNCTION`](#image_sym_dtype_function) | const | function. |
-| [`IMAGE_SYM_DTYPE_ARRAY`](#image_sym_dtype_array) | const | array. |
-| [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image_sym_class_end_of_function) | const |  |
-| [`IMAGE_SYM_CLASS_NULL`](#image_sym_class_null) | const |  |
-| [`IMAGE_SYM_CLASS_AUTOMATIC`](#image_sym_class_automatic) | const |  |
-| [`IMAGE_SYM_CLASS_EXTERNAL`](#image_sym_class_external) | const |  |
-| [`IMAGE_SYM_CLASS_STATIC`](#image_sym_class_static) | const |  |
-| [`IMAGE_SYM_CLASS_REGISTER`](#image_sym_class_register) | const |  |
-| [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image_sym_class_external_def) | const |  |
-| [`IMAGE_SYM_CLASS_LABEL`](#image_sym_class_label) | const |  |
-| [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image_sym_class_undefined_label) | const |  |
-| [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image_sym_class_member_of_struct) | const |  |
-| [`IMAGE_SYM_CLASS_ARGUMENT`](#image_sym_class_argument) | const |  |
-| [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image_sym_class_struct_tag) | const |  |
-| [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image_sym_class_member_of_union) | const |  |
-| [`IMAGE_SYM_CLASS_UNION_TAG`](#image_sym_class_union_tag) | const |  |
-| [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image_sym_class_type_definition) | const |  |
-| [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image_sym_class_undefined_static) | const |  |
-| [`IMAGE_SYM_CLASS_ENUM_TAG`](#image_sym_class_enum_tag) | const |  |
-| [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image_sym_class_member_of_enum) | const |  |
-| [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image_sym_class_register_param) | const |  |
-| [`IMAGE_SYM_CLASS_BIT_FIELD`](#image_sym_class_bit_field) | const |  |
-| [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image_sym_class_far_external) | const |  |
-| [`IMAGE_SYM_CLASS_BLOCK`](#image_sym_class_block) | const |  |
-| [`IMAGE_SYM_CLASS_FUNCTION`](#image_sym_class_function) | const |  |
-| [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image_sym_class_end_of_struct) | const |  |
-| [`IMAGE_SYM_CLASS_FILE`](#image_sym_class_file) | const |  |
-| [`IMAGE_SYM_CLASS_SECTION`](#image_sym_class_section) | const |  |
-| [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image_sym_class_weak_external) | const |  |
-| [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image_sym_class_clr_token) | const |  |
-| [`N_BTMASK`](#n_btmask) | const |  |
-| [`N_TMASK`](#n_tmask) | const |  |
-| [`N_TMASK1`](#n_tmask1) | const |  |
-| [`N_TMASK2`](#n_tmask2) | const |  |
-| [`N_BTSHFT`](#n_btshft) | const |  |
-| [`N_TSHIFT`](#n_tshift) | const |  |
-| [`IMAGE_SYM_DTYPE_SHIFT`](#image_sym_dtype_shift) | const |  |
-| [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image_aux_symbol_type_token_def) | const |  |
-| [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image_comdat_select_noduplicates) | const |  |
-| [`IMAGE_COMDAT_SELECT_ANY`](#image_comdat_select_any) | const |  |
-| [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image_comdat_select_same_size) | const |  |
-| [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image_comdat_select_exact_match) | const |  |
-| [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image_comdat_select_associative) | const |  |
-| [`IMAGE_COMDAT_SELECT_LARGEST`](#image_comdat_select_largest) | const |  |
-| [`IMAGE_COMDAT_SELECT_NEWEST`](#image_comdat_select_newest) | const |  |
-| [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image_weak_extern_search_nolibrary) | const |  |
-| [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image_weak_extern_search_library) | const |  |
-| [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image_weak_extern_search_alias) | const |  |
-| [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image_weak_extern_anti_dependency) | const |  |
-| [`IMAGE_REL_I386_ABSOLUTE`](#image_rel_i386_absolute) | const | Reference is absolute, no relocation is necessary |
-| [`IMAGE_REL_I386_DIR16`](#image_rel_i386_dir16) | const | Direct 16-bit reference to the symbols virtual address |
-| [`IMAGE_REL_I386_REL16`](#image_rel_i386_rel16) | const | PC-relative 16-bit reference to the symbols virtual address |
-| [`IMAGE_REL_I386_DIR32`](#image_rel_i386_dir32) | const | Direct 32-bit reference to the symbols virtual address |
-| [`IMAGE_REL_I386_DIR32NB`](#image_rel_i386_dir32nb) | const | Direct 32-bit reference to the symbols virtual address, base not included |
-| [`IMAGE_REL_I386_SEG12`](#image_rel_i386_seg12) | const | Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address |
-| [`IMAGE_REL_I386_SECTION`](#image_rel_i386_section) | const |  |
-| [`IMAGE_REL_I386_SECREL`](#image_rel_i386_secrel) | const |  |
-| [`IMAGE_REL_I386_TOKEN`](#image_rel_i386_token) | const | clr token |
-| [`IMAGE_REL_I386_SECREL7`](#image_rel_i386_secrel7) | const | 7 bit offset from base of section containing target |
-| [`IMAGE_REL_I386_REL32`](#image_rel_i386_rel32) | const | PC-relative 32-bit reference to the symbols virtual address |
-| [`IMAGE_REL_MIPS_ABSOLUTE`](#image_rel_mips_absolute) | const | Reference is absolute, no relocation is necessary |
-| [`IMAGE_REL_MIPS_REFHALF`](#image_rel_mips_refhalf) | const |  |
-| [`IMAGE_REL_MIPS_REFWORD`](#image_rel_mips_refword) | const |  |
-| [`IMAGE_REL_MIPS_JMPADDR`](#image_rel_mips_jmpaddr) | const |  |
-| [`IMAGE_REL_MIPS_REFHI`](#image_rel_mips_refhi) | const |  |
-| [`IMAGE_REL_MIPS_REFLO`](#image_rel_mips_reflo) | const |  |
-| [`IMAGE_REL_MIPS_GPREL`](#image_rel_mips_gprel) | const |  |
-| [`IMAGE_REL_MIPS_LITERAL`](#image_rel_mips_literal) | const |  |
-| [`IMAGE_REL_MIPS_SECTION`](#image_rel_mips_section) | const |  |
-| [`IMAGE_REL_MIPS_SECREL`](#image_rel_mips_secrel) | const |  |
-| [`IMAGE_REL_MIPS_SECRELLO`](#image_rel_mips_secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
-| [`IMAGE_REL_MIPS_SECRELHI`](#image_rel_mips_secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
-| [`IMAGE_REL_MIPS_TOKEN`](#image_rel_mips_token) | const | clr token |
-| [`IMAGE_REL_MIPS_JMPADDR16`](#image_rel_mips_jmpaddr16) | const |  |
-| [`IMAGE_REL_MIPS_REFWORDNB`](#image_rel_mips_refwordnb) | const |  |
-| [`IMAGE_REL_MIPS_PAIR`](#image_rel_mips_pair) | const |  |
-| [`IMAGE_REL_ALPHA_ABSOLUTE`](#image_rel_alpha_absolute) | const |  |
-| [`IMAGE_REL_ALPHA_REFLONG`](#image_rel_alpha_reflong) | const |  |
-| [`IMAGE_REL_ALPHA_REFQUAD`](#image_rel_alpha_refquad) | const |  |
-| [`IMAGE_REL_ALPHA_GPREL32`](#image_rel_alpha_gprel32) | const |  |
-| [`IMAGE_REL_ALPHA_LITERAL`](#image_rel_alpha_literal) | const |  |
-| [`IMAGE_REL_ALPHA_LITUSE`](#image_rel_alpha_lituse) | const |  |
-| [`IMAGE_REL_ALPHA_GPDISP`](#image_rel_alpha_gpdisp) | const |  |
-| [`IMAGE_REL_ALPHA_BRADDR`](#image_rel_alpha_braddr) | const |  |
-| [`IMAGE_REL_ALPHA_HINT`](#image_rel_alpha_hint) | const |  |
-| [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image_rel_alpha_inline_reflong) | const |  |
-| [`IMAGE_REL_ALPHA_REFHI`](#image_rel_alpha_refhi) | const |  |
-| [`IMAGE_REL_ALPHA_REFLO`](#image_rel_alpha_reflo) | const |  |
-| [`IMAGE_REL_ALPHA_PAIR`](#image_rel_alpha_pair) | const |  |
-| [`IMAGE_REL_ALPHA_MATCH`](#image_rel_alpha_match) | const |  |
-| [`IMAGE_REL_ALPHA_SECTION`](#image_rel_alpha_section) | const |  |
-| [`IMAGE_REL_ALPHA_SECREL`](#image_rel_alpha_secrel) | const |  |
-| [`IMAGE_REL_ALPHA_REFLONGNB`](#image_rel_alpha_reflongnb) | const |  |
-| [`IMAGE_REL_ALPHA_SECRELLO`](#image_rel_alpha_secrello) | const | Low 16-bit section relative reference |
-| [`IMAGE_REL_ALPHA_SECRELHI`](#image_rel_alpha_secrelhi) | const | High 16-bit section relative reference |
-| [`IMAGE_REL_ALPHA_REFQ3`](#image_rel_alpha_refq3) | const | High 16 bits of 48 bit reference |
-| [`IMAGE_REL_ALPHA_REFQ2`](#image_rel_alpha_refq2) | const | Middle 16 bits of 48 bit reference |
-| [`IMAGE_REL_ALPHA_REFQ1`](#image_rel_alpha_refq1) | const | Low 16 bits of 48 bit reference |
-| [`IMAGE_REL_ALPHA_GPRELLO`](#image_rel_alpha_gprello) | const | Low 16-bit GP relative reference |
-| [`IMAGE_REL_ALPHA_GPRELHI`](#image_rel_alpha_gprelhi) | const | High 16-bit GP relative reference |
-| [`IMAGE_REL_PPC_ABSOLUTE`](#image_rel_ppc_absolute) | const | NOP |
-| [`IMAGE_REL_PPC_ADDR64`](#image_rel_ppc_addr64) | const | 64-bit address |
-| [`IMAGE_REL_PPC_ADDR32`](#image_rel_ppc_addr32) | const | 32-bit address |
-| [`IMAGE_REL_PPC_ADDR24`](#image_rel_ppc_addr24) | const | 26-bit address, shifted left 2 (branch absolute) |
-| [`IMAGE_REL_PPC_ADDR16`](#image_rel_ppc_addr16) | const | 16-bit address |
-| [`IMAGE_REL_PPC_ADDR14`](#image_rel_ppc_addr14) | const | 16-bit address, shifted left 2 (load doubleword) |
-| [`IMAGE_REL_PPC_REL24`](#image_rel_ppc_rel24) | const | 26-bit PC-relative offset, shifted left 2 (branch relative) |
-| [`IMAGE_REL_PPC_REL14`](#image_rel_ppc_rel14) | const | 16-bit PC-relative offset, shifted left 2 (br cond relative) |
-| [`IMAGE_REL_PPC_TOCREL16`](#image_rel_ppc_tocrel16) | const | 16-bit offset from TOC base |
-| [`IMAGE_REL_PPC_TOCREL14`](#image_rel_ppc_tocrel14) | const | 16-bit offset from TOC base, shifted left 2 (load doubleword) |
-| [`IMAGE_REL_PPC_ADDR32NB`](#image_rel_ppc_addr32nb) | const | 32-bit addr w/o image base |
-| [`IMAGE_REL_PPC_SECREL`](#image_rel_ppc_secrel) | const | va of containing section (as in an image sectionhdr) |
-| [`IMAGE_REL_PPC_SECTION`](#image_rel_ppc_section) | const | sectionheader number |
-| [`IMAGE_REL_PPC_IFGLUE`](#image_rel_ppc_ifglue) | const | substitute TOC restore instruction iff symbol is glue code |
-| [`IMAGE_REL_PPC_IMGLUE`](#image_rel_ppc_imglue) | const | symbol is glue code; virtual address is TOC restore instruction |
-| [`IMAGE_REL_PPC_SECREL16`](#image_rel_ppc_secrel16) | const | va of containing section (limited to 16 bits) |
-| [`IMAGE_REL_PPC_REFHI`](#image_rel_ppc_refhi) | const |  |
-| [`IMAGE_REL_PPC_REFLO`](#image_rel_ppc_reflo) | const |  |
-| [`IMAGE_REL_PPC_PAIR`](#image_rel_ppc_pair) | const |  |
-| [`IMAGE_REL_PPC_SECRELLO`](#image_rel_ppc_secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
-| [`IMAGE_REL_PPC_SECRELHI`](#image_rel_ppc_secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
-| [`IMAGE_REL_PPC_GPREL`](#image_rel_ppc_gprel) | const |  |
-| [`IMAGE_REL_PPC_TOKEN`](#image_rel_ppc_token) | const | clr token |
-| [`IMAGE_REL_PPC_TYPEMASK`](#image_rel_ppc_typemask) | const | mask to isolate above values in IMAGE_RELOCATION.Type |
-| [`IMAGE_REL_PPC_NEG`](#image_rel_ppc_neg) | const | subtract reloc value rather than adding it |
-| [`IMAGE_REL_PPC_BRTAKEN`](#image_rel_ppc_brtaken) | const | fix branch prediction bit to predict branch taken |
-| [`IMAGE_REL_PPC_BRNTAKEN`](#image_rel_ppc_brntaken) | const | fix branch prediction bit to predict branch not taken |
-| [`IMAGE_REL_PPC_TOCDEFN`](#image_rel_ppc_tocdefn) | const | toc slot defined in file (or, data in toc) |
-| [`IMAGE_REL_SH3_ABSOLUTE`](#image_rel_sh3_absolute) | const | No relocation |
-| [`IMAGE_REL_SH3_DIRECT16`](#image_rel_sh3_direct16) | const | 16 bit direct |
-| [`IMAGE_REL_SH3_DIRECT32`](#image_rel_sh3_direct32) | const | 32 bit direct |
-| [`IMAGE_REL_SH3_DIRECT8`](#image_rel_sh3_direct8) | const | 8 bit direct, -128..255 |
-| [`IMAGE_REL_SH3_DIRECT8_WORD`](#image_rel_sh3_direct8_word) | const | 8 bit direct .W (0 ext.) |
-| [`IMAGE_REL_SH3_DIRECT8_LONG`](#image_rel_sh3_direct8_long) | const | 8 bit direct .L (0 ext.) |
-| [`IMAGE_REL_SH3_DIRECT4`](#image_rel_sh3_direct4) | const | 4 bit direct (0 ext.) |
-| [`IMAGE_REL_SH3_DIRECT4_WORD`](#image_rel_sh3_direct4_word) | const | 4 bit direct .W (0 ext.) |
-| [`IMAGE_REL_SH3_DIRECT4_LONG`](#image_rel_sh3_direct4_long) | const | 4 bit direct .L (0 ext.) |
-| [`IMAGE_REL_SH3_PCREL8_WORD`](#image_rel_sh3_pcrel8_word) | const | 8 bit PC relative .W |
-| [`IMAGE_REL_SH3_PCREL8_LONG`](#image_rel_sh3_pcrel8_long) | const | 8 bit PC relative .L |
-| [`IMAGE_REL_SH3_PCREL12_WORD`](#image_rel_sh3_pcrel12_word) | const | 12 LSB PC relative .W |
-| [`IMAGE_REL_SH3_STARTOF_SECTION`](#image_rel_sh3_startof_section) | const | Start of EXE section |
-| [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image_rel_sh3_sizeof_section) | const | Size of EXE section |
-| [`IMAGE_REL_SH3_SECTION`](#image_rel_sh3_section) | const | Section table index |
-| [`IMAGE_REL_SH3_SECREL`](#image_rel_sh3_secrel) | const | Offset within section |
-| [`IMAGE_REL_SH3_DIRECT32_NB`](#image_rel_sh3_direct32_nb) | const | 32 bit direct not based |
-| [`IMAGE_REL_SH3_GPREL4_LONG`](#image_rel_sh3_gprel4_long) | const | GP-relative addressing |
-| [`IMAGE_REL_SH3_TOKEN`](#image_rel_sh3_token) | const | clr token |
-| [`IMAGE_REL_SHM_PCRELPT`](#image_rel_shm_pcrelpt) | const | Offset from current instruction in longwords if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB |
-| [`IMAGE_REL_SHM_REFLO`](#image_rel_shm_reflo) | const | Low bits of 32-bit address |
-| [`IMAGE_REL_SHM_REFHALF`](#image_rel_shm_refhalf) | const | High bits of 32-bit address |
-| [`IMAGE_REL_SHM_RELLO`](#image_rel_shm_rello) | const | Low bits of relative reference |
-| [`IMAGE_REL_SHM_RELHALF`](#image_rel_shm_relhalf) | const | High bits of relative reference |
-| [`IMAGE_REL_SHM_PAIR`](#image_rel_shm_pair) | const | offset operand for relocation |
-| [`IMAGE_REL_SH_NOMODE`](#image_rel_sh_nomode) | const | relocation ignores section mode |
-| [`IMAGE_REL_ARM_ABSOLUTE`](#image_rel_arm_absolute) | const | No relocation required |
-| [`IMAGE_REL_ARM_ADDR32`](#image_rel_arm_addr32) | const | 32 bit address |
-| [`IMAGE_REL_ARM_ADDR32NB`](#image_rel_arm_addr32nb) | const | 32 bit address w/o image base |
-| [`IMAGE_REL_ARM_BRANCH24`](#image_rel_arm_branch24) | const | 24 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_ARM_BRANCH11`](#image_rel_arm_branch11) | const | Thumb: 2 11 bit offsets |
-| [`IMAGE_REL_ARM_TOKEN`](#image_rel_arm_token) | const | clr token |
-| [`IMAGE_REL_ARM_GPREL12`](#image_rel_arm_gprel12) | const | GP-relative addressing (ARM) |
-| [`IMAGE_REL_ARM_GPREL7`](#image_rel_arm_gprel7) | const | GP-relative addressing (Thumb) |
-| [`IMAGE_REL_ARM_BLX24`](#image_rel_arm_blx24) | const |  |
-| [`IMAGE_REL_ARM_BLX11`](#image_rel_arm_blx11) | const |  |
-| [`IMAGE_REL_ARM_REL32`](#image_rel_arm_rel32) | const | 32-bit relative address from byte following reloc |
-| [`IMAGE_REL_ARM_SECTION`](#image_rel_arm_section) | const | Section table index |
-| [`IMAGE_REL_ARM_SECREL`](#image_rel_arm_secrel) | const | Offset within section |
-| [`IMAGE_REL_ARM_MOV32A`](#image_rel_arm_mov32a) | const | ARM: MOVW/MOVT |
-| [`IMAGE_REL_ARM_MOV32`](#image_rel_arm_mov32) | const | ARM: MOVW/MOVT (deprecated) |
-| [`IMAGE_REL_ARM_MOV32T`](#image_rel_arm_mov32t) | const | Thumb: MOVW/MOVT |
-| [`IMAGE_REL_THUMB_MOV32`](#image_rel_thumb_mov32) | const | Thumb: MOVW/MOVT (deprecated) |
-| [`IMAGE_REL_ARM_BRANCH20T`](#image_rel_arm_branch20t) | const | Thumb: 32-bit conditional B |
-| [`IMAGE_REL_THUMB_BRANCH20`](#image_rel_thumb_branch20) | const | Thumb: 32-bit conditional B (deprecated) |
-| [`IMAGE_REL_ARM_BRANCH24T`](#image_rel_arm_branch24t) | const | Thumb: 32-bit B or BL |
-| [`IMAGE_REL_THUMB_BRANCH24`](#image_rel_thumb_branch24) | const | Thumb: 32-bit B or BL (deprecated) |
-| [`IMAGE_REL_ARM_BLX23T`](#image_rel_arm_blx23t) | const | Thumb: BLX immediate |
-| [`IMAGE_REL_THUMB_BLX23`](#image_rel_thumb_blx23) | const | Thumb: BLX immediate (deprecated) |
-| [`IMAGE_REL_AM_ABSOLUTE`](#image_rel_am_absolute) | const |  |
-| [`IMAGE_REL_AM_ADDR32`](#image_rel_am_addr32) | const |  |
-| [`IMAGE_REL_AM_ADDR32NB`](#image_rel_am_addr32nb) | const |  |
-| [`IMAGE_REL_AM_CALL32`](#image_rel_am_call32) | const |  |
-| [`IMAGE_REL_AM_FUNCINFO`](#image_rel_am_funcinfo) | const |  |
-| [`IMAGE_REL_AM_REL32_1`](#image_rel_am_rel32_1) | const |  |
-| [`IMAGE_REL_AM_REL32_2`](#image_rel_am_rel32_2) | const |  |
-| [`IMAGE_REL_AM_SECREL`](#image_rel_am_secrel) | const |  |
-| [`IMAGE_REL_AM_SECTION`](#image_rel_am_section) | const |  |
-| [`IMAGE_REL_AM_TOKEN`](#image_rel_am_token) | const |  |
-| [`IMAGE_REL_ARM64_ABSOLUTE`](#image_rel_arm64_absolute) | const | No relocation required |
-| [`IMAGE_REL_ARM64_ADDR32`](#image_rel_arm64_addr32) | const | 32 bit address. |
-| [`IMAGE_REL_ARM64_ADDR32NB`](#image_rel_arm64_addr32nb) | const | 32 bit address w/o image base (RVA: for Data/PData/XData) |
-| [`IMAGE_REL_ARM64_BRANCH26`](#image_rel_arm64_branch26) | const | 26 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image_rel_arm64_pagebase_rel21) | const | ADRP |
-| [`IMAGE_REL_ARM64_REL21`](#image_rel_arm64_rel21) | const | ADR |
-| [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image_rel_arm64_pageoffset_12a) | const | ADD/ADDS (immediate) with zero shift, for page offset |
-| [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image_rel_arm64_pageoffset_12l) | const | LDR (indexed, unsigned immediate), for page offset |
-| [`IMAGE_REL_ARM64_SECREL`](#image_rel_arm64_secrel) | const | Offset within section |
-| [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image_rel_arm64_secrel_low12a) | const | ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset |
-| [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image_rel_arm64_secrel_high12a) | const | ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset |
-| [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image_rel_arm64_secrel_low12l) | const | LDR (indexed, unsigned immediate), for bit 0:11 of section offset |
-| [`IMAGE_REL_ARM64_TOKEN`](#image_rel_arm64_token) | const |  |
-| [`IMAGE_REL_ARM64_SECTION`](#image_rel_arm64_section) | const | Section table index |
-| [`IMAGE_REL_ARM64_ADDR64`](#image_rel_arm64_addr64) | const | 64 bit address |
-| [`IMAGE_REL_ARM64_BRANCH19`](#image_rel_arm64_branch19) | const | 19 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_ARM64_BRANCH14`](#image_rel_arm64_branch14) | const | TBZ/TBNZ |
-| [`IMAGE_REL_ARM64_REL32`](#image_rel_arm64_rel32) | const | 32-bit relative address from byte following reloc |
-| [`IMAGE_REL_AMD64_ABSOLUTE`](#image_rel_amd64_absolute) | const | Reference is absolute, no relocation is necessary |
-| [`IMAGE_REL_AMD64_ADDR64`](#image_rel_amd64_addr64) | const | 64-bit address (VA). |
-| [`IMAGE_REL_AMD64_ADDR32`](#image_rel_amd64_addr32) | const | 32-bit address (VA). |
-| [`IMAGE_REL_AMD64_ADDR32NB`](#image_rel_amd64_addr32nb) | const | 32-bit address w/o image base (RVA). |
-| [`IMAGE_REL_AMD64_REL32`](#image_rel_amd64_rel32) | const | 32-bit relative address from byte following reloc |
-| [`IMAGE_REL_AMD64_REL32_1`](#image_rel_amd64_rel32_1) | const | 32-bit relative address from byte distance 1 from reloc |
-| [`IMAGE_REL_AMD64_REL32_2`](#image_rel_amd64_rel32_2) | const | 32-bit relative address from byte distance 2 from reloc |
-| [`IMAGE_REL_AMD64_REL32_3`](#image_rel_amd64_rel32_3) | const | 32-bit relative address from byte distance 3 from reloc |
-| [`IMAGE_REL_AMD64_REL32_4`](#image_rel_amd64_rel32_4) | const | 32-bit relative address from byte distance 4 from reloc |
-| [`IMAGE_REL_AMD64_REL32_5`](#image_rel_amd64_rel32_5) | const | 32-bit relative address from byte distance 5 from reloc |
-| [`IMAGE_REL_AMD64_SECTION`](#image_rel_amd64_section) | const | Section index |
-| [`IMAGE_REL_AMD64_SECREL`](#image_rel_amd64_secrel) | const | 32 bit offset from base of section containing target |
-| [`IMAGE_REL_AMD64_SECREL7`](#image_rel_amd64_secrel7) | const | 7 bit unsigned offset from base of section containing target |
-| [`IMAGE_REL_AMD64_TOKEN`](#image_rel_amd64_token) | const | 32 bit metadata token |
-| [`IMAGE_REL_AMD64_SREL32`](#image_rel_amd64_srel32) | const | 32 bit signed span-dependent value emitted into object |
-| [`IMAGE_REL_AMD64_PAIR`](#image_rel_amd64_pair) | const |  |
-| [`IMAGE_REL_AMD64_SSPAN32`](#image_rel_amd64_sspan32) | const | 32 bit signed span-dependent value applied at link time |
-| [`IMAGE_REL_AMD64_EHANDLER`](#image_rel_amd64_ehandler) | const |  |
-| [`IMAGE_REL_AMD64_IMPORT_BR`](#image_rel_amd64_import_br) | const | Indirect branch to an import |
-| [`IMAGE_REL_AMD64_IMPORT_CALL`](#image_rel_amd64_import_call) | const | Indirect call to an import |
-| [`IMAGE_REL_AMD64_CFG_BR`](#image_rel_amd64_cfg_br) | const | Indirect branch to a CFG check |
-| [`IMAGE_REL_AMD64_CFG_BR_REX`](#image_rel_amd64_cfg_br_rex) | const | Indirect branch to a CFG check, with REX.W prefix |
-| [`IMAGE_REL_AMD64_CFG_CALL`](#image_rel_amd64_cfg_call) | const | Indirect call to a CFG check |
-| [`IMAGE_REL_AMD64_INDIR_BR`](#image_rel_amd64_indir_br) | const | Indirect branch to a target in RAX (no CFG) |
-| [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image_rel_amd64_indir_br_rex) | const | Indirect branch to a target in RAX, with REX.W prefix (no CFG) |
-| [`IMAGE_REL_AMD64_INDIR_CALL`](#image_rel_amd64_indir_call) | const | Indirect call to a target in RAX (no CFG) |
-| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image_rel_amd64_indir_br_switchtable_first) | const | Indirect branch for a switch table using Reg 0 (RAX) |
-| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image_rel_amd64_indir_br_switchtable_last) | const | Indirect branch for a switch table using Reg 15 (R15) |
-| [`IMAGE_REL_IA64_ABSOLUTE`](#image_rel_ia64_absolute) | const |  |
-| [`IMAGE_REL_IA64_IMM14`](#image_rel_ia64_imm14) | const |  |
-| [`IMAGE_REL_IA64_IMM22`](#image_rel_ia64_imm22) | const |  |
-| [`IMAGE_REL_IA64_IMM64`](#image_rel_ia64_imm64) | const |  |
-| [`IMAGE_REL_IA64_DIR32`](#image_rel_ia64_dir32) | const |  |
-| [`IMAGE_REL_IA64_DIR64`](#image_rel_ia64_dir64) | const |  |
-| [`IMAGE_REL_IA64_PCREL21B`](#image_rel_ia64_pcrel21b) | const |  |
-| [`IMAGE_REL_IA64_PCREL21M`](#image_rel_ia64_pcrel21m) | const |  |
-| [`IMAGE_REL_IA64_PCREL21F`](#image_rel_ia64_pcrel21f) | const |  |
-| [`IMAGE_REL_IA64_GPREL22`](#image_rel_ia64_gprel22) | const |  |
-| [`IMAGE_REL_IA64_LTOFF22`](#image_rel_ia64_ltoff22) | const |  |
-| [`IMAGE_REL_IA64_SECTION`](#image_rel_ia64_section) | const |  |
-| [`IMAGE_REL_IA64_SECREL22`](#image_rel_ia64_secrel22) | const |  |
-| [`IMAGE_REL_IA64_SECREL64I`](#image_rel_ia64_secrel64i) | const |  |
-| [`IMAGE_REL_IA64_SECREL32`](#image_rel_ia64_secrel32) | const |  |
-| [`IMAGE_REL_IA64_DIR32NB`](#image_rel_ia64_dir32nb) | const |  |
-| [`IMAGE_REL_IA64_SREL14`](#image_rel_ia64_srel14) | const |  |
-| [`IMAGE_REL_IA64_SREL22`](#image_rel_ia64_srel22) | const |  |
-| [`IMAGE_REL_IA64_SREL32`](#image_rel_ia64_srel32) | const |  |
-| [`IMAGE_REL_IA64_UREL32`](#image_rel_ia64_urel32) | const |  |
-| [`IMAGE_REL_IA64_PCREL60X`](#image_rel_ia64_pcrel60x) | const | This is always a BRL and never converted |
-| [`IMAGE_REL_IA64_PCREL60B`](#image_rel_ia64_pcrel60b) | const | If possible, convert to MBB bundle with NOP.B in slot 1 |
-| [`IMAGE_REL_IA64_PCREL60F`](#image_rel_ia64_pcrel60f) | const | If possible, convert to MFB bundle with NOP.F in slot 1 |
-| [`IMAGE_REL_IA64_PCREL60I`](#image_rel_ia64_pcrel60i) | const | If possible, convert to MIB bundle with NOP.I in slot 1 |
-| [`IMAGE_REL_IA64_PCREL60M`](#image_rel_ia64_pcrel60m) | const | If possible, convert to MMB bundle with NOP.M in slot 1 |
-| [`IMAGE_REL_IA64_IMMGPREL64`](#image_rel_ia64_immgprel64) | const |  |
-| [`IMAGE_REL_IA64_TOKEN`](#image_rel_ia64_token) | const | clr token |
-| [`IMAGE_REL_IA64_GPREL32`](#image_rel_ia64_gprel32) | const |  |
-| [`IMAGE_REL_IA64_ADDEND`](#image_rel_ia64_addend) | const |  |
-| [`IMAGE_REL_CEF_ABSOLUTE`](#image_rel_cef_absolute) | const | Reference is absolute, no relocation is necessary |
-| [`IMAGE_REL_CEF_ADDR32`](#image_rel_cef_addr32) | const | 32-bit address (VA). |
-| [`IMAGE_REL_CEF_ADDR64`](#image_rel_cef_addr64) | const | 64-bit address (VA). |
-| [`IMAGE_REL_CEF_ADDR32NB`](#image_rel_cef_addr32nb) | const | 32-bit address w/o image base (RVA). |
-| [`IMAGE_REL_CEF_SECTION`](#image_rel_cef_section) | const | Section index |
-| [`IMAGE_REL_CEF_SECREL`](#image_rel_cef_secrel) | const | 32 bit offset from base of section containing target |
-| [`IMAGE_REL_CEF_TOKEN`](#image_rel_cef_token) | const | 32 bit metadata token |
-| [`IMAGE_REL_CEE_ABSOLUTE`](#image_rel_cee_absolute) | const | Reference is absolute, no relocation is necessary |
-| [`IMAGE_REL_CEE_ADDR32`](#image_rel_cee_addr32) | const | 32-bit address (VA). |
-| [`IMAGE_REL_CEE_ADDR64`](#image_rel_cee_addr64) | const | 64-bit address (VA). |
-| [`IMAGE_REL_CEE_ADDR32NB`](#image_rel_cee_addr32nb) | const | 32-bit address w/o image base (RVA). |
-| [`IMAGE_REL_CEE_SECTION`](#image_rel_cee_section) | const | Section index |
-| [`IMAGE_REL_CEE_SECREL`](#image_rel_cee_secrel) | const | 32 bit offset from base of section containing target |
-| [`IMAGE_REL_CEE_TOKEN`](#image_rel_cee_token) | const | 32 bit metadata token |
-| [`IMAGE_REL_M32R_ABSOLUTE`](#image_rel_m32r_absolute) | const | No relocation required |
-| [`IMAGE_REL_M32R_ADDR32`](#image_rel_m32r_addr32) | const | 32 bit address |
-| [`IMAGE_REL_M32R_ADDR32NB`](#image_rel_m32r_addr32nb) | const | 32 bit address w/o image base |
-| [`IMAGE_REL_M32R_ADDR24`](#image_rel_m32r_addr24) | const | 24 bit address |
-| [`IMAGE_REL_M32R_GPREL16`](#image_rel_m32r_gprel16) | const | GP relative addressing |
-| [`IMAGE_REL_M32R_PCREL24`](#image_rel_m32r_pcrel24) | const | 24 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_M32R_PCREL16`](#image_rel_m32r_pcrel16) | const | 16 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_M32R_PCREL8`](#image_rel_m32r_pcrel8) | const | 8 bit offset << 2 & sign ext. |
-| [`IMAGE_REL_M32R_REFHALF`](#image_rel_m32r_refhalf) | const | 16 MSBs |
-| [`IMAGE_REL_M32R_REFHI`](#image_rel_m32r_refhi) | const | 16 MSBs; adj for LSB sign ext. |
-| [`IMAGE_REL_M32R_REFLO`](#image_rel_m32r_reflo) | const | 16 LSBs |
-| [`IMAGE_REL_M32R_PAIR`](#image_rel_m32r_pair) | const | Link HI and LO |
-| [`IMAGE_REL_M32R_SECTION`](#image_rel_m32r_section) | const | Section table index |
-| [`IMAGE_REL_M32R_SECREL32`](#image_rel_m32r_secrel32) | const | 32 bit section relative reference |
-| [`IMAGE_REL_M32R_TOKEN`](#image_rel_m32r_token) | const | clr token |
-| [`IMAGE_REL_EBC_ABSOLUTE`](#image_rel_ebc_absolute) | const | No relocation required |
-| [`IMAGE_REL_EBC_ADDR32NB`](#image_rel_ebc_addr32nb) | const | 32 bit address w/o image base |
-| [`IMAGE_REL_EBC_REL32`](#image_rel_ebc_rel32) | const | 32-bit relative address from byte following reloc |
-| [`IMAGE_REL_EBC_SECTION`](#image_rel_ebc_section) | const | Section table index |
-| [`IMAGE_REL_EBC_SECREL`](#image_rel_ebc_secrel) | const | Offset within section |
-| [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch_enc_i17_imm7b_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch_enc_i17_imm7b_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch_enc_i17_imm7b_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch_enc_i17_imm7b_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch_enc_i17_imm9d_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch_enc_i17_imm9d_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch_enc_i17_imm9d_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch_enc_i17_imm9d_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch_enc_i17_imm5c_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch_enc_i17_imm5c_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch_enc_i17_imm5c_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch_enc_i17_imm5c_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch_enc_i17_ic_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch_enc_i17_ic_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch_enc_i17_ic_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch_enc_i17_ic_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch_enc_i17_imm41a_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch_enc_i17_imm41a_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch_enc_i17_imm41a_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch_enc_i17_imm41a_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch_enc_i17_imm41b_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch_enc_i17_imm41b_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch_enc_i17_imm41b_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch_enc_i17_imm41b_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch_enc_i17_imm41c_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch_enc_i17_imm41c_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch_enc_i17_imm41c_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch_enc_i17_imm41c_val_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch_enc_i17_sign_inst_word_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch_enc_i17_sign_size_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch_enc_i17_sign_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch_enc_i17_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_OPCODE_INST_WORD_X`](#x3_opcode_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_OPCODE_SIZE_X`](#x3_opcode_size_x) | const | Intel-IA64-Filler |
-| [`X3_OPCODE_INST_WORD_POS_X`](#x3_opcode_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_OPCODE_SIGN_VAL_POS_X`](#x3_opcode_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_I_INST_WORD_X`](#x3_i_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_I_SIZE_X`](#x3_i_size_x) | const | Intel-IA64-Filler |
-| [`X3_I_INST_WORD_POS_X`](#x3_i_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_I_SIGN_VAL_POS_X`](#x3_i_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_D_WH_INST_WORD_X`](#x3_d_wh_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_D_WH_SIZE_X`](#x3_d_wh_size_x) | const | Intel-IA64-Filler |
-| [`X3_D_WH_INST_WORD_POS_X`](#x3_d_wh_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_D_WH_SIGN_VAL_POS_X`](#x3_d_wh_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM20_INST_WORD_X`](#x3_imm20_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_IMM20_SIZE_X`](#x3_imm20_size_x) | const | Intel-IA64-Filler |
-| [`X3_IMM20_INST_WORD_POS_X`](#x3_imm20_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM20_SIGN_VAL_POS_X`](#x3_imm20_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_1_INST_WORD_X`](#x3_imm39_1_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_1_SIZE_X`](#x3_imm39_1_size_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_1_INST_WORD_POS_X`](#x3_imm39_1_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3_imm39_1_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_2_INST_WORD_X`](#x3_imm39_2_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_2_SIZE_X`](#x3_imm39_2_size_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_2_INST_WORD_POS_X`](#x3_imm39_2_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3_imm39_2_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_P_INST_WORD_X`](#x3_p_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_P_SIZE_X`](#x3_p_size_x) | const | Intel-IA64-Filler |
-| [`X3_P_INST_WORD_POS_X`](#x3_p_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_P_SIGN_VAL_POS_X`](#x3_p_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_TMPLT_INST_WORD_X`](#x3_tmplt_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_TMPLT_SIZE_X`](#x3_tmplt_size_x) | const | Intel-IA64-Filler |
-| [`X3_TMPLT_INST_WORD_POS_X`](#x3_tmplt_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_TMPLT_SIGN_VAL_POS_X`](#x3_tmplt_sign_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_BTYPE_QP_INST_WORD_X`](#x3_btype_qp_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_BTYPE_QP_SIZE_X`](#x3_btype_qp_size_x) | const | Intel-IA64-Filler |
-| [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3_btype_qp_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3_btype_qp_inst_val_pos_x) | const | Intel-IA64-Filler |
-| [`X3_EMPTY_INST_WORD_X`](#x3_empty_inst_word_x) | const | Intel-IA64-Filler |
-| [`X3_EMPTY_SIZE_X`](#x3_empty_size_x) | const | Intel-IA64-Filler |
-| [`X3_EMPTY_INST_WORD_POS_X`](#x3_empty_inst_word_pos_x) | const | Intel-IA64-Filler |
-| [`X3_EMPTY_INST_VAL_POS_X`](#x3_empty_inst_val_pos_x) | const | Intel-IA64-Filler |
-| [`IMAGE_REL_BASED_ABSOLUTE`](#image_rel_based_absolute) | const |  |
-| [`IMAGE_REL_BASED_HIGH`](#image_rel_based_high) | const |  |
-| [`IMAGE_REL_BASED_LOW`](#image_rel_based_low) | const |  |
-| [`IMAGE_REL_BASED_HIGHLOW`](#image_rel_based_highlow) | const |  |
-| [`IMAGE_REL_BASED_HIGHADJ`](#image_rel_based_highadj) | const |  |
-| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image_rel_based_machine_specific_5) | const |  |
-| [`IMAGE_REL_BASED_RESERVED`](#image_rel_based_reserved) | const |  |
-| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image_rel_based_machine_specific_7) | const |  |
-| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image_rel_based_machine_specific_8) | const |  |
-| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image_rel_based_machine_specific_9) | const |  |
-| [`IMAGE_REL_BASED_DIR64`](#image_rel_based_dir64) | const |  |
-| [`IMAGE_REL_BASED_IA64_IMM64`](#image_rel_based_ia64_imm64) | const |  |
-| [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image_rel_based_mips_jmpaddr) | const |  |
-| [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image_rel_based_mips_jmpaddr16) | const |  |
-| [`IMAGE_REL_BASED_ARM_MOV32`](#image_rel_based_arm_mov32) | const |  |
-| [`IMAGE_REL_BASED_THUMB_MOV32`](#image_rel_based_thumb_mov32) | const |  |
-| [`IMAGE_REL_BASED_RISCV_HIGH20`](#image_rel_based_riscv_high20) | const |  |
-| [`IMAGE_REL_BASED_RISCV_LOW12I`](#image_rel_based_riscv_low12i) | const |  |
-| [`IMAGE_REL_BASED_RISCV_LOW12S`](#image_rel_based_riscv_low12s) | const |  |
-| [`IMAGE_ARCHIVE_START_SIZE`](#image_archive_start_size) | const |  |
-| [`IMAGE_ARCHIVE_START`](#image_archive_start) | const |  |
-| [`IMAGE_ARCHIVE_END`](#image_archive_end) | const |  |
-| [`IMAGE_ARCHIVE_PAD`](#image_archive_pad) | const |  |
-| [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image_archive_linker_member) | const |  |
-| [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image_archive_longnames_member) | const |  |
-| [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image_archive_hybridmap_member) | const |  |
-| [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image_sizeof_archive_member_hdr) | const |  |
-| [`IMAGE_ORDINAL_FLAG64`](#image_ordinal_flag64) | const |  |
-| [`IMAGE_ORDINAL_FLAG32`](#image_ordinal_flag32) | const |  |
-| [`IMAGE_DELAYLOAD_RVA_BASED`](#image_delayload_rva_based) | const | Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`. |
-| [`IMAGE_RESOURCE_NAME_IS_STRING`](#image_resource_name_is_string) | const |  |
-| [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image_resource_data_is_directory) | const |  |
-| [`RT_CURSOR`](#rt_cursor) | const | ID for: Hardware-dependent cursor resource. |
-| [`RT_BITMAP`](#rt_bitmap) | const | ID for: Bitmap resource. |
-| [`RT_ICON`](#rt_icon) | const | ID for: Hardware-dependent icon resource. |
-| [`RT_MENU`](#rt_menu) | const | ID for: Menu resource. |
-| [`RT_DIALOG`](#rt_dialog) | const | ID for: Dialog box. |
-| [`RT_STRING`](#rt_string) | const | ID for: String-table entry. |
-| [`RT_FONTDIR`](#rt_fontdir) | const | ID for: Font directory resource. |
-| [`RT_FONT`](#rt_font) | const | ID for: Font resource. |
-| [`RT_ACCELERATOR`](#rt_accelerator) | const | ID for: Accelerator table. |
-| [`RT_RCDATA`](#rt_rcdata) | const | ID for: Application-defined resource (raw data). |
-| [`RT_MESSAGETABLE`](#rt_messagetable) | const | ID for: Message-table entry. |
-| [`RT_GROUP_CURSOR`](#rt_group_cursor) | const | ID for: Hardware-independent cursor resource. |
-| [`RT_GROUP_ICON`](#rt_group_icon) | const | ID for: Hardware-independent icon resource. |
-| [`RT_VERSION`](#rt_version) | const | ID for: Version resource. |
-| [`RT_DLGINCLUDE`](#rt_dlginclude) | const | ID for: Allows a resource editing tool to associate a string with an .rc file. |
-| [`RT_PLUGPLAY`](#rt_plugplay) | const | ID for: Plug and Play resource. |
-| [`RT_VXD`](#rt_vxd) | const | ID for: VXD. |
-| [`RT_ANICURSOR`](#rt_anicursor) | const | ID for: Animated cursor. |
-| [`RT_ANIICON`](#rt_aniicon) | const | ID for: Animated icon. |
-| [`RT_HTML`](#rt_html) | const | ID for: HTML resource. |
-| [`RT_MANIFEST`](#rt_manifest) | const | ID for: Side-by-Side Assembly Manifest. |
-| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image_dynamic_relocation_guard_rf_prologue) | const |  |
-| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image_dynamic_relocation_guard_rf_epilogue) | const |  |
-| [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_import_control_transfer) | const |  |
-| [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_indir_control_transfer) | const |  |
-| [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image_dynamic_relocation_guard_switchtable_branch) | const |  |
-| [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image_hot_patch_base_obligatory) | const |  |
-| [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image_hot_patch_base_can_roll_back) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image_hot_patch_chunk_inverse) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image_hot_patch_chunk_obligatory) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image_hot_patch_chunk_reserved) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image_hot_patch_chunk_type) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image_hot_patch_chunk_source_rva) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image_hot_patch_chunk_target_rva) | const |  |
-| [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image_hot_patch_chunk_size) | const |  |
-| [`IMAGE_HOT_PATCH_NONE`](#image_hot_patch_none) | const |  |
-| [`IMAGE_HOT_PATCH_FUNCTION`](#image_hot_patch_function) | const |  |
-| [`IMAGE_HOT_PATCH_ABSOLUTE`](#image_hot_patch_absolute) | const |  |
-| [`IMAGE_HOT_PATCH_REL32`](#image_hot_patch_rel32) | const |  |
-| [`IMAGE_HOT_PATCH_CALL_TARGET`](#image_hot_patch_call_target) | const |  |
-| [`IMAGE_HOT_PATCH_INDIRECT`](#image_hot_patch_indirect) | const |  |
-| [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image_hot_patch_no_call_target) | const |  |
-| [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image_hot_patch_dynamic_value) | const |  |
-| [`IMAGE_GUARD_CF_INSTRUMENTED`](#image_guard_cf_instrumented) | const | Module performs control flow integrity checks using system-supplied support |
-| [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image_guard_cfw_instrumented) | const | Module performs control flow and write integrity checks |
-| [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image_guard_cf_function_table_present) | const | Module contains valid control flow target metadata |
-| [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image_guard_security_cookie_unused) | const | Module does not make use of the /GS security cookie |
-| [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image_guard_protect_delayload_iat) | const | Module supports read only delay load IAT |
-| [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image_guard_delayload_iat_in_its_own_section) | const | Delayload import table in its own .didat section (with nothing else in it) that can be freely reprotected |
-| [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image_guard_cf_export_suppression_info_present) | const | Module contains suppressed export information. |
-| [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image_guard_cf_enable_export_suppression) | const | Module enables suppression of exports |
-| [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image_guard_cf_longjump_table_present) | const | Module contains longjmp target information |
-| [`IMAGE_GUARD_RF_INSTRUMENTED`](#image_guard_rf_instrumented) | const | Module contains return flow instrumentation and metadata |
-| [`IMAGE_GUARD_RF_ENABLE`](#image_guard_rf_enable) | const | Module requests that the OS enable return flow protection |
-| [`IMAGE_GUARD_RF_STRICT`](#image_guard_rf_strict) | const | Module requests that the OS enable return flow protection in strict mode |
-| [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image_guard_retpoline_present) | const | Module was built with retpoline support |
-| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image_guard_cf_function_table_size_mask) | const | Stride of Guard CF function table encoded in these bits (additional count of bytes per element) |
-| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image_guard_cf_function_table_size_shift) | const | Shift to right-justify Guard CF function table stride |
-| [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image_guard_flag_fid_suppressed) | const | The containing GFID entry is suppressed |
-| [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image_guard_flag_export_suppressed) | const | The containing GFID entry is export suppressed |
-| [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image_enclave_long_id_length) | const |  |
-| [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image_enclave_short_id_length) | const |  |
-| [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image_enclave_policy_debuggable) | const |  |
-| [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image_enclave_flag_primary_image) | const |  |
-| [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image_enclave_import_match_none) | const |  |
-| [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image_enclave_import_match_unique_id) | const |  |
-| [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image_enclave_import_match_author_id) | const |  |
-| [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image_enclave_import_match_family_id) | const |  |
-| [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image_enclave_import_match_image_id) | const |  |
-| [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image_debug_type_unknown) | const |  |
-| [`IMAGE_DEBUG_TYPE_COFF`](#image_debug_type_coff) | const |  |
-| [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image_debug_type_codeview) | const |  |
-| [`IMAGE_DEBUG_TYPE_FPO`](#image_debug_type_fpo) | const |  |
-| [`IMAGE_DEBUG_TYPE_MISC`](#image_debug_type_misc) | const |  |
-| [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image_debug_type_exception) | const |  |
-| [`IMAGE_DEBUG_TYPE_FIXUP`](#image_debug_type_fixup) | const |  |
-| [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image_debug_type_omap_to_src) | const |  |
-| [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image_debug_type_omap_from_src) | const |  |
-| [`IMAGE_DEBUG_TYPE_BORLAND`](#image_debug_type_borland) | const |  |
-| [`IMAGE_DEBUG_TYPE_RESERVED10`](#image_debug_type_reserved10) | const |  |
-| [`IMAGE_DEBUG_TYPE_CLSID`](#image_debug_type_clsid) | const |  |
-| [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image_debug_type_vc_feature) | const |  |
-| [`IMAGE_DEBUG_TYPE_POGO`](#image_debug_type_pogo) | const |  |
-| [`IMAGE_DEBUG_TYPE_ILTCG`](#image_debug_type_iltcg) | const |  |
-| [`IMAGE_DEBUG_TYPE_MPX`](#image_debug_type_mpx) | const |  |
-| [`IMAGE_DEBUG_TYPE_REPRO`](#image_debug_type_repro) | const |  |
-| [`FRAME_FPO`](#frame_fpo) | const |  |
-| [`FRAME_TRAP`](#frame_trap) | const |  |
-| [`FRAME_TSS`](#frame_tss) | const |  |
-| [`FRAME_NONFPO`](#frame_nonfpo) | const |  |
-| [`IMAGE_DEBUG_MISC_EXENAME`](#image_debug_misc_exename) | const |  |
-| [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image_separate_debug_signature) | const |  |
-| [`NON_PAGED_DEBUG_SIGNATURE`](#non_paged_debug_signature) | const |  |
-| [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image_separate_debug_flags_mask) | const |  |
-| [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image_separate_debug_mismatch) | const | when DBG was updated, the old checksum didn't match. |
-| [`IMPORT_OBJECT_HDR_SIG2`](#import_object_hdr_sig2) | const |  |
-| [`IMPORT_OBJECT_TYPE_MASK`](#import_object_type_mask) | const |  |
-| [`IMPORT_OBJECT_TYPE_SHIFT`](#import_object_type_shift) | const |  |
-| [`IMPORT_OBJECT_CODE`](#import_object_code) | const |  |
-| [`IMPORT_OBJECT_DATA`](#import_object_data) | const |  |
-| [`IMPORT_OBJECT_CONST`](#import_object_const) | const |  |
-| [`IMPORT_OBJECT_NAME_MASK`](#import_object_name_mask) | const |  |
-| [`IMPORT_OBJECT_NAME_SHIFT`](#import_object_name_shift) | const |  |
-| [`IMPORT_OBJECT_ORDINAL`](#import_object_ordinal) | const | Import by ordinal |
-| [`IMPORT_OBJECT_NAME`](#import_object_name) | const | Import name == public symbol name. |
-| [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import_object_name_no_prefix) | const | Import name == public symbol name skipping leading ?, @, or optionally _. |
-| [`IMPORT_OBJECT_NAME_UNDECORATE`](#import_object_name_undecorate) | const | Import name == public symbol name skipping leading ?, @, or optionally _ and truncating at first @. |
-| [`IMPORT_OBJECT_NAME_EXPORTAS`](#import_object_name_exportas) | const | Import name == a name is explicitly provided after the DLL name. |
-| [`COMIMAGE_FLAGS_ILONLY`](#comimage_flags_ilonly) | const |  |
-| [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage_flags_32bitrequired) | const |  |
-| [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage_flags_il_library) | const |  |
-| [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage_flags_strongnamesigned) | const |  |
-| [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage_flags_native_entrypoint) | const |  |
-| [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage_flags_trackdebugdata) | const |  |
-| [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage_flags_32bitpreferred) | const |  |
-| [`COR_VERSION_MAJOR_V2`](#cor_version_major_v2) | const |  |
-| [`COR_VERSION_MAJOR`](#cor_version_major) | const |  |
-| [`COR_VERSION_MINOR`](#cor_version_minor) | const |  |
-| [`COR_DELETED_NAME_LENGTH`](#cor_deleted_name_length) | const |  |
-| [`COR_VTABLEGAP_NAME_LENGTH`](#cor_vtablegap_name_length) | const |  |
-| [`NATIVE_TYPE_MAX_CB`](#native_type_max_cb) | const |  |
-| [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor_ilmethod_sect_small_max_datasize) | const |  |
-| [`IMAGE_COR_MIH_METHODRVA`](#image_cor_mih_methodrva) | const |  |
-| [`IMAGE_COR_MIH_EHRVA`](#image_cor_mih_ehrva) | const |  |
-| [`IMAGE_COR_MIH_BASICBLOCK`](#image_cor_mih_basicblock) | const |  |
-| [`COR_VTABLE_32BIT`](#cor_vtable_32bit) | const | V-table slots are 32-bits in size. |
-| [`COR_VTABLE_64BIT`](#cor_vtable_64bit) | const | V-table slots are 64-bits in size. |
-| [`COR_VTABLE_FROM_UNMANAGED`](#cor_vtable_from_unmanaged) | const | If set, transition from unmanaged. |
-| [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor_vtable_from_unmanaged_retain_appdomain) | const | If set, transition from unmanaged with keeping the current appdomain. |
-| [`COR_VTABLE_CALL_MOST_DERIVED`](#cor_vtable_call_most_derived) | const | Call most derived method described by |
-| [`IMAGE_COR_EATJ_THUNK_SIZE`](#image_cor_eatj_thunk_size) | const | Size of a jump thunk reserved range. |
-| [`MAX_CLASS_NAME`](#max_class_name) | const |  |
-| [`MAX_PACKAGE_NAME`](#max_package_name) | const |  |
+| [`IMAGE_DOS_SIGNATURE`](#image-dos-signature) | const | MZ |
+| [`IMAGE_OS2_SIGNATURE`](#image-os2-signature) | const | NE |
+| [`IMAGE_OS2_SIGNATURE_LE`](#image-os2-signature-le) | const | LE |
+| [`IMAGE_VXD_SIGNATURE`](#image-vxd-signature) | const | LE |
+| [`IMAGE_NT_SIGNATURE`](#image-nt-signature) | const | PE00 |
+| [`IMAGE_SIZEOF_FILE_HEADER`](#image-sizeof-file-header) | const |  |
+| [`IMAGE_FILE_RELOCS_STRIPPED`](#image-file-relocs-stripped) | const | Relocation info stripped from file. |
+| [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image-file-executable-image) | const | File is executable  (i.e. no unresolved external references). |
+| [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image-file-line-nums-stripped) | const | Line numbers stripped from file. |
+| [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image-file-local-syms-stripped) | const | Local symbols stripped from file. |
+| [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image-file-aggresive-ws-trim) | const | Aggressively trim working set |
+| [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image-file-large-address-aware) | const | App can handle >2gb addresses |
+| [`IMAGE_FILE_BYTES_REVERSED_LO`](#image-file-bytes-reversed-lo) | const | Bytes of machine word are reversed. |
+| [`IMAGE_FILE_32BIT_MACHINE`](#image-file-32bit-machine) | const | 32 bit word machine. |
+| [`IMAGE_FILE_DEBUG_STRIPPED`](#image-file-debug-stripped) | const | Debugging info stripped from file in .DBG file |
+| [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image-file-removable-run-from-swap) | const | If Image is on removable media, copy and run from the swap file. |
+| [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image-file-net-run-from-swap) | const | If Image is on Net, copy and run from the swap file. |
+| [`IMAGE_FILE_SYSTEM`](#image-file-system) | const | System File. |
+| [`IMAGE_FILE_DLL`](#image-file-dll) | const | File is a DLL. |
+| [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image-file-up-system-only) | const | File should only be run on a UP machine |
+| [`IMAGE_FILE_BYTES_REVERSED_HI`](#image-file-bytes-reversed-hi) | const | Bytes of machine word are reversed. |
+| [`IMAGE_FILE_MACHINE_UNKNOWN`](#image-file-machine-unknown) | const |  |
+| [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image-file-machine-target-host) | const | Useful for indicating we want to interact with the host and not a WoW guest. |
+| [`IMAGE_FILE_MACHINE_I386`](#image-file-machine-i386) | const | Intel 386. |
+| [`IMAGE_FILE_MACHINE_R3000`](#image-file-machine-r3000) | const | MIPS little-endian, 0x160 big-endian |
+| [`IMAGE_FILE_MACHINE_R4000`](#image-file-machine-r4000) | const | MIPS little-endian |
+| [`IMAGE_FILE_MACHINE_R10000`](#image-file-machine-r10000) | const | MIPS little-endian |
+| [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image-file-machine-wcemipsv2) | const | MIPS little-endian WCE v2 |
+| [`IMAGE_FILE_MACHINE_ALPHA`](#image-file-machine-alpha) | const | Alpha_AXP |
+| [`IMAGE_FILE_MACHINE_SH3`](#image-file-machine-sh3) | const | SH3 little-endian |
+| [`IMAGE_FILE_MACHINE_SH3DSP`](#image-file-machine-sh3dsp) | const |  |
+| [`IMAGE_FILE_MACHINE_SH3E`](#image-file-machine-sh3e) | const | SH3E little-endian |
+| [`IMAGE_FILE_MACHINE_SH4`](#image-file-machine-sh4) | const | SH4 little-endian |
+| [`IMAGE_FILE_MACHINE_SH5`](#image-file-machine-sh5) | const | SH5 |
+| [`IMAGE_FILE_MACHINE_ARM`](#image-file-machine-arm) | const | ARM Little-Endian |
+| [`IMAGE_FILE_MACHINE_THUMB`](#image-file-machine-thumb) | const | ARM Thumb/Thumb-2 Little-Endian |
+| [`IMAGE_FILE_MACHINE_ARMNT`](#image-file-machine-armnt) | const | ARM Thumb-2 Little-Endian |
+| [`IMAGE_FILE_MACHINE_AM33`](#image-file-machine-am33) | const |  |
+| [`IMAGE_FILE_MACHINE_POWERPC`](#image-file-machine-powerpc) | const | IBM PowerPC Little-Endian |
+| [`IMAGE_FILE_MACHINE_POWERPCFP`](#image-file-machine-powerpcfp) | const |  |
+| [`IMAGE_FILE_MACHINE_POWERPCBE`](#image-file-machine-powerpcbe) | const | IBM PowerPC Big-Endian |
+| [`IMAGE_FILE_MACHINE_IA64`](#image-file-machine-ia64) | const | Intel 64 |
+| [`IMAGE_FILE_MACHINE_MIPS16`](#image-file-machine-mips16) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_ALPHA64`](#image-file-machine-alpha64) | const | ALPHA64 |
+| [`IMAGE_FILE_MACHINE_MIPSFPU`](#image-file-machine-mipsfpu) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image-file-machine-mipsfpu16) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_AXP64`](#image-file-machine-axp64) | const |  |
+| [`IMAGE_FILE_MACHINE_TRICORE`](#image-file-machine-tricore) | const | Infineon |
+| [`IMAGE_FILE_MACHINE_CEF`](#image-file-machine-cef) | const |  |
+| [`IMAGE_FILE_MACHINE_EBC`](#image-file-machine-ebc) | const | EFI Byte Code |
+| [`IMAGE_FILE_MACHINE_AMD64`](#image-file-machine-amd64) | const | AMD64 (K8) |
+| [`IMAGE_FILE_MACHINE_M32R`](#image-file-machine-m32r) | const | M32R little-endian |
+| [`IMAGE_FILE_MACHINE_ARM64`](#image-file-machine-arm64) | const | ARM64 Little-Endian |
+| [`IMAGE_FILE_MACHINE_ARM64EC`](#image-file-machine-arm64ec) | const | ARM64EC ("Emulation Compatible") |
+| [`IMAGE_FILE_MACHINE_CEE`](#image-file-machine-cee) | const |  |
+| [`IMAGE_FILE_MACHINE_RISCV32`](#image-file-machine-riscv32) | const | RISCV32 |
+| [`IMAGE_FILE_MACHINE_RISCV64`](#image-file-machine-riscv64) | const | RISCV64 |
+| [`IMAGE_FILE_MACHINE_RISCV128`](#image-file-machine-riscv128) | const | RISCV128 |
+| [`IMAGE_FILE_MACHINE_ARM64X`](#image-file-machine-arm64x) | const | ARM64X (Mixed ARM64 and ARM64EC) |
+| [`IMAGE_FILE_MACHINE_CHPE_X86`](#image-file-machine-chpe-x86) | const | CHPE x86 ("Compiled Hybrid Portable Executable") |
+| [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image-numberof-directory-entries) | const |  |
+| [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image-nt-optional-hdr32-magic) | const |  |
+| [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image-nt-optional-hdr64-magic) | const |  |
+| [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image-rom-optional-hdr-magic) | const |  |
+| [`IMAGE_SUBSYSTEM_UNKNOWN`](#image-subsystem-unknown) | const | Unknown subsystem. |
+| [`IMAGE_SUBSYSTEM_NATIVE`](#image-subsystem-native) | const | Image doesn't require a subsystem. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image-subsystem-windows-gui) | const | Image runs in the Windows GUI subsystem. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image-subsystem-windows-cui) | const | Image runs in the Windows character subsystem. |
+| [`IMAGE_SUBSYSTEM_OS2_CUI`](#image-subsystem-os2-cui) | const | image runs in the OS/2 character subsystem. |
+| [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image-subsystem-posix-cui) | const | image runs in the Posix character subsystem. |
+| [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image-subsystem-native-windows) | const | image is a native Win9x driver. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image-subsystem-windows-ce-gui) | const | Image runs in the Windows CE subsystem. |
+| [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image-subsystem-efi-application) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image-subsystem-efi-boot-service-driver) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image-subsystem-efi-runtime-driver) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_ROM`](#image-subsystem-efi-rom) | const |  |
+| [`IMAGE_SUBSYSTEM_XBOX`](#image-subsystem-xbox) | const |  |
+| [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image-subsystem-windows-boot-application) | const |  |
+| [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image-subsystem-xbox-code-catalog) | const |  |
+| [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image-dllcharacteristics-high-entropy-va) | const | Image can handle a high entropy 64-bit virtual address space. |
+| [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image-dllcharacteristics-dynamic-base) | const | DLL can move. |
+| [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image-dllcharacteristics-force-integrity) | const | Code Integrity Image |
+| [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image-dllcharacteristics-nx-compat) | const | Image is NX compatible |
+| [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image-dllcharacteristics-no-isolation) | const | Image understands isolation and doesn't want it |
+| [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image-dllcharacteristics-no-seh) | const | Image does not use SEH. |
+| [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image-dllcharacteristics-no-bind) | const | Do not bind this image. |
+| [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image-dllcharacteristics-appcontainer) | const | Image should execute in an AppContainer |
+| [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image-dllcharacteristics-wdm-driver) | const | Driver uses WDM model |
+| [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image-dllcharacteristics-guard-cf) | const | Image supports Control Flow Guard. |
+| [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image-dllcharacteristics-terminal-server-aware) | const |  |
+| [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image-directory-entry-export) | const | Export Directory |
+| [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image-directory-entry-import) | const | Import Directory |
+| [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image-directory-entry-resource) | const | Resource Directory |
+| [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image-directory-entry-exception) | const | Exception Directory |
+| [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image-directory-entry-security) | const | Security Directory |
+| [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image-directory-entry-basereloc) | const | Base Relocation Table |
+| [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image-directory-entry-debug) | const | Debug Directory |
+| [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image-directory-entry-architecture) | const | Architecture Specific Data |
+| [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image-directory-entry-globalptr) | const | RVA of GP |
+| [`IMAGE_DIRECTORY_ENTRY_TLS`](#image-directory-entry-tls) | const | TLS Directory |
+| [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image-directory-entry-load-config) | const | Load Configuration Directory |
+| [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image-directory-entry-bound-import) | const | Bound Import Directory in headers |
+| [`IMAGE_DIRECTORY_ENTRY_IAT`](#image-directory-entry-iat) | const | Import Address Table |
+| [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image-directory-entry-delay-import) | const | Delay Load Import Descriptors |
+| [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image-directory-entry-com-descriptor) | const | COM Runtime descriptor |
+| [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon-object-header-bigobj-class-id) | const | The required value of `AnonObjectHeaderBigobj::class_id`. |
+| [`IMAGE_SIZEOF_SHORT_NAME`](#image-sizeof-short-name) | const |  |
+| [`IMAGE_SIZEOF_SECTION_HEADER`](#image-sizeof-section-header) | const |  |
+| [`IMAGE_SCN_TYPE_NO_PAD`](#image-scn-type-no-pad) | const | Reserved. |
+| [`IMAGE_SCN_CNT_CODE`](#image-scn-cnt-code) | const | Section contains code. |
+| [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image-scn-cnt-initialized-data) | const | Section contains initialized data. |
+| [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image-scn-cnt-uninitialized-data) | const | Section contains uninitialized data. |
+| [`IMAGE_SCN_LNK_OTHER`](#image-scn-lnk-other) | const | Reserved. |
+| [`IMAGE_SCN_LNK_INFO`](#image-scn-lnk-info) | const | Section contains comments or some other type of information. |
+| [`IMAGE_SCN_LNK_REMOVE`](#image-scn-lnk-remove) | const | Section contents will not become part of image. |
+| [`IMAGE_SCN_LNK_COMDAT`](#image-scn-lnk-comdat) | const | Section contents comdat. |
+| [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image-scn-no-defer-spec-exc) | const | Reset speculative exceptions handling bits in the TLB entries for this section. |
+| [`IMAGE_SCN_GPREL`](#image-scn-gprel) | const | Section content can be accessed relative to GP |
+| [`IMAGE_SCN_MEM_FARDATA`](#image-scn-mem-fardata) | const |  |
+| [`IMAGE_SCN_MEM_PURGEABLE`](#image-scn-mem-purgeable) | const |  |
+| [`IMAGE_SCN_MEM_16BIT`](#image-scn-mem-16bit) | const |  |
+| [`IMAGE_SCN_MEM_LOCKED`](#image-scn-mem-locked) | const |  |
+| [`IMAGE_SCN_MEM_PRELOAD`](#image-scn-mem-preload) | const |  |
+| [`IMAGE_SCN_ALIGN_1BYTES`](#image-scn-align-1bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_2BYTES`](#image-scn-align-2bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_4BYTES`](#image-scn-align-4bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_8BYTES`](#image-scn-align-8bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_16BYTES`](#image-scn-align-16bytes) | const | Default alignment if no others are specified. |
+| [`IMAGE_SCN_ALIGN_32BYTES`](#image-scn-align-32bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_64BYTES`](#image-scn-align-64bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_128BYTES`](#image-scn-align-128bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_256BYTES`](#image-scn-align-256bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_512BYTES`](#image-scn-align-512bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_1024BYTES`](#image-scn-align-1024bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_2048BYTES`](#image-scn-align-2048bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_4096BYTES`](#image-scn-align-4096bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_8192BYTES`](#image-scn-align-8192bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_MASK`](#image-scn-align-mask) | const |  |
+| [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image-scn-lnk-nreloc-ovfl) | const | Section contains extended relocations. |
+| [`IMAGE_SCN_MEM_DISCARDABLE`](#image-scn-mem-discardable) | const | Section can be discarded. |
+| [`IMAGE_SCN_MEM_NOT_CACHED`](#image-scn-mem-not-cached) | const | Section is not cacheable. |
+| [`IMAGE_SCN_MEM_NOT_PAGED`](#image-scn-mem-not-paged) | const | Section is not pageable. |
+| [`IMAGE_SCN_MEM_SHARED`](#image-scn-mem-shared) | const | Section is shareable. |
+| [`IMAGE_SCN_MEM_EXECUTE`](#image-scn-mem-execute) | const | Section is executable. |
+| [`IMAGE_SCN_MEM_READ`](#image-scn-mem-read) | const | Section is readable. |
+| [`IMAGE_SCN_MEM_WRITE`](#image-scn-mem-write) | const | Section is writeable. |
+| [`IMAGE_SCN_SCALE_INDEX`](#image-scn-scale-index) | const | Tls index is scaled |
+| [`IMAGE_SIZEOF_SYMBOL`](#image-sizeof-symbol) | const |  |
+| [`IMAGE_SIZEOF_SYMBOL_EX`](#image-sizeof-symbol-ex) | const |  |
+| [`IMAGE_SYM_UNDEFINED`](#image-sym-undefined) | const | Symbol is undefined or is common. |
+| [`IMAGE_SYM_ABSOLUTE`](#image-sym-absolute) | const | Symbol is an absolute value. |
+| [`IMAGE_SYM_DEBUG`](#image-sym-debug) | const | Symbol is a special debug item. |
+| [`IMAGE_SYM_SECTION_MAX`](#image-sym-section-max) | const | Values 0xFF00-0xFFFF are special |
+| [`IMAGE_SYM_SECTION_MAX_EX`](#image-sym-section-max-ex) | const |  |
+| [`IMAGE_SYM_TYPE_NULL`](#image-sym-type-null) | const | no type. |
+| [`IMAGE_SYM_TYPE_VOID`](#image-sym-type-void) | const |  |
+| [`IMAGE_SYM_TYPE_CHAR`](#image-sym-type-char) | const | type character. |
+| [`IMAGE_SYM_TYPE_SHORT`](#image-sym-type-short) | const | type short integer. |
+| [`IMAGE_SYM_TYPE_INT`](#image-sym-type-int) | const |  |
+| [`IMAGE_SYM_TYPE_LONG`](#image-sym-type-long) | const |  |
+| [`IMAGE_SYM_TYPE_FLOAT`](#image-sym-type-float) | const |  |
+| [`IMAGE_SYM_TYPE_DOUBLE`](#image-sym-type-double) | const |  |
+| [`IMAGE_SYM_TYPE_STRUCT`](#image-sym-type-struct) | const |  |
+| [`IMAGE_SYM_TYPE_UNION`](#image-sym-type-union) | const |  |
+| [`IMAGE_SYM_TYPE_ENUM`](#image-sym-type-enum) | const | enumeration. |
+| [`IMAGE_SYM_TYPE_MOE`](#image-sym-type-moe) | const | member of enumeration. |
+| [`IMAGE_SYM_TYPE_BYTE`](#image-sym-type-byte) | const |  |
+| [`IMAGE_SYM_TYPE_WORD`](#image-sym-type-word) | const |  |
+| [`IMAGE_SYM_TYPE_UINT`](#image-sym-type-uint) | const |  |
+| [`IMAGE_SYM_TYPE_DWORD`](#image-sym-type-dword) | const |  |
+| [`IMAGE_SYM_TYPE_PCODE`](#image-sym-type-pcode) | const |  |
+| [`IMAGE_SYM_DTYPE_NULL`](#image-sym-dtype-null) | const | no derived type. |
+| [`IMAGE_SYM_DTYPE_POINTER`](#image-sym-dtype-pointer) | const | pointer. |
+| [`IMAGE_SYM_DTYPE_FUNCTION`](#image-sym-dtype-function) | const | function. |
+| [`IMAGE_SYM_DTYPE_ARRAY`](#image-sym-dtype-array) | const | array. |
+| [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image-sym-class-end-of-function) | const |  |
+| [`IMAGE_SYM_CLASS_NULL`](#image-sym-class-null) | const |  |
+| [`IMAGE_SYM_CLASS_AUTOMATIC`](#image-sym-class-automatic) | const |  |
+| [`IMAGE_SYM_CLASS_EXTERNAL`](#image-sym-class-external) | const |  |
+| [`IMAGE_SYM_CLASS_STATIC`](#image-sym-class-static) | const |  |
+| [`IMAGE_SYM_CLASS_REGISTER`](#image-sym-class-register) | const |  |
+| [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image-sym-class-external-def) | const |  |
+| [`IMAGE_SYM_CLASS_LABEL`](#image-sym-class-label) | const |  |
+| [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image-sym-class-undefined-label) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image-sym-class-member-of-struct) | const |  |
+| [`IMAGE_SYM_CLASS_ARGUMENT`](#image-sym-class-argument) | const |  |
+| [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image-sym-class-struct-tag) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image-sym-class-member-of-union) | const |  |
+| [`IMAGE_SYM_CLASS_UNION_TAG`](#image-sym-class-union-tag) | const |  |
+| [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image-sym-class-type-definition) | const |  |
+| [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image-sym-class-undefined-static) | const |  |
+| [`IMAGE_SYM_CLASS_ENUM_TAG`](#image-sym-class-enum-tag) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image-sym-class-member-of-enum) | const |  |
+| [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image-sym-class-register-param) | const |  |
+| [`IMAGE_SYM_CLASS_BIT_FIELD`](#image-sym-class-bit-field) | const |  |
+| [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image-sym-class-far-external) | const |  |
+| [`IMAGE_SYM_CLASS_BLOCK`](#image-sym-class-block) | const |  |
+| [`IMAGE_SYM_CLASS_FUNCTION`](#image-sym-class-function) | const |  |
+| [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image-sym-class-end-of-struct) | const |  |
+| [`IMAGE_SYM_CLASS_FILE`](#image-sym-class-file) | const |  |
+| [`IMAGE_SYM_CLASS_SECTION`](#image-sym-class-section) | const |  |
+| [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image-sym-class-weak-external) | const |  |
+| [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image-sym-class-clr-token) | const |  |
+| [`N_BTMASK`](#n-btmask) | const |  |
+| [`N_TMASK`](#n-tmask) | const |  |
+| [`N_TMASK1`](#n-tmask1) | const |  |
+| [`N_TMASK2`](#n-tmask2) | const |  |
+| [`N_BTSHFT`](#n-btshft) | const |  |
+| [`N_TSHIFT`](#n-tshift) | const |  |
+| [`IMAGE_SYM_DTYPE_SHIFT`](#image-sym-dtype-shift) | const |  |
+| [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image-aux-symbol-type-token-def) | const |  |
+| [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image-comdat-select-noduplicates) | const |  |
+| [`IMAGE_COMDAT_SELECT_ANY`](#image-comdat-select-any) | const |  |
+| [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image-comdat-select-same-size) | const |  |
+| [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image-comdat-select-exact-match) | const |  |
+| [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image-comdat-select-associative) | const |  |
+| [`IMAGE_COMDAT_SELECT_LARGEST`](#image-comdat-select-largest) | const |  |
+| [`IMAGE_COMDAT_SELECT_NEWEST`](#image-comdat-select-newest) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image-weak-extern-search-nolibrary) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image-weak-extern-search-library) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image-weak-extern-search-alias) | const |  |
+| [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image-weak-extern-anti-dependency) | const |  |
+| [`IMAGE_REL_I386_ABSOLUTE`](#image-rel-i386-absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_I386_DIR16`](#image-rel-i386-dir16) | const | Direct 16-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_REL16`](#image-rel-i386-rel16) | const | PC-relative 16-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_DIR32`](#image-rel-i386-dir32) | const | Direct 32-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_DIR32NB`](#image-rel-i386-dir32nb) | const | Direct 32-bit reference to the symbols virtual address, base not included |
+| [`IMAGE_REL_I386_SEG12`](#image-rel-i386-seg12) | const | Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address |
+| [`IMAGE_REL_I386_SECTION`](#image-rel-i386-section) | const |  |
+| [`IMAGE_REL_I386_SECREL`](#image-rel-i386-secrel) | const |  |
+| [`IMAGE_REL_I386_TOKEN`](#image-rel-i386-token) | const | clr token |
+| [`IMAGE_REL_I386_SECREL7`](#image-rel-i386-secrel7) | const | 7 bit offset from base of section containing target |
+| [`IMAGE_REL_I386_REL32`](#image-rel-i386-rel32) | const | PC-relative 32-bit reference to the symbols virtual address |
+| [`IMAGE_REL_MIPS_ABSOLUTE`](#image-rel-mips-absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_MIPS_REFHALF`](#image-rel-mips-refhalf) | const |  |
+| [`IMAGE_REL_MIPS_REFWORD`](#image-rel-mips-refword) | const |  |
+| [`IMAGE_REL_MIPS_JMPADDR`](#image-rel-mips-jmpaddr) | const |  |
+| [`IMAGE_REL_MIPS_REFHI`](#image-rel-mips-refhi) | const |  |
+| [`IMAGE_REL_MIPS_REFLO`](#image-rel-mips-reflo) | const |  |
+| [`IMAGE_REL_MIPS_GPREL`](#image-rel-mips-gprel) | const |  |
+| [`IMAGE_REL_MIPS_LITERAL`](#image-rel-mips-literal) | const |  |
+| [`IMAGE_REL_MIPS_SECTION`](#image-rel-mips-section) | const |  |
+| [`IMAGE_REL_MIPS_SECREL`](#image-rel-mips-secrel) | const |  |
+| [`IMAGE_REL_MIPS_SECRELLO`](#image-rel-mips-secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_MIPS_SECRELHI`](#image-rel-mips-secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_MIPS_TOKEN`](#image-rel-mips-token) | const | clr token |
+| [`IMAGE_REL_MIPS_JMPADDR16`](#image-rel-mips-jmpaddr16) | const |  |
+| [`IMAGE_REL_MIPS_REFWORDNB`](#image-rel-mips-refwordnb) | const |  |
+| [`IMAGE_REL_MIPS_PAIR`](#image-rel-mips-pair) | const |  |
+| [`IMAGE_REL_ALPHA_ABSOLUTE`](#image-rel-alpha-absolute) | const |  |
+| [`IMAGE_REL_ALPHA_REFLONG`](#image-rel-alpha-reflong) | const |  |
+| [`IMAGE_REL_ALPHA_REFQUAD`](#image-rel-alpha-refquad) | const |  |
+| [`IMAGE_REL_ALPHA_GPREL32`](#image-rel-alpha-gprel32) | const |  |
+| [`IMAGE_REL_ALPHA_LITERAL`](#image-rel-alpha-literal) | const |  |
+| [`IMAGE_REL_ALPHA_LITUSE`](#image-rel-alpha-lituse) | const |  |
+| [`IMAGE_REL_ALPHA_GPDISP`](#image-rel-alpha-gpdisp) | const |  |
+| [`IMAGE_REL_ALPHA_BRADDR`](#image-rel-alpha-braddr) | const |  |
+| [`IMAGE_REL_ALPHA_HINT`](#image-rel-alpha-hint) | const |  |
+| [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image-rel-alpha-inline-reflong) | const |  |
+| [`IMAGE_REL_ALPHA_REFHI`](#image-rel-alpha-refhi) | const |  |
+| [`IMAGE_REL_ALPHA_REFLO`](#image-rel-alpha-reflo) | const |  |
+| [`IMAGE_REL_ALPHA_PAIR`](#image-rel-alpha-pair) | const |  |
+| [`IMAGE_REL_ALPHA_MATCH`](#image-rel-alpha-match) | const |  |
+| [`IMAGE_REL_ALPHA_SECTION`](#image-rel-alpha-section) | const |  |
+| [`IMAGE_REL_ALPHA_SECREL`](#image-rel-alpha-secrel) | const |  |
+| [`IMAGE_REL_ALPHA_REFLONGNB`](#image-rel-alpha-reflongnb) | const |  |
+| [`IMAGE_REL_ALPHA_SECRELLO`](#image-rel-alpha-secrello) | const | Low 16-bit section relative reference |
+| [`IMAGE_REL_ALPHA_SECRELHI`](#image-rel-alpha-secrelhi) | const | High 16-bit section relative reference |
+| [`IMAGE_REL_ALPHA_REFQ3`](#image-rel-alpha-refq3) | const | High 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_REFQ2`](#image-rel-alpha-refq2) | const | Middle 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_REFQ1`](#image-rel-alpha-refq1) | const | Low 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_GPRELLO`](#image-rel-alpha-gprello) | const | Low 16-bit GP relative reference |
+| [`IMAGE_REL_ALPHA_GPRELHI`](#image-rel-alpha-gprelhi) | const | High 16-bit GP relative reference |
+| [`IMAGE_REL_PPC_ABSOLUTE`](#image-rel-ppc-absolute) | const | NOP |
+| [`IMAGE_REL_PPC_ADDR64`](#image-rel-ppc-addr64) | const | 64-bit address |
+| [`IMAGE_REL_PPC_ADDR32`](#image-rel-ppc-addr32) | const | 32-bit address |
+| [`IMAGE_REL_PPC_ADDR24`](#image-rel-ppc-addr24) | const | 26-bit address, shifted left 2 (branch absolute) |
+| [`IMAGE_REL_PPC_ADDR16`](#image-rel-ppc-addr16) | const | 16-bit address |
+| [`IMAGE_REL_PPC_ADDR14`](#image-rel-ppc-addr14) | const | 16-bit address, shifted left 2 (load doubleword) |
+| [`IMAGE_REL_PPC_REL24`](#image-rel-ppc-rel24) | const | 26-bit PC-relative offset, shifted left 2 (branch relative) |
+| [`IMAGE_REL_PPC_REL14`](#image-rel-ppc-rel14) | const | 16-bit PC-relative offset, shifted left 2 (br cond relative) |
+| [`IMAGE_REL_PPC_TOCREL16`](#image-rel-ppc-tocrel16) | const | 16-bit offset from TOC base |
+| [`IMAGE_REL_PPC_TOCREL14`](#image-rel-ppc-tocrel14) | const | 16-bit offset from TOC base, shifted left 2 (load doubleword) |
+| [`IMAGE_REL_PPC_ADDR32NB`](#image-rel-ppc-addr32nb) | const | 32-bit addr w/o image base |
+| [`IMAGE_REL_PPC_SECREL`](#image-rel-ppc-secrel) | const | va of containing section (as in an image sectionhdr) |
+| [`IMAGE_REL_PPC_SECTION`](#image-rel-ppc-section) | const | sectionheader number |
+| [`IMAGE_REL_PPC_IFGLUE`](#image-rel-ppc-ifglue) | const | substitute TOC restore instruction iff symbol is glue code |
+| [`IMAGE_REL_PPC_IMGLUE`](#image-rel-ppc-imglue) | const | symbol is glue code; virtual address is TOC restore instruction |
+| [`IMAGE_REL_PPC_SECREL16`](#image-rel-ppc-secrel16) | const | va of containing section (limited to 16 bits) |
+| [`IMAGE_REL_PPC_REFHI`](#image-rel-ppc-refhi) | const |  |
+| [`IMAGE_REL_PPC_REFLO`](#image-rel-ppc-reflo) | const |  |
+| [`IMAGE_REL_PPC_PAIR`](#image-rel-ppc-pair) | const |  |
+| [`IMAGE_REL_PPC_SECRELLO`](#image-rel-ppc-secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_PPC_SECRELHI`](#image-rel-ppc-secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_PPC_GPREL`](#image-rel-ppc-gprel) | const |  |
+| [`IMAGE_REL_PPC_TOKEN`](#image-rel-ppc-token) | const | clr token |
+| [`IMAGE_REL_PPC_TYPEMASK`](#image-rel-ppc-typemask) | const | mask to isolate above values in IMAGE_RELOCATION.Type |
+| [`IMAGE_REL_PPC_NEG`](#image-rel-ppc-neg) | const | subtract reloc value rather than adding it |
+| [`IMAGE_REL_PPC_BRTAKEN`](#image-rel-ppc-brtaken) | const | fix branch prediction bit to predict branch taken |
+| [`IMAGE_REL_PPC_BRNTAKEN`](#image-rel-ppc-brntaken) | const | fix branch prediction bit to predict branch not taken |
+| [`IMAGE_REL_PPC_TOCDEFN`](#image-rel-ppc-tocdefn) | const | toc slot defined in file (or, data in toc) |
+| [`IMAGE_REL_SH3_ABSOLUTE`](#image-rel-sh3-absolute) | const | No relocation |
+| [`IMAGE_REL_SH3_DIRECT16`](#image-rel-sh3-direct16) | const | 16 bit direct |
+| [`IMAGE_REL_SH3_DIRECT32`](#image-rel-sh3-direct32) | const | 32 bit direct |
+| [`IMAGE_REL_SH3_DIRECT8`](#image-rel-sh3-direct8) | const | 8 bit direct, -128..255 |
+| [`IMAGE_REL_SH3_DIRECT8_WORD`](#image-rel-sh3-direct8-word) | const | 8 bit direct .W (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT8_LONG`](#image-rel-sh3-direct8-long) | const | 8 bit direct .L (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4`](#image-rel-sh3-direct4) | const | 4 bit direct (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4_WORD`](#image-rel-sh3-direct4-word) | const | 4 bit direct .W (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4_LONG`](#image-rel-sh3-direct4-long) | const | 4 bit direct .L (0 ext.) |
+| [`IMAGE_REL_SH3_PCREL8_WORD`](#image-rel-sh3-pcrel8-word) | const | 8 bit PC relative .W |
+| [`IMAGE_REL_SH3_PCREL8_LONG`](#image-rel-sh3-pcrel8-long) | const | 8 bit PC relative .L |
+| [`IMAGE_REL_SH3_PCREL12_WORD`](#image-rel-sh3-pcrel12-word) | const | 12 LSB PC relative .W |
+| [`IMAGE_REL_SH3_STARTOF_SECTION`](#image-rel-sh3-startof-section) | const | Start of EXE section |
+| [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image-rel-sh3-sizeof-section) | const | Size of EXE section |
+| [`IMAGE_REL_SH3_SECTION`](#image-rel-sh3-section) | const | Section table index |
+| [`IMAGE_REL_SH3_SECREL`](#image-rel-sh3-secrel) | const | Offset within section |
+| [`IMAGE_REL_SH3_DIRECT32_NB`](#image-rel-sh3-direct32-nb) | const | 32 bit direct not based |
+| [`IMAGE_REL_SH3_GPREL4_LONG`](#image-rel-sh3-gprel4-long) | const | GP-relative addressing |
+| [`IMAGE_REL_SH3_TOKEN`](#image-rel-sh3-token) | const | clr token |
+| [`IMAGE_REL_SHM_PCRELPT`](#image-rel-shm-pcrelpt) | const | Offset from current instruction in longwords if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB |
+| [`IMAGE_REL_SHM_REFLO`](#image-rel-shm-reflo) | const | Low bits of 32-bit address |
+| [`IMAGE_REL_SHM_REFHALF`](#image-rel-shm-refhalf) | const | High bits of 32-bit address |
+| [`IMAGE_REL_SHM_RELLO`](#image-rel-shm-rello) | const | Low bits of relative reference |
+| [`IMAGE_REL_SHM_RELHALF`](#image-rel-shm-relhalf) | const | High bits of relative reference |
+| [`IMAGE_REL_SHM_PAIR`](#image-rel-shm-pair) | const | offset operand for relocation |
+| [`IMAGE_REL_SH_NOMODE`](#image-rel-sh-nomode) | const | relocation ignores section mode |
+| [`IMAGE_REL_ARM_ABSOLUTE`](#image-rel-arm-absolute) | const | No relocation required |
+| [`IMAGE_REL_ARM_ADDR32`](#image-rel-arm-addr32) | const | 32 bit address |
+| [`IMAGE_REL_ARM_ADDR32NB`](#image-rel-arm-addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_ARM_BRANCH24`](#image-rel-arm-branch24) | const | 24 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM_BRANCH11`](#image-rel-arm-branch11) | const | Thumb: 2 11 bit offsets |
+| [`IMAGE_REL_ARM_TOKEN`](#image-rel-arm-token) | const | clr token |
+| [`IMAGE_REL_ARM_GPREL12`](#image-rel-arm-gprel12) | const | GP-relative addressing (ARM) |
+| [`IMAGE_REL_ARM_GPREL7`](#image-rel-arm-gprel7) | const | GP-relative addressing (Thumb) |
+| [`IMAGE_REL_ARM_BLX24`](#image-rel-arm-blx24) | const |  |
+| [`IMAGE_REL_ARM_BLX11`](#image-rel-arm-blx11) | const |  |
+| [`IMAGE_REL_ARM_REL32`](#image-rel-arm-rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_ARM_SECTION`](#image-rel-arm-section) | const | Section table index |
+| [`IMAGE_REL_ARM_SECREL`](#image-rel-arm-secrel) | const | Offset within section |
+| [`IMAGE_REL_ARM_MOV32A`](#image-rel-arm-mov32a) | const | ARM: MOVW/MOVT |
+| [`IMAGE_REL_ARM_MOV32`](#image-rel-arm-mov32) | const | ARM: MOVW/MOVT (deprecated) |
+| [`IMAGE_REL_ARM_MOV32T`](#image-rel-arm-mov32t) | const | Thumb: MOVW/MOVT |
+| [`IMAGE_REL_THUMB_MOV32`](#image-rel-thumb-mov32) | const | Thumb: MOVW/MOVT (deprecated) |
+| [`IMAGE_REL_ARM_BRANCH20T`](#image-rel-arm-branch20t) | const | Thumb: 32-bit conditional B |
+| [`IMAGE_REL_THUMB_BRANCH20`](#image-rel-thumb-branch20) | const | Thumb: 32-bit conditional B (deprecated) |
+| [`IMAGE_REL_ARM_BRANCH24T`](#image-rel-arm-branch24t) | const | Thumb: 32-bit B or BL |
+| [`IMAGE_REL_THUMB_BRANCH24`](#image-rel-thumb-branch24) | const | Thumb: 32-bit B or BL (deprecated) |
+| [`IMAGE_REL_ARM_BLX23T`](#image-rel-arm-blx23t) | const | Thumb: BLX immediate |
+| [`IMAGE_REL_THUMB_BLX23`](#image-rel-thumb-blx23) | const | Thumb: BLX immediate (deprecated) |
+| [`IMAGE_REL_AM_ABSOLUTE`](#image-rel-am-absolute) | const |  |
+| [`IMAGE_REL_AM_ADDR32`](#image-rel-am-addr32) | const |  |
+| [`IMAGE_REL_AM_ADDR32NB`](#image-rel-am-addr32nb) | const |  |
+| [`IMAGE_REL_AM_CALL32`](#image-rel-am-call32) | const |  |
+| [`IMAGE_REL_AM_FUNCINFO`](#image-rel-am-funcinfo) | const |  |
+| [`IMAGE_REL_AM_REL32_1`](#image-rel-am-rel32-1) | const |  |
+| [`IMAGE_REL_AM_REL32_2`](#image-rel-am-rel32-2) | const |  |
+| [`IMAGE_REL_AM_SECREL`](#image-rel-am-secrel) | const |  |
+| [`IMAGE_REL_AM_SECTION`](#image-rel-am-section) | const |  |
+| [`IMAGE_REL_AM_TOKEN`](#image-rel-am-token) | const |  |
+| [`IMAGE_REL_ARM64_ABSOLUTE`](#image-rel-arm64-absolute) | const | No relocation required |
+| [`IMAGE_REL_ARM64_ADDR32`](#image-rel-arm64-addr32) | const | 32 bit address. |
+| [`IMAGE_REL_ARM64_ADDR32NB`](#image-rel-arm64-addr32nb) | const | 32 bit address w/o image base (RVA: for Data/PData/XData) |
+| [`IMAGE_REL_ARM64_BRANCH26`](#image-rel-arm64-branch26) | const | 26 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image-rel-arm64-pagebase-rel21) | const | ADRP |
+| [`IMAGE_REL_ARM64_REL21`](#image-rel-arm64-rel21) | const | ADR |
+| [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image-rel-arm64-pageoffset-12a) | const | ADD/ADDS (immediate) with zero shift, for page offset |
+| [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image-rel-arm64-pageoffset-12l) | const | LDR (indexed, unsigned immediate), for page offset |
+| [`IMAGE_REL_ARM64_SECREL`](#image-rel-arm64-secrel) | const | Offset within section |
+| [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image-rel-arm64-secrel-low12a) | const | ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset |
+| [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image-rel-arm64-secrel-high12a) | const | ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset |
+| [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image-rel-arm64-secrel-low12l) | const | LDR (indexed, unsigned immediate), for bit 0:11 of section offset |
+| [`IMAGE_REL_ARM64_TOKEN`](#image-rel-arm64-token) | const |  |
+| [`IMAGE_REL_ARM64_SECTION`](#image-rel-arm64-section) | const | Section table index |
+| [`IMAGE_REL_ARM64_ADDR64`](#image-rel-arm64-addr64) | const | 64 bit address |
+| [`IMAGE_REL_ARM64_BRANCH19`](#image-rel-arm64-branch19) | const | 19 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM64_BRANCH14`](#image-rel-arm64-branch14) | const | TBZ/TBNZ |
+| [`IMAGE_REL_ARM64_REL32`](#image-rel-arm64-rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_AMD64_ABSOLUTE`](#image-rel-amd64-absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_AMD64_ADDR64`](#image-rel-amd64-addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_AMD64_ADDR32`](#image-rel-amd64-addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_AMD64_ADDR32NB`](#image-rel-amd64-addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_AMD64_REL32`](#image-rel-amd64-rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_AMD64_REL32_1`](#image-rel-amd64-rel32-1) | const | 32-bit relative address from byte distance 1 from reloc |
+| [`IMAGE_REL_AMD64_REL32_2`](#image-rel-amd64-rel32-2) | const | 32-bit relative address from byte distance 2 from reloc |
+| [`IMAGE_REL_AMD64_REL32_3`](#image-rel-amd64-rel32-3) | const | 32-bit relative address from byte distance 3 from reloc |
+| [`IMAGE_REL_AMD64_REL32_4`](#image-rel-amd64-rel32-4) | const | 32-bit relative address from byte distance 4 from reloc |
+| [`IMAGE_REL_AMD64_REL32_5`](#image-rel-amd64-rel32-5) | const | 32-bit relative address from byte distance 5 from reloc |
+| [`IMAGE_REL_AMD64_SECTION`](#image-rel-amd64-section) | const | Section index |
+| [`IMAGE_REL_AMD64_SECREL`](#image-rel-amd64-secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_AMD64_SECREL7`](#image-rel-amd64-secrel7) | const | 7 bit unsigned offset from base of section containing target |
+| [`IMAGE_REL_AMD64_TOKEN`](#image-rel-amd64-token) | const | 32 bit metadata token |
+| [`IMAGE_REL_AMD64_SREL32`](#image-rel-amd64-srel32) | const | 32 bit signed span-dependent value emitted into object |
+| [`IMAGE_REL_AMD64_PAIR`](#image-rel-amd64-pair) | const |  |
+| [`IMAGE_REL_AMD64_SSPAN32`](#image-rel-amd64-sspan32) | const | 32 bit signed span-dependent value applied at link time |
+| [`IMAGE_REL_AMD64_EHANDLER`](#image-rel-amd64-ehandler) | const |  |
+| [`IMAGE_REL_AMD64_IMPORT_BR`](#image-rel-amd64-import-br) | const | Indirect branch to an import |
+| [`IMAGE_REL_AMD64_IMPORT_CALL`](#image-rel-amd64-import-call) | const | Indirect call to an import |
+| [`IMAGE_REL_AMD64_CFG_BR`](#image-rel-amd64-cfg-br) | const | Indirect branch to a CFG check |
+| [`IMAGE_REL_AMD64_CFG_BR_REX`](#image-rel-amd64-cfg-br-rex) | const | Indirect branch to a CFG check, with REX.W prefix |
+| [`IMAGE_REL_AMD64_CFG_CALL`](#image-rel-amd64-cfg-call) | const | Indirect call to a CFG check |
+| [`IMAGE_REL_AMD64_INDIR_BR`](#image-rel-amd64-indir-br) | const | Indirect branch to a target in RAX (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image-rel-amd64-indir-br-rex) | const | Indirect branch to a target in RAX, with REX.W prefix (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_CALL`](#image-rel-amd64-indir-call) | const | Indirect call to a target in RAX (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image-rel-amd64-indir-br-switchtable-first) | const | Indirect branch for a switch table using Reg 0 (RAX) |
+| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image-rel-amd64-indir-br-switchtable-last) | const | Indirect branch for a switch table using Reg 15 (R15) |
+| [`IMAGE_REL_IA64_ABSOLUTE`](#image-rel-ia64-absolute) | const |  |
+| [`IMAGE_REL_IA64_IMM14`](#image-rel-ia64-imm14) | const |  |
+| [`IMAGE_REL_IA64_IMM22`](#image-rel-ia64-imm22) | const |  |
+| [`IMAGE_REL_IA64_IMM64`](#image-rel-ia64-imm64) | const |  |
+| [`IMAGE_REL_IA64_DIR32`](#image-rel-ia64-dir32) | const |  |
+| [`IMAGE_REL_IA64_DIR64`](#image-rel-ia64-dir64) | const |  |
+| [`IMAGE_REL_IA64_PCREL21B`](#image-rel-ia64-pcrel21b) | const |  |
+| [`IMAGE_REL_IA64_PCREL21M`](#image-rel-ia64-pcrel21m) | const |  |
+| [`IMAGE_REL_IA64_PCREL21F`](#image-rel-ia64-pcrel21f) | const |  |
+| [`IMAGE_REL_IA64_GPREL22`](#image-rel-ia64-gprel22) | const |  |
+| [`IMAGE_REL_IA64_LTOFF22`](#image-rel-ia64-ltoff22) | const |  |
+| [`IMAGE_REL_IA64_SECTION`](#image-rel-ia64-section) | const |  |
+| [`IMAGE_REL_IA64_SECREL22`](#image-rel-ia64-secrel22) | const |  |
+| [`IMAGE_REL_IA64_SECREL64I`](#image-rel-ia64-secrel64i) | const |  |
+| [`IMAGE_REL_IA64_SECREL32`](#image-rel-ia64-secrel32) | const |  |
+| [`IMAGE_REL_IA64_DIR32NB`](#image-rel-ia64-dir32nb) | const |  |
+| [`IMAGE_REL_IA64_SREL14`](#image-rel-ia64-srel14) | const |  |
+| [`IMAGE_REL_IA64_SREL22`](#image-rel-ia64-srel22) | const |  |
+| [`IMAGE_REL_IA64_SREL32`](#image-rel-ia64-srel32) | const |  |
+| [`IMAGE_REL_IA64_UREL32`](#image-rel-ia64-urel32) | const |  |
+| [`IMAGE_REL_IA64_PCREL60X`](#image-rel-ia64-pcrel60x) | const | This is always a BRL and never converted |
+| [`IMAGE_REL_IA64_PCREL60B`](#image-rel-ia64-pcrel60b) | const | If possible, convert to MBB bundle with NOP.B in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60F`](#image-rel-ia64-pcrel60f) | const | If possible, convert to MFB bundle with NOP.F in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60I`](#image-rel-ia64-pcrel60i) | const | If possible, convert to MIB bundle with NOP.I in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60M`](#image-rel-ia64-pcrel60m) | const | If possible, convert to MMB bundle with NOP.M in slot 1 |
+| [`IMAGE_REL_IA64_IMMGPREL64`](#image-rel-ia64-immgprel64) | const |  |
+| [`IMAGE_REL_IA64_TOKEN`](#image-rel-ia64-token) | const | clr token |
+| [`IMAGE_REL_IA64_GPREL32`](#image-rel-ia64-gprel32) | const |  |
+| [`IMAGE_REL_IA64_ADDEND`](#image-rel-ia64-addend) | const |  |
+| [`IMAGE_REL_CEF_ABSOLUTE`](#image-rel-cef-absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_CEF_ADDR32`](#image-rel-cef-addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_CEF_ADDR64`](#image-rel-cef-addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_CEF_ADDR32NB`](#image-rel-cef-addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_CEF_SECTION`](#image-rel-cef-section) | const | Section index |
+| [`IMAGE_REL_CEF_SECREL`](#image-rel-cef-secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_CEF_TOKEN`](#image-rel-cef-token) | const | 32 bit metadata token |
+| [`IMAGE_REL_CEE_ABSOLUTE`](#image-rel-cee-absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_CEE_ADDR32`](#image-rel-cee-addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_CEE_ADDR64`](#image-rel-cee-addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_CEE_ADDR32NB`](#image-rel-cee-addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_CEE_SECTION`](#image-rel-cee-section) | const | Section index |
+| [`IMAGE_REL_CEE_SECREL`](#image-rel-cee-secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_CEE_TOKEN`](#image-rel-cee-token) | const | 32 bit metadata token |
+| [`IMAGE_REL_M32R_ABSOLUTE`](#image-rel-m32r-absolute) | const | No relocation required |
+| [`IMAGE_REL_M32R_ADDR32`](#image-rel-m32r-addr32) | const | 32 bit address |
+| [`IMAGE_REL_M32R_ADDR32NB`](#image-rel-m32r-addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_M32R_ADDR24`](#image-rel-m32r-addr24) | const | 24 bit address |
+| [`IMAGE_REL_M32R_GPREL16`](#image-rel-m32r-gprel16) | const | GP relative addressing |
+| [`IMAGE_REL_M32R_PCREL24`](#image-rel-m32r-pcrel24) | const | 24 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_PCREL16`](#image-rel-m32r-pcrel16) | const | 16 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_PCREL8`](#image-rel-m32r-pcrel8) | const | 8 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_REFHALF`](#image-rel-m32r-refhalf) | const | 16 MSBs |
+| [`IMAGE_REL_M32R_REFHI`](#image-rel-m32r-refhi) | const | 16 MSBs; adj for LSB sign ext. |
+| [`IMAGE_REL_M32R_REFLO`](#image-rel-m32r-reflo) | const | 16 LSBs |
+| [`IMAGE_REL_M32R_PAIR`](#image-rel-m32r-pair) | const | Link HI and LO |
+| [`IMAGE_REL_M32R_SECTION`](#image-rel-m32r-section) | const | Section table index |
+| [`IMAGE_REL_M32R_SECREL32`](#image-rel-m32r-secrel32) | const | 32 bit section relative reference |
+| [`IMAGE_REL_M32R_TOKEN`](#image-rel-m32r-token) | const | clr token |
+| [`IMAGE_REL_EBC_ABSOLUTE`](#image-rel-ebc-absolute) | const | No relocation required |
+| [`IMAGE_REL_EBC_ADDR32NB`](#image-rel-ebc-addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_EBC_REL32`](#image-rel-ebc-rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_EBC_SECTION`](#image-rel-ebc-section) | const | Section table index |
+| [`IMAGE_REL_EBC_SECREL`](#image-rel-ebc-secrel) | const | Offset within section |
+| [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch-enc-i17-imm7b-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch-enc-i17-imm7b-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch-enc-i17-imm7b-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch-enc-i17-imm7b-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch-enc-i17-imm9d-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch-enc-i17-imm9d-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch-enc-i17-imm9d-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch-enc-i17-imm9d-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch-enc-i17-imm5c-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch-enc-i17-imm5c-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch-enc-i17-imm5c-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch-enc-i17-imm5c-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch-enc-i17-ic-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch-enc-i17-ic-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch-enc-i17-ic-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch-enc-i17-ic-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch-enc-i17-imm41a-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch-enc-i17-imm41a-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch-enc-i17-imm41a-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch-enc-i17-imm41a-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch-enc-i17-imm41b-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch-enc-i17-imm41b-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch-enc-i17-imm41b-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch-enc-i17-imm41b-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch-enc-i17-imm41c-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch-enc-i17-imm41c-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch-enc-i17-imm41c-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch-enc-i17-imm41c-val-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch-enc-i17-sign-inst-word-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch-enc-i17-sign-size-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch-enc-i17-sign-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch-enc-i17-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_INST_WORD_X`](#x3-opcode-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_SIZE_X`](#x3-opcode-size-x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_INST_WORD_POS_X`](#x3-opcode-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_SIGN_VAL_POS_X`](#x3-opcode-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_I_INST_WORD_X`](#x3-i-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_I_SIZE_X`](#x3-i-size-x) | const | Intel-IA64-Filler |
+| [`X3_I_INST_WORD_POS_X`](#x3-i-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_I_SIGN_VAL_POS_X`](#x3-i-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_INST_WORD_X`](#x3-d-wh-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_SIZE_X`](#x3-d-wh-size-x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_INST_WORD_POS_X`](#x3-d-wh-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_SIGN_VAL_POS_X`](#x3-d-wh-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_INST_WORD_X`](#x3-imm20-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_SIZE_X`](#x3-imm20-size-x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_INST_WORD_POS_X`](#x3-imm20-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_SIGN_VAL_POS_X`](#x3-imm20-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_INST_WORD_X`](#x3-imm39-1-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_SIZE_X`](#x3-imm39-1-size-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_INST_WORD_POS_X`](#x3-imm39-1-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3-imm39-1-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_INST_WORD_X`](#x3-imm39-2-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_SIZE_X`](#x3-imm39-2-size-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_INST_WORD_POS_X`](#x3-imm39-2-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3-imm39-2-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_P_INST_WORD_X`](#x3-p-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_P_SIZE_X`](#x3-p-size-x) | const | Intel-IA64-Filler |
+| [`X3_P_INST_WORD_POS_X`](#x3-p-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_P_SIGN_VAL_POS_X`](#x3-p-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_INST_WORD_X`](#x3-tmplt-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_SIZE_X`](#x3-tmplt-size-x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_INST_WORD_POS_X`](#x3-tmplt-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_SIGN_VAL_POS_X`](#x3-tmplt-sign-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_WORD_X`](#x3-btype-qp-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_SIZE_X`](#x3-btype-qp-size-x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3-btype-qp-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3-btype-qp-inst-val-pos-x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_WORD_X`](#x3-empty-inst-word-x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_SIZE_X`](#x3-empty-size-x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_WORD_POS_X`](#x3-empty-inst-word-pos-x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_VAL_POS_X`](#x3-empty-inst-val-pos-x) | const | Intel-IA64-Filler |
+| [`IMAGE_REL_BASED_ABSOLUTE`](#image-rel-based-absolute) | const |  |
+| [`IMAGE_REL_BASED_HIGH`](#image-rel-based-high) | const |  |
+| [`IMAGE_REL_BASED_LOW`](#image-rel-based-low) | const |  |
+| [`IMAGE_REL_BASED_HIGHLOW`](#image-rel-based-highlow) | const |  |
+| [`IMAGE_REL_BASED_HIGHADJ`](#image-rel-based-highadj) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image-rel-based-machine-specific-5) | const |  |
+| [`IMAGE_REL_BASED_RESERVED`](#image-rel-based-reserved) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image-rel-based-machine-specific-7) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image-rel-based-machine-specific-8) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image-rel-based-machine-specific-9) | const |  |
+| [`IMAGE_REL_BASED_DIR64`](#image-rel-based-dir64) | const |  |
+| [`IMAGE_REL_BASED_IA64_IMM64`](#image-rel-based-ia64-imm64) | const |  |
+| [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image-rel-based-mips-jmpaddr) | const |  |
+| [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image-rel-based-mips-jmpaddr16) | const |  |
+| [`IMAGE_REL_BASED_ARM_MOV32`](#image-rel-based-arm-mov32) | const |  |
+| [`IMAGE_REL_BASED_THUMB_MOV32`](#image-rel-based-thumb-mov32) | const |  |
+| [`IMAGE_REL_BASED_RISCV_HIGH20`](#image-rel-based-riscv-high20) | const |  |
+| [`IMAGE_REL_BASED_RISCV_LOW12I`](#image-rel-based-riscv-low12i) | const |  |
+| [`IMAGE_REL_BASED_RISCV_LOW12S`](#image-rel-based-riscv-low12s) | const |  |
+| [`IMAGE_ARCHIVE_START_SIZE`](#image-archive-start-size) | const |  |
+| [`IMAGE_ARCHIVE_START`](#image-archive-start) | const |  |
+| [`IMAGE_ARCHIVE_END`](#image-archive-end) | const |  |
+| [`IMAGE_ARCHIVE_PAD`](#image-archive-pad) | const |  |
+| [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image-archive-linker-member) | const |  |
+| [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image-archive-longnames-member) | const |  |
+| [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image-archive-hybridmap-member) | const |  |
+| [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image-sizeof-archive-member-hdr) | const |  |
+| [`IMAGE_ORDINAL_FLAG64`](#image-ordinal-flag64) | const |  |
+| [`IMAGE_ORDINAL_FLAG32`](#image-ordinal-flag32) | const |  |
+| [`IMAGE_DELAYLOAD_RVA_BASED`](#image-delayload-rva-based) | const | Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`. |
+| [`IMAGE_RESOURCE_NAME_IS_STRING`](#image-resource-name-is-string) | const |  |
+| [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image-resource-data-is-directory) | const |  |
+| [`RT_CURSOR`](#rt-cursor) | const | ID for: Hardware-dependent cursor resource. |
+| [`RT_BITMAP`](#rt-bitmap) | const | ID for: Bitmap resource. |
+| [`RT_ICON`](#rt-icon) | const | ID for: Hardware-dependent icon resource. |
+| [`RT_MENU`](#rt-menu) | const | ID for: Menu resource. |
+| [`RT_DIALOG`](#rt-dialog) | const | ID for: Dialog box. |
+| [`RT_STRING`](#rt-string) | const | ID for: String-table entry. |
+| [`RT_FONTDIR`](#rt-fontdir) | const | ID for: Font directory resource. |
+| [`RT_FONT`](#rt-font) | const | ID for: Font resource. |
+| [`RT_ACCELERATOR`](#rt-accelerator) | const | ID for: Accelerator table. |
+| [`RT_RCDATA`](#rt-rcdata) | const | ID for: Application-defined resource (raw data). |
+| [`RT_MESSAGETABLE`](#rt-messagetable) | const | ID for: Message-table entry. |
+| [`RT_GROUP_CURSOR`](#rt-group-cursor) | const | ID for: Hardware-independent cursor resource. |
+| [`RT_GROUP_ICON`](#rt-group-icon) | const | ID for: Hardware-independent icon resource. |
+| [`RT_VERSION`](#rt-version) | const | ID for: Version resource. |
+| [`RT_DLGINCLUDE`](#rt-dlginclude) | const | ID for: Allows a resource editing tool to associate a string with an .rc file. |
+| [`RT_PLUGPLAY`](#rt-plugplay) | const | ID for: Plug and Play resource. |
+| [`RT_VXD`](#rt-vxd) | const | ID for: VXD. |
+| [`RT_ANICURSOR`](#rt-anicursor) | const | ID for: Animated cursor. |
+| [`RT_ANIICON`](#rt-aniicon) | const | ID for: Animated icon. |
+| [`RT_HTML`](#rt-html) | const | ID for: HTML resource. |
+| [`RT_MANIFEST`](#rt-manifest) | const | ID for: Side-by-Side Assembly Manifest. |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image-dynamic-relocation-guard-rf-prologue) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image-dynamic-relocation-guard-rf-epilogue) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image-dynamic-relocation-guard-import-control-transfer) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image-dynamic-relocation-guard-indir-control-transfer) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image-dynamic-relocation-guard-switchtable-branch) | const |  |
+| [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image-hot-patch-base-obligatory) | const |  |
+| [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image-hot-patch-base-can-roll-back) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image-hot-patch-chunk-inverse) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image-hot-patch-chunk-obligatory) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image-hot-patch-chunk-reserved) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image-hot-patch-chunk-type) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image-hot-patch-chunk-source-rva) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image-hot-patch-chunk-target-rva) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image-hot-patch-chunk-size) | const |  |
+| [`IMAGE_HOT_PATCH_NONE`](#image-hot-patch-none) | const |  |
+| [`IMAGE_HOT_PATCH_FUNCTION`](#image-hot-patch-function) | const |  |
+| [`IMAGE_HOT_PATCH_ABSOLUTE`](#image-hot-patch-absolute) | const |  |
+| [`IMAGE_HOT_PATCH_REL32`](#image-hot-patch-rel32) | const |  |
+| [`IMAGE_HOT_PATCH_CALL_TARGET`](#image-hot-patch-call-target) | const |  |
+| [`IMAGE_HOT_PATCH_INDIRECT`](#image-hot-patch-indirect) | const |  |
+| [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image-hot-patch-no-call-target) | const |  |
+| [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image-hot-patch-dynamic-value) | const |  |
+| [`IMAGE_GUARD_CF_INSTRUMENTED`](#image-guard-cf-instrumented) | const | Module performs control flow integrity checks using system-supplied support |
+| [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image-guard-cfw-instrumented) | const | Module performs control flow and write integrity checks |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image-guard-cf-function-table-present) | const | Module contains valid control flow target metadata |
+| [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image-guard-security-cookie-unused) | const | Module does not make use of the /GS security cookie |
+| [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image-guard-protect-delayload-iat) | const | Module supports read only delay load IAT |
+| [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image-guard-delayload-iat-in-its-own-section) | const | Delayload import table in its own .didat section (with nothing else in it) that can be freely reprotected |
+| [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image-guard-cf-export-suppression-info-present) | const | Module contains suppressed export information. |
+| [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image-guard-cf-enable-export-suppression) | const | Module enables suppression of exports |
+| [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image-guard-cf-longjump-table-present) | const | Module contains longjmp target information |
+| [`IMAGE_GUARD_RF_INSTRUMENTED`](#image-guard-rf-instrumented) | const | Module contains return flow instrumentation and metadata |
+| [`IMAGE_GUARD_RF_ENABLE`](#image-guard-rf-enable) | const | Module requests that the OS enable return flow protection |
+| [`IMAGE_GUARD_RF_STRICT`](#image-guard-rf-strict) | const | Module requests that the OS enable return flow protection in strict mode |
+| [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image-guard-retpoline-present) | const | Module was built with retpoline support |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image-guard-cf-function-table-size-mask) | const | Stride of Guard CF function table encoded in these bits (additional count of bytes per element) |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image-guard-cf-function-table-size-shift) | const | Shift to right-justify Guard CF function table stride |
+| [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image-guard-flag-fid-suppressed) | const | The containing GFID entry is suppressed |
+| [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image-guard-flag-export-suppressed) | const | The containing GFID entry is export suppressed |
+| [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image-enclave-long-id-length) | const |  |
+| [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image-enclave-short-id-length) | const |  |
+| [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image-enclave-policy-debuggable) | const |  |
+| [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image-enclave-flag-primary-image) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image-enclave-import-match-none) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image-enclave-import-match-unique-id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image-enclave-import-match-author-id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image-enclave-import-match-family-id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image-enclave-import-match-image-id) | const |  |
+| [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image-debug-type-unknown) | const |  |
+| [`IMAGE_DEBUG_TYPE_COFF`](#image-debug-type-coff) | const |  |
+| [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image-debug-type-codeview) | const |  |
+| [`IMAGE_DEBUG_TYPE_FPO`](#image-debug-type-fpo) | const |  |
+| [`IMAGE_DEBUG_TYPE_MISC`](#image-debug-type-misc) | const |  |
+| [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image-debug-type-exception) | const |  |
+| [`IMAGE_DEBUG_TYPE_FIXUP`](#image-debug-type-fixup) | const |  |
+| [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image-debug-type-omap-to-src) | const |  |
+| [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image-debug-type-omap-from-src) | const |  |
+| [`IMAGE_DEBUG_TYPE_BORLAND`](#image-debug-type-borland) | const |  |
+| [`IMAGE_DEBUG_TYPE_RESERVED10`](#image-debug-type-reserved10) | const |  |
+| [`IMAGE_DEBUG_TYPE_CLSID`](#image-debug-type-clsid) | const |  |
+| [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image-debug-type-vc-feature) | const |  |
+| [`IMAGE_DEBUG_TYPE_POGO`](#image-debug-type-pogo) | const |  |
+| [`IMAGE_DEBUG_TYPE_ILTCG`](#image-debug-type-iltcg) | const |  |
+| [`IMAGE_DEBUG_TYPE_MPX`](#image-debug-type-mpx) | const |  |
+| [`IMAGE_DEBUG_TYPE_REPRO`](#image-debug-type-repro) | const |  |
+| [`FRAME_FPO`](#frame-fpo) | const |  |
+| [`FRAME_TRAP`](#frame-trap) | const |  |
+| [`FRAME_TSS`](#frame-tss) | const |  |
+| [`FRAME_NONFPO`](#frame-nonfpo) | const |  |
+| [`IMAGE_DEBUG_MISC_EXENAME`](#image-debug-misc-exename) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image-separate-debug-signature) | const |  |
+| [`NON_PAGED_DEBUG_SIGNATURE`](#non-paged-debug-signature) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image-separate-debug-flags-mask) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image-separate-debug-mismatch) | const | when DBG was updated, the old checksum didn't match. |
+| [`IMPORT_OBJECT_HDR_SIG2`](#import-object-hdr-sig2) | const |  |
+| [`IMPORT_OBJECT_TYPE_MASK`](#import-object-type-mask) | const |  |
+| [`IMPORT_OBJECT_TYPE_SHIFT`](#import-object-type-shift) | const |  |
+| [`IMPORT_OBJECT_CODE`](#import-object-code) | const |  |
+| [`IMPORT_OBJECT_DATA`](#import-object-data) | const |  |
+| [`IMPORT_OBJECT_CONST`](#import-object-const) | const |  |
+| [`IMPORT_OBJECT_NAME_MASK`](#import-object-name-mask) | const |  |
+| [`IMPORT_OBJECT_NAME_SHIFT`](#import-object-name-shift) | const |  |
+| [`IMPORT_OBJECT_ORDINAL`](#import-object-ordinal) | const | Import by ordinal |
+| [`IMPORT_OBJECT_NAME`](#import-object-name) | const | Import name == public symbol name. |
+| [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import-object-name-no-prefix) | const | Import name == public symbol name skipping leading ?, @, or optionally _. |
+| [`IMPORT_OBJECT_NAME_UNDECORATE`](#import-object-name-undecorate) | const | Import name == public symbol name skipping leading ?, @, or optionally _ and truncating at first @. |
+| [`IMPORT_OBJECT_NAME_EXPORTAS`](#import-object-name-exportas) | const | Import name == a name is explicitly provided after the DLL name. |
+| [`COMIMAGE_FLAGS_ILONLY`](#comimage-flags-ilonly) | const |  |
+| [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage-flags-32bitrequired) | const |  |
+| [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage-flags-il-library) | const |  |
+| [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage-flags-strongnamesigned) | const |  |
+| [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage-flags-native-entrypoint) | const |  |
+| [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage-flags-trackdebugdata) | const |  |
+| [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage-flags-32bitpreferred) | const |  |
+| [`COR_VERSION_MAJOR_V2`](#cor-version-major-v2) | const |  |
+| [`COR_VERSION_MAJOR`](#cor-version-major) | const |  |
+| [`COR_VERSION_MINOR`](#cor-version-minor) | const |  |
+| [`COR_DELETED_NAME_LENGTH`](#cor-deleted-name-length) | const |  |
+| [`COR_VTABLEGAP_NAME_LENGTH`](#cor-vtablegap-name-length) | const |  |
+| [`NATIVE_TYPE_MAX_CB`](#native-type-max-cb) | const |  |
+| [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor-ilmethod-sect-small-max-datasize) | const |  |
+| [`IMAGE_COR_MIH_METHODRVA`](#image-cor-mih-methodrva) | const |  |
+| [`IMAGE_COR_MIH_EHRVA`](#image-cor-mih-ehrva) | const |  |
+| [`IMAGE_COR_MIH_BASICBLOCK`](#image-cor-mih-basicblock) | const |  |
+| [`COR_VTABLE_32BIT`](#cor-vtable-32bit) | const | V-table slots are 32-bits in size. |
+| [`COR_VTABLE_64BIT`](#cor-vtable-64bit) | const | V-table slots are 64-bits in size. |
+| [`COR_VTABLE_FROM_UNMANAGED`](#cor-vtable-from-unmanaged) | const | If set, transition from unmanaged. |
+| [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor-vtable-from-unmanaged-retain-appdomain) | const | If set, transition from unmanaged with keeping the current appdomain. |
+| [`COR_VTABLE_CALL_MOST_DERIVED`](#cor-vtable-call-most-derived) | const | Call most derived method described by |
+| [`IMAGE_COR_EATJ_THUNK_SIZE`](#image-cor-eatj-thunk-size) | const | Size of a jump thunk reserved range. |
+| [`MAX_CLASS_NAME`](#max-class-name) | const |  |
+| [`MAX_PACKAGE_NAME`](#max-package-name) | const |  |
 
 ## Structs
 
@@ -2228,9 +2228,9 @@ struct ImageFileHeader {
 
 ##### `impl CoffHeader for pe::ImageFileHeader`
 
-- <span id="peimagefileheader-type-imagesymbol"></span>`type ImageSymbol = ImageSymbol`
+- <span id="peimagefileheader-coffheader-type-imagesymbol"></span>`type ImageSymbol = ImageSymbol`
 
-- <span id="peimagefileheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolBytes`
+- <span id="peimagefileheader-coffheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolBytes`
 
 - <span id="peimagefileheader-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 
@@ -2578,9 +2578,9 @@ struct ImageNtHeaders64 {
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders64`
 
-- <span id="peimagentheaders64-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader64`
+- <span id="peimagentheaders64-imagentheaders-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader64`
 
-- <span id="peimagentheaders64-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData64`
+- <span id="peimagentheaders64-imagentheaders-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData64`
 
 - <span id="peimagentheaders64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2620,9 +2620,9 @@ struct ImageNtHeaders32 {
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders32`
 
-- <span id="peimagentheaders32-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader32`
+- <span id="peimagentheaders32-imagentheaders-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader32`
 
-- <span id="peimagentheaders32-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData32`
+- <span id="peimagentheaders32-imagentheaders-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData32`
 
 - <span id="peimagentheaders32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2934,9 +2934,9 @@ struct AnonObjectHeaderBigobj {
 
 ##### `impl CoffHeader for pe::AnonObjectHeaderBigobj`
 
-- <span id="peanonobjectheaderbigobj-type-imagesymbol"></span>`type ImageSymbol = ImageSymbolEx`
+- <span id="peanonobjectheaderbigobj-coffheader-type-imagesymbol"></span>`type ImageSymbol = ImageSymbolEx`
 
-- <span id="peanonobjectheaderbigobj-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolExBytes`
+- <span id="peanonobjectheaderbigobj-coffheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolExBytes`
 
 - <span id="peanonobjectheaderbigobj-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 

@@ -19,7 +19,7 @@ however can be good enough in many circumstances.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`default_rank`](#default_rank) | mod |  |
+| [`default_rank`](#default-rank) | mod |  |
 | [`Finder`](#finder) | struct | An architecture independent "packed pair" finder. |
 | [`Pair`](#pair) | struct | A pair of byte offsets into a needle to use as a predicate. |
 | [`DefaultFrequencyRank`](#defaultfrequencyrank) | struct | The default byte frequency heuristic that is good for most haystacks. |

@@ -83,9 +83,9 @@ Configuration options for markdown rendering.
 
 ##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-type-init"></span>`type Init = T`
+- <span id="renderconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -163,9 +163,9 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-type-init"></span>`type Init = T`
+- <span id="sourceconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

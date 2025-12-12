@@ -28,21 +28,21 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffRelocationIterator<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffRelocationIterator<'data, 'file, R, Coff>`
 
 - <span id="coffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CoffRelocationIterator<'data, 'file, R, Coff>`
+##### `impl IntoIterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="coffrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffRelocationIterator<'data, 'file, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="coffrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="coffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

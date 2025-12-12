@@ -15,34 +15,34 @@
   - [`CONTENT`](#content)
   - [`CRATE`](#crate)
   - [`DEFAULT`](#default)
-  - [`DENY_UNKNOWN_FIELDS`](#deny_unknown_fields)
+  - [`DENY_UNKNOWN_FIELDS`](#deny-unknown-fields)
   - [`DESERIALIZE`](#deserialize)
-  - [`DESERIALIZE_WITH`](#deserialize_with)
+  - [`DESERIALIZE_WITH`](#deserialize-with)
   - [`EXPECTING`](#expecting)
-  - [`FIELD_IDENTIFIER`](#field_identifier)
+  - [`FIELD_IDENTIFIER`](#field-identifier)
   - [`FLATTEN`](#flatten)
   - [`FROM`](#from)
   - [`GETTER`](#getter)
   - [`INTO`](#into)
-  - [`NON_EXHAUSTIVE`](#non_exhaustive)
+  - [`NON_EXHAUSTIVE`](#non-exhaustive)
   - [`OTHER`](#other)
   - [`REMOTE`](#remote)
   - [`RENAME`](#rename)
-  - [`RENAME_ALL`](#rename_all)
-  - [`RENAME_ALL_FIELDS`](#rename_all_fields)
+  - [`RENAME_ALL`](#rename-all)
+  - [`RENAME_ALL_FIELDS`](#rename-all-fields)
   - [`REPR`](#repr)
   - [`SERDE`](#serde)
   - [`SERIALIZE`](#serialize)
-  - [`SERIALIZE_WITH`](#serialize_with)
+  - [`SERIALIZE_WITH`](#serialize-with)
   - [`SKIP`](#skip)
-  - [`SKIP_DESERIALIZING`](#skip_deserializing)
-  - [`SKIP_SERIALIZING`](#skip_serializing)
-  - [`SKIP_SERIALIZING_IF`](#skip_serializing_if)
+  - [`SKIP_DESERIALIZING`](#skip-deserializing)
+  - [`SKIP_SERIALIZING`](#skip-serializing)
+  - [`SKIP_SERIALIZING_IF`](#skip-serializing-if)
   - [`TAG`](#tag)
   - [`TRANSPARENT`](#transparent)
-  - [`TRY_FROM`](#try_from)
+  - [`TRY_FROM`](#try-from)
   - [`UNTAGGED`](#untagged)
-  - [`VARIANT_IDENTIFIER`](#variant_identifier)
+  - [`VARIANT_IDENTIFIER`](#variant-identifier)
   - [`WITH`](#with)
 
 ## Quick Reference
@@ -56,34 +56,34 @@
 | [`CONTENT`](#content) | const |  |
 | [`CRATE`](#crate) | const |  |
 | [`DEFAULT`](#default) | const |  |
-| [`DENY_UNKNOWN_FIELDS`](#deny_unknown_fields) | const |  |
+| [`DENY_UNKNOWN_FIELDS`](#deny-unknown-fields) | const |  |
 | [`DESERIALIZE`](#deserialize) | const |  |
-| [`DESERIALIZE_WITH`](#deserialize_with) | const |  |
+| [`DESERIALIZE_WITH`](#deserialize-with) | const |  |
 | [`EXPECTING`](#expecting) | const |  |
-| [`FIELD_IDENTIFIER`](#field_identifier) | const |  |
+| [`FIELD_IDENTIFIER`](#field-identifier) | const |  |
 | [`FLATTEN`](#flatten) | const |  |
 | [`FROM`](#from) | const |  |
 | [`GETTER`](#getter) | const |  |
 | [`INTO`](#into) | const |  |
-| [`NON_EXHAUSTIVE`](#non_exhaustive) | const |  |
+| [`NON_EXHAUSTIVE`](#non-exhaustive) | const |  |
 | [`OTHER`](#other) | const |  |
 | [`REMOTE`](#remote) | const |  |
 | [`RENAME`](#rename) | const |  |
-| [`RENAME_ALL`](#rename_all) | const |  |
-| [`RENAME_ALL_FIELDS`](#rename_all_fields) | const |  |
+| [`RENAME_ALL`](#rename-all) | const |  |
+| [`RENAME_ALL_FIELDS`](#rename-all-fields) | const |  |
 | [`REPR`](#repr) | const |  |
 | [`SERDE`](#serde) | const |  |
 | [`SERIALIZE`](#serialize) | const |  |
-| [`SERIALIZE_WITH`](#serialize_with) | const |  |
+| [`SERIALIZE_WITH`](#serialize-with) | const |  |
 | [`SKIP`](#skip) | const |  |
-| [`SKIP_DESERIALIZING`](#skip_deserializing) | const |  |
-| [`SKIP_SERIALIZING`](#skip_serializing) | const |  |
-| [`SKIP_SERIALIZING_IF`](#skip_serializing_if) | const |  |
+| [`SKIP_DESERIALIZING`](#skip-deserializing) | const |  |
+| [`SKIP_SERIALIZING`](#skip-serializing) | const |  |
+| [`SKIP_SERIALIZING_IF`](#skip-serializing-if) | const |  |
 | [`TAG`](#tag) | const |  |
 | [`TRANSPARENT`](#transparent) | const |  |
-| [`TRY_FROM`](#try_from) | const |  |
+| [`TRY_FROM`](#try-from) | const |  |
 | [`UNTAGGED`](#untagged) | const |  |
-| [`VARIANT_IDENTIFIER`](#variant_identifier) | const |  |
+| [`VARIANT_IDENTIFIER`](#variant-identifier) | const |  |
 | [`WITH`](#with) | const |  |
 
 ## Structs

@@ -25,26 +25,26 @@ assert!(linebreaks(text).eq([
   - [`BreakClass`](#breakclass)
   - [`BreakOpportunity`](#breakopportunity)
 - [Functions](#functions)
-  - [`is_safe_pair`](#is_safe_pair)
-  - [`break_property`](#break_property)
+  - [`is_safe_pair`](#is-safe-pair)
+  - [`break_property`](#break-property)
   - [`linebreaks`](#linebreaks)
-  - [`split_at_safe`](#split_at_safe)
+  - [`split_at_safe`](#split-at-safe)
 - [Constants](#constants)
-  - [`UNICODE_VERSION`](#unicode_version)
-  - [`BMP_LIMIT`](#bmp_limit)
-  - [`SHIFT_3`](#shift_3)
-  - [`SHIFT_2`](#shift_2)
-  - [`SHIFT_1`](#shift_1)
-  - [`BMP_SHIFT`](#bmp_shift)
-  - [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length)
-  - [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length)
-  - [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length)
-  - [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length)
-  - [`ALLOWED_BREAK_BIT`](#allowed_break_bit)
-  - [`MANDATORY_BREAK_BIT`](#mandatory_break_bit)
+  - [`UNICODE_VERSION`](#unicode-version)
+  - [`BMP_LIMIT`](#bmp-limit)
+  - [`SHIFT_3`](#shift-3)
+  - [`SHIFT_2`](#shift-2)
+  - [`SHIFT_1`](#shift-1)
+  - [`BMP_SHIFT`](#bmp-shift)
+  - [`INDEX_2_BLOCK_LENGTH`](#index-2-block-length)
+  - [`INDEX_3_BLOCK_LENGTH`](#index-3-block-length)
+  - [`SMALL_DATA_BLOCK_LENGTH`](#small-data-block-length)
+  - [`BMP_DATA_BLOCK_LENGTH`](#bmp-data-block-length)
+  - [`ALLOWED_BREAK_BIT`](#allowed-break-bit)
+  - [`MANDATORY_BREAK_BIT`](#mandatory-break-bit)
   - [`eot`](#eot)
   - [`sot`](#sot)
-  - [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start)
+  - [`BREAK_PROP_TRIE_HIGH_START`](#break-prop-trie-high-start)
 
 ## Quick Reference
 
@@ -52,25 +52,25 @@ assert!(linebreaks(text).eq([
 |------|------|-------------|
 | [`BreakClass`](#breakclass) | enum | Unicode line breaking class. |
 | [`BreakOpportunity`](#breakopportunity) | enum | Break opportunity type. |
-| [`is_safe_pair`](#is_safe_pair) | fn |  |
-| [`break_property`](#break_property) | fn | Returns the line break property of the specified code point. |
+| [`is_safe_pair`](#is-safe-pair) | fn |  |
+| [`break_property`](#break-property) | fn | Returns the line break property of the specified code point. |
 | [`linebreaks`](#linebreaks) | fn | Returns an iterator over line break opportunities in the specified string. |
-| [`split_at_safe`](#split_at_safe) | fn | Divides the string at the last index where further breaks do not depend on prior context. |
-| [`UNICODE_VERSION`](#unicode_version) | const | The [Unicode version](https://www.unicode.org/versions/) conformed to. |
-| [`BMP_LIMIT`](#bmp_limit) | const | Ceiling for code points in the Basic Multilingual Place (BMP). |
-| [`SHIFT_3`](#shift_3) | const | Shift size for getting index-3 table offset. |
-| [`SHIFT_2`](#shift_2) | const | Shift size for getting index-2 table offset. |
-| [`SHIFT_1`](#shift_1) | const | Shift size for getting index-1 table offset. |
-| [`BMP_SHIFT`](#bmp_shift) | const | Shift size for getting BMP block start. |
-| [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length) | const |  |
-| [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length) | const |  |
-| [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length) | const |  |
-| [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length) | const |  |
-| [`ALLOWED_BREAK_BIT`](#allowed_break_bit) | const |  |
-| [`MANDATORY_BREAK_BIT`](#mandatory_break_bit) | const |  |
+| [`split_at_safe`](#split-at-safe) | fn | Divides the string at the last index where further breaks do not depend on prior context. |
+| [`UNICODE_VERSION`](#unicode-version) | const | The [Unicode version](https://www.unicode.org/versions/) conformed to. |
+| [`BMP_LIMIT`](#bmp-limit) | const | Ceiling for code points in the Basic Multilingual Place (BMP). |
+| [`SHIFT_3`](#shift-3) | const | Shift size for getting index-3 table offset. |
+| [`SHIFT_2`](#shift-2) | const | Shift size for getting index-2 table offset. |
+| [`SHIFT_1`](#shift-1) | const | Shift size for getting index-1 table offset. |
+| [`BMP_SHIFT`](#bmp-shift) | const | Shift size for getting BMP block start. |
+| [`INDEX_2_BLOCK_LENGTH`](#index-2-block-length) | const |  |
+| [`INDEX_3_BLOCK_LENGTH`](#index-3-block-length) | const |  |
+| [`SMALL_DATA_BLOCK_LENGTH`](#small-data-block-length) | const |  |
+| [`BMP_DATA_BLOCK_LENGTH`](#bmp-data-block-length) | const |  |
+| [`ALLOWED_BREAK_BIT`](#allowed-break-bit) | const |  |
+| [`MANDATORY_BREAK_BIT`](#mandatory-break-bit) | const |  |
 | [`eot`](#eot) | const |  |
 | [`sot`](#sot) | const |  |
-| [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start) | const |  |
+| [`BREAK_PROP_TRIE_HIGH_START`](#break-prop-trie-high-start) | const |  |
 
 ## Enums
 

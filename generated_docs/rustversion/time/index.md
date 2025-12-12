@@ -9,12 +9,12 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`today`](#today) | fn |  |
-| [`try_today`](#try_today) | fn |  |
+| [`try_today`](#try-today) | fn |  |
 | [`BASE`](#base) | const |  |
-| [`BASE_YEAR`](#base_year) | const |  |
-| [`BASE_MONTH`](#base_month) | const |  |
+| [`BASE_YEAR`](#base-year) | const |  |
+| [`BASE_MONTH`](#base-month) | const |  |
 | [`CYCLE`](#cycle) | const |  |
-| [`DAYS_BY_MONTH`](#days_by_month) | const |  |
+| [`DAYS_BY_MONTH`](#days-by-month) | const |  |
 
 ## Functions
 

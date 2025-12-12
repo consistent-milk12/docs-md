@@ -97,7 +97,7 @@ for Serde by the community.
 |------|------|-------------|
 | [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` crates. |
 | [`integer128`](#integer128) | mod |  |
-| [`crate_root!`](#crate_root) | macro |  |
+| [`crate_root!`](#crate-root) | macro |  |
 | [`tri!`](#tri) | macro |  |
 
 ## Modules

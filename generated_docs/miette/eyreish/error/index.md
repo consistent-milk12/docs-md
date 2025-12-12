@@ -11,17 +11,17 @@
   - [`ErrorImpl`](#errorimpl)
   - [`ContextError`](#contexterror)
 - [Functions](#functions)
-  - [`object_drop`](#object_drop)
-  - [`object_drop_front`](#object_drop_front)
-  - [`object_ref`](#object_ref)
-  - [`object_ref_stderr`](#object_ref_stderr)
-  - [`object_boxed`](#object_boxed)
-  - [`object_boxed_stderr`](#object_boxed_stderr)
-  - [`object_downcast`](#object_downcast)
-  - [`context_downcast`](#context_downcast)
-  - [`context_drop_rest`](#context_drop_rest)
-  - [`context_chain_downcast`](#context_chain_downcast)
-  - [`context_chain_drop_rest`](#context_chain_drop_rest)
+  - [`object_drop`](#object-drop)
+  - [`object_drop_front`](#object-drop-front)
+  - [`object_ref`](#object-ref)
+  - [`object_ref_stderr`](#object-ref-stderr)
+  - [`object_boxed`](#object-boxed)
+  - [`object_boxed_stderr`](#object-boxed-stderr)
+  - [`object_downcast`](#object-downcast)
+  - [`context_downcast`](#context-downcast)
+  - [`context_drop_rest`](#context-drop-rest)
+  - [`context_chain_downcast`](#context-chain-downcast)
+  - [`context_chain_drop_rest`](#context-chain-drop-rest)
   - [`vtable`](#vtable)
 - [Type Aliases](#type-aliases)
   - [`ErasedErrorImpl`](#erasederrorimpl)
@@ -33,17 +33,17 @@
 | [`ErrorVTable`](#errorvtable) | struct |  |
 | [`ErrorImpl`](#errorimpl) | struct |  |
 | [`ContextError`](#contexterror) | struct |  |
-| [`object_drop`](#object_drop) | fn |  |
-| [`object_drop_front`](#object_drop_front) | fn |  |
-| [`object_ref`](#object_ref) | fn |  |
-| [`object_ref_stderr`](#object_ref_stderr) | fn |  |
-| [`object_boxed`](#object_boxed) | fn |  |
-| [`object_boxed_stderr`](#object_boxed_stderr) | fn |  |
-| [`object_downcast`](#object_downcast) | fn |  |
-| [`context_downcast`](#context_downcast) | fn |  |
-| [`context_drop_rest`](#context_drop_rest) | fn |  |
-| [`context_chain_downcast`](#context_chain_downcast) | fn |  |
-| [`context_chain_drop_rest`](#context_chain_drop_rest) | fn |  |
+| [`object_drop`](#object-drop) | fn |  |
+| [`object_drop_front`](#object-drop-front) | fn |  |
+| [`object_ref`](#object-ref) | fn |  |
+| [`object_ref_stderr`](#object-ref-stderr) | fn |  |
+| [`object_boxed`](#object-boxed) | fn |  |
+| [`object_boxed_stderr`](#object-boxed-stderr) | fn |  |
+| [`object_downcast`](#object-downcast) | fn |  |
+| [`context_downcast`](#context-downcast) | fn |  |
+| [`context_drop_rest`](#context-drop-rest) | fn |  |
+| [`context_chain_downcast`](#context-chain-downcast) | fn |  |
+| [`context_chain_drop_rest`](#context-chain-drop-rest) | fn |  |
 | [`vtable`](#vtable) | fn |  |
 | [`ErasedErrorImpl`](#erasederrorimpl) | type |  |
 
@@ -95,9 +95,9 @@ struct ErrorImpl<E> {
 
 - <span id="errorimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for ErrorImpl<E>`
+##### `impl OwoColorize for ErrorImpl<E>`
 
-##### `impl<T> ToString for ErrorImpl<E>`
+##### `impl ToString for ErrorImpl<E>`
 
 - <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
 
@@ -148,7 +148,7 @@ struct ContextError<D, E> {
 
 ##### `impl<D> OwoColorize for ContextError<D, E>`
 
-##### `impl<T> ToString for ContextError<D, E>`
+##### `impl ToString for ContextError<D, E>`
 
 - <span id="contexterror-to-string"></span>`fn to_string(&self) -> String`
 

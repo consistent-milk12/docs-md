@@ -49,29 +49,29 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 - <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Take<I>`
+##### `impl IntoEither for Take<I>`
 
-##### `impl<T> IntoParallelIterator for Take<I>`
+##### `impl IntoParallelIterator for Take<I>`
 
-- <span id="take-type-iter"></span>`type Iter = T`
+- <span id="take-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="take-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="take-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
-- <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="take-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Take<I>`
+##### `impl Pointable for Take<I>`
 
-- <span id="take-const-align"></span>`const ALIGN: usize`
+- <span id="take-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="take-type-init"></span>`type Init = T`
+- <span id="take-pointable-type-init"></span>`type Init = T`
 
 - <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Usage`](#usage) | struct |  |
-| [`USAGE_SEP`](#usage_sep) | const |  |
+| [`USAGE_SEP`](#usage-sep) | const |  |
 
 ## Structs
 

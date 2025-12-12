@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`skip`](#skip) | fn |  |
-| [`is_whitespace`](#is_whitespace) | fn |  |
+| [`is_whitespace`](#is-whitespace) | fn |  |
 
 ## Functions
 

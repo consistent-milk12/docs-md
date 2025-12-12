@@ -136,6 +136,7 @@
     - [summary](cargo_docs_md/multi_crate/summary/index.md)
   - [parser](cargo_docs_md/parser/index.md)
   - [types](cargo_docs_md/types/index.md)
+  - [utils](cargo_docs_md/utils/index.md)
 - [castaway](castaway/index.md)
   - [lifetime_free](castaway/lifetime_free/index.md)
     - [alloc_impls](castaway/lifetime_free/alloc_impls/index.md)

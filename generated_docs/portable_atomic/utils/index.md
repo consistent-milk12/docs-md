@@ -12,23 +12,23 @@
 - [Structs](#structs)
   - [`Pair`](#pair)
 - [Functions](#functions)
-  - [`_assert_is_bool`](#_assert_is_bool)
-  - [`assert_unchecked`](#assert_unchecked)
-  - [`assert_load_ordering`](#assert_load_ordering)
-  - [`assert_store_ordering`](#assert_store_ordering)
-  - [`assert_compare_exchange_ordering`](#assert_compare_exchange_ordering)
-  - [`upgrade_success_ordering`](#upgrade_success_ordering)
+  - [`_assert_is_bool`](#assert-is-bool)
+  - [`assert_unchecked`](#assert-unchecked)
+  - [`assert_load_ordering`](#assert-load-ordering)
+  - [`assert_store_ordering`](#assert-store-ordering)
+  - [`assert_compare_exchange_ordering`](#assert-compare-exchange-ordering)
+  - [`upgrade_success_ordering`](#upgrade-success-ordering)
 - [Macros](#macros)
-  - [`static_assert!`](#static_assert)
-  - [`static_assert_layout!`](#static_assert_layout)
-  - [`doc_comment!`](#doc_comment)
+  - [`static_assert!`](#static-assert)
+  - [`static_assert_layout!`](#static-assert-layout)
+  - [`doc_comment!`](#doc-comment)
   - [`ifunc!`](#ifunc)
-  - [`fn_alias!`](#fn_alias)
-  - [`const_fn!`](#const_fn)
-  - [`impl_debug_and_serde!`](#impl_debug_and_serde)
-  - [`impl_debug!`](#impl_debug)
-  - [`impl_default_no_fetch_ops!`](#impl_default_no_fetch_ops)
-  - [`impl_default_bit_opts!`](#impl_default_bit_opts)
+  - [`fn_alias!`](#fn-alias)
+  - [`const_fn!`](#const-fn)
+  - [`impl_debug_and_serde!`](#impl-debug-and-serde)
+  - [`impl_debug!`](#impl-debug)
+  - [`impl_default_no_fetch_ops!`](#impl-default-no-fetch-ops)
+  - [`impl_default_bit_opts!`](#impl-default-bit-opts)
   - [`items!`](#items)
 
 ## Quick Reference
@@ -38,22 +38,22 @@
 | [`generated`](#generated) | mod |  |
 | [`ptr`](#ptr) | mod |  |
 | [`Pair`](#pair) | struct |  |
-| [`_assert_is_bool`](#_assert_is_bool) | fn |  |
-| [`assert_unchecked`](#assert_unchecked) | fn |  |
-| [`assert_load_ordering`](#assert_load_ordering) | fn |  |
-| [`assert_store_ordering`](#assert_store_ordering) | fn |  |
-| [`assert_compare_exchange_ordering`](#assert_compare_exchange_ordering) | fn |  |
-| [`upgrade_success_ordering`](#upgrade_success_ordering) | fn |  |
-| [`static_assert!`](#static_assert) | macro |  |
-| [`static_assert_layout!`](#static_assert_layout) | macro |  |
-| [`doc_comment!`](#doc_comment) | macro |  |
+| [`_assert_is_bool`](#assert-is-bool) | fn |  |
+| [`assert_unchecked`](#assert-unchecked) | fn |  |
+| [`assert_load_ordering`](#assert-load-ordering) | fn |  |
+| [`assert_store_ordering`](#assert-store-ordering) | fn |  |
+| [`assert_compare_exchange_ordering`](#assert-compare-exchange-ordering) | fn |  |
+| [`upgrade_success_ordering`](#upgrade-success-ordering) | fn |  |
+| [`static_assert!`](#static-assert) | macro |  |
+| [`static_assert_layout!`](#static-assert-layout) | macro |  |
+| [`doc_comment!`](#doc-comment) | macro |  |
 | [`ifunc!`](#ifunc) | macro | # Safety |
-| [`fn_alias!`](#fn_alias) | macro |  |
-| [`const_fn!`](#const_fn) | macro | Make the given function const if the given condition is true. |
-| [`impl_debug_and_serde!`](#impl_debug_and_serde) | macro | Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde feature is enabled) for atomic bool, integer, or float. |
-| [`impl_debug!`](#impl_debug) | macro |  |
-| [`impl_default_no_fetch_ops!`](#impl_default_no_fetch_ops) | macro |  |
-| [`impl_default_bit_opts!`](#impl_default_bit_opts) | macro |  |
+| [`fn_alias!`](#fn-alias) | macro |  |
+| [`const_fn!`](#const-fn) | macro | Make the given function const if the given condition is true. |
+| [`impl_debug_and_serde!`](#impl-debug-and-serde) | macro | Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde feature is enabled) for atomic bool, integer, or float. |
+| [`impl_debug!`](#impl-debug) | macro |  |
+| [`impl_default_no_fetch_ops!`](#impl-default-no-fetch-ops) | macro |  |
+| [`impl_default_bit_opts!`](#impl-default-bit-opts) | macro |  |
 | [`items!`](#items) | macro |  |
 
 ## Modules

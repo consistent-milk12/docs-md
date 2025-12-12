@@ -22,12 +22,12 @@
 - [Enums](#enums)
   - [`KeyClass`](#keyclass)
 - [Functions](#functions)
-  - [`visit_array`](#visit_array)
-  - [`visit_array_ref`](#visit_array_ref)
+  - [`visit_array`](#visit-array)
+  - [`visit_array_ref`](#visit-array-ref)
 - [Macros](#macros)
-  - [`deserialize_number!`](#deserialize_number)
-  - [`deserialize_value_ref_number!`](#deserialize_value_ref_number)
-  - [`deserialize_numeric_key!`](#deserialize_numeric_key)
+  - [`deserialize_number!`](#deserialize-number)
+  - [`deserialize_value_ref_number!`](#deserialize-value-ref-number)
+  - [`deserialize_numeric_key!`](#deserialize-numeric-key)
 
 ## Quick Reference
 
@@ -46,11 +46,11 @@
 | [`BorrowedCowStrDeserializer`](#borrowedcowstrdeserializer) | struct |  |
 | [`UnitOnly`](#unitonly) | struct |  |
 | [`KeyClass`](#keyclass) | enum |  |
-| [`visit_array`](#visit_array) | fn |  |
-| [`visit_array_ref`](#visit_array_ref) | fn |  |
-| [`deserialize_number!`](#deserialize_number) | macro |  |
-| [`deserialize_value_ref_number!`](#deserialize_value_ref_number) | macro |  |
-| [`deserialize_numeric_key!`](#deserialize_numeric_key) | macro |  |
+| [`visit_array`](#visit-array) | fn |  |
+| [`visit_array_ref`](#visit-array-ref) | fn |  |
+| [`deserialize_number!`](#deserialize-number) | macro |  |
+| [`deserialize_value_ref_number!`](#deserialize-value-ref-number) | macro |  |
+| [`deserialize_numeric_key!`](#deserialize-numeric-key) | macro |  |
 
 ## Structs
 
@@ -69,9 +69,9 @@ struct EnumDeserializer {
 
 ##### `impl EnumAccess for EnumDeserializer`
 
-- <span id="enumdeserializer-type-error"></span>`type Error = Error`
+- <span id="enumdeserializer-enumaccess-type-error"></span>`type Error = Error`
 
-- <span id="enumdeserializer-type-variant"></span>`type Variant = VariantDeserializer`
+- <span id="enumdeserializer-enumaccess-type-variant"></span>`type Variant = VariantDeserializer`
 
 - <span id="enumdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, VariantDeserializer), Error>` — [`VariantDeserializer`](#variantdeserializer), [`Error`](../../error/index.md#error)
 
@@ -89,7 +89,7 @@ struct VariantDeserializer {
 
 ##### `impl VariantAccess for VariantDeserializer`
 
-- <span id="variantdeserializer-type-error"></span>`type Error = Error`
+- <span id="variantdeserializer-variantaccess-type-error"></span>`type Error = Error`
 
 - <span id="variantdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
@@ -117,7 +117,7 @@ struct SeqDeserializer {
 
 ##### `impl SeqAccess for SeqDeserializer`
 
-- <span id="seqdeserializer-type-error"></span>`type Error = Error`
+- <span id="seqdeserializer-seqaccess-type-error"></span>`type Error = Error`
 
 - <span id="seqdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md#error)
 
@@ -142,7 +142,7 @@ struct MapDeserializer {
 
 ##### `impl MapAccess for MapDeserializer`
 
-- <span id="mapdeserializer-type-error"></span>`type Error = Error`
+- <span id="mapdeserializer-mapaccess-type-error"></span>`type Error = Error`
 
 - <span id="mapdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md#error)
 
@@ -165,9 +165,9 @@ struct EnumRefDeserializer<'de> {
 
 ##### `impl EnumAccess for EnumRefDeserializer<'de>`
 
-- <span id="enumrefdeserializer-type-error"></span>`type Error = Error`
+- <span id="enumrefdeserializer-enumaccess-type-error"></span>`type Error = Error`
 
-- <span id="enumrefdeserializer-type-variant"></span>`type Variant = VariantRefDeserializer<'de>`
+- <span id="enumrefdeserializer-enumaccess-type-variant"></span>`type Variant = VariantRefDeserializer<'de>`
 
 - <span id="enumrefdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md#error)
 
@@ -185,7 +185,7 @@ struct VariantRefDeserializer<'de> {
 
 ##### `impl VariantAccess for VariantRefDeserializer<'de>`
 
-- <span id="variantrefdeserializer-type-error"></span>`type Error = Error`
+- <span id="variantrefdeserializer-variantaccess-type-error"></span>`type Error = Error`
 
 - <span id="variantrefdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
@@ -213,7 +213,7 @@ struct SeqRefDeserializer<'de> {
 
 ##### `impl SeqAccess for SeqRefDeserializer<'de>`
 
-- <span id="seqrefdeserializer-type-error"></span>`type Error = Error`
+- <span id="seqrefdeserializer-seqaccess-type-error"></span>`type Error = Error`
 
 - <span id="seqrefdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md#error)
 
@@ -238,7 +238,7 @@ struct MapRefDeserializer<'de> {
 
 ##### `impl MapAccess for MapRefDeserializer<'de>`
 
-- <span id="maprefdeserializer-type-error"></span>`type Error = Error`
+- <span id="maprefdeserializer-mapaccess-type-error"></span>`type Error = Error`
 
 - <span id="maprefdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md#error)
 
@@ -260,7 +260,7 @@ struct MapKeyDeserializer<'de> {
 
 ##### `impl Deserializer for MapKeyDeserializer<'de>`
 
-- <span id="mapkeydeserializer-type-error"></span>`type Error = Error`
+- <span id="mapkeydeserializer-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="mapkeydeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md#error)
 
@@ -336,7 +336,7 @@ struct KeyClassifier;
 
 ##### `impl DeserializeSeed for KeyClassifier`
 
-- <span id="keyclassifier-type-value"></span>`type Value = KeyClass`
+- <span id="keyclassifier-deserializeseed-type-value"></span>`type Value = KeyClass`
 
 - <span id="keyclassifier-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
@@ -346,7 +346,7 @@ struct KeyClassifier;
 
 ##### `impl Visitor for KeyClassifier`
 
-- <span id="keyclassifier-type-value"></span>`type Value = KeyClass`
+- <span id="keyclassifier-visitor-type-value"></span>`type Value = KeyClass`
 
 - <span id="keyclassifier-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -372,7 +372,7 @@ struct BorrowedCowStrDeserializer<'de> {
 
 ##### `impl Deserializer for BorrowedCowStrDeserializer<'de>`
 
-- <span id="borrowedcowstrdeserializer-type-error"></span>`type Error = Error`
+- <span id="borrowedcowstrdeserializer-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="borrowedcowstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md#error)
 
@@ -438,9 +438,9 @@ struct BorrowedCowStrDeserializer<'de> {
 
 ##### `impl EnumAccess for BorrowedCowStrDeserializer<'de>`
 
-- <span id="borrowedcowstrdeserializer-type-error"></span>`type Error = Error`
+- <span id="borrowedcowstrdeserializer-enumaccess-type-error"></span>`type Error = Error`
 
-- <span id="borrowedcowstrdeserializer-type-variant"></span>`type Variant = UnitOnly`
+- <span id="borrowedcowstrdeserializer-enumaccess-type-variant"></span>`type Variant = UnitOnly`
 
 - <span id="borrowedcowstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md#error)
 
@@ -456,7 +456,7 @@ struct UnitOnly;
 
 ##### `impl VariantAccess for UnitOnly`
 
-- <span id="unitonly-type-error"></span>`type Error = Error`
+- <span id="unitonly-variantaccess-type-error"></span>`type Error = Error`
 
 - <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 

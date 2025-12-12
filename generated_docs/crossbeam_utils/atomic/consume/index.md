@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`AtomicConsume`](#atomicconsume) | trait | Trait which allows reading from primitive atomic types with "consume" ordering. |
-| [`impl_consume!`](#impl_consume) | macro |  |
-| [`impl_atomic!`](#impl_atomic) | macro |  |
+| [`impl_consume!`](#impl-consume) | macro |  |
+| [`impl_atomic!`](#impl-atomic) | macro |  |
 
 ## Traits
 

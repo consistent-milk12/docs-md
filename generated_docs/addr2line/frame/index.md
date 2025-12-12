@@ -16,7 +16,7 @@
   - [`FrameIterState`](#frameiterstate)
 - [Functions](#functions)
   - [`demangle`](#demangle)
-  - [`demangle_auto`](#demangle_auto)
+  - [`demangle_auto`](#demangle-auto)
 
 ## Quick Reference
 
@@ -29,7 +29,7 @@
 | [`FunctionName`](#functionname) | struct | A function name. |
 | [`FrameIterState`](#frameiterstate) | enum |  |
 | [`demangle`](#demangle) | fn | Demangle a symbol name using the demangling scheme for the given language. |
-| [`demangle_auto`](#demangle_auto) | fn | Apply 'best effort' demangling of a symbol name. |
+| [`demangle_auto`](#demangle-auto) | fn | Apply 'best effort' demangling of a symbol name. |
 
 ## Structs
 

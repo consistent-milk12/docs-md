@@ -49,15 +49,15 @@ generator.generate()?;
   - [`breadcrumbs`](#breadcrumbs)
   - [`capture`](#capture)
   - [`context`](#context)
-  - [`doc_links`](#doc_links)
+  - [`doc_links`](#doc-links)
   - [`flat`](#flat)
-  - [`impl_category`](#impl_category)
+  - [`impl_category`](#impl-category)
   - [`impls`](#impls)
   - [`items`](#items)
   - [`module`](#module)
   - [`nested`](#nested)
-  - [`quick_ref`](#quick_ref)
-  - [`render_shared`](#render_shared)
+  - [`quick_ref`](#quick-ref)
+  - [`render_shared`](#render-shared)
   - [`toc`](#toc)
   - [`config`](#config)
 - [Structs](#structs)
@@ -67,6 +67,7 @@ generator.generate()?;
   - [`SourceConfig`](#sourceconfig)
   - [`GeneratorContext`](#generatorcontext)
   - [`DocLinkProcessor`](#doclinkprocessor)
+  - [`DocLinkUtils`](#doclinkutils)
   - [`ModuleRenderer`](#modulerenderer)
   - [`QuickRefEntry`](#quickrefentry)
   - [`QuickRefGenerator`](#quickrefgenerator)
@@ -81,11 +82,7 @@ generator.generate()?;
   - [`LinkResolver`](#linkresolver)
   - [`RenderContext`](#rendercontext)
 - [Functions](#functions)
-  - [`convert_html_links`](#convert_html_links)
-  - [`convert_path_reference_links`](#convert_path_reference_links)
-  - [`strip_duplicate_title`](#strip_duplicate_title)
-  - [`strip_reference_definitions`](#strip_reference_definitions)
-  - [`extract_summary`](#extract_summary)
+  - [`extract_summary`](#extract-summary)
 
 ## Quick Reference
 
@@ -94,15 +91,15 @@ generator.generate()?;
 | [`breadcrumbs`](#breadcrumbs) | mod | Breadcrumb navigation generation for nested module pages. |
 | [`capture`](#capture) | mod | In-memory markdown capture for testing. |
 | [`context`](#context) | mod | Shared context for documentation generation. |
-| [`doc_links`](#doc_links) | mod | Intra-doc link processing for documentation generation. |
+| [`doc_links`](#doc-links) | mod | Intra-doc link processing for documentation generation. |
 | [`flat`](#flat) | mod | Flat format documentation generation. |
-| [`impl_category`](#impl_category) | mod | Categorization system for trait implementations. |
+| [`impl_category`](#impl-category) | mod | Categorization system for trait implementations. |
 | [`impls`](#impls) | mod | Implementation block rendering for documentation generation. |
 | [`items`](#items) | mod | Item rendering for documentation generation. |
 | [`module`](#module) | mod | Module markdown rendering for documentation generation. |
 | [`nested`](#nested) | mod | Nested format documentation generation. |
-| [`quick_ref`](#quick_ref) | mod | Quick Reference table generation for module documentation. |
-| [`render_shared`](#render_shared) | mod | Shared rendering functions for documentation generation. |
+| [`quick_ref`](#quick-ref) | mod | Quick Reference table generation for module documentation. |
+| [`render_shared`](#render-shared) | mod | Shared rendering functions for documentation generation. |
 | [`toc`](#toc) | mod | Table of Contents generation for module documentation. |
 | [`config`](#config) | mod | Configuration for markdown rendering. |
 | [`BreadcrumbGenerator`](#breadcrumbgenerator) | struct |  |
@@ -111,6 +108,7 @@ generator.generate()?;
 | [`SourceConfig`](#sourceconfig) | struct |  |
 | [`GeneratorContext`](#generatorcontext) | struct |  |
 | [`DocLinkProcessor`](#doclinkprocessor) | struct |  |
+| [`DocLinkUtils`](#doclinkutils) | struct |  |
 | [`ModuleRenderer`](#modulerenderer) | struct |  |
 | [`QuickRefEntry`](#quickrefentry) | struct |  |
 | [`QuickRefGenerator`](#quickrefgenerator) | struct |  |
@@ -122,11 +120,7 @@ generator.generate()?;
 | [`ItemFilter`](#itemfilter) | trait |  |
 | [`LinkResolver`](#linkresolver) | trait |  |
 | [`RenderContext`](#rendercontext) | trait |  |
-| [`convert_html_links`](#convert_html_links) | fn |  |
-| [`convert_path_reference_links`](#convert_path_reference_links) | fn |  |
-| [`strip_duplicate_title`](#strip_duplicate_title) | fn |  |
-| [`strip_reference_definitions`](#strip_reference_definitions) | fn |  |
-| [`extract_summary`](#extract_summary) | fn |  |
+| [`extract_summary`](#extract-summary) | fn |  |
 
 ## Modules
 
@@ -189,9 +183,9 @@ the current module, with each segment being a clickable link.
 
 ##### `impl Pointable for BreadcrumbGenerator<'a>`
 
-- <span id="breadcrumbgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="breadcrumbgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="breadcrumbgenerator-type-init"></span>`type Init = T`
+- <span id="breadcrumbgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -262,9 +256,9 @@ side effects.
 
 ##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-type-init"></span>`type Init = T`
+- <span id="markdowncapture-pointable-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -341,9 +335,9 @@ Configuration options for markdown rendering.
 
 ##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-type-init"></span>`type Init = T`
+- <span id="renderconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -421,9 +415,9 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-type-init"></span>`type Init = T`
+- <span id="sourceconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -561,9 +555,9 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl Pointable for GeneratorContext<'a>`
 
-- <span id="generatorcontext-const-align"></span>`const ALIGN: usize`
+- <span id="generatorcontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="generatorcontext-type-init"></span>`type Init = T`
+- <span id="generatorcontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="generatorcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -588,7 +582,7 @@ struct DocLinkProcessor<'a> {
 }
 ```
 
-*Defined in `src/generator/doc_links.rs:418-431`*
+*Defined in `src/generator/doc_links.rs:365-378`*
 
 Processes doc comments to resolve intra-doc links to markdown links.
 
@@ -662,6 +656,8 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
 
+- <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
+
 - <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
 - <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
@@ -686,9 +682,9 @@ Links inside fenced code blocks are not processed.
 
 ##### `impl Pointable for DocLinkProcessor<'a>`
 
-- <span id="doclinkprocessor-const-align"></span>`const ALIGN: usize`
+- <span id="doclinkprocessor-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="doclinkprocessor-type-init"></span>`type Init = T`
+- <span id="doclinkprocessor-pointable-type-init"></span>`type Init = T`
 
 - <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -699,6 +695,56 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl WithSubscriber for DocLinkProcessor<'a>`
+
+### `DocLinkUtils`
+
+```rust
+struct DocLinkUtils;
+```
+
+*Defined in `src/generator/doc_links.rs:1051`*
+
+Utility functions for document links
+
+#### Implementations
+
+- <span id="doclinkutils-convert-html-links"></span>`fn convert_html_links(docs: &str) -> String`
+
+- <span id="doclinkutils-strip-duplicate-title"></span>`fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str`
+
+- <span id="doclinkutils-strip-reference-definitions"></span>`fn strip_reference_definitions(docs: &str) -> String`
+
+- <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
+
+- <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
+
+- <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+- <span id="doclinkutils-replace-with-regex-checked"></span>`fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String`
+
+#### Trait Implementations
+
+##### `impl Instrument for DocLinkUtils`
+
+##### `impl IntoEither for DocLinkUtils`
+
+##### `impl OwoColorize for DocLinkUtils`
+
+##### `impl Pointable for DocLinkUtils`
+
+- <span id="doclinkutils-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="doclinkutils-pointable-type-init"></span>`type Init = T`
+
+- <span id="doclinkutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="doclinkutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="doclinkutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="doclinkutils-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for DocLinkUtils`
 
 ### `ModuleRenderer<'a>`
 
@@ -783,9 +829,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl Pointable for ModuleRenderer<'a>`
 
-- <span id="modulerenderer-const-align"></span>`const ALIGN: usize`
+- <span id="modulerenderer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="modulerenderer-type-init"></span>`type Init = T`
+- <span id="modulerenderer-pointable-type-init"></span>`type Init = T`
 
 - <span id="modulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -855,9 +901,9 @@ anchor link, and first-sentence summary.
 
 ##### `impl Pointable for QuickRefEntry`
 
-- <span id="quickrefentry-const-align"></span>`const ALIGN: usize`
+- <span id="quickrefentry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefentry-type-init"></span>`type Init = T`
+- <span id="quickrefentry-pointable-type-init"></span>`type Init = T`
 
 - <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -910,9 +956,9 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Pointable for QuickRefGenerator`
 
-- <span id="quickrefgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="quickrefgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefgenerator-type-init"></span>`type Init = T`
+- <span id="quickrefgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -982,9 +1028,9 @@ for nested navigation.
 
 ##### `impl Pointable for TocEntry`
 
-- <span id="tocentry-const-align"></span>`const ALIGN: usize`
+- <span id="tocentry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocentry-type-init"></span>`type Init = T`
+- <span id="tocentry-pointable-type-init"></span>`type Init = T`
 
 - <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1044,9 +1090,9 @@ modules with unnecessary navigation.
 
 ##### `impl Pointable for TocGenerator`
 
-- <span id="tocgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="tocgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocgenerator-type-init"></span>`type Init = T`
+- <span id="tocgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1068,7 +1114,7 @@ struct Generator<'a> {
 }
 ```
 
-*Defined in `src/generator/mod.rs:89-98`*
+*Defined in `src/generator/mod.rs:86-95`*
 
 Main documentation generator.
 
@@ -1127,9 +1173,9 @@ generator.generate()?;
 
 ##### `impl Pointable for Generator<'a>`
 
-- <span id="generator-const-align"></span>`const ALIGN: usize`
+- <span id="generator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="generator-type-init"></span>`type Init = T`
+- <span id="generator-pointable-type-init"></span>`type Init = T`
 
 - <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1283,7 +1329,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md#implcategory)
 
-##### `impl Comparable for ImplCategory`
+##### `impl<K> Comparable for ImplCategory`
 
 - <span id="implcategory-compare"></span>`fn compare(&self, key: &K) -> Ordering`
 
@@ -1295,7 +1341,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Eq for ImplCategory`
 
-##### `impl Equivalent for ImplCategory`
+##### `impl<K> Equivalent for ImplCategory`
 
 - <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -1323,9 +1369,9 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Pointable for ImplCategory`
 
-- <span id="implcategory-const-align"></span>`const ALIGN: usize`
+- <span id="implcategory-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="implcategory-type-init"></span>`type Init = T`
+- <span id="implcategory-pointable-type-init"></span>`type Init = T`
 
 - <span id="implcategory-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1474,13 +1520,38 @@ with limited requirements can depend on individual sub-traits.
 
 ## Functions
 
-*Defined in `src/generator/mod.rs:60`*
+### `extract_summary`
 
-*Defined in `src/generator/mod.rs:60`*
+```rust
+fn extract_summary(docs: Option<&str>) -> String
+```
 
-*Defined in `src/generator/mod.rs:60`*
+*Defined in `src/generator/quick_ref.rs:146-187`*
 
-*Defined in `src/generator/mod.rs:61`*
+Extract the first sentence from a documentation string.
 
-*Defined in `src/generator/mod.rs:69`*
+This function handles sentences that span multiple lines by joining
+consecutive non-empty lines until a sentence boundary is found.
+A blank line always terminates the paragraph.
+
+# Arguments
+
+* `docs` - Optional documentation string
+
+# Returns
+
+The first sentence, or an empty string if no docs.
+
+# Examples
+
+```ignore
+assert_eq!(extract_summary(Some("A parser. With more.")), "A parser.");
+assert_eq!(extract_summary(Some("Single sentence")), "Single sentence");
+assert_eq!(extract_summary(None), "");
+// Handles wrapped sentences:
+assert_eq!(
+    extract_summary(Some("A long sentence that\nspans multiple lines. More.")),
+    "A long sentence that spans multiple lines."
+);
+```
 

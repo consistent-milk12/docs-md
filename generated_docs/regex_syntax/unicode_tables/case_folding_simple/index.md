@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`CASE_FOLDING_SIMPLE`](#case_folding_simple) | const |  |
+| [`CASE_FOLDING_SIMPLE`](#case-folding-simple) | const |  |
 
 ## Constants
 

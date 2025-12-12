@@ -38,21 +38,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-iterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -75,11 +75,11 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegment-address"></span>`fn address(&self) -> u64`
 
@@ -99,7 +99,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
 
 ## Type Aliases
 

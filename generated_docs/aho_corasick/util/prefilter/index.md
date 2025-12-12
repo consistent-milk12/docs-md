@@ -27,8 +27,8 @@
 - [Traits](#traits)
   - [`PrefilterI`](#prefilteri)
 - [Functions](#functions)
-  - [`opposite_ascii_case`](#opposite_ascii_case)
-  - [`freq_rank`](#freq_rank)
+  - [`opposite_ascii_case`](#opposite-ascii-case)
+  - [`freq_rank`](#freq-rank)
 
 ## Quick Reference
 
@@ -51,8 +51,8 @@
 | [`StartBytesThree`](#startbytesthree) | struct | A prefilter for scanning for three starting bytes. |
 | [`Candidate`](#candidate) | enum | A candidate is the result of running a prefilter on a haystack at a particular position. |
 | [`PrefilterI`](#prefilteri) | trait | A prefilter describes the behavior of fast literal scanners for quickly skipping past bytes in the haystack that we know cannot possibly participate in a match. |
-| [`opposite_ascii_case`](#opposite_ascii_case) | fn | If the given byte is an ASCII letter, then return it in the opposite case. |
-| [`freq_rank`](#freq_rank) | fn | Return the frequency rank of the given byte. |
+| [`opposite_ascii_case`](#opposite-ascii-case) | fn | If the given byte is an ASCII letter, then return it in the opposite case. |
+| [`freq_rank`](#freq-rank) | fn | Return the frequency rank of the given byte. |
 
 ## Structs
 

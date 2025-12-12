@@ -22,7 +22,7 @@
   - [`Rela`](#rela)
   - [`Relr`](#relr)
 - [Functions](#functions)
-  - [`parse_relocation`](#parse_relocation)
+  - [`parse_relocation`](#parse-relocation)
 - [Type Aliases](#type-aliases)
   - [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32)
   - [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64)
@@ -45,7 +45,7 @@
 | [`Rel`](#rel) | trait | A trait for generic access to [`elf::Rel32`] and [`elf::Rel64`]. |
 | [`Rela`](#rela) | trait | A trait for generic access to [`elf::Rela32`] and [`elf::Rela64`]. |
 | [`Relr`](#relr) | trait | A trait for generic access to [`elf::Relr32`] and [`elf::Relr64`]. |
-| [`parse_relocation`](#parse_relocation) | fn |  |
+| [`parse_relocation`](#parse-relocation) | fn |  |
 | [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32) | type | An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32). |
 | [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64) | type | An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64). |
 | [`ElfSectionRelocationIterator32`](#elfsectionrelocationiterator32) | type | An iterator for the relocations for an [`ElfSection32`](super::ElfSection32). |
@@ -106,21 +106,21 @@ An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfdynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfdynamicrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfdynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfdynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfdynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="elfdynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="elfdynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -149,21 +149,21 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsectionrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfsectionrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="elfsectionrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="elfsectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -191,21 +191,21 @@ Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
+##### `impl<Elf: fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
 
 - <span id="relriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for RelrIterator<'data, Elf>`
+##### `impl IntoIterator for RelrIterator<'data, Elf>`
 
-- <span id="relriterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relriterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relriterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="relriterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relriterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
 
-- <span id="relriterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
+- <span id="relriterator-iterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
 
 - <span id="relriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -409,15 +409,15 @@ Compact relocation iterator.
 
 ##### `impl IntoIterator for CrelIterator<'data>`
 
-- <span id="creliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="creliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="creliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="creliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="creliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for CrelIterator<'data>`
 
-- <span id="creliterator-type-item"></span>`type Item = Result<Crel, Error>`
+- <span id="creliterator-iterator-type-item"></span>`type Item = Result<Crel, Error>`
 
 - <span id="creliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -443,17 +443,17 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for ElfRelocationIterator<'data, Elf>`
+##### `impl IntoIterator for ElfRelocationIterator<'data, Elf>`
 
-- <span id="elfrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
 
-- <span id="elfrelocationiterator-type-item"></span>`type Item = Crel`
+- <span id="elfrelocationiterator-iterator-type-item"></span>`type Item = Crel`
 
 - <span id="elfrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

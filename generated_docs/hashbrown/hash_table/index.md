@@ -116,9 +116,9 @@ doing this because it changes the runtime of hash table operations from
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- <span id="hashtable-type-item"></span>`type Item = T`
+- <span id="hashtable-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](#intoiter)
 
@@ -136,7 +136,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -223,7 +223,7 @@ where
 *Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -356,7 +356,7 @@ documentation for more.
 
 #### Trait Implementations
 
-##### `impl<'a, T> Clone for Iter<'a, T>`
+##### `impl<T> Clone for Iter<'a, T>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a, T>` — [`Iter`](#iter)
 
@@ -374,17 +374,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for Iter<'_, T>`
 
-##### `impl<I> IntoIterator for Iter<'a, T>`
+##### `impl IntoIterator for Iter<'a, T>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for Iter<'a, T>`
+##### `impl<T> Iterator for Iter<'a, T>`
 
-- <span id="iter-type-item"></span>`type Item = &'a T`
+- <span id="iter-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -427,17 +427,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for IterMut<'_, T>`
 
-##### `impl<I> IntoIterator for IterMut<'a, T>`
+##### `impl IntoIterator for IterMut<'a, T>`
 
-- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for IterMut<'a, T>`
+##### `impl<T> Iterator for IterMut<'a, T>`
 
-- <span id="itermut-type-item"></span>`type Item = &'a mut T`
+- <span id="itermut-iterator-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -485,17 +485,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for IterBuckets<'_, T>`
 
-##### `impl<I> IntoIterator for IterBuckets<'a, T>`
+##### `impl IntoIterator for IterBuckets<'a, T>`
 
-- <span id="iterbuckets-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterbuckets-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterbuckets-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterbuckets-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterBuckets<'_, T>`
 
-- <span id="iterbuckets-type-item"></span>`type Item = usize`
+- <span id="iterbuckets-iterator-type-item"></span>`type Item = usize`
 
 - <span id="iterbuckets-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -522,7 +522,7 @@ documentation for more.
 
 #### Trait Implementations
 
-##### `impl<'a, T> Clone for IterHash<'a, T>`
+##### `impl<T> Clone for IterHash<'a, T>`
 
 - <span id="iterhash-clone"></span>`fn clone(&self) -> IterHash<'a, T>` — [`IterHash`](#iterhash)
 
@@ -536,17 +536,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for IterHash<'_, T>`
 
-##### `impl<I> IntoIterator for IterHash<'a, T>`
+##### `impl IntoIterator for IterHash<'a, T>`
 
-- <span id="iterhash-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhash-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhash-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterhash-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhash-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for IterHash<'a, T>`
+##### `impl<T> Iterator for IterHash<'a, T>`
 
-- <span id="iterhash-type-item"></span>`type Item = &'a T`
+- <span id="iterhash-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="iterhash-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -583,17 +583,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for IterHashMut<'_, T>`
 
-##### `impl<I> IntoIterator for IterHashMut<'a, T>`
+##### `impl IntoIterator for IterHashMut<'a, T>`
 
-- <span id="iterhashmut-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhashmut-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhashmut-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterhashmut-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhashmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for IterHashMut<'a, T>`
+##### `impl<T> Iterator for IterHashMut<'a, T>`
 
-- <span id="iterhashmut-type-item"></span>`type Item = &'a mut T`
+- <span id="iterhashmut-iterator-type-item"></span>`type Item = &'a mut T`
 
 - <span id="iterhashmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -631,17 +631,17 @@ documentation for more.
 
 ##### `impl<T> FusedIterator for IterHashBuckets<'_, T>`
 
-##### `impl<I> IntoIterator for IterHashBuckets<'a, T>`
+##### `impl IntoIterator for IterHashBuckets<'a, T>`
 
-- <span id="iterhashbuckets-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhashbuckets-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhashbuckets-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterhashbuckets-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhashbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterHashBuckets<'_, T>`
 
-- <span id="iterhashbuckets-type-item"></span>`type Item = usize`
+- <span id="iterhashbuckets-iterator-type-item"></span>`type Item = usize`
 
 - <span id="iterhashbuckets-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -683,17 +683,17 @@ The table cannot be used after calling that method.
 
 ##### `impl<T, A> FusedIterator for IntoIter<T, A>`
 
-##### `impl<I> IntoIterator for IntoIter<T, A>`
+##### `impl IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -730,17 +730,17 @@ See its documentation for more.
 
 ##### `impl<T, A: Allocator> FusedIterator for Drain<'_, T, A>`
 
-##### `impl<I> IntoIterator for Drain<'a, T, A>`
+##### `impl IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = T`
+- <span id="drain-iterator-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -768,17 +768,17 @@ documentation for more.
 
 ##### `impl<T, F, A: Allocator> FusedIterator for ExtractIf<'_, T, F, A>`
 
-##### `impl<I> IntoIterator for ExtractIf<'a, T, F, A>`
+##### `impl IntoIterator for ExtractIf<'a, T, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="extractif-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="extractif-type-intoiter"></span>`type IntoIter = I`
+- <span id="extractif-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, F, A: Allocator> Iterator for ExtractIf<'_, T, F, A>`
 
-- <span id="extractif-type-item"></span>`type Item = T`
+- <span id="extractif-iterator-type-item"></span>`type Item = T`
 
 - <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

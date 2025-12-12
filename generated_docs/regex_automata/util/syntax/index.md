@@ -21,9 +21,9 @@ composed.
 |------|------|-------------|
 | [`Config`](#config) | struct | A common set of configuration options that apply to the syntax of a regex. |
 | [`parse`](#parse) | fn | A convenience routine for parsing a pattern into an HIR value with the default configuration. |
-| [`parse_many`](#parse_many) | fn | A convenience routine for parsing many patterns into HIR value with the default configuration. |
-| [`parse_with`](#parse_with) | fn | A convenience routine for parsing a pattern into an HIR value using a `Config`. |
-| [`parse_many_with`](#parse_many_with) | fn | A convenience routine for parsing many patterns into HIR values using a `Config`. |
+| [`parse_many`](#parse-many) | fn | A convenience routine for parsing many patterns into HIR value with the default configuration. |
+| [`parse_with`](#parse-with) | fn | A convenience routine for parsing a pattern into an HIR value using a `Config`. |
+| [`parse_many_with`](#parse-many-with) | fn | A convenience routine for parsing many patterns into HIR values using a `Config`. |
 
 ## Structs
 

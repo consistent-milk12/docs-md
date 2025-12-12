@@ -19,7 +19,7 @@ necessary when one needs access to the [`Automaton`](../../automaton/index.md) t
 | [`State`](#state) | struct | The "in memory" representation a single dense or sparse state. |
 | [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick contiguous NFA. |
 | [`StateTrans`](#statetrans) | enum | The underlying representation of sparse or dense transitions for a state. |
-| [`u32_len`](#u32_len) | fn | Computes the number of u32 values needed to represent one byte per the number of transitions given. |
+| [`u32_len`](#u32-len) | fn | Computes the number of u32 values needed to represent one byte per the number of transitions given. |
 
 ## Structs
 

@@ -16,7 +16,7 @@ This implementation features:
 |------|------|-------------|
 | [`algo`](#algo) | mod |  |
 | [`Adler32`](#adler32) | struct | Adler-32 checksum calculator. |
-| [`adler32_slice`](#adler32_slice) | fn | Calculates the Adler-32 checksum of a byte slice. |
+| [`adler32_slice`](#adler32-slice) | fn | Calculates the Adler-32 checksum of a byte slice. |
 
 ## Modules
 

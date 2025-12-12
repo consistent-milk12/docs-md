@@ -17,13 +17,13 @@
   - [`CasingStyle`](#casingstyle)
   - [`Name`](#name)
 - [Functions](#functions)
-  - [`default_value_parser`](#default_value_parser)
-  - [`default_action`](#default_action)
-  - [`assert_attr_kind`](#assert_attr_kind)
-  - [`process_author_str`](#process_author_str)
+  - [`default_value_parser`](#default-value-parser)
+  - [`default_action`](#default-action)
+  - [`assert_attr_kind`](#assert-attr-kind)
+  - [`process_author_str`](#process-author-str)
 - [Constants](#constants)
-  - [`DEFAULT_CASING`](#default_casing)
-  - [`DEFAULT_ENV_CASING`](#default_env_casing)
+  - [`DEFAULT_CASING`](#default-casing)
+  - [`DEFAULT_ENV_CASING`](#default-env-casing)
 
 ## Quick Reference
 
@@ -37,12 +37,12 @@
 | [`Kind`](#kind) | enum |  |
 | [`CasingStyle`](#casingstyle) | enum | Defines the casing for the attributes long representation. |
 | [`Name`](#name) | enum |  |
-| [`default_value_parser`](#default_value_parser) | fn |  |
-| [`default_action`](#default_action) | fn |  |
-| [`assert_attr_kind`](#assert_attr_kind) | fn |  |
-| [`process_author_str`](#process_author_str) | fn | replace all `:` with `, ` when not inside the `<>` |
-| [`DEFAULT_CASING`](#default_casing) | const | Default casing style for generated arguments. |
-| [`DEFAULT_ENV_CASING`](#default_env_casing) | const | Default casing style for environment variables |
+| [`default_value_parser`](#default-value-parser) | fn |  |
+| [`default_action`](#default-action) | fn |  |
+| [`assert_attr_kind`](#assert-attr-kind) | fn |  |
+| [`process_author_str`](#process-author-str) | fn | replace all `:` with `, ` when not inside the `<>` |
+| [`DEFAULT_CASING`](#default-casing) | const | Default casing style for generated arguments. |
+| [`DEFAULT_ENV_CASING`](#default-env-casing) | const | Default casing style for environment variables |
 
 ## Structs
 

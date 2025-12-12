@@ -11,7 +11,7 @@
 | [`private`](#private) | mod |  |
 | [`Split`](#split) | struct |  |
 | [`OsStrExt`](#osstrext) | trait | String-like methods for [`OsStr`] |
-| [`split_at`](#split_at) | fn | Split an `OsStr` |
+| [`split_at`](#split-at) | fn | Split an `OsStr` |
 
 ## Modules
 
@@ -34,15 +34,15 @@ struct Split<'s, 'n> {
 
 ##### `impl IntoIterator for Split<'s, 'n>`
 
-- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-type-intoiter"></span>`type IntoIter = I`
+- <span id="split-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Split<'s, '_>`
 
-- <span id="split-type-item"></span>`type Item = &'s OsStr`
+- <span id="split-iterator-type-item"></span>`type Item = &'s OsStr`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -11,8 +11,8 @@
 | [`NONE`](#none) | const |  |
 | [`READ`](#read) | const |  |
 | [`WRITE`](#write) | const |  |
-| [`SIZE_BITS`](#size_bits) | const |  |
-| [`DIR_BITS`](#dir_bits) | const |  |
+| [`SIZE_BITS`](#size-bits) | const |  |
+| [`DIR_BITS`](#dir-bits) | const |  |
 
 ## Constants
 

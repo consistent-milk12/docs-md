@@ -37,11 +37,11 @@ fn main() {
 - [Traits](#traits)
   - [`Integer`](#integer)
 - [Constants](#constants)
-  - [`DEC_DIGITS_LUT`](#dec_digits_lut)
+  - [`DEC_DIGITS_LUT`](#dec-digits-lut)
 - [Macros](#macros)
-  - [`impl_Integer!`](#impl_integer)
-  - [`impl_Integer_size!`](#impl_integer_size)
-  - [`impl_Integer128!`](#impl_integer128)
+  - [`impl_Integer!`](#impl-integer)
+  - [`impl_Integer_size!`](#impl-integer-size)
+  - [`impl_Integer128!`](#impl-integer128)
 
 ## Quick Reference
 
@@ -51,10 +51,10 @@ fn main() {
 | [`private`](#private) | mod |  |
 | [`Buffer`](#buffer) | struct | A correctly sized stack allocation for the formatted integer to be written into. |
 | [`Integer`](#integer) | trait | An integer that can be written into an [`itoa::Buffer`][Buffer]. |
-| [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
-| [`impl_Integer!`](#impl_integer) | macro |  |
-| [`impl_Integer_size!`](#impl_integer_size) | macro |  |
-| [`impl_Integer128!`](#impl_integer128) | macro |  |
+| [`DEC_DIGITS_LUT`](#dec-digits-lut) | const |  |
+| [`impl_Integer!`](#impl-integer) | macro |  |
+| [`impl_Integer_size!`](#impl-integer-size) | macro |  |
+| [`impl_Integer128!`](#impl-integer128) | macro |  |
 
 ## Modules
 

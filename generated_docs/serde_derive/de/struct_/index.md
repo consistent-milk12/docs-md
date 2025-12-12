@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for a `struct Struct {...}` |
-| [`deserialize_map`](#deserialize_map) | fn |  |
-| [`deserialize_field_identifier`](#deserialize_field_identifier) | fn | Generates enum and its `Deserialize` implementation that represents each non-skipped field of the struct |
+| [`deserialize_map`](#deserialize-map) | fn |  |
+| [`deserialize_field_identifier`](#deserialize-field-identifier) | fn | Generates enum and its `Deserialize` implementation that represents each non-skipped field of the struct |
 
 ## Functions
 

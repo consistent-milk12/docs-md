@@ -84,9 +84,9 @@ that becomes true when `set()` is called.
 
 ##### `impl Pointable for CoreLatch`
 
-- <span id="corelatch-const-align"></span>`const ALIGN: usize`
+- <span id="corelatch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="corelatch-type-init"></span>`type Init = T`
+- <span id="corelatch-pointable-type-init"></span>`type Init = T`
 
 - <span id="corelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -133,9 +133,9 @@ that becomes true when `set()` is called.
 
 ##### `impl Pointable for SpinLatch<'r>`
 
-- <span id="spinlatch-const-align"></span>`const ALIGN: usize`
+- <span id="spinlatch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="spinlatch-type-init"></span>`type Init = T`
+- <span id="spinlatch-pointable-type-init"></span>`type Init = T`
 
 - <span id="spinlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -179,9 +179,9 @@ until it becomes true.
 
 ##### `impl Pointable for LockLatch`
 
-- <span id="locklatch-const-align"></span>`const ALIGN: usize`
+- <span id="locklatch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="locklatch-type-init"></span>`type Init = T`
+- <span id="locklatch-pointable-type-init"></span>`type Init = T`
 
 - <span id="locklatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -232,9 +232,9 @@ contexts).
 
 ##### `impl Pointable for OnceLatch`
 
-- <span id="oncelatch-const-align"></span>`const ALIGN: usize`
+- <span id="oncelatch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="oncelatch-type-init"></span>`type Init = T`
+- <span id="oncelatch-pointable-type-init"></span>`type Init = T`
 
 - <span id="oncelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -283,9 +283,9 @@ decrements the counter. The latch is only "set" (in the sense that
 
 ##### `impl Pointable for CountLatch`
 
-- <span id="countlatch-const-align"></span>`const ALIGN: usize`
+- <span id="countlatch-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="countlatch-type-init"></span>`type Init = T`
+- <span id="countlatch-pointable-type-init"></span>`type Init = T`
 
 - <span id="countlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -316,7 +316,7 @@ struct LatchRef<'a, L> {
 
 ##### `impl<L> Deref for LatchRef<'_, L>`
 
-- <span id="latchref-type-target"></span>`type Target = L`
+- <span id="latchref-deref-type-target"></span>`type Target = L`
 
 - <span id="latchref-deref"></span>`fn deref(&self) -> &L`
 
@@ -324,11 +324,11 @@ struct LatchRef<'a, L> {
 
 - <span id="latchref-set"></span>`unsafe fn set(this: *const Self)`
 
-##### `impl<T> Pointable for LatchRef<'a, L>`
+##### `impl Pointable for LatchRef<'a, L>`
 
-- <span id="latchref-const-align"></span>`const ALIGN: usize`
+- <span id="latchref-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="latchref-type-init"></span>`type Init = T`
+- <span id="latchref-pointable-type-init"></span>`type Init = T`
 
 - <span id="latchref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -338,9 +338,9 @@ struct LatchRef<'a, L> {
 
 - <span id="latchref-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<P, T> Receiver for LatchRef<'a, L>`
+##### `impl Receiver for LatchRef<'a, L>`
 
-- <span id="latchref-type-target"></span>`type Target = T`
+- <span id="latchref-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<L: Sync> Sync for LatchRef<'_, L>`
 
@@ -383,9 +383,9 @@ enum CountLatchKind {
 
 ##### `impl Pointable for CountLatchKind`
 
-- <span id="countlatchkind-const-align"></span>`const ALIGN: usize`
+- <span id="countlatchkind-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="countlatchkind-type-init"></span>`type Init = T`
+- <span id="countlatchkind-pointable-type-init"></span>`type Init = T`
 
 - <span id="countlatchkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -17,13 +17,13 @@
   - [`ProgressFinish`](#progressfinish)
   - [`Status`](#status)
 - [Functions](#functions)
-  - [`estimator_weight`](#estimator_weight)
-  - [`duration_to_secs`](#duration_to_secs)
-  - [`secs_to_duration`](#secs_to_duration)
+  - [`estimator_weight`](#estimator-weight)
+  - [`duration_to_secs`](#duration-to-secs)
+  - [`secs_to_duration`](#secs-to-duration)
 - [Constants](#constants)
   - [`INTERVAL`](#interval)
-  - [`MAX_BURST`](#max_burst)
-  - [`DEFAULT_TAB_WIDTH`](#default_tab_width)
+  - [`MAX_BURST`](#max-burst)
+  - [`DEFAULT_TAB_WIDTH`](#default-tab-width)
 
 ## Quick Reference
 
@@ -37,12 +37,12 @@
 | [`TabExpandedString`](#tabexpandedstring) | enum |  |
 | [`ProgressFinish`](#progressfinish) | enum | Behavior of a progress bar when it is finished |
 | [`Status`](#status) | enum |  |
-| [`estimator_weight`](#estimator_weight) | fn | Get the appropriate dilution weight for Estimator data given the data's age (in seconds) |
-| [`duration_to_secs`](#duration_to_secs) | fn |  |
-| [`secs_to_duration`](#secs_to_duration) | fn |  |
+| [`estimator_weight`](#estimator-weight) | fn | Get the appropriate dilution weight for Estimator data given the data's age (in seconds) |
+| [`duration_to_secs`](#duration-to-secs) | fn |  |
+| [`secs_to_duration`](#secs-to-duration) | fn |  |
 | [`INTERVAL`](#interval) | const |  |
-| [`MAX_BURST`](#max_burst) | const |  |
-| [`DEFAULT_TAB_WIDTH`](#default_tab_width) | const |  |
+| [`MAX_BURST`](#max-burst) | const |  |
+| [`DEFAULT_TAB_WIDTH`](#default-tab-width) | const |  |
 
 ## Structs
 

@@ -36,12 +36,12 @@ to make the `ioctl` call.
   - [`Ioctl`](#ioctl)
 - [Functions](#functions)
   - [`ioctl`](#ioctl)
-  - [`_ioctl`](#_ioctl)
-  - [`_ioctl_readonly`](#_ioctl_readonly)
+  - [`_ioctl`](#ioctl)
+  - [`_ioctl_readonly`](#ioctl-readonly)
 - [Type Aliases](#type-aliases)
   - [`IoctlOutput`](#ioctloutput)
   - [`Opcode`](#opcode)
-  - [`_Opcode`](#_opcode)
+  - [`_Opcode`](#opcode)
 
 ## Quick Reference
 
@@ -58,11 +58,11 @@ to make the `ioctl` call.
 | [`Direction`](#direction) | enum | The direction that an `ioctl` is going. |
 | [`Ioctl`](#ioctl) | trait | A trait defining the properties of an `ioctl` command. |
 | [`ioctl`](#ioctl) | fn | Perform an `ioctl` call. |
-| [`_ioctl`](#_ioctl) | fn |  |
-| [`_ioctl_readonly`](#_ioctl_readonly) | fn |  |
+| [`_ioctl`](#ioctl) | fn |  |
+| [`_ioctl_readonly`](#ioctl-readonly) | fn |  |
 | [`IoctlOutput`](#ioctloutput) | type | The type used by the `ioctl` to signify the output. |
 | [`Opcode`](#opcode) | type | The type used by the `ioctl` to signify the command. |
-| [`_Opcode`](#_opcode) | type |  |
+| [`_Opcode`](#opcode) | type |  |
 
 ## Modules
 
@@ -99,9 +99,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl Ioctl for NoArg<OPCODE>`
 
-- <span id="noarg-type-output"></span>`type Output = ()`
+- <span id="noarg-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="noarg-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="noarg-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
@@ -140,15 +140,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode, Output> Debug for Getter<OPCODE, Output>`
+##### `impl<Output> Debug for Getter<OPCODE, Output>`
 
 - <span id="getter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<const OPCODE: super::Opcode, Output> Ioctl for Getter<OPCODE, Output>`
+##### `impl<Output> Ioctl for Getter<OPCODE, Output>`
 
-- <span id="getter-type-output"></span>`type Output = Output`
+- <span id="getter-ioctl-type-output"></span>`type Output = Output`
 
-- <span id="getter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="getter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
@@ -187,15 +187,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode, Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
+##### `impl<Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
 
 - <span id="setter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<const OPCODE: super::Opcode, Input> Ioctl for Setter<OPCODE, Input>`
+##### `impl<Input> Ioctl for Setter<OPCODE, Input>`
 
-- <span id="setter-type-output"></span>`type Output = ()`
+- <span id="setter-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="setter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="setter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
@@ -234,11 +234,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<'a, const OPCODE: super::Opcode, T> Ioctl for Updater<'a, OPCODE, T>`
+##### `impl<T> Ioctl for Updater<'a, OPCODE, T>`
 
-- <span id="updater-type-output"></span>`type Output = ()`
+- <span id="updater-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="updater-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="updater-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
@@ -280,9 +280,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl Ioctl for IntegerSetter<OPCODE>`
 
-- <span id="integersetter-type-output"></span>`type Output = ()`
+- <span id="integersetter-ioctl-type-output"></span>`type Output = ()`
 
-- <span id="integersetter-const-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="integersetter-ioctl-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 

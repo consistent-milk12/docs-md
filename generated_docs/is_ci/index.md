@@ -4,7 +4,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`is_ci`](#is_ci) | fn | Returns true if the current environment is found to probably be a CI environment or service. |
+| [`is_ci`](#is-ci) | fn | Returns true if the current environment is found to probably be a CI environment or service. |
 | [`cached`](#cached) | fn | Returns true if the current environment is found to probably be a CI environment or service, and caches the result for future calls. |
 | [`uncached`](#uncached) | fn | Returns true if the current environment is found to probably be a CI environment or service. |
 | [`check`](#check) | fn |  |

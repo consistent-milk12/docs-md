@@ -10,16 +10,16 @@
   - [`ParsedSym`](#parsedsym)
   - [`Object`](#object)
 - [Functions](#functions)
-  - [`decompress_zlib`](#decompress_zlib)
-  - [`debug_path_exists`](#debug_path_exists)
-  - [`locate_build_id`](#locate_build_id)
-  - [`locate_debuglink`](#locate_debuglink)
-  - [`locate_debugaltlink`](#locate_debugaltlink)
-  - [`handle_split_dwarf`](#handle_split_dwarf)
+  - [`decompress_zlib`](#decompress-zlib)
+  - [`debug_path_exists`](#debug-path-exists)
+  - [`locate_build_id`](#locate-build-id)
+  - [`locate_debuglink`](#locate-debuglink)
+  - [`locate_debugaltlink`](#locate-debugaltlink)
+  - [`handle_split_dwarf`](#handle-split-dwarf)
 - [Type Aliases](#type-aliases)
   - [`Elf`](#elf)
 - [Constants](#constants)
-  - [`DEBUG_PATH`](#debug_path)
+  - [`DEBUG_PATH`](#debug-path)
 
 ## Quick Reference
 
@@ -27,14 +27,14 @@
 |------|------|-------------|
 | [`ParsedSym`](#parsedsym) | struct |  |
 | [`Object`](#object) | struct |  |
-| [`decompress_zlib`](#decompress_zlib) | fn |  |
-| [`debug_path_exists`](#debug_path_exists) | fn |  |
-| [`locate_build_id`](#locate_build_id) | fn | Locate a debug file based on its build ID. |
-| [`locate_debuglink`](#locate_debuglink) | fn | Locate a file specified in a `.gnu_debuglink` section. |
-| [`locate_debugaltlink`](#locate_debugaltlink) | fn | Locate a file specified in a `.gnu_debugaltlink` section. |
-| [`handle_split_dwarf`](#handle_split_dwarf) | fn |  |
+| [`decompress_zlib`](#decompress-zlib) | fn |  |
+| [`debug_path_exists`](#debug-path-exists) | fn |  |
+| [`locate_build_id`](#locate-build-id) | fn | Locate a debug file based on its build ID. |
+| [`locate_debuglink`](#locate-debuglink) | fn | Locate a file specified in a `.gnu_debuglink` section. |
+| [`locate_debugaltlink`](#locate-debugaltlink) | fn | Locate a file specified in a `.gnu_debugaltlink` section. |
+| [`handle_split_dwarf`](#handle-split-dwarf) | fn |  |
 | [`Elf`](#elf) | type |  |
-| [`DEBUG_PATH`](#debug_path) | const |  |
+| [`DEBUG_PATH`](#debug-path) | const |  |
 
 ## Structs
 

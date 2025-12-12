@@ -15,8 +15,8 @@ This is the default symbolication implementation for Rust.
   - [`lru`](#lru)
   - [`stash`](#stash)
   - [`elf`](#elf)
-  - [`libs_dl_iterate_phdr`](#libs_dl_iterate_phdr)
-  - [`parse_running_mmaps`](#parse_running_mmaps)
+  - [`libs_dl_iterate_phdr`](#libs-dl-iterate-phdr)
+  - [`parse_running_mmaps`](#parse-running-mmaps)
 - [Structs](#structs)
   - [`Mapping`](#mapping)
   - [`Context`](#context)
@@ -28,11 +28,11 @@ This is the default symbolication implementation for Rust.
   - [`Symbol`](#symbol)
 - [Functions](#functions)
   - [`mmap`](#mmap)
-  - [`create_mapping`](#create_mapping)
-  - [`clear_symbol_cache`](#clear_symbol_cache)
+  - [`create_mapping`](#create-mapping)
+  - [`clear_symbol_cache`](#clear-symbol-cache)
   - [`resolve`](#resolve)
 - [Constants](#constants)
-  - [`MAPPINGS_CACHE_SIZE`](#mappings_cache_size)
+  - [`MAPPINGS_CACHE_SIZE`](#mappings-cache-size)
 
 ## Quick Reference
 
@@ -42,8 +42,8 @@ This is the default symbolication implementation for Rust.
 | [`lru`](#lru) | mod |  |
 | [`stash`](#stash) | mod |  |
 | [`elf`](#elf) | mod |  |
-| [`libs_dl_iterate_phdr`](#libs_dl_iterate_phdr) | mod |  |
-| [`parse_running_mmaps`](#parse_running_mmaps) | mod |  |
+| [`libs_dl_iterate_phdr`](#libs-dl-iterate-phdr) | mod |  |
+| [`parse_running_mmaps`](#parse-running-mmaps) | mod |  |
 | [`Mapping`](#mapping) | struct |  |
 | [`Context`](#context) | struct |  |
 | [`Cache`](#cache) | struct |  |
@@ -52,10 +52,10 @@ This is the default symbolication implementation for Rust.
 | [`Either`](#either) | enum |  |
 | [`Symbol`](#symbol) | enum |  |
 | [`mmap`](#mmap) | fn |  |
-| [`create_mapping`](#create_mapping) | fn |  |
-| [`clear_symbol_cache`](#clear_symbol_cache) | fn |  |
+| [`create_mapping`](#create-mapping) | fn |  |
+| [`clear_symbol_cache`](#clear-symbol-cache) | fn |  |
 | [`resolve`](#resolve) | fn |  |
-| [`MAPPINGS_CACHE_SIZE`](#mappings_cache_size) | const |  |
+| [`MAPPINGS_CACHE_SIZE`](#mappings-cache-size) | const |  |
 
 ## Modules
 

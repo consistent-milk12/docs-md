@@ -52,29 +52,29 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 - <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Chunks<I>`
+##### `impl IntoEither for Chunks<I>`
 
-##### `impl<T> IntoParallelIterator for Chunks<I>`
+##### `impl IntoParallelIterator for Chunks<I>`
 
-- <span id="chunks-type-iter"></span>`type Iter = T`
+- <span id="chunks-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
-- <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
+- <span id="chunks-paralleliterator-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
 - <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Chunks<I>`
+##### `impl Pointable for Chunks<I>`
 
-- <span id="chunks-const-align"></span>`const ALIGN: usize`
+- <span id="chunks-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunks-type-init"></span>`type Init = T`
+- <span id="chunks-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -103,13 +103,13 @@ struct ChunkProducer<P, F> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for ChunkProducer<P, F>`
+##### `impl IntoEither for ChunkProducer<P, F>`
 
-##### `impl<T> Pointable for ChunkProducer<P, F>`
+##### `impl Pointable for ChunkProducer<P, F>`
 
-- <span id="chunkproducer-const-align"></span>`const ALIGN: usize`
+- <span id="chunkproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkproducer-type-init"></span>`type Init = T`
+- <span id="chunkproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunkproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -119,11 +119,11 @@ struct ChunkProducer<P, F> {
 
 - <span id="chunkproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<P, F, T> Producer for ChunkProducer<P, F>`
+##### `impl<P, F> Producer for ChunkProducer<P, F>`
 
-- <span id="chunkproducer-type-item"></span>`type Item = T`
+- <span id="chunkproducer-producer-type-item"></span>`type Item = T`
 
-- <span id="chunkproducer-type-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
+- <span id="chunkproducer-producer-type-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
 
 - <span id="chunkproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -155,29 +155,29 @@ struct ChunkSeq<P> {
 
 - <span id="chunkseq-len"></span>`fn len(&self) -> usize`
 
-##### `impl<T> IntoEither for ChunkSeq<P>`
+##### `impl IntoEither for ChunkSeq<P>`
 
-##### `impl<I> IntoIterator for ChunkSeq<P>`
+##### `impl IntoIterator for ChunkSeq<P>`
 
-- <span id="chunkseq-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chunkseq-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chunkseq-type-intoiter"></span>`type IntoIter = I`
+- <span id="chunkseq-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chunkseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for ChunkSeq<P>`
 
-- <span id="chunkseq-type-item"></span>`type Item = <P as Producer>::IntoIter`
+- <span id="chunkseq-iterator-type-item"></span>`type Item = <P as Producer>::IntoIter`
 
 - <span id="chunkseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="chunkseq-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> Pointable for ChunkSeq<P>`
+##### `impl Pointable for ChunkSeq<P>`
 
-- <span id="chunkseq-const-align"></span>`const ALIGN: usize`
+- <span id="chunkseq-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkseq-type-init"></span>`type Init = T`
+- <span id="chunkseq-pointable-type-init"></span>`type Init = T`
 
 - <span id="chunkseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

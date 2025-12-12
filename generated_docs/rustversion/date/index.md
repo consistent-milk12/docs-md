@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Date`](#date) | struct |  |
 | [`parse`](#parse) | fn |  |
-| [`try_parse`](#try_parse) | fn |  |
+| [`try_parse`](#try-parse) | fn |  |
 
 ## Structs
 

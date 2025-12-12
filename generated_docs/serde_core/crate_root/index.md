@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`crate_root!`](#crate_root) | macro |  |
+| [`crate_root!`](#crate-root) | macro |  |
 
 ## Macros
 

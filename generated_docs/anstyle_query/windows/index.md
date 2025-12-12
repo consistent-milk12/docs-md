@@ -10,8 +10,8 @@ Windows-specific style queries
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`windows_console`](#windows_console) | mod |  |
-| [`enable_ansi_colors`](#enable_ansi_colors) | fn | Enable ANSI escape codes ([`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#output-sequences)) |
+| [`windows_console`](#windows-console) | mod |  |
+| [`enable_ansi_colors`](#enable-ansi-colors) | fn | Enable ANSI escape codes ([`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#output-sequences)) |
 
 ## Modules
 

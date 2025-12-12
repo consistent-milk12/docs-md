@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`respan`](#respan) | fn |  |
-| [`respan_token`](#respan_token) | fn |  |
+| [`respan_token`](#respan-token) | fn |  |
 
 ## Functions
 

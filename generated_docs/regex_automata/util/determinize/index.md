@@ -45,9 +45,9 @@ it into logical sub-components works better.
 |------|------|-------------|
 | [`state`](#state) | mod | This module defines a DFA state representation and builders for constructing DFA states. |
 | [`next`](#next) | fn | Compute the set of all reachable NFA states, including the full epsilon closure, from a DFA state for a single unit of input. |
-| [`epsilon_closure`](#epsilon_closure) | fn | Compute the epsilon closure for the given NFA state. |
-| [`add_nfa_states`](#add_nfa_states) | fn | Add the NFA state IDs in the given `set` to the given DFA builder state. |
-| [`set_lookbehind_from_start`](#set_lookbehind_from_start) | fn | Sets the appropriate look-behind assertions on the given state based on this starting configuration. |
+| [`epsilon_closure`](#epsilon-closure) | fn | Compute the epsilon closure for the given NFA state. |
+| [`add_nfa_states`](#add-nfa-states) | fn | Add the NFA state IDs in the given `set` to the given DFA builder state. |
+| [`set_lookbehind_from_start`](#set-lookbehind-from-start) | fn | Sets the appropriate look-behind assertions on the given state based on this starting configuration. |
 
 ## Modules
 

@@ -13,7 +13,7 @@
   - [`IntoIter`](#intoiter)
   - [`Iter`](#iter)
 - [Functions](#functions)
-  - [`new_at`](#new_at)
+  - [`new_at`](#new-at)
   - [`new2`](#new2)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
@@ -27,7 +27,7 @@
 | [`SpanRange`](#spanrange) | struct |  |
 | [`IntoIter`](#intoiter) | struct |  |
 | [`Iter`](#iter) | struct |  |
-| [`new_at`](#new_at) | fn |  |
+| [`new_at`](#new-at) | fn |  |
 | [`new2`](#new2) | fn |  |
 | [`Result`](#result) | type | The result of a Syn parser. |
 
@@ -158,9 +158,9 @@ mod expand {
 
 ##### `impl IntoIterator for Error`
 
-- <span id="error-type-item"></span>`type Item = Error`
+- <span id="error-intoiterator-type-item"></span>`type Item = Error`
 
-- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="error-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -226,15 +226,15 @@ struct IntoIter {
 
 ##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = Error`
+- <span id="intoiter-iterator-type-item"></span>`type Item = Error`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -252,15 +252,15 @@ struct Iter<'a> {
 
 ##### `impl IntoIterator for Iter<'a>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter<'a>`
 
-- <span id="iter-type-item"></span>`type Item = Error`
+- <span id="iter-iterator-type-item"></span>`type Item = Error`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -59,9 +59,9 @@ the current module, with each segment being a clickable link.
 
 ##### `impl Pointable for BreadcrumbGenerator<'a>`
 
-- <span id="breadcrumbgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="breadcrumbgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="breadcrumbgenerator-type-init"></span>`type Init = T`
+- <span id="breadcrumbgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

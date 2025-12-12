@@ -17,7 +17,7 @@
   - [`LocListsFormat`](#loclistsformat)
   - [`RawLocListEntry`](#rawloclistentry)
 - [Functions](#functions)
-  - [`parse_data`](#parse_data)
+  - [`parse_data`](#parse-data)
 - [Type Aliases](#type-aliases)
   - [`LocListsHeader`](#loclistsheader)
 
@@ -33,7 +33,7 @@
 | [`LocationListEntry`](#locationlistentry) | struct | A location list entry from the `.debug_loc` or `.debug_loclists` sections. |
 | [`LocListsFormat`](#loclistsformat) | enum |  |
 | [`RawLocListEntry`](#rawloclistentry) | enum | A raw entry in .debug_loclists. |
-| [`parse_data`](#parse_data) | fn |  |
+| [`parse_data`](#parse-data) | fn |  |
 | [`LocListsHeader`](#loclistsheader) | type |  |
 
 ## Structs

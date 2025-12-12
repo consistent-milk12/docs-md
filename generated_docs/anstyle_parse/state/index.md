@@ -14,8 +14,8 @@ ANSI escape code parsing state machine
 | [`table`](#table) | mod |  |
 | [`Action`](#action) | enum |  |
 | [`State`](#state) | enum |  |
-| [`state_change`](#state_change) | fn | Transition to next [`State`] |
-| [`state_change_`](#state_change_) | fn |  |
+| [`state_change`](#state-change) | fn | Transition to next [`State`] |
+| [`state_change_`](#state-change) | fn |  |
 
 ## Modules
 

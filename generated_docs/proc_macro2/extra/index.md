@@ -27,7 +27,7 @@ struct DelimSpan {
 
 *Defined in [`proc-macro2-1.0.103/src/extra.rs:82-85`](../../../.source_1765210505/proc-macro2-1.0.103/src/extra.rs#L82-L85)*
 
-An object that holds a [`Group`](../imp/index.md)'s `span_open()` and `span_close()` together
+An object that holds a [`Group`](../index.md)'s `span_open()` and `span_close()` together
 in a more compact representation than holding those 2 spans individually.
 
 

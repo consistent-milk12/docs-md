@@ -105,21 +105,21 @@ An iterator over intervals.
 
 #### Trait Implementations
 
-##### `impl<'a, I: fmt::Debug> Debug for IntervalSetIter<'a, I>`
+##### `impl<I: fmt::Debug> Debug for IntervalSetIter<'a, I>`
 
 - <span id="intervalsetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for IntervalSetIter<'a, I>`
 
-- <span id="intervalsetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intervalsetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intervalsetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intervalsetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intervalsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, I> Iterator for IntervalSetIter<'a, I>`
+##### `impl<I> Iterator for IntervalSetIter<'a, I>`
 
-- <span id="intervalsetiter-type-item"></span>`type Item = &'a I`
+- <span id="intervalsetiter-iterator-type-item"></span>`type Item = &'a I`
 
 - <span id="intervalsetiter-next"></span>`fn next(&mut self) -> Option<&'a I>`
 

@@ -319,17 +319,17 @@ For JSON support in Serde without a memory allocator, please see the
 - [Enums](#enums)
   - [`Value`](#value)
 - [Functions](#functions)
-  - [`from_reader`](#from_reader)
-  - [`from_slice`](#from_slice)
-  - [`from_str`](#from_str)
-  - [`to_string`](#to_string)
-  - [`to_string_pretty`](#to_string_pretty)
-  - [`to_vec`](#to_vec)
-  - [`to_vec_pretty`](#to_vec_pretty)
-  - [`to_writer`](#to_writer)
-  - [`to_writer_pretty`](#to_writer_pretty)
-  - [`from_value`](#from_value)
-  - [`to_value`](#to_value)
+  - [`from_reader`](#from-reader)
+  - [`from_slice`](#from-slice)
+  - [`from_str`](#from-str)
+  - [`to_string`](#to-string)
+  - [`to_string_pretty`](#to-string-pretty)
+  - [`to_vec`](#to-vec)
+  - [`to_vec_pretty`](#to-vec-pretty)
+  - [`to_writer`](#to-writer)
+  - [`to_writer_pretty`](#to-writer-pretty)
+  - [`from_value`](#from-value)
+  - [`to_value`](#to-value)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 - [Macros](#macros)
@@ -357,17 +357,17 @@ For JSON support in Serde without a memory allocator, please see the
 | [`Map`](#map) | struct |  |
 | [`Number`](#number) | struct |  |
 | [`Value`](#value) | enum |  |
-| [`from_reader`](#from_reader) | fn |  |
-| [`from_slice`](#from_slice) | fn |  |
-| [`from_str`](#from_str) | fn |  |
-| [`to_string`](#to_string) | fn |  |
-| [`to_string_pretty`](#to_string_pretty) | fn |  |
-| [`to_vec`](#to_vec) | fn |  |
-| [`to_vec_pretty`](#to_vec_pretty) | fn |  |
-| [`to_writer`](#to_writer) | fn |  |
-| [`to_writer_pretty`](#to_writer_pretty) | fn |  |
-| [`from_value`](#from_value) | fn |  |
-| [`to_value`](#to_value) | fn |  |
+| [`from_reader`](#from-reader) | fn |  |
+| [`from_slice`](#from-slice) | fn |  |
+| [`from_str`](#from-str) | fn |  |
+| [`to_string`](#to-string) | fn |  |
+| [`to_string_pretty`](#to-string-pretty) | fn |  |
+| [`to_vec`](#to-vec) | fn |  |
+| [`to_vec_pretty`](#to-vec-pretty) | fn |  |
+| [`to_writer`](#to-writer) | fn |  |
+| [`to_writer_pretty`](#to-writer-pretty) | fn |  |
+| [`from_value`](#from-value) | fn |  |
+| [`to_value`](#to-value) | fn |  |
 | [`Result`](#result) | type |  |
 | [`tri!`](#tri) | macro |  |
 | [`json!`](#json) | macro | Construct a `serde_json::Value` from a JSON literal. |
@@ -407,9 +407,9 @@ A structure that deserializes JSON into Rust values.
 
 #### Trait Implementations
 
-##### `impl<'de, R: Read<'de>> Deserializer for &mut Deserializer<R>`
+##### `impl<R: Read<'de>> Deserializer for &mut Deserializer<R>`
 
-- <span id="mut-deserializer-type-error"></span>`type Error = Error`
+- <span id="mut-deserializer-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="mut-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md#result)
 
@@ -519,19 +519,19 @@ fn main() {
 
 #### Trait Implementations
 
-##### `impl<'de, R, T> FusedIterator for StreamDeserializer<'de, R, T>`
+##### `impl<R, T> FusedIterator for StreamDeserializer<'de, R, T>`
 
-##### `impl<I> IntoIterator for StreamDeserializer<'de, R, T>`
+##### `impl IntoIterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamdeserializer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamdeserializer-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamdeserializer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamdeserializer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'de, R, T> Iterator for StreamDeserializer<'de, R, T>`
+##### `impl<R, T> Iterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-type-item"></span>`type Item = Result<T, Error>`
+- <span id="streamdeserializer-iterator-type-item"></span>`type Item = Result<T, Error>`
 
 - <span id="streamdeserializer-next"></span>`fn next(&mut self) -> Option<Result<T>>` — [`Result`](error/index.md#result)
 
@@ -590,7 +590,7 @@ deserializing JSON data.
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
@@ -617,25 +617,25 @@ A structure for serializing Rust values into JSON.
 
 #### Trait Implementations
 
-##### `impl<'a, W, F> Serializer for &'a mut Serializer<W, F>`
+##### `impl<W, F> Serializer for &'a mut Serializer<W, F>`
 
-- <span id="a-mut-serializer-type-ok"></span>`type Ok = ()`
+- <span id="a-mut-serializer-serializer-type-ok"></span>`type Ok = ()`
 
-- <span id="a-mut-serializer-type-error"></span>`type Error = Error`
+- <span id="a-mut-serializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="a-mut-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
 
-- <span id="a-mut-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
+- <span id="a-mut-serializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
 
 - <span id="a-mut-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](error/index.md#result)
 
@@ -777,11 +777,11 @@ Represents a JSON key/value type.
 
 - <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Map<K, V>`
+##### `impl DeserializeOwned for Map<K, V>`
 
 ##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-error"></span>`type Error = Error`
+- <span id="cratemapmap-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -857,7 +857,7 @@ Represents a JSON key/value type.
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-type-err"></span>`type Err = Error`
+- <span id="cratemapmap-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](error/index.md#error)
 
@@ -865,27 +865,27 @@ Represents a JSON key/value type.
 
 - <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-output"></span>`type Output = Value`
+- <span id="map-index-type-output"></span>`type Output = Value`
 
 - <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](value/index.md#value)
 
-##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](value/index.md#value)
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-intodeserializer-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
 ##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
+- <span id="a-map-intoiterator-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
+- <span id="a-map-intoiterator-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
 - <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -955,7 +955,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl Deserializer for Number`
 
-- <span id="number-type-error"></span>`type Error = Error`
+- <span id="number-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="number-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md#error)
 
@@ -1027,7 +1027,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl FromStr for crate::number::Number`
 
-- <span id="cratenumbernumber-type-err"></span>`type Err = Error`
+- <span id="cratenumbernumber-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratenumbernumber-from-str"></span>`fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
 
@@ -1166,7 +1166,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Deserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-type-error"></span>`type Error = Error`
+- <span id="cratevaluevalue-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="cratevaluevalue-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md#error)
 
@@ -1236,13 +1236,13 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Eq for Value`
 
-##### `impl FromIterator for super::Value`
+##### `impl<T: Into<super::Value>> FromIterator for super::Value`
 
 - <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::value::Value`
 
-- <span id="cratevaluevalue-type-err"></span>`type Err = Error`
+- <span id="cratevaluevalue-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratevaluevalue-from-str"></span>`fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](value/index.md#value), [`Error`](error/index.md#error)
 
@@ -1250,19 +1250,19 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 - <span id="value-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl Index for super::Value`
+##### `impl<I> Index for super::Value`
 
-- <span id="supervalue-type-output"></span>`type Output = Value`
+- <span id="supervalue-index-type-output"></span>`type Output = Value`
 
 - <span id="supervalue-index"></span>`fn index(&self, index: I) -> &Value` — [`Value`](value/index.md#value)
 
-##### `impl IndexMut for super::Value`
+##### `impl<I> IndexMut for super::Value`
 
 - <span id="supervalue-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut Value` — [`Value`](value/index.md#value)
 
 ##### `impl IntoDeserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-type-deserializer"></span>`type Deserializer = Value`
+- <span id="cratevaluevalue-intodeserializer-type-deserializer"></span>`type Deserializer = Value`
 
 - <span id="cratevaluevalue-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
@@ -1282,31 +1282,440 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ## Functions
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:394`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L394)*
+### `from_reader`
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:396`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L396)*
+```rust
+fn from_reader<R, T>(rdr: R) -> crate::error::Result<T>
+where
+    R: crate::io::Read,
+    T: de::DeserializeOwned
+```
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:396`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L396)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2612-L2618)*
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+Deserialize an instance of type `T` from an I/O stream of JSON.
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+The content of the I/O stream is deserialized directly from the stream
+without being buffered in memory by serde_json.
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+When reading from a source against which short reads are not efficient, such
+as a `File`, you will want to apply your own buffering because serde_json
+will not buffer the input. See `std::io::BufReader`.
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+It is expected that the input stream ends after the deserialized object.
+If the stream does not end, such as in the case of a persistent socket connection,
+this function will not return. It is possible instead to deserialize from a prefix of an input
+stream without looking for EOF by managing your own [`Deserializer`](de/index.md).
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:404`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L404)*
+Note that counter to intuition, this function is usually slower than
+reading a file completely into memory and then applying [`from_str`](de/index.md)
+or [`from_slice`](de/index.md) on it. See [issue #160].
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:404`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L404)*
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:406`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L406)*
+# Example
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:406`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L406)*
+Reading the contents of a file.
+
+```rust
+use serde::Deserialize;
+
+use std::error::Error;
+use std::fs::File;
+use std::io::BufReader;
+use std::path::Path;
+
+#[derive(Deserialize, Debug)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn read_user_from_file<P: AsRef<Path>>(path: P) -> Result<User, Box<dyn Error>> {
+    // Open the file in read-only mode with buffer.
+    let file = File::open(path)?;
+    let reader = BufReader::new(file);
+
+    // Read the JSON contents of the file as an instance of `User`.
+    let u = serde_json::from_reader(reader)?;
+
+    // Return the `User`.
+    Ok(u)
+}
+
+fn main() {
+}
+fn fake_main() {
+    let u = read_user_from_file("test.json").unwrap();
+    println!("{:#?}", u);
+}
+```
+
+Reading from a persistent socket connection.
+
+```rust
+use serde::Deserialize;
+
+use std::error::Error;
+use std::io::BufReader;
+use std::net::{TcpListener, TcpStream};
+
+#[derive(Deserialize, Debug)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn read_user_from_stream(stream: &mut BufReader<TcpStream>) -> Result<User, Box<dyn Error>> {
+    let mut de = serde_json::Deserializer::from_reader(stream);
+    let u = User::deserialize(&mut de)?;
+
+    Ok(u)
+}
+
+fn main() {
+}
+fn fake_main() {
+    let listener = TcpListener::bind("127.0.0.1:4000").unwrap();
+
+    for tcp_stream in listener.incoming() {
+        let mut buffered = BufReader::new(tcp_stream.unwrap());
+        println!("{:#?}", read_user_from_stream(&mut buffered));
+    }
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type.
+
+### `from_slice`
+
+```rust
+fn from_slice<'a, T>(v: &'a [u8]) -> crate::error::Result<T>
+where
+    T: de::Deserialize<'a>
+```
+
+*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2655-L2660)*
+
+Deserialize an instance of type `T` from bytes of JSON text.
+
+# Example
+
+```rust
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn main() {
+    // The type of `j` is `&[u8]`
+    let j = b"
+        {
+            \"fingerprint\": \"0xF9BA143B95FF6D82\",
+            \"location\": \"Menlo Park, CA\"
+        }";
+
+    let u: User = serde_json::from_slice(j).unwrap();
+    println!("{:#?}", u);
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type.
+
+### `from_str`
+
+```rust
+fn from_str<'a, T>(s: &'a str) -> crate::error::Result<T>
+where
+    T: de::Deserialize<'a>
+```
+
+*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2697-L2702)*
+
+Deserialize an instance of type `T` from a string of JSON text.
+
+# Example
+
+```rust
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn main() {
+    // The type of `j` is `&str`
+    let j = "
+        {
+            \"fingerprint\": \"0xF9BA143B95FF6D82\",
+            \"location\": \"Menlo Park, CA\"
+        }";
+
+    let u: User = serde_json::from_str(j).unwrap();
+    println!("{:#?}", u);
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type.
+
+### `to_string`
+
+```rust
+fn to_string<T>(value: &T) -> crate::error::Result<alloc::string::String>
+where
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
+
+Serialize the given data structure as a String of JSON.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `to_string_pretty`
+
+```rust
+fn to_string_pretty<T>(value: &T) -> crate::error::Result<alloc::string::String>
+where
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
+
+Serialize the given data structure as a pretty-printed String of JSON.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `to_vec`
+
+```rust
+fn to_vec<T>(value: &T) -> crate::error::Result<alloc::vec::Vec<u8>>
+where
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
+
+Serialize the given data structure as a JSON byte vector.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `to_vec_pretty`
+
+```rust
+fn to_vec_pretty<T>(value: &T) -> crate::error::Result<alloc::vec::Vec<u8>>
+where
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
+
+Serialize the given data structure as a pretty-printed JSON byte vector.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `to_writer`
+
+```rust
+fn to_writer<W, T>(writer: W, value: &T) -> crate::error::Result<()>
+where
+    W: io::Write,
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
+
+Serialize the given data structure as JSON into the I/O stream.
+
+Serialization guarantees it only feeds valid UTF-8 sequences to the writer.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `to_writer_pretty`
+
+```rust
+fn to_writer_pretty<W, T>(writer: W, value: &T) -> crate::error::Result<()>
+where
+    W: io::Write,
+    T: ?Sized + Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
+
+Serialize the given data structure as pretty-printed JSON into the I/O
+stream.
+
+Serialization guarantees it only feeds valid UTF-8 sequences to the writer.
+
+# Errors
+
+Serialization can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+### `from_value`
+
+```rust
+fn from_value<T>(value: Value) -> Result<T, crate::error::Error>
+where
+    T: DeserializeOwned
+```
+
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
+
+Interpret a `serde_json::Value` as an instance of type `T`.
+
+# Example
+
+```rust
+use serde::Deserialize;
+use serde_json::json;
+
+#[derive(Deserialize, Debug)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn main() {
+    // The type of `j` is `serde_json::Value`
+    let j = json!({
+        "fingerprint": "0xF9BA143B95FF6D82",
+        "location": "Menlo Park, CA"
+    });
+
+    let u: User = serde_json::from_value(j).unwrap();
+    println!("{:#?}", u);
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the Value does not match the
+structure expected by `T`, for example if `T` is a struct type but the Value
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type.
+
+### `to_value`
+
+```rust
+fn to_value<T>(value: T) -> Result<Value, crate::error::Error>
+where
+    T: Serialize
+```
+
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
+
+Convert a `T` into `serde_json::Value` which is an enum that can represent
+any valid JSON data.
+
+# Example
+
+```rust
+use serde::Serialize;
+use serde_json::json;
+use std::error::Error;
+
+#[derive(Serialize)]
+struct User {
+    fingerprint: String,
+    location: String,
+}
+
+fn compare_json_values() -> Result<(), Box<dyn Error>> {
+    let u = User {
+        fingerprint: "0xF9BA143B95FF6D82".to_owned(),
+        location: "Menlo Park, CA".to_owned(),
+    };
+
+    // The type of `expected` is `serde_json::Value`
+    let expected = json!({
+        "fingerprint": "0xF9BA143B95FF6D82",
+        "location": "Menlo Park, CA",
+    });
+
+    let v = serde_json::to_value(u).unwrap();
+    assert_eq!(v, expected);
+
+    Ok(())
+}
+
+compare_json_values().unwrap();
+```
+
+# Errors
+
+This conversion can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
+
+```rust
+use std::collections::BTreeMap;
+
+fn main() {
+    // The keys in this map are vectors, not strings.
+    let mut map = BTreeMap::new();
+    map.insert(vec![32, 64], "x86");
+
+    println!("{}", serde_json::to_value(map).unwrap_err());
+}
+```
 
 ## Type Aliases
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:398`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L398)*
+### `Result<T>`
+
+```rust
+type Result<T> = result::Result<T, Error>;
+```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../.source_1765210505/serde_json-1.0.145/src/error.rs#L25)*
+
+Alias for a `Result` with the error type `serde_json::Error`.
 
 ## Macros
 

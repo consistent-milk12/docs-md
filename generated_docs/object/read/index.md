@@ -50,10 +50,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 ## Contents
 
 - [Modules](#modules)
-  - [`read_ref`](#read_ref)
-  - [`read_cache`](#read_cache)
+  - [`read_ref`](#read-ref)
+  - [`read_cache`](#read-cache)
   - [`util`](#util)
-  - [`gnu_compression`](#gnu_compression)
+  - [`gnu_compression`](#gnu-compression)
   - [`any`](#any)
   - [`archive`](#archive)
   - [`coff`](#coff)
@@ -147,29 +147,29 @@ fn main() -> Result<(), Box<dyn Error>> {
   - [`ObjectSymbolTable`](#objectsymboltable)
   - [`ObjectSymbol`](#objectsymbol)
 - [Functions](#functions)
-  - [`debug_list_bytes`](#debug_list_bytes)
+  - [`debug_list_bytes`](#debug-list-bytes)
   - [`align`](#align)
-  - [`data_range`](#data_range)
+  - [`data_range`](#data-range)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
   - [`NativeFile`](#nativefile)
   - [`Result`](#result)
 - [Macros](#macros)
-  - [`with_inner!`](#with_inner)
-  - [`with_inner_mut!`](#with_inner_mut)
-  - [`map_inner!`](#map_inner)
-  - [`map_inner_option!`](#map_inner_option)
-  - [`map_inner_option_mut!`](#map_inner_option_mut)
-  - [`next_inner!`](#next_inner)
+  - [`with_inner!`](#with-inner)
+  - [`with_inner_mut!`](#with-inner-mut)
+  - [`map_inner!`](#map-inner)
+  - [`map_inner_option!`](#map-inner-option)
+  - [`map_inner_option_mut!`](#map-inner-option-mut)
+  - [`next_inner!`](#next-inner)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`read_ref`](#read_ref) | mod |  |
-| [`read_cache`](#read_cache) | mod |  |
+| [`read_ref`](#read-ref) | mod |  |
+| [`read_cache`](#read-cache) | mod |  |
 | [`util`](#util) | mod |  |
-| [`gnu_compression`](#gnu_compression) | mod |  |
+| [`gnu_compression`](#gnu-compression) | mod |  |
 | [`any`](#any) | mod |  |
 | [`archive`](#archive) | mod | Support for archive files. |
 | [`coff`](#coff) | mod | Support for reading Windows COFF files. |
@@ -259,18 +259,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`ObjectComdat`](#objectcomdat) | trait | A COMDAT section group in an [`Object`]. |
 | [`ObjectSymbolTable`](#objectsymboltable) | trait | A symbol table in an [`Object`]. |
 | [`ObjectSymbol`](#objectsymbol) | trait | A symbol table entry in an [`Object`]. |
-| [`debug_list_bytes`](#debug_list_bytes) | fn |  |
+| [`debug_list_bytes`](#debug-list-bytes) | fn |  |
 | [`align`](#align) | fn |  |
-| [`data_range`](#data_range) | fn |  |
+| [`data_range`](#data-range) | fn |  |
 | [`Result`](#result) | type | The result type used within the read module. |
 | [`NativeFile`](#nativefile) | type | The native executable file for the target platform. |
 | [`Result`](#result) | type |  |
-| [`with_inner!`](#with_inner) | macro | Evaluate an expression on the contents of a file format enum. |
-| [`with_inner_mut!`](#with_inner_mut) | macro |  |
-| [`map_inner!`](#map_inner) | macro | Like `with_inner!`, but wraps the result in another enum. |
-| [`map_inner_option!`](#map_inner_option) | macro | Like `map_inner!`, but the result is a Result or Option. |
-| [`map_inner_option_mut!`](#map_inner_option_mut) | macro |  |
-| [`next_inner!`](#next_inner) | macro | Call `next` for a file format iterator. |
+| [`with_inner!`](#with-inner) | macro | Evaluate an expression on the contents of a file format enum. |
+| [`with_inner_mut!`](#with-inner-mut) | macro |  |
+| [`map_inner!`](#map-inner) | macro | Like `with_inner!`, but wraps the result in another enum. |
+| [`map_inner_option!`](#map-inner-option) | macro | Like `map_inner!`, but the result is a Result or Option. |
+| [`map_inner_option_mut!`](#map-inner-option-mut) | macro |  |
+| [`next_inner!`](#next-inner) | macro | Call `next` for a file format iterator. |
 
 ## Modules
 
@@ -1046,7 +1046,7 @@ the file size.
 
 - <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
+##### `impl<R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
 
 - <span id="a-readcache-len"></span>`fn len(self) -> Result<u64, ()>`
 
@@ -1098,17 +1098,17 @@ Shares an underlying [`ReadCache`](#readcache) with a lifetime of `'a`.
 
 #### Trait Implementations
 
-##### `impl<'a, R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
 
-##### `impl<'a, R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
+##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
+##### `impl<R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
 
 - <span id="readcacherange-len"></span>`fn len(self) -> Result<u64, ()>`
 
@@ -1276,17 +1276,17 @@ This is used by most file formats for strings such as section names and symbol n
 
 #### Trait Implementations
 
-##### `impl<'data, R> Clone for StringTable<'data, R>`
+##### `impl<R> Clone for StringTable<'data, R>`
 
 - <span id="stringtable-clone"></span>`fn clone(&self) -> StringTable<'data, R>` — [`StringTable`](#stringtable)
 
-##### `impl<'data, R> Copy for StringTable<'data, R>`
+##### `impl<R> Copy for StringTable<'data, R>`
 
-##### `impl<'data, R> Debug for StringTable<'data, R>`
+##### `impl<R> Debug for StringTable<'data, R>`
 
 - <span id="stringtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, R: ReadRef<'data>> Default for StringTable<'data, R>`
+##### `impl<R: ReadRef<'data>> Default for StringTable<'data, R>`
 
 - <span id="stringtable-default"></span>`fn default() -> Self`
 
@@ -1304,21 +1304,21 @@ An iterator for the loadable segments in a [`File`](#file).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SegmentIterator<'data, 'file, R>`
 
 - <span id="segmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SegmentIterator<'data, 'file, R>`
+##### `impl IntoIterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="segmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="segmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="segmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="segmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SegmentIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-type-item"></span>`type Item = Segment<'data, 'file, R>`
+- <span id="segmentiterator-iterator-type-item"></span>`type Item = Segment<'data, 'file, R>`
 
 - <span id="segmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1338,11 +1338,11 @@ Most functionality is provided by the [`ObjectSegment`](#objectsegment) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Segment<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Debug for Segment<'data, 'file, R>`
 
 - <span id="segment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSegment for Segment<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> ObjectSegment for Segment<'data, 'file, R>`
 
 - <span id="segment-address"></span>`fn address(&self) -> u64`
 
@@ -1362,7 +1362,7 @@ Most functionality is provided by the [`ObjectSegment`](#objectsegment) trait im
 
 - <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md#segmentflags)
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Segment<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Sealed for Segment<'data, 'file, R>`
 
 ### `SectionIterator<'data, 'file, R: ReadRef<'data>>`
 
@@ -1378,21 +1378,21 @@ An iterator for the sections in a [`File`](#file).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SectionIterator<'data, 'file, R>`
 
 - <span id="sectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SectionIterator<'data, 'file, R>`
+##### `impl IntoIterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="sectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-type-item"></span>`type Item = Section<'data, 'file, R>`
+- <span id="sectioniterator-iterator-type-item"></span>`type Item = Section<'data, 'file, R>`
 
 - <span id="sectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1412,13 +1412,13 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Section<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Debug for Section<'data, 'file, R>`
 
 - <span id="section-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
 
-- <span id="section-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
+- <span id="section-objectsection-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
 - <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../index.md#sectionindex)
 
@@ -1454,7 +1454,7 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 
 - <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../index.md#sectionflags)
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Section<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Sealed for Section<'data, 'file, R>`
 
 ### `ComdatIterator<'data, 'file, R: ReadRef<'data>>`
 
@@ -1470,21 +1470,21 @@ An iterator for the COMDAT section groups in a [`File`](#file).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ComdatIterator<'data, 'file, R>`
 
 - <span id="comdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ComdatIterator<'data, 'file, R>`
+##### `impl IntoIterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="comdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-type-item"></span>`type Item = Comdat<'data, 'file, R>`
+- <span id="comdatiterator-iterator-type-item"></span>`type Item = Comdat<'data, 'file, R>`
 
 - <span id="comdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1504,13 +1504,13 @@ Most functionality is provided by the [`ObjectComdat`](#objectcomdat) trait impl
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Comdat<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Debug for Comdat<'data, 'file, R>`
 
 - <span id="comdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
 
-- <span id="comdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
+- <span id="comdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
 - <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../index.md#comdatkind)
 
@@ -1522,7 +1522,7 @@ Most functionality is provided by the [`ObjectComdat`](#objectcomdat) trait impl
 
 - <span id="comdat-sections"></span>`fn sections(&self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](#comdatsectioniterator)
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Comdat<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Sealed for Comdat<'data, 'file, R>`
 
 ### `ComdatSectionIterator<'data, 'file, R: ReadRef<'data>>`
 
@@ -1538,21 +1538,21 @@ An iterator for the sections in a [`Comdat`](#comdat).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIterator<'data, 'file, R>`
 
 - <span id="comdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ComdatSectionIterator<'data, 'file, R>`
+##### `impl IntoIterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="comdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatSectionIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="comdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="comdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1574,21 +1574,21 @@ Most functionality is provided by the [`ObjectSymbolTable`](#objectsymboltable) 
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for SymbolTable<'data, 'file, R>`
+##### `impl<R> Debug for SymbolTable<'data, 'file, R>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
 
-- <span id="symboltable-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="symboltable-objectsymboltable-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="symboltable-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="symboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
 - <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](#objectsymboltable)
 
 - <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../index.md#symbolindex), [`Result`](../index.md#result), [`ObjectSymbolTable`](#objectsymboltable)
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for SymbolTable<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Sealed for SymbolTable<'data, 'file, R>`
 
 ### `SymbolIterator<'data, 'file, R>`
 
@@ -1606,21 +1606,21 @@ An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for SymbolIterator<'data, 'file, R>`
+##### `impl<R> Debug for SymbolIterator<'data, 'file, R>`
 
 - <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SymbolIterator<'data, 'file, R>`
+##### `impl IntoIterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-type-item"></span>`type Item = Symbol<'data, 'file, R>`
+- <span id="symboliterator-iterator-type-item"></span>`type Item = Symbol<'data, 'file, R>`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1642,11 +1642,11 @@ Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait impl
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Symbol<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Debug for Symbol<'data, 'file, R>`
 
 - <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
 
 - <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md#symbolindex)
 
@@ -1678,7 +1678,7 @@ Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait impl
 
 - <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../index.md#symbolflags), [`SectionIndex`](../index.md#sectionindex), [`SymbolIndex`](../index.md#symbolindex)
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Symbol<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Sealed for Symbol<'data, 'file, R>`
 
 ### `DynamicRelocationIterator<'data, 'file, R>`
 
@@ -1696,21 +1696,21 @@ An iterator for the dynamic relocation entries in a [`File`](#file).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for DynamicRelocationIterator<'data, 'file, R>`
+##### `impl<R> Debug for DynamicRelocationIterator<'data, 'file, R>`
 
 - <span id="dynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
+##### `impl IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dynamicrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for DynamicRelocationIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="dynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="dynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1728,21 +1728,21 @@ An iterator for the relocation entries in a [`Section`](#section).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIterator<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIterator<'data, 'file, R>`
 
 - <span id="sectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SectionRelocationIterator<'data, 'file, R>`
+##### `impl IntoIterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectionrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="sectionrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionRelocationIterator<'data, 'file, R>`
+##### `impl<R: ReadRef<'data>> Iterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="sectionrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="sectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1764,15 +1764,15 @@ An iterator for files that don't have dynamic relocations.
 
 ##### `impl IntoIterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="nodynamicrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="nodynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="nodynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="nodynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="nodynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="nodynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -3424,31 +3424,31 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 #### Trait Implementations
 
-##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for File<'data, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for File<'data, R>`
 
 - <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, R> Object for File<'data, R>`
+##### `impl<R> Object for File<'data, R>`
 
-- <span id="file-type-segment"></span>`type Segment = Segment<'data, 'file, R>`
+- <span id="file-object-type-segment"></span>`type Segment = Segment<'data, 'file, R>`
 
-- <span id="file-type-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
+- <span id="file-object-type-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
 
-- <span id="file-type-section"></span>`type Section = Section<'data, 'file, R>`
+- <span id="file-object-type-section"></span>`type Section = Section<'data, 'file, R>`
 
-- <span id="file-type-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
+- <span id="file-object-type-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
 
-- <span id="file-type-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
+- <span id="file-object-type-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
 
-- <span id="file-type-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
+- <span id="file-object-type-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
 
-- <span id="file-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="file-object-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="file-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="file-object-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- <span id="file-type-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
+- <span id="file-object-type-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
 
-- <span id="file-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
+- <span id="file-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
 - <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../index.md#architecture)
 
@@ -3508,7 +3508,7 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 - <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../index.md#fileflags)
 
-##### `impl<'data, R: ReadRef<'data>> Sealed for File<'data, R>`
+##### `impl<R: ReadRef<'data>> Sealed for File<'data, R>`
 
 ### `SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -3531,7 +3531,7 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
 
 - <span id="segmentiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3556,7 +3556,7 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SegmentInternal<'data, 'file, R>`
 
 - <span id="segmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3581,7 +3581,7 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
 
 - <span id="sectioniteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3625,7 +3625,7 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatIteratorInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ComdatIteratorInternal<'data, 'file, R>`
 
 - <span id="comdatiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3669,7 +3669,7 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIteratorInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIteratorInternal<'data, 'file, R>`
 
 - <span id="comdatsectioniteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3696,7 +3696,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for SymbolTableInternal<'data, 'file, R>`
+##### `impl<R> Debug for SymbolTableInternal<'data, 'file, R>`
 
 - <span id="symboltableinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3723,7 +3723,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for SymbolIteratorInternal<'data, 'file, R>`
+##### `impl<R> Debug for SymbolIteratorInternal<'data, 'file, R>`
 
 - <span id="symboliteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3764,7 +3764,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R> Debug for DynamicRelocationIteratorInternal<'data, 'file, R>`
+##### `impl<R> Debug for DynamicRelocationIteratorInternal<'data, 'file, R>`
 
 - <span id="dynamicrelocationiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -3789,7 +3789,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
+##### `impl<R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
 
 - <span id="sectionrelocationiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

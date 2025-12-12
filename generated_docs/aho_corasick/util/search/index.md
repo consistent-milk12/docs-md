@@ -231,7 +231,7 @@ to create a span where `start > end`.
 
 ##### `impl Index for [u8]`
 
-- <span id="u8-type-output"></span>`type Output = [u8]`
+- <span id="u8-index-type-output"></span>`type Output = [u8]`
 
 - <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](#span)
 

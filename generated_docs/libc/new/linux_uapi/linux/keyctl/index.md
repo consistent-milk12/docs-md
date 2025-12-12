@@ -9,137 +9,137 @@ Header: `linux/keyctl.h`
 ## Contents
 
 - [Constants](#constants)
-  - [`KEY_SPEC_THREAD_KEYRING`](#key_spec_thread_keyring)
-  - [`KEY_SPEC_PROCESS_KEYRING`](#key_spec_process_keyring)
-  - [`KEY_SPEC_SESSION_KEYRING`](#key_spec_session_keyring)
-  - [`KEY_SPEC_USER_KEYRING`](#key_spec_user_keyring)
-  - [`KEY_SPEC_USER_SESSION_KEYRING`](#key_spec_user_session_keyring)
-  - [`KEY_SPEC_GROUP_KEYRING`](#key_spec_group_keyring)
-  - [`KEY_SPEC_REQKEY_AUTH_KEY`](#key_spec_reqkey_auth_key)
-  - [`KEY_SPEC_REQUESTOR_KEYRING`](#key_spec_requestor_keyring)
-  - [`KEY_REQKEY_DEFL_NO_CHANGE`](#key_reqkey_defl_no_change)
-  - [`KEY_REQKEY_DEFL_DEFAULT`](#key_reqkey_defl_default)
-  - [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key_reqkey_defl_thread_keyring)
-  - [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key_reqkey_defl_process_keyring)
-  - [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key_reqkey_defl_session_keyring)
-  - [`KEY_REQKEY_DEFL_USER_KEYRING`](#key_reqkey_defl_user_keyring)
-  - [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key_reqkey_defl_user_session_keyring)
-  - [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key_reqkey_defl_group_keyring)
-  - [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key_reqkey_defl_requestor_keyring)
-  - [`KEYCTL_GET_KEYRING_ID`](#keyctl_get_keyring_id)
-  - [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl_join_session_keyring)
-  - [`KEYCTL_UPDATE`](#keyctl_update)
-  - [`KEYCTL_REVOKE`](#keyctl_revoke)
-  - [`KEYCTL_CHOWN`](#keyctl_chown)
-  - [`KEYCTL_SETPERM`](#keyctl_setperm)
-  - [`KEYCTL_DESCRIBE`](#keyctl_describe)
-  - [`KEYCTL_CLEAR`](#keyctl_clear)
-  - [`KEYCTL_LINK`](#keyctl_link)
-  - [`KEYCTL_UNLINK`](#keyctl_unlink)
-  - [`KEYCTL_SEARCH`](#keyctl_search)
-  - [`KEYCTL_READ`](#keyctl_read)
-  - [`KEYCTL_INSTANTIATE`](#keyctl_instantiate)
-  - [`KEYCTL_NEGATE`](#keyctl_negate)
-  - [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl_set_reqkey_keyring)
-  - [`KEYCTL_SET_TIMEOUT`](#keyctl_set_timeout)
-  - [`KEYCTL_ASSUME_AUTHORITY`](#keyctl_assume_authority)
-  - [`KEYCTL_GET_SECURITY`](#keyctl_get_security)
-  - [`KEYCTL_SESSION_TO_PARENT`](#keyctl_session_to_parent)
-  - [`KEYCTL_REJECT`](#keyctl_reject)
-  - [`KEYCTL_INSTANTIATE_IOV`](#keyctl_instantiate_iov)
-  - [`KEYCTL_INVALIDATE`](#keyctl_invalidate)
-  - [`KEYCTL_GET_PERSISTENT`](#keyctl_get_persistent)
-  - [`KEYCTL_DH_COMPUTE`](#keyctl_dh_compute)
-  - [`KEYCTL_PKEY_QUERY`](#keyctl_pkey_query)
-  - [`KEYCTL_PKEY_ENCRYPT`](#keyctl_pkey_encrypt)
-  - [`KEYCTL_PKEY_DECRYPT`](#keyctl_pkey_decrypt)
-  - [`KEYCTL_PKEY_SIGN`](#keyctl_pkey_sign)
-  - [`KEYCTL_PKEY_VERIFY`](#keyctl_pkey_verify)
-  - [`KEYCTL_RESTRICT_KEYRING`](#keyctl_restrict_keyring)
-  - [`KEYCTL_MOVE`](#keyctl_move)
-  - [`KEYCTL_CAPABILITIES`](#keyctl_capabilities)
-  - [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl_supports_encrypt)
-  - [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl_supports_decrypt)
-  - [`KEYCTL_SUPPORTS_SIGN`](#keyctl_supports_sign)
-  - [`KEYCTL_SUPPORTS_VERIFY`](#keyctl_supports_verify)
-  - [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl_caps0_capabilities)
-  - [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl_caps0_persistent_keyrings)
-  - [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl_caps0_diffie_hellman)
-  - [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl_caps0_public_key)
-  - [`KEYCTL_CAPS0_BIG_KEY`](#keyctl_caps0_big_key)
-  - [`KEYCTL_CAPS0_INVALIDATE`](#keyctl_caps0_invalidate)
-  - [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl_caps0_restrict_keyring)
-  - [`KEYCTL_CAPS0_MOVE`](#keyctl_caps0_move)
-  - [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl_caps1_ns_keyring_name)
-  - [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl_caps1_ns_key_tag)
+  - [`KEY_SPEC_THREAD_KEYRING`](#key-spec-thread-keyring)
+  - [`KEY_SPEC_PROCESS_KEYRING`](#key-spec-process-keyring)
+  - [`KEY_SPEC_SESSION_KEYRING`](#key-spec-session-keyring)
+  - [`KEY_SPEC_USER_KEYRING`](#key-spec-user-keyring)
+  - [`KEY_SPEC_USER_SESSION_KEYRING`](#key-spec-user-session-keyring)
+  - [`KEY_SPEC_GROUP_KEYRING`](#key-spec-group-keyring)
+  - [`KEY_SPEC_REQKEY_AUTH_KEY`](#key-spec-reqkey-auth-key)
+  - [`KEY_SPEC_REQUESTOR_KEYRING`](#key-spec-requestor-keyring)
+  - [`KEY_REQKEY_DEFL_NO_CHANGE`](#key-reqkey-defl-no-change)
+  - [`KEY_REQKEY_DEFL_DEFAULT`](#key-reqkey-defl-default)
+  - [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key-reqkey-defl-thread-keyring)
+  - [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key-reqkey-defl-process-keyring)
+  - [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key-reqkey-defl-session-keyring)
+  - [`KEY_REQKEY_DEFL_USER_KEYRING`](#key-reqkey-defl-user-keyring)
+  - [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key-reqkey-defl-user-session-keyring)
+  - [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key-reqkey-defl-group-keyring)
+  - [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key-reqkey-defl-requestor-keyring)
+  - [`KEYCTL_GET_KEYRING_ID`](#keyctl-get-keyring-id)
+  - [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl-join-session-keyring)
+  - [`KEYCTL_UPDATE`](#keyctl-update)
+  - [`KEYCTL_REVOKE`](#keyctl-revoke)
+  - [`KEYCTL_CHOWN`](#keyctl-chown)
+  - [`KEYCTL_SETPERM`](#keyctl-setperm)
+  - [`KEYCTL_DESCRIBE`](#keyctl-describe)
+  - [`KEYCTL_CLEAR`](#keyctl-clear)
+  - [`KEYCTL_LINK`](#keyctl-link)
+  - [`KEYCTL_UNLINK`](#keyctl-unlink)
+  - [`KEYCTL_SEARCH`](#keyctl-search)
+  - [`KEYCTL_READ`](#keyctl-read)
+  - [`KEYCTL_INSTANTIATE`](#keyctl-instantiate)
+  - [`KEYCTL_NEGATE`](#keyctl-negate)
+  - [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl-set-reqkey-keyring)
+  - [`KEYCTL_SET_TIMEOUT`](#keyctl-set-timeout)
+  - [`KEYCTL_ASSUME_AUTHORITY`](#keyctl-assume-authority)
+  - [`KEYCTL_GET_SECURITY`](#keyctl-get-security)
+  - [`KEYCTL_SESSION_TO_PARENT`](#keyctl-session-to-parent)
+  - [`KEYCTL_REJECT`](#keyctl-reject)
+  - [`KEYCTL_INSTANTIATE_IOV`](#keyctl-instantiate-iov)
+  - [`KEYCTL_INVALIDATE`](#keyctl-invalidate)
+  - [`KEYCTL_GET_PERSISTENT`](#keyctl-get-persistent)
+  - [`KEYCTL_DH_COMPUTE`](#keyctl-dh-compute)
+  - [`KEYCTL_PKEY_QUERY`](#keyctl-pkey-query)
+  - [`KEYCTL_PKEY_ENCRYPT`](#keyctl-pkey-encrypt)
+  - [`KEYCTL_PKEY_DECRYPT`](#keyctl-pkey-decrypt)
+  - [`KEYCTL_PKEY_SIGN`](#keyctl-pkey-sign)
+  - [`KEYCTL_PKEY_VERIFY`](#keyctl-pkey-verify)
+  - [`KEYCTL_RESTRICT_KEYRING`](#keyctl-restrict-keyring)
+  - [`KEYCTL_MOVE`](#keyctl-move)
+  - [`KEYCTL_CAPABILITIES`](#keyctl-capabilities)
+  - [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl-supports-encrypt)
+  - [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl-supports-decrypt)
+  - [`KEYCTL_SUPPORTS_SIGN`](#keyctl-supports-sign)
+  - [`KEYCTL_SUPPORTS_VERIFY`](#keyctl-supports-verify)
+  - [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl-caps0-capabilities)
+  - [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl-caps0-persistent-keyrings)
+  - [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl-caps0-diffie-hellman)
+  - [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl-caps0-public-key)
+  - [`KEYCTL_CAPS0_BIG_KEY`](#keyctl-caps0-big-key)
+  - [`KEYCTL_CAPS0_INVALIDATE`](#keyctl-caps0-invalidate)
+  - [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl-caps0-restrict-keyring)
+  - [`KEYCTL_CAPS0_MOVE`](#keyctl-caps0-move)
+  - [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl-caps1-ns-keyring-name)
+  - [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl-caps1-ns-key-tag)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`KEY_SPEC_THREAD_KEYRING`](#key_spec_thread_keyring) | const |  |
-| [`KEY_SPEC_PROCESS_KEYRING`](#key_spec_process_keyring) | const |  |
-| [`KEY_SPEC_SESSION_KEYRING`](#key_spec_session_keyring) | const |  |
-| [`KEY_SPEC_USER_KEYRING`](#key_spec_user_keyring) | const |  |
-| [`KEY_SPEC_USER_SESSION_KEYRING`](#key_spec_user_session_keyring) | const |  |
-| [`KEY_SPEC_GROUP_KEYRING`](#key_spec_group_keyring) | const |  |
-| [`KEY_SPEC_REQKEY_AUTH_KEY`](#key_spec_reqkey_auth_key) | const |  |
-| [`KEY_SPEC_REQUESTOR_KEYRING`](#key_spec_requestor_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_NO_CHANGE`](#key_reqkey_defl_no_change) | const |  |
-| [`KEY_REQKEY_DEFL_DEFAULT`](#key_reqkey_defl_default) | const |  |
-| [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key_reqkey_defl_thread_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key_reqkey_defl_process_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key_reqkey_defl_session_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_USER_KEYRING`](#key_reqkey_defl_user_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key_reqkey_defl_user_session_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key_reqkey_defl_group_keyring) | const |  |
-| [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key_reqkey_defl_requestor_keyring) | const |  |
-| [`KEYCTL_GET_KEYRING_ID`](#keyctl_get_keyring_id) | const |  |
-| [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl_join_session_keyring) | const |  |
-| [`KEYCTL_UPDATE`](#keyctl_update) | const |  |
-| [`KEYCTL_REVOKE`](#keyctl_revoke) | const |  |
-| [`KEYCTL_CHOWN`](#keyctl_chown) | const |  |
-| [`KEYCTL_SETPERM`](#keyctl_setperm) | const |  |
-| [`KEYCTL_DESCRIBE`](#keyctl_describe) | const |  |
-| [`KEYCTL_CLEAR`](#keyctl_clear) | const |  |
-| [`KEYCTL_LINK`](#keyctl_link) | const |  |
-| [`KEYCTL_UNLINK`](#keyctl_unlink) | const |  |
-| [`KEYCTL_SEARCH`](#keyctl_search) | const |  |
-| [`KEYCTL_READ`](#keyctl_read) | const |  |
-| [`KEYCTL_INSTANTIATE`](#keyctl_instantiate) | const |  |
-| [`KEYCTL_NEGATE`](#keyctl_negate) | const |  |
-| [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl_set_reqkey_keyring) | const |  |
-| [`KEYCTL_SET_TIMEOUT`](#keyctl_set_timeout) | const |  |
-| [`KEYCTL_ASSUME_AUTHORITY`](#keyctl_assume_authority) | const |  |
-| [`KEYCTL_GET_SECURITY`](#keyctl_get_security) | const |  |
-| [`KEYCTL_SESSION_TO_PARENT`](#keyctl_session_to_parent) | const |  |
-| [`KEYCTL_REJECT`](#keyctl_reject) | const |  |
-| [`KEYCTL_INSTANTIATE_IOV`](#keyctl_instantiate_iov) | const |  |
-| [`KEYCTL_INVALIDATE`](#keyctl_invalidate) | const |  |
-| [`KEYCTL_GET_PERSISTENT`](#keyctl_get_persistent) | const |  |
-| [`KEYCTL_DH_COMPUTE`](#keyctl_dh_compute) | const |  |
-| [`KEYCTL_PKEY_QUERY`](#keyctl_pkey_query) | const |  |
-| [`KEYCTL_PKEY_ENCRYPT`](#keyctl_pkey_encrypt) | const |  |
-| [`KEYCTL_PKEY_DECRYPT`](#keyctl_pkey_decrypt) | const |  |
-| [`KEYCTL_PKEY_SIGN`](#keyctl_pkey_sign) | const |  |
-| [`KEYCTL_PKEY_VERIFY`](#keyctl_pkey_verify) | const |  |
-| [`KEYCTL_RESTRICT_KEYRING`](#keyctl_restrict_keyring) | const |  |
-| [`KEYCTL_MOVE`](#keyctl_move) | const |  |
-| [`KEYCTL_CAPABILITIES`](#keyctl_capabilities) | const |  |
-| [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl_supports_encrypt) | const |  |
-| [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl_supports_decrypt) | const |  |
-| [`KEYCTL_SUPPORTS_SIGN`](#keyctl_supports_sign) | const |  |
-| [`KEYCTL_SUPPORTS_VERIFY`](#keyctl_supports_verify) | const |  |
-| [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl_caps0_capabilities) | const |  |
-| [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl_caps0_persistent_keyrings) | const |  |
-| [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl_caps0_diffie_hellman) | const |  |
-| [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl_caps0_public_key) | const |  |
-| [`KEYCTL_CAPS0_BIG_KEY`](#keyctl_caps0_big_key) | const |  |
-| [`KEYCTL_CAPS0_INVALIDATE`](#keyctl_caps0_invalidate) | const |  |
-| [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl_caps0_restrict_keyring) | const |  |
-| [`KEYCTL_CAPS0_MOVE`](#keyctl_caps0_move) | const |  |
-| [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl_caps1_ns_keyring_name) | const |  |
-| [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl_caps1_ns_key_tag) | const |  |
+| [`KEY_SPEC_THREAD_KEYRING`](#key-spec-thread-keyring) | const |  |
+| [`KEY_SPEC_PROCESS_KEYRING`](#key-spec-process-keyring) | const |  |
+| [`KEY_SPEC_SESSION_KEYRING`](#key-spec-session-keyring) | const |  |
+| [`KEY_SPEC_USER_KEYRING`](#key-spec-user-keyring) | const |  |
+| [`KEY_SPEC_USER_SESSION_KEYRING`](#key-spec-user-session-keyring) | const |  |
+| [`KEY_SPEC_GROUP_KEYRING`](#key-spec-group-keyring) | const |  |
+| [`KEY_SPEC_REQKEY_AUTH_KEY`](#key-spec-reqkey-auth-key) | const |  |
+| [`KEY_SPEC_REQUESTOR_KEYRING`](#key-spec-requestor-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_NO_CHANGE`](#key-reqkey-defl-no-change) | const |  |
+| [`KEY_REQKEY_DEFL_DEFAULT`](#key-reqkey-defl-default) | const |  |
+| [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key-reqkey-defl-thread-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key-reqkey-defl-process-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key-reqkey-defl-session-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_USER_KEYRING`](#key-reqkey-defl-user-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key-reqkey-defl-user-session-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key-reqkey-defl-group-keyring) | const |  |
+| [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key-reqkey-defl-requestor-keyring) | const |  |
+| [`KEYCTL_GET_KEYRING_ID`](#keyctl-get-keyring-id) | const |  |
+| [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl-join-session-keyring) | const |  |
+| [`KEYCTL_UPDATE`](#keyctl-update) | const |  |
+| [`KEYCTL_REVOKE`](#keyctl-revoke) | const |  |
+| [`KEYCTL_CHOWN`](#keyctl-chown) | const |  |
+| [`KEYCTL_SETPERM`](#keyctl-setperm) | const |  |
+| [`KEYCTL_DESCRIBE`](#keyctl-describe) | const |  |
+| [`KEYCTL_CLEAR`](#keyctl-clear) | const |  |
+| [`KEYCTL_LINK`](#keyctl-link) | const |  |
+| [`KEYCTL_UNLINK`](#keyctl-unlink) | const |  |
+| [`KEYCTL_SEARCH`](#keyctl-search) | const |  |
+| [`KEYCTL_READ`](#keyctl-read) | const |  |
+| [`KEYCTL_INSTANTIATE`](#keyctl-instantiate) | const |  |
+| [`KEYCTL_NEGATE`](#keyctl-negate) | const |  |
+| [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl-set-reqkey-keyring) | const |  |
+| [`KEYCTL_SET_TIMEOUT`](#keyctl-set-timeout) | const |  |
+| [`KEYCTL_ASSUME_AUTHORITY`](#keyctl-assume-authority) | const |  |
+| [`KEYCTL_GET_SECURITY`](#keyctl-get-security) | const |  |
+| [`KEYCTL_SESSION_TO_PARENT`](#keyctl-session-to-parent) | const |  |
+| [`KEYCTL_REJECT`](#keyctl-reject) | const |  |
+| [`KEYCTL_INSTANTIATE_IOV`](#keyctl-instantiate-iov) | const |  |
+| [`KEYCTL_INVALIDATE`](#keyctl-invalidate) | const |  |
+| [`KEYCTL_GET_PERSISTENT`](#keyctl-get-persistent) | const |  |
+| [`KEYCTL_DH_COMPUTE`](#keyctl-dh-compute) | const |  |
+| [`KEYCTL_PKEY_QUERY`](#keyctl-pkey-query) | const |  |
+| [`KEYCTL_PKEY_ENCRYPT`](#keyctl-pkey-encrypt) | const |  |
+| [`KEYCTL_PKEY_DECRYPT`](#keyctl-pkey-decrypt) | const |  |
+| [`KEYCTL_PKEY_SIGN`](#keyctl-pkey-sign) | const |  |
+| [`KEYCTL_PKEY_VERIFY`](#keyctl-pkey-verify) | const |  |
+| [`KEYCTL_RESTRICT_KEYRING`](#keyctl-restrict-keyring) | const |  |
+| [`KEYCTL_MOVE`](#keyctl-move) | const |  |
+| [`KEYCTL_CAPABILITIES`](#keyctl-capabilities) | const |  |
+| [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl-supports-encrypt) | const |  |
+| [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl-supports-decrypt) | const |  |
+| [`KEYCTL_SUPPORTS_SIGN`](#keyctl-supports-sign) | const |  |
+| [`KEYCTL_SUPPORTS_VERIFY`](#keyctl-supports-verify) | const |  |
+| [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl-caps0-capabilities) | const |  |
+| [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl-caps0-persistent-keyrings) | const |  |
+| [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl-caps0-diffie-hellman) | const |  |
+| [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl-caps0-public-key) | const |  |
+| [`KEYCTL_CAPS0_BIG_KEY`](#keyctl-caps0-big-key) | const |  |
+| [`KEYCTL_CAPS0_INVALIDATE`](#keyctl-caps0-invalidate) | const |  |
+| [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl-caps0-restrict-keyring) | const |  |
+| [`KEYCTL_CAPS0_MOVE`](#keyctl-caps0-move) | const |  |
+| [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl-caps1-ns-keyring-name) | const |  |
+| [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl-caps1-ns-key-tag) | const |  |
 
 ## Constants
 

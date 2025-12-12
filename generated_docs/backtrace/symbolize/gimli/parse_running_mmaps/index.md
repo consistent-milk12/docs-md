@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`MapsEntry`](#mapsentry) | struct |  |
-| [`parse_maps`](#parse_maps) | fn |  |
+| [`parse_maps`](#parse-maps) | fn |  |
 
 ## Structs
 
@@ -100,7 +100,7 @@ struct MapsEntry {
 
 ##### `impl FromStr for MapsEntry`
 
-- <span id="mapsentry-type-err"></span>`type Err = &'static str`
+- <span id="mapsentry-fromstr-type-err"></span>`type Err = &'static str`
 
 - <span id="mapsentry-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 

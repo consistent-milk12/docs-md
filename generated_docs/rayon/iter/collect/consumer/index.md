@@ -38,13 +38,13 @@ struct CollectConsumer<'c, T: Send> {
 
 #### Trait Implementations
 
-##### `impl<'c, T: Send + 'c> Consumer for CollectConsumer<'c, T>`
+##### `impl<T: Send + 'c> Consumer for CollectConsumer<'c, T>`
 
-- <span id="collectconsumer-type-folder"></span>`type Folder = CollectResult<'c, T>`
+- <span id="collectconsumer-consumer-type-folder"></span>`type Folder = CollectResult<'c, T>`
 
-- <span id="collectconsumer-type-reducer"></span>`type Reducer = CollectReducer`
+- <span id="collectconsumer-consumer-type-reducer"></span>`type Reducer = CollectReducer`
 
-- <span id="collectconsumer-type-result"></span>`type Result = CollectResult<'c, T>`
+- <span id="collectconsumer-consumer-type-result"></span>`type Result = CollectResult<'c, T>`
 
 - <span id="collectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, CollectReducer)` — [`CollectReducer`](#collectreducer)
 
@@ -56,9 +56,9 @@ struct CollectConsumer<'c, T: Send> {
 
 ##### `impl<T> Pointable for CollectConsumer<'c, T>`
 
-- <span id="collectconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="collectconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectconsumer-type-init"></span>`type Init = T`
+- <span id="collectconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="collectconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -68,7 +68,7 @@ struct CollectConsumer<'c, T: Send> {
 
 - <span id="collectconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'c, T: Send + 'c> UnindexedConsumer for CollectConsumer<'c, T>`
+##### `impl<T: Send + 'c> UnindexedConsumer for CollectConsumer<'c, T>`
 
 - <span id="collectconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -117,13 +117,13 @@ the elements will be dropped, unless its ownership is released before then.
 
 #### Trait Implementations
 
-##### `impl<'c, T> Drop for CollectResult<'c, T>`
+##### `impl<T> Drop for CollectResult<'c, T>`
 
 - <span id="collectresult-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'c, T: Send + 'c> Folder for CollectResult<'c, T>`
+##### `impl<T: Send + 'c> Folder for CollectResult<'c, T>`
 
-- <span id="collectresult-type-result"></span>`type Result = CollectResult<'c, T>`
+- <span id="collectresult-folder-type-result"></span>`type Result = CollectResult<'c, T>`
 
 - <span id="collectresult-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -135,9 +135,9 @@ the elements will be dropped, unless its ownership is released before then.
 
 ##### `impl<T> Pointable for CollectResult<'c, T>`
 
-- <span id="collectresult-const-align"></span>`const ALIGN: usize`
+- <span id="collectresult-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectresult-type-init"></span>`type Init = T`
+- <span id="collectresult-pointable-type-init"></span>`type Init = T`
 
 - <span id="collectresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -147,11 +147,11 @@ the elements will be dropped, unless its ownership is released before then.
 
 - <span id="collectresult-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl Reducer for CollectReducer`
+##### `impl<T> Reducer for CollectReducer`
 
 - <span id="collectreducer-reduce"></span>`fn reduce(self, left: CollectResult<'c, T>, right: CollectResult<'c, T>) -> CollectResult<'c, T>` — [`CollectResult`](#collectresult)
 
-##### `impl<'c, T> Send for CollectResult<'c, T>`
+##### `impl<T> Send for CollectResult<'c, T>`
 
 ### `CollectReducer`
 
@@ -170,9 +170,9 @@ be contiguous so that it is one combined slice.
 
 ##### `impl Pointable for CollectReducer`
 
-- <span id="collectreducer-const-align"></span>`const ALIGN: usize`
+- <span id="collectreducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectreducer-type-init"></span>`type Init = T`
+- <span id="collectreducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="collectreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -182,7 +182,7 @@ be contiguous so that it is one combined slice.
 
 - <span id="collectreducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl Reducer for CollectReducer`
+##### `impl<T> Reducer for CollectReducer`
 
 - <span id="collectreducer-reduce"></span>`fn reduce(self, left: CollectResult<'c, T>, right: CollectResult<'c, T>) -> CollectResult<'c, T>` — [`CollectResult`](#collectresult)
 

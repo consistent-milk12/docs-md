@@ -11,8 +11,8 @@ Functions for filling text.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`fill`](#fill) | fn | Fill a line of text at a given width. |
-| [`fill_slow_path`](#fill_slow_path) | fn | Slow path for fill. |
-| [`fill_inplace`](#fill_inplace) | fn | Fill `text` in-place without reallocating the input string. |
+| [`fill_slow_path`](#fill-slow-path) | fn | Slow path for fill. |
+| [`fill_inplace`](#fill-inplace) | fn | Fill `text` in-place without reallocating the input string. |
 
 ## Functions
 

@@ -36,15 +36,15 @@ An iterator for files that don't have dynamic relocations.
 
 ##### `impl IntoIterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="nodynamicrelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="nodynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="nodynamicrelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="nodynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="nodynamicrelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="nodynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

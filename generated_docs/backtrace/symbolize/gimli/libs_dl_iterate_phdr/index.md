@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`CallbackData`](#callbackdata) | struct |  |
-| [`native_libraries`](#native_libraries) | fn |  |
-| [`infer_current_exe`](#infer_current_exe) | fn |  |
+| [`native_libraries`](#native-libraries) | fn |  |
+| [`infer_current_exe`](#infer-current-exe) | fn |  |
 | [`callback`](#callback) | fn | # Safety `info` must be a valid pointer. |
 
 ## Structs

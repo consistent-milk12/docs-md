@@ -10,16 +10,16 @@
   - [`AtomicCell`](#atomiccell)
   - [`AtomicUnit`](#atomicunit)
 - [Functions](#functions)
-  - [`can_transmute`](#can_transmute)
+  - [`can_transmute`](#can-transmute)
   - [`lock`](#lock)
-  - [`atomic_is_lock_free`](#atomic_is_lock_free)
-  - [`atomic_load`](#atomic_load)
-  - [`atomic_store`](#atomic_store)
-  - [`atomic_swap`](#atomic_swap)
-  - [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak)
+  - [`atomic_is_lock_free`](#atomic-is-lock-free)
+  - [`atomic_load`](#atomic-load)
+  - [`atomic_store`](#atomic-store)
+  - [`atomic_swap`](#atomic-swap)
+  - [`atomic_compare_exchange_weak`](#atomic-compare-exchange-weak)
 - [Macros](#macros)
   - [`atomic!`](#atomic)
-  - [`impl_arithmetic!`](#impl_arithmetic)
+  - [`impl_arithmetic!`](#impl-arithmetic)
 
 ## Quick Reference
 
@@ -27,15 +27,15 @@
 |------|------|-------------|
 | [`AtomicCell`](#atomiccell) | struct | A thread-safe mutable memory location. |
 | [`AtomicUnit`](#atomicunit) | struct | An atomic `()`. |
-| [`can_transmute`](#can_transmute) | fn | Returns `true` if values of type `A` can be transmuted into values of type `B`. |
+| [`can_transmute`](#can-transmute) | fn | Returns `true` if values of type `A` can be transmuted into values of type `B`. |
 | [`lock`](#lock) | fn | Returns a reference to the global lock associated with the `AtomicCell` at address `addr`. |
-| [`atomic_is_lock_free`](#atomic_is_lock_free) | fn | Returns `true` if operations on `AtomicCell<T>` are lock-free. |
-| [`atomic_load`](#atomic_load) | fn | Atomically reads data from `src`. |
-| [`atomic_store`](#atomic_store) | fn | Atomically writes `val` to `dst`. |
-| [`atomic_swap`](#atomic_swap) | fn | Atomically swaps data at `dst` with `val`. |
-| [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak) | fn | Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at `dst` with `new`. |
+| [`atomic_is_lock_free`](#atomic-is-lock-free) | fn | Returns `true` if operations on `AtomicCell<T>` are lock-free. |
+| [`atomic_load`](#atomic-load) | fn | Atomically reads data from `src`. |
+| [`atomic_store`](#atomic-store) | fn | Atomically writes `val` to `dst`. |
+| [`atomic_swap`](#atomic-swap) | fn | Atomically swaps data at `dst` with `val`. |
+| [`atomic_compare_exchange_weak`](#atomic-compare-exchange-weak) | fn | Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at `dst` with `new`. |
 | [`atomic!`](#atomic) | macro |  |
-| [`impl_arithmetic!`](#impl_arithmetic) | macro |  |
+| [`impl_arithmetic!`](#impl-arithmetic) | macro |  |
 
 ## Structs
 

@@ -42,27 +42,27 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 - <span id="flatten-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Flatten<I>`
+##### `impl IntoEither for Flatten<I>`
 
-##### `impl<T> IntoParallelIterator for Flatten<I>`
+##### `impl IntoParallelIterator for Flatten<I>`
 
-- <span id="flatten-type-iter"></span>`type Iter = T`
+- <span id="flatten-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="flatten-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatten-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatten-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Flatten<I>`
 
-- <span id="flatten-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
+- <span id="flatten-paralleliterator-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
 - <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for Flatten<I>`
+##### `impl Pointable for Flatten<I>`
 
-- <span id="flatten-const-align"></span>`const ALIGN: usize`
+- <span id="flatten-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatten-type-init"></span>`type Init = T`
+- <span id="flatten-pointable-type-init"></span>`type Init = T`
 
 - <span id="flatten-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,11 +90,11 @@ struct FlattenConsumer<C> {
 
 ##### `impl<T, C> Consumer for FlattenConsumer<C>`
 
-- <span id="flattenconsumer-type-folder"></span>`type Folder = FlattenFolder<C, <C as Consumer>::Result>`
+- <span id="flattenconsumer-consumer-type-folder"></span>`type Folder = FlattenFolder<C, <C as Consumer>::Result>`
 
-- <span id="flattenconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="flattenconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="flattenconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="flattenconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="flattenconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -102,13 +102,13 @@ struct FlattenConsumer<C> {
 
 - <span id="flattenconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FlattenConsumer<C>`
+##### `impl IntoEither for FlattenConsumer<C>`
 
-##### `impl<T> Pointable for FlattenConsumer<C>`
+##### `impl Pointable for FlattenConsumer<C>`
 
-- <span id="flattenconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="flattenconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flattenconsumer-type-init"></span>`type Init = T`
+- <span id="flattenconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="flattenconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -139,7 +139,7 @@ struct FlattenFolder<C, R> {
 
 ##### `impl<T, C> Folder for FlattenFolder<C, <C as >::Result>`
 
-- <span id="flattenfolder-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="flattenfolder-folder-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="flattenfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -147,13 +147,13 @@ struct FlattenFolder<C, R> {
 
 - <span id="flattenfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for FlattenFolder<C, R>`
+##### `impl IntoEither for FlattenFolder<C, R>`
 
-##### `impl<T> Pointable for FlattenFolder<C, R>`
+##### `impl Pointable for FlattenFolder<C, R>`
 
-- <span id="flattenfolder-const-align"></span>`const ALIGN: usize`
+- <span id="flattenfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="flattenfolder-type-init"></span>`type Init = T`
+- <span id="flattenfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="flattenfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

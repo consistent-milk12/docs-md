@@ -13,10 +13,163 @@ documentation generation across multiple crates with cross-crate linking.
 
 | Item | Kind | Description |
 |------|------|-------------|
+| [`ResolvedItem`](#resolveditem) | struct | Result of resolving a potential re-export to its actual item. |
+| [`CategorizedItems`](#categorizeditems) | struct | Categorized module items for rendering. |
 | [`MultiCrateGenerator`](#multicrategenerator) | struct | Generator for multi-crate documentation. |
 | [`MultiCrateModuleRenderer`](#multicratemodulerenderer) | struct | Module renderer for multi-crate context. |
 
 ## Structs
+
+### `ResolvedItem<'a>`
+
+```rust
+struct ResolvedItem<'a> {
+    name: &'a str,
+    item: &'a rustdoc_types::Item,
+    id: rustdoc_types::Id,
+    source_crate: Option<&'a str>,
+}
+```
+
+*Defined in `src/multi_crate/generator.rs:48-60`*
+
+Result of resolving a potential re-export to its actual item.
+
+This struct captures all context needed for rendering, eliminiating the need
+for duplicated resolution logic in each render method. For local items,
+`source_crate` is `None`. For cross-crate re-exports, it contains the
+source crate name for proper type rendering and impl lookup.
+
+# Note on `Copy`
+
+This struct derives `Copy` because `Id` is `Copy` (newtype over `u32`),
+and all other fields are references or `Option` of references.
+
+#### Fields
+
+- **`name`**: `&'a str`
+
+  Display name (from `Use.name` for re-exports, `Item.name` otherwise)
+
+- **`item`**: `&'a rustdoc_types::Item`
+
+  The actual resolved item (target of re-export, or original item)
+
+- **`id`**: `rustdoc_types::Id`
+
+  ID of the resolved item - always the actual item's ID, never a dummy
+
+- **`source_crate`**: `Option<&'a str>`
+
+  Source crate name for cross-crate re-exports (`None` for local items)
+
+#### Trait Implementations
+
+##### `impl Clone for ResolvedItem<'a>`
+
+- <span id="resolveditem-clone"></span>`fn clone(&self) -> ResolvedItem<'a>` — [`ResolvedItem`](#resolveditem)
+
+##### `impl Copy for ResolvedItem<'a>`
+
+##### `impl Debug for ResolvedItem<'a>`
+
+- <span id="resolveditem-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Instrument for ResolvedItem<'a>`
+
+##### `impl IntoEither for ResolvedItem<'a>`
+
+##### `impl OwoColorize for ResolvedItem<'a>`
+
+##### `impl Pointable for ResolvedItem<'a>`
+
+- <span id="resolveditem-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="resolveditem-pointable-type-init"></span>`type Init = T`
+
+- <span id="resolveditem-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="resolveditem-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="resolveditem-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="resolveditem-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for ResolvedItem<'a>`
+
+### `CategorizedItems<'a>`
+
+```rust
+struct CategorizedItems<'a> {
+    modules: Vec<&'a rustdoc_types::Item>,
+    structs: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    enums: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    unions: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    traits: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    functions: Vec<&'a rustdoc_types::Item>,
+    types: Vec<&'a rustdoc_types::Item>,
+    constants: Vec<&'a rustdoc_types::Item>,
+    statics: Vec<&'a rustdoc_types::Item>,
+    macros: Vec<&'a rustdoc_types::Item>,
+}
+```
+
+*Defined in `src/multi_crate/generator.rs:66-77`*
+
+Categorized module items for rendering.
+
+Collects items by category during module traversal, eliminating the need
+for 8 separate vector parameters in TOC/QuickRef generation.
+
+#### Implementations
+
+- <span id="categorizeditems-new"></span>`const fn new() -> Self`
+
+- <span id="categorizeditems-is-empty"></span>`const fn is_empty(&self) -> bool`
+
+- <span id="categorizeditems-add-item"></span>`fn add_item(&mut self, id: &'a Id, item: &'a Item)`
+
+- <span id="categorizeditems-add-reexport"></span>`fn add_reexport(&mut self, id: &'a Id, use_item: &'a Item, target: &Item)`
+
+- <span id="categorizeditems-build-toc-entries"></span>`fn build_toc_entries(&self) -> Vec<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
+
+- <span id="categorizeditems-build-section"></span>`fn build_section(items: &[&Item], section: &str, anchor: &str, is_macro: bool) -> Option<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
+
+- <span id="categorizeditems-build-section-with-ids"></span>`fn build_section_with_ids(items: &[(&Id, &Item)], section: &str, anchor: &str) -> Option<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
+
+- <span id="categorizeditems-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
+
+- <span id="categorizeditems-add-quick-ref-entries"></span>`fn add_quick_ref_entries(entries: &mut Vec<QuickRefEntry>, items: &[&Item], kind: &'static str, is_macro: bool)` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
+
+- <span id="categorizeditems-add-quick-ref-entries-with-ids"></span>`fn add_quick_ref_entries_with_ids(entries: &mut Vec<QuickRefEntry>, items: &[(&Id, &Item)], kind: &'static str)` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
+
+- <span id="categorizeditems-get-item-name"></span>`fn get_item_name(item: &Item) -> &str`
+
+- <span id="categorizeditems-expand-glob-reexport"></span>`fn expand_glob_reexport(&mut self, use_item: &rustdoc_types::Use, krate: &'a Crate, view: &SingleCrateView<'_>, seen_items: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md#singlecrateview)
+
+#### Trait Implementations
+
+##### `impl Instrument for CategorizedItems<'a>`
+
+##### `impl IntoEither for CategorizedItems<'a>`
+
+##### `impl OwoColorize for CategorizedItems<'a>`
+
+##### `impl Pointable for CategorizedItems<'a>`
+
+- <span id="categorizeditems-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="categorizeditems-pointable-type-init"></span>`type Init = T`
+
+- <span id="categorizeditems-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="categorizeditems-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="categorizeditems-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="categorizeditems-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for CategorizedItems<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -27,7 +180,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:56-62`*
+*Defined in `src/multi_crate/generator.rs:416-422`*
 
 Generator for multi-crate documentation.
 
@@ -87,9 +240,9 @@ output/
 
 ##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-type-init"></span>`type Init = T`
+- <span id="multicrategenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -112,7 +265,7 @@ struct MultiCrateModuleRenderer<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:381-393`*
+*Defined in `src/multi_crate/generator.rs:742-754`*
 
 Module renderer for multi-crate context.
 
@@ -192,6 +345,8 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-render-macro"></span>`fn render_macro(&self, md: &mut String, item: &Item)`
 
+- <span id="multicratemodulerenderer-resolve-reexport"></span>`fn resolve_reexport<'b>(self: &'b Self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
+
 - <span id="multicratemodulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport<'b>(&self, modules: &mut Vec<&'b Item>, structs: &mut Vec<(&'b Id, &'b Item)>, enums: &mut Vec<(&'b Id, &'b Item)>, traits: &mut Vec<(&'b Id, &'b Item)>, functions: &mut Vec<&'b Item>, types: &mut Vec<&'b Item>, constants: &mut Vec<&'b Item>, macros: &mut Vec<&'b Item>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<Id>)`
 
 - <span id="multicratemodulerenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id, source_crate_name: Option<&str>)`
@@ -206,9 +361,9 @@ resolve items across crate boundaries.
 
 ##### `impl Pointable for MultiCrateModuleRenderer<'a>`
 
-- <span id="multicratemodulerenderer-const-align"></span>`const ALIGN: usize`
+- <span id="multicratemodulerenderer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratemodulerenderer-type-init"></span>`type Init = T`
+- <span id="multicratemodulerenderer-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicratemodulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

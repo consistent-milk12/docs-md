@@ -32,15 +32,15 @@ Parallel iterator that moves out of an array.
 
 #### Trait Implementations
 
-##### `impl<T: clone::Clone, const N: usize> Clone for IntoIter<T, N>`
+##### `impl<T: clone::Clone> Clone for IntoIter<T, N>`
 
 - <span id="intoiter-clone"></span>`fn clone(&self) -> IntoIter<T, N>` — [`IntoIter`](#intoiter)
 
-##### `impl<T: fmt::Debug, const N: usize> Debug for IntoIter<T, N>`
+##### `impl<T: fmt::Debug> Debug for IntoIter<T, N>`
 
 - <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: Send, const N: usize> IndexedParallelIterator for IntoIter<T, N>`
+##### `impl<T: Send> IndexedParallelIterator for IntoIter<T, N>`
 
 - <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -52,15 +52,15 @@ Parallel iterator that moves out of an array.
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T, N>`
 
-- <span id="intoiter-type-iter"></span>`type Iter = T`
+- <span id="intoiter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<T: Send, const N: usize> ParallelIterator for IntoIter<T, N>`
+##### `impl<T: Send> ParallelIterator for IntoIter<T, N>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
@@ -68,9 +68,9 @@ Parallel iterator that moves out of an array.
 
 ##### `impl<T> Pointable for IntoIter<T, N>`
 
-- <span id="intoiter-const-align"></span>`const ALIGN: usize`
+- <span id="intoiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-type-init"></span>`type Init = T`
+- <span id="intoiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

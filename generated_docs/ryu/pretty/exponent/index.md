@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`write_exponent3`](#write_exponent3) | fn |  |
-| [`write_exponent2`](#write_exponent2) | fn |  |
+| [`write_exponent3`](#write-exponent3) | fn |  |
+| [`write_exponent2`](#write-exponent2) | fn |  |
 
 ## Functions
 

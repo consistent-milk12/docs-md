@@ -45,21 +45,21 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf> Debug for NoteIterator<'data, Elf>`
+##### `impl<Elf> Debug for NoteIterator<'data, Elf>`
 
 - <span id="noteiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for NoteIterator<'data, Elf>`
+##### `impl IntoIterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="noteiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="noteiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="noteiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="noteiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Elf: FileHeader> Iterator for NoteIterator<'data, Elf>`
+##### `impl<Elf: FileHeader> Iterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-type-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
+- <span id="noteiterator-iterator-type-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
 
 - <span id="noteiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -97,7 +97,7 @@ A parsed [`NoteHeader`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, Elf> Debug for Note<'data, Elf>`
+##### `impl<Elf> Debug for Note<'data, Elf>`
 
 - <span id="note-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -125,21 +125,21 @@ Returned by `Note::gnu_properties`.
 
 #### Trait Implementations
 
-##### `impl<'data, Endian: fmt::Debug + endian::Endian> Debug for GnuPropertyIterator<'data, Endian>`
+##### `impl<Endian: fmt::Debug + endian::Endian> Debug for GnuPropertyIterator<'data, Endian>`
 
 - <span id="gnupropertyiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for GnuPropertyIterator<'data, Endian>`
+##### `impl IntoIterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="gnupropertyiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="gnupropertyiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="gnupropertyiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="gnupropertyiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, Endian: endian::Endian> Iterator for GnuPropertyIterator<'data, Endian>`
+##### `impl<Endian: endian::Endian> Iterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-type-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
+- <span id="gnupropertyiterator-iterator-type-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
 
 - <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

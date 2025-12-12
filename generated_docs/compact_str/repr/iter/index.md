@@ -10,7 +10,7 @@ Implementations of the `FromIterator` trait to make building [`Repr`](../index.m
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`from_as_ref_str_iterator`](#from_as_ref_str_iterator) | fn |  |
+| [`from_as_ref_str_iterator`](#from-as-ref-str-iterator) | fn |  |
 
 ## Functions
 

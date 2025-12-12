@@ -116,9 +116,9 @@ struct Writer<W> {
 
 ##### `impl<W: fmt::Write> Visitor for Writer<W>`
 
-- <span id="writer-type-output"></span>`type Output = ()`
+- <span id="writer-visitor-type-output"></span>`type Output = ()`
 
-- <span id="writer-type-err"></span>`type Err = Error`
+- <span id="writer-visitor-type-err"></span>`type Err = Error`
 
 - <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
 

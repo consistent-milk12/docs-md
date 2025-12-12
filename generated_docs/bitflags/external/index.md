@@ -10,7 +10,7 @@ Conditional trait implementations for external libraries.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`__private`](#__private) | mod |  |
+| [`__private`](#private) | mod |  |
 
 ## Modules
 

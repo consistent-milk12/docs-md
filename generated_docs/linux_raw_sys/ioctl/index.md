@@ -111,32 +111,32 @@
   - [`BLKSECDISCARD`](#blksecdiscard)
   - [`BLKROTATIONAL`](#blkrotational)
   - [`BLKZEROOUT`](#blkzeroout)
-  - [`FIEMAP_MAX_OFFSET`](#fiemap_max_offset)
-  - [`FIEMAP_FLAG_SYNC`](#fiemap_flag_sync)
-  - [`FIEMAP_FLAG_XATTR`](#fiemap_flag_xattr)
-  - [`FIEMAP_FLAG_CACHE`](#fiemap_flag_cache)
-  - [`FIEMAP_FLAGS_COMPAT`](#fiemap_flags_compat)
-  - [`FIEMAP_EXTENT_LAST`](#fiemap_extent_last)
-  - [`FIEMAP_EXTENT_UNKNOWN`](#fiemap_extent_unknown)
-  - [`FIEMAP_EXTENT_DELALLOC`](#fiemap_extent_delalloc)
-  - [`FIEMAP_EXTENT_ENCODED`](#fiemap_extent_encoded)
-  - [`FIEMAP_EXTENT_DATA_ENCRYPTED`](#fiemap_extent_data_encrypted)
-  - [`FIEMAP_EXTENT_NOT_ALIGNED`](#fiemap_extent_not_aligned)
-  - [`FIEMAP_EXTENT_DATA_INLINE`](#fiemap_extent_data_inline)
-  - [`FIEMAP_EXTENT_DATA_TAIL`](#fiemap_extent_data_tail)
-  - [`FIEMAP_EXTENT_UNWRITTEN`](#fiemap_extent_unwritten)
-  - [`FIEMAP_EXTENT_MERGED`](#fiemap_extent_merged)
-  - [`FIEMAP_EXTENT_SHARED`](#fiemap_extent_shared)
-  - [`UFFDIO_REGISTER`](#uffdio_register)
-  - [`UFFDIO_UNREGISTER`](#uffdio_unregister)
-  - [`UFFDIO_WAKE`](#uffdio_wake)
-  - [`UFFDIO_COPY`](#uffdio_copy)
-  - [`UFFDIO_ZEROPAGE`](#uffdio_zeropage)
-  - [`UFFDIO_WRITEPROTECT`](#uffdio_writeprotect)
-  - [`UFFDIO_API`](#uffdio_api)
-  - [`NS_GET_USERNS`](#ns_get_userns)
-  - [`NS_GET_PARENT`](#ns_get_parent)
-  - [`NS_GET_NSTYPE`](#ns_get_nstype)
+  - [`FIEMAP_MAX_OFFSET`](#fiemap-max-offset)
+  - [`FIEMAP_FLAG_SYNC`](#fiemap-flag-sync)
+  - [`FIEMAP_FLAG_XATTR`](#fiemap-flag-xattr)
+  - [`FIEMAP_FLAG_CACHE`](#fiemap-flag-cache)
+  - [`FIEMAP_FLAGS_COMPAT`](#fiemap-flags-compat)
+  - [`FIEMAP_EXTENT_LAST`](#fiemap-extent-last)
+  - [`FIEMAP_EXTENT_UNKNOWN`](#fiemap-extent-unknown)
+  - [`FIEMAP_EXTENT_DELALLOC`](#fiemap-extent-delalloc)
+  - [`FIEMAP_EXTENT_ENCODED`](#fiemap-extent-encoded)
+  - [`FIEMAP_EXTENT_DATA_ENCRYPTED`](#fiemap-extent-data-encrypted)
+  - [`FIEMAP_EXTENT_NOT_ALIGNED`](#fiemap-extent-not-aligned)
+  - [`FIEMAP_EXTENT_DATA_INLINE`](#fiemap-extent-data-inline)
+  - [`FIEMAP_EXTENT_DATA_TAIL`](#fiemap-extent-data-tail)
+  - [`FIEMAP_EXTENT_UNWRITTEN`](#fiemap-extent-unwritten)
+  - [`FIEMAP_EXTENT_MERGED`](#fiemap-extent-merged)
+  - [`FIEMAP_EXTENT_SHARED`](#fiemap-extent-shared)
+  - [`UFFDIO_REGISTER`](#uffdio-register)
+  - [`UFFDIO_UNREGISTER`](#uffdio-unregister)
+  - [`UFFDIO_WAKE`](#uffdio-wake)
+  - [`UFFDIO_COPY`](#uffdio-copy)
+  - [`UFFDIO_ZEROPAGE`](#uffdio-zeropage)
+  - [`UFFDIO_WRITEPROTECT`](#uffdio-writeprotect)
+  - [`UFFDIO_API`](#uffdio-api)
+  - [`NS_GET_USERNS`](#ns-get-userns)
+  - [`NS_GET_PARENT`](#ns-get-parent)
+  - [`NS_GET_NSTYPE`](#ns-get-nstype)
   - [`KDGETLED`](#kdgetled)
   - [`KDSETLED`](#kdsetled)
   - [`KDGKBLED`](#kdgkbled)
@@ -150,20 +150,20 @@
   - [`KDGETMODE`](#kdgetmode)
   - [`KDMKTONE`](#kdmktone)
   - [`KIOCSOUND`](#kiocsound)
-  - [`GIO_CMAP`](#gio_cmap)
-  - [`PIO_CMAP`](#pio_cmap)
-  - [`GIO_FONT`](#gio_font)
-  - [`GIO_FONTX`](#gio_fontx)
-  - [`PIO_FONT`](#pio_font)
-  - [`PIO_FONTX`](#pio_fontx)
-  - [`PIO_FONTRESET`](#pio_fontreset)
-  - [`GIO_SCRNMAP`](#gio_scrnmap)
-  - [`GIO_UNISCRNMAP`](#gio_uniscrnmap)
-  - [`PIO_SCRNMAP`](#pio_scrnmap)
-  - [`PIO_UNISCRNMAP`](#pio_uniscrnmap)
-  - [`GIO_UNIMAP`](#gio_unimap)
-  - [`PIO_UNIMAP`](#pio_unimap)
-  - [`PIO_UNIMAPCLR`](#pio_unimapclr)
+  - [`GIO_CMAP`](#gio-cmap)
+  - [`PIO_CMAP`](#pio-cmap)
+  - [`GIO_FONT`](#gio-font)
+  - [`GIO_FONTX`](#gio-fontx)
+  - [`PIO_FONT`](#pio-font)
+  - [`PIO_FONTX`](#pio-fontx)
+  - [`PIO_FONTRESET`](#pio-fontreset)
+  - [`GIO_SCRNMAP`](#gio-scrnmap)
+  - [`GIO_UNISCRNMAP`](#gio-uniscrnmap)
+  - [`PIO_SCRNMAP`](#pio-scrnmap)
+  - [`PIO_UNISCRNMAP`](#pio-uniscrnmap)
+  - [`GIO_UNIMAP`](#gio-unimap)
+  - [`PIO_UNIMAP`](#pio-unimap)
+  - [`PIO_UNIMAPCLR`](#pio-unimapclr)
   - [`KDGKBMODE`](#kdgkbmode)
   - [`KDSKBMODE`](#kdskbmode)
   - [`KDGKBMETA`](#kdgkbmeta)
@@ -176,16 +176,16 @@
   - [`KDGETKEYCODE`](#kdgetkeycode)
   - [`KDSETKEYCODE`](#kdsetkeycode)
   - [`KDSIGACCEPT`](#kdsigaccept)
-  - [`VT_OPENQRY`](#vt_openqry)
-  - [`VT_GETMODE`](#vt_getmode)
-  - [`VT_SETMODE`](#vt_setmode)
-  - [`VT_GETSTATE`](#vt_getstate)
-  - [`VT_RELDISP`](#vt_reldisp)
-  - [`VT_ACTIVATE`](#vt_activate)
-  - [`VT_WAITACTIVE`](#vt_waitactive)
-  - [`VT_DISALLOCATE`](#vt_disallocate)
-  - [`VT_RESIZE`](#vt_resize)
-  - [`VT_RESIZEX`](#vt_resizex)
+  - [`VT_OPENQRY`](#vt-openqry)
+  - [`VT_GETMODE`](#vt-getmode)
+  - [`VT_SETMODE`](#vt-setmode)
+  - [`VT_GETSTATE`](#vt-getstate)
+  - [`VT_RELDISP`](#vt-reldisp)
+  - [`VT_ACTIVATE`](#vt-activate)
+  - [`VT_WAITACTIVE`](#vt-waitactive)
+  - [`VT_DISALLOCATE`](#vt-disallocate)
+  - [`VT_RESIZE`](#vt-resize)
+  - [`VT_RESIZEX`](#vt-resizex)
   - [`FIOSETOWN`](#fiosetown)
   - [`SIOCSPGRP`](#siocspgrp)
   - [`FIOGETOWN`](#fiogetown)
@@ -255,1258 +255,1258 @@
   - [`FICLONE`](#ficlone)
   - [`FICLONERANGE`](#ficlonerange)
   - [`FIDEDUPERANGE`](#fideduperange)
-  - [`FS_IOC_GETFLAGS`](#fs_ioc_getflags)
-  - [`FS_IOC_SETFLAGS`](#fs_ioc_setflags)
-  - [`FS_IOC_GETVERSION`](#fs_ioc_getversion)
-  - [`FS_IOC_SETVERSION`](#fs_ioc_setversion)
-  - [`FS_IOC_FIEMAP`](#fs_ioc_fiemap)
-  - [`FS_IOC32_GETFLAGS`](#fs_ioc32_getflags)
-  - [`FS_IOC32_SETFLAGS`](#fs_ioc32_setflags)
-  - [`FS_IOC32_GETVERSION`](#fs_ioc32_getversion)
-  - [`FS_IOC32_SETVERSION`](#fs_ioc32_setversion)
-  - [`FS_IOC_FSGETXATTR`](#fs_ioc_fsgetxattr)
-  - [`FS_IOC_FSSETXATTR`](#fs_ioc_fssetxattr)
-  - [`FS_IOC_GETFSLABEL`](#fs_ioc_getfslabel)
-  - [`FS_IOC_SETFSLABEL`](#fs_ioc_setfslabel)
-  - [`EXT4_IOC_GETVERSION`](#ext4_ioc_getversion)
-  - [`EXT4_IOC_SETVERSION`](#ext4_ioc_setversion)
-  - [`EXT4_IOC_GETVERSION_OLD`](#ext4_ioc_getversion_old)
-  - [`EXT4_IOC_SETVERSION_OLD`](#ext4_ioc_setversion_old)
-  - [`EXT4_IOC_GETRSVSZ`](#ext4_ioc_getrsvsz)
-  - [`EXT4_IOC_SETRSVSZ`](#ext4_ioc_setrsvsz)
-  - [`EXT4_IOC_GROUP_EXTEND`](#ext4_ioc_group_extend)
-  - [`EXT4_IOC_MIGRATE`](#ext4_ioc_migrate)
-  - [`EXT4_IOC_ALLOC_DA_BLKS`](#ext4_ioc_alloc_da_blks)
-  - [`EXT4_IOC_RESIZE_FS`](#ext4_ioc_resize_fs)
-  - [`EXT4_IOC_SWAP_BOOT`](#ext4_ioc_swap_boot)
-  - [`EXT4_IOC_PRECACHE_EXTENTS`](#ext4_ioc_precache_extents)
-  - [`EXT4_IOC_CLEAR_ES_CACHE`](#ext4_ioc_clear_es_cache)
-  - [`EXT4_IOC_GETSTATE`](#ext4_ioc_getstate)
-  - [`EXT4_IOC_GET_ES_CACHE`](#ext4_ioc_get_es_cache)
-  - [`EXT4_IOC_CHECKPOINT`](#ext4_ioc_checkpoint)
-  - [`EXT4_IOC_SHUTDOWN`](#ext4_ioc_shutdown)
-  - [`EXT4_IOC32_GETVERSION`](#ext4_ioc32_getversion)
-  - [`EXT4_IOC32_SETVERSION`](#ext4_ioc32_setversion)
-  - [`EXT4_IOC32_GETRSVSZ`](#ext4_ioc32_getrsvsz)
-  - [`EXT4_IOC32_SETRSVSZ`](#ext4_ioc32_setrsvsz)
-  - [`EXT4_IOC32_GROUP_EXTEND`](#ext4_ioc32_group_extend)
-  - [`EXT4_IOC32_GETVERSION_OLD`](#ext4_ioc32_getversion_old)
-  - [`EXT4_IOC32_SETVERSION_OLD`](#ext4_ioc32_setversion_old)
-  - [`VIDIOC_SUBDEV_QUERYSTD`](#vidioc_subdev_querystd)
-  - [`AUTOFS_DEV_IOCTL_CLOSEMOUNT`](#autofs_dev_ioctl_closemount)
-  - [`LIRC_SET_SEND_CARRIER`](#lirc_set_send_carrier)
-  - [`AUTOFS_IOC_PROTOSUBVER`](#autofs_ioc_protosubver)
-  - [`PTP_SYS_OFFSET_PRECISE`](#ptp_sys_offset_precise)
-  - [`FSI_SCOM_WRITE`](#fsi_scom_write)
-  - [`ATM_GETCIRANGE`](#atm_getcirange)
-  - [`DMA_BUF_SET_NAME_B`](#dma_buf_set_name_b)
-  - [`RIO_CM_EP_GET_LIST_SIZE`](#rio_cm_ep_get_list_size)
+  - [`FS_IOC_GETFLAGS`](#fs-ioc-getflags)
+  - [`FS_IOC_SETFLAGS`](#fs-ioc-setflags)
+  - [`FS_IOC_GETVERSION`](#fs-ioc-getversion)
+  - [`FS_IOC_SETVERSION`](#fs-ioc-setversion)
+  - [`FS_IOC_FIEMAP`](#fs-ioc-fiemap)
+  - [`FS_IOC32_GETFLAGS`](#fs-ioc32-getflags)
+  - [`FS_IOC32_SETFLAGS`](#fs-ioc32-setflags)
+  - [`FS_IOC32_GETVERSION`](#fs-ioc32-getversion)
+  - [`FS_IOC32_SETVERSION`](#fs-ioc32-setversion)
+  - [`FS_IOC_FSGETXATTR`](#fs-ioc-fsgetxattr)
+  - [`FS_IOC_FSSETXATTR`](#fs-ioc-fssetxattr)
+  - [`FS_IOC_GETFSLABEL`](#fs-ioc-getfslabel)
+  - [`FS_IOC_SETFSLABEL`](#fs-ioc-setfslabel)
+  - [`EXT4_IOC_GETVERSION`](#ext4-ioc-getversion)
+  - [`EXT4_IOC_SETVERSION`](#ext4-ioc-setversion)
+  - [`EXT4_IOC_GETVERSION_OLD`](#ext4-ioc-getversion-old)
+  - [`EXT4_IOC_SETVERSION_OLD`](#ext4-ioc-setversion-old)
+  - [`EXT4_IOC_GETRSVSZ`](#ext4-ioc-getrsvsz)
+  - [`EXT4_IOC_SETRSVSZ`](#ext4-ioc-setrsvsz)
+  - [`EXT4_IOC_GROUP_EXTEND`](#ext4-ioc-group-extend)
+  - [`EXT4_IOC_MIGRATE`](#ext4-ioc-migrate)
+  - [`EXT4_IOC_ALLOC_DA_BLKS`](#ext4-ioc-alloc-da-blks)
+  - [`EXT4_IOC_RESIZE_FS`](#ext4-ioc-resize-fs)
+  - [`EXT4_IOC_SWAP_BOOT`](#ext4-ioc-swap-boot)
+  - [`EXT4_IOC_PRECACHE_EXTENTS`](#ext4-ioc-precache-extents)
+  - [`EXT4_IOC_CLEAR_ES_CACHE`](#ext4-ioc-clear-es-cache)
+  - [`EXT4_IOC_GETSTATE`](#ext4-ioc-getstate)
+  - [`EXT4_IOC_GET_ES_CACHE`](#ext4-ioc-get-es-cache)
+  - [`EXT4_IOC_CHECKPOINT`](#ext4-ioc-checkpoint)
+  - [`EXT4_IOC_SHUTDOWN`](#ext4-ioc-shutdown)
+  - [`EXT4_IOC32_GETVERSION`](#ext4-ioc32-getversion)
+  - [`EXT4_IOC32_SETVERSION`](#ext4-ioc32-setversion)
+  - [`EXT4_IOC32_GETRSVSZ`](#ext4-ioc32-getrsvsz)
+  - [`EXT4_IOC32_SETRSVSZ`](#ext4-ioc32-setrsvsz)
+  - [`EXT4_IOC32_GROUP_EXTEND`](#ext4-ioc32-group-extend)
+  - [`EXT4_IOC32_GETVERSION_OLD`](#ext4-ioc32-getversion-old)
+  - [`EXT4_IOC32_SETVERSION_OLD`](#ext4-ioc32-setversion-old)
+  - [`VIDIOC_SUBDEV_QUERYSTD`](#vidioc-subdev-querystd)
+  - [`AUTOFS_DEV_IOCTL_CLOSEMOUNT`](#autofs-dev-ioctl-closemount)
+  - [`LIRC_SET_SEND_CARRIER`](#lirc-set-send-carrier)
+  - [`AUTOFS_IOC_PROTOSUBVER`](#autofs-ioc-protosubver)
+  - [`PTP_SYS_OFFSET_PRECISE`](#ptp-sys-offset-precise)
+  - [`FSI_SCOM_WRITE`](#fsi-scom-write)
+  - [`ATM_GETCIRANGE`](#atm-getcirange)
+  - [`DMA_BUF_SET_NAME_B`](#dma-buf-set-name-b)
+  - [`RIO_CM_EP_GET_LIST_SIZE`](#rio-cm-ep-get-list-size)
   - [`TUNSETPERSIST`](#tunsetpersist)
-  - [`FS_IOC_GET_ENCRYPTION_POLICY`](#fs_ioc_get_encryption_policy)
-  - [`CEC_RECEIVE`](#cec_receive)
-  - [`MGSL_IOCGPARAMS`](#mgsl_iocgparams)
-  - [`ENI_SETMULT`](#eni_setmult)
-  - [`RIO_GET_EVENT_MASK`](#rio_get_event_mask)
-  - [`LIRC_GET_MAX_TIMEOUT`](#lirc_get_max_timeout)
-  - [`USBDEVFS_CLAIMINTERFACE`](#usbdevfs_claiminterface)
+  - [`FS_IOC_GET_ENCRYPTION_POLICY`](#fs-ioc-get-encryption-policy)
+  - [`CEC_RECEIVE`](#cec-receive)
+  - [`MGSL_IOCGPARAMS`](#mgsl-iocgparams)
+  - [`ENI_SETMULT`](#eni-setmult)
+  - [`RIO_GET_EVENT_MASK`](#rio-get-event-mask)
+  - [`LIRC_GET_MAX_TIMEOUT`](#lirc-get-max-timeout)
+  - [`USBDEVFS_CLAIMINTERFACE`](#usbdevfs-claiminterface)
   - [`CHIOMOVE`](#chiomove)
-  - [`SONYPI_IOCGBATFLAGS`](#sonypi_iocgbatflags)
-  - [`BTRFS_IOC_SYNC`](#btrfs_ioc_sync)
-  - [`VIDIOC_TRY_FMT`](#vidioc_try_fmt)
-  - [`LIRC_SET_REC_MODE`](#lirc_set_rec_mode)
-  - [`VIDIOC_DQEVENT`](#vidioc_dqevent)
-  - [`RPMSG_DESTROY_EPT_IOCTL`](#rpmsg_destroy_ept_ioctl)
-  - [`UVCIOC_CTRL_MAP`](#uvcioc_ctrl_map)
-  - [`VHOST_SET_BACKEND_FEATURES`](#vhost_set_backend_features)
-  - [`VHOST_VSOCK_SET_GUEST_CID`](#vhost_vsock_set_guest_cid)
-  - [`UI_SET_KEYBIT`](#ui_set_keybit)
-  - [`LIRC_SET_REC_TIMEOUT`](#lirc_set_rec_timeout)
-  - [`FS_IOC_GET_ENCRYPTION_KEY_STATUS`](#fs_ioc_get_encryption_key_status)
-  - [`BTRFS_IOC_TREE_SEARCH_V2`](#btrfs_ioc_tree_search_v2)
-  - [`VHOST_SET_VRING_BASE`](#vhost_set_vring_base)
-  - [`RIO_ENABLE_DOORBELL_RANGE`](#rio_enable_doorbell_range)
-  - [`VIDIOC_TRY_EXT_CTRLS`](#vidioc_try_ext_ctrls)
-  - [`LIRC_GET_REC_MODE`](#lirc_get_rec_mode)
+  - [`SONYPI_IOCGBATFLAGS`](#sonypi-iocgbatflags)
+  - [`BTRFS_IOC_SYNC`](#btrfs-ioc-sync)
+  - [`VIDIOC_TRY_FMT`](#vidioc-try-fmt)
+  - [`LIRC_SET_REC_MODE`](#lirc-set-rec-mode)
+  - [`VIDIOC_DQEVENT`](#vidioc-dqevent)
+  - [`RPMSG_DESTROY_EPT_IOCTL`](#rpmsg-destroy-ept-ioctl)
+  - [`UVCIOC_CTRL_MAP`](#uvcioc-ctrl-map)
+  - [`VHOST_SET_BACKEND_FEATURES`](#vhost-set-backend-features)
+  - [`VHOST_VSOCK_SET_GUEST_CID`](#vhost-vsock-set-guest-cid)
+  - [`UI_SET_KEYBIT`](#ui-set-keybit)
+  - [`LIRC_SET_REC_TIMEOUT`](#lirc-set-rec-timeout)
+  - [`FS_IOC_GET_ENCRYPTION_KEY_STATUS`](#fs-ioc-get-encryption-key-status)
+  - [`BTRFS_IOC_TREE_SEARCH_V2`](#btrfs-ioc-tree-search-v2)
+  - [`VHOST_SET_VRING_BASE`](#vhost-set-vring-base)
+  - [`RIO_ENABLE_DOORBELL_RANGE`](#rio-enable-doorbell-range)
+  - [`VIDIOC_TRY_EXT_CTRLS`](#vidioc-try-ext-ctrls)
+  - [`LIRC_GET_REC_MODE`](#lirc-get-rec-mode)
   - [`PPGETTIME`](#ppgettime)
-  - [`BTRFS_IOC_RM_DEV`](#btrfs_ioc_rm_dev)
-  - [`ATM_SETBACKEND`](#atm_setbackend)
-  - [`FSL_HV_IOCTL_PARTITION_START`](#fsl_hv_ioctl_partition_start)
-  - [`FBIO_WAITEVENT`](#fbio_waitevent)
-  - [`SWITCHTEC_IOCTL_PORT_TO_PFF`](#switchtec_ioctl_port_to_pff)
-  - [`NVME_IOCTL_IO_CMD`](#nvme_ioctl_io_cmd)
-  - [`IPMICTL_RECEIVE_MSG_TRUNC`](#ipmictl_receive_msg_trunc)
+  - [`BTRFS_IOC_RM_DEV`](#btrfs-ioc-rm-dev)
+  - [`ATM_SETBACKEND`](#atm-setbackend)
+  - [`FSL_HV_IOCTL_PARTITION_START`](#fsl-hv-ioctl-partition-start)
+  - [`FBIO_WAITEVENT`](#fbio-waitevent)
+  - [`SWITCHTEC_IOCTL_PORT_TO_PFF`](#switchtec-ioctl-port-to-pff)
+  - [`NVME_IOCTL_IO_CMD`](#nvme-ioctl-io-cmd)
+  - [`IPMICTL_RECEIVE_MSG_TRUNC`](#ipmictl-receive-msg-trunc)
   - [`FDTWADDLE`](#fdtwaddle)
-  - [`NVME_IOCTL_SUBMIT_IO`](#nvme_ioctl_submit_io)
-  - [`NILFS_IOCTL_SYNC`](#nilfs_ioctl_sync)
-  - [`VIDIOC_SUBDEV_S_DV_TIMINGS`](#vidioc_subdev_s_dv_timings)
-  - [`ASPEED_LPC_CTRL_IOCTL_GET_SIZE`](#aspeed_lpc_ctrl_ioctl_get_size)
-  - [`DM_DEV_STATUS`](#dm_dev_status)
-  - [`TEE_IOC_CLOSE_SESSION`](#tee_ioc_close_session)
-  - [`NS_GETPSTAT`](#ns_getpstat)
-  - [`UI_SET_PROPBIT`](#ui_set_propbit)
+  - [`NVME_IOCTL_SUBMIT_IO`](#nvme-ioctl-submit-io)
+  - [`NILFS_IOCTL_SYNC`](#nilfs-ioctl-sync)
+  - [`VIDIOC_SUBDEV_S_DV_TIMINGS`](#vidioc-subdev-s-dv-timings)
+  - [`ASPEED_LPC_CTRL_IOCTL_GET_SIZE`](#aspeed-lpc-ctrl-ioctl-get-size)
+  - [`DM_DEV_STATUS`](#dm-dev-status)
+  - [`TEE_IOC_CLOSE_SESSION`](#tee-ioc-close-session)
+  - [`NS_GETPSTAT`](#ns-getpstat)
+  - [`UI_SET_PROPBIT`](#ui-set-propbit)
   - [`TUNSETFILTEREBPF`](#tunsetfilterebpf)
-  - [`RIO_MPORT_MAINT_COMPTAG_SET`](#rio_mport_maint_comptag_set)
-  - [`AUTOFS_DEV_IOCTL_VERSION`](#autofs_dev_ioctl_version)
-  - [`WDIOC_SETOPTIONS`](#wdioc_setoptions)
-  - [`VHOST_SCSI_SET_ENDPOINT`](#vhost_scsi_set_endpoint)
-  - [`MGSL_IOCGTXIDLE`](#mgsl_iocgtxidle)
-  - [`ATM_ADDLECSADDR`](#atm_addlecsaddr)
-  - [`FSL_HV_IOCTL_GETPROP`](#fsl_hv_ioctl_getprop)
+  - [`RIO_MPORT_MAINT_COMPTAG_SET`](#rio-mport-maint-comptag-set)
+  - [`AUTOFS_DEV_IOCTL_VERSION`](#autofs-dev-ioctl-version)
+  - [`WDIOC_SETOPTIONS`](#wdioc-setoptions)
+  - [`VHOST_SCSI_SET_ENDPOINT`](#vhost-scsi-set-endpoint)
+  - [`MGSL_IOCGTXIDLE`](#mgsl-iocgtxidle)
+  - [`ATM_ADDLECSADDR`](#atm-addlecsaddr)
+  - [`FSL_HV_IOCTL_GETPROP`](#fsl-hv-ioctl-getprop)
   - [`FDGETPRM`](#fdgetprm)
   - [`HIDIOCAPPLICATION`](#hidiocapplication)
-  - [`ENI_MEMDUMP`](#eni_memdump)
-  - [`PTP_SYS_OFFSET2`](#ptp_sys_offset2)
-  - [`VIDIOC_SUBDEV_G_DV_TIMINGS`](#vidioc_subdev_g_dv_timings)
-  - [`DMA_BUF_SET_NAME_A`](#dma_buf_set_name_a)
-  - [`PTP_PIN_GETFUNC`](#ptp_pin_getfunc)
-  - [`PTP_SYS_OFFSET_EXTENDED`](#ptp_sys_offset_extended)
-  - [`DFL_FPGA_PORT_UINT_SET_IRQ`](#dfl_fpga_port_uint_set_irq)
-  - [`RTC_EPOCH_READ`](#rtc_epoch_read)
-  - [`VIDIOC_SUBDEV_S_SELECTION`](#vidioc_subdev_s_selection)
-  - [`VIDIOC_QUERY_EXT_CTRL`](#vidioc_query_ext_ctrl)
-  - [`ATM_GETLECSADDR`](#atm_getlecsaddr)
-  - [`FSL_HV_IOCTL_PARTITION_STOP`](#fsl_hv_ioctl_partition_stop)
-  - [`SONET_GETDIAG`](#sonet_getdiag)
-  - [`ATMMPC_DATA`](#atmmpc_data)
-  - [`IPMICTL_UNREGISTER_FOR_CMD_CHANS`](#ipmictl_unregister_for_cmd_chans)
+  - [`ENI_MEMDUMP`](#eni-memdump)
+  - [`PTP_SYS_OFFSET2`](#ptp-sys-offset2)
+  - [`VIDIOC_SUBDEV_G_DV_TIMINGS`](#vidioc-subdev-g-dv-timings)
+  - [`DMA_BUF_SET_NAME_A`](#dma-buf-set-name-a)
+  - [`PTP_PIN_GETFUNC`](#ptp-pin-getfunc)
+  - [`PTP_SYS_OFFSET_EXTENDED`](#ptp-sys-offset-extended)
+  - [`DFL_FPGA_PORT_UINT_SET_IRQ`](#dfl-fpga-port-uint-set-irq)
+  - [`RTC_EPOCH_READ`](#rtc-epoch-read)
+  - [`VIDIOC_SUBDEV_S_SELECTION`](#vidioc-subdev-s-selection)
+  - [`VIDIOC_QUERY_EXT_CTRL`](#vidioc-query-ext-ctrl)
+  - [`ATM_GETLECSADDR`](#atm-getlecsaddr)
+  - [`FSL_HV_IOCTL_PARTITION_STOP`](#fsl-hv-ioctl-partition-stop)
+  - [`SONET_GETDIAG`](#sonet-getdiag)
+  - [`ATMMPC_DATA`](#atmmpc-data)
+  - [`IPMICTL_UNREGISTER_FOR_CMD_CHANS`](#ipmictl-unregister-for-cmd-chans)
   - [`HIDIOCGCOLLECTIONINDEX`](#hidiocgcollectionindex)
-  - [`RPMSG_CREATE_EPT_IOCTL`](#rpmsg_create_ept_ioctl)
-  - [`GPIOHANDLE_GET_LINE_VALUES_IOCTL`](#gpiohandle_get_line_values_ioctl)
-  - [`UI_DEV_SETUP`](#ui_dev_setup)
-  - [`ISST_IF_IO_CMD`](#isst_if_io_cmd)
-  - [`RIO_MPORT_MAINT_READ_REMOTE`](#rio_mport_maint_read_remote)
-  - [`VIDIOC_OMAP3ISP_HIST_CFG`](#vidioc_omap3isp_hist_cfg)
+  - [`RPMSG_CREATE_EPT_IOCTL`](#rpmsg-create-ept-ioctl)
+  - [`GPIOHANDLE_GET_LINE_VALUES_IOCTL`](#gpiohandle-get-line-values-ioctl)
+  - [`UI_DEV_SETUP`](#ui-dev-setup)
+  - [`ISST_IF_IO_CMD`](#isst-if-io-cmd)
+  - [`RIO_MPORT_MAINT_READ_REMOTE`](#rio-mport-maint-read-remote)
+  - [`VIDIOC_OMAP3ISP_HIST_CFG`](#vidioc-omap3isp-hist-cfg)
   - [`BLKGETNRZONES`](#blkgetnrzones)
-  - [`VIDIOC_G_MODULATOR`](#vidioc_g_modulator)
-  - [`VBG_IOCTL_WRITE_CORE_DUMP`](#vbg_ioctl_write_core_dump)
-  - [`USBDEVFS_SETINTERFACE`](#usbdevfs_setinterface)
+  - [`VIDIOC_G_MODULATOR`](#vidioc-g-modulator)
+  - [`VBG_IOCTL_WRITE_CORE_DUMP`](#vbg-ioctl-write-core-dump)
+  - [`USBDEVFS_SETINTERFACE`](#usbdevfs-setinterface)
   - [`PPPIOCGCHAN`](#pppiocgchan)
   - [`EVIOCGVERSION`](#eviocgversion)
-  - [`VHOST_NET_SET_BACKEND`](#vhost_net_set_backend)
-  - [`USBDEVFS_REAPURBNDELAY`](#usbdevfs_reapurbndelay)
+  - [`VHOST_NET_SET_BACKEND`](#vhost-net-set-backend)
+  - [`USBDEVFS_REAPURBNDELAY`](#usbdevfs-reapurbndelay)
   - [`RNDZAPENTCNT`](#rndzapentcnt)
-  - [`VIDIOC_G_PARM`](#vidioc_g_parm)
+  - [`VIDIOC_G_PARM`](#vidioc-g-parm)
   - [`TUNGETDEVNETNS`](#tungetdevnetns)
-  - [`LIRC_SET_MEASURE_CARRIER_MODE`](#lirc_set_measure_carrier_mode)
-  - [`VHOST_SET_VRING_ERR`](#vhost_set_vring_err)
-  - [`VDUSE_VQ_SETUP`](#vduse_vq_setup)
-  - [`AUTOFS_IOC_SETTIMEOUT`](#autofs_ioc_settimeout)
-  - [`VIDIOC_S_FREQUENCY`](#vidioc_s_frequency)
-  - [`F2FS_IOC_SEC_TRIM_FILE`](#f2fs_ioc_sec_trim_file)
-  - [`FS_IOC_REMOVE_ENCRYPTION_KEY`](#fs_ioc_remove_encryption_key)
-  - [`WDIOC_GETPRETIMEOUT`](#wdioc_getpretimeout)
-  - [`USBDEVFS_DROP_PRIVILEGES`](#usbdevfs_drop_privileges)
-  - [`BTRFS_IOC_SNAP_CREATE_V2`](#btrfs_ioc_snap_create_v2)
-  - [`VHOST_VSOCK_SET_RUNNING`](#vhost_vsock_set_running)
-  - [`STP_SET_OPTIONS`](#stp_set_options)
-  - [`FBIO_RADEON_GET_MIRROR`](#fbio_radeon_get_mirror)
-  - [`IVTVFB_IOC_DMA_FRAME`](#ivtvfb_ioc_dma_frame)
-  - [`IPMICTL_SEND_COMMAND`](#ipmictl_send_command)
-  - [`VIDIOC_G_ENC_INDEX`](#vidioc_g_enc_index)
-  - [`DFL_FPGA_FME_PORT_PR`](#dfl_fpga_fme_port_pr)
+  - [`LIRC_SET_MEASURE_CARRIER_MODE`](#lirc-set-measure-carrier-mode)
+  - [`VHOST_SET_VRING_ERR`](#vhost-set-vring-err)
+  - [`VDUSE_VQ_SETUP`](#vduse-vq-setup)
+  - [`AUTOFS_IOC_SETTIMEOUT`](#autofs-ioc-settimeout)
+  - [`VIDIOC_S_FREQUENCY`](#vidioc-s-frequency)
+  - [`F2FS_IOC_SEC_TRIM_FILE`](#f2fs-ioc-sec-trim-file)
+  - [`FS_IOC_REMOVE_ENCRYPTION_KEY`](#fs-ioc-remove-encryption-key)
+  - [`WDIOC_GETPRETIMEOUT`](#wdioc-getpretimeout)
+  - [`USBDEVFS_DROP_PRIVILEGES`](#usbdevfs-drop-privileges)
+  - [`BTRFS_IOC_SNAP_CREATE_V2`](#btrfs-ioc-snap-create-v2)
+  - [`VHOST_VSOCK_SET_RUNNING`](#vhost-vsock-set-running)
+  - [`STP_SET_OPTIONS`](#stp-set-options)
+  - [`FBIO_RADEON_GET_MIRROR`](#fbio-radeon-get-mirror)
+  - [`IVTVFB_IOC_DMA_FRAME`](#ivtvfb-ioc-dma-frame)
+  - [`IPMICTL_SEND_COMMAND`](#ipmictl-send-command)
+  - [`VIDIOC_G_ENC_INDEX`](#vidioc-g-enc-index)
+  - [`DFL_FPGA_FME_PORT_PR`](#dfl-fpga-fme-port-pr)
   - [`CHIOSVOLTAG`](#chiosvoltag)
-  - [`ATM_SETESIF`](#atm_setesif)
-  - [`FW_CDEV_IOC_SEND_RESPONSE`](#fw_cdev_ioc_send_response)
-  - [`PMU_IOC_GET_MODEL`](#pmu_ioc_get_model)
+  - [`ATM_SETESIF`](#atm-setesif)
+  - [`FW_CDEV_IOC_SEND_RESPONSE`](#fw-cdev-ioc-send-response)
+  - [`PMU_IOC_GET_MODEL`](#pmu-ioc-get-model)
   - [`JSIOCGBTNMAP`](#jsiocgbtnmap)
-  - [`USBDEVFS_HUB_PORTINFO`](#usbdevfs_hub_portinfo)
-  - [`VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS`](#vbg_ioctl_interrupt_all_wait_for_events)
+  - [`USBDEVFS_HUB_PORTINFO`](#usbdevfs-hub-portinfo)
+  - [`VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS`](#vbg-ioctl-interrupt-all-wait-for-events)
   - [`FDCLRPRM`](#fdclrprm)
-  - [`BTRFS_IOC_SCRUB`](#btrfs_ioc_scrub)
-  - [`USBDEVFS_DISCONNECT`](#usbdevfs_disconnect)
+  - [`BTRFS_IOC_SCRUB`](#btrfs-ioc-scrub)
+  - [`USBDEVFS_DISCONNECT`](#usbdevfs-disconnect)
   - [`TUNSETVNETBE`](#tunsetvnetbe)
-  - [`ATMTCP_REMOVE`](#atmtcp_remove)
-  - [`VHOST_VDPA_GET_CONFIG`](#vhost_vdpa_get_config)
+  - [`ATMTCP_REMOVE`](#atmtcp-remove)
+  - [`VHOST_VDPA_GET_CONFIG`](#vhost-vdpa-get-config)
   - [`PPPIOCGNPMODE`](#pppiocgnpmode)
   - [`FDGETDRVPRM`](#fdgetdrvprm)
   - [`TUNSETVNETLE`](#tunsetvnetle)
-  - [`PHN_SETREG`](#phn_setreg)
+  - [`PHN_SETREG`](#phn-setreg)
   - [`PPPIOCDETACH`](#pppiocdetach)
-  - [`MMTIMER_GETRES`](#mmtimer_getres)
-  - [`VIDIOC_SUBDEV_ENUMSTD`](#vidioc_subdev_enumstd)
+  - [`MMTIMER_GETRES`](#mmtimer-getres)
+  - [`VIDIOC_SUBDEV_ENUMSTD`](#vidioc-subdev-enumstd)
   - [`PPGETFLAGS`](#ppgetflags)
-  - [`VDUSE_DEV_GET_FEATURES`](#vduse_dev_get_features)
-  - [`CAPI_MANUFACTURER_CMD`](#capi_manufacturer_cmd)
-  - [`VIDIOC_G_TUNER`](#vidioc_g_tuner)
-  - [`DM_TABLE_STATUS`](#dm_table_status)
-  - [`DM_DEV_ARM_POLL`](#dm_dev_arm_poll)
-  - [`NE_CREATE_VM`](#ne_create_vm)
-  - [`MEDIA_IOC_ENUM_LINKS`](#media_ioc_enum_links)
-  - [`F2FS_IOC_PRECACHE_EXTENTS`](#f2fs_ioc_precache_extents)
-  - [`DFL_FPGA_PORT_DMA_MAP`](#dfl_fpga_port_dma_map)
-  - [`MGSL_IOCGXCTRL`](#mgsl_iocgxctrl)
-  - [`FW_CDEV_IOC_SEND_REQUEST`](#fw_cdev_ioc_send_request)
-  - [`SONYPI_IOCGBLUE`](#sonypi_iocgblue)
-  - [`F2FS_IOC_DECOMPRESS_FILE`](#f2fs_ioc_decompress_file)
+  - [`VDUSE_DEV_GET_FEATURES`](#vduse-dev-get-features)
+  - [`CAPI_MANUFACTURER_CMD`](#capi-manufacturer-cmd)
+  - [`VIDIOC_G_TUNER`](#vidioc-g-tuner)
+  - [`DM_TABLE_STATUS`](#dm-table-status)
+  - [`DM_DEV_ARM_POLL`](#dm-dev-arm-poll)
+  - [`NE_CREATE_VM`](#ne-create-vm)
+  - [`MEDIA_IOC_ENUM_LINKS`](#media-ioc-enum-links)
+  - [`F2FS_IOC_PRECACHE_EXTENTS`](#f2fs-ioc-precache-extents)
+  - [`DFL_FPGA_PORT_DMA_MAP`](#dfl-fpga-port-dma-map)
+  - [`MGSL_IOCGXCTRL`](#mgsl-iocgxctrl)
+  - [`FW_CDEV_IOC_SEND_REQUEST`](#fw-cdev-ioc-send-request)
+  - [`SONYPI_IOCGBLUE`](#sonypi-iocgblue)
+  - [`F2FS_IOC_DECOMPRESS_FILE`](#f2fs-ioc-decompress-file)
   - [`I2OHTML`](#i2ohtml)
-  - [`VFIO_GET_API_VERSION`](#vfio_get_api_version)
-  - [`IDT77105_GETSTATZ`](#idt77105_getstatz)
+  - [`VFIO_GET_API_VERSION`](#vfio-get-api-version)
+  - [`IDT77105_GETSTATZ`](#idt77105-getstatz)
   - [`I2OPARMSET`](#i2oparmset)
-  - [`TEE_IOC_CANCEL`](#tee_ioc_cancel)
-  - [`PTP_SYS_OFFSET_PRECISE2`](#ptp_sys_offset_precise2)
-  - [`DFL_FPGA_PORT_RESET`](#dfl_fpga_port_reset)
+  - [`TEE_IOC_CANCEL`](#tee-ioc-cancel)
+  - [`PTP_SYS_OFFSET_PRECISE2`](#ptp-sys-offset-precise2)
+  - [`DFL_FPGA_PORT_RESET`](#dfl-fpga-port-reset)
   - [`PPPIOCGASYNCMAP`](#pppiocgasyncmap)
-  - [`EVIOCGKEYCODE_V2`](#eviocgkeycode_v2)
-  - [`DM_DEV_SET_GEOMETRY`](#dm_dev_set_geometry)
+  - [`EVIOCGKEYCODE_V2`](#eviocgkeycode-v2)
+  - [`DM_DEV_SET_GEOMETRY`](#dm-dev-set-geometry)
   - [`HIDIOCSUSAGE`](#hidiocsusage)
-  - [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE`](#fw_cdev_ioc_deallocate_iso_resource_once)
-  - [`PTP_EXTTS_REQUEST`](#ptp_extts_request)
-  - [`SWITCHTEC_IOCTL_EVENT_CTL`](#switchtec_ioctl_event_ctl)
-  - [`WDIOC_SETPRETIMEOUT`](#wdioc_setpretimeout)
-  - [`VHOST_SCSI_CLEAR_ENDPOINT`](#vhost_scsi_clear_endpoint)
+  - [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE`](#fw-cdev-ioc-deallocate-iso-resource-once)
+  - [`PTP_EXTTS_REQUEST`](#ptp-extts-request)
+  - [`SWITCHTEC_IOCTL_EVENT_CTL`](#switchtec-ioctl-event-ctl)
+  - [`WDIOC_SETPRETIMEOUT`](#wdioc-setpretimeout)
+  - [`VHOST_SCSI_CLEAR_ENDPOINT`](#vhost-scsi-clear-endpoint)
   - [`JSIOCGAXES`](#jsiocgaxes)
   - [`HIDIOCSFLAG`](#hidiocsflag)
-  - [`PTP_PEROUT_REQUEST2`](#ptp_perout_request2)
+  - [`PTP_PEROUT_REQUEST2`](#ptp-perout-request2)
   - [`PPWDATA`](#ppwdata)
-  - [`PTP_CLOCK_GETCAPS`](#ptp_clock_getcaps)
+  - [`PTP_CLOCK_GETCAPS`](#ptp-clock-getcaps)
   - [`FDGETMAXERRS`](#fdgetmaxerrs)
   - [`TUNSETQUEUE`](#tunsetqueue)
-  - [`PTP_ENABLE_PPS`](#ptp_enable_pps)
+  - [`PTP_ENABLE_PPS`](#ptp-enable-pps)
   - [`SIOCSIFATMTCP`](#siocsifatmtcp)
-  - [`CEC_ADAP_G_LOG_ADDRS`](#cec_adap_g_log_addrs)
-  - [`ND_IOCTL_ARS_CAP`](#nd_ioctl_ars_cap)
-  - [`NBD_SET_BLKSIZE`](#nbd_set_blksize)
-  - [`NBD_SET_TIMEOUT`](#nbd_set_timeout)
-  - [`VHOST_SCSI_GET_ABI_VERSION`](#vhost_scsi_get_abi_version)
-  - [`RIO_UNMAP_INBOUND`](#rio_unmap_inbound)
-  - [`ATM_QUERYLOOP`](#atm_queryloop)
-  - [`DFL_FPGA_GET_API_VERSION`](#dfl_fpga_get_api_version)
-  - [`USBDEVFS_WAIT_FOR_RESUME`](#usbdevfs_wait_for_resume)
-  - [`FBIO_CURSOR`](#fbio_cursor)
+  - [`CEC_ADAP_G_LOG_ADDRS`](#cec-adap-g-log-addrs)
+  - [`ND_IOCTL_ARS_CAP`](#nd-ioctl-ars-cap)
+  - [`NBD_SET_BLKSIZE`](#nbd-set-blksize)
+  - [`NBD_SET_TIMEOUT`](#nbd-set-timeout)
+  - [`VHOST_SCSI_GET_ABI_VERSION`](#vhost-scsi-get-abi-version)
+  - [`RIO_UNMAP_INBOUND`](#rio-unmap-inbound)
+  - [`ATM_QUERYLOOP`](#atm-queryloop)
+  - [`DFL_FPGA_GET_API_VERSION`](#dfl-fpga-get-api-version)
+  - [`USBDEVFS_WAIT_FOR_RESUME`](#usbdevfs-wait-for-resume)
+  - [`FBIO_CURSOR`](#fbio-cursor)
   - [`RNDCLEARPOOL`](#rndclearpool)
-  - [`VIDIOC_QUERYSTD`](#vidioc_querystd)
-  - [`DMA_BUF_IOCTL_SYNC`](#dma_buf_ioctl_sync)
-  - [`SCIF_RECV`](#scif_recv)
-  - [`PTP_PIN_GETFUNC2`](#ptp_pin_getfunc2)
-  - [`FW_CDEV_IOC_ALLOCATE`](#fw_cdev_ioc_allocate)
-  - [`CEC_ADAP_G_CAPS`](#cec_adap_g_caps)
-  - [`VIDIOC_G_FBUF`](#vidioc_g_fbuf)
-  - [`PTP_ENABLE_PPS2`](#ptp_enable_pps2)
-  - [`PCITEST_CLEAR_IRQ`](#pcitest_clear_irq)
-  - [`IPMICTL_SET_GETS_EVENTS_CMD`](#ipmictl_set_gets_events_cmd)
-  - [`BTRFS_IOC_DEVICES_READY`](#btrfs_ioc_devices_ready)
+  - [`VIDIOC_QUERYSTD`](#vidioc-querystd)
+  - [`DMA_BUF_IOCTL_SYNC`](#dma-buf-ioctl-sync)
+  - [`SCIF_RECV`](#scif-recv)
+  - [`PTP_PIN_GETFUNC2`](#ptp-pin-getfunc2)
+  - [`FW_CDEV_IOC_ALLOCATE`](#fw-cdev-ioc-allocate)
+  - [`CEC_ADAP_G_CAPS`](#cec-adap-g-caps)
+  - [`VIDIOC_G_FBUF`](#vidioc-g-fbuf)
+  - [`PTP_ENABLE_PPS2`](#ptp-enable-pps2)
+  - [`PCITEST_CLEAR_IRQ`](#pcitest-clear-irq)
+  - [`IPMICTL_SET_GETS_EVENTS_CMD`](#ipmictl-set-gets-events-cmd)
+  - [`BTRFS_IOC_DEVICES_READY`](#btrfs-ioc-devices-ready)
   - [`JSIOCGAXMAP`](#jsiocgaxmap)
-  - [`FW_CDEV_IOC_GET_CYCLE_TIMER`](#fw_cdev_ioc_get_cycle_timer)
-  - [`FW_CDEV_IOC_SET_ISO_CHANNELS`](#fw_cdev_ioc_set_iso_channels)
-  - [`RTC_WIE_OFF`](#rtc_wie_off)
+  - [`FW_CDEV_IOC_GET_CYCLE_TIMER`](#fw-cdev-ioc-get-cycle-timer)
+  - [`FW_CDEV_IOC_SET_ISO_CHANNELS`](#fw-cdev-ioc-set-iso-channels)
+  - [`RTC_WIE_OFF`](#rtc-wie-off)
   - [`PPGETMODE`](#ppgetmode)
-  - [`VIDIOC_DBG_G_REGISTER`](#vidioc_dbg_g_register)
-  - [`PTP_SYS_OFFSET`](#ptp_sys_offset)
-  - [`BTRFS_IOC_SPACE_INFO`](#btrfs_ioc_space_info)
-  - [`VIDIOC_SUBDEV_ENUM_FRAME_SIZE`](#vidioc_subdev_enum_frame_size)
-  - [`ND_IOCTL_VENDOR`](#nd_ioctl_vendor)
-  - [`SCIF_VREADFROM`](#scif_vreadfrom)
-  - [`BTRFS_IOC_TRANS_START`](#btrfs_ioc_trans_start)
-  - [`INOTIFY_IOC_SETNEXTWD`](#inotify_ioc_setnextwd)
-  - [`SNAPSHOT_GET_IMAGE_SIZE`](#snapshot_get_image_size)
+  - [`VIDIOC_DBG_G_REGISTER`](#vidioc-dbg-g-register)
+  - [`PTP_SYS_OFFSET`](#ptp-sys-offset)
+  - [`BTRFS_IOC_SPACE_INFO`](#btrfs-ioc-space-info)
+  - [`VIDIOC_SUBDEV_ENUM_FRAME_SIZE`](#vidioc-subdev-enum-frame-size)
+  - [`ND_IOCTL_VENDOR`](#nd-ioctl-vendor)
+  - [`SCIF_VREADFROM`](#scif-vreadfrom)
+  - [`BTRFS_IOC_TRANS_START`](#btrfs-ioc-trans-start)
+  - [`INOTIFY_IOC_SETNEXTWD`](#inotify-ioc-setnextwd)
+  - [`SNAPSHOT_GET_IMAGE_SIZE`](#snapshot-get-image-size)
   - [`TUNDETACHFILTER`](#tundetachfilter)
-  - [`ND_IOCTL_CLEAR_ERROR`](#nd_ioctl_clear_error)
-  - [`IOC_PR_CLEAR`](#ioc_pr_clear)
-  - [`SCIF_READFROM`](#scif_readfrom)
+  - [`ND_IOCTL_CLEAR_ERROR`](#nd-ioctl-clear-error)
+  - [`IOC_PR_CLEAR`](#ioc-pr-clear)
+  - [`SCIF_READFROM`](#scif-readfrom)
   - [`PPPIOCGDEBUG`](#pppiocgdebug)
   - [`BLKGETZONESZ`](#blkgetzonesz)
   - [`HIDIOCGUSAGES`](#hidiocgusages)
-  - [`SONYPI_IOCGTEMP`](#sonypi_iocgtemp)
-  - [`UI_SET_MSCBIT`](#ui_set_mscbit)
-  - [`APM_IOC_SUSPEND`](#apm_ioc_suspend)
-  - [`BTRFS_IOC_TREE_SEARCH`](#btrfs_ioc_tree_search)
-  - [`RTC_PLL_GET`](#rtc_pll_get)
-  - [`RIO_CM_EP_GET_LIST`](#rio_cm_ep_get_list)
-  - [`USBDEVFS_DISCSIGNAL`](#usbdevfs_discsignal)
-  - [`LIRC_GET_MIN_TIMEOUT`](#lirc_get_min_timeout)
-  - [`SWITCHTEC_IOCTL_EVENT_SUMMARY_LEGACY`](#switchtec_ioctl_event_summary_legacy)
-  - [`DM_TARGET_MSG`](#dm_target_msg)
-  - [`SONYPI_IOCGBAT1REM`](#sonypi_iocgbat1rem)
+  - [`SONYPI_IOCGTEMP`](#sonypi-iocgtemp)
+  - [`UI_SET_MSCBIT`](#ui-set-mscbit)
+  - [`APM_IOC_SUSPEND`](#apm-ioc-suspend)
+  - [`BTRFS_IOC_TREE_SEARCH`](#btrfs-ioc-tree-search)
+  - [`RTC_PLL_GET`](#rtc-pll-get)
+  - [`RIO_CM_EP_GET_LIST`](#rio-cm-ep-get-list)
+  - [`USBDEVFS_DISCSIGNAL`](#usbdevfs-discsignal)
+  - [`LIRC_GET_MIN_TIMEOUT`](#lirc-get-min-timeout)
+  - [`SWITCHTEC_IOCTL_EVENT_SUMMARY_LEGACY`](#switchtec-ioctl-event-summary-legacy)
+  - [`DM_TARGET_MSG`](#dm-target-msg)
+  - [`SONYPI_IOCGBAT1REM`](#sonypi-iocgbat1rem)
   - [`EVIOCSFF`](#eviocsff)
   - [`TUNSETGROUP`](#tunsetgroup)
   - [`EVIOCGKEYCODE`](#eviocgkeycode)
-  - [`KCOV_REMOTE_ENABLE`](#kcov_remote_enable)
-  - [`ND_IOCTL_GET_CONFIG_SIZE`](#nd_ioctl_get_config_size)
+  - [`KCOV_REMOTE_ENABLE`](#kcov-remote-enable)
+  - [`ND_IOCTL_GET_CONFIG_SIZE`](#nd-ioctl-get-config-size)
   - [`FDEJECT`](#fdeject)
   - [`TUNSETOFFLOAD`](#tunsetoffload)
   - [`PPPIOCCONNECT`](#pppiocconnect)
-  - [`ATM_ADDADDR`](#atm_addaddr)
-  - [`VDUSE_DEV_INJECT_CONFIG_IRQ`](#vduse_dev_inject_config_irq)
-  - [`AUTOFS_DEV_IOCTL_ASKUMOUNT`](#autofs_dev_ioctl_askumount)
-  - [`VHOST_VDPA_GET_STATUS`](#vhost_vdpa_get_status)
-  - [`CCISS_PASSTHRU`](#cciss_passthru)
-  - [`MGSL_IOCCLRMODCOUNT`](#mgsl_iocclrmodcount)
-  - [`TEE_IOC_SUPPL_SEND`](#tee_ioc_suppl_send)
-  - [`ATMARPD_CTRL`](#atmarpd_ctrl)
-  - [`UI_ABS_SETUP`](#ui_abs_setup)
-  - [`UI_DEV_DESTROY`](#ui_dev_destroy)
-  - [`BTRFS_IOC_QUOTA_CTL`](#btrfs_ioc_quota_ctl)
-  - [`RTC_AIE_ON`](#rtc_aie_on)
-  - [`AUTOFS_IOC_EXPIRE`](#autofs_ioc_expire)
+  - [`ATM_ADDADDR`](#atm-addaddr)
+  - [`VDUSE_DEV_INJECT_CONFIG_IRQ`](#vduse-dev-inject-config-irq)
+  - [`AUTOFS_DEV_IOCTL_ASKUMOUNT`](#autofs-dev-ioctl-askumount)
+  - [`VHOST_VDPA_GET_STATUS`](#vhost-vdpa-get-status)
+  - [`CCISS_PASSTHRU`](#cciss-passthru)
+  - [`MGSL_IOCCLRMODCOUNT`](#mgsl-iocclrmodcount)
+  - [`TEE_IOC_SUPPL_SEND`](#tee-ioc-suppl-send)
+  - [`ATMARPD_CTRL`](#atmarpd-ctrl)
+  - [`UI_ABS_SETUP`](#ui-abs-setup)
+  - [`UI_DEV_DESTROY`](#ui-dev-destroy)
+  - [`BTRFS_IOC_QUOTA_CTL`](#btrfs-ioc-quota-ctl)
+  - [`RTC_AIE_ON`](#rtc-aie-on)
+  - [`AUTOFS_IOC_EXPIRE`](#autofs-ioc-expire)
   - [`PPPIOCSDEBUG`](#pppiocsdebug)
-  - [`GPIO_V2_LINE_SET_VALUES_IOCTL`](#gpio_v2_line_set_values_ioctl)
+  - [`GPIO_V2_LINE_SET_VALUES_IOCTL`](#gpio-v2-line-set-values-ioctl)
   - [`PPPIOCSMRU`](#pppiocsmru)
-  - [`CCISS_DEREGDISK`](#cciss_deregdisk)
-  - [`UI_DEV_CREATE`](#ui_dev_create)
-  - [`FUSE_DEV_IOC_CLONE`](#fuse_dev_ioc_clone)
-  - [`BTRFS_IOC_START_SYNC`](#btrfs_ioc_start_sync)
-  - [`NILFS_IOCTL_DELETE_CHECKPOINT`](#nilfs_ioctl_delete_checkpoint)
-  - [`SNAPSHOT_AVAIL_SWAP_SIZE`](#snapshot_avail_swap_size)
-  - [`DM_TABLE_CLEAR`](#dm_table_clear)
-  - [`CCISS_GETINTINFO`](#cciss_getintinfo)
+  - [`CCISS_DEREGDISK`](#cciss-deregdisk)
+  - [`UI_DEV_CREATE`](#ui-dev-create)
+  - [`FUSE_DEV_IOC_CLONE`](#fuse-dev-ioc-clone)
+  - [`BTRFS_IOC_START_SYNC`](#btrfs-ioc-start-sync)
+  - [`NILFS_IOCTL_DELETE_CHECKPOINT`](#nilfs-ioctl-delete-checkpoint)
+  - [`SNAPSHOT_AVAIL_SWAP_SIZE`](#snapshot-avail-swap-size)
+  - [`DM_TABLE_CLEAR`](#dm-table-clear)
+  - [`CCISS_GETINTINFO`](#cciss-getintinfo)
   - [`PPPIOCSASYNCMAP`](#pppiocsasyncmap)
   - [`I2OEVTGET`](#i2oevtget)
-  - [`NVME_IOCTL_RESET`](#nvme_ioctl_reset)
+  - [`NVME_IOCTL_RESET`](#nvme-ioctl-reset)
   - [`PPYIELD`](#ppyield)
-  - [`NVME_IOCTL_IO64_CMD`](#nvme_ioctl_io64_cmd)
+  - [`NVME_IOCTL_IO64_CMD`](#nvme-ioctl-io64-cmd)
   - [`TUNSETCARRIER`](#tunsetcarrier)
-  - [`DM_DEV_WAIT`](#dm_dev_wait)
-  - [`RTC_WIE_ON`](#rtc_wie_on)
-  - [`MEDIA_IOC_DEVICE_INFO`](#media_ioc_device_info)
-  - [`RIO_CM_CHAN_CREATE`](#rio_cm_chan_create)
-  - [`MGSL_IOCSPARAMS`](#mgsl_iocsparams)
-  - [`RTC_SET_TIME`](#rtc_set_time)
-  - [`VHOST_RESET_OWNER`](#vhost_reset_owner)
-  - [`IOC_OPAL_PSID_REVERT_TPR`](#ioc_opal_psid_revert_tpr)
-  - [`AUTOFS_DEV_IOCTL_OPENMOUNT`](#autofs_dev_ioctl_openmount)
-  - [`UDF_GETEABLOCK`](#udf_geteablock)
-  - [`VFIO_IOMMU_MAP_DMA`](#vfio_iommu_map_dma)
-  - [`VIDIOC_SUBSCRIBE_EVENT`](#vidioc_subscribe_event)
+  - [`DM_DEV_WAIT`](#dm-dev-wait)
+  - [`RTC_WIE_ON`](#rtc-wie-on)
+  - [`MEDIA_IOC_DEVICE_INFO`](#media-ioc-device-info)
+  - [`RIO_CM_CHAN_CREATE`](#rio-cm-chan-create)
+  - [`MGSL_IOCSPARAMS`](#mgsl-iocsparams)
+  - [`RTC_SET_TIME`](#rtc-set-time)
+  - [`VHOST_RESET_OWNER`](#vhost-reset-owner)
+  - [`IOC_OPAL_PSID_REVERT_TPR`](#ioc-opal-psid-revert-tpr)
+  - [`AUTOFS_DEV_IOCTL_OPENMOUNT`](#autofs-dev-ioctl-openmount)
+  - [`UDF_GETEABLOCK`](#udf-geteablock)
+  - [`VFIO_IOMMU_MAP_DMA`](#vfio-iommu-map-dma)
+  - [`VIDIOC_SUBSCRIBE_EVENT`](#vidioc-subscribe-event)
   - [`HIDIOCGFLAG`](#hidiocgflag)
   - [`HIDIOCGUCODE`](#hidiocgucode)
-  - [`VIDIOC_OMAP3ISP_AF_CFG`](#vidioc_omap3isp_af_cfg)
-  - [`DM_REMOVE_ALL`](#dm_remove_all)
-  - [`ASPEED_LPC_CTRL_IOCTL_MAP`](#aspeed_lpc_ctrl_ioctl_map)
-  - [`CCISS_GETFIRMVER`](#cciss_getfirmver)
-  - [`ND_IOCTL_ARS_START`](#nd_ioctl_ars_start)
+  - [`VIDIOC_OMAP3ISP_AF_CFG`](#vidioc-omap3isp-af-cfg)
+  - [`DM_REMOVE_ALL`](#dm-remove-all)
+  - [`ASPEED_LPC_CTRL_IOCTL_MAP`](#aspeed-lpc-ctrl-ioctl-map)
+  - [`CCISS_GETFIRMVER`](#cciss-getfirmver)
+  - [`ND_IOCTL_ARS_START`](#nd-ioctl-ars-start)
   - [`PPPIOCSMRRU`](#pppiocsmrru)
-  - [`CEC_ADAP_S_LOG_ADDRS`](#cec_adap_s_log_addrs)
-  - [`RPROC_GET_SHUTDOWN_ON_RELEASE`](#rproc_get_shutdown_on_release)
-  - [`DMA_HEAP_IOCTL_ALLOC`](#dma_heap_ioctl_alloc)
+  - [`CEC_ADAP_S_LOG_ADDRS`](#cec-adap-s-log-addrs)
+  - [`RPROC_GET_SHUTDOWN_ON_RELEASE`](#rproc-get-shutdown-on-release)
+  - [`DMA_HEAP_IOCTL_ALLOC`](#dma-heap-ioctl-alloc)
   - [`PPSETTIME`](#ppsettime)
-  - [`RTC_ALM_READ`](#rtc_alm_read)
-  - [`VDUSE_SET_API_VERSION`](#vduse_set_api_version)
-  - [`RIO_MPORT_MAINT_WRITE_REMOTE`](#rio_mport_maint_write_remote)
-  - [`VIDIOC_SUBDEV_S_CROP`](#vidioc_subdev_s_crop)
-  - [`USBDEVFS_CONNECT`](#usbdevfs_connect)
-  - [`SYNC_IOC_FILE_INFO`](#sync_ioc_file_info)
-  - [`ATMARP_MKIP`](#atmarp_mkip)
-  - [`VFIO_IOMMU_SPAPR_TCE_GET_INFO`](#vfio_iommu_spapr_tce_get_info)
-  - [`CCISS_GETHEARTBEAT`](#cciss_getheartbeat)
-  - [`ATM_RSTADDR`](#atm_rstaddr)
-  - [`NBD_SET_SIZE`](#nbd_set_size)
-  - [`UDF_GETVOLIDENT`](#udf_getvolident)
-  - [`GPIO_V2_LINE_GET_VALUES_IOCTL`](#gpio_v2_line_get_values_ioctl)
-  - [`MGSL_IOCSTXIDLE`](#mgsl_iocstxidle)
-  - [`FSL_HV_IOCTL_SETPROP`](#fsl_hv_ioctl_setprop)
-  - [`BTRFS_IOC_GET_DEV_STATS`](#btrfs_ioc_get_dev_stats)
+  - [`RTC_ALM_READ`](#rtc-alm-read)
+  - [`VDUSE_SET_API_VERSION`](#vduse-set-api-version)
+  - [`RIO_MPORT_MAINT_WRITE_REMOTE`](#rio-mport-maint-write-remote)
+  - [`VIDIOC_SUBDEV_S_CROP`](#vidioc-subdev-s-crop)
+  - [`USBDEVFS_CONNECT`](#usbdevfs-connect)
+  - [`SYNC_IOC_FILE_INFO`](#sync-ioc-file-info)
+  - [`ATMARP_MKIP`](#atmarp-mkip)
+  - [`VFIO_IOMMU_SPAPR_TCE_GET_INFO`](#vfio-iommu-spapr-tce-get-info)
+  - [`CCISS_GETHEARTBEAT`](#cciss-getheartbeat)
+  - [`ATM_RSTADDR`](#atm-rstaddr)
+  - [`NBD_SET_SIZE`](#nbd-set-size)
+  - [`UDF_GETVOLIDENT`](#udf-getvolident)
+  - [`GPIO_V2_LINE_GET_VALUES_IOCTL`](#gpio-v2-line-get-values-ioctl)
+  - [`MGSL_IOCSTXIDLE`](#mgsl-iocstxidle)
+  - [`FSL_HV_IOCTL_SETPROP`](#fsl-hv-ioctl-setprop)
+  - [`BTRFS_IOC_GET_DEV_STATS`](#btrfs-ioc-get-dev-stats)
   - [`PPRSTATUS`](#pprstatus)
-  - [`MGSL_IOCTXENABLE`](#mgsl_ioctxenable)
-  - [`UDF_GETEASIZE`](#udf_geteasize)
-  - [`NVME_IOCTL_ADMIN64_CMD`](#nvme_ioctl_admin64_cmd)
-  - [`VHOST_SET_OWNER`](#vhost_set_owner)
-  - [`RIO_ALLOC_DMA`](#rio_alloc_dma)
-  - [`RIO_CM_CHAN_ACCEPT`](#rio_cm_chan_accept)
+  - [`MGSL_IOCTXENABLE`](#mgsl-ioctxenable)
+  - [`UDF_GETEASIZE`](#udf-geteasize)
+  - [`NVME_IOCTL_ADMIN64_CMD`](#nvme-ioctl-admin64-cmd)
+  - [`VHOST_SET_OWNER`](#vhost-set-owner)
+  - [`RIO_ALLOC_DMA`](#rio-alloc-dma)
+  - [`RIO_CM_CHAN_ACCEPT`](#rio-cm-chan-accept)
   - [`I2OHRTGET`](#i2ohrtget)
-  - [`ATM_SETCIRANGE`](#atm_setcirange)
-  - [`HPET_IE_ON`](#hpet_ie_on)
-  - [`PERF_EVENT_IOC_ID`](#perf_event_ioc_id)
+  - [`ATM_SETCIRANGE`](#atm-setcirange)
+  - [`HPET_IE_ON`](#hpet-ie-on)
+  - [`PERF_EVENT_IOC_ID`](#perf-event-ioc-id)
   - [`TUNSETSNDBUF`](#tunsetsndbuf)
-  - [`PTP_PIN_SETFUNC`](#ptp_pin_setfunc)
+  - [`PTP_PIN_SETFUNC`](#ptp-pin-setfunc)
   - [`PPPIOCDISCONN`](#pppiocdisconn)
-  - [`VIDIOC_QUERYCTRL`](#vidioc_queryctrl)
+  - [`VIDIOC_QUERYCTRL`](#vidioc-queryctrl)
   - [`PPEXCL`](#ppexcl)
-  - [`PCITEST_MSI`](#pcitest_msi)
+  - [`PCITEST_MSI`](#pcitest-msi)
   - [`FDWERRORCLR`](#fdwerrorclr)
-  - [`AUTOFS_IOC_FAIL`](#autofs_ioc_fail)
-  - [`USBDEVFS_IOCTL`](#usbdevfs_ioctl)
-  - [`VIDIOC_S_STD`](#vidioc_s_std)
-  - [`F2FS_IOC_RESIZE_FS`](#f2fs_ioc_resize_fs)
-  - [`SONET_SETDIAG`](#sonet_setdiag)
-  - [`BTRFS_IOC_DEFRAG`](#btrfs_ioc_defrag)
-  - [`CCISS_GETDRIVVER`](#cciss_getdrivver)
-  - [`IPMICTL_GET_TIMING_PARMS_CMD`](#ipmictl_get_timing_parms_cmd)
-  - [`HPET_IRQFREQ`](#hpet_irqfreq)
-  - [`ATM_GETESI`](#atm_getesi)
-  - [`CCISS_GETLUNINFO`](#cciss_getluninfo)
-  - [`AUTOFS_DEV_IOCTL_ISMOUNTPOINT`](#autofs_dev_ioctl_ismountpoint)
-  - [`TEE_IOC_SHM_ALLOC`](#tee_ioc_shm_alloc)
-  - [`PERF_EVENT_IOC_SET_BPF`](#perf_event_ioc_set_bpf)
-  - [`UDMABUF_CREATE_LIST`](#udmabuf_create_list)
-  - [`VHOST_SET_LOG_BASE`](#vhost_set_log_base)
-  - [`ZATM_GETPOOL`](#zatm_getpool)
-  - [`BR2684_SETFILT`](#br2684_setfilt)
+  - [`AUTOFS_IOC_FAIL`](#autofs-ioc-fail)
+  - [`USBDEVFS_IOCTL`](#usbdevfs-ioctl)
+  - [`VIDIOC_S_STD`](#vidioc-s-std)
+  - [`F2FS_IOC_RESIZE_FS`](#f2fs-ioc-resize-fs)
+  - [`SONET_SETDIAG`](#sonet-setdiag)
+  - [`BTRFS_IOC_DEFRAG`](#btrfs-ioc-defrag)
+  - [`CCISS_GETDRIVVER`](#cciss-getdrivver)
+  - [`IPMICTL_GET_TIMING_PARMS_CMD`](#ipmictl-get-timing-parms-cmd)
+  - [`HPET_IRQFREQ`](#hpet-irqfreq)
+  - [`ATM_GETESI`](#atm-getesi)
+  - [`CCISS_GETLUNINFO`](#cciss-getluninfo)
+  - [`AUTOFS_DEV_IOCTL_ISMOUNTPOINT`](#autofs-dev-ioctl-ismountpoint)
+  - [`TEE_IOC_SHM_ALLOC`](#tee-ioc-shm-alloc)
+  - [`PERF_EVENT_IOC_SET_BPF`](#perf-event-ioc-set-bpf)
+  - [`UDMABUF_CREATE_LIST`](#udmabuf-create-list)
+  - [`VHOST_SET_LOG_BASE`](#vhost-set-log-base)
+  - [`ZATM_GETPOOL`](#zatm-getpool)
+  - [`BR2684_SETFILT`](#br2684-setfilt)
   - [`RNDGETPOOL`](#rndgetpool)
-  - [`PPS_GETPARAMS`](#pps_getparams)
-  - [`IOC_PR_RESERVE`](#ioc_pr_reserve)
-  - [`VIDIOC_TRY_DECODER_CMD`](#vidioc_try_decoder_cmd)
-  - [`RIO_CM_CHAN_CLOSE`](#rio_cm_chan_close)
-  - [`VIDIOC_DV_TIMINGS_CAP`](#vidioc_dv_timings_cap)
-  - [`IOCTL_MEI_CONNECT_CLIENT_VTAG`](#ioctl_mei_connect_client_vtag)
-  - [`PMU_IOC_GET_BACKLIGHT`](#pmu_ioc_get_backlight)
-  - [`USBDEVFS_GET_CAPABILITIES`](#usbdevfs_get_capabilities)
-  - [`SCIF_WRITETO`](#scif_writeto)
-  - [`UDF_RELOCATE_BLOCKS`](#udf_relocate_blocks)
-  - [`FSL_HV_IOCTL_PARTITION_RESTART`](#fsl_hv_ioctl_partition_restart)
-  - [`CCISS_REGNEWD`](#cciss_regnewd)
-  - [`FAT_IOCTL_SET_ATTRIBUTES`](#fat_ioctl_set_attributes)
-  - [`VIDIOC_CREATE_BUFS`](#vidioc_create_bufs)
-  - [`CAPI_GET_VERSION`](#capi_get_version)
-  - [`SWITCHTEC_IOCTL_EVENT_SUMMARY`](#switchtec_ioctl_event_summary)
-  - [`VFIO_EEH_PE_OP`](#vfio_eeh_pe_op)
-  - [`FW_CDEV_IOC_CREATE_ISO_CONTEXT`](#fw_cdev_ioc_create_iso_context)
-  - [`F2FS_IOC_RELEASE_COMPRESS_BLOCKS`](#f2fs_ioc_release_compress_blocks)
-  - [`NBD_SET_SIZE_BLOCKS`](#nbd_set_size_blocks)
-  - [`IPMI_BMC_IOCTL_SET_SMS_ATN`](#ipmi_bmc_ioctl_set_sms_atn)
-  - [`ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG`](#aspeed_p2a_ctrl_ioctl_get_memory_config)
-  - [`VIDIOC_S_AUDOUT`](#vidioc_s_audout)
-  - [`VIDIOC_S_FMT`](#vidioc_s_fmt)
+  - [`PPS_GETPARAMS`](#pps-getparams)
+  - [`IOC_PR_RESERVE`](#ioc-pr-reserve)
+  - [`VIDIOC_TRY_DECODER_CMD`](#vidioc-try-decoder-cmd)
+  - [`RIO_CM_CHAN_CLOSE`](#rio-cm-chan-close)
+  - [`VIDIOC_DV_TIMINGS_CAP`](#vidioc-dv-timings-cap)
+  - [`IOCTL_MEI_CONNECT_CLIENT_VTAG`](#ioctl-mei-connect-client-vtag)
+  - [`PMU_IOC_GET_BACKLIGHT`](#pmu-ioc-get-backlight)
+  - [`USBDEVFS_GET_CAPABILITIES`](#usbdevfs-get-capabilities)
+  - [`SCIF_WRITETO`](#scif-writeto)
+  - [`UDF_RELOCATE_BLOCKS`](#udf-relocate-blocks)
+  - [`FSL_HV_IOCTL_PARTITION_RESTART`](#fsl-hv-ioctl-partition-restart)
+  - [`CCISS_REGNEWD`](#cciss-regnewd)
+  - [`FAT_IOCTL_SET_ATTRIBUTES`](#fat-ioctl-set-attributes)
+  - [`VIDIOC_CREATE_BUFS`](#vidioc-create-bufs)
+  - [`CAPI_GET_VERSION`](#capi-get-version)
+  - [`SWITCHTEC_IOCTL_EVENT_SUMMARY`](#switchtec-ioctl-event-summary)
+  - [`VFIO_EEH_PE_OP`](#vfio-eeh-pe-op)
+  - [`FW_CDEV_IOC_CREATE_ISO_CONTEXT`](#fw-cdev-ioc-create-iso-context)
+  - [`F2FS_IOC_RELEASE_COMPRESS_BLOCKS`](#f2fs-ioc-release-compress-blocks)
+  - [`NBD_SET_SIZE_BLOCKS`](#nbd-set-size-blocks)
+  - [`IPMI_BMC_IOCTL_SET_SMS_ATN`](#ipmi-bmc-ioctl-set-sms-atn)
+  - [`ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG`](#aspeed-p2a-ctrl-ioctl-get-memory-config)
+  - [`VIDIOC_S_AUDOUT`](#vidioc-s-audout)
+  - [`VIDIOC_S_FMT`](#vidioc-s-fmt)
   - [`PPPIOCATTACH`](#pppiocattach)
-  - [`VHOST_GET_VRING_BUSYLOOP_TIMEOUT`](#vhost_get_vring_busyloop_timeout)
-  - [`FS_IOC_MEASURE_VERITY`](#fs_ioc_measure_verity)
-  - [`CCISS_BIG_PASSTHRU`](#cciss_big_passthru)
-  - [`IPMICTL_SET_MY_LUN_CMD`](#ipmictl_set_my_lun_cmd)
-  - [`PCITEST_LEGACY_IRQ`](#pcitest_legacy_irq)
-  - [`USBDEVFS_SUBMITURB`](#usbdevfs_submiturb)
-  - [`AUTOFS_IOC_READY`](#autofs_ioc_ready)
-  - [`BTRFS_IOC_SEND`](#btrfs_ioc_send)
-  - [`VIDIOC_G_EXT_CTRLS`](#vidioc_g_ext_ctrls)
+  - [`VHOST_GET_VRING_BUSYLOOP_TIMEOUT`](#vhost-get-vring-busyloop-timeout)
+  - [`FS_IOC_MEASURE_VERITY`](#fs-ioc-measure-verity)
+  - [`CCISS_BIG_PASSTHRU`](#cciss-big-passthru)
+  - [`IPMICTL_SET_MY_LUN_CMD`](#ipmictl-set-my-lun-cmd)
+  - [`PCITEST_LEGACY_IRQ`](#pcitest-legacy-irq)
+  - [`USBDEVFS_SUBMITURB`](#usbdevfs-submiturb)
+  - [`AUTOFS_IOC_READY`](#autofs-ioc-ready)
+  - [`BTRFS_IOC_SEND`](#btrfs-ioc-send)
+  - [`VIDIOC_G_EXT_CTRLS`](#vidioc-g-ext-ctrls)
   - [`JSIOCSBTNMAP`](#jsiocsbtnmap)
   - [`PPPIOCSFLAGS`](#pppiocsflags)
-  - [`NVRAM_INIT`](#nvram_init)
-  - [`RFKILL_IOCTL_NOINPUT`](#rfkill_ioctl_noinput)
-  - [`BTRFS_IOC_BALANCE`](#btrfs_ioc_balance)
-  - [`FS_IOC_GETFSMAP`](#fs_ioc_getfsmap)
-  - [`IPMICTL_GET_MY_CHANNEL_LUN_CMD`](#ipmictl_get_my_channel_lun_cmd)
-  - [`STP_POLICY_ID_GET`](#stp_policy_id_get)
+  - [`NVRAM_INIT`](#nvram-init)
+  - [`RFKILL_IOCTL_NOINPUT`](#rfkill-ioctl-noinput)
+  - [`BTRFS_IOC_BALANCE`](#btrfs-ioc-balance)
+  - [`FS_IOC_GETFSMAP`](#fs-ioc-getfsmap)
+  - [`IPMICTL_GET_MY_CHANNEL_LUN_CMD`](#ipmictl-get-my-channel-lun-cmd)
+  - [`STP_POLICY_ID_GET`](#stp-policy-id-get)
   - [`PPSETFLAGS`](#ppsetflags)
-  - [`CEC_ADAP_S_PHYS_ADDR`](#cec_adap_s_phys_addr)
-  - [`ATMTCP_CREATE`](#atmtcp_create)
-  - [`IPMI_BMC_IOCTL_FORCE_ABORT`](#ipmi_bmc_ioctl_force_abort)
+  - [`CEC_ADAP_S_PHYS_ADDR`](#cec-adap-s-phys-addr)
+  - [`ATMTCP_CREATE`](#atmtcp-create)
+  - [`IPMI_BMC_IOCTL_FORCE_ABORT`](#ipmi-bmc-ioctl-force-abort)
   - [`PPPIOCGXASYNCMAP`](#pppiocgxasyncmap)
-  - [`VHOST_SET_VRING_CALL`](#vhost_set_vring_call)
-  - [`LIRC_GET_FEATURES`](#lirc_get_features)
-  - [`GSMIOC_DISABLE_NET`](#gsmioc_disable_net)
-  - [`AUTOFS_IOC_CATATONIC`](#autofs_ioc_catatonic)
-  - [`NBD_DO_IT`](#nbd_do_it)
-  - [`LIRC_SET_REC_CARRIER_RANGE`](#lirc_set_rec_carrier_range)
-  - [`IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl_get_my_channel_address_cmd)
+  - [`VHOST_SET_VRING_CALL`](#vhost-set-vring-call)
+  - [`LIRC_GET_FEATURES`](#lirc-get-features)
+  - [`GSMIOC_DISABLE_NET`](#gsmioc-disable-net)
+  - [`AUTOFS_IOC_CATATONIC`](#autofs-ioc-catatonic)
+  - [`NBD_DO_IT`](#nbd-do-it)
+  - [`LIRC_SET_REC_CARRIER_RANGE`](#lirc-set-rec-carrier-range)
+  - [`IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl-get-my-channel-address-cmd)
   - [`EVIOCSCLOCKID`](#eviocsclockid)
-  - [`USBDEVFS_FREE_STREAMS`](#usbdevfs_free_streams)
-  - [`FSI_SCOM_RESET`](#fsi_scom_reset)
-  - [`PMU_IOC_GRAB_BACKLIGHT`](#pmu_ioc_grab_backlight)
-  - [`VIDIOC_SUBDEV_S_FMT`](#vidioc_subdev_s_fmt)
+  - [`USBDEVFS_FREE_STREAMS`](#usbdevfs-free-streams)
+  - [`FSI_SCOM_RESET`](#fsi-scom-reset)
+  - [`PMU_IOC_GRAB_BACKLIGHT`](#pmu-ioc-grab-backlight)
+  - [`VIDIOC_SUBDEV_S_FMT`](#vidioc-subdev-s-fmt)
   - [`FDDEFPRM`](#fddefprm)
-  - [`TEE_IOC_INVOKE`](#tee_ioc_invoke)
-  - [`USBDEVFS_BULK`](#usbdevfs_bulk)
-  - [`SCIF_VWRITETO`](#scif_vwriteto)
-  - [`SONYPI_IOCSBRT`](#sonypi_iocsbrt)
-  - [`BTRFS_IOC_FILE_EXTENT_SAME`](#btrfs_ioc_file_extent_same)
-  - [`RTC_PIE_ON`](#rtc_pie_on)
-  - [`BTRFS_IOC_SCAN_DEV`](#btrfs_ioc_scan_dev)
+  - [`TEE_IOC_INVOKE`](#tee-ioc-invoke)
+  - [`USBDEVFS_BULK`](#usbdevfs-bulk)
+  - [`SCIF_VWRITETO`](#scif-vwriteto)
+  - [`SONYPI_IOCSBRT`](#sonypi-iocsbrt)
+  - [`BTRFS_IOC_FILE_EXTENT_SAME`](#btrfs-ioc-file-extent-same)
+  - [`RTC_PIE_ON`](#rtc-pie-on)
+  - [`BTRFS_IOC_SCAN_DEV`](#btrfs-ioc-scan-dev)
   - [`PPPIOCXFERUNIT`](#pppiocxferunit)
-  - [`WDIOC_GETTIMEOUT`](#wdioc_gettimeout)
-  - [`BTRFS_IOC_SET_RECEIVED_SUBVOL`](#btrfs_ioc_set_received_subvol)
-  - [`DFL_FPGA_PORT_ERR_SET_IRQ`](#dfl_fpga_port_err_set_irq)
-  - [`FBIO_WAITFORVSYNC`](#fbio_waitforvsync)
-  - [`RTC_PIE_OFF`](#rtc_pie_off)
+  - [`WDIOC_GETTIMEOUT`](#wdioc-gettimeout)
+  - [`BTRFS_IOC_SET_RECEIVED_SUBVOL`](#btrfs-ioc-set-received-subvol)
+  - [`DFL_FPGA_PORT_ERR_SET_IRQ`](#dfl-fpga-port-err-set-irq)
+  - [`FBIO_WAITFORVSYNC`](#fbio-waitforvsync)
+  - [`RTC_PIE_OFF`](#rtc-pie-off)
   - [`EVIOCGRAB`](#eviocgrab)
-  - [`PMU_IOC_SET_BACKLIGHT`](#pmu_ioc_set_backlight)
+  - [`PMU_IOC_SET_BACKLIGHT`](#pmu-ioc-set-backlight)
   - [`EVIOCGREP`](#eviocgrep)
-  - [`PERF_EVENT_IOC_MODIFY_ATTRIBUTES`](#perf_event_ioc_modify_attributes)
-  - [`UFFDIO_CONTINUE`](#uffdio_continue)
-  - [`VDUSE_GET_API_VERSION`](#vduse_get_api_version)
-  - [`RTC_RD_TIME`](#rtc_rd_time)
+  - [`PERF_EVENT_IOC_MODIFY_ATTRIBUTES`](#perf-event-ioc-modify-attributes)
+  - [`UFFDIO_CONTINUE`](#uffdio-continue)
+  - [`VDUSE_GET_API_VERSION`](#vduse-get-api-version)
+  - [`RTC_RD_TIME`](#rtc-rd-time)
   - [`FDMSGOFF`](#fdmsgoff)
-  - [`IPMICTL_REGISTER_FOR_CMD_CHANS`](#ipmictl_register_for_cmd_chans)
-  - [`CAPI_GET_ERRCODE`](#capi_get_errcode)
-  - [`PCITEST_SET_IRQTYPE`](#pcitest_set_irqtype)
-  - [`VIDIOC_SUBDEV_S_EDID`](#vidioc_subdev_s_edid)
-  - [`MATROXFB_SET_OUTPUT_MODE`](#matroxfb_set_output_mode)
-  - [`RIO_DEV_ADD`](#rio_dev_add)
-  - [`VIDIOC_ENUM_FREQ_BANDS`](#vidioc_enum_freq_bands)
-  - [`FBIO_RADEON_SET_MIRROR`](#fbio_radeon_set_mirror)
-  - [`PCITEST_GET_IRQTYPE`](#pcitest_get_irqtype)
+  - [`IPMICTL_REGISTER_FOR_CMD_CHANS`](#ipmictl-register-for-cmd-chans)
+  - [`CAPI_GET_ERRCODE`](#capi-get-errcode)
+  - [`PCITEST_SET_IRQTYPE`](#pcitest-set-irqtype)
+  - [`VIDIOC_SUBDEV_S_EDID`](#vidioc-subdev-s-edid)
+  - [`MATROXFB_SET_OUTPUT_MODE`](#matroxfb-set-output-mode)
+  - [`RIO_DEV_ADD`](#rio-dev-add)
+  - [`VIDIOC_ENUM_FREQ_BANDS`](#vidioc-enum-freq-bands)
+  - [`FBIO_RADEON_SET_MIRROR`](#fbio-radeon-set-mirror)
+  - [`PCITEST_GET_IRQTYPE`](#pcitest-get-irqtype)
   - [`JSIOCGVERSION`](#jsiocgversion)
-  - [`SONYPI_IOCSBLUE`](#sonypi_iocsblue)
-  - [`SNAPSHOT_PREF_IMAGE_SIZE`](#snapshot_pref_image_size)
-  - [`F2FS_IOC_GET_FEATURES`](#f2fs_ioc_get_features)
-  - [`SCIF_REG`](#scif_reg)
-  - [`NILFS_IOCTL_CLEAN_SEGMENTS`](#nilfs_ioctl_clean_segments)
-  - [`FW_CDEV_IOC_INITIATE_BUS_RESET`](#fw_cdev_ioc_initiate_bus_reset)
-  - [`RIO_WAIT_FOR_ASYNC`](#rio_wait_for_async)
-  - [`VHOST_SET_VRING_NUM`](#vhost_set_vring_num)
-  - [`AUTOFS_DEV_IOCTL_PROTOVER`](#autofs_dev_ioctl_protover)
-  - [`RIO_FREE_DMA`](#rio_free_dma)
-  - [`MGSL_IOCRXENABLE`](#mgsl_iocrxenable)
-  - [`IOCTL_VM_SOCKETS_GET_LOCAL_CID`](#ioctl_vm_sockets_get_local_cid)
-  - [`IPMICTL_SET_TIMING_PARMS_CMD`](#ipmictl_set_timing_parms_cmd)
+  - [`SONYPI_IOCSBLUE`](#sonypi-iocsblue)
+  - [`SNAPSHOT_PREF_IMAGE_SIZE`](#snapshot-pref-image-size)
+  - [`F2FS_IOC_GET_FEATURES`](#f2fs-ioc-get-features)
+  - [`SCIF_REG`](#scif-reg)
+  - [`NILFS_IOCTL_CLEAN_SEGMENTS`](#nilfs-ioctl-clean-segments)
+  - [`FW_CDEV_IOC_INITIATE_BUS_RESET`](#fw-cdev-ioc-initiate-bus-reset)
+  - [`RIO_WAIT_FOR_ASYNC`](#rio-wait-for-async)
+  - [`VHOST_SET_VRING_NUM`](#vhost-set-vring-num)
+  - [`AUTOFS_DEV_IOCTL_PROTOVER`](#autofs-dev-ioctl-protover)
+  - [`RIO_FREE_DMA`](#rio-free-dma)
+  - [`MGSL_IOCRXENABLE`](#mgsl-iocrxenable)
+  - [`IOCTL_VM_SOCKETS_GET_LOCAL_CID`](#ioctl-vm-sockets-get-local-cid)
+  - [`IPMICTL_SET_TIMING_PARMS_CMD`](#ipmictl-set-timing-parms-cmd)
   - [`PPPIOCGL2TPSTATS`](#pppiocgl2tpstats)
-  - [`PERF_EVENT_IOC_PERIOD`](#perf_event_ioc_period)
-  - [`PTP_PIN_SETFUNC2`](#ptp_pin_setfunc2)
+  - [`PERF_EVENT_IOC_PERIOD`](#perf-event-ioc-period)
+  - [`PTP_PIN_SETFUNC2`](#ptp-pin-setfunc2)
   - [`CHIOEXCHANGE`](#chioexchange)
-  - [`NILFS_IOCTL_GET_SUINFO`](#nilfs_ioctl_get_suinfo)
-  - [`CEC_DQEVENT`](#cec_dqevent)
-  - [`UI_SET_SWBIT`](#ui_set_swbit)
-  - [`VHOST_VDPA_SET_CONFIG`](#vhost_vdpa_set_config)
+  - [`NILFS_IOCTL_GET_SUINFO`](#nilfs-ioctl-get-suinfo)
+  - [`CEC_DQEVENT`](#cec-dqevent)
+  - [`UI_SET_SWBIT`](#ui-set-swbit)
+  - [`VHOST_VDPA_SET_CONFIG`](#vhost-vdpa-set-config)
   - [`TUNSETIFF`](#tunsetiff)
   - [`CHIOPOSITION`](#chioposition)
-  - [`IPMICTL_SET_MAINTENANCE_MODE_CMD`](#ipmictl_set_maintenance_mode_cmd)
-  - [`BTRFS_IOC_DEFAULT_SUBVOL`](#btrfs_ioc_default_subvol)
-  - [`RIO_UNMAP_OUTBOUND`](#rio_unmap_outbound)
-  - [`CAPI_CLR_FLAGS`](#capi_clr_flags)
-  - [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE`](#fw_cdev_ioc_allocate_iso_resource_once)
-  - [`MATROXFB_GET_OUTPUT_CONNECTION`](#matroxfb_get_output_connection)
+  - [`IPMICTL_SET_MAINTENANCE_MODE_CMD`](#ipmictl-set-maintenance-mode-cmd)
+  - [`BTRFS_IOC_DEFAULT_SUBVOL`](#btrfs-ioc-default-subvol)
+  - [`RIO_UNMAP_OUTBOUND`](#rio-unmap-outbound)
+  - [`CAPI_CLR_FLAGS`](#capi-clr-flags)
+  - [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE`](#fw-cdev-ioc-allocate-iso-resource-once)
+  - [`MATROXFB_GET_OUTPUT_CONNECTION`](#matroxfb-get-output-connection)
   - [`EVIOCSMASK`](#eviocsmask)
-  - [`BTRFS_IOC_FORGET_DEV`](#btrfs_ioc_forget_dev)
-  - [`CXL_MEM_QUERY_COMMANDS`](#cxl_mem_query_commands)
-  - [`CEC_S_MODE`](#cec_s_mode)
-  - [`MGSL_IOCSIF`](#mgsl_iocsif)
-  - [`SWITCHTEC_IOCTL_PFF_TO_PORT`](#switchtec_ioctl_pff_to_port)
+  - [`BTRFS_IOC_FORGET_DEV`](#btrfs-ioc-forget-dev)
+  - [`CXL_MEM_QUERY_COMMANDS`](#cxl-mem-query-commands)
+  - [`CEC_S_MODE`](#cec-s-mode)
+  - [`MGSL_IOCSIF`](#mgsl-iocsif)
+  - [`SWITCHTEC_IOCTL_PFF_TO_PORT`](#switchtec-ioctl-pff-to-port)
   - [`PPSETMODE`](#ppsetmode)
-  - [`VFIO_DEVICE_SET_IRQS`](#vfio_device_set_irqs)
-  - [`VIDIOC_PREPARE_BUF`](#vidioc_prepare_buf)
-  - [`CEC_ADAP_G_CONNECTOR_INFO`](#cec_adap_g_connector_info)
-  - [`IOC_OPAL_WRITE_SHADOW_MBR`](#ioc_opal_write_shadow_mbr)
-  - [`VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL`](#vidioc_subdev_enum_frame_interval)
-  - [`UDMABUF_CREATE`](#udmabuf_create)
-  - [`SONET_CLRDIAG`](#sonet_clrdiag)
-  - [`PHN_SET_REG`](#phn_set_reg)
+  - [`VFIO_DEVICE_SET_IRQS`](#vfio-device-set-irqs)
+  - [`VIDIOC_PREPARE_BUF`](#vidioc-prepare-buf)
+  - [`CEC_ADAP_G_CONNECTOR_INFO`](#cec-adap-g-connector-info)
+  - [`IOC_OPAL_WRITE_SHADOW_MBR`](#ioc-opal-write-shadow-mbr)
+  - [`VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL`](#vidioc-subdev-enum-frame-interval)
+  - [`UDMABUF_CREATE`](#udmabuf-create)
+  - [`SONET_CLRDIAG`](#sonet-clrdiag)
+  - [`PHN_SET_REG`](#phn-set-reg)
   - [`RNDADDTOENTCNT`](#rndaddtoentcnt)
-  - [`VBG_IOCTL_CHECK_BALLOON`](#vbg_ioctl_check_balloon)
-  - [`VIDIOC_OMAP3ISP_STAT_REQ`](#vidioc_omap3isp_stat_req)
-  - [`PPS_FETCH`](#pps_fetch)
-  - [`RTC_AIE_OFF`](#rtc_aie_off)
-  - [`VFIO_GROUP_SET_CONTAINER`](#vfio_group_set_container)
-  - [`FW_CDEV_IOC_RECEIVE_PHY_PACKETS`](#fw_cdev_ioc_receive_phy_packets)
-  - [`VFIO_IOMMU_SPAPR_TCE_REMOVE`](#vfio_iommu_spapr_tce_remove)
-  - [`VFIO_IOMMU_GET_INFO`](#vfio_iommu_get_info)
-  - [`DM_DEV_SUSPEND`](#dm_dev_suspend)
-  - [`F2FS_IOC_GET_COMPRESS_OPTION`](#f2fs_ioc_get_compress_option)
-  - [`FW_CDEV_IOC_STOP_ISO`](#fw_cdev_ioc_stop_iso)
-  - [`GPIO_V2_GET_LINEINFO_IOCTL`](#gpio_v2_get_lineinfo_ioctl)
-  - [`ATMMPC_CTRL`](#atmmpc_ctrl)
+  - [`VBG_IOCTL_CHECK_BALLOON`](#vbg-ioctl-check-balloon)
+  - [`VIDIOC_OMAP3ISP_STAT_REQ`](#vidioc-omap3isp-stat-req)
+  - [`PPS_FETCH`](#pps-fetch)
+  - [`RTC_AIE_OFF`](#rtc-aie-off)
+  - [`VFIO_GROUP_SET_CONTAINER`](#vfio-group-set-container)
+  - [`FW_CDEV_IOC_RECEIVE_PHY_PACKETS`](#fw-cdev-ioc-receive-phy-packets)
+  - [`VFIO_IOMMU_SPAPR_TCE_REMOVE`](#vfio-iommu-spapr-tce-remove)
+  - [`VFIO_IOMMU_GET_INFO`](#vfio-iommu-get-info)
+  - [`DM_DEV_SUSPEND`](#dm-dev-suspend)
+  - [`F2FS_IOC_GET_COMPRESS_OPTION`](#f2fs-ioc-get-compress-option)
+  - [`FW_CDEV_IOC_STOP_ISO`](#fw-cdev-ioc-stop-iso)
+  - [`GPIO_V2_GET_LINEINFO_IOCTL`](#gpio-v2-get-lineinfo-ioctl)
+  - [`ATMMPC_CTRL`](#atmmpc-ctrl)
   - [`PPPIOCSXASYNCMAP`](#pppiocsxasyncmap)
   - [`CHIOGSTATUS`](#chiogstatus)
-  - [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE`](#fw_cdev_ioc_allocate_iso_resource)
-  - [`RIO_MPORT_MAINT_PORT_IDX_GET`](#rio_mport_maint_port_idx_get)
-  - [`CAPI_SET_FLAGS`](#capi_set_flags)
-  - [`VFIO_GROUP_GET_DEVICE_FD`](#vfio_group_get_device_fd)
-  - [`VHOST_SET_MEM_TABLE`](#vhost_set_mem_table)
-  - [`MATROXFB_SET_OUTPUT_CONNECTION`](#matroxfb_set_output_connection)
-  - [`DFL_FPGA_PORT_GET_REGION_INFO`](#dfl_fpga_port_get_region_info)
-  - [`VHOST_GET_FEATURES`](#vhost_get_features)
-  - [`LIRC_GET_REC_RESOLUTION`](#lirc_get_rec_resolution)
-  - [`PACKET_CTRL_CMD`](#packet_ctrl_cmd)
-  - [`LIRC_SET_TRANSMITTER_MASK`](#lirc_set_transmitter_mask)
-  - [`BTRFS_IOC_ADD_DEV`](#btrfs_ioc_add_dev)
+  - [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE`](#fw-cdev-ioc-allocate-iso-resource)
+  - [`RIO_MPORT_MAINT_PORT_IDX_GET`](#rio-mport-maint-port-idx-get)
+  - [`CAPI_SET_FLAGS`](#capi-set-flags)
+  - [`VFIO_GROUP_GET_DEVICE_FD`](#vfio-group-get-device-fd)
+  - [`VHOST_SET_MEM_TABLE`](#vhost-set-mem-table)
+  - [`MATROXFB_SET_OUTPUT_CONNECTION`](#matroxfb-set-output-connection)
+  - [`DFL_FPGA_PORT_GET_REGION_INFO`](#dfl-fpga-port-get-region-info)
+  - [`VHOST_GET_FEATURES`](#vhost-get-features)
+  - [`LIRC_GET_REC_RESOLUTION`](#lirc-get-rec-resolution)
+  - [`PACKET_CTRL_CMD`](#packet-ctrl-cmd)
+  - [`LIRC_SET_TRANSMITTER_MASK`](#lirc-set-transmitter-mask)
+  - [`BTRFS_IOC_ADD_DEV`](#btrfs-ioc-add-dev)
   - [`JSIOCGCORR`](#jsiocgcorr)
-  - [`VIDIOC_G_FMT`](#vidioc_g_fmt)
-  - [`RTC_EPOCH_SET`](#rtc_epoch_set)
-  - [`CAPI_GET_PROFILE`](#capi_get_profile)
-  - [`ATM_GETLOOP`](#atm_getloop)
-  - [`SCIF_LISTEN`](#scif_listen)
-  - [`NBD_CLEAR_QUE`](#nbd_clear_que)
-  - [`F2FS_IOC_MOVE_RANGE`](#f2fs_ioc_move_range)
-  - [`LIRC_GET_LENGTH`](#lirc_get_length)
-  - [`I8K_SET_FAN`](#i8k_set_fan)
+  - [`VIDIOC_G_FMT`](#vidioc-g-fmt)
+  - [`RTC_EPOCH_SET`](#rtc-epoch-set)
+  - [`CAPI_GET_PROFILE`](#capi-get-profile)
+  - [`ATM_GETLOOP`](#atm-getloop)
+  - [`SCIF_LISTEN`](#scif-listen)
+  - [`NBD_CLEAR_QUE`](#nbd-clear-que)
+  - [`F2FS_IOC_MOVE_RANGE`](#f2fs-ioc-move-range)
+  - [`LIRC_GET_LENGTH`](#lirc-get-length)
+  - [`I8K_SET_FAN`](#i8k-set-fan)
   - [`FDSETMAXERRS`](#fdsetmaxerrs)
-  - [`VIDIOC_SUBDEV_QUERYCAP`](#vidioc_subdev_querycap)
-  - [`SNAPSHOT_SET_SWAP_AREA`](#snapshot_set_swap_area)
-  - [`LIRC_GET_REC_TIMEOUT`](#lirc_get_rec_timeout)
+  - [`VIDIOC_SUBDEV_QUERYCAP`](#vidioc-subdev-querycap)
+  - [`SNAPSHOT_SET_SWAP_AREA`](#snapshot-set-swap-area)
+  - [`LIRC_GET_REC_TIMEOUT`](#lirc-get-rec-timeout)
   - [`EVIOCRMFF`](#eviocrmff)
-  - [`GPIO_GET_LINEEVENT_IOCTL`](#gpio_get_lineevent_ioctl)
+  - [`GPIO_GET_LINEEVENT_IOCTL`](#gpio-get-lineevent-ioctl)
   - [`PPRDATA`](#pprdata)
-  - [`RIO_MPORT_GET_PROPERTIES`](#rio_mport_get_properties)
+  - [`RIO_MPORT_GET_PROPERTIES`](#rio-mport-get-properties)
   - [`TUNSETVNETHDRSZ`](#tunsetvnethdrsz)
-  - [`GPIO_GET_LINEINFO_IOCTL`](#gpio_get_lineinfo_ioctl)
-  - [`GSMIOC_GETCONF`](#gsmioc_getconf)
-  - [`LIRC_GET_SEND_MODE`](#lirc_get_send_mode)
+  - [`GPIO_GET_LINEINFO_IOCTL`](#gpio-get-lineinfo-ioctl)
+  - [`GSMIOC_GETCONF`](#gsmioc-getconf)
+  - [`LIRC_GET_SEND_MODE`](#lirc-get-send-mode)
   - [`PPPIOCSACTIVE`](#pppiocsactive)
-  - [`SIOCGSTAMPNS_NEW`](#siocgstampns_new)
-  - [`IPMICTL_RECEIVE_MSG`](#ipmictl_receive_msg)
-  - [`LIRC_SET_SEND_DUTY_CYCLE`](#lirc_set_send_duty_cycle)
-  - [`UI_END_FF_ERASE`](#ui_end_ff_erase)
-  - [`SWITCHTEC_IOCTL_FLASH_PART_INFO`](#switchtec_ioctl_flash_part_info)
-  - [`FW_CDEV_IOC_SEND_PHY_PACKET`](#fw_cdev_ioc_send_phy_packet)
-  - [`NBD_SET_FLAGS`](#nbd_set_flags)
-  - [`VFIO_DEVICE_GET_REGION_INFO`](#vfio_device_get_region_info)
-  - [`REISERFS_IOC_UNPACK`](#reiserfs_ioc_unpack)
-  - [`FW_CDEV_IOC_REMOVE_DESCRIPTOR`](#fw_cdev_ioc_remove_descriptor)
-  - [`RIO_SET_EVENT_MASK`](#rio_set_event_mask)
-  - [`SNAPSHOT_ALLOC_SWAP_PAGE`](#snapshot_alloc_swap_page)
-  - [`VDUSE_VQ_INJECT_IRQ`](#vduse_vq_inject_irq)
+  - [`SIOCGSTAMPNS_NEW`](#siocgstampns-new)
+  - [`IPMICTL_RECEIVE_MSG`](#ipmictl-receive-msg)
+  - [`LIRC_SET_SEND_DUTY_CYCLE`](#lirc-set-send-duty-cycle)
+  - [`UI_END_FF_ERASE`](#ui-end-ff-erase)
+  - [`SWITCHTEC_IOCTL_FLASH_PART_INFO`](#switchtec-ioctl-flash-part-info)
+  - [`FW_CDEV_IOC_SEND_PHY_PACKET`](#fw-cdev-ioc-send-phy-packet)
+  - [`NBD_SET_FLAGS`](#nbd-set-flags)
+  - [`VFIO_DEVICE_GET_REGION_INFO`](#vfio-device-get-region-info)
+  - [`REISERFS_IOC_UNPACK`](#reiserfs-ioc-unpack)
+  - [`FW_CDEV_IOC_REMOVE_DESCRIPTOR`](#fw-cdev-ioc-remove-descriptor)
+  - [`RIO_SET_EVENT_MASK`](#rio-set-event-mask)
+  - [`SNAPSHOT_ALLOC_SWAP_PAGE`](#snapshot-alloc-swap-page)
+  - [`VDUSE_VQ_INJECT_IRQ`](#vduse-vq-inject-irq)
   - [`I2OPASSTHRU`](#i2opassthru)
-  - [`IOC_OPAL_SET_PW`](#ioc_opal_set_pw)
-  - [`FSI_SCOM_READ`](#fsi_scom_read)
-  - [`VHOST_VDPA_GET_DEVICE_ID`](#vhost_vdpa_get_device_id)
-  - [`VIDIOC_QBUF`](#vidioc_qbuf)
-  - [`VIDIOC_S_TUNER`](#vidioc_s_tuner)
+  - [`IOC_OPAL_SET_PW`](#ioc-opal-set-pw)
+  - [`FSI_SCOM_READ`](#fsi-scom-read)
+  - [`VHOST_VDPA_GET_DEVICE_ID`](#vhost-vdpa-get-device-id)
+  - [`VIDIOC_QBUF`](#vidioc-qbuf)
+  - [`VIDIOC_S_TUNER`](#vidioc-s-tuner)
   - [`TUNGETVNETHDRSZ`](#tungetvnethdrsz)
-  - [`CAPI_NCCI_GETUNIT`](#capi_ncci_getunit)
-  - [`DFL_FPGA_PORT_UINT_GET_IRQ_NUM`](#dfl_fpga_port_uint_get_irq_num)
-  - [`VIDIOC_OMAP3ISP_STAT_EN`](#vidioc_omap3isp_stat_en)
-  - [`GPIO_V2_LINE_SET_CONFIG_IOCTL`](#gpio_v2_line_set_config_ioctl)
-  - [`TEE_IOC_VERSION`](#tee_ioc_version)
-  - [`VIDIOC_LOG_STATUS`](#vidioc_log_status)
-  - [`IPMICTL_SEND_COMMAND_SETTIME`](#ipmictl_send_command_settime)
-  - [`VHOST_SET_LOG_FD`](#vhost_set_log_fd)
-  - [`SCIF_SEND`](#scif_send)
-  - [`VIDIOC_SUBDEV_G_FMT`](#vidioc_subdev_g_fmt)
-  - [`NS_ADJBUFLEV`](#ns_adjbuflev)
-  - [`VIDIOC_DBG_S_REGISTER`](#vidioc_dbg_s_register)
-  - [`NILFS_IOCTL_RESIZE`](#nilfs_ioctl_resize)
-  - [`PHN_GETREG`](#phn_getreg)
+  - [`CAPI_NCCI_GETUNIT`](#capi-ncci-getunit)
+  - [`DFL_FPGA_PORT_UINT_GET_IRQ_NUM`](#dfl-fpga-port-uint-get-irq-num)
+  - [`VIDIOC_OMAP3ISP_STAT_EN`](#vidioc-omap3isp-stat-en)
+  - [`GPIO_V2_LINE_SET_CONFIG_IOCTL`](#gpio-v2-line-set-config-ioctl)
+  - [`TEE_IOC_VERSION`](#tee-ioc-version)
+  - [`VIDIOC_LOG_STATUS`](#vidioc-log-status)
+  - [`IPMICTL_SEND_COMMAND_SETTIME`](#ipmictl-send-command-settime)
+  - [`VHOST_SET_LOG_FD`](#vhost-set-log-fd)
+  - [`SCIF_SEND`](#scif-send)
+  - [`VIDIOC_SUBDEV_G_FMT`](#vidioc-subdev-g-fmt)
+  - [`NS_ADJBUFLEV`](#ns-adjbuflev)
+  - [`VIDIOC_DBG_S_REGISTER`](#vidioc-dbg-s-register)
+  - [`NILFS_IOCTL_RESIZE`](#nilfs-ioctl-resize)
+  - [`PHN_GETREG`](#phn-getreg)
   - [`I2OSWDL`](#i2oswdl)
-  - [`VBG_IOCTL_VMMDEV_REQUEST_BIG`](#vbg_ioctl_vmmdev_request_big)
+  - [`VBG_IOCTL_VMMDEV_REQUEST_BIG`](#vbg-ioctl-vmmdev-request-big)
   - [`JSIOCGBUTTONS`](#jsiocgbuttons)
-  - [`VFIO_IOMMU_ENABLE`](#vfio_iommu_enable)
-  - [`DM_DEV_RENAME`](#dm_dev_rename)
-  - [`MEDIA_IOC_SETUP_LINK`](#media_ioc_setup_link)
-  - [`VIDIOC_ENUMOUTPUT`](#vidioc_enumoutput)
-  - [`STP_POLICY_ID_SET`](#stp_policy_id_set)
-  - [`VHOST_VDPA_SET_CONFIG_CALL`](#vhost_vdpa_set_config_call)
-  - [`VIDIOC_SUBDEV_G_CROP`](#vidioc_subdev_g_crop)
-  - [`VIDIOC_S_CROP`](#vidioc_s_crop)
-  - [`WDIOC_GETTEMP`](#wdioc_gettemp)
-  - [`IOC_OPAL_ADD_USR_TO_LR`](#ioc_opal_add_usr_to_lr)
-  - [`UI_SET_LEDBIT`](#ui_set_ledbit)
-  - [`NBD_SET_SOCK`](#nbd_set_sock)
-  - [`BTRFS_IOC_SNAP_DESTROY_V2`](#btrfs_ioc_snap_destroy_v2)
+  - [`VFIO_IOMMU_ENABLE`](#vfio-iommu-enable)
+  - [`DM_DEV_RENAME`](#dm-dev-rename)
+  - [`MEDIA_IOC_SETUP_LINK`](#media-ioc-setup-link)
+  - [`VIDIOC_ENUMOUTPUT`](#vidioc-enumoutput)
+  - [`STP_POLICY_ID_SET`](#stp-policy-id-set)
+  - [`VHOST_VDPA_SET_CONFIG_CALL`](#vhost-vdpa-set-config-call)
+  - [`VIDIOC_SUBDEV_G_CROP`](#vidioc-subdev-g-crop)
+  - [`VIDIOC_S_CROP`](#vidioc-s-crop)
+  - [`WDIOC_GETTEMP`](#wdioc-gettemp)
+  - [`IOC_OPAL_ADD_USR_TO_LR`](#ioc-opal-add-usr-to-lr)
+  - [`UI_SET_LEDBIT`](#ui-set-ledbit)
+  - [`NBD_SET_SOCK`](#nbd-set-sock)
+  - [`BTRFS_IOC_SNAP_DESTROY_V2`](#btrfs-ioc-snap-destroy-v2)
   - [`HIDIOCGCOLLECTIONINFO`](#hidiocgcollectioninfo)
   - [`I2OSWUL`](#i2oswul)
-  - [`IOCTL_MEI_NOTIFY_GET`](#ioctl_mei_notify_get)
+  - [`IOCTL_MEI_NOTIFY_GET`](#ioctl-mei-notify-get)
   - [`FDFMTTRK`](#fdfmttrk)
-  - [`MMTIMER_GETBITS`](#mmtimer_getbits)
-  - [`VIDIOC_ENUMSTD`](#vidioc_enumstd)
-  - [`VHOST_GET_VRING_BASE`](#vhost_get_vring_base)
-  - [`VFIO_DEVICE_IOEVENTFD`](#vfio_device_ioeventfd)
-  - [`ATMARP_SETENTRY`](#atmarp_setentry)
-  - [`CCISS_REVALIDVOLS`](#cciss_revalidvols)
-  - [`MGSL_IOCLOOPTXDONE`](#mgsl_ioclooptxdone)
-  - [`RTC_VL_READ`](#rtc_vl_read)
-  - [`ND_IOCTL_ARS_STATUS`](#nd_ioctl_ars_status)
-  - [`RIO_DEV_DEL`](#rio_dev_del)
-  - [`VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES`](#vbg_ioctl_acquire_guest_capabilities)
-  - [`VIDIOC_SUBDEV_DV_TIMINGS_CAP`](#vidioc_subdev_dv_timings_cap)
-  - [`SONYPI_IOCSFAN`](#sonypi_iocsfan)
+  - [`MMTIMER_GETBITS`](#mmtimer-getbits)
+  - [`VIDIOC_ENUMSTD`](#vidioc-enumstd)
+  - [`VHOST_GET_VRING_BASE`](#vhost-get-vring-base)
+  - [`VFIO_DEVICE_IOEVENTFD`](#vfio-device-ioeventfd)
+  - [`ATMARP_SETENTRY`](#atmarp-setentry)
+  - [`CCISS_REVALIDVOLS`](#cciss-revalidvols)
+  - [`MGSL_IOCLOOPTXDONE`](#mgsl-ioclooptxdone)
+  - [`RTC_VL_READ`](#rtc-vl-read)
+  - [`ND_IOCTL_ARS_STATUS`](#nd-ioctl-ars-status)
+  - [`RIO_DEV_DEL`](#rio-dev-del)
+  - [`VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES`](#vbg-ioctl-acquire-guest-capabilities)
+  - [`VIDIOC_SUBDEV_DV_TIMINGS_CAP`](#vidioc-subdev-dv-timings-cap)
+  - [`SONYPI_IOCSFAN`](#sonypi-iocsfan)
   - [`SPIOCSTYPE`](#spiocstype)
-  - [`IPMICTL_REGISTER_FOR_CMD`](#ipmictl_register_for_cmd)
-  - [`I8K_GET_FAN`](#i8k_get_fan)
+  - [`IPMICTL_REGISTER_FOR_CMD`](#ipmictl-register-for-cmd)
+  - [`I8K_GET_FAN`](#i8k-get-fan)
   - [`TUNGETVNETBE`](#tungetvnetbe)
-  - [`AUTOFS_DEV_IOCTL_FAIL`](#autofs_dev_ioctl_fail)
-  - [`UI_END_FF_UPLOAD`](#ui_end_ff_upload)
-  - [`TOSH_SMM`](#tosh_smm)
-  - [`SONYPI_IOCGBAT2REM`](#sonypi_iocgbat2rem)
-  - [`F2FS_IOC_GET_COMPRESS_BLOCKS`](#f2fs_ioc_get_compress_blocks)
+  - [`AUTOFS_DEV_IOCTL_FAIL`](#autofs-dev-ioctl-fail)
+  - [`UI_END_FF_UPLOAD`](#ui-end-ff-upload)
+  - [`TOSH_SMM`](#tosh-smm)
+  - [`SONYPI_IOCGBAT2REM`](#sonypi-iocgbat2rem)
+  - [`F2FS_IOC_GET_COMPRESS_BLOCKS`](#f2fs-ioc-get-compress-blocks)
   - [`PPPIOCSNPMODE`](#pppiocsnpmode)
-  - [`USBDEVFS_CONTROL`](#usbdevfs_control)
+  - [`USBDEVFS_CONTROL`](#usbdevfs-control)
   - [`HIDIOCGUSAGE`](#hidiocgusage)
   - [`TUNSETTXFILTER`](#tunsettxfilter)
   - [`TUNGETVNETLE`](#tungetvnetle)
-  - [`VIDIOC_ENUM_DV_TIMINGS`](#vidioc_enum_dv_timings)
-  - [`BTRFS_IOC_INO_PATHS`](#btrfs_ioc_ino_paths)
-  - [`MGSL_IOCGXSYNC`](#mgsl_iocgxsync)
+  - [`VIDIOC_ENUM_DV_TIMINGS`](#vidioc-enum-dv-timings)
+  - [`BTRFS_IOC_INO_PATHS`](#btrfs-ioc-ino-paths)
+  - [`MGSL_IOCGXSYNC`](#mgsl-iocgxsync)
   - [`HIDIOCGFIELDINFO`](#hidiocgfieldinfo)
-  - [`VIDIOC_SUBDEV_G_STD`](#vidioc_subdev_g_std)
+  - [`VIDIOC_SUBDEV_G_STD`](#vidioc-subdev-g-std)
   - [`I2OVALIDATE`](#i2ovalidate)
-  - [`VIDIOC_TRY_ENCODER_CMD`](#vidioc_try_encoder_cmd)
-  - [`NILFS_IOCTL_GET_CPINFO`](#nilfs_ioctl_get_cpinfo)
-  - [`VIDIOC_G_FREQUENCY`](#vidioc_g_frequency)
-  - [`VFAT_IOCTL_READDIR_SHORT`](#vfat_ioctl_readdir_short)
-  - [`ND_IOCTL_GET_CONFIG_DATA`](#nd_ioctl_get_config_data)
-  - [`F2FS_IOC_RESERVE_COMPRESS_BLOCKS`](#f2fs_ioc_reserve_compress_blocks)
+  - [`VIDIOC_TRY_ENCODER_CMD`](#vidioc-try-encoder-cmd)
+  - [`NILFS_IOCTL_GET_CPINFO`](#nilfs-ioctl-get-cpinfo)
+  - [`VIDIOC_G_FREQUENCY`](#vidioc-g-frequency)
+  - [`VFAT_IOCTL_READDIR_SHORT`](#vfat-ioctl-readdir-short)
+  - [`ND_IOCTL_GET_CONFIG_DATA`](#nd-ioctl-get-config-data)
+  - [`F2FS_IOC_RESERVE_COMPRESS_BLOCKS`](#f2fs-ioc-reserve-compress-blocks)
   - [`FDGETDRVSTAT`](#fdgetdrvstat)
-  - [`SYNC_IOC_MERGE`](#sync_ioc_merge)
-  - [`VIDIOC_S_DV_TIMINGS`](#vidioc_s_dv_timings)
+  - [`SYNC_IOC_MERGE`](#sync-ioc-merge)
+  - [`VIDIOC_S_DV_TIMINGS`](#vidioc-s-dv-timings)
   - [`PPPIOCBRIDGECHAN`](#pppiocbridgechan)
-  - [`LIRC_SET_SEND_MODE`](#lirc_set_send_mode)
-  - [`RIO_ENABLE_PORTWRITE_RANGE`](#rio_enable_portwrite_range)
-  - [`ATM_GETTYPE`](#atm_gettype)
-  - [`PHN_GETREGS`](#phn_getregs)
+  - [`LIRC_SET_SEND_MODE`](#lirc-set-send-mode)
+  - [`RIO_ENABLE_PORTWRITE_RANGE`](#rio-enable-portwrite-range)
+  - [`ATM_GETTYPE`](#atm-gettype)
+  - [`PHN_GETREGS`](#phn-getregs)
   - [`FDSETEMSGTRESH`](#fdsetemsgtresh)
-  - [`NILFS_IOCTL_GET_VINFO`](#nilfs_ioctl_get_vinfo)
-  - [`MGSL_IOCWAITEVENT`](#mgsl_iocwaitevent)
-  - [`CAPI_INSTALLED`](#capi_installed)
+  - [`NILFS_IOCTL_GET_VINFO`](#nilfs-ioctl-get-vinfo)
+  - [`MGSL_IOCWAITEVENT`](#mgsl-iocwaitevent)
+  - [`CAPI_INSTALLED`](#capi-installed)
   - [`EVIOCGMASK`](#eviocgmask)
-  - [`BTRFS_IOC_SUBVOL_GETFLAGS`](#btrfs_ioc_subvol_getflags)
-  - [`FSL_HV_IOCTL_PARTITION_GET_STATUS`](#fsl_hv_ioctl_partition_get_status)
-  - [`MEDIA_IOC_ENUM_ENTITIES`](#media_ioc_enum_entities)
-  - [`GSMIOC_GETFIRST`](#gsmioc_getfirst)
-  - [`FW_CDEV_IOC_FLUSH_ISO`](#fw_cdev_ioc_flush_iso)
-  - [`VIDIOC_DBG_G_CHIP_INFO`](#vidioc_dbg_g_chip_info)
-  - [`F2FS_IOC_RELEASE_VOLATILE_WRITE`](#f2fs_ioc_release_volatile_write)
-  - [`CAPI_GET_SERIAL`](#capi_get_serial)
+  - [`BTRFS_IOC_SUBVOL_GETFLAGS`](#btrfs-ioc-subvol-getflags)
+  - [`FSL_HV_IOCTL_PARTITION_GET_STATUS`](#fsl-hv-ioctl-partition-get-status)
+  - [`MEDIA_IOC_ENUM_ENTITIES`](#media-ioc-enum-entities)
+  - [`GSMIOC_GETFIRST`](#gsmioc-getfirst)
+  - [`FW_CDEV_IOC_FLUSH_ISO`](#fw-cdev-ioc-flush-iso)
+  - [`VIDIOC_DBG_G_CHIP_INFO`](#vidioc-dbg-g-chip-info)
+  - [`F2FS_IOC_RELEASE_VOLATILE_WRITE`](#f2fs-ioc-release-volatile-write)
+  - [`CAPI_GET_SERIAL`](#capi-get-serial)
   - [`FDSETDRVPRM`](#fdsetdrvprm)
-  - [`IOC_OPAL_SAVE`](#ioc_opal_save)
-  - [`VIDIOC_G_DV_TIMINGS`](#vidioc_g_dv_timings)
+  - [`IOC_OPAL_SAVE`](#ioc-opal-save)
+  - [`VIDIOC_G_DV_TIMINGS`](#vidioc-g-dv-timings)
   - [`TUNSETIFINDEX`](#tunsetifindex)
-  - [`CCISS_SETINTINFO`](#cciss_setintinfo)
-  - [`RTC_VL_CLR`](#rtc_vl_clr)
-  - [`VIDIOC_REQBUFS`](#vidioc_reqbufs)
-  - [`USBDEVFS_REAPURBNDELAY32`](#usbdevfs_reapurbndelay32)
-  - [`TEE_IOC_SHM_REGISTER`](#tee_ioc_shm_register)
-  - [`USBDEVFS_SETCONFIGURATION`](#usbdevfs_setconfiguration)
-  - [`CCISS_GETNODENAME`](#cciss_getnodename)
-  - [`VIDIOC_SUBDEV_S_FRAME_INTERVAL`](#vidioc_subdev_s_frame_interval)
-  - [`VIDIOC_ENUM_FRAMESIZES`](#vidioc_enum_framesizes)
-  - [`VFIO_DEVICE_PCI_HOT_RESET`](#vfio_device_pci_hot_reset)
-  - [`FW_CDEV_IOC_SEND_BROADCAST_REQUEST`](#fw_cdev_ioc_send_broadcast_request)
-  - [`LPSETTIMEOUT_NEW`](#lpsettimeout_new)
-  - [`RIO_CM_MPORT_GET_LIST`](#rio_cm_mport_get_list)
-  - [`FW_CDEV_IOC_QUEUE_ISO`](#fw_cdev_ioc_queue_iso)
+  - [`CCISS_SETINTINFO`](#cciss-setintinfo)
+  - [`RTC_VL_CLR`](#rtc-vl-clr)
+  - [`VIDIOC_REQBUFS`](#vidioc-reqbufs)
+  - [`USBDEVFS_REAPURBNDELAY32`](#usbdevfs-reapurbndelay32)
+  - [`TEE_IOC_SHM_REGISTER`](#tee-ioc-shm-register)
+  - [`USBDEVFS_SETCONFIGURATION`](#usbdevfs-setconfiguration)
+  - [`CCISS_GETNODENAME`](#cciss-getnodename)
+  - [`VIDIOC_SUBDEV_S_FRAME_INTERVAL`](#vidioc-subdev-s-frame-interval)
+  - [`VIDIOC_ENUM_FRAMESIZES`](#vidioc-enum-framesizes)
+  - [`VFIO_DEVICE_PCI_HOT_RESET`](#vfio-device-pci-hot-reset)
+  - [`FW_CDEV_IOC_SEND_BROADCAST_REQUEST`](#fw-cdev-ioc-send-broadcast-request)
+  - [`LPSETTIMEOUT_NEW`](#lpsettimeout-new)
+  - [`RIO_CM_MPORT_GET_LIST`](#rio-cm-mport-get-list)
+  - [`FW_CDEV_IOC_QUEUE_ISO`](#fw-cdev-ioc-queue-iso)
   - [`FDRAWCMD`](#fdrawcmd)
-  - [`SCIF_UNREG`](#scif_unreg)
+  - [`SCIF_UNREG`](#scif-unreg)
   - [`PPPIOCGIDLE64`](#pppiocgidle64)
-  - [`USBDEVFS_RELEASEINTERFACE`](#usbdevfs_releaseinterface)
-  - [`VIDIOC_CROPCAP`](#vidioc_cropcap)
-  - [`DFL_FPGA_PORT_GET_INFO`](#dfl_fpga_port_get_info)
-  - [`PHN_SET_REGS`](#phn_set_regs)
-  - [`ATMLEC_DATA`](#atmlec_data)
+  - [`USBDEVFS_RELEASEINTERFACE`](#usbdevfs-releaseinterface)
+  - [`VIDIOC_CROPCAP`](#vidioc-cropcap)
+  - [`DFL_FPGA_PORT_GET_INFO`](#dfl-fpga-port-get-info)
+  - [`PHN_SET_REGS`](#phn-set-regs)
+  - [`ATMLEC_DATA`](#atmlec-data)
   - [`PPPOEIOCDFWD`](#pppoeiocdfwd)
-  - [`VIDIOC_S_SELECTION`](#vidioc_s_selection)
-  - [`SNAPSHOT_FREE_SWAP_PAGES`](#snapshot_free_swap_pages)
-  - [`BTRFS_IOC_LOGICAL_INO`](#btrfs_ioc_logical_ino)
-  - [`VIDIOC_S_CTRL`](#vidioc_s_ctrl)
-  - [`ZATM_SETPOOL`](#zatm_setpool)
+  - [`VIDIOC_S_SELECTION`](#vidioc-s-selection)
+  - [`SNAPSHOT_FREE_SWAP_PAGES`](#snapshot-free-swap-pages)
+  - [`BTRFS_IOC_LOGICAL_INO`](#btrfs-ioc-logical-ino)
+  - [`VIDIOC_S_CTRL`](#vidioc-s-ctrl)
+  - [`ZATM_SETPOOL`](#zatm-setpool)
   - [`MTIOCPOS`](#mtiocpos)
-  - [`PMU_IOC_SLEEP`](#pmu_ioc_sleep)
-  - [`AUTOFS_DEV_IOCTL_PROTOSUBVER`](#autofs_dev_ioctl_protosubver)
-  - [`VBG_IOCTL_CHANGE_FILTER_MASK`](#vbg_ioctl_change_filter_mask)
-  - [`NILFS_IOCTL_GET_SUSTAT`](#nilfs_ioctl_get_sustat)
-  - [`VIDIOC_QUERYCAP`](#vidioc_querycap)
-  - [`HPET_INFO`](#hpet_info)
-  - [`VIDIOC_AM437X_CCDC_CFG`](#vidioc_am437x_ccdc_cfg)
-  - [`DM_LIST_DEVICES`](#dm_list_devices)
+  - [`PMU_IOC_SLEEP`](#pmu-ioc-sleep)
+  - [`AUTOFS_DEV_IOCTL_PROTOSUBVER`](#autofs-dev-ioctl-protosubver)
+  - [`VBG_IOCTL_CHANGE_FILTER_MASK`](#vbg-ioctl-change-filter-mask)
+  - [`NILFS_IOCTL_GET_SUSTAT`](#nilfs-ioctl-get-sustat)
+  - [`VIDIOC_QUERYCAP`](#vidioc-querycap)
+  - [`HPET_INFO`](#hpet-info)
+  - [`VIDIOC_AM437X_CCDC_CFG`](#vidioc-am437x-ccdc-cfg)
+  - [`DM_LIST_DEVICES`](#dm-list-devices)
   - [`TUNSETOWNER`](#tunsetowner)
-  - [`VBG_IOCTL_CHANGE_GUEST_CAPABILITIES`](#vbg_ioctl_change_guest_capabilities)
+  - [`VBG_IOCTL_CHANGE_GUEST_CAPABILITIES`](#vbg-ioctl-change-guest-capabilities)
   - [`RNDADDENTROPY`](#rndaddentropy)
-  - [`USBDEVFS_RESET`](#usbdevfs_reset)
-  - [`BTRFS_IOC_SUBVOL_CREATE`](#btrfs_ioc_subvol_create)
-  - [`USBDEVFS_FORBID_SUSPEND`](#usbdevfs_forbid_suspend)
+  - [`USBDEVFS_RESET`](#usbdevfs-reset)
+  - [`BTRFS_IOC_SUBVOL_CREATE`](#btrfs-ioc-subvol-create)
+  - [`USBDEVFS_FORBID_SUSPEND`](#usbdevfs-forbid-suspend)
   - [`FDGETDRVTYP`](#fdgetdrvtyp)
   - [`PPWCONTROL`](#ppwcontrol)
-  - [`VIDIOC_ENUM_FRAMEINTERVALS`](#vidioc_enum_frameintervals)
-  - [`KCOV_DISABLE`](#kcov_disable)
-  - [`IOC_OPAL_ACTIVATE_LSP`](#ioc_opal_activate_lsp)
-  - [`VHOST_VDPA_GET_IOVA_RANGE`](#vhost_vdpa_get_iova_range)
+  - [`VIDIOC_ENUM_FRAMEINTERVALS`](#vidioc-enum-frameintervals)
+  - [`KCOV_DISABLE`](#kcov-disable)
+  - [`IOC_OPAL_ACTIVATE_LSP`](#ioc-opal-activate-lsp)
+  - [`VHOST_VDPA_GET_IOVA_RANGE`](#vhost-vdpa-get-iova-range)
   - [`PPPIOCSPASS`](#pppiocspass)
-  - [`RIO_CM_CHAN_CONNECT`](#rio_cm_chan_connect)
+  - [`RIO_CM_CHAN_CONNECT`](#rio-cm-chan-connect)
   - [`I2OSWDEL`](#i2oswdel)
-  - [`FS_IOC_SET_ENCRYPTION_POLICY`](#fs_ioc_set_encryption_policy)
-  - [`IOC_OPAL_MBR_DONE`](#ioc_opal_mbr_done)
+  - [`FS_IOC_SET_ENCRYPTION_POLICY`](#fs-ioc-set-encryption-policy)
+  - [`IOC_OPAL_MBR_DONE`](#ioc-opal-mbr-done)
   - [`PPPIOCSMAXCID`](#pppiocsmaxcid)
   - [`PPSETPHASE`](#ppsetphase)
-  - [`VHOST_VDPA_SET_VRING_ENABLE`](#vhost_vdpa_set_vring_enable)
-  - [`USBDEVFS_GET_SPEED`](#usbdevfs_get_speed)
-  - [`SONET_GETFRAMING`](#sonet_getframing)
-  - [`VIDIOC_QUERYBUF`](#vidioc_querybuf)
-  - [`VIDIOC_S_EDID`](#vidioc_s_edid)
-  - [`BTRFS_IOC_QGROUP_ASSIGN`](#btrfs_ioc_qgroup_assign)
-  - [`PPS_GETCAP`](#pps_getcap)
-  - [`SNAPSHOT_PLATFORM_SUPPORT`](#snapshot_platform_support)
-  - [`LIRC_SET_REC_TIMEOUT_REPORTS`](#lirc_set_rec_timeout_reports)
-  - [`SCIF_GET_NODEIDS`](#scif_get_nodeids)
-  - [`NBD_DISCONNECT`](#nbd_disconnect)
-  - [`VIDIOC_SUBDEV_G_FRAME_INTERVAL`](#vidioc_subdev_g_frame_interval)
-  - [`VFIO_IOMMU_DISABLE`](#vfio_iommu_disable)
-  - [`SNAPSHOT_CREATE_IMAGE`](#snapshot_create_image)
-  - [`SNAPSHOT_POWER_OFF`](#snapshot_power_off)
-  - [`APM_IOC_STANDBY`](#apm_ioc_standby)
+  - [`VHOST_VDPA_SET_VRING_ENABLE`](#vhost-vdpa-set-vring-enable)
+  - [`USBDEVFS_GET_SPEED`](#usbdevfs-get-speed)
+  - [`SONET_GETFRAMING`](#sonet-getframing)
+  - [`VIDIOC_QUERYBUF`](#vidioc-querybuf)
+  - [`VIDIOC_S_EDID`](#vidioc-s-edid)
+  - [`BTRFS_IOC_QGROUP_ASSIGN`](#btrfs-ioc-qgroup-assign)
+  - [`PPS_GETCAP`](#pps-getcap)
+  - [`SNAPSHOT_PLATFORM_SUPPORT`](#snapshot-platform-support)
+  - [`LIRC_SET_REC_TIMEOUT_REPORTS`](#lirc-set-rec-timeout-reports)
+  - [`SCIF_GET_NODEIDS`](#scif-get-nodeids)
+  - [`NBD_DISCONNECT`](#nbd-disconnect)
+  - [`VIDIOC_SUBDEV_G_FRAME_INTERVAL`](#vidioc-subdev-g-frame-interval)
+  - [`VFIO_IOMMU_DISABLE`](#vfio-iommu-disable)
+  - [`SNAPSHOT_CREATE_IMAGE`](#snapshot-create-image)
+  - [`SNAPSHOT_POWER_OFF`](#snapshot-power-off)
+  - [`APM_IOC_STANDBY`](#apm-ioc-standby)
   - [`PPPIOCGUNIT`](#pppiocgunit)
-  - [`AUTOFS_IOC_EXPIRE_MULTI`](#autofs_ioc_expire_multi)
-  - [`SCIF_BIND`](#scif_bind)
-  - [`IOC_WATCH_QUEUE_SET_SIZE`](#ioc_watch_queue_set_size)
-  - [`NILFS_IOCTL_CHANGE_CPMODE`](#nilfs_ioctl_change_cpmode)
-  - [`IOC_OPAL_LOCK_UNLOCK`](#ioc_opal_lock_unlock)
-  - [`F2FS_IOC_SET_PIN_FILE`](#f2fs_ioc_set_pin_file)
+  - [`AUTOFS_IOC_EXPIRE_MULTI`](#autofs-ioc-expire-multi)
+  - [`SCIF_BIND`](#scif-bind)
+  - [`IOC_WATCH_QUEUE_SET_SIZE`](#ioc-watch-queue-set-size)
+  - [`NILFS_IOCTL_CHANGE_CPMODE`](#nilfs-ioctl-change-cpmode)
+  - [`IOC_OPAL_LOCK_UNLOCK`](#ioc-opal-lock-unlock)
+  - [`F2FS_IOC_SET_PIN_FILE`](#f2fs-ioc-set-pin-file)
   - [`PPPIOCGRASYNCMAP`](#pppiocgrasyncmap)
-  - [`MMTIMER_MMAPAVAIL`](#mmtimer_mmapavail)
+  - [`MMTIMER_MMAPAVAIL`](#mmtimer-mmapavail)
   - [`I2OPASSTHRU32`](#i2opassthru32)
-  - [`DFL_FPGA_FME_PORT_RELEASE`](#dfl_fpga_fme_port_release)
-  - [`VIDIOC_SUBDEV_QUERY_DV_TIMINGS`](#vidioc_subdev_query_dv_timings)
-  - [`UI_SET_SNDBIT`](#ui_set_sndbit)
-  - [`VIDIOC_G_AUDOUT`](#vidioc_g_audout)
-  - [`RTC_PLL_SET`](#rtc_pll_set)
-  - [`VIDIOC_ENUMAUDIO`](#vidioc_enumaudio)
-  - [`AUTOFS_DEV_IOCTL_TIMEOUT`](#autofs_dev_ioctl_timeout)
-  - [`VBG_IOCTL_DRIVER_VERSION_INFO`](#vbg_ioctl_driver_version_info)
-  - [`VHOST_SCSI_GET_EVENTS_MISSED`](#vhost_scsi_get_events_missed)
-  - [`VHOST_SET_VRING_ADDR`](#vhost_set_vring_addr)
-  - [`VDUSE_CREATE_DEV`](#vduse_create_dev)
+  - [`DFL_FPGA_FME_PORT_RELEASE`](#dfl-fpga-fme-port-release)
+  - [`VIDIOC_SUBDEV_QUERY_DV_TIMINGS`](#vidioc-subdev-query-dv-timings)
+  - [`UI_SET_SNDBIT`](#ui-set-sndbit)
+  - [`VIDIOC_G_AUDOUT`](#vidioc-g-audout)
+  - [`RTC_PLL_SET`](#rtc-pll-set)
+  - [`VIDIOC_ENUMAUDIO`](#vidioc-enumaudio)
+  - [`AUTOFS_DEV_IOCTL_TIMEOUT`](#autofs-dev-ioctl-timeout)
+  - [`VBG_IOCTL_DRIVER_VERSION_INFO`](#vbg-ioctl-driver-version-info)
+  - [`VHOST_SCSI_GET_EVENTS_MISSED`](#vhost-scsi-get-events-missed)
+  - [`VHOST_SET_VRING_ADDR`](#vhost-set-vring-addr)
+  - [`VDUSE_CREATE_DEV`](#vduse-create-dev)
   - [`FDFLUSH`](#fdflush)
-  - [`VBG_IOCTL_WAIT_FOR_EVENTS`](#vbg_ioctl_wait_for_events)
-  - [`DFL_FPGA_FME_ERR_SET_IRQ`](#dfl_fpga_fme_err_set_irq)
-  - [`F2FS_IOC_GET_PIN_FILE`](#f2fs_ioc_get_pin_file)
-  - [`SCIF_CONNECT`](#scif_connect)
+  - [`VBG_IOCTL_WAIT_FOR_EVENTS`](#vbg-ioctl-wait-for-events)
+  - [`DFL_FPGA_FME_ERR_SET_IRQ`](#dfl-fpga-fme-err-set-irq)
+  - [`F2FS_IOC_GET_PIN_FILE`](#f2fs-ioc-get-pin-file)
+  - [`SCIF_CONNECT`](#scif-connect)
   - [`BLKREPORTZONE`](#blkreportzone)
-  - [`AUTOFS_IOC_ASKUMOUNT`](#autofs_ioc_askumount)
-  - [`ATM_ADDPARTY`](#atm_addparty)
+  - [`AUTOFS_IOC_ASKUMOUNT`](#autofs-ioc-askumount)
+  - [`ATM_ADDPARTY`](#atm-addparty)
   - [`FDSETPRM`](#fdsetprm)
-  - [`ATM_GETSTATZ`](#atm_getstatz)
-  - [`ISST_IF_MSR_COMMAND`](#isst_if_msr_command)
-  - [`BTRFS_IOC_GET_SUBVOL_INFO`](#btrfs_ioc_get_subvol_info)
-  - [`VIDIOC_UNSUBSCRIBE_EVENT`](#vidioc_unsubscribe_event)
-  - [`SEV_ISSUE_CMD`](#sev_issue_cmd)
-  - [`GPIOHANDLE_SET_LINE_VALUES_IOCTL`](#gpiohandle_set_line_values_ioctl)
-  - [`PCITEST_COPY`](#pcitest_copy)
-  - [`IPMICTL_GET_MY_ADDRESS_CMD`](#ipmictl_get_my_address_cmd)
+  - [`ATM_GETSTATZ`](#atm-getstatz)
+  - [`ISST_IF_MSR_COMMAND`](#isst-if-msr-command)
+  - [`BTRFS_IOC_GET_SUBVOL_INFO`](#btrfs-ioc-get-subvol-info)
+  - [`VIDIOC_UNSUBSCRIBE_EVENT`](#vidioc-unsubscribe-event)
+  - [`SEV_ISSUE_CMD`](#sev-issue-cmd)
+  - [`GPIOHANDLE_SET_LINE_VALUES_IOCTL`](#gpiohandle-set-line-values-ioctl)
+  - [`PCITEST_COPY`](#pcitest-copy)
+  - [`IPMICTL_GET_MY_ADDRESS_CMD`](#ipmictl-get-my-address-cmd)
   - [`CHIOGPICKER`](#chiogpicker)
-  - [`CAPI_NCCI_OPENCOUNT`](#capi_ncci_opencount)
-  - [`CXL_MEM_SEND_COMMAND`](#cxl_mem_send_command)
-  - [`PERF_EVENT_IOC_SET_FILTER`](#perf_event_ioc_set_filter)
-  - [`IOC_OPAL_REVERT_TPR`](#ioc_opal_revert_tpr)
+  - [`CAPI_NCCI_OPENCOUNT`](#capi-ncci-opencount)
+  - [`CXL_MEM_SEND_COMMAND`](#cxl-mem-send-command)
+  - [`PERF_EVENT_IOC_SET_FILTER`](#perf-event-ioc-set-filter)
+  - [`IOC_OPAL_REVERT_TPR`](#ioc-opal-revert-tpr)
   - [`CHIOGVPARAMS`](#chiogvparams)
-  - [`PTP_PEROUT_REQUEST`](#ptp_perout_request)
-  - [`FSI_SCOM_CHECK`](#fsi_scom_check)
-  - [`RTC_IRQP_READ`](#rtc_irqp_read)
-  - [`RIO_MPORT_MAINT_READ_LOCAL`](#rio_mport_maint_read_local)
+  - [`PTP_PEROUT_REQUEST`](#ptp-perout-request)
+  - [`FSI_SCOM_CHECK`](#fsi-scom-check)
+  - [`RTC_IRQP_READ`](#rtc-irqp-read)
+  - [`RIO_MPORT_MAINT_READ_LOCAL`](#rio-mport-maint-read-local)
   - [`HIDIOCGRDESCSIZE`](#hidiocgrdescsize)
-  - [`UI_GET_VERSION`](#ui_get_version)
-  - [`NILFS_IOCTL_GET_CPSTAT`](#nilfs_ioctl_get_cpstat)
-  - [`CCISS_GETBUSTYPES`](#cciss_getbustypes)
-  - [`VFIO_IOMMU_SPAPR_TCE_CREATE`](#vfio_iommu_spapr_tce_create)
-  - [`VIDIOC_EXPBUF`](#vidioc_expbuf)
-  - [`UI_SET_RELBIT`](#ui_set_relbit)
-  - [`VFIO_SET_IOMMU`](#vfio_set_iommu)
-  - [`VIDIOC_S_MODULATOR`](#vidioc_s_modulator)
+  - [`UI_GET_VERSION`](#ui-get-version)
+  - [`NILFS_IOCTL_GET_CPSTAT`](#nilfs-ioctl-get-cpstat)
+  - [`CCISS_GETBUSTYPES`](#cciss-getbustypes)
+  - [`VFIO_IOMMU_SPAPR_TCE_CREATE`](#vfio-iommu-spapr-tce-create)
+  - [`VIDIOC_EXPBUF`](#vidioc-expbuf)
+  - [`UI_SET_RELBIT`](#ui-set-relbit)
+  - [`VFIO_SET_IOMMU`](#vfio-set-iommu)
+  - [`VIDIOC_S_MODULATOR`](#vidioc-s-modulator)
   - [`TUNGETFILTER`](#tungetfilter)
-  - [`CCISS_SETNODENAME`](#cciss_setnodename)
-  - [`FBIO_GETCONTROL2`](#fbio_getcontrol2)
+  - [`CCISS_SETNODENAME`](#cciss-setnodename)
+  - [`FBIO_GETCONTROL2`](#fbio-getcontrol2)
   - [`TUNSETDEBUG`](#tunsetdebug)
-  - [`DM_DEV_REMOVE`](#dm_dev_remove)
+  - [`DM_DEV_REMOVE`](#dm-dev-remove)
   - [`HIDIOCSUSAGES`](#hidiocsusages)
-  - [`FS_IOC_ADD_ENCRYPTION_KEY`](#fs_ioc_add_encryption_key)
-  - [`FBIOGET_VBLANK`](#fbioget_vblank)
-  - [`ATM_GETSTAT`](#atm_getstat)
-  - [`VIDIOC_G_JPEGCOMP`](#vidioc_g_jpegcomp)
+  - [`FS_IOC_ADD_ENCRYPTION_KEY`](#fs-ioc-add-encryption-key)
+  - [`FBIOGET_VBLANK`](#fbioget-vblank)
+  - [`ATM_GETSTAT`](#atm-getstat)
+  - [`VIDIOC_G_JPEGCOMP`](#vidioc-g-jpegcomp)
   - [`TUNATTACHFILTER`](#tunattachfilter)
-  - [`UI_SET_ABSBIT`](#ui_set_absbit)
-  - [`DFL_FPGA_PORT_ERR_GET_IRQ_NUM`](#dfl_fpga_port_err_get_irq_num)
-  - [`USBDEVFS_REAPURB32`](#usbdevfs_reapurb32)
-  - [`BTRFS_IOC_TRANS_END`](#btrfs_ioc_trans_end)
-  - [`CAPI_REGISTER`](#capi_register)
-  - [`F2FS_IOC_COMPRESS_FILE`](#f2fs_ioc_compress_file)
-  - [`USBDEVFS_DISCARDURB`](#usbdevfs_discardurb)
-  - [`HE_GET_REG`](#he_get_reg)
-  - [`ATM_SETLOOP`](#atm_setloop)
-  - [`ATMSIGD_CTRL`](#atmsigd_ctrl)
-  - [`CIOC_KERNEL_VERSION`](#cioc_kernel_version)
-  - [`BTRFS_IOC_CLONE_RANGE`](#btrfs_ioc_clone_range)
-  - [`SNAPSHOT_UNFREEZE`](#snapshot_unfreeze)
-  - [`F2FS_IOC_START_VOLATILE_WRITE`](#f2fs_ioc_start_volatile_write)
-  - [`PMU_IOC_HAS_ADB`](#pmu_ioc_has_adb)
+  - [`UI_SET_ABSBIT`](#ui-set-absbit)
+  - [`DFL_FPGA_PORT_ERR_GET_IRQ_NUM`](#dfl-fpga-port-err-get-irq-num)
+  - [`USBDEVFS_REAPURB32`](#usbdevfs-reapurb32)
+  - [`BTRFS_IOC_TRANS_END`](#btrfs-ioc-trans-end)
+  - [`CAPI_REGISTER`](#capi-register)
+  - [`F2FS_IOC_COMPRESS_FILE`](#f2fs-ioc-compress-file)
+  - [`USBDEVFS_DISCARDURB`](#usbdevfs-discardurb)
+  - [`HE_GET_REG`](#he-get-reg)
+  - [`ATM_SETLOOP`](#atm-setloop)
+  - [`ATMSIGD_CTRL`](#atmsigd-ctrl)
+  - [`CIOC_KERNEL_VERSION`](#cioc-kernel-version)
+  - [`BTRFS_IOC_CLONE_RANGE`](#btrfs-ioc-clone-range)
+  - [`SNAPSHOT_UNFREEZE`](#snapshot-unfreeze)
+  - [`F2FS_IOC_START_VOLATILE_WRITE`](#f2fs-ioc-start-volatile-write)
+  - [`PMU_IOC_HAS_ADB`](#pmu-ioc-has-adb)
   - [`I2OGETIOPS`](#i2ogetiops)
-  - [`VIDIOC_S_FBUF`](#vidioc_s_fbuf)
+  - [`VIDIOC_S_FBUF`](#vidioc-s-fbuf)
   - [`PPRCONTROL`](#pprcontrol)
   - [`CHIOSPICKER`](#chiospicker)
-  - [`VFIO_IOMMU_SPAPR_REGISTER_MEMORY`](#vfio_iommu_spapr_register_memory)
+  - [`VFIO_IOMMU_SPAPR_REGISTER_MEMORY`](#vfio-iommu-spapr-register-memory)
   - [`TUNGETSNDBUF`](#tungetsndbuf)
-  - [`GSMIOC_SETCONF`](#gsmioc_setconf)
-  - [`IOC_PR_PREEMPT`](#ioc_pr_preempt)
-  - [`KCOV_INIT_TRACE`](#kcov_init_trace)
-  - [`SONYPI_IOCGBAT1CAP`](#sonypi_iocgbat1cap)
-  - [`SWITCHTEC_IOCTL_FLASH_INFO`](#switchtec_ioctl_flash_info)
+  - [`GSMIOC_SETCONF`](#gsmioc-setconf)
+  - [`IOC_PR_PREEMPT`](#ioc-pr-preempt)
+  - [`KCOV_INIT_TRACE`](#kcov-init-trace)
+  - [`SONYPI_IOCGBAT1CAP`](#sonypi-iocgbat1cap)
+  - [`SWITCHTEC_IOCTL_FLASH_INFO`](#switchtec-ioctl-flash-info)
   - [`MTIOCTOP`](#mtioctop)
-  - [`VHOST_VDPA_SET_STATUS`](#vhost_vdpa_set_status)
-  - [`VHOST_SCSI_SET_EVENTS_MISSED`](#vhost_scsi_set_events_missed)
-  - [`VFIO_IOMMU_DIRTY_PAGES`](#vfio_iommu_dirty_pages)
-  - [`BTRFS_IOC_SCRUB_PROGRESS`](#btrfs_ioc_scrub_progress)
+  - [`VHOST_VDPA_SET_STATUS`](#vhost-vdpa-set-status)
+  - [`VHOST_SCSI_SET_EVENTS_MISSED`](#vhost-scsi-set-events-missed)
+  - [`VFIO_IOMMU_DIRTY_PAGES`](#vfio-iommu-dirty-pages)
+  - [`BTRFS_IOC_SCRUB_PROGRESS`](#btrfs-ioc-scrub-progress)
   - [`PPPIOCGMRU`](#pppiocgmru)
-  - [`BTRFS_IOC_DEV_REPLACE`](#btrfs_ioc_dev_replace)
+  - [`BTRFS_IOC_DEV_REPLACE`](#btrfs-ioc-dev-replace)
   - [`PPPIOCGFLAGS`](#pppiocgflags)
-  - [`NILFS_IOCTL_SET_SUINFO`](#nilfs_ioctl_set_suinfo)
-  - [`FW_CDEV_IOC_GET_CYCLE_TIMER2`](#fw_cdev_ioc_get_cycle_timer2)
-  - [`ATM_DELLECSADDR`](#atm_dellecsaddr)
-  - [`FW_CDEV_IOC_GET_SPEED`](#fw_cdev_ioc_get_speed)
+  - [`NILFS_IOCTL_SET_SUINFO`](#nilfs-ioctl-set-suinfo)
+  - [`FW_CDEV_IOC_GET_CYCLE_TIMER2`](#fw-cdev-ioc-get-cycle-timer2)
+  - [`ATM_DELLECSADDR`](#atm-dellecsaddr)
+  - [`FW_CDEV_IOC_GET_SPEED`](#fw-cdev-ioc-get-speed)
   - [`PPPIOCGIDLE32`](#pppiocgidle32)
-  - [`VFIO_DEVICE_RESET`](#vfio_device_reset)
-  - [`GPIO_GET_LINEINFO_UNWATCH_IOCTL`](#gpio_get_lineinfo_unwatch_ioctl)
-  - [`WDIOC_GETSTATUS`](#wdioc_getstatus)
-  - [`BTRFS_IOC_SET_FEATURES`](#btrfs_ioc_set_features)
-  - [`IOCTL_MEI_CONNECT_CLIENT`](#ioctl_mei_connect_client)
-  - [`VIDIOC_OMAP3ISP_AEWB_CFG`](#vidioc_omap3isp_aewb_cfg)
-  - [`PCITEST_READ`](#pcitest_read)
-  - [`VFIO_GROUP_GET_STATUS`](#vfio_group_get_status)
-  - [`MATROXFB_GET_ALL_OUTPUTS`](#matroxfb_get_all_outputs)
-  - [`USBDEVFS_CLEAR_HALT`](#usbdevfs_clear_halt)
-  - [`VIDIOC_DECODER_CMD`](#vidioc_decoder_cmd)
-  - [`VIDIOC_G_AUDIO`](#vidioc_g_audio)
-  - [`CCISS_RESCANDISK`](#cciss_rescandisk)
-  - [`RIO_DISABLE_PORTWRITE_RANGE`](#rio_disable_portwrite_range)
-  - [`IOC_OPAL_SECURE_ERASE_LR`](#ioc_opal_secure_erase_lr)
-  - [`USBDEVFS_REAPURB`](#usbdevfs_reapurb)
-  - [`DFL_FPGA_CHECK_EXTENSION`](#dfl_fpga_check_extension)
-  - [`AUTOFS_IOC_PROTOVER`](#autofs_ioc_protover)
-  - [`FSL_HV_IOCTL_MEMCPY`](#fsl_hv_ioctl_memcpy)
-  - [`BTRFS_IOC_GET_FEATURES`](#btrfs_ioc_get_features)
-  - [`PCITEST_MSIX`](#pcitest_msix)
-  - [`BTRFS_IOC_DEFRAG_RANGE`](#btrfs_ioc_defrag_range)
-  - [`UI_BEGIN_FF_ERASE`](#ui_begin_ff_erase)
-  - [`DM_GET_TARGET_VERSION`](#dm_get_target_version)
+  - [`VFIO_DEVICE_RESET`](#vfio-device-reset)
+  - [`GPIO_GET_LINEINFO_UNWATCH_IOCTL`](#gpio-get-lineinfo-unwatch-ioctl)
+  - [`WDIOC_GETSTATUS`](#wdioc-getstatus)
+  - [`BTRFS_IOC_SET_FEATURES`](#btrfs-ioc-set-features)
+  - [`IOCTL_MEI_CONNECT_CLIENT`](#ioctl-mei-connect-client)
+  - [`VIDIOC_OMAP3ISP_AEWB_CFG`](#vidioc-omap3isp-aewb-cfg)
+  - [`PCITEST_READ`](#pcitest-read)
+  - [`VFIO_GROUP_GET_STATUS`](#vfio-group-get-status)
+  - [`MATROXFB_GET_ALL_OUTPUTS`](#matroxfb-get-all-outputs)
+  - [`USBDEVFS_CLEAR_HALT`](#usbdevfs-clear-halt)
+  - [`VIDIOC_DECODER_CMD`](#vidioc-decoder-cmd)
+  - [`VIDIOC_G_AUDIO`](#vidioc-g-audio)
+  - [`CCISS_RESCANDISK`](#cciss-rescandisk)
+  - [`RIO_DISABLE_PORTWRITE_RANGE`](#rio-disable-portwrite-range)
+  - [`IOC_OPAL_SECURE_ERASE_LR`](#ioc-opal-secure-erase-lr)
+  - [`USBDEVFS_REAPURB`](#usbdevfs-reapurb)
+  - [`DFL_FPGA_CHECK_EXTENSION`](#dfl-fpga-check-extension)
+  - [`AUTOFS_IOC_PROTOVER`](#autofs-ioc-protover)
+  - [`FSL_HV_IOCTL_MEMCPY`](#fsl-hv-ioctl-memcpy)
+  - [`BTRFS_IOC_GET_FEATURES`](#btrfs-ioc-get-features)
+  - [`PCITEST_MSIX`](#pcitest-msix)
+  - [`BTRFS_IOC_DEFRAG_RANGE`](#btrfs-ioc-defrag-range)
+  - [`UI_BEGIN_FF_ERASE`](#ui-begin-ff-erase)
+  - [`DM_GET_TARGET_VERSION`](#dm-get-target-version)
   - [`PPPIOCGIDLE`](#pppiocgidle)
-  - [`NVRAM_SETCKS`](#nvram_setcks)
-  - [`WDIOC_GETSUPPORT`](#wdioc_getsupport)
-  - [`GSMIOC_ENABLE_NET`](#gsmioc_enable_net)
-  - [`GPIO_GET_CHIPINFO_IOCTL`](#gpio_get_chipinfo_ioctl)
-  - [`NE_ADD_VCPU`](#ne_add_vcpu)
-  - [`EVIOCSKEYCODE_V2`](#eviocskeycode_v2)
-  - [`PTP_SYS_OFFSET_EXTENDED2`](#ptp_sys_offset_extended2)
-  - [`SCIF_FENCE_WAIT`](#scif_fence_wait)
-  - [`RIO_TRANSFER`](#rio_transfer)
-  - [`FSL_HV_IOCTL_DOORBELL`](#fsl_hv_ioctl_doorbell)
-  - [`RIO_MPORT_MAINT_WRITE_LOCAL`](#rio_mport_maint_write_local)
+  - [`NVRAM_SETCKS`](#nvram-setcks)
+  - [`WDIOC_GETSUPPORT`](#wdioc-getsupport)
+  - [`GSMIOC_ENABLE_NET`](#gsmioc-enable-net)
+  - [`GPIO_GET_CHIPINFO_IOCTL`](#gpio-get-chipinfo-ioctl)
+  - [`NE_ADD_VCPU`](#ne-add-vcpu)
+  - [`EVIOCSKEYCODE_V2`](#eviocskeycode-v2)
+  - [`PTP_SYS_OFFSET_EXTENDED2`](#ptp-sys-offset-extended2)
+  - [`SCIF_FENCE_WAIT`](#scif-fence-wait)
+  - [`RIO_TRANSFER`](#rio-transfer)
+  - [`FSL_HV_IOCTL_DOORBELL`](#fsl-hv-ioctl-doorbell)
+  - [`RIO_MPORT_MAINT_WRITE_LOCAL`](#rio-mport-maint-write-local)
   - [`I2OEVTREG`](#i2oevtreg)
   - [`I2OPARMGET`](#i2oparmget)
   - [`EVIOCGID`](#eviocgid)
-  - [`BTRFS_IOC_QGROUP_CREATE`](#btrfs_ioc_qgroup_create)
-  - [`AUTOFS_DEV_IOCTL_SETPIPEFD`](#autofs_dev_ioctl_setpipefd)
-  - [`VIDIOC_S_PARM`](#vidioc_s_parm)
+  - [`BTRFS_IOC_QGROUP_CREATE`](#btrfs-ioc-qgroup-create)
+  - [`AUTOFS_DEV_IOCTL_SETPIPEFD`](#autofs-dev-ioctl-setpipefd)
+  - [`VIDIOC_S_PARM`](#vidioc-s-parm)
   - [`TUNSETSTEERINGEBPF`](#tunsetsteeringebpf)
-  - [`ATM_GETNAMES`](#atm_getnames)
-  - [`VIDIOC_QUERYMENU`](#vidioc_querymenu)
-  - [`DFL_FPGA_PORT_DMA_UNMAP`](#dfl_fpga_port_dma_unmap)
+  - [`ATM_GETNAMES`](#atm-getnames)
+  - [`VIDIOC_QUERYMENU`](#vidioc-querymenu)
+  - [`DFL_FPGA_PORT_DMA_UNMAP`](#dfl-fpga-port-dma-unmap)
   - [`I2OLCTGET`](#i2olctget)
-  - [`FS_IOC_GET_ENCRYPTION_PWSALT`](#fs_ioc_get_encryption_pwsalt)
-  - [`NS_SETBUFLEV`](#ns_setbuflev)
+  - [`FS_IOC_GET_ENCRYPTION_PWSALT`](#fs-ioc-get-encryption-pwsalt)
+  - [`NS_SETBUFLEV`](#ns-setbuflev)
   - [`BLKCLOSEZONE`](#blkclosezone)
-  - [`SONET_GETFRSENSE`](#sonet_getfrsense)
-  - [`UI_SET_EVBIT`](#ui_set_evbit)
-  - [`DM_LIST_VERSIONS`](#dm_list_versions)
+  - [`SONET_GETFRSENSE`](#sonet-getfrsense)
+  - [`UI_SET_EVBIT`](#ui-set-evbit)
+  - [`DM_LIST_VERSIONS`](#dm-list-versions)
   - [`HIDIOCGSTRING`](#hidiocgstring)
   - [`PPPIOCATTCHAN`](#pppiocattchan)
-  - [`VDUSE_DEV_SET_CONFIG`](#vduse_dev_set_config)
+  - [`VDUSE_DEV_SET_CONFIG`](#vduse-dev-set-config)
   - [`TUNGETFEATURES`](#tungetfeatures)
-  - [`VFIO_GROUP_UNSET_CONTAINER`](#vfio_group_unset_container)
-  - [`IPMICTL_SET_MY_ADDRESS_CMD`](#ipmictl_set_my_address_cmd)
-  - [`CCISS_REGNEWDISK`](#cciss_regnewdisk)
-  - [`VIDIOC_QUERY_DV_TIMINGS`](#vidioc_query_dv_timings)
-  - [`PHN_SETREGS`](#phn_setregs)
-  - [`FAT_IOCTL_GET_ATTRIBUTES`](#fat_ioctl_get_attributes)
-  - [`FSL_MC_SEND_MC_COMMAND`](#fsl_mc_send_mc_command)
+  - [`VFIO_GROUP_UNSET_CONTAINER`](#vfio-group-unset-container)
+  - [`IPMICTL_SET_MY_ADDRESS_CMD`](#ipmictl-set-my-address-cmd)
+  - [`CCISS_REGNEWDISK`](#cciss-regnewdisk)
+  - [`VIDIOC_QUERY_DV_TIMINGS`](#vidioc-query-dv-timings)
+  - [`PHN_SETREGS`](#phn-setregs)
+  - [`FAT_IOCTL_GET_ATTRIBUTES`](#fat-ioctl-get-attributes)
+  - [`FSL_MC_SEND_MC_COMMAND`](#fsl-mc-send-mc-command)
   - [`TUNGETIFF`](#tungetiff)
-  - [`PTP_CLOCK_GETCAPS2`](#ptp_clock_getcaps2)
-  - [`BTRFS_IOC_RESIZE`](#btrfs_ioc_resize)
-  - [`VHOST_SET_VRING_ENDIAN`](#vhost_set_vring_endian)
-  - [`PPS_KC_BIND`](#pps_kc_bind)
-  - [`F2FS_IOC_WRITE_CHECKPOINT`](#f2fs_ioc_write_checkpoint)
-  - [`UI_SET_FFBIT`](#ui_set_ffbit)
-  - [`IPMICTL_GET_MY_LUN_CMD`](#ipmictl_get_my_lun_cmd)
-  - [`CEC_ADAP_G_PHYS_ADDR`](#cec_adap_g_phys_addr)
-  - [`CEC_G_MODE`](#cec_g_mode)
-  - [`USBDEVFS_RESETEP`](#usbdevfs_resetep)
-  - [`MEDIA_REQUEST_IOC_QUEUE`](#media_request_ioc_queue)
-  - [`USBDEVFS_ALLOC_STREAMS`](#usbdevfs_alloc_streams)
-  - [`MGSL_IOCSXCTRL`](#mgsl_iocsxctrl)
-  - [`MEDIA_IOC_G_TOPOLOGY`](#media_ioc_g_topology)
+  - [`PTP_CLOCK_GETCAPS2`](#ptp-clock-getcaps2)
+  - [`BTRFS_IOC_RESIZE`](#btrfs-ioc-resize)
+  - [`VHOST_SET_VRING_ENDIAN`](#vhost-set-vring-endian)
+  - [`PPS_KC_BIND`](#pps-kc-bind)
+  - [`F2FS_IOC_WRITE_CHECKPOINT`](#f2fs-ioc-write-checkpoint)
+  - [`UI_SET_FFBIT`](#ui-set-ffbit)
+  - [`IPMICTL_GET_MY_LUN_CMD`](#ipmictl-get-my-lun-cmd)
+  - [`CEC_ADAP_G_PHYS_ADDR`](#cec-adap-g-phys-addr)
+  - [`CEC_G_MODE`](#cec-g-mode)
+  - [`USBDEVFS_RESETEP`](#usbdevfs-resetep)
+  - [`MEDIA_REQUEST_IOC_QUEUE`](#media-request-ioc-queue)
+  - [`USBDEVFS_ALLOC_STREAMS`](#usbdevfs-alloc-streams)
+  - [`MGSL_IOCSXCTRL`](#mgsl-iocsxctrl)
+  - [`MEDIA_IOC_G_TOPOLOGY`](#media-ioc-g-topology)
   - [`PPPIOCUNBRIDGECHAN`](#pppiocunbridgechan)
-  - [`F2FS_IOC_COMMIT_ATOMIC_WRITE`](#f2fs_ioc_commit_atomic_write)
-  - [`ISST_IF_GET_PLATFORM_INFO`](#isst_if_get_platform_info)
-  - [`SCIF_FENCE_MARK`](#scif_fence_mark)
-  - [`USBDEVFS_RELEASE_PORT`](#usbdevfs_release_port)
-  - [`VFIO_CHECK_EXTENSION`](#vfio_check_extension)
-  - [`BTRFS_IOC_QGROUP_LIMIT`](#btrfs_ioc_qgroup_limit)
-  - [`FAT_IOCTL_GET_VOLUME_ID`](#fat_ioctl_get_volume_id)
-  - [`UI_SET_PHYS`](#ui_set_phys)
+  - [`F2FS_IOC_COMMIT_ATOMIC_WRITE`](#f2fs-ioc-commit-atomic-write)
+  - [`ISST_IF_GET_PLATFORM_INFO`](#isst-if-get-platform-info)
+  - [`SCIF_FENCE_MARK`](#scif-fence-mark)
+  - [`USBDEVFS_RELEASE_PORT`](#usbdevfs-release-port)
+  - [`VFIO_CHECK_EXTENSION`](#vfio-check-extension)
+  - [`BTRFS_IOC_QGROUP_LIMIT`](#btrfs-ioc-qgroup-limit)
+  - [`FAT_IOCTL_GET_VOLUME_ID`](#fat-ioctl-get-volume-id)
+  - [`UI_SET_PHYS`](#ui-set-phys)
   - [`FDWERRORGET`](#fdwerrorget)
-  - [`VIDIOC_SUBDEV_G_EDID`](#vidioc_subdev_g_edid)
-  - [`MGSL_IOCGSTATS`](#mgsl_iocgstats)
-  - [`RPROC_SET_SHUTDOWN_ON_RELEASE`](#rproc_set_shutdown_on_release)
-  - [`SIOCGSTAMP_NEW`](#siocgstamp_new)
-  - [`RTC_WKALM_RD`](#rtc_wkalm_rd)
-  - [`PHN_GET_REG`](#phn_get_reg)
-  - [`DELL_WMI_SMBIOS_CMD`](#dell_wmi_smbios_cmd)
-  - [`PHN_NOT_OH`](#phn_not_oh)
+  - [`VIDIOC_SUBDEV_G_EDID`](#vidioc-subdev-g-edid)
+  - [`MGSL_IOCGSTATS`](#mgsl-iocgstats)
+  - [`RPROC_SET_SHUTDOWN_ON_RELEASE`](#rproc-set-shutdown-on-release)
+  - [`SIOCGSTAMP_NEW`](#siocgstamp-new)
+  - [`RTC_WKALM_RD`](#rtc-wkalm-rd)
+  - [`PHN_GET_REG`](#phn-get-reg)
+  - [`DELL_WMI_SMBIOS_CMD`](#dell-wmi-smbios-cmd)
+  - [`PHN_NOT_OH`](#phn-not-oh)
   - [`PPGETMODES`](#ppgetmodes)
   - [`CHIOGPARAMS`](#chiogparams)
-  - [`VFIO_DEVICE_GET_GFX_DMABUF`](#vfio_device_get_gfx_dmabuf)
-  - [`VHOST_SET_VRING_BUSYLOOP_TIMEOUT`](#vhost_set_vring_busyloop_timeout)
-  - [`VIDIOC_SUBDEV_G_SELECTION`](#vidioc_subdev_g_selection)
-  - [`BTRFS_IOC_RM_DEV_V2`](#btrfs_ioc_rm_dev_v2)
-  - [`MGSL_IOCWAITGPIO`](#mgsl_iocwaitgpio)
-  - [`PMU_IOC_CAN_SLEEP`](#pmu_ioc_can_sleep)
-  - [`KCOV_ENABLE`](#kcov_enable)
-  - [`BTRFS_IOC_CLONE`](#btrfs_ioc_clone)
-  - [`F2FS_IOC_DEFRAGMENT`](#f2fs_ioc_defragment)
-  - [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE`](#fw_cdev_ioc_deallocate_iso_resource)
-  - [`AGPIOC_ALLOCATE`](#agpioc_allocate)
-  - [`NE_SET_USER_MEMORY_REGION`](#ne_set_user_memory_region)
-  - [`MGSL_IOCTXABORT`](#mgsl_ioctxabort)
-  - [`MGSL_IOCSGPIO`](#mgsl_iocsgpio)
-  - [`LIRC_SET_REC_CARRIER`](#lirc_set_rec_carrier)
-  - [`F2FS_IOC_FLUSH_DEVICE`](#f2fs_ioc_flush_device)
-  - [`SNAPSHOT_ATOMIC_RESTORE`](#snapshot_atomic_restore)
-  - [`RTC_UIE_OFF`](#rtc_uie_off)
-  - [`BT_BMC_IOCTL_SMS_ATN`](#bt_bmc_ioctl_sms_atn)
-  - [`NVME_IOCTL_ID`](#nvme_ioctl_id)
-  - [`NE_START_ENCLAVE`](#ne_start_enclave)
-  - [`VIDIOC_STREAMON`](#vidioc_streamon)
+  - [`VFIO_DEVICE_GET_GFX_DMABUF`](#vfio-device-get-gfx-dmabuf)
+  - [`VHOST_SET_VRING_BUSYLOOP_TIMEOUT`](#vhost-set-vring-busyloop-timeout)
+  - [`VIDIOC_SUBDEV_G_SELECTION`](#vidioc-subdev-g-selection)
+  - [`BTRFS_IOC_RM_DEV_V2`](#btrfs-ioc-rm-dev-v2)
+  - [`MGSL_IOCWAITGPIO`](#mgsl-iocwaitgpio)
+  - [`PMU_IOC_CAN_SLEEP`](#pmu-ioc-can-sleep)
+  - [`KCOV_ENABLE`](#kcov-enable)
+  - [`BTRFS_IOC_CLONE`](#btrfs-ioc-clone)
+  - [`F2FS_IOC_DEFRAGMENT`](#f2fs-ioc-defragment)
+  - [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE`](#fw-cdev-ioc-deallocate-iso-resource)
+  - [`AGPIOC_ALLOCATE`](#agpioc-allocate)
+  - [`NE_SET_USER_MEMORY_REGION`](#ne-set-user-memory-region)
+  - [`MGSL_IOCTXABORT`](#mgsl-ioctxabort)
+  - [`MGSL_IOCSGPIO`](#mgsl-iocsgpio)
+  - [`LIRC_SET_REC_CARRIER`](#lirc-set-rec-carrier)
+  - [`F2FS_IOC_FLUSH_DEVICE`](#f2fs-ioc-flush-device)
+  - [`SNAPSHOT_ATOMIC_RESTORE`](#snapshot-atomic-restore)
+  - [`RTC_UIE_OFF`](#rtc-uie-off)
+  - [`BT_BMC_IOCTL_SMS_ATN`](#bt-bmc-ioctl-sms-atn)
+  - [`NVME_IOCTL_ID`](#nvme-ioctl-id)
+  - [`NE_START_ENCLAVE`](#ne-start-enclave)
+  - [`VIDIOC_STREAMON`](#vidioc-streamon)
   - [`FDPOLLDRVSTAT`](#fdpolldrvstat)
-  - [`AUTOFS_DEV_IOCTL_READY`](#autofs_dev_ioctl_ready)
-  - [`VIDIOC_ENUMAUDOUT`](#vidioc_enumaudout)
-  - [`VIDIOC_SUBDEV_S_STD`](#vidioc_subdev_s_std)
-  - [`WDIOC_GETTIMELEFT`](#wdioc_gettimeleft)
-  - [`ATM_GETLINKRATE`](#atm_getlinkrate)
-  - [`RTC_WKALM_SET`](#rtc_wkalm_set)
-  - [`VHOST_GET_BACKEND_FEATURES`](#vhost_get_backend_features)
-  - [`ATMARP_ENCAP`](#atmarp_encap)
-  - [`CAPI_GET_FLAGS`](#capi_get_flags)
-  - [`IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl_set_my_channel_address_cmd)
-  - [`DFL_FPGA_FME_PORT_ASSIGN`](#dfl_fpga_fme_port_assign)
-  - [`NS_GET_OWNER_UID`](#ns_get_owner_uid)
-  - [`VIDIOC_OVERLAY`](#vidioc_overlay)
-  - [`BTRFS_IOC_WAIT_SYNC`](#btrfs_ioc_wait_sync)
-  - [`GPIOHANDLE_SET_CONFIG_IOCTL`](#gpiohandle_set_config_ioctl)
-  - [`VHOST_GET_VRING_ENDIAN`](#vhost_get_vring_endian)
-  - [`ATM_GETADDR`](#atm_getaddr)
-  - [`PHN_GET_REGS`](#phn_get_regs)
-  - [`AUTOFS_DEV_IOCTL_REQUESTER`](#autofs_dev_ioctl_requester)
-  - [`AUTOFS_DEV_IOCTL_EXPIRE`](#autofs_dev_ioctl_expire)
-  - [`SNAPSHOT_S2RAM`](#snapshot_s2ram)
+  - [`AUTOFS_DEV_IOCTL_READY`](#autofs-dev-ioctl-ready)
+  - [`VIDIOC_ENUMAUDOUT`](#vidioc-enumaudout)
+  - [`VIDIOC_SUBDEV_S_STD`](#vidioc-subdev-s-std)
+  - [`WDIOC_GETTIMELEFT`](#wdioc-gettimeleft)
+  - [`ATM_GETLINKRATE`](#atm-getlinkrate)
+  - [`RTC_WKALM_SET`](#rtc-wkalm-set)
+  - [`VHOST_GET_BACKEND_FEATURES`](#vhost-get-backend-features)
+  - [`ATMARP_ENCAP`](#atmarp-encap)
+  - [`CAPI_GET_FLAGS`](#capi-get-flags)
+  - [`IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl-set-my-channel-address-cmd)
+  - [`DFL_FPGA_FME_PORT_ASSIGN`](#dfl-fpga-fme-port-assign)
+  - [`NS_GET_OWNER_UID`](#ns-get-owner-uid)
+  - [`VIDIOC_OVERLAY`](#vidioc-overlay)
+  - [`BTRFS_IOC_WAIT_SYNC`](#btrfs-ioc-wait-sync)
+  - [`GPIOHANDLE_SET_CONFIG_IOCTL`](#gpiohandle-set-config-ioctl)
+  - [`VHOST_GET_VRING_ENDIAN`](#vhost-get-vring-endian)
+  - [`ATM_GETADDR`](#atm-getaddr)
+  - [`PHN_GET_REGS`](#phn-get-regs)
+  - [`AUTOFS_DEV_IOCTL_REQUESTER`](#autofs-dev-ioctl-requester)
+  - [`AUTOFS_DEV_IOCTL_EXPIRE`](#autofs-dev-ioctl-expire)
+  - [`SNAPSHOT_S2RAM`](#snapshot-s2ram)
   - [`JSIOCSAXMAP`](#jsiocsaxmap)
-  - [`F2FS_IOC_SET_COMPRESS_OPTION`](#f2fs_ioc_set_compress_option)
-  - [`VBG_IOCTL_HGCM_DISCONNECT`](#vbg_ioctl_hgcm_disconnect)
-  - [`SCIF_FENCE_SIGNAL`](#scif_fence_signal)
-  - [`VFIO_DEVICE_GET_PCI_HOT_RESET_INFO`](#vfio_device_get_pci_hot_reset_info)
-  - [`VIDIOC_SUBDEV_ENUM_MBUS_CODE`](#vidioc_subdev_enum_mbus_code)
-  - [`MMTIMER_GETOFFSET`](#mmtimer_getoffset)
-  - [`RIO_CM_CHAN_LISTEN`](#rio_cm_chan_listen)
-  - [`ATM_SETSC`](#atm_setsc)
-  - [`F2FS_IOC_SHUTDOWN`](#f2fs_ioc_shutdown)
-  - [`NVME_IOCTL_RESCAN`](#nvme_ioctl_rescan)
+  - [`F2FS_IOC_SET_COMPRESS_OPTION`](#f2fs-ioc-set-compress-option)
+  - [`VBG_IOCTL_HGCM_DISCONNECT`](#vbg-ioctl-hgcm-disconnect)
+  - [`SCIF_FENCE_SIGNAL`](#scif-fence-signal)
+  - [`VFIO_DEVICE_GET_PCI_HOT_RESET_INFO`](#vfio-device-get-pci-hot-reset-info)
+  - [`VIDIOC_SUBDEV_ENUM_MBUS_CODE`](#vidioc-subdev-enum-mbus-code)
+  - [`MMTIMER_GETOFFSET`](#mmtimer-getoffset)
+  - [`RIO_CM_CHAN_LISTEN`](#rio-cm-chan-listen)
+  - [`ATM_SETSC`](#atm-setsc)
+  - [`F2FS_IOC_SHUTDOWN`](#f2fs-ioc-shutdown)
+  - [`NVME_IOCTL_RESCAN`](#nvme-ioctl-rescan)
   - [`BLKOPENZONE`](#blkopenzone)
-  - [`DM_VERSION`](#dm_version)
-  - [`CEC_TRANSMIT`](#cec_transmit)
-  - [`FS_IOC_GET_ENCRYPTION_POLICY_EX`](#fs_ioc_get_encryption_policy_ex)
+  - [`DM_VERSION`](#dm-version)
+  - [`CEC_TRANSMIT`](#cec-transmit)
+  - [`FS_IOC_GET_ENCRYPTION_POLICY_EX`](#fs-ioc-get-encryption-policy-ex)
   - [`SIOCMKCLIP`](#siocmkclip)
-  - [`IPMI_BMC_IOCTL_CLEAR_SMS_ATN`](#ipmi_bmc_ioctl_clear_sms_atn)
+  - [`IPMI_BMC_IOCTL_CLEAR_SMS_ATN`](#ipmi-bmc-ioctl-clear-sms-atn)
   - [`HIDIOCGVERSION`](#hidiocgversion)
-  - [`VIDIOC_S_INPUT`](#vidioc_s_input)
-  - [`VIDIOC_G_CROP`](#vidioc_g_crop)
-  - [`LIRC_SET_WIDEBAND_RECEIVER`](#lirc_set_wideband_receiver)
+  - [`VIDIOC_S_INPUT`](#vidioc-s-input)
+  - [`VIDIOC_G_CROP`](#vidioc-g-crop)
+  - [`LIRC_SET_WIDEBAND_RECEIVER`](#lirc-set-wideband-receiver)
   - [`EVIOCGEFFECTS`](#eviocgeffects)
-  - [`UVCIOC_CTRL_QUERY`](#uvcioc_ctrl_query)
-  - [`IOC_OPAL_GENERIC_TABLE_RW`](#ioc_opal_generic_table_rw)
-  - [`FS_IOC_READ_VERITY_METADATA`](#fs_ioc_read_verity_metadata)
-  - [`ND_IOCTL_SET_CONFIG_DATA`](#nd_ioctl_set_config_data)
-  - [`USBDEVFS_GETDRIVER`](#usbdevfs_getdriver)
-  - [`IDT77105_GETSTAT`](#idt77105_getstat)
+  - [`UVCIOC_CTRL_QUERY`](#uvcioc-ctrl-query)
+  - [`IOC_OPAL_GENERIC_TABLE_RW`](#ioc-opal-generic-table-rw)
+  - [`FS_IOC_READ_VERITY_METADATA`](#fs-ioc-read-verity-metadata)
+  - [`ND_IOCTL_SET_CONFIG_DATA`](#nd-ioctl-set-config-data)
+  - [`USBDEVFS_GETDRIVER`](#usbdevfs-getdriver)
+  - [`IDT77105_GETSTAT`](#idt77105-getstat)
   - [`HIDIOCINITREPORT`](#hidiocinitreport)
-  - [`VFIO_DEVICE_GET_INFO`](#vfio_device_get_info)
-  - [`RIO_CM_CHAN_RECEIVE`](#rio_cm_chan_receive)
+  - [`VFIO_DEVICE_GET_INFO`](#vfio-device-get-info)
+  - [`RIO_CM_CHAN_RECEIVE`](#rio-cm-chan-receive)
   - [`RNDGETENTCNT`](#rndgetentcnt)
   - [`PPPIOCNEWUNIT`](#pppiocnewunit)
-  - [`BTRFS_IOC_INO_LOOKUP`](#btrfs_ioc_ino_lookup)
+  - [`BTRFS_IOC_INO_LOOKUP`](#btrfs-ioc-ino-lookup)
   - [`FDRESET`](#fdreset)
-  - [`IOC_PR_REGISTER`](#ioc_pr_register)
+  - [`IOC_PR_REGISTER`](#ioc-pr-register)
   - [`HIDIOCSREPORT`](#hidiocsreport)
-  - [`TEE_IOC_OPEN_SESSION`](#tee_ioc_open_session)
-  - [`TEE_IOC_SUPPL_RECV`](#tee_ioc_suppl_recv)
-  - [`BTRFS_IOC_BALANCE_CTL`](#btrfs_ioc_balance_ctl)
-  - [`GPIO_GET_LINEINFO_WATCH_IOCTL`](#gpio_get_lineinfo_watch_ioctl)
+  - [`TEE_IOC_OPEN_SESSION`](#tee-ioc-open-session)
+  - [`TEE_IOC_SUPPL_RECV`](#tee-ioc-suppl-recv)
+  - [`BTRFS_IOC_BALANCE_CTL`](#btrfs-ioc-balance-ctl)
+  - [`GPIO_GET_LINEINFO_WATCH_IOCTL`](#gpio-get-lineinfo-watch-ioctl)
   - [`HIDIOCGRAWINFO`](#hidiocgrawinfo)
   - [`PPPIOCSCOMPRESS`](#pppiocscompress)
-  - [`USBDEVFS_CONNECTINFO`](#usbdevfs_connectinfo)
+  - [`USBDEVFS_CONNECTINFO`](#usbdevfs-connectinfo)
   - [`BLKRESETZONE`](#blkresetzone)
   - [`CHIOINITELEM`](#chioinitelem)
-  - [`NILFS_IOCTL_SET_ALLOC_RANGE`](#nilfs_ioctl_set_alloc_range)
-  - [`AUTOFS_DEV_IOCTL_CATATONIC`](#autofs_dev_ioctl_catatonic)
-  - [`RIO_MPORT_MAINT_HDID_SET`](#rio_mport_maint_hdid_set)
+  - [`NILFS_IOCTL_SET_ALLOC_RANGE`](#nilfs-ioctl-set-alloc-range)
+  - [`AUTOFS_DEV_IOCTL_CATATONIC`](#autofs-dev-ioctl-catatonic)
+  - [`RIO_MPORT_MAINT_HDID_SET`](#rio-mport-maint-hdid-set)
   - [`PPGETPHASE`](#ppgetphase)
-  - [`USBDEVFS_DISCONNECT_CLAIM`](#usbdevfs_disconnect_claim)
+  - [`USBDEVFS_DISCONNECT_CLAIM`](#usbdevfs-disconnect-claim)
   - [`FDMSGON`](#fdmsgon)
-  - [`VIDIOC_G_SLICED_VBI_CAP`](#vidioc_g_sliced_vbi_cap)
-  - [`BTRFS_IOC_BALANCE_V2`](#btrfs_ioc_balance_v2)
-  - [`MEDIA_REQUEST_IOC_REINIT`](#media_request_ioc_reinit)
-  - [`IOC_OPAL_ERASE_LR`](#ioc_opal_erase_lr)
+  - [`VIDIOC_G_SLICED_VBI_CAP`](#vidioc-g-sliced-vbi-cap)
+  - [`BTRFS_IOC_BALANCE_V2`](#btrfs-ioc-balance-v2)
+  - [`MEDIA_REQUEST_IOC_REINIT`](#media-request-ioc-reinit)
+  - [`IOC_OPAL_ERASE_LR`](#ioc-opal-erase-lr)
   - [`FDFMTBEG`](#fdfmtbeg)
   - [`RNDRESEEDCRNG`](#rndreseedcrng)
-  - [`ISST_IF_GET_PHY_ID`](#isst_if_get_phy_id)
+  - [`ISST_IF_GET_PHY_ID`](#isst-if-get-phy-id)
   - [`TUNSETNOCSUM`](#tunsetnocsum)
-  - [`SONET_GETSTAT`](#sonet_getstat)
-  - [`TFD_IOC_SET_TICKS`](#tfd_ioc_set_ticks)
+  - [`SONET_GETSTAT`](#sonet-getstat)
+  - [`TFD_IOC_SET_TICKS`](#tfd-ioc-set-ticks)
   - [`PPDATADIR`](#ppdatadir)
-  - [`IOC_OPAL_ENABLE_DISABLE_MBR`](#ioc_opal_enable_disable_mbr)
-  - [`GPIO_V2_GET_LINE_IOCTL`](#gpio_v2_get_line_ioctl)
-  - [`RIO_CM_CHAN_SEND`](#rio_cm_chan_send)
+  - [`IOC_OPAL_ENABLE_DISABLE_MBR`](#ioc-opal-enable-disable-mbr)
+  - [`GPIO_V2_GET_LINE_IOCTL`](#gpio-v2-get-line-ioctl)
+  - [`RIO_CM_CHAN_SEND`](#rio-cm-chan-send)
   - [`PPWCTLONIRQ`](#ppwctlonirq)
-  - [`SONYPI_IOCGBRT`](#sonypi_iocgbrt)
-  - [`IOC_PR_RELEASE`](#ioc_pr_release)
+  - [`SONYPI_IOCGBRT`](#sonypi-iocgbrt)
+  - [`IOC_PR_RELEASE`](#ioc-pr-release)
   - [`PPCLRIRQ`](#ppclrirq)
-  - [`IPMICTL_SET_MY_CHANNEL_LUN_CMD`](#ipmictl_set_my_channel_lun_cmd)
-  - [`MGSL_IOCSXSYNC`](#mgsl_iocsxsync)
-  - [`HPET_IE_OFF`](#hpet_ie_off)
-  - [`IOC_OPAL_ACTIVATE_USR`](#ioc_opal_activate_usr)
-  - [`SONET_SETFRAMING`](#sonet_setframing)
-  - [`PERF_EVENT_IOC_PAUSE_OUTPUT`](#perf_event_ioc_pause_output)
-  - [`BTRFS_IOC_LOGICAL_INO_V2`](#btrfs_ioc_logical_ino_v2)
-  - [`VBG_IOCTL_HGCM_CONNECT`](#vbg_ioctl_hgcm_connect)
+  - [`IPMICTL_SET_MY_CHANNEL_LUN_CMD`](#ipmictl-set-my-channel-lun-cmd)
+  - [`MGSL_IOCSXSYNC`](#mgsl-iocsxsync)
+  - [`HPET_IE_OFF`](#hpet-ie-off)
+  - [`IOC_OPAL_ACTIVATE_USR`](#ioc-opal-activate-usr)
+  - [`SONET_SETFRAMING`](#sonet-setframing)
+  - [`PERF_EVENT_IOC_PAUSE_OUTPUT`](#perf-event-ioc-pause-output)
+  - [`BTRFS_IOC_LOGICAL_INO_V2`](#btrfs-ioc-logical-ino-v2)
+  - [`VBG_IOCTL_HGCM_CONNECT`](#vbg-ioctl-hgcm-connect)
   - [`BLKFINISHZONE`](#blkfinishzone)
   - [`EVIOCREVOKE`](#eviocrevoke)
-  - [`VFIO_DEVICE_FEATURE`](#vfio_device_feature)
-  - [`CCISS_GETPCIINFO`](#cciss_getpciinfo)
-  - [`ISST_IF_MBOX_COMMAND`](#isst_if_mbox_command)
-  - [`SCIF_ACCEPTREQ`](#scif_acceptreq)
-  - [`PERF_EVENT_IOC_QUERY_BPF`](#perf_event_ioc_query_bpf)
-  - [`VIDIOC_STREAMOFF`](#vidioc_streamoff)
-  - [`VDUSE_DESTROY_DEV`](#vduse_destroy_dev)
+  - [`VFIO_DEVICE_FEATURE`](#vfio-device-feature)
+  - [`CCISS_GETPCIINFO`](#cciss-getpciinfo)
+  - [`ISST_IF_MBOX_COMMAND`](#isst-if-mbox-command)
+  - [`SCIF_ACCEPTREQ`](#scif-acceptreq)
+  - [`PERF_EVENT_IOC_QUERY_BPF`](#perf-event-ioc-query-bpf)
+  - [`VIDIOC_STREAMOFF`](#vidioc-streamoff)
+  - [`VDUSE_DESTROY_DEV`](#vduse-destroy-dev)
   - [`FDGETFDCSTAT`](#fdgetfdcstat)
-  - [`VIDIOC_S_PRIORITY`](#vidioc_s_priority)
-  - [`SNAPSHOT_FREEZE`](#snapshot_freeze)
-  - [`VIDIOC_ENUMINPUT`](#vidioc_enuminput)
-  - [`ZATM_GETPOOLZ`](#zatm_getpoolz)
-  - [`RIO_DISABLE_DOORBELL_RANGE`](#rio_disable_doorbell_range)
-  - [`GPIO_V2_GET_LINEINFO_WATCH_IOCTL`](#gpio_v2_get_lineinfo_watch_ioctl)
-  - [`VIDIOC_G_STD`](#vidioc_g_std)
-  - [`USBDEVFS_ALLOW_SUSPEND`](#usbdevfs_allow_suspend)
-  - [`SONET_GETSTATZ`](#sonet_getstatz)
-  - [`SCIF_ACCEPTREG`](#scif_acceptreg)
-  - [`VIDIOC_ENCODER_CMD`](#vidioc_encoder_cmd)
+  - [`VIDIOC_S_PRIORITY`](#vidioc-s-priority)
+  - [`SNAPSHOT_FREEZE`](#snapshot-freeze)
+  - [`VIDIOC_ENUMINPUT`](#vidioc-enuminput)
+  - [`ZATM_GETPOOLZ`](#zatm-getpoolz)
+  - [`RIO_DISABLE_DOORBELL_RANGE`](#rio-disable-doorbell-range)
+  - [`GPIO_V2_GET_LINEINFO_WATCH_IOCTL`](#gpio-v2-get-lineinfo-watch-ioctl)
+  - [`VIDIOC_G_STD`](#vidioc-g-std)
+  - [`USBDEVFS_ALLOW_SUSPEND`](#usbdevfs-allow-suspend)
+  - [`SONET_GETSTATZ`](#sonet-getstatz)
+  - [`SCIF_ACCEPTREG`](#scif-acceptreg)
+  - [`VIDIOC_ENCODER_CMD`](#vidioc-encoder-cmd)
   - [`PPPIOCSRASYNCMAP`](#pppiocsrasyncmap)
-  - [`IOCTL_MEI_NOTIFY_SET`](#ioctl_mei_notify_set)
-  - [`BTRFS_IOC_QUOTA_RESCAN_STATUS`](#btrfs_ioc_quota_rescan_status)
-  - [`F2FS_IOC_GARBAGE_COLLECT`](#f2fs_ioc_garbage_collect)
-  - [`ATMLEC_CTRL`](#atmlec_ctrl)
-  - [`MATROXFB_GET_AVAILABLE_OUTPUTS`](#matroxfb_get_available_outputs)
-  - [`DM_DEV_CREATE`](#dm_dev_create)
-  - [`VHOST_VDPA_GET_VRING_NUM`](#vhost_vdpa_get_vring_num)
-  - [`VIDIOC_G_CTRL`](#vidioc_g_ctrl)
-  - [`NBD_CLEAR_SOCK`](#nbd_clear_sock)
-  - [`VFIO_DEVICE_QUERY_GFX_PLANE`](#vfio_device_query_gfx_plane)
-  - [`WDIOC_KEEPALIVE`](#wdioc_keepalive)
-  - [`NVME_IOCTL_SUBSYS_RESET`](#nvme_ioctl_subsys_reset)
-  - [`PTP_EXTTS_REQUEST2`](#ptp_extts_request2)
-  - [`PCITEST_BAR`](#pcitest_bar)
-  - [`MGSL_IOCGGPIO`](#mgsl_iocggpio)
+  - [`IOCTL_MEI_NOTIFY_SET`](#ioctl-mei-notify-set)
+  - [`BTRFS_IOC_QUOTA_RESCAN_STATUS`](#btrfs-ioc-quota-rescan-status)
+  - [`F2FS_IOC_GARBAGE_COLLECT`](#f2fs-ioc-garbage-collect)
+  - [`ATMLEC_CTRL`](#atmlec-ctrl)
+  - [`MATROXFB_GET_AVAILABLE_OUTPUTS`](#matroxfb-get-available-outputs)
+  - [`DM_DEV_CREATE`](#dm-dev-create)
+  - [`VHOST_VDPA_GET_VRING_NUM`](#vhost-vdpa-get-vring-num)
+  - [`VIDIOC_G_CTRL`](#vidioc-g-ctrl)
+  - [`NBD_CLEAR_SOCK`](#nbd-clear-sock)
+  - [`VFIO_DEVICE_QUERY_GFX_PLANE`](#vfio-device-query-gfx-plane)
+  - [`WDIOC_KEEPALIVE`](#wdioc-keepalive)
+  - [`NVME_IOCTL_SUBSYS_RESET`](#nvme-ioctl-subsys-reset)
+  - [`PTP_EXTTS_REQUEST2`](#ptp-extts-request2)
+  - [`PCITEST_BAR`](#pcitest-bar)
+  - [`MGSL_IOCGGPIO`](#mgsl-iocggpio)
   - [`EVIOCSREP`](#eviocsrep)
-  - [`VFIO_DEVICE_GET_IRQ_INFO`](#vfio_device_get_irq_info)
-  - [`HPET_DPI`](#hpet_dpi)
-  - [`VDUSE_VQ_SETUP_KICKFD`](#vduse_vq_setup_kickfd)
-  - [`ND_IOCTL_CALL`](#nd_ioctl_call)
+  - [`VFIO_DEVICE_GET_IRQ_INFO`](#vfio-device-get-irq-info)
+  - [`HPET_DPI`](#hpet-dpi)
+  - [`VDUSE_VQ_SETUP_KICKFD`](#vduse-vq-setup-kickfd)
+  - [`ND_IOCTL_CALL`](#nd-ioctl-call)
   - [`HIDIOCGDEVINFO`](#hidiocgdevinfo)
-  - [`DM_TABLE_DEPS`](#dm_table_deps)
-  - [`BTRFS_IOC_DEV_INFO`](#btrfs_ioc_dev_info)
-  - [`VDUSE_IOTLB_GET_FD`](#vduse_iotlb_get_fd)
-  - [`FW_CDEV_IOC_GET_INFO`](#fw_cdev_ioc_get_info)
-  - [`VIDIOC_G_PRIORITY`](#vidioc_g_priority)
-  - [`ATM_NEWBACKENDIF`](#atm_newbackendif)
-  - [`VIDIOC_S_EXT_CTRLS`](#vidioc_s_ext_ctrls)
-  - [`VIDIOC_SUBDEV_ENUM_DV_TIMINGS`](#vidioc_subdev_enum_dv_timings)
-  - [`VIDIOC_OMAP3ISP_CCDC_CFG`](#vidioc_omap3isp_ccdc_cfg)
-  - [`VIDIOC_S_HW_FREQ_SEEK`](#vidioc_s_hw_freq_seek)
-  - [`DM_TABLE_LOAD`](#dm_table_load)
-  - [`F2FS_IOC_START_ATOMIC_WRITE`](#f2fs_ioc_start_atomic_write)
-  - [`VIDIOC_G_OUTPUT`](#vidioc_g_output)
-  - [`ATM_DROPPARTY`](#atm_dropparty)
+  - [`DM_TABLE_DEPS`](#dm-table-deps)
+  - [`BTRFS_IOC_DEV_INFO`](#btrfs-ioc-dev-info)
+  - [`VDUSE_IOTLB_GET_FD`](#vduse-iotlb-get-fd)
+  - [`FW_CDEV_IOC_GET_INFO`](#fw-cdev-ioc-get-info)
+  - [`VIDIOC_G_PRIORITY`](#vidioc-g-priority)
+  - [`ATM_NEWBACKENDIF`](#atm-newbackendif)
+  - [`VIDIOC_S_EXT_CTRLS`](#vidioc-s-ext-ctrls)
+  - [`VIDIOC_SUBDEV_ENUM_DV_TIMINGS`](#vidioc-subdev-enum-dv-timings)
+  - [`VIDIOC_OMAP3ISP_CCDC_CFG`](#vidioc-omap3isp-ccdc-cfg)
+  - [`VIDIOC_S_HW_FREQ_SEEK`](#vidioc-s-hw-freq-seek)
+  - [`DM_TABLE_LOAD`](#dm-table-load)
+  - [`F2FS_IOC_START_ATOMIC_WRITE`](#f2fs-ioc-start-atomic-write)
+  - [`VIDIOC_G_OUTPUT`](#vidioc-g-output)
+  - [`ATM_DROPPARTY`](#atm-dropparty)
   - [`CHIOGELEM`](#chiogelem)
-  - [`BTRFS_IOC_GET_SUPPORTED_FEATURES`](#btrfs_ioc_get_supported_features)
+  - [`BTRFS_IOC_GET_SUPPORTED_FEATURES`](#btrfs-ioc-get-supported-features)
   - [`EVIOCSKEYCODE`](#eviocskeycode)
-  - [`NE_GET_IMAGE_LOAD_INFO`](#ne_get_image_load_info)
+  - [`NE_GET_IMAGE_LOAD_INFO`](#ne-get-image-load-info)
   - [`TUNSETLINK`](#tunsetlink)
-  - [`FW_CDEV_IOC_ADD_DESCRIPTOR`](#fw_cdev_ioc_add_descriptor)
-  - [`BTRFS_IOC_SCRUB_CANCEL`](#btrfs_ioc_scrub_cancel)
-  - [`PPS_SETPARAMS`](#pps_setparams)
-  - [`IOC_OPAL_LR_SETUP`](#ioc_opal_lr_setup)
-  - [`FW_CDEV_IOC_DEALLOCATE`](#fw_cdev_ioc_deallocate)
-  - [`WDIOC_SETTIMEOUT`](#wdioc_settimeout)
-  - [`IOC_WATCH_QUEUE_SET_FILTER`](#ioc_watch_queue_set_filter)
-  - [`CAPI_GET_MANUFACTURER`](#capi_get_manufacturer)
-  - [`VFIO_IOMMU_SPAPR_UNREGISTER_MEMORY`](#vfio_iommu_spapr_unregister_memory)
-  - [`ASPEED_P2A_CTRL_IOCTL_SET_WINDOW`](#aspeed_p2a_ctrl_ioctl_set_window)
-  - [`VIDIOC_G_EDID`](#vidioc_g_edid)
-  - [`F2FS_IOC_GARBAGE_COLLECT_RANGE`](#f2fs_ioc_garbage_collect_range)
-  - [`RIO_MAP_INBOUND`](#rio_map_inbound)
-  - [`IOC_OPAL_TAKE_OWNERSHIP`](#ioc_opal_take_ownership)
-  - [`USBDEVFS_CLAIM_PORT`](#usbdevfs_claim_port)
-  - [`VIDIOC_S_AUDIO`](#vidioc_s_audio)
-  - [`FS_IOC_GET_ENCRYPTION_NONCE`](#fs_ioc_get_encryption_nonce)
-  - [`FW_CDEV_IOC_SEND_STREAM_PACKET`](#fw_cdev_ioc_send_stream_packet)
-  - [`BTRFS_IOC_SNAP_DESTROY`](#btrfs_ioc_snap_destroy)
-  - [`SNAPSHOT_FREE`](#snapshot_free)
-  - [`I8K_GET_SPEED`](#i8k_get_speed)
+  - [`FW_CDEV_IOC_ADD_DESCRIPTOR`](#fw-cdev-ioc-add-descriptor)
+  - [`BTRFS_IOC_SCRUB_CANCEL`](#btrfs-ioc-scrub-cancel)
+  - [`PPS_SETPARAMS`](#pps-setparams)
+  - [`IOC_OPAL_LR_SETUP`](#ioc-opal-lr-setup)
+  - [`FW_CDEV_IOC_DEALLOCATE`](#fw-cdev-ioc-deallocate)
+  - [`WDIOC_SETTIMEOUT`](#wdioc-settimeout)
+  - [`IOC_WATCH_QUEUE_SET_FILTER`](#ioc-watch-queue-set-filter)
+  - [`CAPI_GET_MANUFACTURER`](#capi-get-manufacturer)
+  - [`VFIO_IOMMU_SPAPR_UNREGISTER_MEMORY`](#vfio-iommu-spapr-unregister-memory)
+  - [`ASPEED_P2A_CTRL_IOCTL_SET_WINDOW`](#aspeed-p2a-ctrl-ioctl-set-window)
+  - [`VIDIOC_G_EDID`](#vidioc-g-edid)
+  - [`F2FS_IOC_GARBAGE_COLLECT_RANGE`](#f2fs-ioc-garbage-collect-range)
+  - [`RIO_MAP_INBOUND`](#rio-map-inbound)
+  - [`IOC_OPAL_TAKE_OWNERSHIP`](#ioc-opal-take-ownership)
+  - [`USBDEVFS_CLAIM_PORT`](#usbdevfs-claim-port)
+  - [`VIDIOC_S_AUDIO`](#vidioc-s-audio)
+  - [`FS_IOC_GET_ENCRYPTION_NONCE`](#fs-ioc-get-encryption-nonce)
+  - [`FW_CDEV_IOC_SEND_STREAM_PACKET`](#fw-cdev-ioc-send-stream-packet)
+  - [`BTRFS_IOC_SNAP_DESTROY`](#btrfs-ioc-snap-destroy)
+  - [`SNAPSHOT_FREE`](#snapshot-free)
+  - [`I8K_GET_SPEED`](#i8k-get-speed)
   - [`HIDIOCGREPORT`](#hidiocgreport)
-  - [`HPET_EPI`](#hpet_epi)
+  - [`HPET_EPI`](#hpet-epi)
   - [`JSIOCSCORR`](#jsiocscorr)
-  - [`IOC_PR_PREEMPT_ABORT`](#ioc_pr_preempt_abort)
-  - [`RIO_MAP_OUTBOUND`](#rio_map_outbound)
-  - [`ATM_SETESI`](#atm_setesi)
-  - [`FW_CDEV_IOC_START_ISO`](#fw_cdev_ioc_start_iso)
-  - [`ATM_DELADDR`](#atm_deladdr)
+  - [`IOC_PR_PREEMPT_ABORT`](#ioc-pr-preempt-abort)
+  - [`RIO_MAP_OUTBOUND`](#rio-map-outbound)
+  - [`ATM_SETESI`](#atm-setesi)
+  - [`FW_CDEV_IOC_START_ISO`](#fw-cdev-ioc-start-iso)
+  - [`ATM_DELADDR`](#atm-deladdr)
   - [`PPFCONTROL`](#ppfcontrol)
-  - [`SONYPI_IOCGFAN`](#sonypi_iocgfan)
-  - [`RTC_IRQP_SET`](#rtc_irqp_set)
-  - [`PCITEST_WRITE`](#pcitest_write)
+  - [`SONYPI_IOCGFAN`](#sonypi-iocgfan)
+  - [`RTC_IRQP_SET`](#rtc-irqp-set)
+  - [`PCITEST_WRITE`](#pcitest-write)
   - [`PPCLAIM`](#ppclaim)
-  - [`VIDIOC_S_JPEGCOMP`](#vidioc_s_jpegcomp)
-  - [`IPMICTL_UNREGISTER_FOR_CMD`](#ipmictl_unregister_for_cmd)
-  - [`VHOST_SET_FEATURES`](#vhost_set_features)
-  - [`TOSHIBA_ACPI_SCI`](#toshiba_acpi_sci)
-  - [`VIDIOC_DQBUF`](#vidioc_dqbuf)
-  - [`BTRFS_IOC_BALANCE_PROGRESS`](#btrfs_ioc_balance_progress)
-  - [`BTRFS_IOC_SUBVOL_SETFLAGS`](#btrfs_ioc_subvol_setflags)
-  - [`ATMLEC_MCAST`](#atmlec_mcast)
-  - [`MMTIMER_GETFREQ`](#mmtimer_getfreq)
-  - [`VIDIOC_G_SELECTION`](#vidioc_g_selection)
-  - [`RTC_ALM_SET`](#rtc_alm_set)
+  - [`VIDIOC_S_JPEGCOMP`](#vidioc-s-jpegcomp)
+  - [`IPMICTL_UNREGISTER_FOR_CMD`](#ipmictl-unregister-for-cmd)
+  - [`VHOST_SET_FEATURES`](#vhost-set-features)
+  - [`TOSHIBA_ACPI_SCI`](#toshiba-acpi-sci)
+  - [`VIDIOC_DQBUF`](#vidioc-dqbuf)
+  - [`BTRFS_IOC_BALANCE_PROGRESS`](#btrfs-ioc-balance-progress)
+  - [`BTRFS_IOC_SUBVOL_SETFLAGS`](#btrfs-ioc-subvol-setflags)
+  - [`ATMLEC_MCAST`](#atmlec-mcast)
+  - [`MMTIMER_GETFREQ`](#mmtimer-getfreq)
+  - [`VIDIOC_G_SELECTION`](#vidioc-g-selection)
+  - [`RTC_ALM_SET`](#rtc-alm-set)
   - [`PPPOEIOCSFWD`](#pppoeiocsfwd)
-  - [`IPMICTL_GET_MAINTENANCE_MODE_CMD`](#ipmictl_get_maintenance_mode_cmd)
-  - [`FS_IOC_ENABLE_VERITY`](#fs_ioc_enable_verity)
-  - [`NILFS_IOCTL_GET_BDESCS`](#nilfs_ioctl_get_bdescs)
+  - [`IPMICTL_GET_MAINTENANCE_MODE_CMD`](#ipmictl-get-maintenance-mode-cmd)
+  - [`FS_IOC_ENABLE_VERITY`](#fs-ioc-enable-verity)
+  - [`NILFS_IOCTL_GET_BDESCS`](#nilfs-ioctl-get-bdescs)
   - [`FDFMTEND`](#fdfmtend)
-  - [`DMA_BUF_SET_NAME`](#dma_buf_set_name)
-  - [`UI_BEGIN_FF_UPLOAD`](#ui_begin_ff_upload)
-  - [`RTC_UIE_ON`](#rtc_uie_on)
+  - [`DMA_BUF_SET_NAME`](#dma-buf-set-name)
+  - [`UI_BEGIN_FF_UPLOAD`](#ui-begin-ff-upload)
+  - [`RTC_UIE_ON`](#rtc-uie-on)
   - [`PPRELEASE`](#pprelease)
-  - [`VFIO_IOMMU_UNMAP_DMA`](#vfio_iommu_unmap_dma)
-  - [`VIDIOC_OMAP3ISP_PRV_CFG`](#vidioc_omap3isp_prv_cfg)
-  - [`GPIO_GET_LINEHANDLE_IOCTL`](#gpio_get_linehandle_ioctl)
-  - [`VFAT_IOCTL_READDIR_BOTH`](#vfat_ioctl_readdir_both)
-  - [`NVME_IOCTL_ADMIN_CMD`](#nvme_ioctl_admin_cmd)
-  - [`VHOST_SET_VRING_KICK`](#vhost_set_vring_kick)
-  - [`BTRFS_IOC_SUBVOL_CREATE_V2`](#btrfs_ioc_subvol_create_v2)
-  - [`BTRFS_IOC_SNAP_CREATE`](#btrfs_ioc_snap_create)
-  - [`SONYPI_IOCGBAT2CAP`](#sonypi_iocgbat2cap)
+  - [`VFIO_IOMMU_UNMAP_DMA`](#vfio-iommu-unmap-dma)
+  - [`VIDIOC_OMAP3ISP_PRV_CFG`](#vidioc-omap3isp-prv-cfg)
+  - [`GPIO_GET_LINEHANDLE_IOCTL`](#gpio-get-linehandle-ioctl)
+  - [`VFAT_IOCTL_READDIR_BOTH`](#vfat-ioctl-readdir-both)
+  - [`NVME_IOCTL_ADMIN_CMD`](#nvme-ioctl-admin-cmd)
+  - [`VHOST_SET_VRING_KICK`](#vhost-set-vring-kick)
+  - [`BTRFS_IOC_SUBVOL_CREATE_V2`](#btrfs-ioc-subvol-create-v2)
+  - [`BTRFS_IOC_SNAP_CREATE`](#btrfs-ioc-snap-create)
+  - [`SONYPI_IOCGBAT2CAP`](#sonypi-iocgbat2cap)
   - [`PPNEGOT`](#ppnegot)
-  - [`NBD_PRINT_DEBUG`](#nbd_print_debug)
-  - [`BTRFS_IOC_INO_LOOKUP_USER`](#btrfs_ioc_ino_lookup_user)
-  - [`BTRFS_IOC_GET_SUBVOL_ROOTREF`](#btrfs_ioc_get_subvol_rootref)
-  - [`FS_IOC_REMOVE_ENCRYPTION_KEY_ALL_USERS`](#fs_ioc_remove_encryption_key_all_users)
-  - [`BTRFS_IOC_FS_INFO`](#btrfs_ioc_fs_info)
-  - [`VIDIOC_ENUM_FMT`](#vidioc_enum_fmt)
-  - [`VIDIOC_G_INPUT`](#vidioc_g_input)
-  - [`VTPM_PROXY_IOC_NEW_DEV`](#vtpm_proxy_ioc_new_dev)
-  - [`DFL_FPGA_FME_ERR_GET_IRQ_NUM`](#dfl_fpga_fme_err_get_irq_num)
-  - [`ND_IOCTL_DIMM_FLAGS`](#nd_ioctl_dimm_flags)
-  - [`BTRFS_IOC_QUOTA_RESCAN`](#btrfs_ioc_quota_rescan)
-  - [`MMTIMER_GETCOUNTER`](#mmtimer_getcounter)
-  - [`MATROXFB_GET_OUTPUT_MODE`](#matroxfb_get_output_mode)
-  - [`BTRFS_IOC_QUOTA_RESCAN_WAIT`](#btrfs_ioc_quota_rescan_wait)
-  - [`RIO_CM_CHAN_BIND`](#rio_cm_chan_bind)
+  - [`NBD_PRINT_DEBUG`](#nbd-print-debug)
+  - [`BTRFS_IOC_INO_LOOKUP_USER`](#btrfs-ioc-ino-lookup-user)
+  - [`BTRFS_IOC_GET_SUBVOL_ROOTREF`](#btrfs-ioc-get-subvol-rootref)
+  - [`FS_IOC_REMOVE_ENCRYPTION_KEY_ALL_USERS`](#fs-ioc-remove-encryption-key-all-users)
+  - [`BTRFS_IOC_FS_INFO`](#btrfs-ioc-fs-info)
+  - [`VIDIOC_ENUM_FMT`](#vidioc-enum-fmt)
+  - [`VIDIOC_G_INPUT`](#vidioc-g-input)
+  - [`VTPM_PROXY_IOC_NEW_DEV`](#vtpm-proxy-ioc-new-dev)
+  - [`DFL_FPGA_FME_ERR_GET_IRQ_NUM`](#dfl-fpga-fme-err-get-irq-num)
+  - [`ND_IOCTL_DIMM_FLAGS`](#nd-ioctl-dimm-flags)
+  - [`BTRFS_IOC_QUOTA_RESCAN`](#btrfs-ioc-quota-rescan)
+  - [`MMTIMER_GETCOUNTER`](#mmtimer-getcounter)
+  - [`MATROXFB_GET_OUTPUT_MODE`](#matroxfb-get-output-mode)
+  - [`BTRFS_IOC_QUOTA_RESCAN_WAIT`](#btrfs-ioc-quota-rescan-wait)
+  - [`RIO_CM_CHAN_BIND`](#rio-cm-chan-bind)
   - [`HIDIOCGRDESC`](#hidiocgrdesc)
-  - [`MGSL_IOCGIF`](#mgsl_iocgif)
-  - [`VIDIOC_S_OUTPUT`](#vidioc_s_output)
+  - [`MGSL_IOCGIF`](#mgsl-iocgif)
+  - [`VIDIOC_S_OUTPUT`](#vidioc-s-output)
   - [`HIDIOCGREPORTINFO`](#hidiocgreportinfo)
-  - [`WDIOC_GETBOOTSTATUS`](#wdioc_getbootstatus)
-  - [`VDUSE_VQ_GET_INFO`](#vduse_vq_get_info)
-  - [`ACRN_IOCTL_ASSIGN_PCIDEV`](#acrn_ioctl_assign_pcidev)
+  - [`WDIOC_GETBOOTSTATUS`](#wdioc-getbootstatus)
+  - [`VDUSE_VQ_GET_INFO`](#vduse-vq-get-info)
+  - [`ACRN_IOCTL_ASSIGN_PCIDEV`](#acrn-ioctl-assign-pcidev)
   - [`BLKGETDISKSEQ`](#blkgetdiskseq)
-  - [`ACRN_IOCTL_PM_GET_CPU_STATE`](#acrn_ioctl_pm_get_cpu_state)
-  - [`ACRN_IOCTL_DESTROY_VM`](#acrn_ioctl_destroy_vm)
-  - [`ACRN_IOCTL_SET_PTDEV_INTR`](#acrn_ioctl_set_ptdev_intr)
-  - [`ACRN_IOCTL_CREATE_IOREQ_CLIENT`](#acrn_ioctl_create_ioreq_client)
-  - [`ACRN_IOCTL_IRQFD`](#acrn_ioctl_irqfd)
-  - [`ACRN_IOCTL_CREATE_VM`](#acrn_ioctl_create_vm)
-  - [`ACRN_IOCTL_INJECT_MSI`](#acrn_ioctl_inject_msi)
-  - [`ACRN_IOCTL_ATTACH_IOREQ_CLIENT`](#acrn_ioctl_attach_ioreq_client)
-  - [`ACRN_IOCTL_RESET_PTDEV_INTR`](#acrn_ioctl_reset_ptdev_intr)
-  - [`ACRN_IOCTL_NOTIFY_REQUEST_FINISH`](#acrn_ioctl_notify_request_finish)
-  - [`ACRN_IOCTL_SET_IRQLINE`](#acrn_ioctl_set_irqline)
-  - [`ACRN_IOCTL_START_VM`](#acrn_ioctl_start_vm)
-  - [`ACRN_IOCTL_SET_VCPU_REGS`](#acrn_ioctl_set_vcpu_regs)
-  - [`ACRN_IOCTL_SET_MEMSEG`](#acrn_ioctl_set_memseg)
-  - [`ACRN_IOCTL_PAUSE_VM`](#acrn_ioctl_pause_vm)
-  - [`ACRN_IOCTL_CLEAR_VM_IOREQ`](#acrn_ioctl_clear_vm_ioreq)
-  - [`ACRN_IOCTL_UNSET_MEMSEG`](#acrn_ioctl_unset_memseg)
-  - [`ACRN_IOCTL_IOEVENTFD`](#acrn_ioctl_ioeventfd)
-  - [`ACRN_IOCTL_DEASSIGN_PCIDEV`](#acrn_ioctl_deassign_pcidev)
-  - [`ACRN_IOCTL_RESET_VM`](#acrn_ioctl_reset_vm)
-  - [`ACRN_IOCTL_DESTROY_IOREQ_CLIENT`](#acrn_ioctl_destroy_ioreq_client)
-  - [`ACRN_IOCTL_VM_INTR_MONITOR`](#acrn_ioctl_vm_intr_monitor)
+  - [`ACRN_IOCTL_PM_GET_CPU_STATE`](#acrn-ioctl-pm-get-cpu-state)
+  - [`ACRN_IOCTL_DESTROY_VM`](#acrn-ioctl-destroy-vm)
+  - [`ACRN_IOCTL_SET_PTDEV_INTR`](#acrn-ioctl-set-ptdev-intr)
+  - [`ACRN_IOCTL_CREATE_IOREQ_CLIENT`](#acrn-ioctl-create-ioreq-client)
+  - [`ACRN_IOCTL_IRQFD`](#acrn-ioctl-irqfd)
+  - [`ACRN_IOCTL_CREATE_VM`](#acrn-ioctl-create-vm)
+  - [`ACRN_IOCTL_INJECT_MSI`](#acrn-ioctl-inject-msi)
+  - [`ACRN_IOCTL_ATTACH_IOREQ_CLIENT`](#acrn-ioctl-attach-ioreq-client)
+  - [`ACRN_IOCTL_RESET_PTDEV_INTR`](#acrn-ioctl-reset-ptdev-intr)
+  - [`ACRN_IOCTL_NOTIFY_REQUEST_FINISH`](#acrn-ioctl-notify-request-finish)
+  - [`ACRN_IOCTL_SET_IRQLINE`](#acrn-ioctl-set-irqline)
+  - [`ACRN_IOCTL_START_VM`](#acrn-ioctl-start-vm)
+  - [`ACRN_IOCTL_SET_VCPU_REGS`](#acrn-ioctl-set-vcpu-regs)
+  - [`ACRN_IOCTL_SET_MEMSEG`](#acrn-ioctl-set-memseg)
+  - [`ACRN_IOCTL_PAUSE_VM`](#acrn-ioctl-pause-vm)
+  - [`ACRN_IOCTL_CLEAR_VM_IOREQ`](#acrn-ioctl-clear-vm-ioreq)
+  - [`ACRN_IOCTL_UNSET_MEMSEG`](#acrn-ioctl-unset-memseg)
+  - [`ACRN_IOCTL_IOEVENTFD`](#acrn-ioctl-ioeventfd)
+  - [`ACRN_IOCTL_DEASSIGN_PCIDEV`](#acrn-ioctl-deassign-pcidev)
+  - [`ACRN_IOCTL_RESET_VM`](#acrn-ioctl-reset-vm)
+  - [`ACRN_IOCTL_DESTROY_IOREQ_CLIENT`](#acrn-ioctl-destroy-ioreq-client)
+  - [`ACRN_IOCTL_VM_INTR_MONITOR`](#acrn-ioctl-vm-intr-monitor)
 
 ## Quick Reference
 
@@ -1616,32 +1616,32 @@
 | [`BLKSECDISCARD`](#blksecdiscard) | const |  |
 | [`BLKROTATIONAL`](#blkrotational) | const |  |
 | [`BLKZEROOUT`](#blkzeroout) | const |  |
-| [`FIEMAP_MAX_OFFSET`](#fiemap_max_offset) | const |  |
-| [`FIEMAP_FLAG_SYNC`](#fiemap_flag_sync) | const |  |
-| [`FIEMAP_FLAG_XATTR`](#fiemap_flag_xattr) | const |  |
-| [`FIEMAP_FLAG_CACHE`](#fiemap_flag_cache) | const |  |
-| [`FIEMAP_FLAGS_COMPAT`](#fiemap_flags_compat) | const |  |
-| [`FIEMAP_EXTENT_LAST`](#fiemap_extent_last) | const |  |
-| [`FIEMAP_EXTENT_UNKNOWN`](#fiemap_extent_unknown) | const |  |
-| [`FIEMAP_EXTENT_DELALLOC`](#fiemap_extent_delalloc) | const |  |
-| [`FIEMAP_EXTENT_ENCODED`](#fiemap_extent_encoded) | const |  |
-| [`FIEMAP_EXTENT_DATA_ENCRYPTED`](#fiemap_extent_data_encrypted) | const |  |
-| [`FIEMAP_EXTENT_NOT_ALIGNED`](#fiemap_extent_not_aligned) | const |  |
-| [`FIEMAP_EXTENT_DATA_INLINE`](#fiemap_extent_data_inline) | const |  |
-| [`FIEMAP_EXTENT_DATA_TAIL`](#fiemap_extent_data_tail) | const |  |
-| [`FIEMAP_EXTENT_UNWRITTEN`](#fiemap_extent_unwritten) | const |  |
-| [`FIEMAP_EXTENT_MERGED`](#fiemap_extent_merged) | const |  |
-| [`FIEMAP_EXTENT_SHARED`](#fiemap_extent_shared) | const |  |
-| [`UFFDIO_REGISTER`](#uffdio_register) | const |  |
-| [`UFFDIO_UNREGISTER`](#uffdio_unregister) | const |  |
-| [`UFFDIO_WAKE`](#uffdio_wake) | const |  |
-| [`UFFDIO_COPY`](#uffdio_copy) | const |  |
-| [`UFFDIO_ZEROPAGE`](#uffdio_zeropage) | const |  |
-| [`UFFDIO_WRITEPROTECT`](#uffdio_writeprotect) | const |  |
-| [`UFFDIO_API`](#uffdio_api) | const |  |
-| [`NS_GET_USERNS`](#ns_get_userns) | const |  |
-| [`NS_GET_PARENT`](#ns_get_parent) | const |  |
-| [`NS_GET_NSTYPE`](#ns_get_nstype) | const |  |
+| [`FIEMAP_MAX_OFFSET`](#fiemap-max-offset) | const |  |
+| [`FIEMAP_FLAG_SYNC`](#fiemap-flag-sync) | const |  |
+| [`FIEMAP_FLAG_XATTR`](#fiemap-flag-xattr) | const |  |
+| [`FIEMAP_FLAG_CACHE`](#fiemap-flag-cache) | const |  |
+| [`FIEMAP_FLAGS_COMPAT`](#fiemap-flags-compat) | const |  |
+| [`FIEMAP_EXTENT_LAST`](#fiemap-extent-last) | const |  |
+| [`FIEMAP_EXTENT_UNKNOWN`](#fiemap-extent-unknown) | const |  |
+| [`FIEMAP_EXTENT_DELALLOC`](#fiemap-extent-delalloc) | const |  |
+| [`FIEMAP_EXTENT_ENCODED`](#fiemap-extent-encoded) | const |  |
+| [`FIEMAP_EXTENT_DATA_ENCRYPTED`](#fiemap-extent-data-encrypted) | const |  |
+| [`FIEMAP_EXTENT_NOT_ALIGNED`](#fiemap-extent-not-aligned) | const |  |
+| [`FIEMAP_EXTENT_DATA_INLINE`](#fiemap-extent-data-inline) | const |  |
+| [`FIEMAP_EXTENT_DATA_TAIL`](#fiemap-extent-data-tail) | const |  |
+| [`FIEMAP_EXTENT_UNWRITTEN`](#fiemap-extent-unwritten) | const |  |
+| [`FIEMAP_EXTENT_MERGED`](#fiemap-extent-merged) | const |  |
+| [`FIEMAP_EXTENT_SHARED`](#fiemap-extent-shared) | const |  |
+| [`UFFDIO_REGISTER`](#uffdio-register) | const |  |
+| [`UFFDIO_UNREGISTER`](#uffdio-unregister) | const |  |
+| [`UFFDIO_WAKE`](#uffdio-wake) | const |  |
+| [`UFFDIO_COPY`](#uffdio-copy) | const |  |
+| [`UFFDIO_ZEROPAGE`](#uffdio-zeropage) | const |  |
+| [`UFFDIO_WRITEPROTECT`](#uffdio-writeprotect) | const |  |
+| [`UFFDIO_API`](#uffdio-api) | const |  |
+| [`NS_GET_USERNS`](#ns-get-userns) | const |  |
+| [`NS_GET_PARENT`](#ns-get-parent) | const |  |
+| [`NS_GET_NSTYPE`](#ns-get-nstype) | const |  |
 | [`KDGETLED`](#kdgetled) | const |  |
 | [`KDSETLED`](#kdsetled) | const |  |
 | [`KDGKBLED`](#kdgkbled) | const |  |
@@ -1655,20 +1655,20 @@
 | [`KDGETMODE`](#kdgetmode) | const |  |
 | [`KDMKTONE`](#kdmktone) | const |  |
 | [`KIOCSOUND`](#kiocsound) | const |  |
-| [`GIO_CMAP`](#gio_cmap) | const |  |
-| [`PIO_CMAP`](#pio_cmap) | const |  |
-| [`GIO_FONT`](#gio_font) | const |  |
-| [`GIO_FONTX`](#gio_fontx) | const |  |
-| [`PIO_FONT`](#pio_font) | const |  |
-| [`PIO_FONTX`](#pio_fontx) | const |  |
-| [`PIO_FONTRESET`](#pio_fontreset) | const |  |
-| [`GIO_SCRNMAP`](#gio_scrnmap) | const |  |
-| [`GIO_UNISCRNMAP`](#gio_uniscrnmap) | const |  |
-| [`PIO_SCRNMAP`](#pio_scrnmap) | const |  |
-| [`PIO_UNISCRNMAP`](#pio_uniscrnmap) | const |  |
-| [`GIO_UNIMAP`](#gio_unimap) | const |  |
-| [`PIO_UNIMAP`](#pio_unimap) | const |  |
-| [`PIO_UNIMAPCLR`](#pio_unimapclr) | const |  |
+| [`GIO_CMAP`](#gio-cmap) | const |  |
+| [`PIO_CMAP`](#pio-cmap) | const |  |
+| [`GIO_FONT`](#gio-font) | const |  |
+| [`GIO_FONTX`](#gio-fontx) | const |  |
+| [`PIO_FONT`](#pio-font) | const |  |
+| [`PIO_FONTX`](#pio-fontx) | const |  |
+| [`PIO_FONTRESET`](#pio-fontreset) | const |  |
+| [`GIO_SCRNMAP`](#gio-scrnmap) | const |  |
+| [`GIO_UNISCRNMAP`](#gio-uniscrnmap) | const |  |
+| [`PIO_SCRNMAP`](#pio-scrnmap) | const |  |
+| [`PIO_UNISCRNMAP`](#pio-uniscrnmap) | const |  |
+| [`GIO_UNIMAP`](#gio-unimap) | const |  |
+| [`PIO_UNIMAP`](#pio-unimap) | const |  |
+| [`PIO_UNIMAPCLR`](#pio-unimapclr) | const |  |
 | [`KDGKBMODE`](#kdgkbmode) | const |  |
 | [`KDSKBMODE`](#kdskbmode) | const |  |
 | [`KDGKBMETA`](#kdgkbmeta) | const |  |
@@ -1681,16 +1681,16 @@
 | [`KDGETKEYCODE`](#kdgetkeycode) | const |  |
 | [`KDSETKEYCODE`](#kdsetkeycode) | const |  |
 | [`KDSIGACCEPT`](#kdsigaccept) | const |  |
-| [`VT_OPENQRY`](#vt_openqry) | const |  |
-| [`VT_GETMODE`](#vt_getmode) | const |  |
-| [`VT_SETMODE`](#vt_setmode) | const |  |
-| [`VT_GETSTATE`](#vt_getstate) | const |  |
-| [`VT_RELDISP`](#vt_reldisp) | const |  |
-| [`VT_ACTIVATE`](#vt_activate) | const |  |
-| [`VT_WAITACTIVE`](#vt_waitactive) | const |  |
-| [`VT_DISALLOCATE`](#vt_disallocate) | const |  |
-| [`VT_RESIZE`](#vt_resize) | const |  |
-| [`VT_RESIZEX`](#vt_resizex) | const |  |
+| [`VT_OPENQRY`](#vt-openqry) | const |  |
+| [`VT_GETMODE`](#vt-getmode) | const |  |
+| [`VT_SETMODE`](#vt-setmode) | const |  |
+| [`VT_GETSTATE`](#vt-getstate) | const |  |
+| [`VT_RELDISP`](#vt-reldisp) | const |  |
+| [`VT_ACTIVATE`](#vt-activate) | const |  |
+| [`VT_WAITACTIVE`](#vt-waitactive) | const |  |
+| [`VT_DISALLOCATE`](#vt-disallocate) | const |  |
+| [`VT_RESIZE`](#vt-resize) | const |  |
+| [`VT_RESIZEX`](#vt-resizex) | const |  |
 | [`FIOSETOWN`](#fiosetown) | const |  |
 | [`SIOCSPGRP`](#siocspgrp) | const |  |
 | [`FIOGETOWN`](#fiogetown) | const |  |
@@ -1760,1258 +1760,1258 @@
 | [`FICLONE`](#ficlone) | const |  |
 | [`FICLONERANGE`](#ficlonerange) | const |  |
 | [`FIDEDUPERANGE`](#fideduperange) | const |  |
-| [`FS_IOC_GETFLAGS`](#fs_ioc_getflags) | const |  |
-| [`FS_IOC_SETFLAGS`](#fs_ioc_setflags) | const |  |
-| [`FS_IOC_GETVERSION`](#fs_ioc_getversion) | const |  |
-| [`FS_IOC_SETVERSION`](#fs_ioc_setversion) | const |  |
-| [`FS_IOC_FIEMAP`](#fs_ioc_fiemap) | const |  |
-| [`FS_IOC32_GETFLAGS`](#fs_ioc32_getflags) | const |  |
-| [`FS_IOC32_SETFLAGS`](#fs_ioc32_setflags) | const |  |
-| [`FS_IOC32_GETVERSION`](#fs_ioc32_getversion) | const |  |
-| [`FS_IOC32_SETVERSION`](#fs_ioc32_setversion) | const |  |
-| [`FS_IOC_FSGETXATTR`](#fs_ioc_fsgetxattr) | const |  |
-| [`FS_IOC_FSSETXATTR`](#fs_ioc_fssetxattr) | const |  |
-| [`FS_IOC_GETFSLABEL`](#fs_ioc_getfslabel) | const |  |
-| [`FS_IOC_SETFSLABEL`](#fs_ioc_setfslabel) | const |  |
-| [`EXT4_IOC_GETVERSION`](#ext4_ioc_getversion) | const |  |
-| [`EXT4_IOC_SETVERSION`](#ext4_ioc_setversion) | const |  |
-| [`EXT4_IOC_GETVERSION_OLD`](#ext4_ioc_getversion_old) | const |  |
-| [`EXT4_IOC_SETVERSION_OLD`](#ext4_ioc_setversion_old) | const |  |
-| [`EXT4_IOC_GETRSVSZ`](#ext4_ioc_getrsvsz) | const |  |
-| [`EXT4_IOC_SETRSVSZ`](#ext4_ioc_setrsvsz) | const |  |
-| [`EXT4_IOC_GROUP_EXTEND`](#ext4_ioc_group_extend) | const |  |
-| [`EXT4_IOC_MIGRATE`](#ext4_ioc_migrate) | const |  |
-| [`EXT4_IOC_ALLOC_DA_BLKS`](#ext4_ioc_alloc_da_blks) | const |  |
-| [`EXT4_IOC_RESIZE_FS`](#ext4_ioc_resize_fs) | const |  |
-| [`EXT4_IOC_SWAP_BOOT`](#ext4_ioc_swap_boot) | const |  |
-| [`EXT4_IOC_PRECACHE_EXTENTS`](#ext4_ioc_precache_extents) | const |  |
-| [`EXT4_IOC_CLEAR_ES_CACHE`](#ext4_ioc_clear_es_cache) | const |  |
-| [`EXT4_IOC_GETSTATE`](#ext4_ioc_getstate) | const |  |
-| [`EXT4_IOC_GET_ES_CACHE`](#ext4_ioc_get_es_cache) | const |  |
-| [`EXT4_IOC_CHECKPOINT`](#ext4_ioc_checkpoint) | const |  |
-| [`EXT4_IOC_SHUTDOWN`](#ext4_ioc_shutdown) | const |  |
-| [`EXT4_IOC32_GETVERSION`](#ext4_ioc32_getversion) | const |  |
-| [`EXT4_IOC32_SETVERSION`](#ext4_ioc32_setversion) | const |  |
-| [`EXT4_IOC32_GETRSVSZ`](#ext4_ioc32_getrsvsz) | const |  |
-| [`EXT4_IOC32_SETRSVSZ`](#ext4_ioc32_setrsvsz) | const |  |
-| [`EXT4_IOC32_GROUP_EXTEND`](#ext4_ioc32_group_extend) | const |  |
-| [`EXT4_IOC32_GETVERSION_OLD`](#ext4_ioc32_getversion_old) | const |  |
-| [`EXT4_IOC32_SETVERSION_OLD`](#ext4_ioc32_setversion_old) | const |  |
-| [`VIDIOC_SUBDEV_QUERYSTD`](#vidioc_subdev_querystd) | const |  |
-| [`AUTOFS_DEV_IOCTL_CLOSEMOUNT`](#autofs_dev_ioctl_closemount) | const |  |
-| [`LIRC_SET_SEND_CARRIER`](#lirc_set_send_carrier) | const |  |
-| [`AUTOFS_IOC_PROTOSUBVER`](#autofs_ioc_protosubver) | const |  |
-| [`PTP_SYS_OFFSET_PRECISE`](#ptp_sys_offset_precise) | const |  |
-| [`FSI_SCOM_WRITE`](#fsi_scom_write) | const |  |
-| [`ATM_GETCIRANGE`](#atm_getcirange) | const |  |
-| [`DMA_BUF_SET_NAME_B`](#dma_buf_set_name_b) | const |  |
-| [`RIO_CM_EP_GET_LIST_SIZE`](#rio_cm_ep_get_list_size) | const |  |
+| [`FS_IOC_GETFLAGS`](#fs-ioc-getflags) | const |  |
+| [`FS_IOC_SETFLAGS`](#fs-ioc-setflags) | const |  |
+| [`FS_IOC_GETVERSION`](#fs-ioc-getversion) | const |  |
+| [`FS_IOC_SETVERSION`](#fs-ioc-setversion) | const |  |
+| [`FS_IOC_FIEMAP`](#fs-ioc-fiemap) | const |  |
+| [`FS_IOC32_GETFLAGS`](#fs-ioc32-getflags) | const |  |
+| [`FS_IOC32_SETFLAGS`](#fs-ioc32-setflags) | const |  |
+| [`FS_IOC32_GETVERSION`](#fs-ioc32-getversion) | const |  |
+| [`FS_IOC32_SETVERSION`](#fs-ioc32-setversion) | const |  |
+| [`FS_IOC_FSGETXATTR`](#fs-ioc-fsgetxattr) | const |  |
+| [`FS_IOC_FSSETXATTR`](#fs-ioc-fssetxattr) | const |  |
+| [`FS_IOC_GETFSLABEL`](#fs-ioc-getfslabel) | const |  |
+| [`FS_IOC_SETFSLABEL`](#fs-ioc-setfslabel) | const |  |
+| [`EXT4_IOC_GETVERSION`](#ext4-ioc-getversion) | const |  |
+| [`EXT4_IOC_SETVERSION`](#ext4-ioc-setversion) | const |  |
+| [`EXT4_IOC_GETVERSION_OLD`](#ext4-ioc-getversion-old) | const |  |
+| [`EXT4_IOC_SETVERSION_OLD`](#ext4-ioc-setversion-old) | const |  |
+| [`EXT4_IOC_GETRSVSZ`](#ext4-ioc-getrsvsz) | const |  |
+| [`EXT4_IOC_SETRSVSZ`](#ext4-ioc-setrsvsz) | const |  |
+| [`EXT4_IOC_GROUP_EXTEND`](#ext4-ioc-group-extend) | const |  |
+| [`EXT4_IOC_MIGRATE`](#ext4-ioc-migrate) | const |  |
+| [`EXT4_IOC_ALLOC_DA_BLKS`](#ext4-ioc-alloc-da-blks) | const |  |
+| [`EXT4_IOC_RESIZE_FS`](#ext4-ioc-resize-fs) | const |  |
+| [`EXT4_IOC_SWAP_BOOT`](#ext4-ioc-swap-boot) | const |  |
+| [`EXT4_IOC_PRECACHE_EXTENTS`](#ext4-ioc-precache-extents) | const |  |
+| [`EXT4_IOC_CLEAR_ES_CACHE`](#ext4-ioc-clear-es-cache) | const |  |
+| [`EXT4_IOC_GETSTATE`](#ext4-ioc-getstate) | const |  |
+| [`EXT4_IOC_GET_ES_CACHE`](#ext4-ioc-get-es-cache) | const |  |
+| [`EXT4_IOC_CHECKPOINT`](#ext4-ioc-checkpoint) | const |  |
+| [`EXT4_IOC_SHUTDOWN`](#ext4-ioc-shutdown) | const |  |
+| [`EXT4_IOC32_GETVERSION`](#ext4-ioc32-getversion) | const |  |
+| [`EXT4_IOC32_SETVERSION`](#ext4-ioc32-setversion) | const |  |
+| [`EXT4_IOC32_GETRSVSZ`](#ext4-ioc32-getrsvsz) | const |  |
+| [`EXT4_IOC32_SETRSVSZ`](#ext4-ioc32-setrsvsz) | const |  |
+| [`EXT4_IOC32_GROUP_EXTEND`](#ext4-ioc32-group-extend) | const |  |
+| [`EXT4_IOC32_GETVERSION_OLD`](#ext4-ioc32-getversion-old) | const |  |
+| [`EXT4_IOC32_SETVERSION_OLD`](#ext4-ioc32-setversion-old) | const |  |
+| [`VIDIOC_SUBDEV_QUERYSTD`](#vidioc-subdev-querystd) | const |  |
+| [`AUTOFS_DEV_IOCTL_CLOSEMOUNT`](#autofs-dev-ioctl-closemount) | const |  |
+| [`LIRC_SET_SEND_CARRIER`](#lirc-set-send-carrier) | const |  |
+| [`AUTOFS_IOC_PROTOSUBVER`](#autofs-ioc-protosubver) | const |  |
+| [`PTP_SYS_OFFSET_PRECISE`](#ptp-sys-offset-precise) | const |  |
+| [`FSI_SCOM_WRITE`](#fsi-scom-write) | const |  |
+| [`ATM_GETCIRANGE`](#atm-getcirange) | const |  |
+| [`DMA_BUF_SET_NAME_B`](#dma-buf-set-name-b) | const |  |
+| [`RIO_CM_EP_GET_LIST_SIZE`](#rio-cm-ep-get-list-size) | const |  |
 | [`TUNSETPERSIST`](#tunsetpersist) | const |  |
-| [`FS_IOC_GET_ENCRYPTION_POLICY`](#fs_ioc_get_encryption_policy) | const |  |
-| [`CEC_RECEIVE`](#cec_receive) | const |  |
-| [`MGSL_IOCGPARAMS`](#mgsl_iocgparams) | const |  |
-| [`ENI_SETMULT`](#eni_setmult) | const |  |
-| [`RIO_GET_EVENT_MASK`](#rio_get_event_mask) | const |  |
-| [`LIRC_GET_MAX_TIMEOUT`](#lirc_get_max_timeout) | const |  |
-| [`USBDEVFS_CLAIMINTERFACE`](#usbdevfs_claiminterface) | const |  |
+| [`FS_IOC_GET_ENCRYPTION_POLICY`](#fs-ioc-get-encryption-policy) | const |  |
+| [`CEC_RECEIVE`](#cec-receive) | const |  |
+| [`MGSL_IOCGPARAMS`](#mgsl-iocgparams) | const |  |
+| [`ENI_SETMULT`](#eni-setmult) | const |  |
+| [`RIO_GET_EVENT_MASK`](#rio-get-event-mask) | const |  |
+| [`LIRC_GET_MAX_TIMEOUT`](#lirc-get-max-timeout) | const |  |
+| [`USBDEVFS_CLAIMINTERFACE`](#usbdevfs-claiminterface) | const |  |
 | [`CHIOMOVE`](#chiomove) | const |  |
-| [`SONYPI_IOCGBATFLAGS`](#sonypi_iocgbatflags) | const |  |
-| [`BTRFS_IOC_SYNC`](#btrfs_ioc_sync) | const |  |
-| [`VIDIOC_TRY_FMT`](#vidioc_try_fmt) | const |  |
-| [`LIRC_SET_REC_MODE`](#lirc_set_rec_mode) | const |  |
-| [`VIDIOC_DQEVENT`](#vidioc_dqevent) | const |  |
-| [`RPMSG_DESTROY_EPT_IOCTL`](#rpmsg_destroy_ept_ioctl) | const |  |
-| [`UVCIOC_CTRL_MAP`](#uvcioc_ctrl_map) | const |  |
-| [`VHOST_SET_BACKEND_FEATURES`](#vhost_set_backend_features) | const |  |
-| [`VHOST_VSOCK_SET_GUEST_CID`](#vhost_vsock_set_guest_cid) | const |  |
-| [`UI_SET_KEYBIT`](#ui_set_keybit) | const |  |
-| [`LIRC_SET_REC_TIMEOUT`](#lirc_set_rec_timeout) | const |  |
-| [`FS_IOC_GET_ENCRYPTION_KEY_STATUS`](#fs_ioc_get_encryption_key_status) | const |  |
-| [`BTRFS_IOC_TREE_SEARCH_V2`](#btrfs_ioc_tree_search_v2) | const |  |
-| [`VHOST_SET_VRING_BASE`](#vhost_set_vring_base) | const |  |
-| [`RIO_ENABLE_DOORBELL_RANGE`](#rio_enable_doorbell_range) | const |  |
-| [`VIDIOC_TRY_EXT_CTRLS`](#vidioc_try_ext_ctrls) | const |  |
-| [`LIRC_GET_REC_MODE`](#lirc_get_rec_mode) | const |  |
+| [`SONYPI_IOCGBATFLAGS`](#sonypi-iocgbatflags) | const |  |
+| [`BTRFS_IOC_SYNC`](#btrfs-ioc-sync) | const |  |
+| [`VIDIOC_TRY_FMT`](#vidioc-try-fmt) | const |  |
+| [`LIRC_SET_REC_MODE`](#lirc-set-rec-mode) | const |  |
+| [`VIDIOC_DQEVENT`](#vidioc-dqevent) | const |  |
+| [`RPMSG_DESTROY_EPT_IOCTL`](#rpmsg-destroy-ept-ioctl) | const |  |
+| [`UVCIOC_CTRL_MAP`](#uvcioc-ctrl-map) | const |  |
+| [`VHOST_SET_BACKEND_FEATURES`](#vhost-set-backend-features) | const |  |
+| [`VHOST_VSOCK_SET_GUEST_CID`](#vhost-vsock-set-guest-cid) | const |  |
+| [`UI_SET_KEYBIT`](#ui-set-keybit) | const |  |
+| [`LIRC_SET_REC_TIMEOUT`](#lirc-set-rec-timeout) | const |  |
+| [`FS_IOC_GET_ENCRYPTION_KEY_STATUS`](#fs-ioc-get-encryption-key-status) | const |  |
+| [`BTRFS_IOC_TREE_SEARCH_V2`](#btrfs-ioc-tree-search-v2) | const |  |
+| [`VHOST_SET_VRING_BASE`](#vhost-set-vring-base) | const |  |
+| [`RIO_ENABLE_DOORBELL_RANGE`](#rio-enable-doorbell-range) | const |  |
+| [`VIDIOC_TRY_EXT_CTRLS`](#vidioc-try-ext-ctrls) | const |  |
+| [`LIRC_GET_REC_MODE`](#lirc-get-rec-mode) | const |  |
 | [`PPGETTIME`](#ppgettime) | const |  |
-| [`BTRFS_IOC_RM_DEV`](#btrfs_ioc_rm_dev) | const |  |
-| [`ATM_SETBACKEND`](#atm_setbackend) | const |  |
-| [`FSL_HV_IOCTL_PARTITION_START`](#fsl_hv_ioctl_partition_start) | const |  |
-| [`FBIO_WAITEVENT`](#fbio_waitevent) | const |  |
-| [`SWITCHTEC_IOCTL_PORT_TO_PFF`](#switchtec_ioctl_port_to_pff) | const |  |
-| [`NVME_IOCTL_IO_CMD`](#nvme_ioctl_io_cmd) | const |  |
-| [`IPMICTL_RECEIVE_MSG_TRUNC`](#ipmictl_receive_msg_trunc) | const |  |
+| [`BTRFS_IOC_RM_DEV`](#btrfs-ioc-rm-dev) | const |  |
+| [`ATM_SETBACKEND`](#atm-setbackend) | const |  |
+| [`FSL_HV_IOCTL_PARTITION_START`](#fsl-hv-ioctl-partition-start) | const |  |
+| [`FBIO_WAITEVENT`](#fbio-waitevent) | const |  |
+| [`SWITCHTEC_IOCTL_PORT_TO_PFF`](#switchtec-ioctl-port-to-pff) | const |  |
+| [`NVME_IOCTL_IO_CMD`](#nvme-ioctl-io-cmd) | const |  |
+| [`IPMICTL_RECEIVE_MSG_TRUNC`](#ipmictl-receive-msg-trunc) | const |  |
 | [`FDTWADDLE`](#fdtwaddle) | const |  |
-| [`NVME_IOCTL_SUBMIT_IO`](#nvme_ioctl_submit_io) | const |  |
-| [`NILFS_IOCTL_SYNC`](#nilfs_ioctl_sync) | const |  |
-| [`VIDIOC_SUBDEV_S_DV_TIMINGS`](#vidioc_subdev_s_dv_timings) | const |  |
-| [`ASPEED_LPC_CTRL_IOCTL_GET_SIZE`](#aspeed_lpc_ctrl_ioctl_get_size) | const |  |
-| [`DM_DEV_STATUS`](#dm_dev_status) | const |  |
-| [`TEE_IOC_CLOSE_SESSION`](#tee_ioc_close_session) | const |  |
-| [`NS_GETPSTAT`](#ns_getpstat) | const |  |
-| [`UI_SET_PROPBIT`](#ui_set_propbit) | const |  |
+| [`NVME_IOCTL_SUBMIT_IO`](#nvme-ioctl-submit-io) | const |  |
+| [`NILFS_IOCTL_SYNC`](#nilfs-ioctl-sync) | const |  |
+| [`VIDIOC_SUBDEV_S_DV_TIMINGS`](#vidioc-subdev-s-dv-timings) | const |  |
+| [`ASPEED_LPC_CTRL_IOCTL_GET_SIZE`](#aspeed-lpc-ctrl-ioctl-get-size) | const |  |
+| [`DM_DEV_STATUS`](#dm-dev-status) | const |  |
+| [`TEE_IOC_CLOSE_SESSION`](#tee-ioc-close-session) | const |  |
+| [`NS_GETPSTAT`](#ns-getpstat) | const |  |
+| [`UI_SET_PROPBIT`](#ui-set-propbit) | const |  |
 | [`TUNSETFILTEREBPF`](#tunsetfilterebpf) | const |  |
-| [`RIO_MPORT_MAINT_COMPTAG_SET`](#rio_mport_maint_comptag_set) | const |  |
-| [`AUTOFS_DEV_IOCTL_VERSION`](#autofs_dev_ioctl_version) | const |  |
-| [`WDIOC_SETOPTIONS`](#wdioc_setoptions) | const |  |
-| [`VHOST_SCSI_SET_ENDPOINT`](#vhost_scsi_set_endpoint) | const |  |
-| [`MGSL_IOCGTXIDLE`](#mgsl_iocgtxidle) | const |  |
-| [`ATM_ADDLECSADDR`](#atm_addlecsaddr) | const |  |
-| [`FSL_HV_IOCTL_GETPROP`](#fsl_hv_ioctl_getprop) | const |  |
+| [`RIO_MPORT_MAINT_COMPTAG_SET`](#rio-mport-maint-comptag-set) | const |  |
+| [`AUTOFS_DEV_IOCTL_VERSION`](#autofs-dev-ioctl-version) | const |  |
+| [`WDIOC_SETOPTIONS`](#wdioc-setoptions) | const |  |
+| [`VHOST_SCSI_SET_ENDPOINT`](#vhost-scsi-set-endpoint) | const |  |
+| [`MGSL_IOCGTXIDLE`](#mgsl-iocgtxidle) | const |  |
+| [`ATM_ADDLECSADDR`](#atm-addlecsaddr) | const |  |
+| [`FSL_HV_IOCTL_GETPROP`](#fsl-hv-ioctl-getprop) | const |  |
 | [`FDGETPRM`](#fdgetprm) | const |  |
 | [`HIDIOCAPPLICATION`](#hidiocapplication) | const |  |
-| [`ENI_MEMDUMP`](#eni_memdump) | const |  |
-| [`PTP_SYS_OFFSET2`](#ptp_sys_offset2) | const |  |
-| [`VIDIOC_SUBDEV_G_DV_TIMINGS`](#vidioc_subdev_g_dv_timings) | const |  |
-| [`DMA_BUF_SET_NAME_A`](#dma_buf_set_name_a) | const |  |
-| [`PTP_PIN_GETFUNC`](#ptp_pin_getfunc) | const |  |
-| [`PTP_SYS_OFFSET_EXTENDED`](#ptp_sys_offset_extended) | const |  |
-| [`DFL_FPGA_PORT_UINT_SET_IRQ`](#dfl_fpga_port_uint_set_irq) | const |  |
-| [`RTC_EPOCH_READ`](#rtc_epoch_read) | const |  |
-| [`VIDIOC_SUBDEV_S_SELECTION`](#vidioc_subdev_s_selection) | const |  |
-| [`VIDIOC_QUERY_EXT_CTRL`](#vidioc_query_ext_ctrl) | const |  |
-| [`ATM_GETLECSADDR`](#atm_getlecsaddr) | const |  |
-| [`FSL_HV_IOCTL_PARTITION_STOP`](#fsl_hv_ioctl_partition_stop) | const |  |
-| [`SONET_GETDIAG`](#sonet_getdiag) | const |  |
-| [`ATMMPC_DATA`](#atmmpc_data) | const |  |
-| [`IPMICTL_UNREGISTER_FOR_CMD_CHANS`](#ipmictl_unregister_for_cmd_chans) | const |  |
+| [`ENI_MEMDUMP`](#eni-memdump) | const |  |
+| [`PTP_SYS_OFFSET2`](#ptp-sys-offset2) | const |  |
+| [`VIDIOC_SUBDEV_G_DV_TIMINGS`](#vidioc-subdev-g-dv-timings) | const |  |
+| [`DMA_BUF_SET_NAME_A`](#dma-buf-set-name-a) | const |  |
+| [`PTP_PIN_GETFUNC`](#ptp-pin-getfunc) | const |  |
+| [`PTP_SYS_OFFSET_EXTENDED`](#ptp-sys-offset-extended) | const |  |
+| [`DFL_FPGA_PORT_UINT_SET_IRQ`](#dfl-fpga-port-uint-set-irq) | const |  |
+| [`RTC_EPOCH_READ`](#rtc-epoch-read) | const |  |
+| [`VIDIOC_SUBDEV_S_SELECTION`](#vidioc-subdev-s-selection) | const |  |
+| [`VIDIOC_QUERY_EXT_CTRL`](#vidioc-query-ext-ctrl) | const |  |
+| [`ATM_GETLECSADDR`](#atm-getlecsaddr) | const |  |
+| [`FSL_HV_IOCTL_PARTITION_STOP`](#fsl-hv-ioctl-partition-stop) | const |  |
+| [`SONET_GETDIAG`](#sonet-getdiag) | const |  |
+| [`ATMMPC_DATA`](#atmmpc-data) | const |  |
+| [`IPMICTL_UNREGISTER_FOR_CMD_CHANS`](#ipmictl-unregister-for-cmd-chans) | const |  |
 | [`HIDIOCGCOLLECTIONINDEX`](#hidiocgcollectionindex) | const |  |
-| [`RPMSG_CREATE_EPT_IOCTL`](#rpmsg_create_ept_ioctl) | const |  |
-| [`GPIOHANDLE_GET_LINE_VALUES_IOCTL`](#gpiohandle_get_line_values_ioctl) | const |  |
-| [`UI_DEV_SETUP`](#ui_dev_setup) | const |  |
-| [`ISST_IF_IO_CMD`](#isst_if_io_cmd) | const |  |
-| [`RIO_MPORT_MAINT_READ_REMOTE`](#rio_mport_maint_read_remote) | const |  |
-| [`VIDIOC_OMAP3ISP_HIST_CFG`](#vidioc_omap3isp_hist_cfg) | const |  |
+| [`RPMSG_CREATE_EPT_IOCTL`](#rpmsg-create-ept-ioctl) | const |  |
+| [`GPIOHANDLE_GET_LINE_VALUES_IOCTL`](#gpiohandle-get-line-values-ioctl) | const |  |
+| [`UI_DEV_SETUP`](#ui-dev-setup) | const |  |
+| [`ISST_IF_IO_CMD`](#isst-if-io-cmd) | const |  |
+| [`RIO_MPORT_MAINT_READ_REMOTE`](#rio-mport-maint-read-remote) | const |  |
+| [`VIDIOC_OMAP3ISP_HIST_CFG`](#vidioc-omap3isp-hist-cfg) | const |  |
 | [`BLKGETNRZONES`](#blkgetnrzones) | const |  |
-| [`VIDIOC_G_MODULATOR`](#vidioc_g_modulator) | const |  |
-| [`VBG_IOCTL_WRITE_CORE_DUMP`](#vbg_ioctl_write_core_dump) | const |  |
-| [`USBDEVFS_SETINTERFACE`](#usbdevfs_setinterface) | const |  |
+| [`VIDIOC_G_MODULATOR`](#vidioc-g-modulator) | const |  |
+| [`VBG_IOCTL_WRITE_CORE_DUMP`](#vbg-ioctl-write-core-dump) | const |  |
+| [`USBDEVFS_SETINTERFACE`](#usbdevfs-setinterface) | const |  |
 | [`PPPIOCGCHAN`](#pppiocgchan) | const |  |
 | [`EVIOCGVERSION`](#eviocgversion) | const |  |
-| [`VHOST_NET_SET_BACKEND`](#vhost_net_set_backend) | const |  |
-| [`USBDEVFS_REAPURBNDELAY`](#usbdevfs_reapurbndelay) | const |  |
+| [`VHOST_NET_SET_BACKEND`](#vhost-net-set-backend) | const |  |
+| [`USBDEVFS_REAPURBNDELAY`](#usbdevfs-reapurbndelay) | const |  |
 | [`RNDZAPENTCNT`](#rndzapentcnt) | const |  |
-| [`VIDIOC_G_PARM`](#vidioc_g_parm) | const |  |
+| [`VIDIOC_G_PARM`](#vidioc-g-parm) | const |  |
 | [`TUNGETDEVNETNS`](#tungetdevnetns) | const |  |
-| [`LIRC_SET_MEASURE_CARRIER_MODE`](#lirc_set_measure_carrier_mode) | const |  |
-| [`VHOST_SET_VRING_ERR`](#vhost_set_vring_err) | const |  |
-| [`VDUSE_VQ_SETUP`](#vduse_vq_setup) | const |  |
-| [`AUTOFS_IOC_SETTIMEOUT`](#autofs_ioc_settimeout) | const |  |
-| [`VIDIOC_S_FREQUENCY`](#vidioc_s_frequency) | const |  |
-| [`F2FS_IOC_SEC_TRIM_FILE`](#f2fs_ioc_sec_trim_file) | const |  |
-| [`FS_IOC_REMOVE_ENCRYPTION_KEY`](#fs_ioc_remove_encryption_key) | const |  |
-| [`WDIOC_GETPRETIMEOUT`](#wdioc_getpretimeout) | const |  |
-| [`USBDEVFS_DROP_PRIVILEGES`](#usbdevfs_drop_privileges) | const |  |
-| [`BTRFS_IOC_SNAP_CREATE_V2`](#btrfs_ioc_snap_create_v2) | const |  |
-| [`VHOST_VSOCK_SET_RUNNING`](#vhost_vsock_set_running) | const |  |
-| [`STP_SET_OPTIONS`](#stp_set_options) | const |  |
-| [`FBIO_RADEON_GET_MIRROR`](#fbio_radeon_get_mirror) | const |  |
-| [`IVTVFB_IOC_DMA_FRAME`](#ivtvfb_ioc_dma_frame) | const |  |
-| [`IPMICTL_SEND_COMMAND`](#ipmictl_send_command) | const |  |
-| [`VIDIOC_G_ENC_INDEX`](#vidioc_g_enc_index) | const |  |
-| [`DFL_FPGA_FME_PORT_PR`](#dfl_fpga_fme_port_pr) | const |  |
+| [`LIRC_SET_MEASURE_CARRIER_MODE`](#lirc-set-measure-carrier-mode) | const |  |
+| [`VHOST_SET_VRING_ERR`](#vhost-set-vring-err) | const |  |
+| [`VDUSE_VQ_SETUP`](#vduse-vq-setup) | const |  |
+| [`AUTOFS_IOC_SETTIMEOUT`](#autofs-ioc-settimeout) | const |  |
+| [`VIDIOC_S_FREQUENCY`](#vidioc-s-frequency) | const |  |
+| [`F2FS_IOC_SEC_TRIM_FILE`](#f2fs-ioc-sec-trim-file) | const |  |
+| [`FS_IOC_REMOVE_ENCRYPTION_KEY`](#fs-ioc-remove-encryption-key) | const |  |
+| [`WDIOC_GETPRETIMEOUT`](#wdioc-getpretimeout) | const |  |
+| [`USBDEVFS_DROP_PRIVILEGES`](#usbdevfs-drop-privileges) | const |  |
+| [`BTRFS_IOC_SNAP_CREATE_V2`](#btrfs-ioc-snap-create-v2) | const |  |
+| [`VHOST_VSOCK_SET_RUNNING`](#vhost-vsock-set-running) | const |  |
+| [`STP_SET_OPTIONS`](#stp-set-options) | const |  |
+| [`FBIO_RADEON_GET_MIRROR`](#fbio-radeon-get-mirror) | const |  |
+| [`IVTVFB_IOC_DMA_FRAME`](#ivtvfb-ioc-dma-frame) | const |  |
+| [`IPMICTL_SEND_COMMAND`](#ipmictl-send-command) | const |  |
+| [`VIDIOC_G_ENC_INDEX`](#vidioc-g-enc-index) | const |  |
+| [`DFL_FPGA_FME_PORT_PR`](#dfl-fpga-fme-port-pr) | const |  |
 | [`CHIOSVOLTAG`](#chiosvoltag) | const |  |
-| [`ATM_SETESIF`](#atm_setesif) | const |  |
-| [`FW_CDEV_IOC_SEND_RESPONSE`](#fw_cdev_ioc_send_response) | const |  |
-| [`PMU_IOC_GET_MODEL`](#pmu_ioc_get_model) | const |  |
+| [`ATM_SETESIF`](#atm-setesif) | const |  |
+| [`FW_CDEV_IOC_SEND_RESPONSE`](#fw-cdev-ioc-send-response) | const |  |
+| [`PMU_IOC_GET_MODEL`](#pmu-ioc-get-model) | const |  |
 | [`JSIOCGBTNMAP`](#jsiocgbtnmap) | const |  |
-| [`USBDEVFS_HUB_PORTINFO`](#usbdevfs_hub_portinfo) | const |  |
-| [`VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS`](#vbg_ioctl_interrupt_all_wait_for_events) | const |  |
+| [`USBDEVFS_HUB_PORTINFO`](#usbdevfs-hub-portinfo) | const |  |
+| [`VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS`](#vbg-ioctl-interrupt-all-wait-for-events) | const |  |
 | [`FDCLRPRM`](#fdclrprm) | const |  |
-| [`BTRFS_IOC_SCRUB`](#btrfs_ioc_scrub) | const |  |
-| [`USBDEVFS_DISCONNECT`](#usbdevfs_disconnect) | const |  |
+| [`BTRFS_IOC_SCRUB`](#btrfs-ioc-scrub) | const |  |
+| [`USBDEVFS_DISCONNECT`](#usbdevfs-disconnect) | const |  |
 | [`TUNSETVNETBE`](#tunsetvnetbe) | const |  |
-| [`ATMTCP_REMOVE`](#atmtcp_remove) | const |  |
-| [`VHOST_VDPA_GET_CONFIG`](#vhost_vdpa_get_config) | const |  |
+| [`ATMTCP_REMOVE`](#atmtcp-remove) | const |  |
+| [`VHOST_VDPA_GET_CONFIG`](#vhost-vdpa-get-config) | const |  |
 | [`PPPIOCGNPMODE`](#pppiocgnpmode) | const |  |
 | [`FDGETDRVPRM`](#fdgetdrvprm) | const |  |
 | [`TUNSETVNETLE`](#tunsetvnetle) | const |  |
-| [`PHN_SETREG`](#phn_setreg) | const |  |
+| [`PHN_SETREG`](#phn-setreg) | const |  |
 | [`PPPIOCDETACH`](#pppiocdetach) | const |  |
-| [`MMTIMER_GETRES`](#mmtimer_getres) | const |  |
-| [`VIDIOC_SUBDEV_ENUMSTD`](#vidioc_subdev_enumstd) | const |  |
+| [`MMTIMER_GETRES`](#mmtimer-getres) | const |  |
+| [`VIDIOC_SUBDEV_ENUMSTD`](#vidioc-subdev-enumstd) | const |  |
 | [`PPGETFLAGS`](#ppgetflags) | const |  |
-| [`VDUSE_DEV_GET_FEATURES`](#vduse_dev_get_features) | const |  |
-| [`CAPI_MANUFACTURER_CMD`](#capi_manufacturer_cmd) | const |  |
-| [`VIDIOC_G_TUNER`](#vidioc_g_tuner) | const |  |
-| [`DM_TABLE_STATUS`](#dm_table_status) | const |  |
-| [`DM_DEV_ARM_POLL`](#dm_dev_arm_poll) | const |  |
-| [`NE_CREATE_VM`](#ne_create_vm) | const |  |
-| [`MEDIA_IOC_ENUM_LINKS`](#media_ioc_enum_links) | const |  |
-| [`F2FS_IOC_PRECACHE_EXTENTS`](#f2fs_ioc_precache_extents) | const |  |
-| [`DFL_FPGA_PORT_DMA_MAP`](#dfl_fpga_port_dma_map) | const |  |
-| [`MGSL_IOCGXCTRL`](#mgsl_iocgxctrl) | const |  |
-| [`FW_CDEV_IOC_SEND_REQUEST`](#fw_cdev_ioc_send_request) | const |  |
-| [`SONYPI_IOCGBLUE`](#sonypi_iocgblue) | const |  |
-| [`F2FS_IOC_DECOMPRESS_FILE`](#f2fs_ioc_decompress_file) | const |  |
+| [`VDUSE_DEV_GET_FEATURES`](#vduse-dev-get-features) | const |  |
+| [`CAPI_MANUFACTURER_CMD`](#capi-manufacturer-cmd) | const |  |
+| [`VIDIOC_G_TUNER`](#vidioc-g-tuner) | const |  |
+| [`DM_TABLE_STATUS`](#dm-table-status) | const |  |
+| [`DM_DEV_ARM_POLL`](#dm-dev-arm-poll) | const |  |
+| [`NE_CREATE_VM`](#ne-create-vm) | const |  |
+| [`MEDIA_IOC_ENUM_LINKS`](#media-ioc-enum-links) | const |  |
+| [`F2FS_IOC_PRECACHE_EXTENTS`](#f2fs-ioc-precache-extents) | const |  |
+| [`DFL_FPGA_PORT_DMA_MAP`](#dfl-fpga-port-dma-map) | const |  |
+| [`MGSL_IOCGXCTRL`](#mgsl-iocgxctrl) | const |  |
+| [`FW_CDEV_IOC_SEND_REQUEST`](#fw-cdev-ioc-send-request) | const |  |
+| [`SONYPI_IOCGBLUE`](#sonypi-iocgblue) | const |  |
+| [`F2FS_IOC_DECOMPRESS_FILE`](#f2fs-ioc-decompress-file) | const |  |
 | [`I2OHTML`](#i2ohtml) | const |  |
-| [`VFIO_GET_API_VERSION`](#vfio_get_api_version) | const |  |
-| [`IDT77105_GETSTATZ`](#idt77105_getstatz) | const |  |
+| [`VFIO_GET_API_VERSION`](#vfio-get-api-version) | const |  |
+| [`IDT77105_GETSTATZ`](#idt77105-getstatz) | const |  |
 | [`I2OPARMSET`](#i2oparmset) | const |  |
-| [`TEE_IOC_CANCEL`](#tee_ioc_cancel) | const |  |
-| [`PTP_SYS_OFFSET_PRECISE2`](#ptp_sys_offset_precise2) | const |  |
-| [`DFL_FPGA_PORT_RESET`](#dfl_fpga_port_reset) | const |  |
+| [`TEE_IOC_CANCEL`](#tee-ioc-cancel) | const |  |
+| [`PTP_SYS_OFFSET_PRECISE2`](#ptp-sys-offset-precise2) | const |  |
+| [`DFL_FPGA_PORT_RESET`](#dfl-fpga-port-reset) | const |  |
 | [`PPPIOCGASYNCMAP`](#pppiocgasyncmap) | const |  |
-| [`EVIOCGKEYCODE_V2`](#eviocgkeycode_v2) | const |  |
-| [`DM_DEV_SET_GEOMETRY`](#dm_dev_set_geometry) | const |  |
+| [`EVIOCGKEYCODE_V2`](#eviocgkeycode-v2) | const |  |
+| [`DM_DEV_SET_GEOMETRY`](#dm-dev-set-geometry) | const |  |
 | [`HIDIOCSUSAGE`](#hidiocsusage) | const |  |
-| [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE`](#fw_cdev_ioc_deallocate_iso_resource_once) | const |  |
-| [`PTP_EXTTS_REQUEST`](#ptp_extts_request) | const |  |
-| [`SWITCHTEC_IOCTL_EVENT_CTL`](#switchtec_ioctl_event_ctl) | const |  |
-| [`WDIOC_SETPRETIMEOUT`](#wdioc_setpretimeout) | const |  |
-| [`VHOST_SCSI_CLEAR_ENDPOINT`](#vhost_scsi_clear_endpoint) | const |  |
+| [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE`](#fw-cdev-ioc-deallocate-iso-resource-once) | const |  |
+| [`PTP_EXTTS_REQUEST`](#ptp-extts-request) | const |  |
+| [`SWITCHTEC_IOCTL_EVENT_CTL`](#switchtec-ioctl-event-ctl) | const |  |
+| [`WDIOC_SETPRETIMEOUT`](#wdioc-setpretimeout) | const |  |
+| [`VHOST_SCSI_CLEAR_ENDPOINT`](#vhost-scsi-clear-endpoint) | const |  |
 | [`JSIOCGAXES`](#jsiocgaxes) | const |  |
 | [`HIDIOCSFLAG`](#hidiocsflag) | const |  |
-| [`PTP_PEROUT_REQUEST2`](#ptp_perout_request2) | const |  |
+| [`PTP_PEROUT_REQUEST2`](#ptp-perout-request2) | const |  |
 | [`PPWDATA`](#ppwdata) | const |  |
-| [`PTP_CLOCK_GETCAPS`](#ptp_clock_getcaps) | const |  |
+| [`PTP_CLOCK_GETCAPS`](#ptp-clock-getcaps) | const |  |
 | [`FDGETMAXERRS`](#fdgetmaxerrs) | const |  |
 | [`TUNSETQUEUE`](#tunsetqueue) | const |  |
-| [`PTP_ENABLE_PPS`](#ptp_enable_pps) | const |  |
+| [`PTP_ENABLE_PPS`](#ptp-enable-pps) | const |  |
 | [`SIOCSIFATMTCP`](#siocsifatmtcp) | const |  |
-| [`CEC_ADAP_G_LOG_ADDRS`](#cec_adap_g_log_addrs) | const |  |
-| [`ND_IOCTL_ARS_CAP`](#nd_ioctl_ars_cap) | const |  |
-| [`NBD_SET_BLKSIZE`](#nbd_set_blksize) | const |  |
-| [`NBD_SET_TIMEOUT`](#nbd_set_timeout) | const |  |
-| [`VHOST_SCSI_GET_ABI_VERSION`](#vhost_scsi_get_abi_version) | const |  |
-| [`RIO_UNMAP_INBOUND`](#rio_unmap_inbound) | const |  |
-| [`ATM_QUERYLOOP`](#atm_queryloop) | const |  |
-| [`DFL_FPGA_GET_API_VERSION`](#dfl_fpga_get_api_version) | const |  |
-| [`USBDEVFS_WAIT_FOR_RESUME`](#usbdevfs_wait_for_resume) | const |  |
-| [`FBIO_CURSOR`](#fbio_cursor) | const |  |
+| [`CEC_ADAP_G_LOG_ADDRS`](#cec-adap-g-log-addrs) | const |  |
+| [`ND_IOCTL_ARS_CAP`](#nd-ioctl-ars-cap) | const |  |
+| [`NBD_SET_BLKSIZE`](#nbd-set-blksize) | const |  |
+| [`NBD_SET_TIMEOUT`](#nbd-set-timeout) | const |  |
+| [`VHOST_SCSI_GET_ABI_VERSION`](#vhost-scsi-get-abi-version) | const |  |
+| [`RIO_UNMAP_INBOUND`](#rio-unmap-inbound) | const |  |
+| [`ATM_QUERYLOOP`](#atm-queryloop) | const |  |
+| [`DFL_FPGA_GET_API_VERSION`](#dfl-fpga-get-api-version) | const |  |
+| [`USBDEVFS_WAIT_FOR_RESUME`](#usbdevfs-wait-for-resume) | const |  |
+| [`FBIO_CURSOR`](#fbio-cursor) | const |  |
 | [`RNDCLEARPOOL`](#rndclearpool) | const |  |
-| [`VIDIOC_QUERYSTD`](#vidioc_querystd) | const |  |
-| [`DMA_BUF_IOCTL_SYNC`](#dma_buf_ioctl_sync) | const |  |
-| [`SCIF_RECV`](#scif_recv) | const |  |
-| [`PTP_PIN_GETFUNC2`](#ptp_pin_getfunc2) | const |  |
-| [`FW_CDEV_IOC_ALLOCATE`](#fw_cdev_ioc_allocate) | const |  |
-| [`CEC_ADAP_G_CAPS`](#cec_adap_g_caps) | const |  |
-| [`VIDIOC_G_FBUF`](#vidioc_g_fbuf) | const |  |
-| [`PTP_ENABLE_PPS2`](#ptp_enable_pps2) | const |  |
-| [`PCITEST_CLEAR_IRQ`](#pcitest_clear_irq) | const |  |
-| [`IPMICTL_SET_GETS_EVENTS_CMD`](#ipmictl_set_gets_events_cmd) | const |  |
-| [`BTRFS_IOC_DEVICES_READY`](#btrfs_ioc_devices_ready) | const |  |
+| [`VIDIOC_QUERYSTD`](#vidioc-querystd) | const |  |
+| [`DMA_BUF_IOCTL_SYNC`](#dma-buf-ioctl-sync) | const |  |
+| [`SCIF_RECV`](#scif-recv) | const |  |
+| [`PTP_PIN_GETFUNC2`](#ptp-pin-getfunc2) | const |  |
+| [`FW_CDEV_IOC_ALLOCATE`](#fw-cdev-ioc-allocate) | const |  |
+| [`CEC_ADAP_G_CAPS`](#cec-adap-g-caps) | const |  |
+| [`VIDIOC_G_FBUF`](#vidioc-g-fbuf) | const |  |
+| [`PTP_ENABLE_PPS2`](#ptp-enable-pps2) | const |  |
+| [`PCITEST_CLEAR_IRQ`](#pcitest-clear-irq) | const |  |
+| [`IPMICTL_SET_GETS_EVENTS_CMD`](#ipmictl-set-gets-events-cmd) | const |  |
+| [`BTRFS_IOC_DEVICES_READY`](#btrfs-ioc-devices-ready) | const |  |
 | [`JSIOCGAXMAP`](#jsiocgaxmap) | const |  |
-| [`FW_CDEV_IOC_GET_CYCLE_TIMER`](#fw_cdev_ioc_get_cycle_timer) | const |  |
-| [`FW_CDEV_IOC_SET_ISO_CHANNELS`](#fw_cdev_ioc_set_iso_channels) | const |  |
-| [`RTC_WIE_OFF`](#rtc_wie_off) | const |  |
+| [`FW_CDEV_IOC_GET_CYCLE_TIMER`](#fw-cdev-ioc-get-cycle-timer) | const |  |
+| [`FW_CDEV_IOC_SET_ISO_CHANNELS`](#fw-cdev-ioc-set-iso-channels) | const |  |
+| [`RTC_WIE_OFF`](#rtc-wie-off) | const |  |
 | [`PPGETMODE`](#ppgetmode) | const |  |
-| [`VIDIOC_DBG_G_REGISTER`](#vidioc_dbg_g_register) | const |  |
-| [`PTP_SYS_OFFSET`](#ptp_sys_offset) | const |  |
-| [`BTRFS_IOC_SPACE_INFO`](#btrfs_ioc_space_info) | const |  |
-| [`VIDIOC_SUBDEV_ENUM_FRAME_SIZE`](#vidioc_subdev_enum_frame_size) | const |  |
-| [`ND_IOCTL_VENDOR`](#nd_ioctl_vendor) | const |  |
-| [`SCIF_VREADFROM`](#scif_vreadfrom) | const |  |
-| [`BTRFS_IOC_TRANS_START`](#btrfs_ioc_trans_start) | const |  |
-| [`INOTIFY_IOC_SETNEXTWD`](#inotify_ioc_setnextwd) | const |  |
-| [`SNAPSHOT_GET_IMAGE_SIZE`](#snapshot_get_image_size) | const |  |
+| [`VIDIOC_DBG_G_REGISTER`](#vidioc-dbg-g-register) | const |  |
+| [`PTP_SYS_OFFSET`](#ptp-sys-offset) | const |  |
+| [`BTRFS_IOC_SPACE_INFO`](#btrfs-ioc-space-info) | const |  |
+| [`VIDIOC_SUBDEV_ENUM_FRAME_SIZE`](#vidioc-subdev-enum-frame-size) | const |  |
+| [`ND_IOCTL_VENDOR`](#nd-ioctl-vendor) | const |  |
+| [`SCIF_VREADFROM`](#scif-vreadfrom) | const |  |
+| [`BTRFS_IOC_TRANS_START`](#btrfs-ioc-trans-start) | const |  |
+| [`INOTIFY_IOC_SETNEXTWD`](#inotify-ioc-setnextwd) | const |  |
+| [`SNAPSHOT_GET_IMAGE_SIZE`](#snapshot-get-image-size) | const |  |
 | [`TUNDETACHFILTER`](#tundetachfilter) | const |  |
-| [`ND_IOCTL_CLEAR_ERROR`](#nd_ioctl_clear_error) | const |  |
-| [`IOC_PR_CLEAR`](#ioc_pr_clear) | const |  |
-| [`SCIF_READFROM`](#scif_readfrom) | const |  |
+| [`ND_IOCTL_CLEAR_ERROR`](#nd-ioctl-clear-error) | const |  |
+| [`IOC_PR_CLEAR`](#ioc-pr-clear) | const |  |
+| [`SCIF_READFROM`](#scif-readfrom) | const |  |
 | [`PPPIOCGDEBUG`](#pppiocgdebug) | const |  |
 | [`BLKGETZONESZ`](#blkgetzonesz) | const |  |
 | [`HIDIOCGUSAGES`](#hidiocgusages) | const |  |
-| [`SONYPI_IOCGTEMP`](#sonypi_iocgtemp) | const |  |
-| [`UI_SET_MSCBIT`](#ui_set_mscbit) | const |  |
-| [`APM_IOC_SUSPEND`](#apm_ioc_suspend) | const |  |
-| [`BTRFS_IOC_TREE_SEARCH`](#btrfs_ioc_tree_search) | const |  |
-| [`RTC_PLL_GET`](#rtc_pll_get) | const |  |
-| [`RIO_CM_EP_GET_LIST`](#rio_cm_ep_get_list) | const |  |
-| [`USBDEVFS_DISCSIGNAL`](#usbdevfs_discsignal) | const |  |
-| [`LIRC_GET_MIN_TIMEOUT`](#lirc_get_min_timeout) | const |  |
-| [`SWITCHTEC_IOCTL_EVENT_SUMMARY_LEGACY`](#switchtec_ioctl_event_summary_legacy) | const |  |
-| [`DM_TARGET_MSG`](#dm_target_msg) | const |  |
-| [`SONYPI_IOCGBAT1REM`](#sonypi_iocgbat1rem) | const |  |
+| [`SONYPI_IOCGTEMP`](#sonypi-iocgtemp) | const |  |
+| [`UI_SET_MSCBIT`](#ui-set-mscbit) | const |  |
+| [`APM_IOC_SUSPEND`](#apm-ioc-suspend) | const |  |
+| [`BTRFS_IOC_TREE_SEARCH`](#btrfs-ioc-tree-search) | const |  |
+| [`RTC_PLL_GET`](#rtc-pll-get) | const |  |
+| [`RIO_CM_EP_GET_LIST`](#rio-cm-ep-get-list) | const |  |
+| [`USBDEVFS_DISCSIGNAL`](#usbdevfs-discsignal) | const |  |
+| [`LIRC_GET_MIN_TIMEOUT`](#lirc-get-min-timeout) | const |  |
+| [`SWITCHTEC_IOCTL_EVENT_SUMMARY_LEGACY`](#switchtec-ioctl-event-summary-legacy) | const |  |
+| [`DM_TARGET_MSG`](#dm-target-msg) | const |  |
+| [`SONYPI_IOCGBAT1REM`](#sonypi-iocgbat1rem) | const |  |
 | [`EVIOCSFF`](#eviocsff) | const |  |
 | [`TUNSETGROUP`](#tunsetgroup) | const |  |
 | [`EVIOCGKEYCODE`](#eviocgkeycode) | const |  |
-| [`KCOV_REMOTE_ENABLE`](#kcov_remote_enable) | const |  |
-| [`ND_IOCTL_GET_CONFIG_SIZE`](#nd_ioctl_get_config_size) | const |  |
+| [`KCOV_REMOTE_ENABLE`](#kcov-remote-enable) | const |  |
+| [`ND_IOCTL_GET_CONFIG_SIZE`](#nd-ioctl-get-config-size) | const |  |
 | [`FDEJECT`](#fdeject) | const |  |
 | [`TUNSETOFFLOAD`](#tunsetoffload) | const |  |
 | [`PPPIOCCONNECT`](#pppiocconnect) | const |  |
-| [`ATM_ADDADDR`](#atm_addaddr) | const |  |
-| [`VDUSE_DEV_INJECT_CONFIG_IRQ`](#vduse_dev_inject_config_irq) | const |  |
-| [`AUTOFS_DEV_IOCTL_ASKUMOUNT`](#autofs_dev_ioctl_askumount) | const |  |
-| [`VHOST_VDPA_GET_STATUS`](#vhost_vdpa_get_status) | const |  |
-| [`CCISS_PASSTHRU`](#cciss_passthru) | const |  |
-| [`MGSL_IOCCLRMODCOUNT`](#mgsl_iocclrmodcount) | const |  |
-| [`TEE_IOC_SUPPL_SEND`](#tee_ioc_suppl_send) | const |  |
-| [`ATMARPD_CTRL`](#atmarpd_ctrl) | const |  |
-| [`UI_ABS_SETUP`](#ui_abs_setup) | const |  |
-| [`UI_DEV_DESTROY`](#ui_dev_destroy) | const |  |
-| [`BTRFS_IOC_QUOTA_CTL`](#btrfs_ioc_quota_ctl) | const |  |
-| [`RTC_AIE_ON`](#rtc_aie_on) | const |  |
-| [`AUTOFS_IOC_EXPIRE`](#autofs_ioc_expire) | const |  |
+| [`ATM_ADDADDR`](#atm-addaddr) | const |  |
+| [`VDUSE_DEV_INJECT_CONFIG_IRQ`](#vduse-dev-inject-config-irq) | const |  |
+| [`AUTOFS_DEV_IOCTL_ASKUMOUNT`](#autofs-dev-ioctl-askumount) | const |  |
+| [`VHOST_VDPA_GET_STATUS`](#vhost-vdpa-get-status) | const |  |
+| [`CCISS_PASSTHRU`](#cciss-passthru) | const |  |
+| [`MGSL_IOCCLRMODCOUNT`](#mgsl-iocclrmodcount) | const |  |
+| [`TEE_IOC_SUPPL_SEND`](#tee-ioc-suppl-send) | const |  |
+| [`ATMARPD_CTRL`](#atmarpd-ctrl) | const |  |
+| [`UI_ABS_SETUP`](#ui-abs-setup) | const |  |
+| [`UI_DEV_DESTROY`](#ui-dev-destroy) | const |  |
+| [`BTRFS_IOC_QUOTA_CTL`](#btrfs-ioc-quota-ctl) | const |  |
+| [`RTC_AIE_ON`](#rtc-aie-on) | const |  |
+| [`AUTOFS_IOC_EXPIRE`](#autofs-ioc-expire) | const |  |
 | [`PPPIOCSDEBUG`](#pppiocsdebug) | const |  |
-| [`GPIO_V2_LINE_SET_VALUES_IOCTL`](#gpio_v2_line_set_values_ioctl) | const |  |
+| [`GPIO_V2_LINE_SET_VALUES_IOCTL`](#gpio-v2-line-set-values-ioctl) | const |  |
 | [`PPPIOCSMRU`](#pppiocsmru) | const |  |
-| [`CCISS_DEREGDISK`](#cciss_deregdisk) | const |  |
-| [`UI_DEV_CREATE`](#ui_dev_create) | const |  |
-| [`FUSE_DEV_IOC_CLONE`](#fuse_dev_ioc_clone) | const |  |
-| [`BTRFS_IOC_START_SYNC`](#btrfs_ioc_start_sync) | const |  |
-| [`NILFS_IOCTL_DELETE_CHECKPOINT`](#nilfs_ioctl_delete_checkpoint) | const |  |
-| [`SNAPSHOT_AVAIL_SWAP_SIZE`](#snapshot_avail_swap_size) | const |  |
-| [`DM_TABLE_CLEAR`](#dm_table_clear) | const |  |
-| [`CCISS_GETINTINFO`](#cciss_getintinfo) | const |  |
+| [`CCISS_DEREGDISK`](#cciss-deregdisk) | const |  |
+| [`UI_DEV_CREATE`](#ui-dev-create) | const |  |
+| [`FUSE_DEV_IOC_CLONE`](#fuse-dev-ioc-clone) | const |  |
+| [`BTRFS_IOC_START_SYNC`](#btrfs-ioc-start-sync) | const |  |
+| [`NILFS_IOCTL_DELETE_CHECKPOINT`](#nilfs-ioctl-delete-checkpoint) | const |  |
+| [`SNAPSHOT_AVAIL_SWAP_SIZE`](#snapshot-avail-swap-size) | const |  |
+| [`DM_TABLE_CLEAR`](#dm-table-clear) | const |  |
+| [`CCISS_GETINTINFO`](#cciss-getintinfo) | const |  |
 | [`PPPIOCSASYNCMAP`](#pppiocsasyncmap) | const |  |
 | [`I2OEVTGET`](#i2oevtget) | const |  |
-| [`NVME_IOCTL_RESET`](#nvme_ioctl_reset) | const |  |
+| [`NVME_IOCTL_RESET`](#nvme-ioctl-reset) | const |  |
 | [`PPYIELD`](#ppyield) | const |  |
-| [`NVME_IOCTL_IO64_CMD`](#nvme_ioctl_io64_cmd) | const |  |
+| [`NVME_IOCTL_IO64_CMD`](#nvme-ioctl-io64-cmd) | const |  |
 | [`TUNSETCARRIER`](#tunsetcarrier) | const |  |
-| [`DM_DEV_WAIT`](#dm_dev_wait) | const |  |
-| [`RTC_WIE_ON`](#rtc_wie_on) | const |  |
-| [`MEDIA_IOC_DEVICE_INFO`](#media_ioc_device_info) | const |  |
-| [`RIO_CM_CHAN_CREATE`](#rio_cm_chan_create) | const |  |
-| [`MGSL_IOCSPARAMS`](#mgsl_iocsparams) | const |  |
-| [`RTC_SET_TIME`](#rtc_set_time) | const |  |
-| [`VHOST_RESET_OWNER`](#vhost_reset_owner) | const |  |
-| [`IOC_OPAL_PSID_REVERT_TPR`](#ioc_opal_psid_revert_tpr) | const |  |
-| [`AUTOFS_DEV_IOCTL_OPENMOUNT`](#autofs_dev_ioctl_openmount) | const |  |
-| [`UDF_GETEABLOCK`](#udf_geteablock) | const |  |
-| [`VFIO_IOMMU_MAP_DMA`](#vfio_iommu_map_dma) | const |  |
-| [`VIDIOC_SUBSCRIBE_EVENT`](#vidioc_subscribe_event) | const |  |
+| [`DM_DEV_WAIT`](#dm-dev-wait) | const |  |
+| [`RTC_WIE_ON`](#rtc-wie-on) | const |  |
+| [`MEDIA_IOC_DEVICE_INFO`](#media-ioc-device-info) | const |  |
+| [`RIO_CM_CHAN_CREATE`](#rio-cm-chan-create) | const |  |
+| [`MGSL_IOCSPARAMS`](#mgsl-iocsparams) | const |  |
+| [`RTC_SET_TIME`](#rtc-set-time) | const |  |
+| [`VHOST_RESET_OWNER`](#vhost-reset-owner) | const |  |
+| [`IOC_OPAL_PSID_REVERT_TPR`](#ioc-opal-psid-revert-tpr) | const |  |
+| [`AUTOFS_DEV_IOCTL_OPENMOUNT`](#autofs-dev-ioctl-openmount) | const |  |
+| [`UDF_GETEABLOCK`](#udf-geteablock) | const |  |
+| [`VFIO_IOMMU_MAP_DMA`](#vfio-iommu-map-dma) | const |  |
+| [`VIDIOC_SUBSCRIBE_EVENT`](#vidioc-subscribe-event) | const |  |
 | [`HIDIOCGFLAG`](#hidiocgflag) | const |  |
 | [`HIDIOCGUCODE`](#hidiocgucode) | const |  |
-| [`VIDIOC_OMAP3ISP_AF_CFG`](#vidioc_omap3isp_af_cfg) | const |  |
-| [`DM_REMOVE_ALL`](#dm_remove_all) | const |  |
-| [`ASPEED_LPC_CTRL_IOCTL_MAP`](#aspeed_lpc_ctrl_ioctl_map) | const |  |
-| [`CCISS_GETFIRMVER`](#cciss_getfirmver) | const |  |
-| [`ND_IOCTL_ARS_START`](#nd_ioctl_ars_start) | const |  |
+| [`VIDIOC_OMAP3ISP_AF_CFG`](#vidioc-omap3isp-af-cfg) | const |  |
+| [`DM_REMOVE_ALL`](#dm-remove-all) | const |  |
+| [`ASPEED_LPC_CTRL_IOCTL_MAP`](#aspeed-lpc-ctrl-ioctl-map) | const |  |
+| [`CCISS_GETFIRMVER`](#cciss-getfirmver) | const |  |
+| [`ND_IOCTL_ARS_START`](#nd-ioctl-ars-start) | const |  |
 | [`PPPIOCSMRRU`](#pppiocsmrru) | const |  |
-| [`CEC_ADAP_S_LOG_ADDRS`](#cec_adap_s_log_addrs) | const |  |
-| [`RPROC_GET_SHUTDOWN_ON_RELEASE`](#rproc_get_shutdown_on_release) | const |  |
-| [`DMA_HEAP_IOCTL_ALLOC`](#dma_heap_ioctl_alloc) | const |  |
+| [`CEC_ADAP_S_LOG_ADDRS`](#cec-adap-s-log-addrs) | const |  |
+| [`RPROC_GET_SHUTDOWN_ON_RELEASE`](#rproc-get-shutdown-on-release) | const |  |
+| [`DMA_HEAP_IOCTL_ALLOC`](#dma-heap-ioctl-alloc) | const |  |
 | [`PPSETTIME`](#ppsettime) | const |  |
-| [`RTC_ALM_READ`](#rtc_alm_read) | const |  |
-| [`VDUSE_SET_API_VERSION`](#vduse_set_api_version) | const |  |
-| [`RIO_MPORT_MAINT_WRITE_REMOTE`](#rio_mport_maint_write_remote) | const |  |
-| [`VIDIOC_SUBDEV_S_CROP`](#vidioc_subdev_s_crop) | const |  |
-| [`USBDEVFS_CONNECT`](#usbdevfs_connect) | const |  |
-| [`SYNC_IOC_FILE_INFO`](#sync_ioc_file_info) | const |  |
-| [`ATMARP_MKIP`](#atmarp_mkip) | const |  |
-| [`VFIO_IOMMU_SPAPR_TCE_GET_INFO`](#vfio_iommu_spapr_tce_get_info) | const |  |
-| [`CCISS_GETHEARTBEAT`](#cciss_getheartbeat) | const |  |
-| [`ATM_RSTADDR`](#atm_rstaddr) | const |  |
-| [`NBD_SET_SIZE`](#nbd_set_size) | const |  |
-| [`UDF_GETVOLIDENT`](#udf_getvolident) | const |  |
-| [`GPIO_V2_LINE_GET_VALUES_IOCTL`](#gpio_v2_line_get_values_ioctl) | const |  |
-| [`MGSL_IOCSTXIDLE`](#mgsl_iocstxidle) | const |  |
-| [`FSL_HV_IOCTL_SETPROP`](#fsl_hv_ioctl_setprop) | const |  |
-| [`BTRFS_IOC_GET_DEV_STATS`](#btrfs_ioc_get_dev_stats) | const |  |
+| [`RTC_ALM_READ`](#rtc-alm-read) | const |  |
+| [`VDUSE_SET_API_VERSION`](#vduse-set-api-version) | const |  |
+| [`RIO_MPORT_MAINT_WRITE_REMOTE`](#rio-mport-maint-write-remote) | const |  |
+| [`VIDIOC_SUBDEV_S_CROP`](#vidioc-subdev-s-crop) | const |  |
+| [`USBDEVFS_CONNECT`](#usbdevfs-connect) | const |  |
+| [`SYNC_IOC_FILE_INFO`](#sync-ioc-file-info) | const |  |
+| [`ATMARP_MKIP`](#atmarp-mkip) | const |  |
+| [`VFIO_IOMMU_SPAPR_TCE_GET_INFO`](#vfio-iommu-spapr-tce-get-info) | const |  |
+| [`CCISS_GETHEARTBEAT`](#cciss-getheartbeat) | const |  |
+| [`ATM_RSTADDR`](#atm-rstaddr) | const |  |
+| [`NBD_SET_SIZE`](#nbd-set-size) | const |  |
+| [`UDF_GETVOLIDENT`](#udf-getvolident) | const |  |
+| [`GPIO_V2_LINE_GET_VALUES_IOCTL`](#gpio-v2-line-get-values-ioctl) | const |  |
+| [`MGSL_IOCSTXIDLE`](#mgsl-iocstxidle) | const |  |
+| [`FSL_HV_IOCTL_SETPROP`](#fsl-hv-ioctl-setprop) | const |  |
+| [`BTRFS_IOC_GET_DEV_STATS`](#btrfs-ioc-get-dev-stats) | const |  |
 | [`PPRSTATUS`](#pprstatus) | const |  |
-| [`MGSL_IOCTXENABLE`](#mgsl_ioctxenable) | const |  |
-| [`UDF_GETEASIZE`](#udf_geteasize) | const |  |
-| [`NVME_IOCTL_ADMIN64_CMD`](#nvme_ioctl_admin64_cmd) | const |  |
-| [`VHOST_SET_OWNER`](#vhost_set_owner) | const |  |
-| [`RIO_ALLOC_DMA`](#rio_alloc_dma) | const |  |
-| [`RIO_CM_CHAN_ACCEPT`](#rio_cm_chan_accept) | const |  |
+| [`MGSL_IOCTXENABLE`](#mgsl-ioctxenable) | const |  |
+| [`UDF_GETEASIZE`](#udf-geteasize) | const |  |
+| [`NVME_IOCTL_ADMIN64_CMD`](#nvme-ioctl-admin64-cmd) | const |  |
+| [`VHOST_SET_OWNER`](#vhost-set-owner) | const |  |
+| [`RIO_ALLOC_DMA`](#rio-alloc-dma) | const |  |
+| [`RIO_CM_CHAN_ACCEPT`](#rio-cm-chan-accept) | const |  |
 | [`I2OHRTGET`](#i2ohrtget) | const |  |
-| [`ATM_SETCIRANGE`](#atm_setcirange) | const |  |
-| [`HPET_IE_ON`](#hpet_ie_on) | const |  |
-| [`PERF_EVENT_IOC_ID`](#perf_event_ioc_id) | const |  |
+| [`ATM_SETCIRANGE`](#atm-setcirange) | const |  |
+| [`HPET_IE_ON`](#hpet-ie-on) | const |  |
+| [`PERF_EVENT_IOC_ID`](#perf-event-ioc-id) | const |  |
 | [`TUNSETSNDBUF`](#tunsetsndbuf) | const |  |
-| [`PTP_PIN_SETFUNC`](#ptp_pin_setfunc) | const |  |
+| [`PTP_PIN_SETFUNC`](#ptp-pin-setfunc) | const |  |
 | [`PPPIOCDISCONN`](#pppiocdisconn) | const |  |
-| [`VIDIOC_QUERYCTRL`](#vidioc_queryctrl) | const |  |
+| [`VIDIOC_QUERYCTRL`](#vidioc-queryctrl) | const |  |
 | [`PPEXCL`](#ppexcl) | const |  |
-| [`PCITEST_MSI`](#pcitest_msi) | const |  |
+| [`PCITEST_MSI`](#pcitest-msi) | const |  |
 | [`FDWERRORCLR`](#fdwerrorclr) | const |  |
-| [`AUTOFS_IOC_FAIL`](#autofs_ioc_fail) | const |  |
-| [`USBDEVFS_IOCTL`](#usbdevfs_ioctl) | const |  |
-| [`VIDIOC_S_STD`](#vidioc_s_std) | const |  |
-| [`F2FS_IOC_RESIZE_FS`](#f2fs_ioc_resize_fs) | const |  |
-| [`SONET_SETDIAG`](#sonet_setdiag) | const |  |
-| [`BTRFS_IOC_DEFRAG`](#btrfs_ioc_defrag) | const |  |
-| [`CCISS_GETDRIVVER`](#cciss_getdrivver) | const |  |
-| [`IPMICTL_GET_TIMING_PARMS_CMD`](#ipmictl_get_timing_parms_cmd) | const |  |
-| [`HPET_IRQFREQ`](#hpet_irqfreq) | const |  |
-| [`ATM_GETESI`](#atm_getesi) | const |  |
-| [`CCISS_GETLUNINFO`](#cciss_getluninfo) | const |  |
-| [`AUTOFS_DEV_IOCTL_ISMOUNTPOINT`](#autofs_dev_ioctl_ismountpoint) | const |  |
-| [`TEE_IOC_SHM_ALLOC`](#tee_ioc_shm_alloc) | const |  |
-| [`PERF_EVENT_IOC_SET_BPF`](#perf_event_ioc_set_bpf) | const |  |
-| [`UDMABUF_CREATE_LIST`](#udmabuf_create_list) | const |  |
-| [`VHOST_SET_LOG_BASE`](#vhost_set_log_base) | const |  |
-| [`ZATM_GETPOOL`](#zatm_getpool) | const |  |
-| [`BR2684_SETFILT`](#br2684_setfilt) | const |  |
+| [`AUTOFS_IOC_FAIL`](#autofs-ioc-fail) | const |  |
+| [`USBDEVFS_IOCTL`](#usbdevfs-ioctl) | const |  |
+| [`VIDIOC_S_STD`](#vidioc-s-std) | const |  |
+| [`F2FS_IOC_RESIZE_FS`](#f2fs-ioc-resize-fs) | const |  |
+| [`SONET_SETDIAG`](#sonet-setdiag) | const |  |
+| [`BTRFS_IOC_DEFRAG`](#btrfs-ioc-defrag) | const |  |
+| [`CCISS_GETDRIVVER`](#cciss-getdrivver) | const |  |
+| [`IPMICTL_GET_TIMING_PARMS_CMD`](#ipmictl-get-timing-parms-cmd) | const |  |
+| [`HPET_IRQFREQ`](#hpet-irqfreq) | const |  |
+| [`ATM_GETESI`](#atm-getesi) | const |  |
+| [`CCISS_GETLUNINFO`](#cciss-getluninfo) | const |  |
+| [`AUTOFS_DEV_IOCTL_ISMOUNTPOINT`](#autofs-dev-ioctl-ismountpoint) | const |  |
+| [`TEE_IOC_SHM_ALLOC`](#tee-ioc-shm-alloc) | const |  |
+| [`PERF_EVENT_IOC_SET_BPF`](#perf-event-ioc-set-bpf) | const |  |
+| [`UDMABUF_CREATE_LIST`](#udmabuf-create-list) | const |  |
+| [`VHOST_SET_LOG_BASE`](#vhost-set-log-base) | const |  |
+| [`ZATM_GETPOOL`](#zatm-getpool) | const |  |
+| [`BR2684_SETFILT`](#br2684-setfilt) | const |  |
 | [`RNDGETPOOL`](#rndgetpool) | const |  |
-| [`PPS_GETPARAMS`](#pps_getparams) | const |  |
-| [`IOC_PR_RESERVE`](#ioc_pr_reserve) | const |  |
-| [`VIDIOC_TRY_DECODER_CMD`](#vidioc_try_decoder_cmd) | const |  |
-| [`RIO_CM_CHAN_CLOSE`](#rio_cm_chan_close) | const |  |
-| [`VIDIOC_DV_TIMINGS_CAP`](#vidioc_dv_timings_cap) | const |  |
-| [`IOCTL_MEI_CONNECT_CLIENT_VTAG`](#ioctl_mei_connect_client_vtag) | const |  |
-| [`PMU_IOC_GET_BACKLIGHT`](#pmu_ioc_get_backlight) | const |  |
-| [`USBDEVFS_GET_CAPABILITIES`](#usbdevfs_get_capabilities) | const |  |
-| [`SCIF_WRITETO`](#scif_writeto) | const |  |
-| [`UDF_RELOCATE_BLOCKS`](#udf_relocate_blocks) | const |  |
-| [`FSL_HV_IOCTL_PARTITION_RESTART`](#fsl_hv_ioctl_partition_restart) | const |  |
-| [`CCISS_REGNEWD`](#cciss_regnewd) | const |  |
-| [`FAT_IOCTL_SET_ATTRIBUTES`](#fat_ioctl_set_attributes) | const |  |
-| [`VIDIOC_CREATE_BUFS`](#vidioc_create_bufs) | const |  |
-| [`CAPI_GET_VERSION`](#capi_get_version) | const |  |
-| [`SWITCHTEC_IOCTL_EVENT_SUMMARY`](#switchtec_ioctl_event_summary) | const |  |
-| [`VFIO_EEH_PE_OP`](#vfio_eeh_pe_op) | const |  |
-| [`FW_CDEV_IOC_CREATE_ISO_CONTEXT`](#fw_cdev_ioc_create_iso_context) | const |  |
-| [`F2FS_IOC_RELEASE_COMPRESS_BLOCKS`](#f2fs_ioc_release_compress_blocks) | const |  |
-| [`NBD_SET_SIZE_BLOCKS`](#nbd_set_size_blocks) | const |  |
-| [`IPMI_BMC_IOCTL_SET_SMS_ATN`](#ipmi_bmc_ioctl_set_sms_atn) | const |  |
-| [`ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG`](#aspeed_p2a_ctrl_ioctl_get_memory_config) | const |  |
-| [`VIDIOC_S_AUDOUT`](#vidioc_s_audout) | const |  |
-| [`VIDIOC_S_FMT`](#vidioc_s_fmt) | const |  |
+| [`PPS_GETPARAMS`](#pps-getparams) | const |  |
+| [`IOC_PR_RESERVE`](#ioc-pr-reserve) | const |  |
+| [`VIDIOC_TRY_DECODER_CMD`](#vidioc-try-decoder-cmd) | const |  |
+| [`RIO_CM_CHAN_CLOSE`](#rio-cm-chan-close) | const |  |
+| [`VIDIOC_DV_TIMINGS_CAP`](#vidioc-dv-timings-cap) | const |  |
+| [`IOCTL_MEI_CONNECT_CLIENT_VTAG`](#ioctl-mei-connect-client-vtag) | const |  |
+| [`PMU_IOC_GET_BACKLIGHT`](#pmu-ioc-get-backlight) | const |  |
+| [`USBDEVFS_GET_CAPABILITIES`](#usbdevfs-get-capabilities) | const |  |
+| [`SCIF_WRITETO`](#scif-writeto) | const |  |
+| [`UDF_RELOCATE_BLOCKS`](#udf-relocate-blocks) | const |  |
+| [`FSL_HV_IOCTL_PARTITION_RESTART`](#fsl-hv-ioctl-partition-restart) | const |  |
+| [`CCISS_REGNEWD`](#cciss-regnewd) | const |  |
+| [`FAT_IOCTL_SET_ATTRIBUTES`](#fat-ioctl-set-attributes) | const |  |
+| [`VIDIOC_CREATE_BUFS`](#vidioc-create-bufs) | const |  |
+| [`CAPI_GET_VERSION`](#capi-get-version) | const |  |
+| [`SWITCHTEC_IOCTL_EVENT_SUMMARY`](#switchtec-ioctl-event-summary) | const |  |
+| [`VFIO_EEH_PE_OP`](#vfio-eeh-pe-op) | const |  |
+| [`FW_CDEV_IOC_CREATE_ISO_CONTEXT`](#fw-cdev-ioc-create-iso-context) | const |  |
+| [`F2FS_IOC_RELEASE_COMPRESS_BLOCKS`](#f2fs-ioc-release-compress-blocks) | const |  |
+| [`NBD_SET_SIZE_BLOCKS`](#nbd-set-size-blocks) | const |  |
+| [`IPMI_BMC_IOCTL_SET_SMS_ATN`](#ipmi-bmc-ioctl-set-sms-atn) | const |  |
+| [`ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG`](#aspeed-p2a-ctrl-ioctl-get-memory-config) | const |  |
+| [`VIDIOC_S_AUDOUT`](#vidioc-s-audout) | const |  |
+| [`VIDIOC_S_FMT`](#vidioc-s-fmt) | const |  |
 | [`PPPIOCATTACH`](#pppiocattach) | const |  |
-| [`VHOST_GET_VRING_BUSYLOOP_TIMEOUT`](#vhost_get_vring_busyloop_timeout) | const |  |
-| [`FS_IOC_MEASURE_VERITY`](#fs_ioc_measure_verity) | const |  |
-| [`CCISS_BIG_PASSTHRU`](#cciss_big_passthru) | const |  |
-| [`IPMICTL_SET_MY_LUN_CMD`](#ipmictl_set_my_lun_cmd) | const |  |
-| [`PCITEST_LEGACY_IRQ`](#pcitest_legacy_irq) | const |  |
-| [`USBDEVFS_SUBMITURB`](#usbdevfs_submiturb) | const |  |
-| [`AUTOFS_IOC_READY`](#autofs_ioc_ready) | const |  |
-| [`BTRFS_IOC_SEND`](#btrfs_ioc_send) | const |  |
-| [`VIDIOC_G_EXT_CTRLS`](#vidioc_g_ext_ctrls) | const |  |
+| [`VHOST_GET_VRING_BUSYLOOP_TIMEOUT`](#vhost-get-vring-busyloop-timeout) | const |  |
+| [`FS_IOC_MEASURE_VERITY`](#fs-ioc-measure-verity) | const |  |
+| [`CCISS_BIG_PASSTHRU`](#cciss-big-passthru) | const |  |
+| [`IPMICTL_SET_MY_LUN_CMD`](#ipmictl-set-my-lun-cmd) | const |  |
+| [`PCITEST_LEGACY_IRQ`](#pcitest-legacy-irq) | const |  |
+| [`USBDEVFS_SUBMITURB`](#usbdevfs-submiturb) | const |  |
+| [`AUTOFS_IOC_READY`](#autofs-ioc-ready) | const |  |
+| [`BTRFS_IOC_SEND`](#btrfs-ioc-send) | const |  |
+| [`VIDIOC_G_EXT_CTRLS`](#vidioc-g-ext-ctrls) | const |  |
 | [`JSIOCSBTNMAP`](#jsiocsbtnmap) | const |  |
 | [`PPPIOCSFLAGS`](#pppiocsflags) | const |  |
-| [`NVRAM_INIT`](#nvram_init) | const |  |
-| [`RFKILL_IOCTL_NOINPUT`](#rfkill_ioctl_noinput) | const |  |
-| [`BTRFS_IOC_BALANCE`](#btrfs_ioc_balance) | const |  |
-| [`FS_IOC_GETFSMAP`](#fs_ioc_getfsmap) | const |  |
-| [`IPMICTL_GET_MY_CHANNEL_LUN_CMD`](#ipmictl_get_my_channel_lun_cmd) | const |  |
-| [`STP_POLICY_ID_GET`](#stp_policy_id_get) | const |  |
+| [`NVRAM_INIT`](#nvram-init) | const |  |
+| [`RFKILL_IOCTL_NOINPUT`](#rfkill-ioctl-noinput) | const |  |
+| [`BTRFS_IOC_BALANCE`](#btrfs-ioc-balance) | const |  |
+| [`FS_IOC_GETFSMAP`](#fs-ioc-getfsmap) | const |  |
+| [`IPMICTL_GET_MY_CHANNEL_LUN_CMD`](#ipmictl-get-my-channel-lun-cmd) | const |  |
+| [`STP_POLICY_ID_GET`](#stp-policy-id-get) | const |  |
 | [`PPSETFLAGS`](#ppsetflags) | const |  |
-| [`CEC_ADAP_S_PHYS_ADDR`](#cec_adap_s_phys_addr) | const |  |
-| [`ATMTCP_CREATE`](#atmtcp_create) | const |  |
-| [`IPMI_BMC_IOCTL_FORCE_ABORT`](#ipmi_bmc_ioctl_force_abort) | const |  |
+| [`CEC_ADAP_S_PHYS_ADDR`](#cec-adap-s-phys-addr) | const |  |
+| [`ATMTCP_CREATE`](#atmtcp-create) | const |  |
+| [`IPMI_BMC_IOCTL_FORCE_ABORT`](#ipmi-bmc-ioctl-force-abort) | const |  |
 | [`PPPIOCGXASYNCMAP`](#pppiocgxasyncmap) | const |  |
-| [`VHOST_SET_VRING_CALL`](#vhost_set_vring_call) | const |  |
-| [`LIRC_GET_FEATURES`](#lirc_get_features) | const |  |
-| [`GSMIOC_DISABLE_NET`](#gsmioc_disable_net) | const |  |
-| [`AUTOFS_IOC_CATATONIC`](#autofs_ioc_catatonic) | const |  |
-| [`NBD_DO_IT`](#nbd_do_it) | const |  |
-| [`LIRC_SET_REC_CARRIER_RANGE`](#lirc_set_rec_carrier_range) | const |  |
-| [`IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl_get_my_channel_address_cmd) | const |  |
+| [`VHOST_SET_VRING_CALL`](#vhost-set-vring-call) | const |  |
+| [`LIRC_GET_FEATURES`](#lirc-get-features) | const |  |
+| [`GSMIOC_DISABLE_NET`](#gsmioc-disable-net) | const |  |
+| [`AUTOFS_IOC_CATATONIC`](#autofs-ioc-catatonic) | const |  |
+| [`NBD_DO_IT`](#nbd-do-it) | const |  |
+| [`LIRC_SET_REC_CARRIER_RANGE`](#lirc-set-rec-carrier-range) | const |  |
+| [`IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl-get-my-channel-address-cmd) | const |  |
 | [`EVIOCSCLOCKID`](#eviocsclockid) | const |  |
-| [`USBDEVFS_FREE_STREAMS`](#usbdevfs_free_streams) | const |  |
-| [`FSI_SCOM_RESET`](#fsi_scom_reset) | const |  |
-| [`PMU_IOC_GRAB_BACKLIGHT`](#pmu_ioc_grab_backlight) | const |  |
-| [`VIDIOC_SUBDEV_S_FMT`](#vidioc_subdev_s_fmt) | const |  |
+| [`USBDEVFS_FREE_STREAMS`](#usbdevfs-free-streams) | const |  |
+| [`FSI_SCOM_RESET`](#fsi-scom-reset) | const |  |
+| [`PMU_IOC_GRAB_BACKLIGHT`](#pmu-ioc-grab-backlight) | const |  |
+| [`VIDIOC_SUBDEV_S_FMT`](#vidioc-subdev-s-fmt) | const |  |
 | [`FDDEFPRM`](#fddefprm) | const |  |
-| [`TEE_IOC_INVOKE`](#tee_ioc_invoke) | const |  |
-| [`USBDEVFS_BULK`](#usbdevfs_bulk) | const |  |
-| [`SCIF_VWRITETO`](#scif_vwriteto) | const |  |
-| [`SONYPI_IOCSBRT`](#sonypi_iocsbrt) | const |  |
-| [`BTRFS_IOC_FILE_EXTENT_SAME`](#btrfs_ioc_file_extent_same) | const |  |
-| [`RTC_PIE_ON`](#rtc_pie_on) | const |  |
-| [`BTRFS_IOC_SCAN_DEV`](#btrfs_ioc_scan_dev) | const |  |
+| [`TEE_IOC_INVOKE`](#tee-ioc-invoke) | const |  |
+| [`USBDEVFS_BULK`](#usbdevfs-bulk) | const |  |
+| [`SCIF_VWRITETO`](#scif-vwriteto) | const |  |
+| [`SONYPI_IOCSBRT`](#sonypi-iocsbrt) | const |  |
+| [`BTRFS_IOC_FILE_EXTENT_SAME`](#btrfs-ioc-file-extent-same) | const |  |
+| [`RTC_PIE_ON`](#rtc-pie-on) | const |  |
+| [`BTRFS_IOC_SCAN_DEV`](#btrfs-ioc-scan-dev) | const |  |
 | [`PPPIOCXFERUNIT`](#pppiocxferunit) | const |  |
-| [`WDIOC_GETTIMEOUT`](#wdioc_gettimeout) | const |  |
-| [`BTRFS_IOC_SET_RECEIVED_SUBVOL`](#btrfs_ioc_set_received_subvol) | const |  |
-| [`DFL_FPGA_PORT_ERR_SET_IRQ`](#dfl_fpga_port_err_set_irq) | const |  |
-| [`FBIO_WAITFORVSYNC`](#fbio_waitforvsync) | const |  |
-| [`RTC_PIE_OFF`](#rtc_pie_off) | const |  |
+| [`WDIOC_GETTIMEOUT`](#wdioc-gettimeout) | const |  |
+| [`BTRFS_IOC_SET_RECEIVED_SUBVOL`](#btrfs-ioc-set-received-subvol) | const |  |
+| [`DFL_FPGA_PORT_ERR_SET_IRQ`](#dfl-fpga-port-err-set-irq) | const |  |
+| [`FBIO_WAITFORVSYNC`](#fbio-waitforvsync) | const |  |
+| [`RTC_PIE_OFF`](#rtc-pie-off) | const |  |
 | [`EVIOCGRAB`](#eviocgrab) | const |  |
-| [`PMU_IOC_SET_BACKLIGHT`](#pmu_ioc_set_backlight) | const |  |
+| [`PMU_IOC_SET_BACKLIGHT`](#pmu-ioc-set-backlight) | const |  |
 | [`EVIOCGREP`](#eviocgrep) | const |  |
-| [`PERF_EVENT_IOC_MODIFY_ATTRIBUTES`](#perf_event_ioc_modify_attributes) | const |  |
-| [`UFFDIO_CONTINUE`](#uffdio_continue) | const |  |
-| [`VDUSE_GET_API_VERSION`](#vduse_get_api_version) | const |  |
-| [`RTC_RD_TIME`](#rtc_rd_time) | const |  |
+| [`PERF_EVENT_IOC_MODIFY_ATTRIBUTES`](#perf-event-ioc-modify-attributes) | const |  |
+| [`UFFDIO_CONTINUE`](#uffdio-continue) | const |  |
+| [`VDUSE_GET_API_VERSION`](#vduse-get-api-version) | const |  |
+| [`RTC_RD_TIME`](#rtc-rd-time) | const |  |
 | [`FDMSGOFF`](#fdmsgoff) | const |  |
-| [`IPMICTL_REGISTER_FOR_CMD_CHANS`](#ipmictl_register_for_cmd_chans) | const |  |
-| [`CAPI_GET_ERRCODE`](#capi_get_errcode) | const |  |
-| [`PCITEST_SET_IRQTYPE`](#pcitest_set_irqtype) | const |  |
-| [`VIDIOC_SUBDEV_S_EDID`](#vidioc_subdev_s_edid) | const |  |
-| [`MATROXFB_SET_OUTPUT_MODE`](#matroxfb_set_output_mode) | const |  |
-| [`RIO_DEV_ADD`](#rio_dev_add) | const |  |
-| [`VIDIOC_ENUM_FREQ_BANDS`](#vidioc_enum_freq_bands) | const |  |
-| [`FBIO_RADEON_SET_MIRROR`](#fbio_radeon_set_mirror) | const |  |
-| [`PCITEST_GET_IRQTYPE`](#pcitest_get_irqtype) | const |  |
+| [`IPMICTL_REGISTER_FOR_CMD_CHANS`](#ipmictl-register-for-cmd-chans) | const |  |
+| [`CAPI_GET_ERRCODE`](#capi-get-errcode) | const |  |
+| [`PCITEST_SET_IRQTYPE`](#pcitest-set-irqtype) | const |  |
+| [`VIDIOC_SUBDEV_S_EDID`](#vidioc-subdev-s-edid) | const |  |
+| [`MATROXFB_SET_OUTPUT_MODE`](#matroxfb-set-output-mode) | const |  |
+| [`RIO_DEV_ADD`](#rio-dev-add) | const |  |
+| [`VIDIOC_ENUM_FREQ_BANDS`](#vidioc-enum-freq-bands) | const |  |
+| [`FBIO_RADEON_SET_MIRROR`](#fbio-radeon-set-mirror) | const |  |
+| [`PCITEST_GET_IRQTYPE`](#pcitest-get-irqtype) | const |  |
 | [`JSIOCGVERSION`](#jsiocgversion) | const |  |
-| [`SONYPI_IOCSBLUE`](#sonypi_iocsblue) | const |  |
-| [`SNAPSHOT_PREF_IMAGE_SIZE`](#snapshot_pref_image_size) | const |  |
-| [`F2FS_IOC_GET_FEATURES`](#f2fs_ioc_get_features) | const |  |
-| [`SCIF_REG`](#scif_reg) | const |  |
-| [`NILFS_IOCTL_CLEAN_SEGMENTS`](#nilfs_ioctl_clean_segments) | const |  |
-| [`FW_CDEV_IOC_INITIATE_BUS_RESET`](#fw_cdev_ioc_initiate_bus_reset) | const |  |
-| [`RIO_WAIT_FOR_ASYNC`](#rio_wait_for_async) | const |  |
-| [`VHOST_SET_VRING_NUM`](#vhost_set_vring_num) | const |  |
-| [`AUTOFS_DEV_IOCTL_PROTOVER`](#autofs_dev_ioctl_protover) | const |  |
-| [`RIO_FREE_DMA`](#rio_free_dma) | const |  |
-| [`MGSL_IOCRXENABLE`](#mgsl_iocrxenable) | const |  |
-| [`IOCTL_VM_SOCKETS_GET_LOCAL_CID`](#ioctl_vm_sockets_get_local_cid) | const |  |
-| [`IPMICTL_SET_TIMING_PARMS_CMD`](#ipmictl_set_timing_parms_cmd) | const |  |
+| [`SONYPI_IOCSBLUE`](#sonypi-iocsblue) | const |  |
+| [`SNAPSHOT_PREF_IMAGE_SIZE`](#snapshot-pref-image-size) | const |  |
+| [`F2FS_IOC_GET_FEATURES`](#f2fs-ioc-get-features) | const |  |
+| [`SCIF_REG`](#scif-reg) | const |  |
+| [`NILFS_IOCTL_CLEAN_SEGMENTS`](#nilfs-ioctl-clean-segments) | const |  |
+| [`FW_CDEV_IOC_INITIATE_BUS_RESET`](#fw-cdev-ioc-initiate-bus-reset) | const |  |
+| [`RIO_WAIT_FOR_ASYNC`](#rio-wait-for-async) | const |  |
+| [`VHOST_SET_VRING_NUM`](#vhost-set-vring-num) | const |  |
+| [`AUTOFS_DEV_IOCTL_PROTOVER`](#autofs-dev-ioctl-protover) | const |  |
+| [`RIO_FREE_DMA`](#rio-free-dma) | const |  |
+| [`MGSL_IOCRXENABLE`](#mgsl-iocrxenable) | const |  |
+| [`IOCTL_VM_SOCKETS_GET_LOCAL_CID`](#ioctl-vm-sockets-get-local-cid) | const |  |
+| [`IPMICTL_SET_TIMING_PARMS_CMD`](#ipmictl-set-timing-parms-cmd) | const |  |
 | [`PPPIOCGL2TPSTATS`](#pppiocgl2tpstats) | const |  |
-| [`PERF_EVENT_IOC_PERIOD`](#perf_event_ioc_period) | const |  |
-| [`PTP_PIN_SETFUNC2`](#ptp_pin_setfunc2) | const |  |
+| [`PERF_EVENT_IOC_PERIOD`](#perf-event-ioc-period) | const |  |
+| [`PTP_PIN_SETFUNC2`](#ptp-pin-setfunc2) | const |  |
 | [`CHIOEXCHANGE`](#chioexchange) | const |  |
-| [`NILFS_IOCTL_GET_SUINFO`](#nilfs_ioctl_get_suinfo) | const |  |
-| [`CEC_DQEVENT`](#cec_dqevent) | const |  |
-| [`UI_SET_SWBIT`](#ui_set_swbit) | const |  |
-| [`VHOST_VDPA_SET_CONFIG`](#vhost_vdpa_set_config) | const |  |
+| [`NILFS_IOCTL_GET_SUINFO`](#nilfs-ioctl-get-suinfo) | const |  |
+| [`CEC_DQEVENT`](#cec-dqevent) | const |  |
+| [`UI_SET_SWBIT`](#ui-set-swbit) | const |  |
+| [`VHOST_VDPA_SET_CONFIG`](#vhost-vdpa-set-config) | const |  |
 | [`TUNSETIFF`](#tunsetiff) | const |  |
 | [`CHIOPOSITION`](#chioposition) | const |  |
-| [`IPMICTL_SET_MAINTENANCE_MODE_CMD`](#ipmictl_set_maintenance_mode_cmd) | const |  |
-| [`BTRFS_IOC_DEFAULT_SUBVOL`](#btrfs_ioc_default_subvol) | const |  |
-| [`RIO_UNMAP_OUTBOUND`](#rio_unmap_outbound) | const |  |
-| [`CAPI_CLR_FLAGS`](#capi_clr_flags) | const |  |
-| [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE`](#fw_cdev_ioc_allocate_iso_resource_once) | const |  |
-| [`MATROXFB_GET_OUTPUT_CONNECTION`](#matroxfb_get_output_connection) | const |  |
+| [`IPMICTL_SET_MAINTENANCE_MODE_CMD`](#ipmictl-set-maintenance-mode-cmd) | const |  |
+| [`BTRFS_IOC_DEFAULT_SUBVOL`](#btrfs-ioc-default-subvol) | const |  |
+| [`RIO_UNMAP_OUTBOUND`](#rio-unmap-outbound) | const |  |
+| [`CAPI_CLR_FLAGS`](#capi-clr-flags) | const |  |
+| [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE`](#fw-cdev-ioc-allocate-iso-resource-once) | const |  |
+| [`MATROXFB_GET_OUTPUT_CONNECTION`](#matroxfb-get-output-connection) | const |  |
 | [`EVIOCSMASK`](#eviocsmask) | const |  |
-| [`BTRFS_IOC_FORGET_DEV`](#btrfs_ioc_forget_dev) | const |  |
-| [`CXL_MEM_QUERY_COMMANDS`](#cxl_mem_query_commands) | const |  |
-| [`CEC_S_MODE`](#cec_s_mode) | const |  |
-| [`MGSL_IOCSIF`](#mgsl_iocsif) | const |  |
-| [`SWITCHTEC_IOCTL_PFF_TO_PORT`](#switchtec_ioctl_pff_to_port) | const |  |
+| [`BTRFS_IOC_FORGET_DEV`](#btrfs-ioc-forget-dev) | const |  |
+| [`CXL_MEM_QUERY_COMMANDS`](#cxl-mem-query-commands) | const |  |
+| [`CEC_S_MODE`](#cec-s-mode) | const |  |
+| [`MGSL_IOCSIF`](#mgsl-iocsif) | const |  |
+| [`SWITCHTEC_IOCTL_PFF_TO_PORT`](#switchtec-ioctl-pff-to-port) | const |  |
 | [`PPSETMODE`](#ppsetmode) | const |  |
-| [`VFIO_DEVICE_SET_IRQS`](#vfio_device_set_irqs) | const |  |
-| [`VIDIOC_PREPARE_BUF`](#vidioc_prepare_buf) | const |  |
-| [`CEC_ADAP_G_CONNECTOR_INFO`](#cec_adap_g_connector_info) | const |  |
-| [`IOC_OPAL_WRITE_SHADOW_MBR`](#ioc_opal_write_shadow_mbr) | const |  |
-| [`VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL`](#vidioc_subdev_enum_frame_interval) | const |  |
-| [`UDMABUF_CREATE`](#udmabuf_create) | const |  |
-| [`SONET_CLRDIAG`](#sonet_clrdiag) | const |  |
-| [`PHN_SET_REG`](#phn_set_reg) | const |  |
+| [`VFIO_DEVICE_SET_IRQS`](#vfio-device-set-irqs) | const |  |
+| [`VIDIOC_PREPARE_BUF`](#vidioc-prepare-buf) | const |  |
+| [`CEC_ADAP_G_CONNECTOR_INFO`](#cec-adap-g-connector-info) | const |  |
+| [`IOC_OPAL_WRITE_SHADOW_MBR`](#ioc-opal-write-shadow-mbr) | const |  |
+| [`VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL`](#vidioc-subdev-enum-frame-interval) | const |  |
+| [`UDMABUF_CREATE`](#udmabuf-create) | const |  |
+| [`SONET_CLRDIAG`](#sonet-clrdiag) | const |  |
+| [`PHN_SET_REG`](#phn-set-reg) | const |  |
 | [`RNDADDTOENTCNT`](#rndaddtoentcnt) | const |  |
-| [`VBG_IOCTL_CHECK_BALLOON`](#vbg_ioctl_check_balloon) | const |  |
-| [`VIDIOC_OMAP3ISP_STAT_REQ`](#vidioc_omap3isp_stat_req) | const |  |
-| [`PPS_FETCH`](#pps_fetch) | const |  |
-| [`RTC_AIE_OFF`](#rtc_aie_off) | const |  |
-| [`VFIO_GROUP_SET_CONTAINER`](#vfio_group_set_container) | const |  |
-| [`FW_CDEV_IOC_RECEIVE_PHY_PACKETS`](#fw_cdev_ioc_receive_phy_packets) | const |  |
-| [`VFIO_IOMMU_SPAPR_TCE_REMOVE`](#vfio_iommu_spapr_tce_remove) | const |  |
-| [`VFIO_IOMMU_GET_INFO`](#vfio_iommu_get_info) | const |  |
-| [`DM_DEV_SUSPEND`](#dm_dev_suspend) | const |  |
-| [`F2FS_IOC_GET_COMPRESS_OPTION`](#f2fs_ioc_get_compress_option) | const |  |
-| [`FW_CDEV_IOC_STOP_ISO`](#fw_cdev_ioc_stop_iso) | const |  |
-| [`GPIO_V2_GET_LINEINFO_IOCTL`](#gpio_v2_get_lineinfo_ioctl) | const |  |
-| [`ATMMPC_CTRL`](#atmmpc_ctrl) | const |  |
+| [`VBG_IOCTL_CHECK_BALLOON`](#vbg-ioctl-check-balloon) | const |  |
+| [`VIDIOC_OMAP3ISP_STAT_REQ`](#vidioc-omap3isp-stat-req) | const |  |
+| [`PPS_FETCH`](#pps-fetch) | const |  |
+| [`RTC_AIE_OFF`](#rtc-aie-off) | const |  |
+| [`VFIO_GROUP_SET_CONTAINER`](#vfio-group-set-container) | const |  |
+| [`FW_CDEV_IOC_RECEIVE_PHY_PACKETS`](#fw-cdev-ioc-receive-phy-packets) | const |  |
+| [`VFIO_IOMMU_SPAPR_TCE_REMOVE`](#vfio-iommu-spapr-tce-remove) | const |  |
+| [`VFIO_IOMMU_GET_INFO`](#vfio-iommu-get-info) | const |  |
+| [`DM_DEV_SUSPEND`](#dm-dev-suspend) | const |  |
+| [`F2FS_IOC_GET_COMPRESS_OPTION`](#f2fs-ioc-get-compress-option) | const |  |
+| [`FW_CDEV_IOC_STOP_ISO`](#fw-cdev-ioc-stop-iso) | const |  |
+| [`GPIO_V2_GET_LINEINFO_IOCTL`](#gpio-v2-get-lineinfo-ioctl) | const |  |
+| [`ATMMPC_CTRL`](#atmmpc-ctrl) | const |  |
 | [`PPPIOCSXASYNCMAP`](#pppiocsxasyncmap) | const |  |
 | [`CHIOGSTATUS`](#chiogstatus) | const |  |
-| [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE`](#fw_cdev_ioc_allocate_iso_resource) | const |  |
-| [`RIO_MPORT_MAINT_PORT_IDX_GET`](#rio_mport_maint_port_idx_get) | const |  |
-| [`CAPI_SET_FLAGS`](#capi_set_flags) | const |  |
-| [`VFIO_GROUP_GET_DEVICE_FD`](#vfio_group_get_device_fd) | const |  |
-| [`VHOST_SET_MEM_TABLE`](#vhost_set_mem_table) | const |  |
-| [`MATROXFB_SET_OUTPUT_CONNECTION`](#matroxfb_set_output_connection) | const |  |
-| [`DFL_FPGA_PORT_GET_REGION_INFO`](#dfl_fpga_port_get_region_info) | const |  |
-| [`VHOST_GET_FEATURES`](#vhost_get_features) | const |  |
-| [`LIRC_GET_REC_RESOLUTION`](#lirc_get_rec_resolution) | const |  |
-| [`PACKET_CTRL_CMD`](#packet_ctrl_cmd) | const |  |
-| [`LIRC_SET_TRANSMITTER_MASK`](#lirc_set_transmitter_mask) | const |  |
-| [`BTRFS_IOC_ADD_DEV`](#btrfs_ioc_add_dev) | const |  |
+| [`FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE`](#fw-cdev-ioc-allocate-iso-resource) | const |  |
+| [`RIO_MPORT_MAINT_PORT_IDX_GET`](#rio-mport-maint-port-idx-get) | const |  |
+| [`CAPI_SET_FLAGS`](#capi-set-flags) | const |  |
+| [`VFIO_GROUP_GET_DEVICE_FD`](#vfio-group-get-device-fd) | const |  |
+| [`VHOST_SET_MEM_TABLE`](#vhost-set-mem-table) | const |  |
+| [`MATROXFB_SET_OUTPUT_CONNECTION`](#matroxfb-set-output-connection) | const |  |
+| [`DFL_FPGA_PORT_GET_REGION_INFO`](#dfl-fpga-port-get-region-info) | const |  |
+| [`VHOST_GET_FEATURES`](#vhost-get-features) | const |  |
+| [`LIRC_GET_REC_RESOLUTION`](#lirc-get-rec-resolution) | const |  |
+| [`PACKET_CTRL_CMD`](#packet-ctrl-cmd) | const |  |
+| [`LIRC_SET_TRANSMITTER_MASK`](#lirc-set-transmitter-mask) | const |  |
+| [`BTRFS_IOC_ADD_DEV`](#btrfs-ioc-add-dev) | const |  |
 | [`JSIOCGCORR`](#jsiocgcorr) | const |  |
-| [`VIDIOC_G_FMT`](#vidioc_g_fmt) | const |  |
-| [`RTC_EPOCH_SET`](#rtc_epoch_set) | const |  |
-| [`CAPI_GET_PROFILE`](#capi_get_profile) | const |  |
-| [`ATM_GETLOOP`](#atm_getloop) | const |  |
-| [`SCIF_LISTEN`](#scif_listen) | const |  |
-| [`NBD_CLEAR_QUE`](#nbd_clear_que) | const |  |
-| [`F2FS_IOC_MOVE_RANGE`](#f2fs_ioc_move_range) | const |  |
-| [`LIRC_GET_LENGTH`](#lirc_get_length) | const |  |
-| [`I8K_SET_FAN`](#i8k_set_fan) | const |  |
+| [`VIDIOC_G_FMT`](#vidioc-g-fmt) | const |  |
+| [`RTC_EPOCH_SET`](#rtc-epoch-set) | const |  |
+| [`CAPI_GET_PROFILE`](#capi-get-profile) | const |  |
+| [`ATM_GETLOOP`](#atm-getloop) | const |  |
+| [`SCIF_LISTEN`](#scif-listen) | const |  |
+| [`NBD_CLEAR_QUE`](#nbd-clear-que) | const |  |
+| [`F2FS_IOC_MOVE_RANGE`](#f2fs-ioc-move-range) | const |  |
+| [`LIRC_GET_LENGTH`](#lirc-get-length) | const |  |
+| [`I8K_SET_FAN`](#i8k-set-fan) | const |  |
 | [`FDSETMAXERRS`](#fdsetmaxerrs) | const |  |
-| [`VIDIOC_SUBDEV_QUERYCAP`](#vidioc_subdev_querycap) | const |  |
-| [`SNAPSHOT_SET_SWAP_AREA`](#snapshot_set_swap_area) | const |  |
-| [`LIRC_GET_REC_TIMEOUT`](#lirc_get_rec_timeout) | const |  |
+| [`VIDIOC_SUBDEV_QUERYCAP`](#vidioc-subdev-querycap) | const |  |
+| [`SNAPSHOT_SET_SWAP_AREA`](#snapshot-set-swap-area) | const |  |
+| [`LIRC_GET_REC_TIMEOUT`](#lirc-get-rec-timeout) | const |  |
 | [`EVIOCRMFF`](#eviocrmff) | const |  |
-| [`GPIO_GET_LINEEVENT_IOCTL`](#gpio_get_lineevent_ioctl) | const |  |
+| [`GPIO_GET_LINEEVENT_IOCTL`](#gpio-get-lineevent-ioctl) | const |  |
 | [`PPRDATA`](#pprdata) | const |  |
-| [`RIO_MPORT_GET_PROPERTIES`](#rio_mport_get_properties) | const |  |
+| [`RIO_MPORT_GET_PROPERTIES`](#rio-mport-get-properties) | const |  |
 | [`TUNSETVNETHDRSZ`](#tunsetvnethdrsz) | const |  |
-| [`GPIO_GET_LINEINFO_IOCTL`](#gpio_get_lineinfo_ioctl) | const |  |
-| [`GSMIOC_GETCONF`](#gsmioc_getconf) | const |  |
-| [`LIRC_GET_SEND_MODE`](#lirc_get_send_mode) | const |  |
+| [`GPIO_GET_LINEINFO_IOCTL`](#gpio-get-lineinfo-ioctl) | const |  |
+| [`GSMIOC_GETCONF`](#gsmioc-getconf) | const |  |
+| [`LIRC_GET_SEND_MODE`](#lirc-get-send-mode) | const |  |
 | [`PPPIOCSACTIVE`](#pppiocsactive) | const |  |
-| [`SIOCGSTAMPNS_NEW`](#siocgstampns_new) | const |  |
-| [`IPMICTL_RECEIVE_MSG`](#ipmictl_receive_msg) | const |  |
-| [`LIRC_SET_SEND_DUTY_CYCLE`](#lirc_set_send_duty_cycle) | const |  |
-| [`UI_END_FF_ERASE`](#ui_end_ff_erase) | const |  |
-| [`SWITCHTEC_IOCTL_FLASH_PART_INFO`](#switchtec_ioctl_flash_part_info) | const |  |
-| [`FW_CDEV_IOC_SEND_PHY_PACKET`](#fw_cdev_ioc_send_phy_packet) | const |  |
-| [`NBD_SET_FLAGS`](#nbd_set_flags) | const |  |
-| [`VFIO_DEVICE_GET_REGION_INFO`](#vfio_device_get_region_info) | const |  |
-| [`REISERFS_IOC_UNPACK`](#reiserfs_ioc_unpack) | const |  |
-| [`FW_CDEV_IOC_REMOVE_DESCRIPTOR`](#fw_cdev_ioc_remove_descriptor) | const |  |
-| [`RIO_SET_EVENT_MASK`](#rio_set_event_mask) | const |  |
-| [`SNAPSHOT_ALLOC_SWAP_PAGE`](#snapshot_alloc_swap_page) | const |  |
-| [`VDUSE_VQ_INJECT_IRQ`](#vduse_vq_inject_irq) | const |  |
+| [`SIOCGSTAMPNS_NEW`](#siocgstampns-new) | const |  |
+| [`IPMICTL_RECEIVE_MSG`](#ipmictl-receive-msg) | const |  |
+| [`LIRC_SET_SEND_DUTY_CYCLE`](#lirc-set-send-duty-cycle) | const |  |
+| [`UI_END_FF_ERASE`](#ui-end-ff-erase) | const |  |
+| [`SWITCHTEC_IOCTL_FLASH_PART_INFO`](#switchtec-ioctl-flash-part-info) | const |  |
+| [`FW_CDEV_IOC_SEND_PHY_PACKET`](#fw-cdev-ioc-send-phy-packet) | const |  |
+| [`NBD_SET_FLAGS`](#nbd-set-flags) | const |  |
+| [`VFIO_DEVICE_GET_REGION_INFO`](#vfio-device-get-region-info) | const |  |
+| [`REISERFS_IOC_UNPACK`](#reiserfs-ioc-unpack) | const |  |
+| [`FW_CDEV_IOC_REMOVE_DESCRIPTOR`](#fw-cdev-ioc-remove-descriptor) | const |  |
+| [`RIO_SET_EVENT_MASK`](#rio-set-event-mask) | const |  |
+| [`SNAPSHOT_ALLOC_SWAP_PAGE`](#snapshot-alloc-swap-page) | const |  |
+| [`VDUSE_VQ_INJECT_IRQ`](#vduse-vq-inject-irq) | const |  |
 | [`I2OPASSTHRU`](#i2opassthru) | const |  |
-| [`IOC_OPAL_SET_PW`](#ioc_opal_set_pw) | const |  |
-| [`FSI_SCOM_READ`](#fsi_scom_read) | const |  |
-| [`VHOST_VDPA_GET_DEVICE_ID`](#vhost_vdpa_get_device_id) | const |  |
-| [`VIDIOC_QBUF`](#vidioc_qbuf) | const |  |
-| [`VIDIOC_S_TUNER`](#vidioc_s_tuner) | const |  |
+| [`IOC_OPAL_SET_PW`](#ioc-opal-set-pw) | const |  |
+| [`FSI_SCOM_READ`](#fsi-scom-read) | const |  |
+| [`VHOST_VDPA_GET_DEVICE_ID`](#vhost-vdpa-get-device-id) | const |  |
+| [`VIDIOC_QBUF`](#vidioc-qbuf) | const |  |
+| [`VIDIOC_S_TUNER`](#vidioc-s-tuner) | const |  |
 | [`TUNGETVNETHDRSZ`](#tungetvnethdrsz) | const |  |
-| [`CAPI_NCCI_GETUNIT`](#capi_ncci_getunit) | const |  |
-| [`DFL_FPGA_PORT_UINT_GET_IRQ_NUM`](#dfl_fpga_port_uint_get_irq_num) | const |  |
-| [`VIDIOC_OMAP3ISP_STAT_EN`](#vidioc_omap3isp_stat_en) | const |  |
-| [`GPIO_V2_LINE_SET_CONFIG_IOCTL`](#gpio_v2_line_set_config_ioctl) | const |  |
-| [`TEE_IOC_VERSION`](#tee_ioc_version) | const |  |
-| [`VIDIOC_LOG_STATUS`](#vidioc_log_status) | const |  |
-| [`IPMICTL_SEND_COMMAND_SETTIME`](#ipmictl_send_command_settime) | const |  |
-| [`VHOST_SET_LOG_FD`](#vhost_set_log_fd) | const |  |
-| [`SCIF_SEND`](#scif_send) | const |  |
-| [`VIDIOC_SUBDEV_G_FMT`](#vidioc_subdev_g_fmt) | const |  |
-| [`NS_ADJBUFLEV`](#ns_adjbuflev) | const |  |
-| [`VIDIOC_DBG_S_REGISTER`](#vidioc_dbg_s_register) | const |  |
-| [`NILFS_IOCTL_RESIZE`](#nilfs_ioctl_resize) | const |  |
-| [`PHN_GETREG`](#phn_getreg) | const |  |
+| [`CAPI_NCCI_GETUNIT`](#capi-ncci-getunit) | const |  |
+| [`DFL_FPGA_PORT_UINT_GET_IRQ_NUM`](#dfl-fpga-port-uint-get-irq-num) | const |  |
+| [`VIDIOC_OMAP3ISP_STAT_EN`](#vidioc-omap3isp-stat-en) | const |  |
+| [`GPIO_V2_LINE_SET_CONFIG_IOCTL`](#gpio-v2-line-set-config-ioctl) | const |  |
+| [`TEE_IOC_VERSION`](#tee-ioc-version) | const |  |
+| [`VIDIOC_LOG_STATUS`](#vidioc-log-status) | const |  |
+| [`IPMICTL_SEND_COMMAND_SETTIME`](#ipmictl-send-command-settime) | const |  |
+| [`VHOST_SET_LOG_FD`](#vhost-set-log-fd) | const |  |
+| [`SCIF_SEND`](#scif-send) | const |  |
+| [`VIDIOC_SUBDEV_G_FMT`](#vidioc-subdev-g-fmt) | const |  |
+| [`NS_ADJBUFLEV`](#ns-adjbuflev) | const |  |
+| [`VIDIOC_DBG_S_REGISTER`](#vidioc-dbg-s-register) | const |  |
+| [`NILFS_IOCTL_RESIZE`](#nilfs-ioctl-resize) | const |  |
+| [`PHN_GETREG`](#phn-getreg) | const |  |
 | [`I2OSWDL`](#i2oswdl) | const |  |
-| [`VBG_IOCTL_VMMDEV_REQUEST_BIG`](#vbg_ioctl_vmmdev_request_big) | const |  |
+| [`VBG_IOCTL_VMMDEV_REQUEST_BIG`](#vbg-ioctl-vmmdev-request-big) | const |  |
 | [`JSIOCGBUTTONS`](#jsiocgbuttons) | const |  |
-| [`VFIO_IOMMU_ENABLE`](#vfio_iommu_enable) | const |  |
-| [`DM_DEV_RENAME`](#dm_dev_rename) | const |  |
-| [`MEDIA_IOC_SETUP_LINK`](#media_ioc_setup_link) | const |  |
-| [`VIDIOC_ENUMOUTPUT`](#vidioc_enumoutput) | const |  |
-| [`STP_POLICY_ID_SET`](#stp_policy_id_set) | const |  |
-| [`VHOST_VDPA_SET_CONFIG_CALL`](#vhost_vdpa_set_config_call) | const |  |
-| [`VIDIOC_SUBDEV_G_CROP`](#vidioc_subdev_g_crop) | const |  |
-| [`VIDIOC_S_CROP`](#vidioc_s_crop) | const |  |
-| [`WDIOC_GETTEMP`](#wdioc_gettemp) | const |  |
-| [`IOC_OPAL_ADD_USR_TO_LR`](#ioc_opal_add_usr_to_lr) | const |  |
-| [`UI_SET_LEDBIT`](#ui_set_ledbit) | const |  |
-| [`NBD_SET_SOCK`](#nbd_set_sock) | const |  |
-| [`BTRFS_IOC_SNAP_DESTROY_V2`](#btrfs_ioc_snap_destroy_v2) | const |  |
+| [`VFIO_IOMMU_ENABLE`](#vfio-iommu-enable) | const |  |
+| [`DM_DEV_RENAME`](#dm-dev-rename) | const |  |
+| [`MEDIA_IOC_SETUP_LINK`](#media-ioc-setup-link) | const |  |
+| [`VIDIOC_ENUMOUTPUT`](#vidioc-enumoutput) | const |  |
+| [`STP_POLICY_ID_SET`](#stp-policy-id-set) | const |  |
+| [`VHOST_VDPA_SET_CONFIG_CALL`](#vhost-vdpa-set-config-call) | const |  |
+| [`VIDIOC_SUBDEV_G_CROP`](#vidioc-subdev-g-crop) | const |  |
+| [`VIDIOC_S_CROP`](#vidioc-s-crop) | const |  |
+| [`WDIOC_GETTEMP`](#wdioc-gettemp) | const |  |
+| [`IOC_OPAL_ADD_USR_TO_LR`](#ioc-opal-add-usr-to-lr) | const |  |
+| [`UI_SET_LEDBIT`](#ui-set-ledbit) | const |  |
+| [`NBD_SET_SOCK`](#nbd-set-sock) | const |  |
+| [`BTRFS_IOC_SNAP_DESTROY_V2`](#btrfs-ioc-snap-destroy-v2) | const |  |
 | [`HIDIOCGCOLLECTIONINFO`](#hidiocgcollectioninfo) | const |  |
 | [`I2OSWUL`](#i2oswul) | const |  |
-| [`IOCTL_MEI_NOTIFY_GET`](#ioctl_mei_notify_get) | const |  |
+| [`IOCTL_MEI_NOTIFY_GET`](#ioctl-mei-notify-get) | const |  |
 | [`FDFMTTRK`](#fdfmttrk) | const |  |
-| [`MMTIMER_GETBITS`](#mmtimer_getbits) | const |  |
-| [`VIDIOC_ENUMSTD`](#vidioc_enumstd) | const |  |
-| [`VHOST_GET_VRING_BASE`](#vhost_get_vring_base) | const |  |
-| [`VFIO_DEVICE_IOEVENTFD`](#vfio_device_ioeventfd) | const |  |
-| [`ATMARP_SETENTRY`](#atmarp_setentry) | const |  |
-| [`CCISS_REVALIDVOLS`](#cciss_revalidvols) | const |  |
-| [`MGSL_IOCLOOPTXDONE`](#mgsl_ioclooptxdone) | const |  |
-| [`RTC_VL_READ`](#rtc_vl_read) | const |  |
-| [`ND_IOCTL_ARS_STATUS`](#nd_ioctl_ars_status) | const |  |
-| [`RIO_DEV_DEL`](#rio_dev_del) | const |  |
-| [`VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES`](#vbg_ioctl_acquire_guest_capabilities) | const |  |
-| [`VIDIOC_SUBDEV_DV_TIMINGS_CAP`](#vidioc_subdev_dv_timings_cap) | const |  |
-| [`SONYPI_IOCSFAN`](#sonypi_iocsfan) | const |  |
+| [`MMTIMER_GETBITS`](#mmtimer-getbits) | const |  |
+| [`VIDIOC_ENUMSTD`](#vidioc-enumstd) | const |  |
+| [`VHOST_GET_VRING_BASE`](#vhost-get-vring-base) | const |  |
+| [`VFIO_DEVICE_IOEVENTFD`](#vfio-device-ioeventfd) | const |  |
+| [`ATMARP_SETENTRY`](#atmarp-setentry) | const |  |
+| [`CCISS_REVALIDVOLS`](#cciss-revalidvols) | const |  |
+| [`MGSL_IOCLOOPTXDONE`](#mgsl-ioclooptxdone) | const |  |
+| [`RTC_VL_READ`](#rtc-vl-read) | const |  |
+| [`ND_IOCTL_ARS_STATUS`](#nd-ioctl-ars-status) | const |  |
+| [`RIO_DEV_DEL`](#rio-dev-del) | const |  |
+| [`VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES`](#vbg-ioctl-acquire-guest-capabilities) | const |  |
+| [`VIDIOC_SUBDEV_DV_TIMINGS_CAP`](#vidioc-subdev-dv-timings-cap) | const |  |
+| [`SONYPI_IOCSFAN`](#sonypi-iocsfan) | const |  |
 | [`SPIOCSTYPE`](#spiocstype) | const |  |
-| [`IPMICTL_REGISTER_FOR_CMD`](#ipmictl_register_for_cmd) | const |  |
-| [`I8K_GET_FAN`](#i8k_get_fan) | const |  |
+| [`IPMICTL_REGISTER_FOR_CMD`](#ipmictl-register-for-cmd) | const |  |
+| [`I8K_GET_FAN`](#i8k-get-fan) | const |  |
 | [`TUNGETVNETBE`](#tungetvnetbe) | const |  |
-| [`AUTOFS_DEV_IOCTL_FAIL`](#autofs_dev_ioctl_fail) | const |  |
-| [`UI_END_FF_UPLOAD`](#ui_end_ff_upload) | const |  |
-| [`TOSH_SMM`](#tosh_smm) | const |  |
-| [`SONYPI_IOCGBAT2REM`](#sonypi_iocgbat2rem) | const |  |
-| [`F2FS_IOC_GET_COMPRESS_BLOCKS`](#f2fs_ioc_get_compress_blocks) | const |  |
+| [`AUTOFS_DEV_IOCTL_FAIL`](#autofs-dev-ioctl-fail) | const |  |
+| [`UI_END_FF_UPLOAD`](#ui-end-ff-upload) | const |  |
+| [`TOSH_SMM`](#tosh-smm) | const |  |
+| [`SONYPI_IOCGBAT2REM`](#sonypi-iocgbat2rem) | const |  |
+| [`F2FS_IOC_GET_COMPRESS_BLOCKS`](#f2fs-ioc-get-compress-blocks) | const |  |
 | [`PPPIOCSNPMODE`](#pppiocsnpmode) | const |  |
-| [`USBDEVFS_CONTROL`](#usbdevfs_control) | const |  |
+| [`USBDEVFS_CONTROL`](#usbdevfs-control) | const |  |
 | [`HIDIOCGUSAGE`](#hidiocgusage) | const |  |
 | [`TUNSETTXFILTER`](#tunsettxfilter) | const |  |
 | [`TUNGETVNETLE`](#tungetvnetle) | const |  |
-| [`VIDIOC_ENUM_DV_TIMINGS`](#vidioc_enum_dv_timings) | const |  |
-| [`BTRFS_IOC_INO_PATHS`](#btrfs_ioc_ino_paths) | const |  |
-| [`MGSL_IOCGXSYNC`](#mgsl_iocgxsync) | const |  |
+| [`VIDIOC_ENUM_DV_TIMINGS`](#vidioc-enum-dv-timings) | const |  |
+| [`BTRFS_IOC_INO_PATHS`](#btrfs-ioc-ino-paths) | const |  |
+| [`MGSL_IOCGXSYNC`](#mgsl-iocgxsync) | const |  |
 | [`HIDIOCGFIELDINFO`](#hidiocgfieldinfo) | const |  |
-| [`VIDIOC_SUBDEV_G_STD`](#vidioc_subdev_g_std) | const |  |
+| [`VIDIOC_SUBDEV_G_STD`](#vidioc-subdev-g-std) | const |  |
 | [`I2OVALIDATE`](#i2ovalidate) | const |  |
-| [`VIDIOC_TRY_ENCODER_CMD`](#vidioc_try_encoder_cmd) | const |  |
-| [`NILFS_IOCTL_GET_CPINFO`](#nilfs_ioctl_get_cpinfo) | const |  |
-| [`VIDIOC_G_FREQUENCY`](#vidioc_g_frequency) | const |  |
-| [`VFAT_IOCTL_READDIR_SHORT`](#vfat_ioctl_readdir_short) | const |  |
-| [`ND_IOCTL_GET_CONFIG_DATA`](#nd_ioctl_get_config_data) | const |  |
-| [`F2FS_IOC_RESERVE_COMPRESS_BLOCKS`](#f2fs_ioc_reserve_compress_blocks) | const |  |
+| [`VIDIOC_TRY_ENCODER_CMD`](#vidioc-try-encoder-cmd) | const |  |
+| [`NILFS_IOCTL_GET_CPINFO`](#nilfs-ioctl-get-cpinfo) | const |  |
+| [`VIDIOC_G_FREQUENCY`](#vidioc-g-frequency) | const |  |
+| [`VFAT_IOCTL_READDIR_SHORT`](#vfat-ioctl-readdir-short) | const |  |
+| [`ND_IOCTL_GET_CONFIG_DATA`](#nd-ioctl-get-config-data) | const |  |
+| [`F2FS_IOC_RESERVE_COMPRESS_BLOCKS`](#f2fs-ioc-reserve-compress-blocks) | const |  |
 | [`FDGETDRVSTAT`](#fdgetdrvstat) | const |  |
-| [`SYNC_IOC_MERGE`](#sync_ioc_merge) | const |  |
-| [`VIDIOC_S_DV_TIMINGS`](#vidioc_s_dv_timings) | const |  |
+| [`SYNC_IOC_MERGE`](#sync-ioc-merge) | const |  |
+| [`VIDIOC_S_DV_TIMINGS`](#vidioc-s-dv-timings) | const |  |
 | [`PPPIOCBRIDGECHAN`](#pppiocbridgechan) | const |  |
-| [`LIRC_SET_SEND_MODE`](#lirc_set_send_mode) | const |  |
-| [`RIO_ENABLE_PORTWRITE_RANGE`](#rio_enable_portwrite_range) | const |  |
-| [`ATM_GETTYPE`](#atm_gettype) | const |  |
-| [`PHN_GETREGS`](#phn_getregs) | const |  |
+| [`LIRC_SET_SEND_MODE`](#lirc-set-send-mode) | const |  |
+| [`RIO_ENABLE_PORTWRITE_RANGE`](#rio-enable-portwrite-range) | const |  |
+| [`ATM_GETTYPE`](#atm-gettype) | const |  |
+| [`PHN_GETREGS`](#phn-getregs) | const |  |
 | [`FDSETEMSGTRESH`](#fdsetemsgtresh) | const |  |
-| [`NILFS_IOCTL_GET_VINFO`](#nilfs_ioctl_get_vinfo) | const |  |
-| [`MGSL_IOCWAITEVENT`](#mgsl_iocwaitevent) | const |  |
-| [`CAPI_INSTALLED`](#capi_installed) | const |  |
+| [`NILFS_IOCTL_GET_VINFO`](#nilfs-ioctl-get-vinfo) | const |  |
+| [`MGSL_IOCWAITEVENT`](#mgsl-iocwaitevent) | const |  |
+| [`CAPI_INSTALLED`](#capi-installed) | const |  |
 | [`EVIOCGMASK`](#eviocgmask) | const |  |
-| [`BTRFS_IOC_SUBVOL_GETFLAGS`](#btrfs_ioc_subvol_getflags) | const |  |
-| [`FSL_HV_IOCTL_PARTITION_GET_STATUS`](#fsl_hv_ioctl_partition_get_status) | const |  |
-| [`MEDIA_IOC_ENUM_ENTITIES`](#media_ioc_enum_entities) | const |  |
-| [`GSMIOC_GETFIRST`](#gsmioc_getfirst) | const |  |
-| [`FW_CDEV_IOC_FLUSH_ISO`](#fw_cdev_ioc_flush_iso) | const |  |
-| [`VIDIOC_DBG_G_CHIP_INFO`](#vidioc_dbg_g_chip_info) | const |  |
-| [`F2FS_IOC_RELEASE_VOLATILE_WRITE`](#f2fs_ioc_release_volatile_write) | const |  |
-| [`CAPI_GET_SERIAL`](#capi_get_serial) | const |  |
+| [`BTRFS_IOC_SUBVOL_GETFLAGS`](#btrfs-ioc-subvol-getflags) | const |  |
+| [`FSL_HV_IOCTL_PARTITION_GET_STATUS`](#fsl-hv-ioctl-partition-get-status) | const |  |
+| [`MEDIA_IOC_ENUM_ENTITIES`](#media-ioc-enum-entities) | const |  |
+| [`GSMIOC_GETFIRST`](#gsmioc-getfirst) | const |  |
+| [`FW_CDEV_IOC_FLUSH_ISO`](#fw-cdev-ioc-flush-iso) | const |  |
+| [`VIDIOC_DBG_G_CHIP_INFO`](#vidioc-dbg-g-chip-info) | const |  |
+| [`F2FS_IOC_RELEASE_VOLATILE_WRITE`](#f2fs-ioc-release-volatile-write) | const |  |
+| [`CAPI_GET_SERIAL`](#capi-get-serial) | const |  |
 | [`FDSETDRVPRM`](#fdsetdrvprm) | const |  |
-| [`IOC_OPAL_SAVE`](#ioc_opal_save) | const |  |
-| [`VIDIOC_G_DV_TIMINGS`](#vidioc_g_dv_timings) | const |  |
+| [`IOC_OPAL_SAVE`](#ioc-opal-save) | const |  |
+| [`VIDIOC_G_DV_TIMINGS`](#vidioc-g-dv-timings) | const |  |
 | [`TUNSETIFINDEX`](#tunsetifindex) | const |  |
-| [`CCISS_SETINTINFO`](#cciss_setintinfo) | const |  |
-| [`RTC_VL_CLR`](#rtc_vl_clr) | const |  |
-| [`VIDIOC_REQBUFS`](#vidioc_reqbufs) | const |  |
-| [`USBDEVFS_REAPURBNDELAY32`](#usbdevfs_reapurbndelay32) | const |  |
-| [`TEE_IOC_SHM_REGISTER`](#tee_ioc_shm_register) | const |  |
-| [`USBDEVFS_SETCONFIGURATION`](#usbdevfs_setconfiguration) | const |  |
-| [`CCISS_GETNODENAME`](#cciss_getnodename) | const |  |
-| [`VIDIOC_SUBDEV_S_FRAME_INTERVAL`](#vidioc_subdev_s_frame_interval) | const |  |
-| [`VIDIOC_ENUM_FRAMESIZES`](#vidioc_enum_framesizes) | const |  |
-| [`VFIO_DEVICE_PCI_HOT_RESET`](#vfio_device_pci_hot_reset) | const |  |
-| [`FW_CDEV_IOC_SEND_BROADCAST_REQUEST`](#fw_cdev_ioc_send_broadcast_request) | const |  |
-| [`LPSETTIMEOUT_NEW`](#lpsettimeout_new) | const |  |
-| [`RIO_CM_MPORT_GET_LIST`](#rio_cm_mport_get_list) | const |  |
-| [`FW_CDEV_IOC_QUEUE_ISO`](#fw_cdev_ioc_queue_iso) | const |  |
+| [`CCISS_SETINTINFO`](#cciss-setintinfo) | const |  |
+| [`RTC_VL_CLR`](#rtc-vl-clr) | const |  |
+| [`VIDIOC_REQBUFS`](#vidioc-reqbufs) | const |  |
+| [`USBDEVFS_REAPURBNDELAY32`](#usbdevfs-reapurbndelay32) | const |  |
+| [`TEE_IOC_SHM_REGISTER`](#tee-ioc-shm-register) | const |  |
+| [`USBDEVFS_SETCONFIGURATION`](#usbdevfs-setconfiguration) | const |  |
+| [`CCISS_GETNODENAME`](#cciss-getnodename) | const |  |
+| [`VIDIOC_SUBDEV_S_FRAME_INTERVAL`](#vidioc-subdev-s-frame-interval) | const |  |
+| [`VIDIOC_ENUM_FRAMESIZES`](#vidioc-enum-framesizes) | const |  |
+| [`VFIO_DEVICE_PCI_HOT_RESET`](#vfio-device-pci-hot-reset) | const |  |
+| [`FW_CDEV_IOC_SEND_BROADCAST_REQUEST`](#fw-cdev-ioc-send-broadcast-request) | const |  |
+| [`LPSETTIMEOUT_NEW`](#lpsettimeout-new) | const |  |
+| [`RIO_CM_MPORT_GET_LIST`](#rio-cm-mport-get-list) | const |  |
+| [`FW_CDEV_IOC_QUEUE_ISO`](#fw-cdev-ioc-queue-iso) | const |  |
 | [`FDRAWCMD`](#fdrawcmd) | const |  |
-| [`SCIF_UNREG`](#scif_unreg) | const |  |
+| [`SCIF_UNREG`](#scif-unreg) | const |  |
 | [`PPPIOCGIDLE64`](#pppiocgidle64) | const |  |
-| [`USBDEVFS_RELEASEINTERFACE`](#usbdevfs_releaseinterface) | const |  |
-| [`VIDIOC_CROPCAP`](#vidioc_cropcap) | const |  |
-| [`DFL_FPGA_PORT_GET_INFO`](#dfl_fpga_port_get_info) | const |  |
-| [`PHN_SET_REGS`](#phn_set_regs) | const |  |
-| [`ATMLEC_DATA`](#atmlec_data) | const |  |
+| [`USBDEVFS_RELEASEINTERFACE`](#usbdevfs-releaseinterface) | const |  |
+| [`VIDIOC_CROPCAP`](#vidioc-cropcap) | const |  |
+| [`DFL_FPGA_PORT_GET_INFO`](#dfl-fpga-port-get-info) | const |  |
+| [`PHN_SET_REGS`](#phn-set-regs) | const |  |
+| [`ATMLEC_DATA`](#atmlec-data) | const |  |
 | [`PPPOEIOCDFWD`](#pppoeiocdfwd) | const |  |
-| [`VIDIOC_S_SELECTION`](#vidioc_s_selection) | const |  |
-| [`SNAPSHOT_FREE_SWAP_PAGES`](#snapshot_free_swap_pages) | const |  |
-| [`BTRFS_IOC_LOGICAL_INO`](#btrfs_ioc_logical_ino) | const |  |
-| [`VIDIOC_S_CTRL`](#vidioc_s_ctrl) | const |  |
-| [`ZATM_SETPOOL`](#zatm_setpool) | const |  |
+| [`VIDIOC_S_SELECTION`](#vidioc-s-selection) | const |  |
+| [`SNAPSHOT_FREE_SWAP_PAGES`](#snapshot-free-swap-pages) | const |  |
+| [`BTRFS_IOC_LOGICAL_INO`](#btrfs-ioc-logical-ino) | const |  |
+| [`VIDIOC_S_CTRL`](#vidioc-s-ctrl) | const |  |
+| [`ZATM_SETPOOL`](#zatm-setpool) | const |  |
 | [`MTIOCPOS`](#mtiocpos) | const |  |
-| [`PMU_IOC_SLEEP`](#pmu_ioc_sleep) | const |  |
-| [`AUTOFS_DEV_IOCTL_PROTOSUBVER`](#autofs_dev_ioctl_protosubver) | const |  |
-| [`VBG_IOCTL_CHANGE_FILTER_MASK`](#vbg_ioctl_change_filter_mask) | const |  |
-| [`NILFS_IOCTL_GET_SUSTAT`](#nilfs_ioctl_get_sustat) | const |  |
-| [`VIDIOC_QUERYCAP`](#vidioc_querycap) | const |  |
-| [`HPET_INFO`](#hpet_info) | const |  |
-| [`VIDIOC_AM437X_CCDC_CFG`](#vidioc_am437x_ccdc_cfg) | const |  |
-| [`DM_LIST_DEVICES`](#dm_list_devices) | const |  |
+| [`PMU_IOC_SLEEP`](#pmu-ioc-sleep) | const |  |
+| [`AUTOFS_DEV_IOCTL_PROTOSUBVER`](#autofs-dev-ioctl-protosubver) | const |  |
+| [`VBG_IOCTL_CHANGE_FILTER_MASK`](#vbg-ioctl-change-filter-mask) | const |  |
+| [`NILFS_IOCTL_GET_SUSTAT`](#nilfs-ioctl-get-sustat) | const |  |
+| [`VIDIOC_QUERYCAP`](#vidioc-querycap) | const |  |
+| [`HPET_INFO`](#hpet-info) | const |  |
+| [`VIDIOC_AM437X_CCDC_CFG`](#vidioc-am437x-ccdc-cfg) | const |  |
+| [`DM_LIST_DEVICES`](#dm-list-devices) | const |  |
 | [`TUNSETOWNER`](#tunsetowner) | const |  |
-| [`VBG_IOCTL_CHANGE_GUEST_CAPABILITIES`](#vbg_ioctl_change_guest_capabilities) | const |  |
+| [`VBG_IOCTL_CHANGE_GUEST_CAPABILITIES`](#vbg-ioctl-change-guest-capabilities) | const |  |
 | [`RNDADDENTROPY`](#rndaddentropy) | const |  |
-| [`USBDEVFS_RESET`](#usbdevfs_reset) | const |  |
-| [`BTRFS_IOC_SUBVOL_CREATE`](#btrfs_ioc_subvol_create) | const |  |
-| [`USBDEVFS_FORBID_SUSPEND`](#usbdevfs_forbid_suspend) | const |  |
+| [`USBDEVFS_RESET`](#usbdevfs-reset) | const |  |
+| [`BTRFS_IOC_SUBVOL_CREATE`](#btrfs-ioc-subvol-create) | const |  |
+| [`USBDEVFS_FORBID_SUSPEND`](#usbdevfs-forbid-suspend) | const |  |
 | [`FDGETDRVTYP`](#fdgetdrvtyp) | const |  |
 | [`PPWCONTROL`](#ppwcontrol) | const |  |
-| [`VIDIOC_ENUM_FRAMEINTERVALS`](#vidioc_enum_frameintervals) | const |  |
-| [`KCOV_DISABLE`](#kcov_disable) | const |  |
-| [`IOC_OPAL_ACTIVATE_LSP`](#ioc_opal_activate_lsp) | const |  |
-| [`VHOST_VDPA_GET_IOVA_RANGE`](#vhost_vdpa_get_iova_range) | const |  |
+| [`VIDIOC_ENUM_FRAMEINTERVALS`](#vidioc-enum-frameintervals) | const |  |
+| [`KCOV_DISABLE`](#kcov-disable) | const |  |
+| [`IOC_OPAL_ACTIVATE_LSP`](#ioc-opal-activate-lsp) | const |  |
+| [`VHOST_VDPA_GET_IOVA_RANGE`](#vhost-vdpa-get-iova-range) | const |  |
 | [`PPPIOCSPASS`](#pppiocspass) | const |  |
-| [`RIO_CM_CHAN_CONNECT`](#rio_cm_chan_connect) | const |  |
+| [`RIO_CM_CHAN_CONNECT`](#rio-cm-chan-connect) | const |  |
 | [`I2OSWDEL`](#i2oswdel) | const |  |
-| [`FS_IOC_SET_ENCRYPTION_POLICY`](#fs_ioc_set_encryption_policy) | const |  |
-| [`IOC_OPAL_MBR_DONE`](#ioc_opal_mbr_done) | const |  |
+| [`FS_IOC_SET_ENCRYPTION_POLICY`](#fs-ioc-set-encryption-policy) | const |  |
+| [`IOC_OPAL_MBR_DONE`](#ioc-opal-mbr-done) | const |  |
 | [`PPPIOCSMAXCID`](#pppiocsmaxcid) | const |  |
 | [`PPSETPHASE`](#ppsetphase) | const |  |
-| [`VHOST_VDPA_SET_VRING_ENABLE`](#vhost_vdpa_set_vring_enable) | const |  |
-| [`USBDEVFS_GET_SPEED`](#usbdevfs_get_speed) | const |  |
-| [`SONET_GETFRAMING`](#sonet_getframing) | const |  |
-| [`VIDIOC_QUERYBUF`](#vidioc_querybuf) | const |  |
-| [`VIDIOC_S_EDID`](#vidioc_s_edid) | const |  |
-| [`BTRFS_IOC_QGROUP_ASSIGN`](#btrfs_ioc_qgroup_assign) | const |  |
-| [`PPS_GETCAP`](#pps_getcap) | const |  |
-| [`SNAPSHOT_PLATFORM_SUPPORT`](#snapshot_platform_support) | const |  |
-| [`LIRC_SET_REC_TIMEOUT_REPORTS`](#lirc_set_rec_timeout_reports) | const |  |
-| [`SCIF_GET_NODEIDS`](#scif_get_nodeids) | const |  |
-| [`NBD_DISCONNECT`](#nbd_disconnect) | const |  |
-| [`VIDIOC_SUBDEV_G_FRAME_INTERVAL`](#vidioc_subdev_g_frame_interval) | const |  |
-| [`VFIO_IOMMU_DISABLE`](#vfio_iommu_disable) | const |  |
-| [`SNAPSHOT_CREATE_IMAGE`](#snapshot_create_image) | const |  |
-| [`SNAPSHOT_POWER_OFF`](#snapshot_power_off) | const |  |
-| [`APM_IOC_STANDBY`](#apm_ioc_standby) | const |  |
+| [`VHOST_VDPA_SET_VRING_ENABLE`](#vhost-vdpa-set-vring-enable) | const |  |
+| [`USBDEVFS_GET_SPEED`](#usbdevfs-get-speed) | const |  |
+| [`SONET_GETFRAMING`](#sonet-getframing) | const |  |
+| [`VIDIOC_QUERYBUF`](#vidioc-querybuf) | const |  |
+| [`VIDIOC_S_EDID`](#vidioc-s-edid) | const |  |
+| [`BTRFS_IOC_QGROUP_ASSIGN`](#btrfs-ioc-qgroup-assign) | const |  |
+| [`PPS_GETCAP`](#pps-getcap) | const |  |
+| [`SNAPSHOT_PLATFORM_SUPPORT`](#snapshot-platform-support) | const |  |
+| [`LIRC_SET_REC_TIMEOUT_REPORTS`](#lirc-set-rec-timeout-reports) | const |  |
+| [`SCIF_GET_NODEIDS`](#scif-get-nodeids) | const |  |
+| [`NBD_DISCONNECT`](#nbd-disconnect) | const |  |
+| [`VIDIOC_SUBDEV_G_FRAME_INTERVAL`](#vidioc-subdev-g-frame-interval) | const |  |
+| [`VFIO_IOMMU_DISABLE`](#vfio-iommu-disable) | const |  |
+| [`SNAPSHOT_CREATE_IMAGE`](#snapshot-create-image) | const |  |
+| [`SNAPSHOT_POWER_OFF`](#snapshot-power-off) | const |  |
+| [`APM_IOC_STANDBY`](#apm-ioc-standby) | const |  |
 | [`PPPIOCGUNIT`](#pppiocgunit) | const |  |
-| [`AUTOFS_IOC_EXPIRE_MULTI`](#autofs_ioc_expire_multi) | const |  |
-| [`SCIF_BIND`](#scif_bind) | const |  |
-| [`IOC_WATCH_QUEUE_SET_SIZE`](#ioc_watch_queue_set_size) | const |  |
-| [`NILFS_IOCTL_CHANGE_CPMODE`](#nilfs_ioctl_change_cpmode) | const |  |
-| [`IOC_OPAL_LOCK_UNLOCK`](#ioc_opal_lock_unlock) | const |  |
-| [`F2FS_IOC_SET_PIN_FILE`](#f2fs_ioc_set_pin_file) | const |  |
+| [`AUTOFS_IOC_EXPIRE_MULTI`](#autofs-ioc-expire-multi) | const |  |
+| [`SCIF_BIND`](#scif-bind) | const |  |
+| [`IOC_WATCH_QUEUE_SET_SIZE`](#ioc-watch-queue-set-size) | const |  |
+| [`NILFS_IOCTL_CHANGE_CPMODE`](#nilfs-ioctl-change-cpmode) | const |  |
+| [`IOC_OPAL_LOCK_UNLOCK`](#ioc-opal-lock-unlock) | const |  |
+| [`F2FS_IOC_SET_PIN_FILE`](#f2fs-ioc-set-pin-file) | const |  |
 | [`PPPIOCGRASYNCMAP`](#pppiocgrasyncmap) | const |  |
-| [`MMTIMER_MMAPAVAIL`](#mmtimer_mmapavail) | const |  |
+| [`MMTIMER_MMAPAVAIL`](#mmtimer-mmapavail) | const |  |
 | [`I2OPASSTHRU32`](#i2opassthru32) | const |  |
-| [`DFL_FPGA_FME_PORT_RELEASE`](#dfl_fpga_fme_port_release) | const |  |
-| [`VIDIOC_SUBDEV_QUERY_DV_TIMINGS`](#vidioc_subdev_query_dv_timings) | const |  |
-| [`UI_SET_SNDBIT`](#ui_set_sndbit) | const |  |
-| [`VIDIOC_G_AUDOUT`](#vidioc_g_audout) | const |  |
-| [`RTC_PLL_SET`](#rtc_pll_set) | const |  |
-| [`VIDIOC_ENUMAUDIO`](#vidioc_enumaudio) | const |  |
-| [`AUTOFS_DEV_IOCTL_TIMEOUT`](#autofs_dev_ioctl_timeout) | const |  |
-| [`VBG_IOCTL_DRIVER_VERSION_INFO`](#vbg_ioctl_driver_version_info) | const |  |
-| [`VHOST_SCSI_GET_EVENTS_MISSED`](#vhost_scsi_get_events_missed) | const |  |
-| [`VHOST_SET_VRING_ADDR`](#vhost_set_vring_addr) | const |  |
-| [`VDUSE_CREATE_DEV`](#vduse_create_dev) | const |  |
+| [`DFL_FPGA_FME_PORT_RELEASE`](#dfl-fpga-fme-port-release) | const |  |
+| [`VIDIOC_SUBDEV_QUERY_DV_TIMINGS`](#vidioc-subdev-query-dv-timings) | const |  |
+| [`UI_SET_SNDBIT`](#ui-set-sndbit) | const |  |
+| [`VIDIOC_G_AUDOUT`](#vidioc-g-audout) | const |  |
+| [`RTC_PLL_SET`](#rtc-pll-set) | const |  |
+| [`VIDIOC_ENUMAUDIO`](#vidioc-enumaudio) | const |  |
+| [`AUTOFS_DEV_IOCTL_TIMEOUT`](#autofs-dev-ioctl-timeout) | const |  |
+| [`VBG_IOCTL_DRIVER_VERSION_INFO`](#vbg-ioctl-driver-version-info) | const |  |
+| [`VHOST_SCSI_GET_EVENTS_MISSED`](#vhost-scsi-get-events-missed) | const |  |
+| [`VHOST_SET_VRING_ADDR`](#vhost-set-vring-addr) | const |  |
+| [`VDUSE_CREATE_DEV`](#vduse-create-dev) | const |  |
 | [`FDFLUSH`](#fdflush) | const |  |
-| [`VBG_IOCTL_WAIT_FOR_EVENTS`](#vbg_ioctl_wait_for_events) | const |  |
-| [`DFL_FPGA_FME_ERR_SET_IRQ`](#dfl_fpga_fme_err_set_irq) | const |  |
-| [`F2FS_IOC_GET_PIN_FILE`](#f2fs_ioc_get_pin_file) | const |  |
-| [`SCIF_CONNECT`](#scif_connect) | const |  |
+| [`VBG_IOCTL_WAIT_FOR_EVENTS`](#vbg-ioctl-wait-for-events) | const |  |
+| [`DFL_FPGA_FME_ERR_SET_IRQ`](#dfl-fpga-fme-err-set-irq) | const |  |
+| [`F2FS_IOC_GET_PIN_FILE`](#f2fs-ioc-get-pin-file) | const |  |
+| [`SCIF_CONNECT`](#scif-connect) | const |  |
 | [`BLKREPORTZONE`](#blkreportzone) | const |  |
-| [`AUTOFS_IOC_ASKUMOUNT`](#autofs_ioc_askumount) | const |  |
-| [`ATM_ADDPARTY`](#atm_addparty) | const |  |
+| [`AUTOFS_IOC_ASKUMOUNT`](#autofs-ioc-askumount) | const |  |
+| [`ATM_ADDPARTY`](#atm-addparty) | const |  |
 | [`FDSETPRM`](#fdsetprm) | const |  |
-| [`ATM_GETSTATZ`](#atm_getstatz) | const |  |
-| [`ISST_IF_MSR_COMMAND`](#isst_if_msr_command) | const |  |
-| [`BTRFS_IOC_GET_SUBVOL_INFO`](#btrfs_ioc_get_subvol_info) | const |  |
-| [`VIDIOC_UNSUBSCRIBE_EVENT`](#vidioc_unsubscribe_event) | const |  |
-| [`SEV_ISSUE_CMD`](#sev_issue_cmd) | const |  |
-| [`GPIOHANDLE_SET_LINE_VALUES_IOCTL`](#gpiohandle_set_line_values_ioctl) | const |  |
-| [`PCITEST_COPY`](#pcitest_copy) | const |  |
-| [`IPMICTL_GET_MY_ADDRESS_CMD`](#ipmictl_get_my_address_cmd) | const |  |
+| [`ATM_GETSTATZ`](#atm-getstatz) | const |  |
+| [`ISST_IF_MSR_COMMAND`](#isst-if-msr-command) | const |  |
+| [`BTRFS_IOC_GET_SUBVOL_INFO`](#btrfs-ioc-get-subvol-info) | const |  |
+| [`VIDIOC_UNSUBSCRIBE_EVENT`](#vidioc-unsubscribe-event) | const |  |
+| [`SEV_ISSUE_CMD`](#sev-issue-cmd) | const |  |
+| [`GPIOHANDLE_SET_LINE_VALUES_IOCTL`](#gpiohandle-set-line-values-ioctl) | const |  |
+| [`PCITEST_COPY`](#pcitest-copy) | const |  |
+| [`IPMICTL_GET_MY_ADDRESS_CMD`](#ipmictl-get-my-address-cmd) | const |  |
 | [`CHIOGPICKER`](#chiogpicker) | const |  |
-| [`CAPI_NCCI_OPENCOUNT`](#capi_ncci_opencount) | const |  |
-| [`CXL_MEM_SEND_COMMAND`](#cxl_mem_send_command) | const |  |
-| [`PERF_EVENT_IOC_SET_FILTER`](#perf_event_ioc_set_filter) | const |  |
-| [`IOC_OPAL_REVERT_TPR`](#ioc_opal_revert_tpr) | const |  |
+| [`CAPI_NCCI_OPENCOUNT`](#capi-ncci-opencount) | const |  |
+| [`CXL_MEM_SEND_COMMAND`](#cxl-mem-send-command) | const |  |
+| [`PERF_EVENT_IOC_SET_FILTER`](#perf-event-ioc-set-filter) | const |  |
+| [`IOC_OPAL_REVERT_TPR`](#ioc-opal-revert-tpr) | const |  |
 | [`CHIOGVPARAMS`](#chiogvparams) | const |  |
-| [`PTP_PEROUT_REQUEST`](#ptp_perout_request) | const |  |
-| [`FSI_SCOM_CHECK`](#fsi_scom_check) | const |  |
-| [`RTC_IRQP_READ`](#rtc_irqp_read) | const |  |
-| [`RIO_MPORT_MAINT_READ_LOCAL`](#rio_mport_maint_read_local) | const |  |
+| [`PTP_PEROUT_REQUEST`](#ptp-perout-request) | const |  |
+| [`FSI_SCOM_CHECK`](#fsi-scom-check) | const |  |
+| [`RTC_IRQP_READ`](#rtc-irqp-read) | const |  |
+| [`RIO_MPORT_MAINT_READ_LOCAL`](#rio-mport-maint-read-local) | const |  |
 | [`HIDIOCGRDESCSIZE`](#hidiocgrdescsize) | const |  |
-| [`UI_GET_VERSION`](#ui_get_version) | const |  |
-| [`NILFS_IOCTL_GET_CPSTAT`](#nilfs_ioctl_get_cpstat) | const |  |
-| [`CCISS_GETBUSTYPES`](#cciss_getbustypes) | const |  |
-| [`VFIO_IOMMU_SPAPR_TCE_CREATE`](#vfio_iommu_spapr_tce_create) | const |  |
-| [`VIDIOC_EXPBUF`](#vidioc_expbuf) | const |  |
-| [`UI_SET_RELBIT`](#ui_set_relbit) | const |  |
-| [`VFIO_SET_IOMMU`](#vfio_set_iommu) | const |  |
-| [`VIDIOC_S_MODULATOR`](#vidioc_s_modulator) | const |  |
+| [`UI_GET_VERSION`](#ui-get-version) | const |  |
+| [`NILFS_IOCTL_GET_CPSTAT`](#nilfs-ioctl-get-cpstat) | const |  |
+| [`CCISS_GETBUSTYPES`](#cciss-getbustypes) | const |  |
+| [`VFIO_IOMMU_SPAPR_TCE_CREATE`](#vfio-iommu-spapr-tce-create) | const |  |
+| [`VIDIOC_EXPBUF`](#vidioc-expbuf) | const |  |
+| [`UI_SET_RELBIT`](#ui-set-relbit) | const |  |
+| [`VFIO_SET_IOMMU`](#vfio-set-iommu) | const |  |
+| [`VIDIOC_S_MODULATOR`](#vidioc-s-modulator) | const |  |
 | [`TUNGETFILTER`](#tungetfilter) | const |  |
-| [`CCISS_SETNODENAME`](#cciss_setnodename) | const |  |
-| [`FBIO_GETCONTROL2`](#fbio_getcontrol2) | const |  |
+| [`CCISS_SETNODENAME`](#cciss-setnodename) | const |  |
+| [`FBIO_GETCONTROL2`](#fbio-getcontrol2) | const |  |
 | [`TUNSETDEBUG`](#tunsetdebug) | const |  |
-| [`DM_DEV_REMOVE`](#dm_dev_remove) | const |  |
+| [`DM_DEV_REMOVE`](#dm-dev-remove) | const |  |
 | [`HIDIOCSUSAGES`](#hidiocsusages) | const |  |
-| [`FS_IOC_ADD_ENCRYPTION_KEY`](#fs_ioc_add_encryption_key) | const |  |
-| [`FBIOGET_VBLANK`](#fbioget_vblank) | const |  |
-| [`ATM_GETSTAT`](#atm_getstat) | const |  |
-| [`VIDIOC_G_JPEGCOMP`](#vidioc_g_jpegcomp) | const |  |
+| [`FS_IOC_ADD_ENCRYPTION_KEY`](#fs-ioc-add-encryption-key) | const |  |
+| [`FBIOGET_VBLANK`](#fbioget-vblank) | const |  |
+| [`ATM_GETSTAT`](#atm-getstat) | const |  |
+| [`VIDIOC_G_JPEGCOMP`](#vidioc-g-jpegcomp) | const |  |
 | [`TUNATTACHFILTER`](#tunattachfilter) | const |  |
-| [`UI_SET_ABSBIT`](#ui_set_absbit) | const |  |
-| [`DFL_FPGA_PORT_ERR_GET_IRQ_NUM`](#dfl_fpga_port_err_get_irq_num) | const |  |
-| [`USBDEVFS_REAPURB32`](#usbdevfs_reapurb32) | const |  |
-| [`BTRFS_IOC_TRANS_END`](#btrfs_ioc_trans_end) | const |  |
-| [`CAPI_REGISTER`](#capi_register) | const |  |
-| [`F2FS_IOC_COMPRESS_FILE`](#f2fs_ioc_compress_file) | const |  |
-| [`USBDEVFS_DISCARDURB`](#usbdevfs_discardurb) | const |  |
-| [`HE_GET_REG`](#he_get_reg) | const |  |
-| [`ATM_SETLOOP`](#atm_setloop) | const |  |
-| [`ATMSIGD_CTRL`](#atmsigd_ctrl) | const |  |
-| [`CIOC_KERNEL_VERSION`](#cioc_kernel_version) | const |  |
-| [`BTRFS_IOC_CLONE_RANGE`](#btrfs_ioc_clone_range) | const |  |
-| [`SNAPSHOT_UNFREEZE`](#snapshot_unfreeze) | const |  |
-| [`F2FS_IOC_START_VOLATILE_WRITE`](#f2fs_ioc_start_volatile_write) | const |  |
-| [`PMU_IOC_HAS_ADB`](#pmu_ioc_has_adb) | const |  |
+| [`UI_SET_ABSBIT`](#ui-set-absbit) | const |  |
+| [`DFL_FPGA_PORT_ERR_GET_IRQ_NUM`](#dfl-fpga-port-err-get-irq-num) | const |  |
+| [`USBDEVFS_REAPURB32`](#usbdevfs-reapurb32) | const |  |
+| [`BTRFS_IOC_TRANS_END`](#btrfs-ioc-trans-end) | const |  |
+| [`CAPI_REGISTER`](#capi-register) | const |  |
+| [`F2FS_IOC_COMPRESS_FILE`](#f2fs-ioc-compress-file) | const |  |
+| [`USBDEVFS_DISCARDURB`](#usbdevfs-discardurb) | const |  |
+| [`HE_GET_REG`](#he-get-reg) | const |  |
+| [`ATM_SETLOOP`](#atm-setloop) | const |  |
+| [`ATMSIGD_CTRL`](#atmsigd-ctrl) | const |  |
+| [`CIOC_KERNEL_VERSION`](#cioc-kernel-version) | const |  |
+| [`BTRFS_IOC_CLONE_RANGE`](#btrfs-ioc-clone-range) | const |  |
+| [`SNAPSHOT_UNFREEZE`](#snapshot-unfreeze) | const |  |
+| [`F2FS_IOC_START_VOLATILE_WRITE`](#f2fs-ioc-start-volatile-write) | const |  |
+| [`PMU_IOC_HAS_ADB`](#pmu-ioc-has-adb) | const |  |
 | [`I2OGETIOPS`](#i2ogetiops) | const |  |
-| [`VIDIOC_S_FBUF`](#vidioc_s_fbuf) | const |  |
+| [`VIDIOC_S_FBUF`](#vidioc-s-fbuf) | const |  |
 | [`PPRCONTROL`](#pprcontrol) | const |  |
 | [`CHIOSPICKER`](#chiospicker) | const |  |
-| [`VFIO_IOMMU_SPAPR_REGISTER_MEMORY`](#vfio_iommu_spapr_register_memory) | const |  |
+| [`VFIO_IOMMU_SPAPR_REGISTER_MEMORY`](#vfio-iommu-spapr-register-memory) | const |  |
 | [`TUNGETSNDBUF`](#tungetsndbuf) | const |  |
-| [`GSMIOC_SETCONF`](#gsmioc_setconf) | const |  |
-| [`IOC_PR_PREEMPT`](#ioc_pr_preempt) | const |  |
-| [`KCOV_INIT_TRACE`](#kcov_init_trace) | const |  |
-| [`SONYPI_IOCGBAT1CAP`](#sonypi_iocgbat1cap) | const |  |
-| [`SWITCHTEC_IOCTL_FLASH_INFO`](#switchtec_ioctl_flash_info) | const |  |
+| [`GSMIOC_SETCONF`](#gsmioc-setconf) | const |  |
+| [`IOC_PR_PREEMPT`](#ioc-pr-preempt) | const |  |
+| [`KCOV_INIT_TRACE`](#kcov-init-trace) | const |  |
+| [`SONYPI_IOCGBAT1CAP`](#sonypi-iocgbat1cap) | const |  |
+| [`SWITCHTEC_IOCTL_FLASH_INFO`](#switchtec-ioctl-flash-info) | const |  |
 | [`MTIOCTOP`](#mtioctop) | const |  |
-| [`VHOST_VDPA_SET_STATUS`](#vhost_vdpa_set_status) | const |  |
-| [`VHOST_SCSI_SET_EVENTS_MISSED`](#vhost_scsi_set_events_missed) | const |  |
-| [`VFIO_IOMMU_DIRTY_PAGES`](#vfio_iommu_dirty_pages) | const |  |
-| [`BTRFS_IOC_SCRUB_PROGRESS`](#btrfs_ioc_scrub_progress) | const |  |
+| [`VHOST_VDPA_SET_STATUS`](#vhost-vdpa-set-status) | const |  |
+| [`VHOST_SCSI_SET_EVENTS_MISSED`](#vhost-scsi-set-events-missed) | const |  |
+| [`VFIO_IOMMU_DIRTY_PAGES`](#vfio-iommu-dirty-pages) | const |  |
+| [`BTRFS_IOC_SCRUB_PROGRESS`](#btrfs-ioc-scrub-progress) | const |  |
 | [`PPPIOCGMRU`](#pppiocgmru) | const |  |
-| [`BTRFS_IOC_DEV_REPLACE`](#btrfs_ioc_dev_replace) | const |  |
+| [`BTRFS_IOC_DEV_REPLACE`](#btrfs-ioc-dev-replace) | const |  |
 | [`PPPIOCGFLAGS`](#pppiocgflags) | const |  |
-| [`NILFS_IOCTL_SET_SUINFO`](#nilfs_ioctl_set_suinfo) | const |  |
-| [`FW_CDEV_IOC_GET_CYCLE_TIMER2`](#fw_cdev_ioc_get_cycle_timer2) | const |  |
-| [`ATM_DELLECSADDR`](#atm_dellecsaddr) | const |  |
-| [`FW_CDEV_IOC_GET_SPEED`](#fw_cdev_ioc_get_speed) | const |  |
+| [`NILFS_IOCTL_SET_SUINFO`](#nilfs-ioctl-set-suinfo) | const |  |
+| [`FW_CDEV_IOC_GET_CYCLE_TIMER2`](#fw-cdev-ioc-get-cycle-timer2) | const |  |
+| [`ATM_DELLECSADDR`](#atm-dellecsaddr) | const |  |
+| [`FW_CDEV_IOC_GET_SPEED`](#fw-cdev-ioc-get-speed) | const |  |
 | [`PPPIOCGIDLE32`](#pppiocgidle32) | const |  |
-| [`VFIO_DEVICE_RESET`](#vfio_device_reset) | const |  |
-| [`GPIO_GET_LINEINFO_UNWATCH_IOCTL`](#gpio_get_lineinfo_unwatch_ioctl) | const |  |
-| [`WDIOC_GETSTATUS`](#wdioc_getstatus) | const |  |
-| [`BTRFS_IOC_SET_FEATURES`](#btrfs_ioc_set_features) | const |  |
-| [`IOCTL_MEI_CONNECT_CLIENT`](#ioctl_mei_connect_client) | const |  |
-| [`VIDIOC_OMAP3ISP_AEWB_CFG`](#vidioc_omap3isp_aewb_cfg) | const |  |
-| [`PCITEST_READ`](#pcitest_read) | const |  |
-| [`VFIO_GROUP_GET_STATUS`](#vfio_group_get_status) | const |  |
-| [`MATROXFB_GET_ALL_OUTPUTS`](#matroxfb_get_all_outputs) | const |  |
-| [`USBDEVFS_CLEAR_HALT`](#usbdevfs_clear_halt) | const |  |
-| [`VIDIOC_DECODER_CMD`](#vidioc_decoder_cmd) | const |  |
-| [`VIDIOC_G_AUDIO`](#vidioc_g_audio) | const |  |
-| [`CCISS_RESCANDISK`](#cciss_rescandisk) | const |  |
-| [`RIO_DISABLE_PORTWRITE_RANGE`](#rio_disable_portwrite_range) | const |  |
-| [`IOC_OPAL_SECURE_ERASE_LR`](#ioc_opal_secure_erase_lr) | const |  |
-| [`USBDEVFS_REAPURB`](#usbdevfs_reapurb) | const |  |
-| [`DFL_FPGA_CHECK_EXTENSION`](#dfl_fpga_check_extension) | const |  |
-| [`AUTOFS_IOC_PROTOVER`](#autofs_ioc_protover) | const |  |
-| [`FSL_HV_IOCTL_MEMCPY`](#fsl_hv_ioctl_memcpy) | const |  |
-| [`BTRFS_IOC_GET_FEATURES`](#btrfs_ioc_get_features) | const |  |
-| [`PCITEST_MSIX`](#pcitest_msix) | const |  |
-| [`BTRFS_IOC_DEFRAG_RANGE`](#btrfs_ioc_defrag_range) | const |  |
-| [`UI_BEGIN_FF_ERASE`](#ui_begin_ff_erase) | const |  |
-| [`DM_GET_TARGET_VERSION`](#dm_get_target_version) | const |  |
+| [`VFIO_DEVICE_RESET`](#vfio-device-reset) | const |  |
+| [`GPIO_GET_LINEINFO_UNWATCH_IOCTL`](#gpio-get-lineinfo-unwatch-ioctl) | const |  |
+| [`WDIOC_GETSTATUS`](#wdioc-getstatus) | const |  |
+| [`BTRFS_IOC_SET_FEATURES`](#btrfs-ioc-set-features) | const |  |
+| [`IOCTL_MEI_CONNECT_CLIENT`](#ioctl-mei-connect-client) | const |  |
+| [`VIDIOC_OMAP3ISP_AEWB_CFG`](#vidioc-omap3isp-aewb-cfg) | const |  |
+| [`PCITEST_READ`](#pcitest-read) | const |  |
+| [`VFIO_GROUP_GET_STATUS`](#vfio-group-get-status) | const |  |
+| [`MATROXFB_GET_ALL_OUTPUTS`](#matroxfb-get-all-outputs) | const |  |
+| [`USBDEVFS_CLEAR_HALT`](#usbdevfs-clear-halt) | const |  |
+| [`VIDIOC_DECODER_CMD`](#vidioc-decoder-cmd) | const |  |
+| [`VIDIOC_G_AUDIO`](#vidioc-g-audio) | const |  |
+| [`CCISS_RESCANDISK`](#cciss-rescandisk) | const |  |
+| [`RIO_DISABLE_PORTWRITE_RANGE`](#rio-disable-portwrite-range) | const |  |
+| [`IOC_OPAL_SECURE_ERASE_LR`](#ioc-opal-secure-erase-lr) | const |  |
+| [`USBDEVFS_REAPURB`](#usbdevfs-reapurb) | const |  |
+| [`DFL_FPGA_CHECK_EXTENSION`](#dfl-fpga-check-extension) | const |  |
+| [`AUTOFS_IOC_PROTOVER`](#autofs-ioc-protover) | const |  |
+| [`FSL_HV_IOCTL_MEMCPY`](#fsl-hv-ioctl-memcpy) | const |  |
+| [`BTRFS_IOC_GET_FEATURES`](#btrfs-ioc-get-features) | const |  |
+| [`PCITEST_MSIX`](#pcitest-msix) | const |  |
+| [`BTRFS_IOC_DEFRAG_RANGE`](#btrfs-ioc-defrag-range) | const |  |
+| [`UI_BEGIN_FF_ERASE`](#ui-begin-ff-erase) | const |  |
+| [`DM_GET_TARGET_VERSION`](#dm-get-target-version) | const |  |
 | [`PPPIOCGIDLE`](#pppiocgidle) | const |  |
-| [`NVRAM_SETCKS`](#nvram_setcks) | const |  |
-| [`WDIOC_GETSUPPORT`](#wdioc_getsupport) | const |  |
-| [`GSMIOC_ENABLE_NET`](#gsmioc_enable_net) | const |  |
-| [`GPIO_GET_CHIPINFO_IOCTL`](#gpio_get_chipinfo_ioctl) | const |  |
-| [`NE_ADD_VCPU`](#ne_add_vcpu) | const |  |
-| [`EVIOCSKEYCODE_V2`](#eviocskeycode_v2) | const |  |
-| [`PTP_SYS_OFFSET_EXTENDED2`](#ptp_sys_offset_extended2) | const |  |
-| [`SCIF_FENCE_WAIT`](#scif_fence_wait) | const |  |
-| [`RIO_TRANSFER`](#rio_transfer) | const |  |
-| [`FSL_HV_IOCTL_DOORBELL`](#fsl_hv_ioctl_doorbell) | const |  |
-| [`RIO_MPORT_MAINT_WRITE_LOCAL`](#rio_mport_maint_write_local) | const |  |
+| [`NVRAM_SETCKS`](#nvram-setcks) | const |  |
+| [`WDIOC_GETSUPPORT`](#wdioc-getsupport) | const |  |
+| [`GSMIOC_ENABLE_NET`](#gsmioc-enable-net) | const |  |
+| [`GPIO_GET_CHIPINFO_IOCTL`](#gpio-get-chipinfo-ioctl) | const |  |
+| [`NE_ADD_VCPU`](#ne-add-vcpu) | const |  |
+| [`EVIOCSKEYCODE_V2`](#eviocskeycode-v2) | const |  |
+| [`PTP_SYS_OFFSET_EXTENDED2`](#ptp-sys-offset-extended2) | const |  |
+| [`SCIF_FENCE_WAIT`](#scif-fence-wait) | const |  |
+| [`RIO_TRANSFER`](#rio-transfer) | const |  |
+| [`FSL_HV_IOCTL_DOORBELL`](#fsl-hv-ioctl-doorbell) | const |  |
+| [`RIO_MPORT_MAINT_WRITE_LOCAL`](#rio-mport-maint-write-local) | const |  |
 | [`I2OEVTREG`](#i2oevtreg) | const |  |
 | [`I2OPARMGET`](#i2oparmget) | const |  |
 | [`EVIOCGID`](#eviocgid) | const |  |
-| [`BTRFS_IOC_QGROUP_CREATE`](#btrfs_ioc_qgroup_create) | const |  |
-| [`AUTOFS_DEV_IOCTL_SETPIPEFD`](#autofs_dev_ioctl_setpipefd) | const |  |
-| [`VIDIOC_S_PARM`](#vidioc_s_parm) | const |  |
+| [`BTRFS_IOC_QGROUP_CREATE`](#btrfs-ioc-qgroup-create) | const |  |
+| [`AUTOFS_DEV_IOCTL_SETPIPEFD`](#autofs-dev-ioctl-setpipefd) | const |  |
+| [`VIDIOC_S_PARM`](#vidioc-s-parm) | const |  |
 | [`TUNSETSTEERINGEBPF`](#tunsetsteeringebpf) | const |  |
-| [`ATM_GETNAMES`](#atm_getnames) | const |  |
-| [`VIDIOC_QUERYMENU`](#vidioc_querymenu) | const |  |
-| [`DFL_FPGA_PORT_DMA_UNMAP`](#dfl_fpga_port_dma_unmap) | const |  |
+| [`ATM_GETNAMES`](#atm-getnames) | const |  |
+| [`VIDIOC_QUERYMENU`](#vidioc-querymenu) | const |  |
+| [`DFL_FPGA_PORT_DMA_UNMAP`](#dfl-fpga-port-dma-unmap) | const |  |
 | [`I2OLCTGET`](#i2olctget) | const |  |
-| [`FS_IOC_GET_ENCRYPTION_PWSALT`](#fs_ioc_get_encryption_pwsalt) | const |  |
-| [`NS_SETBUFLEV`](#ns_setbuflev) | const |  |
+| [`FS_IOC_GET_ENCRYPTION_PWSALT`](#fs-ioc-get-encryption-pwsalt) | const |  |
+| [`NS_SETBUFLEV`](#ns-setbuflev) | const |  |
 | [`BLKCLOSEZONE`](#blkclosezone) | const |  |
-| [`SONET_GETFRSENSE`](#sonet_getfrsense) | const |  |
-| [`UI_SET_EVBIT`](#ui_set_evbit) | const |  |
-| [`DM_LIST_VERSIONS`](#dm_list_versions) | const |  |
+| [`SONET_GETFRSENSE`](#sonet-getfrsense) | const |  |
+| [`UI_SET_EVBIT`](#ui-set-evbit) | const |  |
+| [`DM_LIST_VERSIONS`](#dm-list-versions) | const |  |
 | [`HIDIOCGSTRING`](#hidiocgstring) | const |  |
 | [`PPPIOCATTCHAN`](#pppiocattchan) | const |  |
-| [`VDUSE_DEV_SET_CONFIG`](#vduse_dev_set_config) | const |  |
+| [`VDUSE_DEV_SET_CONFIG`](#vduse-dev-set-config) | const |  |
 | [`TUNGETFEATURES`](#tungetfeatures) | const |  |
-| [`VFIO_GROUP_UNSET_CONTAINER`](#vfio_group_unset_container) | const |  |
-| [`IPMICTL_SET_MY_ADDRESS_CMD`](#ipmictl_set_my_address_cmd) | const |  |
-| [`CCISS_REGNEWDISK`](#cciss_regnewdisk) | const |  |
-| [`VIDIOC_QUERY_DV_TIMINGS`](#vidioc_query_dv_timings) | const |  |
-| [`PHN_SETREGS`](#phn_setregs) | const |  |
-| [`FAT_IOCTL_GET_ATTRIBUTES`](#fat_ioctl_get_attributes) | const |  |
-| [`FSL_MC_SEND_MC_COMMAND`](#fsl_mc_send_mc_command) | const |  |
+| [`VFIO_GROUP_UNSET_CONTAINER`](#vfio-group-unset-container) | const |  |
+| [`IPMICTL_SET_MY_ADDRESS_CMD`](#ipmictl-set-my-address-cmd) | const |  |
+| [`CCISS_REGNEWDISK`](#cciss-regnewdisk) | const |  |
+| [`VIDIOC_QUERY_DV_TIMINGS`](#vidioc-query-dv-timings) | const |  |
+| [`PHN_SETREGS`](#phn-setregs) | const |  |
+| [`FAT_IOCTL_GET_ATTRIBUTES`](#fat-ioctl-get-attributes) | const |  |
+| [`FSL_MC_SEND_MC_COMMAND`](#fsl-mc-send-mc-command) | const |  |
 | [`TUNGETIFF`](#tungetiff) | const |  |
-| [`PTP_CLOCK_GETCAPS2`](#ptp_clock_getcaps2) | const |  |
-| [`BTRFS_IOC_RESIZE`](#btrfs_ioc_resize) | const |  |
-| [`VHOST_SET_VRING_ENDIAN`](#vhost_set_vring_endian) | const |  |
-| [`PPS_KC_BIND`](#pps_kc_bind) | const |  |
-| [`F2FS_IOC_WRITE_CHECKPOINT`](#f2fs_ioc_write_checkpoint) | const |  |
-| [`UI_SET_FFBIT`](#ui_set_ffbit) | const |  |
-| [`IPMICTL_GET_MY_LUN_CMD`](#ipmictl_get_my_lun_cmd) | const |  |
-| [`CEC_ADAP_G_PHYS_ADDR`](#cec_adap_g_phys_addr) | const |  |
-| [`CEC_G_MODE`](#cec_g_mode) | const |  |
-| [`USBDEVFS_RESETEP`](#usbdevfs_resetep) | const |  |
-| [`MEDIA_REQUEST_IOC_QUEUE`](#media_request_ioc_queue) | const |  |
-| [`USBDEVFS_ALLOC_STREAMS`](#usbdevfs_alloc_streams) | const |  |
-| [`MGSL_IOCSXCTRL`](#mgsl_iocsxctrl) | const |  |
-| [`MEDIA_IOC_G_TOPOLOGY`](#media_ioc_g_topology) | const |  |
+| [`PTP_CLOCK_GETCAPS2`](#ptp-clock-getcaps2) | const |  |
+| [`BTRFS_IOC_RESIZE`](#btrfs-ioc-resize) | const |  |
+| [`VHOST_SET_VRING_ENDIAN`](#vhost-set-vring-endian) | const |  |
+| [`PPS_KC_BIND`](#pps-kc-bind) | const |  |
+| [`F2FS_IOC_WRITE_CHECKPOINT`](#f2fs-ioc-write-checkpoint) | const |  |
+| [`UI_SET_FFBIT`](#ui-set-ffbit) | const |  |
+| [`IPMICTL_GET_MY_LUN_CMD`](#ipmictl-get-my-lun-cmd) | const |  |
+| [`CEC_ADAP_G_PHYS_ADDR`](#cec-adap-g-phys-addr) | const |  |
+| [`CEC_G_MODE`](#cec-g-mode) | const |  |
+| [`USBDEVFS_RESETEP`](#usbdevfs-resetep) | const |  |
+| [`MEDIA_REQUEST_IOC_QUEUE`](#media-request-ioc-queue) | const |  |
+| [`USBDEVFS_ALLOC_STREAMS`](#usbdevfs-alloc-streams) | const |  |
+| [`MGSL_IOCSXCTRL`](#mgsl-iocsxctrl) | const |  |
+| [`MEDIA_IOC_G_TOPOLOGY`](#media-ioc-g-topology) | const |  |
 | [`PPPIOCUNBRIDGECHAN`](#pppiocunbridgechan) | const |  |
-| [`F2FS_IOC_COMMIT_ATOMIC_WRITE`](#f2fs_ioc_commit_atomic_write) | const |  |
-| [`ISST_IF_GET_PLATFORM_INFO`](#isst_if_get_platform_info) | const |  |
-| [`SCIF_FENCE_MARK`](#scif_fence_mark) | const |  |
-| [`USBDEVFS_RELEASE_PORT`](#usbdevfs_release_port) | const |  |
-| [`VFIO_CHECK_EXTENSION`](#vfio_check_extension) | const |  |
-| [`BTRFS_IOC_QGROUP_LIMIT`](#btrfs_ioc_qgroup_limit) | const |  |
-| [`FAT_IOCTL_GET_VOLUME_ID`](#fat_ioctl_get_volume_id) | const |  |
-| [`UI_SET_PHYS`](#ui_set_phys) | const |  |
+| [`F2FS_IOC_COMMIT_ATOMIC_WRITE`](#f2fs-ioc-commit-atomic-write) | const |  |
+| [`ISST_IF_GET_PLATFORM_INFO`](#isst-if-get-platform-info) | const |  |
+| [`SCIF_FENCE_MARK`](#scif-fence-mark) | const |  |
+| [`USBDEVFS_RELEASE_PORT`](#usbdevfs-release-port) | const |  |
+| [`VFIO_CHECK_EXTENSION`](#vfio-check-extension) | const |  |
+| [`BTRFS_IOC_QGROUP_LIMIT`](#btrfs-ioc-qgroup-limit) | const |  |
+| [`FAT_IOCTL_GET_VOLUME_ID`](#fat-ioctl-get-volume-id) | const |  |
+| [`UI_SET_PHYS`](#ui-set-phys) | const |  |
 | [`FDWERRORGET`](#fdwerrorget) | const |  |
-| [`VIDIOC_SUBDEV_G_EDID`](#vidioc_subdev_g_edid) | const |  |
-| [`MGSL_IOCGSTATS`](#mgsl_iocgstats) | const |  |
-| [`RPROC_SET_SHUTDOWN_ON_RELEASE`](#rproc_set_shutdown_on_release) | const |  |
-| [`SIOCGSTAMP_NEW`](#siocgstamp_new) | const |  |
-| [`RTC_WKALM_RD`](#rtc_wkalm_rd) | const |  |
-| [`PHN_GET_REG`](#phn_get_reg) | const |  |
-| [`DELL_WMI_SMBIOS_CMD`](#dell_wmi_smbios_cmd) | const |  |
-| [`PHN_NOT_OH`](#phn_not_oh) | const |  |
+| [`VIDIOC_SUBDEV_G_EDID`](#vidioc-subdev-g-edid) | const |  |
+| [`MGSL_IOCGSTATS`](#mgsl-iocgstats) | const |  |
+| [`RPROC_SET_SHUTDOWN_ON_RELEASE`](#rproc-set-shutdown-on-release) | const |  |
+| [`SIOCGSTAMP_NEW`](#siocgstamp-new) | const |  |
+| [`RTC_WKALM_RD`](#rtc-wkalm-rd) | const |  |
+| [`PHN_GET_REG`](#phn-get-reg) | const |  |
+| [`DELL_WMI_SMBIOS_CMD`](#dell-wmi-smbios-cmd) | const |  |
+| [`PHN_NOT_OH`](#phn-not-oh) | const |  |
 | [`PPGETMODES`](#ppgetmodes) | const |  |
 | [`CHIOGPARAMS`](#chiogparams) | const |  |
-| [`VFIO_DEVICE_GET_GFX_DMABUF`](#vfio_device_get_gfx_dmabuf) | const |  |
-| [`VHOST_SET_VRING_BUSYLOOP_TIMEOUT`](#vhost_set_vring_busyloop_timeout) | const |  |
-| [`VIDIOC_SUBDEV_G_SELECTION`](#vidioc_subdev_g_selection) | const |  |
-| [`BTRFS_IOC_RM_DEV_V2`](#btrfs_ioc_rm_dev_v2) | const |  |
-| [`MGSL_IOCWAITGPIO`](#mgsl_iocwaitgpio) | const |  |
-| [`PMU_IOC_CAN_SLEEP`](#pmu_ioc_can_sleep) | const |  |
-| [`KCOV_ENABLE`](#kcov_enable) | const |  |
-| [`BTRFS_IOC_CLONE`](#btrfs_ioc_clone) | const |  |
-| [`F2FS_IOC_DEFRAGMENT`](#f2fs_ioc_defragment) | const |  |
-| [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE`](#fw_cdev_ioc_deallocate_iso_resource) | const |  |
-| [`AGPIOC_ALLOCATE`](#agpioc_allocate) | const |  |
-| [`NE_SET_USER_MEMORY_REGION`](#ne_set_user_memory_region) | const |  |
-| [`MGSL_IOCTXABORT`](#mgsl_ioctxabort) | const |  |
-| [`MGSL_IOCSGPIO`](#mgsl_iocsgpio) | const |  |
-| [`LIRC_SET_REC_CARRIER`](#lirc_set_rec_carrier) | const |  |
-| [`F2FS_IOC_FLUSH_DEVICE`](#f2fs_ioc_flush_device) | const |  |
-| [`SNAPSHOT_ATOMIC_RESTORE`](#snapshot_atomic_restore) | const |  |
-| [`RTC_UIE_OFF`](#rtc_uie_off) | const |  |
-| [`BT_BMC_IOCTL_SMS_ATN`](#bt_bmc_ioctl_sms_atn) | const |  |
-| [`NVME_IOCTL_ID`](#nvme_ioctl_id) | const |  |
-| [`NE_START_ENCLAVE`](#ne_start_enclave) | const |  |
-| [`VIDIOC_STREAMON`](#vidioc_streamon) | const |  |
+| [`VFIO_DEVICE_GET_GFX_DMABUF`](#vfio-device-get-gfx-dmabuf) | const |  |
+| [`VHOST_SET_VRING_BUSYLOOP_TIMEOUT`](#vhost-set-vring-busyloop-timeout) | const |  |
+| [`VIDIOC_SUBDEV_G_SELECTION`](#vidioc-subdev-g-selection) | const |  |
+| [`BTRFS_IOC_RM_DEV_V2`](#btrfs-ioc-rm-dev-v2) | const |  |
+| [`MGSL_IOCWAITGPIO`](#mgsl-iocwaitgpio) | const |  |
+| [`PMU_IOC_CAN_SLEEP`](#pmu-ioc-can-sleep) | const |  |
+| [`KCOV_ENABLE`](#kcov-enable) | const |  |
+| [`BTRFS_IOC_CLONE`](#btrfs-ioc-clone) | const |  |
+| [`F2FS_IOC_DEFRAGMENT`](#f2fs-ioc-defragment) | const |  |
+| [`FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE`](#fw-cdev-ioc-deallocate-iso-resource) | const |  |
+| [`AGPIOC_ALLOCATE`](#agpioc-allocate) | const |  |
+| [`NE_SET_USER_MEMORY_REGION`](#ne-set-user-memory-region) | const |  |
+| [`MGSL_IOCTXABORT`](#mgsl-ioctxabort) | const |  |
+| [`MGSL_IOCSGPIO`](#mgsl-iocsgpio) | const |  |
+| [`LIRC_SET_REC_CARRIER`](#lirc-set-rec-carrier) | const |  |
+| [`F2FS_IOC_FLUSH_DEVICE`](#f2fs-ioc-flush-device) | const |  |
+| [`SNAPSHOT_ATOMIC_RESTORE`](#snapshot-atomic-restore) | const |  |
+| [`RTC_UIE_OFF`](#rtc-uie-off) | const |  |
+| [`BT_BMC_IOCTL_SMS_ATN`](#bt-bmc-ioctl-sms-atn) | const |  |
+| [`NVME_IOCTL_ID`](#nvme-ioctl-id) | const |  |
+| [`NE_START_ENCLAVE`](#ne-start-enclave) | const |  |
+| [`VIDIOC_STREAMON`](#vidioc-streamon) | const |  |
 | [`FDPOLLDRVSTAT`](#fdpolldrvstat) | const |  |
-| [`AUTOFS_DEV_IOCTL_READY`](#autofs_dev_ioctl_ready) | const |  |
-| [`VIDIOC_ENUMAUDOUT`](#vidioc_enumaudout) | const |  |
-| [`VIDIOC_SUBDEV_S_STD`](#vidioc_subdev_s_std) | const |  |
-| [`WDIOC_GETTIMELEFT`](#wdioc_gettimeleft) | const |  |
-| [`ATM_GETLINKRATE`](#atm_getlinkrate) | const |  |
-| [`RTC_WKALM_SET`](#rtc_wkalm_set) | const |  |
-| [`VHOST_GET_BACKEND_FEATURES`](#vhost_get_backend_features) | const |  |
-| [`ATMARP_ENCAP`](#atmarp_encap) | const |  |
-| [`CAPI_GET_FLAGS`](#capi_get_flags) | const |  |
-| [`IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl_set_my_channel_address_cmd) | const |  |
-| [`DFL_FPGA_FME_PORT_ASSIGN`](#dfl_fpga_fme_port_assign) | const |  |
-| [`NS_GET_OWNER_UID`](#ns_get_owner_uid) | const |  |
-| [`VIDIOC_OVERLAY`](#vidioc_overlay) | const |  |
-| [`BTRFS_IOC_WAIT_SYNC`](#btrfs_ioc_wait_sync) | const |  |
-| [`GPIOHANDLE_SET_CONFIG_IOCTL`](#gpiohandle_set_config_ioctl) | const |  |
-| [`VHOST_GET_VRING_ENDIAN`](#vhost_get_vring_endian) | const |  |
-| [`ATM_GETADDR`](#atm_getaddr) | const |  |
-| [`PHN_GET_REGS`](#phn_get_regs) | const |  |
-| [`AUTOFS_DEV_IOCTL_REQUESTER`](#autofs_dev_ioctl_requester) | const |  |
-| [`AUTOFS_DEV_IOCTL_EXPIRE`](#autofs_dev_ioctl_expire) | const |  |
-| [`SNAPSHOT_S2RAM`](#snapshot_s2ram) | const |  |
+| [`AUTOFS_DEV_IOCTL_READY`](#autofs-dev-ioctl-ready) | const |  |
+| [`VIDIOC_ENUMAUDOUT`](#vidioc-enumaudout) | const |  |
+| [`VIDIOC_SUBDEV_S_STD`](#vidioc-subdev-s-std) | const |  |
+| [`WDIOC_GETTIMELEFT`](#wdioc-gettimeleft) | const |  |
+| [`ATM_GETLINKRATE`](#atm-getlinkrate) | const |  |
+| [`RTC_WKALM_SET`](#rtc-wkalm-set) | const |  |
+| [`VHOST_GET_BACKEND_FEATURES`](#vhost-get-backend-features) | const |  |
+| [`ATMARP_ENCAP`](#atmarp-encap) | const |  |
+| [`CAPI_GET_FLAGS`](#capi-get-flags) | const |  |
+| [`IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD`](#ipmictl-set-my-channel-address-cmd) | const |  |
+| [`DFL_FPGA_FME_PORT_ASSIGN`](#dfl-fpga-fme-port-assign) | const |  |
+| [`NS_GET_OWNER_UID`](#ns-get-owner-uid) | const |  |
+| [`VIDIOC_OVERLAY`](#vidioc-overlay) | const |  |
+| [`BTRFS_IOC_WAIT_SYNC`](#btrfs-ioc-wait-sync) | const |  |
+| [`GPIOHANDLE_SET_CONFIG_IOCTL`](#gpiohandle-set-config-ioctl) | const |  |
+| [`VHOST_GET_VRING_ENDIAN`](#vhost-get-vring-endian) | const |  |
+| [`ATM_GETADDR`](#atm-getaddr) | const |  |
+| [`PHN_GET_REGS`](#phn-get-regs) | const |  |
+| [`AUTOFS_DEV_IOCTL_REQUESTER`](#autofs-dev-ioctl-requester) | const |  |
+| [`AUTOFS_DEV_IOCTL_EXPIRE`](#autofs-dev-ioctl-expire) | const |  |
+| [`SNAPSHOT_S2RAM`](#snapshot-s2ram) | const |  |
 | [`JSIOCSAXMAP`](#jsiocsaxmap) | const |  |
-| [`F2FS_IOC_SET_COMPRESS_OPTION`](#f2fs_ioc_set_compress_option) | const |  |
-| [`VBG_IOCTL_HGCM_DISCONNECT`](#vbg_ioctl_hgcm_disconnect) | const |  |
-| [`SCIF_FENCE_SIGNAL`](#scif_fence_signal) | const |  |
-| [`VFIO_DEVICE_GET_PCI_HOT_RESET_INFO`](#vfio_device_get_pci_hot_reset_info) | const |  |
-| [`VIDIOC_SUBDEV_ENUM_MBUS_CODE`](#vidioc_subdev_enum_mbus_code) | const |  |
-| [`MMTIMER_GETOFFSET`](#mmtimer_getoffset) | const |  |
-| [`RIO_CM_CHAN_LISTEN`](#rio_cm_chan_listen) | const |  |
-| [`ATM_SETSC`](#atm_setsc) | const |  |
-| [`F2FS_IOC_SHUTDOWN`](#f2fs_ioc_shutdown) | const |  |
-| [`NVME_IOCTL_RESCAN`](#nvme_ioctl_rescan) | const |  |
+| [`F2FS_IOC_SET_COMPRESS_OPTION`](#f2fs-ioc-set-compress-option) | const |  |
+| [`VBG_IOCTL_HGCM_DISCONNECT`](#vbg-ioctl-hgcm-disconnect) | const |  |
+| [`SCIF_FENCE_SIGNAL`](#scif-fence-signal) | const |  |
+| [`VFIO_DEVICE_GET_PCI_HOT_RESET_INFO`](#vfio-device-get-pci-hot-reset-info) | const |  |
+| [`VIDIOC_SUBDEV_ENUM_MBUS_CODE`](#vidioc-subdev-enum-mbus-code) | const |  |
+| [`MMTIMER_GETOFFSET`](#mmtimer-getoffset) | const |  |
+| [`RIO_CM_CHAN_LISTEN`](#rio-cm-chan-listen) | const |  |
+| [`ATM_SETSC`](#atm-setsc) | const |  |
+| [`F2FS_IOC_SHUTDOWN`](#f2fs-ioc-shutdown) | const |  |
+| [`NVME_IOCTL_RESCAN`](#nvme-ioctl-rescan) | const |  |
 | [`BLKOPENZONE`](#blkopenzone) | const |  |
-| [`DM_VERSION`](#dm_version) | const |  |
-| [`CEC_TRANSMIT`](#cec_transmit) | const |  |
-| [`FS_IOC_GET_ENCRYPTION_POLICY_EX`](#fs_ioc_get_encryption_policy_ex) | const |  |
+| [`DM_VERSION`](#dm-version) | const |  |
+| [`CEC_TRANSMIT`](#cec-transmit) | const |  |
+| [`FS_IOC_GET_ENCRYPTION_POLICY_EX`](#fs-ioc-get-encryption-policy-ex) | const |  |
 | [`SIOCMKCLIP`](#siocmkclip) | const |  |
-| [`IPMI_BMC_IOCTL_CLEAR_SMS_ATN`](#ipmi_bmc_ioctl_clear_sms_atn) | const |  |
+| [`IPMI_BMC_IOCTL_CLEAR_SMS_ATN`](#ipmi-bmc-ioctl-clear-sms-atn) | const |  |
 | [`HIDIOCGVERSION`](#hidiocgversion) | const |  |
-| [`VIDIOC_S_INPUT`](#vidioc_s_input) | const |  |
-| [`VIDIOC_G_CROP`](#vidioc_g_crop) | const |  |
-| [`LIRC_SET_WIDEBAND_RECEIVER`](#lirc_set_wideband_receiver) | const |  |
+| [`VIDIOC_S_INPUT`](#vidioc-s-input) | const |  |
+| [`VIDIOC_G_CROP`](#vidioc-g-crop) | const |  |
+| [`LIRC_SET_WIDEBAND_RECEIVER`](#lirc-set-wideband-receiver) | const |  |
 | [`EVIOCGEFFECTS`](#eviocgeffects) | const |  |
-| [`UVCIOC_CTRL_QUERY`](#uvcioc_ctrl_query) | const |  |
-| [`IOC_OPAL_GENERIC_TABLE_RW`](#ioc_opal_generic_table_rw) | const |  |
-| [`FS_IOC_READ_VERITY_METADATA`](#fs_ioc_read_verity_metadata) | const |  |
-| [`ND_IOCTL_SET_CONFIG_DATA`](#nd_ioctl_set_config_data) | const |  |
-| [`USBDEVFS_GETDRIVER`](#usbdevfs_getdriver) | const |  |
-| [`IDT77105_GETSTAT`](#idt77105_getstat) | const |  |
+| [`UVCIOC_CTRL_QUERY`](#uvcioc-ctrl-query) | const |  |
+| [`IOC_OPAL_GENERIC_TABLE_RW`](#ioc-opal-generic-table-rw) | const |  |
+| [`FS_IOC_READ_VERITY_METADATA`](#fs-ioc-read-verity-metadata) | const |  |
+| [`ND_IOCTL_SET_CONFIG_DATA`](#nd-ioctl-set-config-data) | const |  |
+| [`USBDEVFS_GETDRIVER`](#usbdevfs-getdriver) | const |  |
+| [`IDT77105_GETSTAT`](#idt77105-getstat) | const |  |
 | [`HIDIOCINITREPORT`](#hidiocinitreport) | const |  |
-| [`VFIO_DEVICE_GET_INFO`](#vfio_device_get_info) | const |  |
-| [`RIO_CM_CHAN_RECEIVE`](#rio_cm_chan_receive) | const |  |
+| [`VFIO_DEVICE_GET_INFO`](#vfio-device-get-info) | const |  |
+| [`RIO_CM_CHAN_RECEIVE`](#rio-cm-chan-receive) | const |  |
 | [`RNDGETENTCNT`](#rndgetentcnt) | const |  |
 | [`PPPIOCNEWUNIT`](#pppiocnewunit) | const |  |
-| [`BTRFS_IOC_INO_LOOKUP`](#btrfs_ioc_ino_lookup) | const |  |
+| [`BTRFS_IOC_INO_LOOKUP`](#btrfs-ioc-ino-lookup) | const |  |
 | [`FDRESET`](#fdreset) | const |  |
-| [`IOC_PR_REGISTER`](#ioc_pr_register) | const |  |
+| [`IOC_PR_REGISTER`](#ioc-pr-register) | const |  |
 | [`HIDIOCSREPORT`](#hidiocsreport) | const |  |
-| [`TEE_IOC_OPEN_SESSION`](#tee_ioc_open_session) | const |  |
-| [`TEE_IOC_SUPPL_RECV`](#tee_ioc_suppl_recv) | const |  |
-| [`BTRFS_IOC_BALANCE_CTL`](#btrfs_ioc_balance_ctl) | const |  |
-| [`GPIO_GET_LINEINFO_WATCH_IOCTL`](#gpio_get_lineinfo_watch_ioctl) | const |  |
+| [`TEE_IOC_OPEN_SESSION`](#tee-ioc-open-session) | const |  |
+| [`TEE_IOC_SUPPL_RECV`](#tee-ioc-suppl-recv) | const |  |
+| [`BTRFS_IOC_BALANCE_CTL`](#btrfs-ioc-balance-ctl) | const |  |
+| [`GPIO_GET_LINEINFO_WATCH_IOCTL`](#gpio-get-lineinfo-watch-ioctl) | const |  |
 | [`HIDIOCGRAWINFO`](#hidiocgrawinfo) | const |  |
 | [`PPPIOCSCOMPRESS`](#pppiocscompress) | const |  |
-| [`USBDEVFS_CONNECTINFO`](#usbdevfs_connectinfo) | const |  |
+| [`USBDEVFS_CONNECTINFO`](#usbdevfs-connectinfo) | const |  |
 | [`BLKRESETZONE`](#blkresetzone) | const |  |
 | [`CHIOINITELEM`](#chioinitelem) | const |  |
-| [`NILFS_IOCTL_SET_ALLOC_RANGE`](#nilfs_ioctl_set_alloc_range) | const |  |
-| [`AUTOFS_DEV_IOCTL_CATATONIC`](#autofs_dev_ioctl_catatonic) | const |  |
-| [`RIO_MPORT_MAINT_HDID_SET`](#rio_mport_maint_hdid_set) | const |  |
+| [`NILFS_IOCTL_SET_ALLOC_RANGE`](#nilfs-ioctl-set-alloc-range) | const |  |
+| [`AUTOFS_DEV_IOCTL_CATATONIC`](#autofs-dev-ioctl-catatonic) | const |  |
+| [`RIO_MPORT_MAINT_HDID_SET`](#rio-mport-maint-hdid-set) | const |  |
 | [`PPGETPHASE`](#ppgetphase) | const |  |
-| [`USBDEVFS_DISCONNECT_CLAIM`](#usbdevfs_disconnect_claim) | const |  |
+| [`USBDEVFS_DISCONNECT_CLAIM`](#usbdevfs-disconnect-claim) | const |  |
 | [`FDMSGON`](#fdmsgon) | const |  |
-| [`VIDIOC_G_SLICED_VBI_CAP`](#vidioc_g_sliced_vbi_cap) | const |  |
-| [`BTRFS_IOC_BALANCE_V2`](#btrfs_ioc_balance_v2) | const |  |
-| [`MEDIA_REQUEST_IOC_REINIT`](#media_request_ioc_reinit) | const |  |
-| [`IOC_OPAL_ERASE_LR`](#ioc_opal_erase_lr) | const |  |
+| [`VIDIOC_G_SLICED_VBI_CAP`](#vidioc-g-sliced-vbi-cap) | const |  |
+| [`BTRFS_IOC_BALANCE_V2`](#btrfs-ioc-balance-v2) | const |  |
+| [`MEDIA_REQUEST_IOC_REINIT`](#media-request-ioc-reinit) | const |  |
+| [`IOC_OPAL_ERASE_LR`](#ioc-opal-erase-lr) | const |  |
 | [`FDFMTBEG`](#fdfmtbeg) | const |  |
 | [`RNDRESEEDCRNG`](#rndreseedcrng) | const |  |
-| [`ISST_IF_GET_PHY_ID`](#isst_if_get_phy_id) | const |  |
+| [`ISST_IF_GET_PHY_ID`](#isst-if-get-phy-id) | const |  |
 | [`TUNSETNOCSUM`](#tunsetnocsum) | const |  |
-| [`SONET_GETSTAT`](#sonet_getstat) | const |  |
-| [`TFD_IOC_SET_TICKS`](#tfd_ioc_set_ticks) | const |  |
+| [`SONET_GETSTAT`](#sonet-getstat) | const |  |
+| [`TFD_IOC_SET_TICKS`](#tfd-ioc-set-ticks) | const |  |
 | [`PPDATADIR`](#ppdatadir) | const |  |
-| [`IOC_OPAL_ENABLE_DISABLE_MBR`](#ioc_opal_enable_disable_mbr) | const |  |
-| [`GPIO_V2_GET_LINE_IOCTL`](#gpio_v2_get_line_ioctl) | const |  |
-| [`RIO_CM_CHAN_SEND`](#rio_cm_chan_send) | const |  |
+| [`IOC_OPAL_ENABLE_DISABLE_MBR`](#ioc-opal-enable-disable-mbr) | const |  |
+| [`GPIO_V2_GET_LINE_IOCTL`](#gpio-v2-get-line-ioctl) | const |  |
+| [`RIO_CM_CHAN_SEND`](#rio-cm-chan-send) | const |  |
 | [`PPWCTLONIRQ`](#ppwctlonirq) | const |  |
-| [`SONYPI_IOCGBRT`](#sonypi_iocgbrt) | const |  |
-| [`IOC_PR_RELEASE`](#ioc_pr_release) | const |  |
+| [`SONYPI_IOCGBRT`](#sonypi-iocgbrt) | const |  |
+| [`IOC_PR_RELEASE`](#ioc-pr-release) | const |  |
 | [`PPCLRIRQ`](#ppclrirq) | const |  |
-| [`IPMICTL_SET_MY_CHANNEL_LUN_CMD`](#ipmictl_set_my_channel_lun_cmd) | const |  |
-| [`MGSL_IOCSXSYNC`](#mgsl_iocsxsync) | const |  |
-| [`HPET_IE_OFF`](#hpet_ie_off) | const |  |
-| [`IOC_OPAL_ACTIVATE_USR`](#ioc_opal_activate_usr) | const |  |
-| [`SONET_SETFRAMING`](#sonet_setframing) | const |  |
-| [`PERF_EVENT_IOC_PAUSE_OUTPUT`](#perf_event_ioc_pause_output) | const |  |
-| [`BTRFS_IOC_LOGICAL_INO_V2`](#btrfs_ioc_logical_ino_v2) | const |  |
-| [`VBG_IOCTL_HGCM_CONNECT`](#vbg_ioctl_hgcm_connect) | const |  |
+| [`IPMICTL_SET_MY_CHANNEL_LUN_CMD`](#ipmictl-set-my-channel-lun-cmd) | const |  |
+| [`MGSL_IOCSXSYNC`](#mgsl-iocsxsync) | const |  |
+| [`HPET_IE_OFF`](#hpet-ie-off) | const |  |
+| [`IOC_OPAL_ACTIVATE_USR`](#ioc-opal-activate-usr) | const |  |
+| [`SONET_SETFRAMING`](#sonet-setframing) | const |  |
+| [`PERF_EVENT_IOC_PAUSE_OUTPUT`](#perf-event-ioc-pause-output) | const |  |
+| [`BTRFS_IOC_LOGICAL_INO_V2`](#btrfs-ioc-logical-ino-v2) | const |  |
+| [`VBG_IOCTL_HGCM_CONNECT`](#vbg-ioctl-hgcm-connect) | const |  |
 | [`BLKFINISHZONE`](#blkfinishzone) | const |  |
 | [`EVIOCREVOKE`](#eviocrevoke) | const |  |
-| [`VFIO_DEVICE_FEATURE`](#vfio_device_feature) | const |  |
-| [`CCISS_GETPCIINFO`](#cciss_getpciinfo) | const |  |
-| [`ISST_IF_MBOX_COMMAND`](#isst_if_mbox_command) | const |  |
-| [`SCIF_ACCEPTREQ`](#scif_acceptreq) | const |  |
-| [`PERF_EVENT_IOC_QUERY_BPF`](#perf_event_ioc_query_bpf) | const |  |
-| [`VIDIOC_STREAMOFF`](#vidioc_streamoff) | const |  |
-| [`VDUSE_DESTROY_DEV`](#vduse_destroy_dev) | const |  |
+| [`VFIO_DEVICE_FEATURE`](#vfio-device-feature) | const |  |
+| [`CCISS_GETPCIINFO`](#cciss-getpciinfo) | const |  |
+| [`ISST_IF_MBOX_COMMAND`](#isst-if-mbox-command) | const |  |
+| [`SCIF_ACCEPTREQ`](#scif-acceptreq) | const |  |
+| [`PERF_EVENT_IOC_QUERY_BPF`](#perf-event-ioc-query-bpf) | const |  |
+| [`VIDIOC_STREAMOFF`](#vidioc-streamoff) | const |  |
+| [`VDUSE_DESTROY_DEV`](#vduse-destroy-dev) | const |  |
 | [`FDGETFDCSTAT`](#fdgetfdcstat) | const |  |
-| [`VIDIOC_S_PRIORITY`](#vidioc_s_priority) | const |  |
-| [`SNAPSHOT_FREEZE`](#snapshot_freeze) | const |  |
-| [`VIDIOC_ENUMINPUT`](#vidioc_enuminput) | const |  |
-| [`ZATM_GETPOOLZ`](#zatm_getpoolz) | const |  |
-| [`RIO_DISABLE_DOORBELL_RANGE`](#rio_disable_doorbell_range) | const |  |
-| [`GPIO_V2_GET_LINEINFO_WATCH_IOCTL`](#gpio_v2_get_lineinfo_watch_ioctl) | const |  |
-| [`VIDIOC_G_STD`](#vidioc_g_std) | const |  |
-| [`USBDEVFS_ALLOW_SUSPEND`](#usbdevfs_allow_suspend) | const |  |
-| [`SONET_GETSTATZ`](#sonet_getstatz) | const |  |
-| [`SCIF_ACCEPTREG`](#scif_acceptreg) | const |  |
-| [`VIDIOC_ENCODER_CMD`](#vidioc_encoder_cmd) | const |  |
+| [`VIDIOC_S_PRIORITY`](#vidioc-s-priority) | const |  |
+| [`SNAPSHOT_FREEZE`](#snapshot-freeze) | const |  |
+| [`VIDIOC_ENUMINPUT`](#vidioc-enuminput) | const |  |
+| [`ZATM_GETPOOLZ`](#zatm-getpoolz) | const |  |
+| [`RIO_DISABLE_DOORBELL_RANGE`](#rio-disable-doorbell-range) | const |  |
+| [`GPIO_V2_GET_LINEINFO_WATCH_IOCTL`](#gpio-v2-get-lineinfo-watch-ioctl) | const |  |
+| [`VIDIOC_G_STD`](#vidioc-g-std) | const |  |
+| [`USBDEVFS_ALLOW_SUSPEND`](#usbdevfs-allow-suspend) | const |  |
+| [`SONET_GETSTATZ`](#sonet-getstatz) | const |  |
+| [`SCIF_ACCEPTREG`](#scif-acceptreg) | const |  |
+| [`VIDIOC_ENCODER_CMD`](#vidioc-encoder-cmd) | const |  |
 | [`PPPIOCSRASYNCMAP`](#pppiocsrasyncmap) | const |  |
-| [`IOCTL_MEI_NOTIFY_SET`](#ioctl_mei_notify_set) | const |  |
-| [`BTRFS_IOC_QUOTA_RESCAN_STATUS`](#btrfs_ioc_quota_rescan_status) | const |  |
-| [`F2FS_IOC_GARBAGE_COLLECT`](#f2fs_ioc_garbage_collect) | const |  |
-| [`ATMLEC_CTRL`](#atmlec_ctrl) | const |  |
-| [`MATROXFB_GET_AVAILABLE_OUTPUTS`](#matroxfb_get_available_outputs) | const |  |
-| [`DM_DEV_CREATE`](#dm_dev_create) | const |  |
-| [`VHOST_VDPA_GET_VRING_NUM`](#vhost_vdpa_get_vring_num) | const |  |
-| [`VIDIOC_G_CTRL`](#vidioc_g_ctrl) | const |  |
-| [`NBD_CLEAR_SOCK`](#nbd_clear_sock) | const |  |
-| [`VFIO_DEVICE_QUERY_GFX_PLANE`](#vfio_device_query_gfx_plane) | const |  |
-| [`WDIOC_KEEPALIVE`](#wdioc_keepalive) | const |  |
-| [`NVME_IOCTL_SUBSYS_RESET`](#nvme_ioctl_subsys_reset) | const |  |
-| [`PTP_EXTTS_REQUEST2`](#ptp_extts_request2) | const |  |
-| [`PCITEST_BAR`](#pcitest_bar) | const |  |
-| [`MGSL_IOCGGPIO`](#mgsl_iocggpio) | const |  |
+| [`IOCTL_MEI_NOTIFY_SET`](#ioctl-mei-notify-set) | const |  |
+| [`BTRFS_IOC_QUOTA_RESCAN_STATUS`](#btrfs-ioc-quota-rescan-status) | const |  |
+| [`F2FS_IOC_GARBAGE_COLLECT`](#f2fs-ioc-garbage-collect) | const |  |
+| [`ATMLEC_CTRL`](#atmlec-ctrl) | const |  |
+| [`MATROXFB_GET_AVAILABLE_OUTPUTS`](#matroxfb-get-available-outputs) | const |  |
+| [`DM_DEV_CREATE`](#dm-dev-create) | const |  |
+| [`VHOST_VDPA_GET_VRING_NUM`](#vhost-vdpa-get-vring-num) | const |  |
+| [`VIDIOC_G_CTRL`](#vidioc-g-ctrl) | const |  |
+| [`NBD_CLEAR_SOCK`](#nbd-clear-sock) | const |  |
+| [`VFIO_DEVICE_QUERY_GFX_PLANE`](#vfio-device-query-gfx-plane) | const |  |
+| [`WDIOC_KEEPALIVE`](#wdioc-keepalive) | const |  |
+| [`NVME_IOCTL_SUBSYS_RESET`](#nvme-ioctl-subsys-reset) | const |  |
+| [`PTP_EXTTS_REQUEST2`](#ptp-extts-request2) | const |  |
+| [`PCITEST_BAR`](#pcitest-bar) | const |  |
+| [`MGSL_IOCGGPIO`](#mgsl-iocggpio) | const |  |
 | [`EVIOCSREP`](#eviocsrep) | const |  |
-| [`VFIO_DEVICE_GET_IRQ_INFO`](#vfio_device_get_irq_info) | const |  |
-| [`HPET_DPI`](#hpet_dpi) | const |  |
-| [`VDUSE_VQ_SETUP_KICKFD`](#vduse_vq_setup_kickfd) | const |  |
-| [`ND_IOCTL_CALL`](#nd_ioctl_call) | const |  |
+| [`VFIO_DEVICE_GET_IRQ_INFO`](#vfio-device-get-irq-info) | const |  |
+| [`HPET_DPI`](#hpet-dpi) | const |  |
+| [`VDUSE_VQ_SETUP_KICKFD`](#vduse-vq-setup-kickfd) | const |  |
+| [`ND_IOCTL_CALL`](#nd-ioctl-call) | const |  |
 | [`HIDIOCGDEVINFO`](#hidiocgdevinfo) | const |  |
-| [`DM_TABLE_DEPS`](#dm_table_deps) | const |  |
-| [`BTRFS_IOC_DEV_INFO`](#btrfs_ioc_dev_info) | const |  |
-| [`VDUSE_IOTLB_GET_FD`](#vduse_iotlb_get_fd) | const |  |
-| [`FW_CDEV_IOC_GET_INFO`](#fw_cdev_ioc_get_info) | const |  |
-| [`VIDIOC_G_PRIORITY`](#vidioc_g_priority) | const |  |
-| [`ATM_NEWBACKENDIF`](#atm_newbackendif) | const |  |
-| [`VIDIOC_S_EXT_CTRLS`](#vidioc_s_ext_ctrls) | const |  |
-| [`VIDIOC_SUBDEV_ENUM_DV_TIMINGS`](#vidioc_subdev_enum_dv_timings) | const |  |
-| [`VIDIOC_OMAP3ISP_CCDC_CFG`](#vidioc_omap3isp_ccdc_cfg) | const |  |
-| [`VIDIOC_S_HW_FREQ_SEEK`](#vidioc_s_hw_freq_seek) | const |  |
-| [`DM_TABLE_LOAD`](#dm_table_load) | const |  |
-| [`F2FS_IOC_START_ATOMIC_WRITE`](#f2fs_ioc_start_atomic_write) | const |  |
-| [`VIDIOC_G_OUTPUT`](#vidioc_g_output) | const |  |
-| [`ATM_DROPPARTY`](#atm_dropparty) | const |  |
+| [`DM_TABLE_DEPS`](#dm-table-deps) | const |  |
+| [`BTRFS_IOC_DEV_INFO`](#btrfs-ioc-dev-info) | const |  |
+| [`VDUSE_IOTLB_GET_FD`](#vduse-iotlb-get-fd) | const |  |
+| [`FW_CDEV_IOC_GET_INFO`](#fw-cdev-ioc-get-info) | const |  |
+| [`VIDIOC_G_PRIORITY`](#vidioc-g-priority) | const |  |
+| [`ATM_NEWBACKENDIF`](#atm-newbackendif) | const |  |
+| [`VIDIOC_S_EXT_CTRLS`](#vidioc-s-ext-ctrls) | const |  |
+| [`VIDIOC_SUBDEV_ENUM_DV_TIMINGS`](#vidioc-subdev-enum-dv-timings) | const |  |
+| [`VIDIOC_OMAP3ISP_CCDC_CFG`](#vidioc-omap3isp-ccdc-cfg) | const |  |
+| [`VIDIOC_S_HW_FREQ_SEEK`](#vidioc-s-hw-freq-seek) | const |  |
+| [`DM_TABLE_LOAD`](#dm-table-load) | const |  |
+| [`F2FS_IOC_START_ATOMIC_WRITE`](#f2fs-ioc-start-atomic-write) | const |  |
+| [`VIDIOC_G_OUTPUT`](#vidioc-g-output) | const |  |
+| [`ATM_DROPPARTY`](#atm-dropparty) | const |  |
 | [`CHIOGELEM`](#chiogelem) | const |  |
-| [`BTRFS_IOC_GET_SUPPORTED_FEATURES`](#btrfs_ioc_get_supported_features) | const |  |
+| [`BTRFS_IOC_GET_SUPPORTED_FEATURES`](#btrfs-ioc-get-supported-features) | const |  |
 | [`EVIOCSKEYCODE`](#eviocskeycode) | const |  |
-| [`NE_GET_IMAGE_LOAD_INFO`](#ne_get_image_load_info) | const |  |
+| [`NE_GET_IMAGE_LOAD_INFO`](#ne-get-image-load-info) | const |  |
 | [`TUNSETLINK`](#tunsetlink) | const |  |
-| [`FW_CDEV_IOC_ADD_DESCRIPTOR`](#fw_cdev_ioc_add_descriptor) | const |  |
-| [`BTRFS_IOC_SCRUB_CANCEL`](#btrfs_ioc_scrub_cancel) | const |  |
-| [`PPS_SETPARAMS`](#pps_setparams) | const |  |
-| [`IOC_OPAL_LR_SETUP`](#ioc_opal_lr_setup) | const |  |
-| [`FW_CDEV_IOC_DEALLOCATE`](#fw_cdev_ioc_deallocate) | const |  |
-| [`WDIOC_SETTIMEOUT`](#wdioc_settimeout) | const |  |
-| [`IOC_WATCH_QUEUE_SET_FILTER`](#ioc_watch_queue_set_filter) | const |  |
-| [`CAPI_GET_MANUFACTURER`](#capi_get_manufacturer) | const |  |
-| [`VFIO_IOMMU_SPAPR_UNREGISTER_MEMORY`](#vfio_iommu_spapr_unregister_memory) | const |  |
-| [`ASPEED_P2A_CTRL_IOCTL_SET_WINDOW`](#aspeed_p2a_ctrl_ioctl_set_window) | const |  |
-| [`VIDIOC_G_EDID`](#vidioc_g_edid) | const |  |
-| [`F2FS_IOC_GARBAGE_COLLECT_RANGE`](#f2fs_ioc_garbage_collect_range) | const |  |
-| [`RIO_MAP_INBOUND`](#rio_map_inbound) | const |  |
-| [`IOC_OPAL_TAKE_OWNERSHIP`](#ioc_opal_take_ownership) | const |  |
-| [`USBDEVFS_CLAIM_PORT`](#usbdevfs_claim_port) | const |  |
-| [`VIDIOC_S_AUDIO`](#vidioc_s_audio) | const |  |
-| [`FS_IOC_GET_ENCRYPTION_NONCE`](#fs_ioc_get_encryption_nonce) | const |  |
-| [`FW_CDEV_IOC_SEND_STREAM_PACKET`](#fw_cdev_ioc_send_stream_packet) | const |  |
-| [`BTRFS_IOC_SNAP_DESTROY`](#btrfs_ioc_snap_destroy) | const |  |
-| [`SNAPSHOT_FREE`](#snapshot_free) | const |  |
-| [`I8K_GET_SPEED`](#i8k_get_speed) | const |  |
+| [`FW_CDEV_IOC_ADD_DESCRIPTOR`](#fw-cdev-ioc-add-descriptor) | const |  |
+| [`BTRFS_IOC_SCRUB_CANCEL`](#btrfs-ioc-scrub-cancel) | const |  |
+| [`PPS_SETPARAMS`](#pps-setparams) | const |  |
+| [`IOC_OPAL_LR_SETUP`](#ioc-opal-lr-setup) | const |  |
+| [`FW_CDEV_IOC_DEALLOCATE`](#fw-cdev-ioc-deallocate) | const |  |
+| [`WDIOC_SETTIMEOUT`](#wdioc-settimeout) | const |  |
+| [`IOC_WATCH_QUEUE_SET_FILTER`](#ioc-watch-queue-set-filter) | const |  |
+| [`CAPI_GET_MANUFACTURER`](#capi-get-manufacturer) | const |  |
+| [`VFIO_IOMMU_SPAPR_UNREGISTER_MEMORY`](#vfio-iommu-spapr-unregister-memory) | const |  |
+| [`ASPEED_P2A_CTRL_IOCTL_SET_WINDOW`](#aspeed-p2a-ctrl-ioctl-set-window) | const |  |
+| [`VIDIOC_G_EDID`](#vidioc-g-edid) | const |  |
+| [`F2FS_IOC_GARBAGE_COLLECT_RANGE`](#f2fs-ioc-garbage-collect-range) | const |  |
+| [`RIO_MAP_INBOUND`](#rio-map-inbound) | const |  |
+| [`IOC_OPAL_TAKE_OWNERSHIP`](#ioc-opal-take-ownership) | const |  |
+| [`USBDEVFS_CLAIM_PORT`](#usbdevfs-claim-port) | const |  |
+| [`VIDIOC_S_AUDIO`](#vidioc-s-audio) | const |  |
+| [`FS_IOC_GET_ENCRYPTION_NONCE`](#fs-ioc-get-encryption-nonce) | const |  |
+| [`FW_CDEV_IOC_SEND_STREAM_PACKET`](#fw-cdev-ioc-send-stream-packet) | const |  |
+| [`BTRFS_IOC_SNAP_DESTROY`](#btrfs-ioc-snap-destroy) | const |  |
+| [`SNAPSHOT_FREE`](#snapshot-free) | const |  |
+| [`I8K_GET_SPEED`](#i8k-get-speed) | const |  |
 | [`HIDIOCGREPORT`](#hidiocgreport) | const |  |
-| [`HPET_EPI`](#hpet_epi) | const |  |
+| [`HPET_EPI`](#hpet-epi) | const |  |
 | [`JSIOCSCORR`](#jsiocscorr) | const |  |
-| [`IOC_PR_PREEMPT_ABORT`](#ioc_pr_preempt_abort) | const |  |
-| [`RIO_MAP_OUTBOUND`](#rio_map_outbound) | const |  |
-| [`ATM_SETESI`](#atm_setesi) | const |  |
-| [`FW_CDEV_IOC_START_ISO`](#fw_cdev_ioc_start_iso) | const |  |
-| [`ATM_DELADDR`](#atm_deladdr) | const |  |
+| [`IOC_PR_PREEMPT_ABORT`](#ioc-pr-preempt-abort) | const |  |
+| [`RIO_MAP_OUTBOUND`](#rio-map-outbound) | const |  |
+| [`ATM_SETESI`](#atm-setesi) | const |  |
+| [`FW_CDEV_IOC_START_ISO`](#fw-cdev-ioc-start-iso) | const |  |
+| [`ATM_DELADDR`](#atm-deladdr) | const |  |
 | [`PPFCONTROL`](#ppfcontrol) | const |  |
-| [`SONYPI_IOCGFAN`](#sonypi_iocgfan) | const |  |
-| [`RTC_IRQP_SET`](#rtc_irqp_set) | const |  |
-| [`PCITEST_WRITE`](#pcitest_write) | const |  |
+| [`SONYPI_IOCGFAN`](#sonypi-iocgfan) | const |  |
+| [`RTC_IRQP_SET`](#rtc-irqp-set) | const |  |
+| [`PCITEST_WRITE`](#pcitest-write) | const |  |
 | [`PPCLAIM`](#ppclaim) | const |  |
-| [`VIDIOC_S_JPEGCOMP`](#vidioc_s_jpegcomp) | const |  |
-| [`IPMICTL_UNREGISTER_FOR_CMD`](#ipmictl_unregister_for_cmd) | const |  |
-| [`VHOST_SET_FEATURES`](#vhost_set_features) | const |  |
-| [`TOSHIBA_ACPI_SCI`](#toshiba_acpi_sci) | const |  |
-| [`VIDIOC_DQBUF`](#vidioc_dqbuf) | const |  |
-| [`BTRFS_IOC_BALANCE_PROGRESS`](#btrfs_ioc_balance_progress) | const |  |
-| [`BTRFS_IOC_SUBVOL_SETFLAGS`](#btrfs_ioc_subvol_setflags) | const |  |
-| [`ATMLEC_MCAST`](#atmlec_mcast) | const |  |
-| [`MMTIMER_GETFREQ`](#mmtimer_getfreq) | const |  |
-| [`VIDIOC_G_SELECTION`](#vidioc_g_selection) | const |  |
-| [`RTC_ALM_SET`](#rtc_alm_set) | const |  |
+| [`VIDIOC_S_JPEGCOMP`](#vidioc-s-jpegcomp) | const |  |
+| [`IPMICTL_UNREGISTER_FOR_CMD`](#ipmictl-unregister-for-cmd) | const |  |
+| [`VHOST_SET_FEATURES`](#vhost-set-features) | const |  |
+| [`TOSHIBA_ACPI_SCI`](#toshiba-acpi-sci) | const |  |
+| [`VIDIOC_DQBUF`](#vidioc-dqbuf) | const |  |
+| [`BTRFS_IOC_BALANCE_PROGRESS`](#btrfs-ioc-balance-progress) | const |  |
+| [`BTRFS_IOC_SUBVOL_SETFLAGS`](#btrfs-ioc-subvol-setflags) | const |  |
+| [`ATMLEC_MCAST`](#atmlec-mcast) | const |  |
+| [`MMTIMER_GETFREQ`](#mmtimer-getfreq) | const |  |
+| [`VIDIOC_G_SELECTION`](#vidioc-g-selection) | const |  |
+| [`RTC_ALM_SET`](#rtc-alm-set) | const |  |
 | [`PPPOEIOCSFWD`](#pppoeiocsfwd) | const |  |
-| [`IPMICTL_GET_MAINTENANCE_MODE_CMD`](#ipmictl_get_maintenance_mode_cmd) | const |  |
-| [`FS_IOC_ENABLE_VERITY`](#fs_ioc_enable_verity) | const |  |
-| [`NILFS_IOCTL_GET_BDESCS`](#nilfs_ioctl_get_bdescs) | const |  |
+| [`IPMICTL_GET_MAINTENANCE_MODE_CMD`](#ipmictl-get-maintenance-mode-cmd) | const |  |
+| [`FS_IOC_ENABLE_VERITY`](#fs-ioc-enable-verity) | const |  |
+| [`NILFS_IOCTL_GET_BDESCS`](#nilfs-ioctl-get-bdescs) | const |  |
 | [`FDFMTEND`](#fdfmtend) | const |  |
-| [`DMA_BUF_SET_NAME`](#dma_buf_set_name) | const |  |
-| [`UI_BEGIN_FF_UPLOAD`](#ui_begin_ff_upload) | const |  |
-| [`RTC_UIE_ON`](#rtc_uie_on) | const |  |
+| [`DMA_BUF_SET_NAME`](#dma-buf-set-name) | const |  |
+| [`UI_BEGIN_FF_UPLOAD`](#ui-begin-ff-upload) | const |  |
+| [`RTC_UIE_ON`](#rtc-uie-on) | const |  |
 | [`PPRELEASE`](#pprelease) | const |  |
-| [`VFIO_IOMMU_UNMAP_DMA`](#vfio_iommu_unmap_dma) | const |  |
-| [`VIDIOC_OMAP3ISP_PRV_CFG`](#vidioc_omap3isp_prv_cfg) | const |  |
-| [`GPIO_GET_LINEHANDLE_IOCTL`](#gpio_get_linehandle_ioctl) | const |  |
-| [`VFAT_IOCTL_READDIR_BOTH`](#vfat_ioctl_readdir_both) | const |  |
-| [`NVME_IOCTL_ADMIN_CMD`](#nvme_ioctl_admin_cmd) | const |  |
-| [`VHOST_SET_VRING_KICK`](#vhost_set_vring_kick) | const |  |
-| [`BTRFS_IOC_SUBVOL_CREATE_V2`](#btrfs_ioc_subvol_create_v2) | const |  |
-| [`BTRFS_IOC_SNAP_CREATE`](#btrfs_ioc_snap_create) | const |  |
-| [`SONYPI_IOCGBAT2CAP`](#sonypi_iocgbat2cap) | const |  |
+| [`VFIO_IOMMU_UNMAP_DMA`](#vfio-iommu-unmap-dma) | const |  |
+| [`VIDIOC_OMAP3ISP_PRV_CFG`](#vidioc-omap3isp-prv-cfg) | const |  |
+| [`GPIO_GET_LINEHANDLE_IOCTL`](#gpio-get-linehandle-ioctl) | const |  |
+| [`VFAT_IOCTL_READDIR_BOTH`](#vfat-ioctl-readdir-both) | const |  |
+| [`NVME_IOCTL_ADMIN_CMD`](#nvme-ioctl-admin-cmd) | const |  |
+| [`VHOST_SET_VRING_KICK`](#vhost-set-vring-kick) | const |  |
+| [`BTRFS_IOC_SUBVOL_CREATE_V2`](#btrfs-ioc-subvol-create-v2) | const |  |
+| [`BTRFS_IOC_SNAP_CREATE`](#btrfs-ioc-snap-create) | const |  |
+| [`SONYPI_IOCGBAT2CAP`](#sonypi-iocgbat2cap) | const |  |
 | [`PPNEGOT`](#ppnegot) | const |  |
-| [`NBD_PRINT_DEBUG`](#nbd_print_debug) | const |  |
-| [`BTRFS_IOC_INO_LOOKUP_USER`](#btrfs_ioc_ino_lookup_user) | const |  |
-| [`BTRFS_IOC_GET_SUBVOL_ROOTREF`](#btrfs_ioc_get_subvol_rootref) | const |  |
-| [`FS_IOC_REMOVE_ENCRYPTION_KEY_ALL_USERS`](#fs_ioc_remove_encryption_key_all_users) | const |  |
-| [`BTRFS_IOC_FS_INFO`](#btrfs_ioc_fs_info) | const |  |
-| [`VIDIOC_ENUM_FMT`](#vidioc_enum_fmt) | const |  |
-| [`VIDIOC_G_INPUT`](#vidioc_g_input) | const |  |
-| [`VTPM_PROXY_IOC_NEW_DEV`](#vtpm_proxy_ioc_new_dev) | const |  |
-| [`DFL_FPGA_FME_ERR_GET_IRQ_NUM`](#dfl_fpga_fme_err_get_irq_num) | const |  |
-| [`ND_IOCTL_DIMM_FLAGS`](#nd_ioctl_dimm_flags) | const |  |
-| [`BTRFS_IOC_QUOTA_RESCAN`](#btrfs_ioc_quota_rescan) | const |  |
-| [`MMTIMER_GETCOUNTER`](#mmtimer_getcounter) | const |  |
-| [`MATROXFB_GET_OUTPUT_MODE`](#matroxfb_get_output_mode) | const |  |
-| [`BTRFS_IOC_QUOTA_RESCAN_WAIT`](#btrfs_ioc_quota_rescan_wait) | const |  |
-| [`RIO_CM_CHAN_BIND`](#rio_cm_chan_bind) | const |  |
+| [`NBD_PRINT_DEBUG`](#nbd-print-debug) | const |  |
+| [`BTRFS_IOC_INO_LOOKUP_USER`](#btrfs-ioc-ino-lookup-user) | const |  |
+| [`BTRFS_IOC_GET_SUBVOL_ROOTREF`](#btrfs-ioc-get-subvol-rootref) | const |  |
+| [`FS_IOC_REMOVE_ENCRYPTION_KEY_ALL_USERS`](#fs-ioc-remove-encryption-key-all-users) | const |  |
+| [`BTRFS_IOC_FS_INFO`](#btrfs-ioc-fs-info) | const |  |
+| [`VIDIOC_ENUM_FMT`](#vidioc-enum-fmt) | const |  |
+| [`VIDIOC_G_INPUT`](#vidioc-g-input) | const |  |
+| [`VTPM_PROXY_IOC_NEW_DEV`](#vtpm-proxy-ioc-new-dev) | const |  |
+| [`DFL_FPGA_FME_ERR_GET_IRQ_NUM`](#dfl-fpga-fme-err-get-irq-num) | const |  |
+| [`ND_IOCTL_DIMM_FLAGS`](#nd-ioctl-dimm-flags) | const |  |
+| [`BTRFS_IOC_QUOTA_RESCAN`](#btrfs-ioc-quota-rescan) | const |  |
+| [`MMTIMER_GETCOUNTER`](#mmtimer-getcounter) | const |  |
+| [`MATROXFB_GET_OUTPUT_MODE`](#matroxfb-get-output-mode) | const |  |
+| [`BTRFS_IOC_QUOTA_RESCAN_WAIT`](#btrfs-ioc-quota-rescan-wait) | const |  |
+| [`RIO_CM_CHAN_BIND`](#rio-cm-chan-bind) | const |  |
 | [`HIDIOCGRDESC`](#hidiocgrdesc) | const |  |
-| [`MGSL_IOCGIF`](#mgsl_iocgif) | const |  |
-| [`VIDIOC_S_OUTPUT`](#vidioc_s_output) | const |  |
+| [`MGSL_IOCGIF`](#mgsl-iocgif) | const |  |
+| [`VIDIOC_S_OUTPUT`](#vidioc-s-output) | const |  |
 | [`HIDIOCGREPORTINFO`](#hidiocgreportinfo) | const |  |
-| [`WDIOC_GETBOOTSTATUS`](#wdioc_getbootstatus) | const |  |
-| [`VDUSE_VQ_GET_INFO`](#vduse_vq_get_info) | const |  |
-| [`ACRN_IOCTL_ASSIGN_PCIDEV`](#acrn_ioctl_assign_pcidev) | const |  |
+| [`WDIOC_GETBOOTSTATUS`](#wdioc-getbootstatus) | const |  |
+| [`VDUSE_VQ_GET_INFO`](#vduse-vq-get-info) | const |  |
+| [`ACRN_IOCTL_ASSIGN_PCIDEV`](#acrn-ioctl-assign-pcidev) | const |  |
 | [`BLKGETDISKSEQ`](#blkgetdiskseq) | const |  |
-| [`ACRN_IOCTL_PM_GET_CPU_STATE`](#acrn_ioctl_pm_get_cpu_state) | const |  |
-| [`ACRN_IOCTL_DESTROY_VM`](#acrn_ioctl_destroy_vm) | const |  |
-| [`ACRN_IOCTL_SET_PTDEV_INTR`](#acrn_ioctl_set_ptdev_intr) | const |  |
-| [`ACRN_IOCTL_CREATE_IOREQ_CLIENT`](#acrn_ioctl_create_ioreq_client) | const |  |
-| [`ACRN_IOCTL_IRQFD`](#acrn_ioctl_irqfd) | const |  |
-| [`ACRN_IOCTL_CREATE_VM`](#acrn_ioctl_create_vm) | const |  |
-| [`ACRN_IOCTL_INJECT_MSI`](#acrn_ioctl_inject_msi) | const |  |
-| [`ACRN_IOCTL_ATTACH_IOREQ_CLIENT`](#acrn_ioctl_attach_ioreq_client) | const |  |
-| [`ACRN_IOCTL_RESET_PTDEV_INTR`](#acrn_ioctl_reset_ptdev_intr) | const |  |
-| [`ACRN_IOCTL_NOTIFY_REQUEST_FINISH`](#acrn_ioctl_notify_request_finish) | const |  |
-| [`ACRN_IOCTL_SET_IRQLINE`](#acrn_ioctl_set_irqline) | const |  |
-| [`ACRN_IOCTL_START_VM`](#acrn_ioctl_start_vm) | const |  |
-| [`ACRN_IOCTL_SET_VCPU_REGS`](#acrn_ioctl_set_vcpu_regs) | const |  |
-| [`ACRN_IOCTL_SET_MEMSEG`](#acrn_ioctl_set_memseg) | const |  |
-| [`ACRN_IOCTL_PAUSE_VM`](#acrn_ioctl_pause_vm) | const |  |
-| [`ACRN_IOCTL_CLEAR_VM_IOREQ`](#acrn_ioctl_clear_vm_ioreq) | const |  |
-| [`ACRN_IOCTL_UNSET_MEMSEG`](#acrn_ioctl_unset_memseg) | const |  |
-| [`ACRN_IOCTL_IOEVENTFD`](#acrn_ioctl_ioeventfd) | const |  |
-| [`ACRN_IOCTL_DEASSIGN_PCIDEV`](#acrn_ioctl_deassign_pcidev) | const |  |
-| [`ACRN_IOCTL_RESET_VM`](#acrn_ioctl_reset_vm) | const |  |
-| [`ACRN_IOCTL_DESTROY_IOREQ_CLIENT`](#acrn_ioctl_destroy_ioreq_client) | const |  |
-| [`ACRN_IOCTL_VM_INTR_MONITOR`](#acrn_ioctl_vm_intr_monitor) | const |  |
+| [`ACRN_IOCTL_PM_GET_CPU_STATE`](#acrn-ioctl-pm-get-cpu-state) | const |  |
+| [`ACRN_IOCTL_DESTROY_VM`](#acrn-ioctl-destroy-vm) | const |  |
+| [`ACRN_IOCTL_SET_PTDEV_INTR`](#acrn-ioctl-set-ptdev-intr) | const |  |
+| [`ACRN_IOCTL_CREATE_IOREQ_CLIENT`](#acrn-ioctl-create-ioreq-client) | const |  |
+| [`ACRN_IOCTL_IRQFD`](#acrn-ioctl-irqfd) | const |  |
+| [`ACRN_IOCTL_CREATE_VM`](#acrn-ioctl-create-vm) | const |  |
+| [`ACRN_IOCTL_INJECT_MSI`](#acrn-ioctl-inject-msi) | const |  |
+| [`ACRN_IOCTL_ATTACH_IOREQ_CLIENT`](#acrn-ioctl-attach-ioreq-client) | const |  |
+| [`ACRN_IOCTL_RESET_PTDEV_INTR`](#acrn-ioctl-reset-ptdev-intr) | const |  |
+| [`ACRN_IOCTL_NOTIFY_REQUEST_FINISH`](#acrn-ioctl-notify-request-finish) | const |  |
+| [`ACRN_IOCTL_SET_IRQLINE`](#acrn-ioctl-set-irqline) | const |  |
+| [`ACRN_IOCTL_START_VM`](#acrn-ioctl-start-vm) | const |  |
+| [`ACRN_IOCTL_SET_VCPU_REGS`](#acrn-ioctl-set-vcpu-regs) | const |  |
+| [`ACRN_IOCTL_SET_MEMSEG`](#acrn-ioctl-set-memseg) | const |  |
+| [`ACRN_IOCTL_PAUSE_VM`](#acrn-ioctl-pause-vm) | const |  |
+| [`ACRN_IOCTL_CLEAR_VM_IOREQ`](#acrn-ioctl-clear-vm-ioreq) | const |  |
+| [`ACRN_IOCTL_UNSET_MEMSEG`](#acrn-ioctl-unset-memseg) | const |  |
+| [`ACRN_IOCTL_IOEVENTFD`](#acrn-ioctl-ioeventfd) | const |  |
+| [`ACRN_IOCTL_DEASSIGN_PCIDEV`](#acrn-ioctl-deassign-pcidev) | const |  |
+| [`ACRN_IOCTL_RESET_VM`](#acrn-ioctl-reset-vm) | const |  |
+| [`ACRN_IOCTL_DESTROY_IOREQ_CLIENT`](#acrn-ioctl-destroy-ioreq-client) | const |  |
+| [`ACRN_IOCTL_VM_INTR_MONITOR`](#acrn-ioctl-vm-intr-monitor) | const |  |
 
 ## Constants
 

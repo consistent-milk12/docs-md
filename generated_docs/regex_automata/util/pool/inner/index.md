@@ -11,8 +11,8 @@
 | [`CacheLine`](#cacheline) | struct | This puts each stack in the pool below into its own cache line. |
 | [`Pool`](#pool) | struct | A thread safe pool utilizing std-only features. |
 | [`PoolGuard`](#poolguard) | struct | A guard that is returned when a caller requests a value from the pool. |
-| [`MAX_POOL_STACKS`](#max_pool_stacks) | const | The number of stacks we use inside of the pool. |
-| [`THREAD_ID`](#thread_id) | const | A thread local used to assign an ID to a thread. |
+| [`MAX_POOL_STACKS`](#max-pool-stacks) | const | The number of stacks we use inside of the pool. |
+| [`THREAD_ID`](#thread-id) | const | A thread local used to assign an ID to a thread. |
 
 ## Structs
 
@@ -157,11 +157,11 @@ A guard that is returned when a caller requests a value from the pool.
 
 #### Trait Implementations
 
-##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
+##### `impl<T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'a, T: Send, F: Fn() -> T> Drop for PoolGuard<'a, T, F>`
+##### `impl<T: Send, F: Fn() -> T> Drop for PoolGuard<'a, T, F>`
 
 - <span id="poolguard-drop"></span>`fn drop(&mut self)`
 

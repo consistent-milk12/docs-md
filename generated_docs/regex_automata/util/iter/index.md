@@ -255,21 +255,21 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 #### Trait Implementations
 
-##### `impl<'h, F> Debug for TryHalfMatchesIter<'h, F>`
+##### `impl<F> Debug for TryHalfMatchesIter<'h, F>`
 
 - <span id="tryhalfmatchesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<I> IntoIterator for TryHalfMatchesIter<'h, F>`
+##### `impl IntoIterator for TryHalfMatchesIter<'h, F>`
 
-- <span id="tryhalfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tryhalfmatchesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tryhalfmatchesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="tryhalfmatchesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tryhalfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for TryHalfMatchesIter<'h, F>`
+##### `impl<F> Iterator for TryHalfMatchesIter<'h, F>`
 
-- <span id="tryhalfmatchesiter-type-item"></span>`type Item = Result<HalfMatch, MatchError>`
+- <span id="tryhalfmatchesiter-iterator-type-item"></span>`type Item = Result<HalfMatch, MatchError>`
 
 - <span id="tryhalfmatchesiter-next"></span>`fn next(&mut self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md#halfmatch), [`MatchError`](../../index.md#matcherror)
 
@@ -307,21 +307,21 @@ then calling `TryHalfMatchesIter::infallible`.
 
 #### Trait Implementations
 
-##### `impl<'h, F: fmt::Debug> Debug for HalfMatchesIter<'h, F>`
+##### `impl<F: fmt::Debug> Debug for HalfMatchesIter<'h, F>`
 
 - <span id="halfmatchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for HalfMatchesIter<'h, F>`
+##### `impl IntoIterator for HalfMatchesIter<'h, F>`
 
-- <span id="halfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="halfmatchesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="halfmatchesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="halfmatchesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="halfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for HalfMatchesIter<'h, F>`
+##### `impl<F> Iterator for HalfMatchesIter<'h, F>`
 
-- <span id="halfmatchesiter-type-item"></span>`type Item = HalfMatch`
+- <span id="halfmatchesiter-iterator-type-item"></span>`type Item = HalfMatch`
 
 - <span id="halfmatchesiter-next"></span>`fn next(&mut self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md#halfmatch)
 
@@ -363,21 +363,21 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 #### Trait Implementations
 
-##### `impl<'h, F> Debug for TryMatchesIter<'h, F>`
+##### `impl<F> Debug for TryMatchesIter<'h, F>`
 
 - <span id="trymatchesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<I> IntoIterator for TryMatchesIter<'h, F>`
+##### `impl IntoIterator for TryMatchesIter<'h, F>`
 
-- <span id="trymatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trymatchesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trymatchesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="trymatchesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trymatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for TryMatchesIter<'h, F>`
+##### `impl<F> Iterator for TryMatchesIter<'h, F>`
 
-- <span id="trymatchesiter-type-item"></span>`type Item = Result<Match, MatchError>`
+- <span id="trymatchesiter-iterator-type-item"></span>`type Item = Result<Match, MatchError>`
 
 - <span id="trymatchesiter-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md#match), [`MatchError`](../../index.md#matcherror)
 
@@ -414,21 +414,21 @@ then calling `TryMatchesIter::infallible`.
 
 #### Trait Implementations
 
-##### `impl<'h, F: fmt::Debug> Debug for MatchesIter<'h, F>`
+##### `impl<F: fmt::Debug> Debug for MatchesIter<'h, F>`
 
 - <span id="matchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MatchesIter<'h, F>`
+##### `impl IntoIterator for MatchesIter<'h, F>`
 
-- <span id="matchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matchesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matchesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="matchesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for MatchesIter<'h, F>`
+##### `impl<F> Iterator for MatchesIter<'h, F>`
 
-- <span id="matchesiter-type-item"></span>`type Item = Match`
+- <span id="matchesiter-iterator-type-item"></span>`type Item = Match`
 
 - <span id="matchesiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md#match)
 
@@ -469,21 +469,21 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 #### Trait Implementations
 
-##### `impl<'h, F> Debug for TryCapturesIter<'h, F>`
+##### `impl<F> Debug for TryCapturesIter<'h, F>`
 
 - <span id="trycapturesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<I> IntoIterator for TryCapturesIter<'h, F>`
+##### `impl IntoIterator for TryCapturesIter<'h, F>`
 
-- <span id="trycapturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trycapturesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trycapturesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="trycapturesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trycapturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for TryCapturesIter<'h, F>`
+##### `impl<F> Iterator for TryCapturesIter<'h, F>`
 
-- <span id="trycapturesiter-type-item"></span>`type Item = Result<Captures, MatchError>`
+- <span id="trycapturesiter-iterator-type-item"></span>`type Item = Result<Captures, MatchError>`
 
 - <span id="trycapturesiter-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md#captures), [`MatchError`](../../index.md#matcherror)
 
@@ -517,21 +517,21 @@ calling `TryCapturesIter::infallible`.
 
 #### Trait Implementations
 
-##### `impl<'h, F: fmt::Debug> Debug for CapturesIter<'h, F>`
+##### `impl<F: fmt::Debug> Debug for CapturesIter<'h, F>`
 
 - <span id="capturesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CapturesIter<'h, F>`
+##### `impl IntoIterator for CapturesIter<'h, F>`
 
-- <span id="capturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="capturesiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, F> Iterator for CapturesIter<'h, F>`
+##### `impl<F> Iterator for CapturesIter<'h, F>`
 
-- <span id="capturesiter-type-item"></span>`type Item = Captures`
+- <span id="capturesiter-iterator-type-item"></span>`type Item = Captures`
 
 - <span id="capturesiter-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../captures/index.md#captures)
 

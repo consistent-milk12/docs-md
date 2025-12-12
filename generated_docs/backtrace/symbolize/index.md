@@ -15,12 +15,12 @@
   - [`ResolveWhat`](#resolvewhat)
 - [Functions](#functions)
   - [`resolve`](#resolve)
-  - [`resolve_frame`](#resolve_frame)
-  - [`adjust_ip`](#adjust_ip)
-  - [`resolve_unsynchronized`](#resolve_unsynchronized)
-  - [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized)
-  - [`format_symbol_name`](#format_symbol_name)
-  - [`clear_symbol_cache`](#clear_symbol_cache)
+  - [`resolve_frame`](#resolve-frame)
+  - [`adjust_ip`](#adjust-ip)
+  - [`resolve_unsynchronized`](#resolve-unsynchronized)
+  - [`resolve_frame_unsynchronized`](#resolve-frame-unsynchronized)
+  - [`format_symbol_name`](#format-symbol-name)
+  - [`clear_symbol_cache`](#clear-symbol-cache)
 
 ## Quick Reference
 
@@ -31,12 +31,12 @@
 | [`SymbolName`](#symbolname) | struct | A wrapper around a symbol name to provide ergonomic accessors to the demangled name, the raw bytes, the raw string, etc. |
 | [`ResolveWhat`](#resolvewhat) | enum |  |
 | [`resolve`](#resolve) | fn | Resolve an address to a symbol, passing the symbol to the specified closure. |
-| [`resolve_frame`](#resolve_frame) | fn | Resolve a previously captured frame to a symbol, passing the symbol to the specified closure. |
-| [`adjust_ip`](#adjust_ip) | fn |  |
-| [`resolve_unsynchronized`](#resolve_unsynchronized) | fn | Same as `resolve`, only unsafe as it's unsynchronized. |
-| [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized) | fn | Same as `resolve_frame`, only unsafe as it's unsynchronized. |
-| [`format_symbol_name`](#format_symbol_name) | fn |  |
-| [`clear_symbol_cache`](#clear_symbol_cache) | fn | Attempt to reclaim that cached memory used to symbolicate addresses. |
+| [`resolve_frame`](#resolve-frame) | fn | Resolve a previously captured frame to a symbol, passing the symbol to the specified closure. |
+| [`adjust_ip`](#adjust-ip) | fn |  |
+| [`resolve_unsynchronized`](#resolve-unsynchronized) | fn | Same as `resolve`, only unsafe as it's unsynchronized. |
+| [`resolve_frame_unsynchronized`](#resolve-frame-unsynchronized) | fn | Same as `resolve_frame`, only unsafe as it's unsynchronized. |
+| [`format_symbol_name`](#format-symbol-name) | fn |  |
+| [`clear_symbol_cache`](#clear-symbol-cache) | fn | Attempt to reclaim that cached memory used to symbolicate addresses. |
 
 ## Modules
 

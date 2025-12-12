@@ -13,10 +13,10 @@
   - [`TryReserveErrorKind`](#tryreserveerrorkind)
   - [`AllocInit`](#allocinit)
 - [Functions](#functions)
-  - [`finish_grow`](#finish_grow)
-  - [`handle_reserve`](#handle_reserve)
-  - [`alloc_guard`](#alloc_guard)
-  - [`capacity_overflow`](#capacity_overflow)
+  - [`finish_grow`](#finish-grow)
+  - [`handle_reserve`](#handle-reserve)
+  - [`alloc_guard`](#alloc-guard)
+  - [`capacity_overflow`](#capacity-overflow)
 
 ## Quick Reference
 
@@ -26,10 +26,10 @@
 | [`RawVec`](#rawvec) | struct | A low-level utility for more ergonomically allocating, reallocating, and deallocating a buffer of memory on the heap without having to worry about all the corner cases involved. |
 | [`TryReserveErrorKind`](#tryreserveerrorkind) | enum | Details of the allocation that caused a `TryReserveError` |
 | [`AllocInit`](#allocinit) | enum |  |
-| [`finish_grow`](#finish_grow) | fn |  |
-| [`handle_reserve`](#handle_reserve) | fn |  |
-| [`alloc_guard`](#alloc_guard) | fn |  |
-| [`capacity_overflow`](#capacity_overflow) | fn |  |
+| [`finish_grow`](#finish-grow) | fn |  |
+| [`handle_reserve`](#handle-reserve) | fn |  |
+| [`alloc_guard`](#alloc-guard) | fn |  |
+| [`capacity_overflow`](#capacity-overflow) | fn |  |
 
 ## Structs
 

@@ -16,9 +16,9 @@ A Serde ast, parsed from the Syn ast and ready to generate Rust code.
   - [`Data`](#data)
   - [`Style`](#style)
 - [Functions](#functions)
-  - [`enum_from_ast`](#enum_from_ast)
-  - [`struct_from_ast`](#struct_from_ast)
-  - [`fields_from_ast`](#fields_from_ast)
+  - [`enum_from_ast`](#enum-from-ast)
+  - [`struct_from_ast`](#struct-from-ast)
+  - [`fields_from_ast`](#fields-from-ast)
 
 ## Quick Reference
 
@@ -29,9 +29,9 @@ A Serde ast, parsed from the Syn ast and ready to generate Rust code.
 | [`Field`](#field) | struct | A field of a struct. |
 | [`Data`](#data) | enum | The fields of a struct or enum. |
 | [`Style`](#style) | enum |  |
-| [`enum_from_ast`](#enum_from_ast) | fn |  |
-| [`struct_from_ast`](#struct_from_ast) | fn |  |
-| [`fields_from_ast`](#fields_from_ast) | fn |  |
+| [`enum_from_ast`](#enum-from-ast) | fn |  |
+| [`struct_from_ast`](#struct-from-ast) | fn |  |
+| [`fields_from_ast`](#fields-from-ast) | fn |  |
 
 ## Structs
 

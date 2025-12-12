@@ -11,7 +11,7 @@
 | [`Export`](#export) | struct | An export from a PE file. |
 | [`ExportTable`](#exporttable) | struct | A partially parsed PE export table. |
 | [`ExportTarget`](#exporttarget) | enum | Where an export is pointing to. |
-| [`parse_ordinal`](#parse_ordinal) | fn |  |
+| [`parse_ordinal`](#parse-ordinal) | fn |  |
 
 ## Structs
 

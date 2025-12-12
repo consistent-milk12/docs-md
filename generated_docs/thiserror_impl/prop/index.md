@@ -8,11 +8,11 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`from_field`](#from_field) | fn |  |
-| [`source_field`](#source_field) | fn |  |
-| [`backtrace_field`](#backtrace_field) | fn |  |
-| [`distinct_backtrace_field`](#distinct_backtrace_field) | fn |  |
-| [`type_is_backtrace`](#type_is_backtrace) | fn |  |
+| [`from_field`](#from-field) | fn |  |
+| [`source_field`](#source-field) | fn |  |
+| [`backtrace_field`](#backtrace-field) | fn |  |
+| [`distinct_backtrace_field`](#distinct-backtrace-field) | fn |  |
+| [`type_is_backtrace`](#type-is-backtrace) | fn |  |
 
 ## Functions
 

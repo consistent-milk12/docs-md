@@ -76,9 +76,9 @@ side effects.
 
 ##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-type-init"></span>`type Init = T`
+- <span id="markdowncapture-pointable-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

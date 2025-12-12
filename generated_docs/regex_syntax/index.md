@@ -175,7 +175,7 @@ The following features are available:
   - [`parser`](#parser)
   - [`rank`](#rank)
   - [`unicode`](#unicode)
-  - [`unicode_tables`](#unicode_tables)
+  - [`unicode_tables`](#unicode-tables)
   - [`utf8`](#utf8)
 - [Structs](#structs)
   - [`Parser`](#parser)
@@ -186,12 +186,12 @@ The following features are available:
 - [Functions](#functions)
   - [`parse`](#parse)
   - [`escape`](#escape)
-  - [`escape_into`](#escape_into)
-  - [`is_meta_character`](#is_meta_character)
-  - [`is_escapeable_character`](#is_escapeable_character)
-  - [`is_word_character`](#is_word_character)
-  - [`try_is_word_character`](#try_is_word_character)
-  - [`is_word_byte`](#is_word_byte)
+  - [`escape_into`](#escape-into)
+  - [`is_meta_character`](#is-meta-character)
+  - [`is_escapeable_character`](#is-escapeable-character)
+  - [`is_word_character`](#is-word-character)
+  - [`try_is_word_character`](#try-is-word-character)
+  - [`is_word_byte`](#is-word-byte)
 
 ## Quick Reference
 
@@ -205,7 +205,7 @@ The following features are available:
 | [`parser`](#parser) | mod |  |
 | [`rank`](#rank) | mod |  |
 | [`unicode`](#unicode) | mod |  |
-| [`unicode_tables`](#unicode_tables) | mod |  |
+| [`unicode_tables`](#unicode-tables) | mod |  |
 | [`utf8`](#utf8) | mod | Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes. |
 | [`Parser`](#parser) | struct |  |
 | [`ParserBuilder`](#parserbuilder) | struct |  |
@@ -213,12 +213,12 @@ The following features are available:
 | [`Error`](#error) | enum |  |
 | [`parse`](#parse) | fn |  |
 | [`escape`](#escape) | fn | Escapes all regular expression meta characters in `text`. |
-| [`escape_into`](#escape_into) | fn | Escapes all meta characters in `text` and writes the result into `buf`. |
-| [`is_meta_character`](#is_meta_character) | fn | Returns true if the given character has significance in a regex. |
-| [`is_escapeable_character`](#is_escapeable_character) | fn | Returns true if the given character can be escaped in a regex. |
-| [`is_word_character`](#is_word_character) | fn | Returns true if and only if the given character is a Unicode word character. |
-| [`try_is_word_character`](#try_is_word_character) | fn | Returns true if and only if the given character is a Unicode word character. |
-| [`is_word_byte`](#is_word_byte) | fn | Returns true if and only if the given character is an ASCII word character. |
+| [`escape_into`](#escape-into) | fn | Escapes all meta characters in `text` and writes the result into `buf`. |
+| [`is_meta_character`](#is-meta-character) | fn | Returns true if the given character has significance in a regex. |
+| [`is_escapeable_character`](#is-escapeable-character) | fn | Returns true if the given character can be escaped in a regex. |
+| [`is_word_character`](#is-word-character) | fn | Returns true if and only if the given character is a Unicode word character. |
+| [`try_is_word_character`](#try-is-word-character) | fn | Returns true if and only if the given character is a Unicode word character. |
+| [`is_word_byte`](#is-word-byte) | fn | Returns true if and only if the given character is an ASCII word character. |
 
 ## Modules
 
@@ -427,7 +427,24 @@ new variant is not considered a breaking change.
 
 ## Functions
 
-*Defined in [`regex-syntax-0.8.8/src/lib.rs:182`](../../.source_1765210505/regex-syntax-0.8.8/src/lib.rs#L182)*
+### `parse`
+
+```rust
+fn parse(pattern: &str) -> Result<hir::Hir, crate::Error>
+```
+
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../.source_1765210505/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
+
+A convenience routine for parsing a regex using default options.
+
+This is equivalent to `Parser::new().parse(pattern)`.
+
+If you need to set non-default options, then use a [`ParserBuilder`](parser/index.md).
+
+This routine returns an [`Hir`](hir::Hir) value. Namely, it automatically
+parses the pattern as an [`Ast`](ast::Ast) and then invokes the translator
+to convert the `Ast` into an `Hir`. If you need access to the `Ast`, then
+you should use a [`ast::parse::Parser`](ast/parse/index.md).
 
 ### `escape`
 

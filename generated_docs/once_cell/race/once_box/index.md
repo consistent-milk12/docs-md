@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`OnceBox`](#oncebox) | struct | A thread-safe cell which can be written to only once. |
-| [`_dummy`](#_dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
+| [`_dummy`](#dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
 
 ## Structs
 

@@ -17,7 +17,7 @@ when one needs access to the [`Automaton`](../automaton/index.md) trait implemen
 |------|------|-------------|
 | [`DFA`](#dfa) | struct | A DFA implementation of Aho-Corasick. |
 | [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick DFA. |
-| [`sparse_iter`](#sparse_iter) | fn | Iterate over all possible equivalence class transitions in this state. |
+| [`sparse_iter`](#sparse-iter) | fn | Iterate over all possible equivalence class transitions in this state. |
 
 ## Structs
 

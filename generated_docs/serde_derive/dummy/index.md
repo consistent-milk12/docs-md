@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`wrap_in_const`](#wrap_in_const) | fn |  |
+| [`wrap_in_const`](#wrap-in-const) | fn |  |
 
 ## Functions
 

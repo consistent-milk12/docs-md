@@ -9,10 +9,10 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`AllowNoSemi`](#allownosemi) | struct |  |
-| [`parse_stmt`](#parse_stmt) | fn |  |
-| [`stmt_mac`](#stmt_mac) | fn |  |
-| [`stmt_local`](#stmt_local) | fn |  |
-| [`stmt_expr`](#stmt_expr) | fn |  |
+| [`parse_stmt`](#parse-stmt) | fn |  |
+| [`stmt_mac`](#stmt-mac) | fn |  |
+| [`stmt_local`](#stmt-local) | fn |  |
+| [`stmt_expr`](#stmt-expr) | fn |  |
 
 ## Structs
 

@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Demangle`](#demangle) | struct | Representation of a demangled symbol name. |
 | [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
-| [`is_rust_hash`](#is_rust_hash) | fn |  |
+| [`is_rust_hash`](#is-rust-hash) | fn |  |
 
 ## Structs
 

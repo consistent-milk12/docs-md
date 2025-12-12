@@ -36,29 +36,29 @@ Parallel iterator over a B-Tree map
 
 - <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for IntoIter<K, V>`
+##### `impl IntoEither for IntoIter<K, V>`
 
-##### `impl<T> IntoParallelIterator for IntoIter<K, V>`
+##### `impl IntoParallelIterator for IntoIter<K, V>`
 
-- <span id="intoiter-type-iter"></span>`type Iter = T`
+- <span id="intoiter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<K: Send, V: Send> ParallelIterator for IntoIter<K, V>`
 
-- <span id="intoiter-type-item"></span>`type Item = (K, V)`
+- <span id="intoiter-paralleliterator-type-item"></span>`type Item = (K, V)`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for IntoIter<K, V>`
+##### `impl Pointable for IntoIter<K, V>`
 
-- <span id="intoiter-const-align"></span>`const ALIGN: usize`
+- <span id="intoiter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-type-init"></span>`type Init = T`
+- <span id="intoiter-pointable-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -86,33 +86,33 @@ Parallel iterator over an immutable reference to a B-Tree map
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a, K: fmt::Debug, V: fmt::Debug> Debug for Iter<'a, K, V>`
+##### `impl<K: fmt::Debug, V: fmt::Debug> Debug for Iter<'a, K, V>`
 
 - <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Iter<'a, K, V>`
+##### `impl IntoEither for Iter<'a, K, V>`
 
-##### `impl<T> IntoParallelIterator for Iter<'a, K, V>`
+##### `impl IntoParallelIterator for Iter<'a, K, V>`
 
-- <span id="iter-type-iter"></span>`type Iter = T`
+- <span id="iter-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, K: Sync + 'a, V: Sync + 'a> ParallelIterator for Iter<'a, K, V>`
+##### `impl<K: Sync + 'a, V: Sync + 'a> ParallelIterator for Iter<'a, K, V>`
 
-- <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="iter-paralleliterator-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Iter<'a, K, V>`
+##### `impl Pointable for Iter<'a, K, V>`
 
-- <span id="iter-const-align"></span>`const ALIGN: usize`
+- <span id="iter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-type-init"></span>`type Init = T`
+- <span id="iter-pointable-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -136,33 +136,33 @@ Parallel iterator over a mutable reference to a B-Tree map
 
 #### Trait Implementations
 
-##### `impl<'a, K: fmt::Debug, V: fmt::Debug> Debug for IterMut<'a, K, V>`
+##### `impl<K: fmt::Debug, V: fmt::Debug> Debug for IterMut<'a, K, V>`
 
 - <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for IterMut<'a, K, V>`
+##### `impl IntoEither for IterMut<'a, K, V>`
 
-##### `impl<T> IntoParallelIterator for IterMut<'a, K, V>`
+##### `impl IntoParallelIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-iter"></span>`type Iter = T`
+- <span id="itermut-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="itermut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="itermut-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a, K: Sync + 'a, V: Send + 'a> ParallelIterator for IterMut<'a, K, V>`
+##### `impl<K: Sync + 'a, V: Send + 'a> ParallelIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
+- <span id="itermut-paralleliterator-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
 - <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md#consumer)
 
 - <span id="itermut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for IterMut<'a, K, V>`
+##### `impl Pointable for IterMut<'a, K, V>`
 
-- <span id="itermut-const-align"></span>`const ALIGN: usize`
+- <span id="itermut-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="itermut-type-init"></span>`type Init = T`
+- <span id="itermut-pointable-type-init"></span>`type Init = T`
 
 - <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

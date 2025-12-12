@@ -11,7 +11,7 @@
 | [`TakeAny`](#takeany) | struct | `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`. |
 | [`TakeAnyConsumer`](#takeanyconsumer) | struct |  |
 | [`TakeAnyFolder`](#takeanyfolder) | struct |  |
-| [`checked_decrement`](#checked_decrement) | fn |  |
+| [`checked_decrement`](#checked-decrement) | fn |  |
 
 ## Structs
 
@@ -44,27 +44,27 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](../ind
 
 - <span id="takeany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TakeAny<I>`
+##### `impl IntoEither for TakeAny<I>`
 
-##### `impl<T> IntoParallelIterator for TakeAny<I>`
+##### `impl IntoParallelIterator for TakeAny<I>`
 
-- <span id="takeany-type-iter"></span>`type Iter = T`
+- <span id="takeany-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="takeany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeany-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for TakeAny<I>`
 
-- <span id="takeany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeany-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
-##### `impl<T> Pointable for TakeAny<I>`
+##### `impl Pointable for TakeAny<I>`
 
-- <span id="takeany-const-align"></span>`const ALIGN: usize`
+- <span id="takeany-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeany-type-init"></span>`type Init = T`
+- <span id="takeany-pointable-type-init"></span>`type Init = T`
 
 - <span id="takeany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -87,13 +87,13 @@ struct TakeAnyConsumer<'f, C> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C> Consumer for TakeAnyConsumer<'f, C>`
+##### `impl<T, C> Consumer for TakeAnyConsumer<'f, C>`
 
-- <span id="takeanyconsumer-type-folder"></span>`type Folder = TakeAnyFolder<'f, <C as Consumer>::Folder>`
+- <span id="takeanyconsumer-consumer-type-folder"></span>`type Folder = TakeAnyFolder<'f, <C as Consumer>::Folder>`
 
-- <span id="takeanyconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="takeanyconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="takeanyconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="takeanyconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="takeanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -101,13 +101,13 @@ struct TakeAnyConsumer<'f, C> {
 
 - <span id="takeanyconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for TakeAnyConsumer<'f, C>`
+##### `impl IntoEither for TakeAnyConsumer<'f, C>`
 
-##### `impl<T> Pointable for TakeAnyConsumer<'f, C>`
+##### `impl Pointable for TakeAnyConsumer<'f, C>`
 
-- <span id="takeanyconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="takeanyconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanyconsumer-type-init"></span>`type Init = T`
+- <span id="takeanyconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="takeanyconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -117,7 +117,7 @@ struct TakeAnyConsumer<'f, C> {
 
 - <span id="takeanyconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, T, C> UnindexedConsumer for TakeAnyConsumer<'f, C>`
+##### `impl<T, C> UnindexedConsumer for TakeAnyConsumer<'f, C>`
 
 - <span id="takeanyconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -136,9 +136,9 @@ struct TakeAnyFolder<'f, C> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C> Folder for TakeAnyFolder<'f, C>`
+##### `impl<T, C> Folder for TakeAnyFolder<'f, C>`
 
-- <span id="takeanyfolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="takeanyfolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="takeanyfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -148,13 +148,13 @@ struct TakeAnyFolder<'f, C> {
 
 - <span id="takeanyfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for TakeAnyFolder<'f, C>`
+##### `impl IntoEither for TakeAnyFolder<'f, C>`
 
-##### `impl<T> Pointable for TakeAnyFolder<'f, C>`
+##### `impl Pointable for TakeAnyFolder<'f, C>`
 
-- <span id="takeanyfolder-const-align"></span>`const ALIGN: usize`
+- <span id="takeanyfolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanyfolder-type-init"></span>`type Init = T`
+- <span id="takeanyfolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="takeanyfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

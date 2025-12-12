@@ -12,7 +12,7 @@ Thread-safe, blocking version of `OnceCell`.
 |------|------|-------------|
 | [`OnceCell`](#oncecell) | struct | A thread-safe cell which can be written to only once. |
 | [`Lazy`](#lazy) | struct | A value which is initialized on the first access. |
-| [`_dummy`](#_dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
+| [`_dummy`](#dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
 
 ## Structs
 
@@ -164,7 +164,7 @@ fn main() {
 
 ##### `impl<T, F: FnOnce() -> T> Deref for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-deref-type-target"></span>`type Target = T`
 
 - <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
@@ -172,9 +172,9 @@ fn main() {
 
 - <span id="lazy-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
-##### `impl<P, T> Receiver for Lazy<T, F>`
+##### `impl<T> Receiver for Lazy<T, F>`
 
-- <span id="lazy-type-target"></span>`type Target = T`
+- <span id="lazy-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 

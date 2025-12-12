@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`file`](#file) | fn |  |
-| [`local_file`](#local_file) | fn |  |
+| [`local_file`](#local-file) | fn |  |
 
 ## Functions
 

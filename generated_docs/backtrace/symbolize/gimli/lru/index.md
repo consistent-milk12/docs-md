@@ -37,7 +37,7 @@ least-recently-used cache with static size
 
 #### Trait Implementations
 
-##### `impl<T, const N: usize> Default for Lru<T, N>`
+##### `impl<T> Default for Lru<T, N>`
 
 - <span id="lru-default"></span>`fn default() -> Self`
 

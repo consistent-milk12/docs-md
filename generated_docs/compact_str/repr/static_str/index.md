@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`StaticStr`](#staticstr) | struct | A buffer stored on the stack whose size is equal to the stack size of `String` The last byte is set to 0. |
-| [`DISCRIMINANT_SIZE`](#discriminant_size) | const |  |
+| [`DISCRIMINANT_SIZE`](#discriminant-size) | const |  |
 
 ## Structs
 

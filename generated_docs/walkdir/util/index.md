@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`device_num`](#device_num) | fn |  |
+| [`device_num`](#device-num) | fn |  |
 
 ## Functions
 

@@ -433,9 +433,9 @@ error is reported.
 
 ##### `impl IntoIterator for WalkDir`
 
-- <span id="walkdir-type-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="walkdir-intoiterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="walkdir-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="walkdir-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="walkdir-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
@@ -577,15 +577,15 @@ The order of elements yielded by this iterator is unspecified.
 
 ##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-type-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="intoiter-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
@@ -668,15 +668,15 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 ##### `impl<I> IntoIterator for FilterEntry<I, P>`
 
-- <span id="filterentry-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="filterentry-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="filterentry-type-intoiter"></span>`type IntoIter = I`
+- <span id="filterentry-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="filterentry-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for FilterEntry<IntoIter, P>`
 
-- <span id="filterentry-type-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="filterentry-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
 - <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 
@@ -737,15 +737,15 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 ##### `impl IntoIterator for DirList`
 
-- <span id="dirlist-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dirlist-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dirlist-type-intoiter"></span>`type IntoIter = I`
+- <span id="dirlist-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dirlist-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DirList`
 
-- <span id="dirlist-type-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="dirlist-iterator-type-item"></span>`type Item = Result<DirEntry, Error>`
 
 - <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md#direntry)
 

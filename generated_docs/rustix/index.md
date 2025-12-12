@@ -103,7 +103,7 @@ which does perform sandboxing and restricts ambient authorities.
   - [`buffer`](#buffer)
   - [`cstr`](#cstr)
   - [`utils`](#utils)
-  - [`maybe_polyfill`](#maybe_polyfill)
+  - [`maybe_polyfill`](#maybe-polyfill)
   - [`bitcast`](#bitcast)
   - [`backend`](#backend)
   - [`fd`](#fd)
@@ -112,7 +112,7 @@ which does perform sandboxing and restricts ambient authorities.
   - [`ioctl`](#ioctl)
   - [`termios`](#termios)
   - [`pid`](#pid)
-  - [`not_implemented`](#not_implemented)
+  - [`not_implemented`](#not-implemented)
 - [Macros](#macros)
   - [`cstr!`](#cstr)
 
@@ -123,7 +123,7 @@ which does perform sandboxing and restricts ambient authorities.
 | [`buffer`](#buffer) | mod | Utilities for functions that return data via buffers. |
 | [`cstr`](#cstr) | mod |  |
 | [`utils`](#utils) | mod | Miscellaneous minor utilities. |
-| [`maybe_polyfill`](#maybe_polyfill) | mod | Imports from `std` that would be polyfilled for `no_std` builds (see `src/polyfill/no_std`). |
+| [`maybe_polyfill`](#maybe-polyfill) | mod | Imports from `std` that would be polyfilled for `no_std` builds (see `src/polyfill/no_std`). |
 | [`bitcast`](#bitcast) | mod | The `bitcast` and `bitflags_bits` macros. |
 | [`backend`](#backend) | mod | The linux_raw backend. |
 | [`fd`](#fd) | mod | Export the `*Fd` types and traits that are used in rustix's public API. |
@@ -132,7 +132,7 @@ which does perform sandboxing and restricts ambient authorities.
 | [`ioctl`](#ioctl) | mod | Unsafe `ioctl` API. |
 | [`termios`](#termios) | mod | Terminal I/O stream operations. |
 | [`pid`](#pid) | mod | The `Pid` type. |
-| [`not_implemented`](#not_implemented) | mod | Documentation about unimplemented functions. |
+| [`not_implemented`](#not-implemented) | mod | Documentation about unimplemented functions. |
 | [`cstr!`](#cstr) | macro | A macro for [`CStr`] literals. |
 
 ## Modules

@@ -28,7 +28,7 @@ struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 
 - <span id="tokensordefault-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a, T> ToTokens for TokensOrDefault<'a, T>`
+##### `impl<T> ToTokens for TokensOrDefault<'a, T>`
 
 - <span id="tokensordefault-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

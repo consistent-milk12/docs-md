@@ -908,7 +908,7 @@
   - [`dispatcher`](#dispatcher)
   - [`field`](#field)
   - [`instrument`](#instrument)
-  - [`level_filters`](#level_filters)
+  - [`level_filters`](#level-filters)
   - [`span`](#span)
   - [`subscriber`](#subscriber)
   - [`sealed`](#sealed)
@@ -922,14 +922,14 @@
 - [Macros](#macros)
   - [`event!`](#event)
   - [`span!`](#span)
-  - [`record_all!`](#record_all)
-  - [`trace_span!`](#trace_span)
-  - [`debug_span!`](#debug_span)
-  - [`info_span!`](#info_span)
-  - [`warn_span!`](#warn_span)
-  - [`error_span!`](#error_span)
-  - [`event_enabled!`](#event_enabled)
-  - [`span_enabled!`](#span_enabled)
+  - [`record_all!`](#record-all)
+  - [`trace_span!`](#trace-span)
+  - [`debug_span!`](#debug-span)
+  - [`info_span!`](#info-span)
+  - [`warn_span!`](#warn-span)
+  - [`error_span!`](#error-span)
+  - [`event_enabled!`](#event-enabled)
+  - [`span_enabled!`](#span-enabled)
   - [`enabled!`](#enabled)
   - [`trace!`](#trace)
   - [`debug!`](#debug)
@@ -945,7 +945,7 @@
 | [`dispatcher`](#dispatcher) | mod | Dispatches trace events to [`Subscriber`]s. |
 | [`field`](#field) | mod | `Span` and `Event` key-value data. |
 | [`instrument`](#instrument) | mod | Attach a span to a `std::future::Future`. |
-| [`level_filters`](#level_filters) | mod | Trace verbosity level filtering. |
+| [`level_filters`](#level-filters) | mod | Trace verbosity level filtering. |
 | [`span`](#span) | mod | Spans represent periods of time in which a program was executing in a particular context. |
 | [`subscriber`](#subscriber) | mod | Collects and records trace data. |
 | [`sealed`](#sealed) | mod |  |
@@ -955,14 +955,14 @@
 | [`Subscriber`](#subscriber) | fn |  |
 | [`event!`](#event) | macro | Constructs a new `Event`. |
 | [`span!`](#span) | macro | Constructs a new span. |
-| [`record_all!`](#record_all) | macro | Records multiple values on a span in a single call. |
-| [`trace_span!`](#trace_span) | macro | Constructs a span at the trace level. |
-| [`debug_span!`](#debug_span) | macro | Constructs a span at the debug level. |
-| [`info_span!`](#info_span) | macro | Constructs a span at the info level. |
-| [`warn_span!`](#warn_span) | macro | Constructs a span at the warn level. |
-| [`error_span!`](#error_span) | macro | Constructs a span at the error level. |
-| [`event_enabled!`](#event_enabled) | macro | Tests whether an event with the specified level and target would be enabled. |
-| [`span_enabled!`](#span_enabled) | macro | Tests whether a span with the specified level and target would be enabled. |
+| [`record_all!`](#record-all) | macro | Records multiple values on a span in a single call. |
+| [`trace_span!`](#trace-span) | macro | Constructs a span at the trace level. |
+| [`debug_span!`](#debug-span) | macro | Constructs a span at the debug level. |
+| [`info_span!`](#info-span) | macro | Constructs a span at the info level. |
+| [`warn_span!`](#warn-span) | macro | Constructs a span at the warn level. |
+| [`error_span!`](#error-span) | macro | Constructs a span at the error level. |
+| [`event_enabled!`](#event-enabled) | macro | Tests whether an event with the specified level and target would be enabled. |
+| [`span_enabled!`](#span-enabled) | macro | Tests whether a span with the specified level and target would be enabled. |
 | [`enabled!`](#enabled) | macro | Checks whether a span or event is [enabled] based on the provided [metadata]. |
 | [`trace!`](#trace) | macro | Constructs an event at the trace level. |
 | [`debug!`](#debug) | macro | Constructs an event at the debug level. |
@@ -1120,9 +1120,19 @@ instrumented with a `tracing` [`span`](span/index.md).
 
 ## Functions
 
-*Defined in [`tracing-0.1.43/src/lib.rs:957`](../../.source_1765210505/tracing-0.1.43/src/lib.rs#L957)*
+### `Value`
 
-*Defined in [`tracing-0.1.43/src/lib.rs:957`](../../.source_1765210505/tracing-0.1.43/src/lib.rs#L957)*
+```rust
+fn Value(t: T) -> T
+```
+
+Returns the argument unchanged.
+
+### `Subscriber`
+
+```rust
+fn Subscriber(&self) -> &T
+```
 
 ## Macros
 

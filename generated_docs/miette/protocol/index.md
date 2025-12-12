@@ -24,8 +24,8 @@ full reporting and such features.
 - [Type Aliases](#type-aliases)
   - [`ByteOffset`](#byteoffset)
 - [Macros](#macros)
-  - [`box_error_impls!`](#box_error_impls)
-  - [`box_borrow_impls!`](#box_borrow_impls)
+  - [`box_error_impls!`](#box-error-impls)
+  - [`box_borrow_impls!`](#box-borrow-impls)
 
 ## Quick Reference
 
@@ -40,8 +40,8 @@ full reporting and such features.
 | [`SourceCode`](#sourcecode) | trait | Represents readable source code of some sort. |
 | [`SpanContents`](#spancontents) | trait | Contents of a [`SourceCode`] covered by [`SourceSpan`]. |
 | [`ByteOffset`](#byteoffset) | type | "Raw" type for the byte offset from the beginning of a [`SourceCode`]. |
-| [`box_error_impls!`](#box_error_impls) | macro |  |
-| [`box_borrow_impls!`](#box_borrow_impls) | macro |  |
+| [`box_error_impls!`](#box-error-impls) | macro |  |
+| [`box_borrow_impls!`](#box-borrow-impls) | macro |  |
 
 ## Structs
 

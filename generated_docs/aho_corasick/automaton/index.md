@@ -29,13 +29,13 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 - [Traits](#traits)
   - [`Automaton`](#automaton)
 - [Functions](#functions)
-  - [`try_find_fwd`](#try_find_fwd)
-  - [`try_find_fwd_imp`](#try_find_fwd_imp)
-  - [`try_find_overlapping_fwd`](#try_find_overlapping_fwd)
-  - [`try_find_overlapping_fwd_imp`](#try_find_overlapping_fwd_imp)
-  - [`get_match`](#get_match)
-  - [`fmt_state_indicator`](#fmt_state_indicator)
-  - [`sparse_transitions`](#sparse_transitions)
+  - [`try_find_fwd`](#try-find-fwd)
+  - [`try_find_fwd_imp`](#try-find-fwd-imp)
+  - [`try_find_overlapping_fwd`](#try-find-overlapping-fwd)
+  - [`try_find_overlapping_fwd_imp`](#try-find-overlapping-fwd-imp)
+  - [`get_match`](#get-match)
+  - [`fmt_state_indicator`](#fmt-state-indicator)
+  - [`sparse_transitions`](#sparse-transitions)
 
 ## Quick Reference
 
@@ -53,13 +53,13 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 | [`Candidate`](#candidate) | enum |  |
 | [`StreamChunk`](#streamchunk) | enum | A single chunk yielded by the stream chunk iterator. |
 | [`Automaton`](#automaton) | trait | A trait that abstracts over Aho-Corasick automata. |
-| [`try_find_fwd`](#try_find_fwd) | fn |  |
-| [`try_find_fwd_imp`](#try_find_fwd_imp) | fn |  |
-| [`try_find_overlapping_fwd`](#try_find_overlapping_fwd) | fn |  |
-| [`try_find_overlapping_fwd_imp`](#try_find_overlapping_fwd_imp) | fn |  |
-| [`get_match`](#get_match) | fn |  |
-| [`fmt_state_indicator`](#fmt_state_indicator) | fn | Write a prefix "state" indicator for fmt::Debug impls. |
-| [`sparse_transitions`](#sparse_transitions) | fn | Return an iterator of transitions in a sparse format given an iterator of all explicitly defined transitions. |
+| [`try_find_fwd`](#try-find-fwd) | fn |  |
+| [`try_find_fwd_imp`](#try-find-fwd-imp) | fn |  |
+| [`try_find_overlapping_fwd`](#try-find-overlapping-fwd) | fn |  |
+| [`try_find_overlapping_fwd_imp`](#try-find-overlapping-fwd-imp) | fn |  |
+| [`get_match`](#get-match) | fn |  |
+| [`fmt_state_indicator`](#fmt-state-indicator) | fn | Write a prefix "state" indicator for fmt::Debug impls. |
+| [`sparse_transitions`](#sparse-transitions) | fn | Return an iterator of transitions in a sparse format given an iterator of all explicitly defined transitions. |
 
 ## Modules
 
@@ -195,7 +195,7 @@ panics or silent logical errors.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](../util/primitives/index.md#stateid)
 
@@ -446,21 +446,21 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h, A: fmt::Debug> Debug for FindIter<'a, 'h, A>`
+##### `impl<A: fmt::Debug> Debug for FindIter<'a, 'h, A>`
 
 - <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindIter<'a, 'h, A>`
+##### `impl IntoIterator for FindIter<'a, 'h, A>`
 
-- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h, A: Automaton> Iterator for FindIter<'a, 'h, A>`
+##### `impl<A: Automaton> Iterator for FindIter<'a, 'h, A>`
 
-- <span id="finditer-type-item"></span>`type Item = Match`
+- <span id="finditer-iterator-type-item"></span>`type Item = Match`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
@@ -494,21 +494,21 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h, A: fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
+##### `impl<A: fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
 
 - <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h, A>`
+##### `impl IntoIterator for FindOverlappingIter<'a, 'h, A>`
 
-- <span id="findoverlappingiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findoverlappingiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="findoverlappingiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h, A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
+##### `impl<A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
 
-- <span id="findoverlappingiter-type-item"></span>`type Item = Match`
+- <span id="findoverlappingiter-iterator-type-item"></span>`type Item = Match`
 
 - <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md#match)
 
@@ -542,21 +542,21 @@ implementation.
 
 #### Trait Implementations
 
-##### `impl<'a, A: fmt::Debug, R: fmt::Debug> Debug for StreamFindIter<'a, A, R>`
+##### `impl<A: fmt::Debug, R: fmt::Debug> Debug for StreamFindIter<'a, A, R>`
 
 - <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for StreamFindIter<'a, A, R>`
+##### `impl IntoIterator for StreamFindIter<'a, A, R>`
 
-- <span id="streamfinditer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamfinditer-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamfinditer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
+##### `impl<A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
 
-- <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
+- <span id="streamfinditer-iterator-type-item"></span>`type Item = Result<Match, Error>`
 
 - <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md#match)
 
@@ -659,7 +659,7 @@ chunks it can copy and which it needs to replace.
 
 #### Trait Implementations
 
-##### `impl<'a, A: fmt::Debug, R: fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
+##### `impl<A: fmt::Debug, R: fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
 
 - <span id="streamchunkiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

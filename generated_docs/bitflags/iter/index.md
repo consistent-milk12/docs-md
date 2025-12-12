@@ -38,17 +38,17 @@ as a final flags value.
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Iter<B>`
+##### `impl IntoIterator for Iter<B>`
 
-- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-type-intoiter"></span>`type IntoIter = I`
+- <span id="iter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for Iter<B>`
 
-- <span id="iter-type-item"></span>`type Item = B`
+- <span id="iter-iterator-type-item"></span>`type Item = B`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -76,17 +76,17 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for IterNames<B>`
+##### `impl IntoIterator for IterNames<B>`
 
-- <span id="iternames-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iternames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iternames-type-intoiter"></span>`type IntoIter = I`
+- <span id="iternames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iternames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterNames<B>`
 
-- <span id="iternames-type-item"></span>`type Item = (&'static str, B)`
+- <span id="iternames-iterator-type-item"></span>`type Item = (&'static str, B)`
 
 - <span id="iternames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -112,17 +112,17 @@ whether they are contained in a particular flags value.
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for IterDefinedNames<B>`
+##### `impl IntoIterator for IterDefinedNames<B>`
 
-- <span id="iterdefinednames-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterdefinednames-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterdefinednames-type-intoiter"></span>`type IntoIter = I`
+- <span id="iterdefinednames-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterdefinednames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterDefinedNames<B>`
 
-- <span id="iterdefinednames-type-item"></span>`type Item = (&'static str, B)`
+- <span id="iterdefinednames-iterator-type-item"></span>`type Item = (&'static str, B)`
 
 - <span id="iterdefinednames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

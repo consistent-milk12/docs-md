@@ -12,8 +12,8 @@ Definitions for values used in DWARF expressions.
 |------|------|-------------|
 | [`ValueType`](#valuetype) | enum | The type of an entry on the DWARF stack. |
 | [`Value`](#value) | enum | The value of an entry on the DWARF stack. |
-| [`sign_extend`](#sign_extend) | fn | Convert a u64 to an i64, with sign extension if required. |
-| [`mask_bit_size`](#mask_bit_size) | fn |  |
+| [`sign_extend`](#sign-extend) | fn | Convert a u64 to an i64, with sign extension if required. |
+| [`mask_bit_size`](#mask-bit-size) | fn |  |
 
 ## Enums
 

@@ -282,15 +282,15 @@ iterator was created from.
 
 ##### `impl IntoIterator for ByteClassIter<'a>`
 
-- <span id="byteclassiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassIter<'a>`
 
-- <span id="byteclassiter-type-item"></span>`type Item = Unit`
+- <span id="byteclassiter-iterator-type-item"></span>`type Item = Unit`
 
 - <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -322,15 +322,15 @@ iterator was created from.
 
 ##### `impl IntoIterator for ByteClassRepresentatives<'a>`
 
-- <span id="byteclassrepresentatives-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassrepresentatives-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassrepresentatives-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassrepresentatives-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassrepresentatives-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassRepresentatives<'a>`
 
-- <span id="byteclassrepresentatives-type-item"></span>`type Item = Unit`
+- <span id="byteclassrepresentatives-iterator-type-item"></span>`type Item = Unit`
 
 - <span id="byteclassrepresentatives-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -361,15 +361,15 @@ iterator was created from.
 
 ##### `impl IntoIterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselements-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselements-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-type-item"></span>`type Item = Unit`
+- <span id="byteclasselements-iterator-type-item"></span>`type Item = Unit`
 
 - <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -395,15 +395,15 @@ sequence of contiguous ranges.
 
 ##### `impl IntoIterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselementranges-type-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselementranges-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-type-item"></span>`type Item = (Unit, Unit)`
+- <span id="byteclasselementranges-iterator-type-item"></span>`type Item = (Unit, Unit)`
 
 - <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(Unit, Unit)>` — [`Unit`](#unit)
 
@@ -576,15 +576,15 @@ struct ByteSetIter<'a> {
 
 ##### `impl IntoIterator for ByteSetIter<'a>`
 
-- <span id="bytesetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bytesetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bytesetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="bytesetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bytesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteSetIter<'a>`
 
-- <span id="bytesetiter-type-item"></span>`type Item = u8`
+- <span id="bytesetiter-iterator-type-item"></span>`type Item = u8`
 
 - <span id="bytesetiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -607,15 +607,15 @@ struct ByteSetRangeIter<'a> {
 
 ##### `impl IntoIterator for ByteSetRangeIter<'a>`
 
-- <span id="bytesetrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bytesetrangeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bytesetrangeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="bytesetrangeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bytesetrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteSetRangeIter<'a>`
 
-- <span id="bytesetrangeiter-type-item"></span>`type Item = (u8, u8)`
+- <span id="bytesetrangeiter-iterator-type-item"></span>`type Item = (u8, u8)`
 
 - <span id="bytesetrangeiter-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 

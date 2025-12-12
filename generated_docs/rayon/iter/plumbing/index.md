@@ -24,9 +24,9 @@ interact with them directly.  See [the `plumbing` README][r] for a general overv
   - [`UnindexedProducer`](#unindexedproducer)
 - [Functions](#functions)
   - [`bridge`](#bridge)
-  - [`bridge_producer_consumer`](#bridge_producer_consumer)
-  - [`bridge_unindexed`](#bridge_unindexed)
-  - [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer)
+  - [`bridge_producer_consumer`](#bridge-producer-consumer)
+  - [`bridge_unindexed`](#bridge-unindexed)
+  - [`bridge_unindexed_producer_consumer`](#bridge-unindexed-producer-consumer)
 
 ## Quick Reference
 
@@ -42,9 +42,9 @@ interact with them directly.  See [the `plumbing` README][r] for a general overv
 | [`UnindexedConsumer`](#unindexedconsumer) | trait | A stateless consumer can be freely copied. |
 | [`UnindexedProducer`](#unindexedproducer) | trait | A variant on `Producer` which does not know its exact length or cannot represent it in a `usize`. |
 | [`bridge`](#bridge) | fn | This helper function is used to "connect" a parallel iterator to a consumer. |
-| [`bridge_producer_consumer`](#bridge_producer_consumer) | fn | This helper function is used to "connect" a producer and a consumer. |
-| [`bridge_unindexed`](#bridge_unindexed) | fn | A variant of [`bridge_producer_consumer()`] where the producer is an unindexed producer. |
-| [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer) | fn |  |
+| [`bridge_producer_consumer`](#bridge-producer-consumer) | fn | This helper function is used to "connect" a producer and a consumer. |
+| [`bridge_unindexed`](#bridge-unindexed) | fn | A variant of [`bridge_producer_consumer()`] where the producer is an unindexed producer. |
+| [`bridge_unindexed_producer_consumer`](#bridge-unindexed-producer-consumer) | fn |  |
 
 ## Structs
 
@@ -90,9 +90,9 @@ job is actually stolen into a different thread.
 
 ##### `impl Pointable for Splitter`
 
-- <span id="splitter-const-align"></span>`const ALIGN: usize`
+- <span id="splitter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="splitter-type-init"></span>`type Init = T`
+- <span id="splitter-pointable-type-init"></span>`type Init = T`
 
 - <span id="splitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -141,9 +141,9 @@ into account the remaining length of the iterator.
 
 ##### `impl Pointable for LengthSplitter`
 
-- <span id="lengthsplitter-const-align"></span>`const ALIGN: usize`
+- <span id="lengthsplitter-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="lengthsplitter-type-init"></span>`type Init = T`
+- <span id="lengthsplitter-pointable-type-init"></span>`type Init = T`
 
 - <span id="lengthsplitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

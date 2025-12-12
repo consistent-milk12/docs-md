@@ -52,29 +52,29 @@ This struct is created by the `interleave_shortest()` method on
 
 - <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for InterleaveShortest<I, J>`
+##### `impl IntoEither for InterleaveShortest<I, J>`
 
-##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
+##### `impl IntoParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-type-iter"></span>`type Iter = T`
+- <span id="interleaveshortest-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="interleaveshortest-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleaveshortest-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleaveshortest-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="interleaveshortest-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for InterleaveShortest<I, J>`
+##### `impl Pointable for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-const-align"></span>`const ALIGN: usize`
+- <span id="interleaveshortest-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleaveshortest-type-init"></span>`type Init = T`
+- <span id="interleaveshortest-pointable-type-init"></span>`type Init = T`
 
 - <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -25,7 +25,7 @@
   - [`segment`](#segment)
   - [`measure`](#measure)
   - [`width`](#width)
-  - [`write_ansi_range`](#write_ansi_range)
+  - [`write_ansi_range`](#write-ansi-range)
 
 ## Quick Reference
 
@@ -46,7 +46,7 @@
 | [`segment`](#segment) | fn |  |
 | [`measure`](#measure) | fn |  |
 | [`width`](#width) | fn | finds the unicode-aware width of the passed grapheme cluters panics on an empty parameter, or if the characters are not equal-width |
-| [`write_ansi_range`](#write_ansi_range) | fn | Write the visible text between start and end. |
+| [`write_ansi_range`](#write-ansi-range) | fn | Write the visible text between start and end. |
 
 ## Structs
 

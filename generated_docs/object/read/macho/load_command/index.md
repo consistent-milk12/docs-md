@@ -38,31 +38,31 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
+##### `impl<E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md#loadcommanditerator)
 
-##### `impl<I> IntoIterator for LoadCommandIterator<'data, E>`
+##### `impl IntoIterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="loadcommanditerator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="loadcommanditerator-type-intoiter"></span>`type IntoIter = I`
+- <span id="loadcommanditerator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E: Endian> Iterator for LoadCommandIterator<'data, E>`
+##### `impl<E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
+- <span id="loadcommanditerator-iterator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
 - <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -114,13 +114,13 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md#loadcommanddata)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -310,13 +310,13 @@ A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted acco
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md#loadcommandvariant)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -8,10 +8,10 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`FD_CLR`](#fd_clr) | fn |  |
-| [`FD_SET`](#fd_set) | fn |  |
-| [`FD_ISSET`](#fd_isset) | fn |  |
-| [`FD_ZERO`](#fd_zero) | fn |  |
+| [`FD_CLR`](#fd-clr) | fn |  |
+| [`FD_SET`](#fd-set) | fn |  |
+| [`FD_ISSET`](#fd-isset) | fn |  |
+| [`FD_ZERO`](#fd-zero) | fn |  |
 
 ## Functions
 

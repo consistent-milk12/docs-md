@@ -61,9 +61,9 @@ v[1] = v[1] + 5;
 - [Modules](#modules)
   - [`splice`](#splice)
   - [`drain`](#drain)
-  - [`into_iter`](#into_iter)
-  - [`partial_eq`](#partial_eq)
-  - [`set_len_on_drop`](#set_len_on_drop)
+  - [`into_iter`](#into-iter)
+  - [`partial_eq`](#partial-eq)
+  - [`set_len_on_drop`](#set-len-on-drop)
 - [Structs](#structs)
   - [`Splice`](#splice)
   - [`Drain`](#drain)
@@ -79,9 +79,9 @@ v[1] = v[1] + 5;
 |------|------|-------------|
 | [`splice`](#splice) | mod |  |
 | [`drain`](#drain) | mod |  |
-| [`into_iter`](#into_iter) | mod |  |
-| [`partial_eq`](#partial_eq) | mod |  |
-| [`set_len_on_drop`](#set_len_on_drop) | mod |  |
+| [`into_iter`](#into-iter) | mod |  |
+| [`partial_eq`](#partial-eq) | mod |  |
+| [`set_len_on_drop`](#set-len-on-drop) | mod |  |
 | [`Splice`](#splice) | struct |  |
 | [`Drain`](#drain) | struct |  |
 | [`IntoIter`](#intoiter) | struct |  |
@@ -125,7 +125,7 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 #### Trait Implementations
 
-##### `impl<'a, I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
+##### `impl<I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
 
 - <span id="splice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -141,15 +141,15 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
-- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splice-type-intoiter"></span>`type IntoIter = I`
+- <span id="splice-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
-- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -202,7 +202,7 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Trait Implementations
 
-##### `impl<'a, T, A: Allocator> AsRef for Drain<'a, T, A>`
+##### `impl<T, A: Allocator> AsRef for Drain<'a, T, A>`
 
 - <span id="drain-as-ref"></span>`fn as_ref(&self) -> &[T]`
 
@@ -222,17 +222,17 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<T, A: Allocator> FusedIterator for Drain<'_, T, A>`
 
-##### `impl<I> IntoIterator for Drain<'a, T, A>`
+##### `impl IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-type-intoiter"></span>`type IntoIter = I`
+- <span id="drain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-type-item"></span>`type Item = T`
+- <span id="drain-iterator-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -305,17 +305,17 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<T, A: Allocator> FusedIterator for IntoIter<T, A>`
 
-##### `impl<I> IntoIterator for IntoIter<T, A>`
+##### `impl IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-type-item"></span>`type Item = T`
+- <span id="intoiter-iterator-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -618,7 +618,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> Deref for Vec<T, A>`
 
-- <span id="vec-type-target"></span>`type Target = [T]`
+- <span id="vec-deref-type-target"></span>`type Target = [T]`
 
 - <span id="vec-deref"></span>`fn deref(&self) -> &[T]`
 
@@ -646,7 +646,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, I: SliceIndex<[T]>, A: Allocator> Index for Vec<T, A>`
 
-- <span id="vec-type-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="vec-index-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="vec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -656,9 +656,9 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> IntoIterator for Vec<T, A>`
 
-- <span id="vec-type-item"></span>`type Item = T`
+- <span id="vec-intoiterator-type-item"></span>`type Item = T`
 
-- <span id="vec-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="vec-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="vec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -676,9 +676,9 @@ The order has changed in the past and may change again.
 
 - <span id="vec-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-##### `impl<P, T> Receiver for Vec<T, A>`
+##### `impl<T> Receiver for Vec<T, A>`
 
-- <span id="vec-type-target"></span>`type Target = T`
+- <span id="vec-receiver-type-target"></span>`type Target = T`
 
 ### `ExtendElement<T>`
 

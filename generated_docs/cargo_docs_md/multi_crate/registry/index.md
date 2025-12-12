@@ -34,7 +34,7 @@ There are two distinct path representations in `rustdoc_types`:
 |------|------|-------------|
 | [`BorrowedKey`](#borrowedkey) | struct | Borrowed key for zero-allocation lookups. |
 | [`UnifiedLinkRegistry`](#unifiedlinkregistry) | struct | Registry mapping item IDs to documentation paths across multiple crates. |
-| [`keys_match`](#keys_match) | fn | Allow comparing `BorrowedKey` with `RegistryKey`. |
+| [`keys_match`](#keys-match) | fn | Allow comparing `BorrowedKey` with `RegistryKey`. |
 | [`Str`](#str) | type | Compact string type for memory-efficient storage. |
 | [`RegistryKey`](#registrykey) | type | Key type for registry lookups: `(crate_name, item_id)`. |
 
@@ -56,7 +56,7 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 ##### `impl Eq for BorrowedKey<'a>`
 
-##### `impl Equivalent for BorrowedKey<'a>`
+##### `impl<K> Equivalent for BorrowedKey<'a>`
 
 - <span id="borrowedkey-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -76,9 +76,9 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 ##### `impl Pointable for BorrowedKey<'a>`
 
-- <span id="borrowedkey-const-align"></span>`const ALIGN: usize`
+- <span id="borrowedkey-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="borrowedkey-type-init"></span>`type Init = T`
+- <span id="borrowedkey-pointable-type-init"></span>`type Init = T`
 
 - <span id="borrowedkey-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -218,9 +218,9 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-pointable-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

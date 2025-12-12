@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DOUBLE_POW5_INV_TABLE_SIZE`](#double_pow5_inv_table_size) | const |  |
-| [`DOUBLE_POW5_TABLE_SIZE`](#double_pow5_table_size) | const |  |
+| [`DOUBLE_POW5_INV_TABLE_SIZE`](#double-pow5-inv-table-size) | const |  |
+| [`DOUBLE_POW5_TABLE_SIZE`](#double-pow5-table-size) | const |  |
 
 ## Constants
 

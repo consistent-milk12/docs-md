@@ -143,7 +143,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl FromStr for ValueHint`
 
-- <span id="valuehint-type-err"></span>`type Err = String`
+- <span id="valuehint-fromstr-type-err"></span>`type Err = String`
 
 - <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 

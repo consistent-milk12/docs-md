@@ -100,11 +100,11 @@ as long as everything in this module agrees.
   - [`Repr`](#repr)
   - [`ReprVec`](#reprvec)
 - [Functions](#functions)
-  - [`write_vari32`](#write_vari32)
-  - [`read_vari32`](#read_vari32)
-  - [`write_varu32`](#write_varu32)
-  - [`read_varu32`](#read_varu32)
-  - [`write_u32`](#write_u32)
+  - [`write_vari32`](#write-vari32)
+  - [`read_vari32`](#read-vari32)
+  - [`write_varu32`](#write-varu32)
+  - [`read_varu32`](#read-varu32)
+  - [`write_u32`](#write-u32)
 
 ## Quick Reference
 
@@ -116,11 +116,11 @@ as long as everything in this module agrees.
 | [`StateBuilderNFA`](#statebuildernfa) | struct | A state builder that collects some assertions and NFA state IDs. |
 | [`Repr`](#repr) | struct | Repr is a read-only view into the representation of a DFA state. |
 | [`ReprVec`](#reprvec) | struct | ReprVec is a write-only view into the representation of a DFA state. |
-| [`write_vari32`](#write_vari32) | fn | Write a signed 32-bit integer using zig-zag encoding. |
-| [`read_vari32`](#read_vari32) | fn | Read a signed 32-bit integer using zig-zag encoding. |
-| [`write_varu32`](#write_varu32) | fn | Write an unsigned 32-bit integer as a varint. |
-| [`read_varu32`](#read_varu32) | fn | Read an unsigned 32-bit varint. |
-| [`write_u32`](#write_u32) | fn | Push a native-endian encoded `n` on to `dst`. |
+| [`write_vari32`](#write-vari32) | fn | Write a signed 32-bit integer using zig-zag encoding. |
+| [`read_vari32`](#read-vari32) | fn | Read a signed 32-bit integer using zig-zag encoding. |
+| [`write_varu32`](#write-varu32) | fn | Write an unsigned 32-bit integer as a varint. |
+| [`read_varu32`](#read-varu32) | fn | Read an unsigned 32-bit varint. |
+| [`write_u32`](#write-u32) | fn | Push a native-endian encoded `n` on to `dst`. |
 
 ## Structs
 

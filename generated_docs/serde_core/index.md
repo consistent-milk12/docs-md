@@ -35,7 +35,7 @@ as shown in the following build timings.
 ## Contents
 
 - [Modules](#modules)
-  - [`crate_root`](#crate_root)
+  - [`crate_root`](#crate-root)
   - [`macros`](#macros)
   - [`lib`](#lib)
   - [`de`](#de)
@@ -48,13 +48,13 @@ as shown in the following build timings.
   - [`Serializer`](#serializer)
 - [Macros](#macros)
   - [`tri!`](#tri)
-  - [`forward_to_deserialize_any!`](#forward_to_deserialize_any)
+  - [`forward_to_deserialize_any!`](#forward-to-deserialize-any)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`crate_root`](#crate_root) | mod |  |
+| [`crate_root`](#crate-root) | mod |  |
 | [`macros`](#macros) | mod |  |
 | [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` crates. |
 | [`de`](#de) | mod | Generic data structure deserialization framework. |
@@ -65,7 +65,7 @@ as shown in the following build timings.
 | [`Serialize`](#serialize) | trait |  |
 | [`Serializer`](#serializer) | trait |  |
 | [`tri!`](#tri) | macro |  |
-| [`forward_to_deserialize_any!`](#forward_to_deserialize_any) | macro | Helper macro when implementing the `Deserializer` part of a new data format for Serde. |
+| [`forward_to_deserialize_any!`](#forward-to-deserialize-any) | macro | Helper macro when implementing the `Deserializer` part of a new data format for Serde. |
 
 ## Modules
 

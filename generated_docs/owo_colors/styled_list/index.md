@@ -54,7 +54,7 @@ assert!(styled_length < normal_length);
 
 - <span id="styledlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for StyledList<T, U>`
+##### `impl OwoColorize for StyledList<T, U>`
 
 ## Enums
 

@@ -56,29 +56,29 @@ This struct is created by the `update()` method on [`ParallelIterator`](../index
 
 - <span id="update-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Update<I, F>`
+##### `impl IntoEither for Update<I, F>`
 
-##### `impl<T> IntoParallelIterator for Update<I, F>`
+##### `impl IntoParallelIterator for Update<I, F>`
 
-- <span id="update-type-iter"></span>`type Iter = T`
+- <span id="update-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="update-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="update-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="update-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Update<I, F>`
 
-- <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="update-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="update-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Update<I, F>`
+##### `impl Pointable for Update<I, F>`
 
-- <span id="update-const-align"></span>`const ALIGN: usize`
+- <span id="update-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="update-type-init"></span>`type Init = T`
+- <span id="update-pointable-type-init"></span>`type Init = T`
 
 - <span id="update-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -101,13 +101,13 @@ struct UpdateProducer<'f, P, F> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for UpdateProducer<'f, P, F>`
+##### `impl IntoEither for UpdateProducer<'f, P, F>`
 
-##### `impl<T> Pointable for UpdateProducer<'f, P, F>`
+##### `impl Pointable for UpdateProducer<'f, P, F>`
 
-- <span id="updateproducer-const-align"></span>`const ALIGN: usize`
+- <span id="updateproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateproducer-type-init"></span>`type Init = T`
+- <span id="updateproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="updateproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -117,11 +117,11 @@ struct UpdateProducer<'f, P, F> {
 
 - <span id="updateproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, P, F> Producer for UpdateProducer<'f, P, F>`
+##### `impl<P, F> Producer for UpdateProducer<'f, P, F>`
 
-- <span id="updateproducer-type-item"></span>`type Item = <P as Producer>::Item`
+- <span id="updateproducer-producer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="updateproducer-type-intoiter"></span>`type IntoIter = UpdateSeq<<P as Producer>::IntoIter, &'f F>`
+- <span id="updateproducer-producer-type-intoiter"></span>`type IntoIter = UpdateSeq<<P as Producer>::IntoIter, &'f F>`
 
 - <span id="updateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 
@@ -150,13 +150,13 @@ struct UpdateConsumer<'f, C, F> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C, F> Consumer for UpdateConsumer<'f, C, F>`
+##### `impl<T, C, F> Consumer for UpdateConsumer<'f, C, F>`
 
-- <span id="updateconsumer-type-folder"></span>`type Folder = UpdateFolder<'f, <C as Consumer>::Folder, F>`
+- <span id="updateconsumer-consumer-type-folder"></span>`type Folder = UpdateFolder<'f, <C as Consumer>::Folder, F>`
 
-- <span id="updateconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="updateconsumer-consumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="updateconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="updateconsumer-consumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="updateconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -164,13 +164,13 @@ struct UpdateConsumer<'f, C, F> {
 
 - <span id="updateconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for UpdateConsumer<'f, C, F>`
+##### `impl IntoEither for UpdateConsumer<'f, C, F>`
 
-##### `impl<T> Pointable for UpdateConsumer<'f, C, F>`
+##### `impl Pointable for UpdateConsumer<'f, C, F>`
 
-- <span id="updateconsumer-const-align"></span>`const ALIGN: usize`
+- <span id="updateconsumer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateconsumer-type-init"></span>`type Init = T`
+- <span id="updateconsumer-pointable-type-init"></span>`type Init = T`
 
 - <span id="updateconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -180,7 +180,7 @@ struct UpdateConsumer<'f, C, F> {
 
 - <span id="updateconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'f, T, C, F> UnindexedConsumer for UpdateConsumer<'f, C, F>`
+##### `impl<T, C, F> UnindexedConsumer for UpdateConsumer<'f, C, F>`
 
 - <span id="updateconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -199,9 +199,9 @@ struct UpdateFolder<'f, C, F> {
 
 #### Trait Implementations
 
-##### `impl<'f, T, C, F> Folder for UpdateFolder<'f, C, F>`
+##### `impl<T, C, F> Folder for UpdateFolder<'f, C, F>`
 
-- <span id="updatefolder-type-result"></span>`type Result = <C as Folder>::Result`
+- <span id="updatefolder-folder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="updatefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -211,13 +211,13 @@ struct UpdateFolder<'f, C, F> {
 
 - <span id="updatefolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for UpdateFolder<'f, C, F>`
+##### `impl IntoEither for UpdateFolder<'f, C, F>`
 
-##### `impl<T> Pointable for UpdateFolder<'f, C, F>`
+##### `impl Pointable for UpdateFolder<'f, C, F>`
 
-- <span id="updatefolder-const-align"></span>`const ALIGN: usize`
+- <span id="updatefolder-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="updatefolder-type-init"></span>`type Init = T`
+- <span id="updatefolder-pointable-type-init"></span>`type Init = T`
 
 - <span id="updatefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -256,19 +256,19 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 
 ##### `impl<I, F> ExactSizeIterator for UpdateSeq<I, F>`
 
-##### `impl<T> IntoEither for UpdateSeq<I, F>`
+##### `impl IntoEither for UpdateSeq<I, F>`
 
 ##### `impl<I> IntoIterator for UpdateSeq<I, F>`
 
-- <span id="updateseq-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="updateseq-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="updateseq-type-intoiter"></span>`type IntoIter = I`
+- <span id="updateseq-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="updateseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I, F> Iterator for UpdateSeq<I, F>`
 
-- <span id="updateseq-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="updateseq-iterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="updateseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -278,11 +278,11 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 
 - <span id="updateseq-collect"></span>`fn collect<C>(self) -> C`
 
-##### `impl<T> Pointable for UpdateSeq<I, F>`
+##### `impl Pointable for UpdateSeq<I, F>`
 
-- <span id="updateseq-const-align"></span>`const ALIGN: usize`
+- <span id="updateseq-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateseq-type-init"></span>`type Init = T`
+- <span id="updateseq-pointable-type-init"></span>`type Init = T`
 
 - <span id="updateseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

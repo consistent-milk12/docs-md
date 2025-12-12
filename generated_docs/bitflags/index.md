@@ -246,7 +246,7 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
   - [`public`](#public)
   - [`internal`](#internal)
   - [`external`](#external)
-  - [`__private`](#__private)
+  - [`__private`](#private)
 - [Structs](#structs)
   - [`Flag`](#flag)
 - [Traits](#traits)
@@ -254,7 +254,7 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
   - [`Flags`](#flags)
 - [Macros](#macros)
   - [`bitflags!`](#bitflags)
-  - [`bitflags_match!`](#bitflags_match)
+  - [`bitflags_match!`](#bitflags-match)
 
 ## Quick Reference
 
@@ -266,12 +266,12 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
 | [`public`](#public) | mod | Generate the user-facing flags type. |
 | [`internal`](#internal) | mod | Generate the internal `bitflags`-facing flags type. |
 | [`external`](#external) | mod | Conditional trait implementations for external libraries. |
-| [`__private`](#__private) | mod |  |
+| [`__private`](#private) | mod |  |
 | [`Flag`](#flag) | struct |  |
 | [`Bits`](#bits) | trait |  |
 | [`Flags`](#flags) | trait |  |
 | [`bitflags!`](#bitflags) | macro | Generate a flags type. |
-| [`bitflags_match!`](#bitflags_match) | macro | A macro that matches flags values, similar to Rust's `match` statement. |
+| [`bitflags_match!`](#bitflags-match) | macro | A macro that matches flags values, similar to Rust's `match` statement. |
 
 ## Modules
 

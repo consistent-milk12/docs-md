@@ -21,7 +21,7 @@
 - [Enums](#enums)
   - [`Derive`](#derive)
 - [Functions](#functions)
-  - [`replace_receiver`](#replace_receiver)
+  - [`replace_receiver`](#replace-receiver)
   - [`ungroup`](#ungroup)
 
 ## Quick Reference
@@ -39,7 +39,7 @@
 | [`symbol`](#symbol) | mod |  |
 | [`Ctxt`](#ctxt) | struct |  |
 | [`Derive`](#derive) | enum |  |
-| [`replace_receiver`](#replace_receiver) | fn |  |
+| [`replace_receiver`](#replace-receiver) | fn |  |
 | [`ungroup`](#ungroup) | fn |  |
 
 ## Modules
@@ -115,7 +115,13 @@ enum Derive {
 
 ## Functions
 
-*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:15`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L15)*
+### `replace_receiver`
+
+```rust
+fn replace_receiver(input: &mut syn::DeriveInput)
+```
+
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
 
 ### `ungroup`
 

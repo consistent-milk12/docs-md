@@ -622,15 +622,15 @@ this pattern iterator was created.
 
 ##### `impl IntoIterator for PatternIter<'a>`
 
-- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternIter<'a>`
 
-- <span id="patterniter-type-item"></span>`type Item = PatternID`
+- <span id="patterniter-iterator-type-item"></span>`type Item = PatternID`
 
 - <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md#patternid)
 

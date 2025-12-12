@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`simplify_range`](#simplify_range) | fn | Normalize arbitrary `RangeBounds` to a `Range` |
+| [`simplify_range`](#simplify-range) | fn | Normalize arbitrary `RangeBounds` to a `Range` |
 
 ## Functions
 

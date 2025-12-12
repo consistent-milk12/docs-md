@@ -96,17 +96,17 @@ Returned by `SectionTable::symbols`.
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
+##### `impl<Elf: clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
 
 - <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
-##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
+##### `impl<Elf: marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
+##### `impl<Elf: fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Elf, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
 
@@ -128,27 +128,27 @@ A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Clone for ElfSymbolTable<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Clone for ElfSymbolTable<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-clone"></span>`fn clone(&self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](../index.md#elfsymboltable)
 
-##### `impl<'data, 'file, Elf, R> Copy for ElfSymbolTable<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Copy for ElfSymbolTable<'data, 'file, Elf, R>`
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSymbolTable<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSymbolTable<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-objectsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
 - <span id="elfsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md#symbolindex), [`Result`](../../../index.md#result), [`ObjectSymbolTable`](../../index.md#objectsymboltable)
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbolTable<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbolTable<'data, 'file, Elf, R>`
 
 ### `ElfSymbolIterator<'data, 'file, Elf, R>`
 
@@ -173,21 +173,21 @@ An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Debug for ElfSymbolIterator<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Debug for ElfSymbolIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
+##### `impl IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsymboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsymboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="elfsymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboliterator-iterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -221,17 +221,17 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Elf, R> Clone for ElfSymbol<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Clone for ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymbol-clone"></span>`fn clone(&self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](../index.md#elfsymbol)
 
-##### `impl<'data, 'file, Elf, R> Copy for ElfSymbol<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Copy for ElfSymbol<'data, 'file, Elf, R>`
 
-##### `impl<'data, 'file, Elf, R> Debug for ElfSymbol<'data, 'file, Elf, R>`
+##### `impl<Elf, R> Debug for ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbol for ElfSymbol<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> ObjectSymbol for ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md#symbolindex)
 
@@ -263,7 +263,7 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 
 - <span id="elfsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md#symbolflags), [`SectionIndex`](../../../index.md#sectionindex), [`SymbolIndex`](../../../index.md#symbolindex)
 
-##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbol<'data, 'file, Elf, R>`
+##### `impl<Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbol<'data, 'file, Elf, R>`
 
 ## Traits
 

@@ -30,7 +30,7 @@ the functionality of the `addr2line` command line tool distributed with
 ## Contents
 
 - [Modules](#modules)
-  - [`maybe_small`](#maybe_small)
+  - [`maybe_small`](#maybe-small)
   - [`frame`](#frame)
   - [`function`](#function)
   - [`line`](#line)
@@ -52,7 +52,7 @@ the functionality of the `addr2line` command line tool distributed with
   - [`LookupContinuation`](#lookupcontinuation)
 - [Functions](#functions)
   - [`demangle`](#demangle)
-  - [`demangle_auto`](#demangle_auto)
+  - [`demangle_auto`](#demangle-auto)
 - [Type Aliases](#type-aliases)
   - [`Error`](#error)
   - [`LazyResult`](#lazyresult)
@@ -61,7 +61,7 @@ the functionality of the `addr2line` command line tool distributed with
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`maybe_small`](#maybe_small) | mod |  |
+| [`maybe_small`](#maybe-small) | mod |  |
 | [`frame`](#frame) | mod |  |
 | [`function`](#function) | mod |  |
 | [`line`](#line) | mod |  |
@@ -79,7 +79,7 @@ the functionality of the `addr2line` command line tool distributed with
 | [`DebugFile`](#debugfile) | enum |  |
 | [`LookupContinuation`](#lookupcontinuation) | trait |  |
 | [`demangle`](#demangle) | fn |  |
-| [`demangle_auto`](#demangle_auto) | fn |  |
+| [`demangle_auto`](#demangle-auto) | fn |  |
 | [`Error`](#error) | type |  |
 | [`LazyResult`](#lazyresult) | type |  |
 
@@ -262,17 +262,17 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for LocationRangeIter<'ctx, R>`
+##### `impl IntoIterator for LocationRangeIter<'ctx, R>`
 
-- <span id="locationrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="locationrangeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="locationrangeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="locationrangeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="locationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'ctx, R> Iterator for LocationRangeIter<'ctx, R>`
+##### `impl<R> Iterator for LocationRangeIter<'ctx, R>`
 
-- <span id="locationrangeiter-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
+- <span id="locationrangeiter-iterator-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
 - <span id="locationrangeiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -449,9 +449,35 @@ API consumer.
 
 ## Functions
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:65`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L65)*
+### `demangle`
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:65`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L65)*
+```rust
+fn demangle(name: &str, language: gimli::DwLang) -> Option<alloc::string::String>
+```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:186-202`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L186-L202)*
+
+Demangle a symbol name using the demangling scheme for the given language.
+
+Returns `None` if demangling failed or is not required.
+
+### `demangle_auto`
+
+```rust
+fn demangle_auto(name: alloc::borrow::Cow<'_, str>, language: Option<gimli::DwLang>) -> alloc::borrow::Cow<'_, str>
+```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:213-221`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L213-L221)*
+
+Apply 'best effort' demangling of a symbol name.
+
+If `language` is given, then only the demangling scheme for that language
+is used.
+
+If `language` is `None`, then heuristics are used to determine how to
+demangle the name. Currently, these heuristics are very basic.
+
+If demangling fails or is not required, then `name` is returned unchanged.
 
 ## Type Aliases
 

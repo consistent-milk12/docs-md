@@ -21,8 +21,8 @@
   - [`RawOccurrenceValues`](#rawoccurrencevalues)
   - [`Indices`](#indices)
 - [Functions](#functions)
-  - [`unwrap_downcast_ref`](#unwrap_downcast_ref)
-  - [`unwrap_downcast_into`](#unwrap_downcast_into)
+  - [`unwrap_downcast_ref`](#unwrap-downcast-ref)
+  - [`unwrap_downcast_into`](#unwrap-downcast-into)
 
 ## Quick Reference
 
@@ -41,8 +41,8 @@
 | [`RawOccurrences`](#rawoccurrences) | struct |  |
 | [`RawOccurrenceValues`](#rawoccurrencevalues) | struct |  |
 | [`Indices`](#indices) | struct | Iterate over indices for where an argument appeared when parsing, via [`ArgMatches::indices_of`] |
-| [`unwrap_downcast_ref`](#unwrap_downcast_ref) | fn |  |
-| [`unwrap_downcast_into`](#unwrap_downcast_into) | fn |  |
+| [`unwrap_downcast_ref`](#unwrap-downcast-ref) | fn |  |
+| [`unwrap_downcast_into`](#unwrap-downcast-into) | fn |  |
 
 ## Structs
 
@@ -241,15 +241,15 @@ assert_eq!(
 
 ##### `impl IntoIterator for IdsRef<'a>`
 
-- <span id="idsref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="idsref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="idsref-type-intoiter"></span>`type IntoIter = I`
+- <span id="idsref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="idsref-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IdsRef<'a>`
 
-- <span id="idsref-type-item"></span>`type Item = &'a Id`
+- <span id="idsref-iterator-type-item"></span>`type Item = &'a Id`
 
 - <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md#id)
 
@@ -307,17 +307,17 @@ assert_eq!(values.next(), None);
 
 ##### `impl<T> ExactSizeIterator for Values<T>`
 
-##### `impl<I> IntoIterator for Values<T>`
+##### `impl IntoIterator for Values<T>`
 
-- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-type-intoiter"></span>`type IntoIter = I`
+- <span id="values-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for Values<T>`
 
-- <span id="values-type-item"></span>`type Item = T`
+- <span id="values-iterator-type-item"></span>`type Item = T`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -358,35 +358,35 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl<'a, T: clone::Clone> Clone for ValuesRef<'a, T>`
+##### `impl<T: clone::Clone> Clone for ValuesRef<'a, T>`
 
 - <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](#valuesref)
 
-##### `impl<'a, T: fmt::Debug> Debug for ValuesRef<'a, T>`
+##### `impl<T: fmt::Debug> Debug for ValuesRef<'a, T>`
 
 - <span id="valuesref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T: 'a> Default for ValuesRef<'a, T>`
+##### `impl<T: 'a> Default for ValuesRef<'a, T>`
 
 - <span id="valuesref-default"></span>`fn default() -> Self`
 
-##### `impl<'a, T: 'a> DoubleEndedIterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> DoubleEndedIterator for ValuesRef<'a, T>`
 
 - <span id="valuesref-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T: 'a> ExactSizeIterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> ExactSizeIterator for ValuesRef<'a, T>`
 
-##### `impl<I> IntoIterator for ValuesRef<'a, T>`
+##### `impl IntoIterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesref-type-intoiter"></span>`type IntoIter = I`
+- <span id="valuesref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesref-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T: 'a> Iterator for ValuesRef<'a, T>`
+##### `impl<T: 'a> Iterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-type-item"></span>`type Item = &'a T`
+- <span id="valuesref-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="valuesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -452,15 +452,15 @@ assert_eq!(
 
 ##### `impl IntoIterator for RawValues<'a>`
 
-- <span id="rawvalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawvalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawvalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawvalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawvalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawValues<'a>`
 
-- <span id="rawvalues-type-item"></span>`type Item = &'a OsStr`
+- <span id="rawvalues-iterator-type-item"></span>`type Item = &'a OsStr`
 
 - <span id="rawvalues-next"></span>`fn next(&mut self) -> Option<&'a OsStr>`
 
@@ -496,17 +496,17 @@ struct Occurrences<T> {
 
 ##### `impl<T> ExactSizeIterator for Occurrences<T>`
 
-##### `impl<I> IntoIterator for Occurrences<T>`
+##### `impl IntoIterator for Occurrences<T>`
 
-- <span id="occurrences-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrences-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrences-type-intoiter"></span>`type IntoIter = I`
+- <span id="occurrences-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrences-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for Occurrences<T>`
 
-- <span id="occurrences-type-item"></span>`type Item = OccurrenceValues<T>`
+- <span id="occurrences-iterator-type-item"></span>`type Item = OccurrenceValues<T>`
 
 - <span id="occurrences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -538,17 +538,17 @@ struct OccurrenceValues<T> {
 
 ##### `impl<T> ExactSizeIterator for OccurrenceValues<T>`
 
-##### `impl<I> IntoIterator for OccurrenceValues<T>`
+##### `impl IntoIterator for OccurrenceValues<T>`
 
-- <span id="occurrencevalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencevalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencevalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencevalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencevalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for OccurrenceValues<T>`
 
-- <span id="occurrencevalues-type-item"></span>`type Item = T`
+- <span id="occurrencevalues-iterator-type-item"></span>`type Item = T`
 
 - <span id="occurrencevalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -566,11 +566,11 @@ struct OccurrencesRef<'a, T> {
 
 #### Trait Implementations
 
-##### `impl<'a, T: clone::Clone> Clone for OccurrencesRef<'a, T>`
+##### `impl<T: clone::Clone> Clone for OccurrencesRef<'a, T>`
 
 - <span id="occurrencesref-clone"></span>`fn clone(&self) -> OccurrencesRef<'a, T>` — [`OccurrencesRef`](#occurrencesref)
 
-##### `impl<'a, T: fmt::Debug> Debug for OccurrencesRef<'a, T>`
+##### `impl<T: fmt::Debug> Debug for OccurrencesRef<'a, T>`
 
 - <span id="occurrencesref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -578,23 +578,23 @@ struct OccurrencesRef<'a, T> {
 
 - <span id="occurrencesref-default"></span>`fn default() -> Self`
 
-##### `impl<'a, T> DoubleEndedIterator for OccurrencesRef<'a, T>`
+##### `impl<T> DoubleEndedIterator for OccurrencesRef<'a, T>`
 
 - <span id="occurrencesref-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T> ExactSizeIterator for OccurrencesRef<'a, T>`
+##### `impl<T> ExactSizeIterator for OccurrencesRef<'a, T>`
 
-##### `impl<I> IntoIterator for OccurrencesRef<'a, T>`
+##### `impl IntoIterator for OccurrencesRef<'a, T>`
 
-- <span id="occurrencesref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencesref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencesref-type-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencesref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencesref-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for OccurrencesRef<'a, T>`
+##### `impl<T> Iterator for OccurrencesRef<'a, T>`
 
-- <span id="occurrencesref-type-item"></span>`type Item = OccurrenceValuesRef<'a, T>`
+- <span id="occurrencesref-iterator-type-item"></span>`type Item = OccurrenceValuesRef<'a, T>`
 
 - <span id="occurrencesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -612,31 +612,31 @@ struct OccurrenceValuesRef<'a, T> {
 
 #### Trait Implementations
 
-##### `impl<'a, T: clone::Clone> Clone for OccurrenceValuesRef<'a, T>`
+##### `impl<T: clone::Clone> Clone for OccurrenceValuesRef<'a, T>`
 
 - <span id="occurrencevaluesref-clone"></span>`fn clone(&self) -> OccurrenceValuesRef<'a, T>` — [`OccurrenceValuesRef`](#occurrencevaluesref)
 
-##### `impl<'a, T: fmt::Debug> Debug for OccurrenceValuesRef<'a, T>`
+##### `impl<T: fmt::Debug> Debug for OccurrenceValuesRef<'a, T>`
 
 - <span id="occurrencevaluesref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, T> DoubleEndedIterator for OccurrenceValuesRef<'a, T>`
+##### `impl<T> DoubleEndedIterator for OccurrenceValuesRef<'a, T>`
 
 - <span id="occurrencevaluesref-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a, T> ExactSizeIterator for OccurrenceValuesRef<'a, T>`
+##### `impl<T> ExactSizeIterator for OccurrenceValuesRef<'a, T>`
 
-##### `impl<I> IntoIterator for OccurrenceValuesRef<'a, T>`
+##### `impl IntoIterator for OccurrenceValuesRef<'a, T>`
 
-- <span id="occurrencevaluesref-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencevaluesref-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencevaluesref-type-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencevaluesref-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencevaluesref-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, T> Iterator for OccurrenceValuesRef<'a, T>`
+##### `impl<T> Iterator for OccurrenceValuesRef<'a, T>`
 
-- <span id="occurrencevaluesref-type-item"></span>`type Item = &'a T`
+- <span id="occurrencevaluesref-iterator-type-item"></span>`type Item = &'a T`
 
 - <span id="occurrencevaluesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -674,15 +674,15 @@ struct RawOccurrences<'a> {
 
 ##### `impl IntoIterator for RawOccurrences<'a>`
 
-- <span id="rawoccurrences-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawoccurrences-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawoccurrences-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawoccurrences-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawoccurrences-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawOccurrences<'a>`
 
-- <span id="rawoccurrences-type-item"></span>`type Item = RawOccurrenceValues<'a>`
+- <span id="rawoccurrences-iterator-type-item"></span>`type Item = RawOccurrenceValues<'a>`
 
 - <span id="rawoccurrences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -716,15 +716,15 @@ struct RawOccurrenceValues<'a> {
 
 ##### `impl IntoIterator for RawOccurrenceValues<'a>`
 
-- <span id="rawoccurrencevalues-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawoccurrencevalues-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawoccurrencevalues-type-intoiter"></span>`type IntoIter = I`
+- <span id="rawoccurrencevalues-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawoccurrencevalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawOccurrenceValues<'a>`
 
-- <span id="rawoccurrencevalues-type-item"></span>`type Item = &'a OsStr`
+- <span id="rawoccurrencevalues-iterator-type-item"></span>`type Item = &'a OsStr`
 
 - <span id="rawoccurrencevalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -785,15 +785,15 @@ assert_eq!(indices.next(), None);
 
 ##### `impl IntoIterator for Indices<'a>`
 
-- <span id="indices-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="indices-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="indices-type-intoiter"></span>`type IntoIter = I`
+- <span id="indices-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="indices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Indices<'_>`
 
-- <span id="indices-type-item"></span>`type Item = usize`
+- <span id="indices-iterator-type-item"></span>`type Item = usize`
 
 - <span id="indices-next"></span>`fn next(&mut self) -> Option<usize>`
 

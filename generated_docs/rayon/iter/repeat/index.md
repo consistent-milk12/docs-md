@@ -14,7 +14,7 @@
   - [`RepeatNProducer`](#repeatnproducer)
 - [Functions](#functions)
   - [`repeat`](#repeat)
-  - [`repeat_n`](#repeat_n)
+  - [`repeat_n`](#repeat-n)
   - [`repeatn`](#repeatn)
 
 ## Quick Reference
@@ -26,7 +26,7 @@
 | [`RepeatN`](#repeatn) | struct | Iterator adaptor for [the `repeat_n()` function]. |
 | [`RepeatNProducer`](#repeatnproducer) | enum | Producer for `RepeatN`. |
 | [`repeat`](#repeat) | fn | Creates a parallel iterator that endlessly repeats `element` (by cloning it). |
-| [`repeat_n`](#repeat_n) | fn | Creates a parallel iterator that produces `n` repeats of `element` (by cloning it). |
+| [`repeat_n`](#repeat-n) | fn | Creates a parallel iterator that produces `n` repeats of `element` (by cloning it). |
 | [`repeatn`](#repeatn) | fn | Creates a parallel iterator that produces `n` repeats of `element` (by cloning it). |
 
 ## Structs
@@ -64,23 +64,23 @@ Iterator adaptor for [the `repeat()` function].
 
 ##### `impl<T> IntoParallelIterator for Repeat<T>`
 
-- <span id="repeat-type-iter"></span>`type Iter = T`
+- <span id="repeat-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="repeat-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeat-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeat-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for Repeat<T>`
 
-- <span id="repeat-type-item"></span>`type Item = T`
+- <span id="repeat-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
-- <span id="repeat-const-align"></span>`const ALIGN: usize`
+- <span id="repeat-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeat-type-init"></span>`type Init = T`
+- <span id="repeat-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -108,9 +108,9 @@ Unindexed producer for `Repeat`.
 
 ##### `impl<T> Pointable for RepeatProducer<T>`
 
-- <span id="repeatproducer-const-align"></span>`const ALIGN: usize`
+- <span id="repeatproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatproducer-type-init"></span>`type Init = T`
+- <span id="repeatproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeatproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -122,7 +122,7 @@ Unindexed producer for `Repeat`.
 
 ##### `impl<T: Clone + Send> UnindexedProducer for RepeatProducer<T>`
 
-- <span id="repeatproducer-type-item"></span>`type Item = T`
+- <span id="repeatproducer-unindexedproducer-type-item"></span>`type Item = T`
 
 - <span id="repeatproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -163,15 +163,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IntoParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-type-iter"></span>`type Iter = T`
+- <span id="repeatn-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="repeatn-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeatn-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeatn-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-type-item"></span>`type Item = T`
+- <span id="repeatn-paralleliterator-type-item"></span>`type Item = T`
 
 - <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
@@ -179,9 +179,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> Pointable for RepeatN<T>`
 
-- <span id="repeatn-const-align"></span>`const ALIGN: usize`
+- <span id="repeatn-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatn-type-init"></span>`type Init = T`
+- <span id="repeatn-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeatn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -224,17 +224,17 @@ Producer for `RepeatN`.
 
 ##### `impl<T> IntoEither for RepeatNProducer<T>`
 
-##### `impl<I> IntoIterator for RepeatNProducer<T>`
+##### `impl IntoIterator for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="repeatnproducer-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="repeatnproducer-type-intoiter"></span>`type IntoIter = I`
+- <span id="repeatnproducer-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T: Clone> Iterator for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-type-item"></span>`type Item = T`
+- <span id="repeatnproducer-iterator-type-item"></span>`type Item = T`
 
 - <span id="repeatnproducer-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -244,9 +244,9 @@ Producer for `RepeatN`.
 
 ##### `impl<T> Pointable for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-const-align"></span>`const ALIGN: usize`
+- <span id="repeatnproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatnproducer-type-init"></span>`type Init = T`
+- <span id="repeatnproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="repeatnproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -258,9 +258,9 @@ Producer for `RepeatN`.
 
 ##### `impl<T: Clone + Send> Producer for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-type-item"></span>`type Item = T`
+- <span id="repeatnproducer-producer-type-item"></span>`type Item = T`
 
-- <span id="repeatnproducer-type-intoiter"></span>`type IntoIter = RepeatNProducer<T>`
+- <span id="repeatnproducer-producer-type-intoiter"></span>`type IntoIter = RepeatNProducer<T>`
 
 - <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 

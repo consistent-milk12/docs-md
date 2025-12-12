@@ -4,7 +4,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`diff_paths`](#diff_paths) | fn | Construct a relative path from a provided base directory path to the provided path. |
+| [`diff_paths`](#diff-paths) | fn | Construct a relative path from a provided base directory path to the provided path. |
 
 ## Functions
 

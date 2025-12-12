@@ -193,15 +193,15 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
   - [`Parse`](#parse)
   - [`Parser`](#parser)
 - [Functions](#functions)
-  - [`advance_step_cursor`](#advance_step_cursor)
-  - [`new_parse_buffer`](#new_parse_buffer)
-  - [`cell_clone`](#cell_clone)
-  - [`inner_unexpected`](#inner_unexpected)
-  - [`get_unexpected`](#get_unexpected)
-  - [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones)
-  - [`tokens_to_parse_buffer`](#tokens_to_parse_buffer)
-  - [`parse_scoped`](#parse_scoped)
-  - [`err_unexpected_token`](#err_unexpected_token)
+  - [`advance_step_cursor`](#advance-step-cursor)
+  - [`new_parse_buffer`](#new-parse-buffer)
+  - [`cell_clone`](#cell-clone)
+  - [`inner_unexpected`](#inner-unexpected)
+  - [`get_unexpected`](#get-unexpected)
+  - [`span_of_unexpected_ignoring_nones`](#span-of-unexpected-ignoring-nones)
+  - [`tokens_to_parse_buffer`](#tokens-to-parse-buffer)
+  - [`parse_scoped`](#parse-scoped)
+  - [`err_unexpected_token`](#err-unexpected-token)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
   - [`ParseStream`](#parsestream)
@@ -221,15 +221,15 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 | [`Peek`](#peek) | trait |  |
 | [`Parse`](#parse) | trait | Parsing interface implemented by all types that can be parsed in a default way from a token stream. |
 | [`Parser`](#parser) | trait | Parser that can parse Rust tokens into a particular syntax tree node. |
-| [`advance_step_cursor`](#advance_step_cursor) | fn |  |
-| [`new_parse_buffer`](#new_parse_buffer) | fn |  |
-| [`cell_clone`](#cell_clone) | fn |  |
-| [`inner_unexpected`](#inner_unexpected) | fn |  |
-| [`get_unexpected`](#get_unexpected) | fn |  |
-| [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones) | fn |  |
-| [`tokens_to_parse_buffer`](#tokens_to_parse_buffer) | fn |  |
-| [`parse_scoped`](#parse_scoped) | fn |  |
-| [`err_unexpected_token`](#err_unexpected_token) | fn |  |
+| [`advance_step_cursor`](#advance-step-cursor) | fn |  |
+| [`new_parse_buffer`](#new-parse-buffer) | fn |  |
+| [`cell_clone`](#cell-clone) | fn |  |
+| [`inner_unexpected`](#inner-unexpected) | fn |  |
+| [`get_unexpected`](#get-unexpected) | fn |  |
+| [`span_of_unexpected_ignoring_nones`](#span-of-unexpected-ignoring-nones) | fn |  |
+| [`tokens_to_parse_buffer`](#tokens-to-parse-buffer) | fn |  |
+| [`parse_scoped`](#parse-scoped) | fn |  |
+| [`err_unexpected_token`](#err-unexpected-token) | fn |  |
 | [`Result`](#result) | type |  |
 | [`ParseStream`](#parsestream) | type | Input to a Syn parser function. |
 
@@ -364,9 +364,9 @@ mod expand {
 
 ##### `impl IntoIterator for Error`
 
-- <span id="error-type-item"></span>`type Item = Error`
+- <span id="error-intoiterator-type-item"></span>`type Item = Error`
 
-- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="error-intoiterator-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -763,13 +763,13 @@ assert_eq!(remainder.to_string(), "b c");
 
 ##### `impl Deref for StepCursor<'c, 'a>`
 
-- <span id="stepcursor-type-target"></span>`type Target = Cursor<'c>`
+- <span id="stepcursor-deref-type-target"></span>`type Target = Cursor<'c>`
 
 - <span id="stepcursor-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl Receiver for StepCursor<'c, 'a>`
 
-- <span id="stepcursor-type-target"></span>`type Target = T`
+- <span id="stepcursor-receiver-type-target"></span>`type Target = T`
 
 ### `Nothing`
 
@@ -1285,7 +1285,15 @@ fn err_unexpected_token(span: proc_macro2::Span, delimiter: proc_macro2::Delimit
 
 ## Type Aliases
 
-*Defined in [`syn-2.0.111/src/parse.rs:204`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L204)*
+### `Result<T>`
+
+```rust
+type Result<T> = std::result::Result<T, Error>;
+```
+
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L15)*
+
+The result of a Syn parser.
 
 ### `ParseStream<'a>`
 

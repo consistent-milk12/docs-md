@@ -89,109 +89,109 @@ working with to make it easier to manipulate.
 
 #### Trait Implementations
 
-##### `impl<'s, T> AsMut for SliceVec<'s, T>`
+##### `impl<T> AsMut for SliceVec<'s, T>`
 
 - <span id="slicevec-as-mut"></span>`fn as_mut(&mut self) -> &mut [T]`
 
-##### `impl<'s, T> AsRef for SliceVec<'s, T>`
+##### `impl<T> AsRef for SliceVec<'s, T>`
 
 - <span id="slicevec-as-ref"></span>`fn as_ref(&self) -> &[T]`
 
-##### `impl<'s, T> Binary for SliceVec<'s, T>`
+##### `impl<T> Binary for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> Debug for SliceVec<'s, T>`
+##### `impl<T> Debug for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> Default for SliceVec<'s, T>`
+##### `impl<T> Default for SliceVec<'s, T>`
 
 - <span id="slicevec-default"></span>`fn default() -> Self`
 
-##### `impl<'s, T> Deref for SliceVec<'s, T>`
+##### `impl<T> Deref for SliceVec<'s, T>`
 
-- <span id="slicevec-type-target"></span>`type Target = [T]`
+- <span id="slicevec-deref-type-target"></span>`type Target = [T]`
 
 - <span id="slicevec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<'s, T> DerefMut for SliceVec<'s, T>`
+##### `impl<T> DerefMut for SliceVec<'s, T>`
 
 - <span id="slicevec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
-##### `impl<'s, T> Display for SliceVec<'s, T>`
+##### `impl<T> Display for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> Eq for SliceVec<'s, T>`
+##### `impl<T> Eq for SliceVec<'s, T>`
 
-##### `impl<'s, T> Extend for SliceVec<'s, T>`
+##### `impl<T> Extend for SliceVec<'s, T>`
 
 - <span id="slicevec-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
-##### `impl<'s, T> Hash for SliceVec<'s, T>`
+##### `impl<T> Hash for SliceVec<'s, T>`
 
 - <span id="slicevec-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'s, T, I> Index for SliceVec<'s, T>`
+##### `impl<T, I> Index for SliceVec<'s, T>`
 
-- <span id="slicevec-type-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="slicevec-index-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="slicevec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
-##### `impl<'s, T, I> IndexMut for SliceVec<'s, T>`
+##### `impl<T, I> IndexMut for SliceVec<'s, T>`
 
 - <span id="slicevec-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut <Self as >::Output`
 
-##### `impl<'s, T> IntoIterator for SliceVec<'s, T>`
+##### `impl<T> IntoIterator for SliceVec<'s, T>`
 
-- <span id="slicevec-type-item"></span>`type Item = &'s mut T`
+- <span id="slicevec-intoiterator-type-item"></span>`type Item = &'s mut T`
 
-- <span id="slicevec-type-intoiter"></span>`type IntoIter = IterMut<'s, T>`
+- <span id="slicevec-intoiterator-type-intoiter"></span>`type IntoIter = IterMut<'s, T>`
 
 - <span id="slicevec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
-##### `impl<'s, T> LowerExp for SliceVec<'s, T>`
+##### `impl<T> LowerExp for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> LowerHex for SliceVec<'s, T>`
+##### `impl<T> LowerHex for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> Octal for SliceVec<'s, T>`
+##### `impl<T> Octal for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> Ord for SliceVec<'s, T>`
+##### `impl<T> Ord for SliceVec<'s, T>`
 
 - <span id="slicevec-cmp"></span>`fn cmp(&self, other: &Self) -> core::cmp::Ordering`
 
-##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
+##### `impl<T> PartialEq for SliceVec<'s, T>`
 
 - <span id="slicevec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
+##### `impl<T> PartialOrd for SliceVec<'s, T>`
 
 - <span id="slicevec-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<core::cmp::Ordering>`
 
-##### `impl<'s, T> Pointer for SliceVec<'s, T>`
+##### `impl<T> Pointer for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<P, T> Receiver for SliceVec<'s, T>`
+##### `impl<T> Receiver for SliceVec<'s, T>`
 
-- <span id="slicevec-type-target"></span>`type Target = T`
+- <span id="slicevec-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for SliceVec<'s, T>`
 
 - <span id="slicevec-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<'s, T> UpperExp for SliceVec<'s, T>`
+##### `impl<T> UpperExp for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'s, T> UpperHex for SliceVec<'s, T>`
+##### `impl<T> UpperHex for SliceVec<'s, T>`
 
 - <span id="slicevec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
@@ -214,23 +214,23 @@ See [`SliceVec::drain`](SliceVec::drain)
 
 #### Trait Implementations
 
-##### `impl<'p, 's, T: Default> Drop for SliceVecDrain<'p, 's, T>`
+##### `impl<T: Default> Drop for SliceVecDrain<'p, 's, T>`
 
 - <span id="slicevecdrain-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'p, 's, T: Default> FusedIterator for SliceVecDrain<'p, 's, T>`
+##### `impl<T: Default> FusedIterator for SliceVecDrain<'p, 's, T>`
 
-##### `impl<I> IntoIterator for SliceVecDrain<'p, 's, T>`
+##### `impl IntoIterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="slicevecdrain-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="slicevecdrain-type-intoiter"></span>`type IntoIter = I`
+- <span id="slicevecdrain-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="slicevecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'p, 's, T: Default> Iterator for SliceVecDrain<'p, 's, T>`
+##### `impl<T: Default> Iterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-type-item"></span>`type Item = T`
+- <span id="slicevecdrain-iterator-type-item"></span>`type Item = T`
 
 - <span id="slicevecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

@@ -13,30 +13,30 @@ to name one of the iterator types.
 ## Contents
 
 - [Modules](#modules)
-  - [`binary_heap`](#binary_heap)
-  - [`btree_map`](#btree_map)
-  - [`btree_set`](#btree_set)
-  - [`hash_map`](#hash_map)
-  - [`hash_set`](#hash_set)
-  - [`linked_list`](#linked_list)
-  - [`vec_deque`](#vec_deque)
-  - [`drain_guard`](#drain_guard)
+  - [`binary_heap`](#binary-heap)
+  - [`btree_map`](#btree-map)
+  - [`btree_set`](#btree-set)
+  - [`hash_map`](#hash-map)
+  - [`hash_set`](#hash-set)
+  - [`linked_list`](#linked-list)
+  - [`vec_deque`](#vec-deque)
+  - [`drain_guard`](#drain-guard)
 - [Macros](#macros)
-  - [`into_par_vec!`](#into_par_vec)
+  - [`into_par_vec!`](#into-par-vec)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`binary_heap`](#binary_heap) | mod | This module contains the parallel iterator types for heaps (`BinaryHeap<T>`). |
-| [`btree_map`](#btree_map) | mod | This module contains the parallel iterator types for B-Tree maps (`BTreeMap<K, V>`). |
-| [`btree_set`](#btree_set) | mod | This module contains the parallel iterator types for B-Tree sets (`BTreeSet<T>`). |
-| [`hash_map`](#hash_map) | mod | This module contains the parallel iterator types for hash maps (`HashMap<K, V>`). |
-| [`hash_set`](#hash_set) | mod | This module contains the parallel iterator types for hash sets (`HashSet<T>`). |
-| [`linked_list`](#linked_list) | mod | This module contains the parallel iterator types for linked lists (`LinkedList<T>`). |
-| [`vec_deque`](#vec_deque) | mod | This module contains the parallel iterator types for double-ended queues (`VecDeque<T>`). |
-| [`drain_guard`](#drain_guard) | mod |  |
-| [`into_par_vec!`](#into_par_vec) | macro | Convert an iterable collection into a parallel iterator by first collecting into a temporary `Vec`, then iterating that. |
+| [`binary_heap`](#binary-heap) | mod | This module contains the parallel iterator types for heaps (`BinaryHeap<T>`). |
+| [`btree_map`](#btree-map) | mod | This module contains the parallel iterator types for B-Tree maps (`BTreeMap<K, V>`). |
+| [`btree_set`](#btree-set) | mod | This module contains the parallel iterator types for B-Tree sets (`BTreeSet<T>`). |
+| [`hash_map`](#hash-map) | mod | This module contains the parallel iterator types for hash maps (`HashMap<K, V>`). |
+| [`hash_set`](#hash-set) | mod | This module contains the parallel iterator types for hash sets (`HashSet<T>`). |
+| [`linked_list`](#linked-list) | mod | This module contains the parallel iterator types for linked lists (`LinkedList<T>`). |
+| [`vec_deque`](#vec-deque) | mod | This module contains the parallel iterator types for double-ended queues (`VecDeque<T>`). |
+| [`drain_guard`](#drain-guard) | mod |  |
+| [`into_par_vec!`](#into-par-vec) | macro | Convert an iterable collection into a parallel iterator by first collecting into a temporary `Vec`, then iterating that. |
 
 ## Modules
 

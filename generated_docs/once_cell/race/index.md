@@ -29,7 +29,7 @@ architectures versus `Relaxed`.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`once_box`](#once_box) | mod |  |
+| [`once_box`](#once-box) | mod |  |
 | [`OnceNonZeroUsize`](#oncenonzerousize) | struct | A thread-safe cell which can be written to only once. |
 | [`OnceBool`](#oncebool) | struct | A thread-safe cell which can be written to only once. |
 | [`OnceRef`](#onceref) | struct | A thread-safe cell which can be written to only once. |
@@ -152,15 +152,15 @@ A thread-safe cell which can be written to only once.
 
 #### Trait Implementations
 
-##### `impl<'a, T> Debug for OnceRef<'a, T>`
+##### `impl<T> Debug for OnceRef<'a, T>`
 
 - <span id="onceref-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'a, T> Default for OnceRef<'a, T>`
+##### `impl<T> Default for OnceRef<'a, T>`
 
 - <span id="onceref-default"></span>`fn default() -> Self`
 
-##### `impl<'a, T: Sync> Sync for OnceRef<'a, T>`
+##### `impl<T: Sync> Sync for OnceRef<'a, T>`
 
 ### `OnceBox<T>`
 

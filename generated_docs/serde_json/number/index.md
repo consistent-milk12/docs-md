@@ -10,10 +10,10 @@
 |------|------|-------------|
 | [`Number`](#number) | struct | Represents a JSON number, whether integer or floating point. |
 | [`N`](#n) | enum |  |
-| [`deserialize_any!`](#deserialize_any) | macro |  |
-| [`deserialize_number!`](#deserialize_number) | macro |  |
-| [`impl_from_unsigned!`](#impl_from_unsigned) | macro |  |
-| [`impl_from_signed!`](#impl_from_signed) | macro |  |
+| [`deserialize_any!`](#deserialize-any) | macro |  |
+| [`deserialize_number!`](#deserialize-number) | macro |  |
+| [`impl_from_unsigned!`](#impl-from-unsigned) | macro |  |
+| [`impl_from_signed!`](#impl-from-signed) | macro |  |
 
 ## Structs
 
@@ -75,7 +75,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl Deserializer for Number`
 
-- <span id="number-type-error"></span>`type Error = Error`
+- <span id="number-deserializer-type-error"></span>`type Error = Error`
 
 - <span id="number-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md#error)
 
@@ -147,7 +147,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl FromStr for crate::number::Number`
 
-- <span id="cratenumbernumber-type-err"></span>`type Err = Error`
+- <span id="cratenumbernumber-fromstr-type-err"></span>`type Err = Error`
 
 - <span id="cratenumbernumber-from-str"></span>`fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
 

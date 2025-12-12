@@ -38,160 +38,160 @@ This module is the equivalent of /usr/include/xcoff.h, and is based heavily on i
   - [`Rel32`](#rel32)
   - [`Rel64`](#rel64)
 - [Constants](#constants)
-  - [`MAGIC_64`](#magic_64)
-  - [`MAGIC_32`](#magic_32)
-  - [`F_RELFLG`](#f_relflg)
-  - [`F_EXEC`](#f_exec)
-  - [`F_LNNO`](#f_lnno)
-  - [`F_FDPR_PROF`](#f_fdpr_prof)
-  - [`F_FDPR_OPTI`](#f_fdpr_opti)
-  - [`F_DSA`](#f_dsa)
-  - [`F_VARPG`](#f_varpg)
-  - [`F_DYNLOAD`](#f_dynload)
-  - [`F_SHROBJ`](#f_shrobj)
-  - [`F_LOADONLY`](#f_loadonly)
-  - [`AOUTHSZ_SHORT`](#aouthsz_short)
-  - [`STYP_REG`](#styp_reg)
-  - [`STYP_PAD`](#styp_pad)
-  - [`STYP_DWARF`](#styp_dwarf)
-  - [`STYP_TEXT`](#styp_text)
-  - [`STYP_DATA`](#styp_data)
-  - [`STYP_BSS`](#styp_bss)
-  - [`STYP_EXCEPT`](#styp_except)
-  - [`STYP_INFO`](#styp_info)
-  - [`STYP_TDATA`](#styp_tdata)
-  - [`STYP_TBSS`](#styp_tbss)
-  - [`STYP_LOADER`](#styp_loader)
-  - [`STYP_DEBUG`](#styp_debug)
-  - [`STYP_TYPCHK`](#styp_typchk)
-  - [`STYP_OVRFLO`](#styp_ovrflo)
-  - [`SSUBTYP_DWINFO`](#ssubtyp_dwinfo)
-  - [`SSUBTYP_DWLINE`](#ssubtyp_dwline)
-  - [`SSUBTYP_DWPBNMS`](#ssubtyp_dwpbnms)
-  - [`SSUBTYP_DWPBTYP`](#ssubtyp_dwpbtyp)
-  - [`SSUBTYP_DWARNGE`](#ssubtyp_dwarnge)
-  - [`SSUBTYP_DWABREV`](#ssubtyp_dwabrev)
-  - [`SSUBTYP_DWSTR`](#ssubtyp_dwstr)
-  - [`SSUBTYP_DWRNGES`](#ssubtyp_dwrnges)
-  - [`SSUBTYP_DWLOC`](#ssubtyp_dwloc)
-  - [`SSUBTYP_DWFRAME`](#ssubtyp_dwframe)
-  - [`SSUBTYP_DWMAC`](#ssubtyp_dwmac)
-  - [`SIZEOF_SYMBOL`](#sizeof_symbol)
-  - [`N_DEBUG`](#n_debug)
-  - [`N_ABS`](#n_abs)
-  - [`N_UNDEF`](#n_undef)
-  - [`SYM_V_MASK`](#sym_v_mask)
-  - [`SYM_V_INTERNAL`](#sym_v_internal)
-  - [`SYM_V_HIDDEN`](#sym_v_hidden)
-  - [`SYM_V_PROTECTED`](#sym_v_protected)
-  - [`SYM_V_EXPORTED`](#sym_v_exported)
-  - [`C_FILE`](#c_file)
-  - [`C_BINCL`](#c_bincl)
-  - [`C_EINCL`](#c_eincl)
-  - [`C_GSYM`](#c_gsym)
-  - [`C_STSYM`](#c_stsym)
-  - [`C_BCOMM`](#c_bcomm)
-  - [`C_ECOMM`](#c_ecomm)
-  - [`C_ENTRY`](#c_entry)
-  - [`C_BSTAT`](#c_bstat)
-  - [`C_ESTAT`](#c_estat)
-  - [`C_GTLS`](#c_gtls)
-  - [`C_STTLS`](#c_sttls)
-  - [`C_DWARF`](#c_dwarf)
-  - [`C_LSYM`](#c_lsym)
-  - [`C_PSYM`](#c_psym)
-  - [`C_RSYM`](#c_rsym)
-  - [`C_RPSYM`](#c_rpsym)
-  - [`C_ECOML`](#c_ecoml)
-  - [`C_FUN`](#c_fun)
-  - [`C_EXT`](#c_ext)
-  - [`C_WEAKEXT`](#c_weakext)
-  - [`C_NULL`](#c_null)
-  - [`C_STAT`](#c_stat)
-  - [`C_BLOCK`](#c_block)
-  - [`C_FCN`](#c_fcn)
-  - [`C_HIDEXT`](#c_hidext)
-  - [`C_INFO`](#c_info)
-  - [`C_DECL`](#c_decl)
-  - [`C_AUTO`](#c_auto)
-  - [`C_REG`](#c_reg)
-  - [`C_EXTDEF`](#c_extdef)
-  - [`C_LABEL`](#c_label)
-  - [`C_ULABEL`](#c_ulabel)
-  - [`C_MOS`](#c_mos)
-  - [`C_ARG`](#c_arg)
-  - [`C_STRTAG`](#c_strtag)
-  - [`C_MOU`](#c_mou)
-  - [`C_UNTAG`](#c_untag)
-  - [`C_TPDEF`](#c_tpdef)
-  - [`C_USTATIC`](#c_ustatic)
-  - [`C_ENTAG`](#c_entag)
-  - [`C_MOE`](#c_moe)
-  - [`C_REGPARM`](#c_regparm)
-  - [`C_FIELD`](#c_field)
-  - [`C_EOS`](#c_eos)
-  - [`C_ALIAS`](#c_alias)
-  - [`C_HIDDEN`](#c_hidden)
-  - [`C_EFCN`](#c_efcn)
-  - [`C_TCSYM`](#c_tcsym)
-  - [`XFT_FN`](#xft_fn)
-  - [`XFT_CT`](#xft_ct)
-  - [`XFT_CV`](#xft_cv)
-  - [`XFT_CD`](#xft_cd)
-  - [`XTY_ER`](#xty_er)
-  - [`XTY_SD`](#xty_sd)
-  - [`XTY_LD`](#xty_ld)
-  - [`XTY_CM`](#xty_cm)
-  - [`XMC_PR`](#xmc_pr)
-  - [`XMC_RO`](#xmc_ro)
-  - [`XMC_DB`](#xmc_db)
-  - [`XMC_GL`](#xmc_gl)
-  - [`XMC_XO`](#xmc_xo)
-  - [`XMC_SV`](#xmc_sv)
-  - [`XMC_SV64`](#xmc_sv64)
-  - [`XMC_SV3264`](#xmc_sv3264)
-  - [`XMC_TI`](#xmc_ti)
-  - [`XMC_TB`](#xmc_tb)
-  - [`XMC_RW`](#xmc_rw)
-  - [`XMC_TC0`](#xmc_tc0)
-  - [`XMC_TC`](#xmc_tc)
-  - [`XMC_TD`](#xmc_td)
-  - [`XMC_DS`](#xmc_ds)
-  - [`XMC_UA`](#xmc_ua)
-  - [`XMC_BS`](#xmc_bs)
-  - [`XMC_UC`](#xmc_uc)
-  - [`XMC_TL`](#xmc_tl)
-  - [`XMC_UL`](#xmc_ul)
-  - [`XMC_TE`](#xmc_te)
-  - [`AUX_EXCEPT`](#aux_except)
-  - [`AUX_FCN`](#aux_fcn)
-  - [`AUX_SYM`](#aux_sym)
-  - [`AUX_FILE`](#aux_file)
-  - [`AUX_CSECT`](#aux_csect)
-  - [`AUX_SECT`](#aux_sect)
-  - [`R_POS`](#r_pos)
-  - [`R_RL`](#r_rl)
-  - [`R_RLA`](#r_rla)
-  - [`R_NEG`](#r_neg)
-  - [`R_REL`](#r_rel)
-  - [`R_TOC`](#r_toc)
-  - [`R_TRL`](#r_trl)
-  - [`R_TRLA`](#r_trla)
-  - [`R_GL`](#r_gl)
-  - [`R_TCL`](#r_tcl)
-  - [`R_REF`](#r_ref)
-  - [`R_BA`](#r_ba)
-  - [`R_BR`](#r_br)
-  - [`R_RBA`](#r_rba)
-  - [`R_RBR`](#r_rbr)
-  - [`R_TLS`](#r_tls)
-  - [`R_TLS_IE`](#r_tls_ie)
-  - [`R_TLS_LD`](#r_tls_ld)
-  - [`R_TLS_LE`](#r_tls_le)
-  - [`R_TLSM`](#r_tlsm)
-  - [`R_TLSML`](#r_tlsml)
-  - [`R_TOCU`](#r_tocu)
-  - [`R_TOCL`](#r_tocl)
+  - [`MAGIC_64`](#magic-64)
+  - [`MAGIC_32`](#magic-32)
+  - [`F_RELFLG`](#f-relflg)
+  - [`F_EXEC`](#f-exec)
+  - [`F_LNNO`](#f-lnno)
+  - [`F_FDPR_PROF`](#f-fdpr-prof)
+  - [`F_FDPR_OPTI`](#f-fdpr-opti)
+  - [`F_DSA`](#f-dsa)
+  - [`F_VARPG`](#f-varpg)
+  - [`F_DYNLOAD`](#f-dynload)
+  - [`F_SHROBJ`](#f-shrobj)
+  - [`F_LOADONLY`](#f-loadonly)
+  - [`AOUTHSZ_SHORT`](#aouthsz-short)
+  - [`STYP_REG`](#styp-reg)
+  - [`STYP_PAD`](#styp-pad)
+  - [`STYP_DWARF`](#styp-dwarf)
+  - [`STYP_TEXT`](#styp-text)
+  - [`STYP_DATA`](#styp-data)
+  - [`STYP_BSS`](#styp-bss)
+  - [`STYP_EXCEPT`](#styp-except)
+  - [`STYP_INFO`](#styp-info)
+  - [`STYP_TDATA`](#styp-tdata)
+  - [`STYP_TBSS`](#styp-tbss)
+  - [`STYP_LOADER`](#styp-loader)
+  - [`STYP_DEBUG`](#styp-debug)
+  - [`STYP_TYPCHK`](#styp-typchk)
+  - [`STYP_OVRFLO`](#styp-ovrflo)
+  - [`SSUBTYP_DWINFO`](#ssubtyp-dwinfo)
+  - [`SSUBTYP_DWLINE`](#ssubtyp-dwline)
+  - [`SSUBTYP_DWPBNMS`](#ssubtyp-dwpbnms)
+  - [`SSUBTYP_DWPBTYP`](#ssubtyp-dwpbtyp)
+  - [`SSUBTYP_DWARNGE`](#ssubtyp-dwarnge)
+  - [`SSUBTYP_DWABREV`](#ssubtyp-dwabrev)
+  - [`SSUBTYP_DWSTR`](#ssubtyp-dwstr)
+  - [`SSUBTYP_DWRNGES`](#ssubtyp-dwrnges)
+  - [`SSUBTYP_DWLOC`](#ssubtyp-dwloc)
+  - [`SSUBTYP_DWFRAME`](#ssubtyp-dwframe)
+  - [`SSUBTYP_DWMAC`](#ssubtyp-dwmac)
+  - [`SIZEOF_SYMBOL`](#sizeof-symbol)
+  - [`N_DEBUG`](#n-debug)
+  - [`N_ABS`](#n-abs)
+  - [`N_UNDEF`](#n-undef)
+  - [`SYM_V_MASK`](#sym-v-mask)
+  - [`SYM_V_INTERNAL`](#sym-v-internal)
+  - [`SYM_V_HIDDEN`](#sym-v-hidden)
+  - [`SYM_V_PROTECTED`](#sym-v-protected)
+  - [`SYM_V_EXPORTED`](#sym-v-exported)
+  - [`C_FILE`](#c-file)
+  - [`C_BINCL`](#c-bincl)
+  - [`C_EINCL`](#c-eincl)
+  - [`C_GSYM`](#c-gsym)
+  - [`C_STSYM`](#c-stsym)
+  - [`C_BCOMM`](#c-bcomm)
+  - [`C_ECOMM`](#c-ecomm)
+  - [`C_ENTRY`](#c-entry)
+  - [`C_BSTAT`](#c-bstat)
+  - [`C_ESTAT`](#c-estat)
+  - [`C_GTLS`](#c-gtls)
+  - [`C_STTLS`](#c-sttls)
+  - [`C_DWARF`](#c-dwarf)
+  - [`C_LSYM`](#c-lsym)
+  - [`C_PSYM`](#c-psym)
+  - [`C_RSYM`](#c-rsym)
+  - [`C_RPSYM`](#c-rpsym)
+  - [`C_ECOML`](#c-ecoml)
+  - [`C_FUN`](#c-fun)
+  - [`C_EXT`](#c-ext)
+  - [`C_WEAKEXT`](#c-weakext)
+  - [`C_NULL`](#c-null)
+  - [`C_STAT`](#c-stat)
+  - [`C_BLOCK`](#c-block)
+  - [`C_FCN`](#c-fcn)
+  - [`C_HIDEXT`](#c-hidext)
+  - [`C_INFO`](#c-info)
+  - [`C_DECL`](#c-decl)
+  - [`C_AUTO`](#c-auto)
+  - [`C_REG`](#c-reg)
+  - [`C_EXTDEF`](#c-extdef)
+  - [`C_LABEL`](#c-label)
+  - [`C_ULABEL`](#c-ulabel)
+  - [`C_MOS`](#c-mos)
+  - [`C_ARG`](#c-arg)
+  - [`C_STRTAG`](#c-strtag)
+  - [`C_MOU`](#c-mou)
+  - [`C_UNTAG`](#c-untag)
+  - [`C_TPDEF`](#c-tpdef)
+  - [`C_USTATIC`](#c-ustatic)
+  - [`C_ENTAG`](#c-entag)
+  - [`C_MOE`](#c-moe)
+  - [`C_REGPARM`](#c-regparm)
+  - [`C_FIELD`](#c-field)
+  - [`C_EOS`](#c-eos)
+  - [`C_ALIAS`](#c-alias)
+  - [`C_HIDDEN`](#c-hidden)
+  - [`C_EFCN`](#c-efcn)
+  - [`C_TCSYM`](#c-tcsym)
+  - [`XFT_FN`](#xft-fn)
+  - [`XFT_CT`](#xft-ct)
+  - [`XFT_CV`](#xft-cv)
+  - [`XFT_CD`](#xft-cd)
+  - [`XTY_ER`](#xty-er)
+  - [`XTY_SD`](#xty-sd)
+  - [`XTY_LD`](#xty-ld)
+  - [`XTY_CM`](#xty-cm)
+  - [`XMC_PR`](#xmc-pr)
+  - [`XMC_RO`](#xmc-ro)
+  - [`XMC_DB`](#xmc-db)
+  - [`XMC_GL`](#xmc-gl)
+  - [`XMC_XO`](#xmc-xo)
+  - [`XMC_SV`](#xmc-sv)
+  - [`XMC_SV64`](#xmc-sv64)
+  - [`XMC_SV3264`](#xmc-sv3264)
+  - [`XMC_TI`](#xmc-ti)
+  - [`XMC_TB`](#xmc-tb)
+  - [`XMC_RW`](#xmc-rw)
+  - [`XMC_TC0`](#xmc-tc0)
+  - [`XMC_TC`](#xmc-tc)
+  - [`XMC_TD`](#xmc-td)
+  - [`XMC_DS`](#xmc-ds)
+  - [`XMC_UA`](#xmc-ua)
+  - [`XMC_BS`](#xmc-bs)
+  - [`XMC_UC`](#xmc-uc)
+  - [`XMC_TL`](#xmc-tl)
+  - [`XMC_UL`](#xmc-ul)
+  - [`XMC_TE`](#xmc-te)
+  - [`AUX_EXCEPT`](#aux-except)
+  - [`AUX_FCN`](#aux-fcn)
+  - [`AUX_SYM`](#aux-sym)
+  - [`AUX_FILE`](#aux-file)
+  - [`AUX_CSECT`](#aux-csect)
+  - [`AUX_SECT`](#aux-sect)
+  - [`R_POS`](#r-pos)
+  - [`R_RL`](#r-rl)
+  - [`R_RLA`](#r-rla)
+  - [`R_NEG`](#r-neg)
+  - [`R_REL`](#r-rel)
+  - [`R_TOC`](#r-toc)
+  - [`R_TRL`](#r-trl)
+  - [`R_TRLA`](#r-trla)
+  - [`R_GL`](#r-gl)
+  - [`R_TCL`](#r-tcl)
+  - [`R_REF`](#r-ref)
+  - [`R_BA`](#r-ba)
+  - [`R_BR`](#r-br)
+  - [`R_RBA`](#r-rba)
+  - [`R_RBR`](#r-rbr)
+  - [`R_TLS`](#r-tls)
+  - [`R_TLS_IE`](#r-tls-ie)
+  - [`R_TLS_LD`](#r-tls-ld)
+  - [`R_TLS_LE`](#r-tls-le)
+  - [`R_TLSM`](#r-tlsm)
+  - [`R_TLSML`](#r-tlsml)
+  - [`R_TOCU`](#r-tocu)
+  - [`R_TOCL`](#r-tocl)
 
 ## Quick Reference
 
@@ -220,160 +220,160 @@ This module is the equivalent of /usr/include/xcoff.h, and is based heavily on i
 | [`DwarfAux64`](#dwarfaux64) | struct | Section auxiliary entry Format for C_DWARF symbols. |
 | [`Rel32`](#rel32) | struct | Relocation table entry |
 | [`Rel64`](#rel64) | struct | Relocation table entry |
-| [`MAGIC_64`](#magic_64) | const | the 64-bit mach magic number |
-| [`MAGIC_32`](#magic_32) | const | the 32-bit mach magic number |
-| [`F_RELFLG`](#f_relflg) | const | Indicates that the relocation information for binding has been removed from the file. |
-| [`F_EXEC`](#f_exec) | const | Indicates that the file is executable. |
-| [`F_LNNO`](#f_lnno) | const | Indicates that line numbers have been stripped from the file by a utility program. |
-| [`F_FDPR_PROF`](#f_fdpr_prof) | const | Indicates that the file was profiled with the fdpr command. |
-| [`F_FDPR_OPTI`](#f_fdpr_opti) | const | Indicates that the file was reordered with the fdpr command. |
-| [`F_DSA`](#f_dsa) | const | Indicates that the file uses Very Large Program Support. |
-| [`F_VARPG`](#f_varpg) | const | Indicates that one of the members of the auxiliary header specifying the medium page sizes is non-zero. |
-| [`F_DYNLOAD`](#f_dynload) | const | Indicates the file is dynamically loadable and executable. |
-| [`F_SHROBJ`](#f_shrobj) | const | Indicates the file is a shared object (shared library). |
-| [`F_LOADONLY`](#f_loadonly) | const | If the object file is a member of an archive, it can be loaded by the system loader, but the member is ignored by the binder. |
-| [`AOUTHSZ_SHORT`](#aouthsz_short) | const | Some AIX programs generate auxiliary headers for 32-bit object files that end after the data_start field. |
-| [`STYP_REG`](#styp_reg) | const | "regular" section |
-| [`STYP_PAD`](#styp_pad) | const | Specifies a pad section. |
-| [`STYP_DWARF`](#styp_dwarf) | const | Specifies a DWARF debugging section, which provide source file and symbol information for the symbolic debugger. |
-| [`STYP_TEXT`](#styp_text) | const | Specifies an executable text (code) section. |
-| [`STYP_DATA`](#styp_data) | const | Specifies an initialized data section. |
-| [`STYP_BSS`](#styp_bss) | const | Specifies an uninitialized data section. |
-| [`STYP_EXCEPT`](#styp_except) | const | Specifies an exception section. |
-| [`STYP_INFO`](#styp_info) | const | Specifies a comment section. |
-| [`STYP_TDATA`](#styp_tdata) | const | Specifies an initialized thread-local data section. |
-| [`STYP_TBSS`](#styp_tbss) | const | Specifies an uninitialized thread-local data section. |
-| [`STYP_LOADER`](#styp_loader) | const | Specifies a loader section. |
-| [`STYP_DEBUG`](#styp_debug) | const | Specifies a debug section. |
-| [`STYP_TYPCHK`](#styp_typchk) | const | Specifies a type-check section. |
-| [`STYP_OVRFLO`](#styp_ovrflo) | const | Specifies a relocation or line-number field overflow section. |
-| [`SSUBTYP_DWINFO`](#ssubtyp_dwinfo) | const |  |
-| [`SSUBTYP_DWLINE`](#ssubtyp_dwline) | const |  |
-| [`SSUBTYP_DWPBNMS`](#ssubtyp_dwpbnms) | const |  |
-| [`SSUBTYP_DWPBTYP`](#ssubtyp_dwpbtyp) | const |  |
-| [`SSUBTYP_DWARNGE`](#ssubtyp_dwarnge) | const |  |
-| [`SSUBTYP_DWABREV`](#ssubtyp_dwabrev) | const |  |
-| [`SSUBTYP_DWSTR`](#ssubtyp_dwstr) | const |  |
-| [`SSUBTYP_DWRNGES`](#ssubtyp_dwrnges) | const |  |
-| [`SSUBTYP_DWLOC`](#ssubtyp_dwloc) | const |  |
-| [`SSUBTYP_DWFRAME`](#ssubtyp_dwframe) | const |  |
-| [`SSUBTYP_DWMAC`](#ssubtyp_dwmac) | const |  |
-| [`SIZEOF_SYMBOL`](#sizeof_symbol) | const |  |
-| [`N_DEBUG`](#n_debug) | const | A special symbolic debugging symbol. |
-| [`N_ABS`](#n_abs) | const | An absolute symbol. |
-| [`N_UNDEF`](#n_undef) | const | An undefined external symbol. |
-| [`SYM_V_MASK`](#sym_v_mask) | const | Values for visibility as they would appear when encoded in the high 4 bits of the 16-bit unsigned n_type field of symbol table entries. |
-| [`SYM_V_INTERNAL`](#sym_v_internal) | const |  |
-| [`SYM_V_HIDDEN`](#sym_v_hidden) | const |  |
-| [`SYM_V_PROTECTED`](#sym_v_protected) | const |  |
-| [`SYM_V_EXPORTED`](#sym_v_exported) | const |  |
-| [`C_FILE`](#c_file) | const | Source file name and compiler information. |
-| [`C_BINCL`](#c_bincl) | const | Beginning of include file. |
-| [`C_EINCL`](#c_eincl) | const | Ending of include file. |
-| [`C_GSYM`](#c_gsym) | const | Global variable. |
-| [`C_STSYM`](#c_stsym) | const | Statically allocated symbol. |
-| [`C_BCOMM`](#c_bcomm) | const | Beginning of common block. |
-| [`C_ECOMM`](#c_ecomm) | const | End of common block. |
-| [`C_ENTRY`](#c_entry) | const | Alternate entry. |
-| [`C_BSTAT`](#c_bstat) | const | Beginning of static block. |
-| [`C_ESTAT`](#c_estat) | const | End of static block. |
-| [`C_GTLS`](#c_gtls) | const | Global thread-local variable. |
-| [`C_STTLS`](#c_sttls) | const | Static thread-local variable. |
-| [`C_DWARF`](#c_dwarf) | const | DWARF section symbol. |
-| [`C_LSYM`](#c_lsym) | const | Automatic variable allocated on stack. |
-| [`C_PSYM`](#c_psym) | const | Argument to subroutine allocated on stack. |
-| [`C_RSYM`](#c_rsym) | const | Register variable. |
-| [`C_RPSYM`](#c_rpsym) | const | Argument to function or procedure stored in register. |
-| [`C_ECOML`](#c_ecoml) | const | Local member of common block. |
-| [`C_FUN`](#c_fun) | const | Function or procedure. |
-| [`C_EXT`](#c_ext) | const | External symbol. |
-| [`C_WEAKEXT`](#c_weakext) | const | Weak external symbol. |
-| [`C_NULL`](#c_null) | const | Symbol table entry marked for deletion. |
-| [`C_STAT`](#c_stat) | const | Static. |
-| [`C_BLOCK`](#c_block) | const | Beginning or end of inner block. |
-| [`C_FCN`](#c_fcn) | const | Beginning or end of function. |
-| [`C_HIDEXT`](#c_hidext) | const | Un-named external symbol. |
-| [`C_INFO`](#c_info) | const | Comment string in .info section. |
-| [`C_DECL`](#c_decl) | const | Declaration of object (type). |
-| [`C_AUTO`](#c_auto) | const | Automatic variable. |
-| [`C_REG`](#c_reg) | const | Register variable. |
-| [`C_EXTDEF`](#c_extdef) | const | External definition. |
-| [`C_LABEL`](#c_label) | const | Label. |
-| [`C_ULABEL`](#c_ulabel) | const | Undefined label. |
-| [`C_MOS`](#c_mos) | const | Member of structure. |
-| [`C_ARG`](#c_arg) | const | Function argument. |
-| [`C_STRTAG`](#c_strtag) | const | Structure tag. |
-| [`C_MOU`](#c_mou) | const | Member of union. |
-| [`C_UNTAG`](#c_untag) | const | Union tag. |
-| [`C_TPDEF`](#c_tpdef) | const | Type definition. |
-| [`C_USTATIC`](#c_ustatic) | const | Undefined static. |
-| [`C_ENTAG`](#c_entag) | const | Enumeration tag. |
-| [`C_MOE`](#c_moe) | const | Member of enumeration. |
-| [`C_REGPARM`](#c_regparm) | const | Register parameter. |
-| [`C_FIELD`](#c_field) | const | Bit field. |
-| [`C_EOS`](#c_eos) | const | End of structure. |
-| [`C_ALIAS`](#c_alias) | const | Duplicate tag. |
-| [`C_HIDDEN`](#c_hidden) | const | Special storage class for external. |
-| [`C_EFCN`](#c_efcn) | const | Physical end of function. |
-| [`C_TCSYM`](#c_tcsym) | const | Reserved. |
-| [`XFT_FN`](#xft_fn) | const | Specifies the source-file name. |
-| [`XFT_CT`](#xft_ct) | const | Specifies the compiler time stamp. |
-| [`XFT_CV`](#xft_cv) | const | Specifies the compiler version number. |
-| [`XFT_CD`](#xft_cd) | const | Specifies compiler-defined information. |
-| [`XTY_ER`](#xty_er) | const | External reference. |
-| [`XTY_SD`](#xty_sd) | const | Csect definition for initialized storage. |
-| [`XTY_LD`](#xty_ld) | const | Defines an entry point to an initialized csect. |
-| [`XTY_CM`](#xty_cm) | const | Common csect definition. |
-| [`XMC_PR`](#xmc_pr) | const | Program Code |
-| [`XMC_RO`](#xmc_ro) | const | Read Only Constant |
-| [`XMC_DB`](#xmc_db) | const | Debug Dictionary Table |
-| [`XMC_GL`](#xmc_gl) | const | Global Linkage (Interfile Interface Code) |
-| [`XMC_XO`](#xmc_xo) | const | Extended Operation (Pseudo Machine Instruction) |
-| [`XMC_SV`](#xmc_sv) | const | Supervisor Call (32-bit process only) |
-| [`XMC_SV64`](#xmc_sv64) | const | Supervisor Call for 64-bit process |
-| [`XMC_SV3264`](#xmc_sv3264) | const | Supervisor Call for both 32- and 64-bit processes |
-| [`XMC_TI`](#xmc_ti) | const | Traceback Index csect |
-| [`XMC_TB`](#xmc_tb) | const | Traceback Table csect |
-| [`XMC_RW`](#xmc_rw) | const | Read Write Data |
-| [`XMC_TC0`](#xmc_tc0) | const | TOC Anchor for TOC Addressability |
-| [`XMC_TC`](#xmc_tc) | const | General TOC item |
-| [`XMC_TD`](#xmc_td) | const | Scalar data item in the TOC |
-| [`XMC_DS`](#xmc_ds) | const | Descriptor csect |
-| [`XMC_UA`](#xmc_ua) | const | Unclassified - Treated as Read Write |
-| [`XMC_BS`](#xmc_bs) | const | BSS class (uninitialized static internal) |
-| [`XMC_UC`](#xmc_uc) | const | Un-named Fortran Common |
-| [`XMC_TL`](#xmc_tl) | const | Initialized thread-local variable |
-| [`XMC_UL`](#xmc_ul) | const | Uninitialized thread-local variable |
-| [`XMC_TE`](#xmc_te) | const | Symbol mapped at the end of TOC |
-| [`AUX_EXCEPT`](#aux_except) | const | Identifies an exception auxiliary entry. |
-| [`AUX_FCN`](#aux_fcn) | const | Identifies a function auxiliary entry. |
-| [`AUX_SYM`](#aux_sym) | const | Identifies a symbol auxiliary entry. |
-| [`AUX_FILE`](#aux_file) | const | Identifies a file auxiliary entry. |
-| [`AUX_CSECT`](#aux_csect) | const | Identifies a csect auxiliary entry. |
-| [`AUX_SECT`](#aux_sect) | const | Identifies a SECT auxiliary entry. |
-| [`R_POS`](#r_pos) | const | Positive relocation. |
-| [`R_RL`](#r_rl) | const | Positive indirect load relocation. |
-| [`R_RLA`](#r_rla) | const | Positive load address relocation. |
-| [`R_NEG`](#r_neg) | const | Negative relocation. |
-| [`R_REL`](#r_rel) | const | Relative to self relocation. |
-| [`R_TOC`](#r_toc) | const | Relative to the TOC relocation. |
-| [`R_TRL`](#r_trl) | const | TOC relative indirect load relocation. |
-| [`R_TRLA`](#r_trla) | const | Relative to the TOC or to the thread-local storage base relocation. |
-| [`R_GL`](#r_gl) | const | Global linkage-external TOC address relocation. |
-| [`R_TCL`](#r_tcl) | const | Local object TOC address relocation. |
-| [`R_REF`](#r_ref) | const | A non-relocating relocation. |
-| [`R_BA`](#r_ba) | const | Branch absolute relocation. |
-| [`R_BR`](#r_br) | const | Branch relative to self relocation. |
-| [`R_RBA`](#r_rba) | const | Branch absolute relocation. |
-| [`R_RBR`](#r_rbr) | const | Branch relative to self relocation. |
-| [`R_TLS`](#r_tls) | const | General-dynamic reference to TLS symbol. |
-| [`R_TLS_IE`](#r_tls_ie) | const | Initial-exec reference to TLS symbol. |
-| [`R_TLS_LD`](#r_tls_ld) | const | Local-dynamic reference to TLS symbol. |
-| [`R_TLS_LE`](#r_tls_le) | const | Local-exec reference to TLS symbol. |
-| [`R_TLSM`](#r_tlsm) | const | Module reference to TLS. |
-| [`R_TLSML`](#r_tlsml) | const | Module reference to the local TLS storage. |
-| [`R_TOCU`](#r_tocu) | const | Relative to TOC upper. |
-| [`R_TOCL`](#r_tocl) | const | Relative to TOC lower. |
+| [`MAGIC_64`](#magic-64) | const | the 64-bit mach magic number |
+| [`MAGIC_32`](#magic-32) | const | the 32-bit mach magic number |
+| [`F_RELFLG`](#f-relflg) | const | Indicates that the relocation information for binding has been removed from the file. |
+| [`F_EXEC`](#f-exec) | const | Indicates that the file is executable. |
+| [`F_LNNO`](#f-lnno) | const | Indicates that line numbers have been stripped from the file by a utility program. |
+| [`F_FDPR_PROF`](#f-fdpr-prof) | const | Indicates that the file was profiled with the fdpr command. |
+| [`F_FDPR_OPTI`](#f-fdpr-opti) | const | Indicates that the file was reordered with the fdpr command. |
+| [`F_DSA`](#f-dsa) | const | Indicates that the file uses Very Large Program Support. |
+| [`F_VARPG`](#f-varpg) | const | Indicates that one of the members of the auxiliary header specifying the medium page sizes is non-zero. |
+| [`F_DYNLOAD`](#f-dynload) | const | Indicates the file is dynamically loadable and executable. |
+| [`F_SHROBJ`](#f-shrobj) | const | Indicates the file is a shared object (shared library). |
+| [`F_LOADONLY`](#f-loadonly) | const | If the object file is a member of an archive, it can be loaded by the system loader, but the member is ignored by the binder. |
+| [`AOUTHSZ_SHORT`](#aouthsz-short) | const | Some AIX programs generate auxiliary headers for 32-bit object files that end after the data_start field. |
+| [`STYP_REG`](#styp-reg) | const | "regular" section |
+| [`STYP_PAD`](#styp-pad) | const | Specifies a pad section. |
+| [`STYP_DWARF`](#styp-dwarf) | const | Specifies a DWARF debugging section, which provide source file and symbol information for the symbolic debugger. |
+| [`STYP_TEXT`](#styp-text) | const | Specifies an executable text (code) section. |
+| [`STYP_DATA`](#styp-data) | const | Specifies an initialized data section. |
+| [`STYP_BSS`](#styp-bss) | const | Specifies an uninitialized data section. |
+| [`STYP_EXCEPT`](#styp-except) | const | Specifies an exception section. |
+| [`STYP_INFO`](#styp-info) | const | Specifies a comment section. |
+| [`STYP_TDATA`](#styp-tdata) | const | Specifies an initialized thread-local data section. |
+| [`STYP_TBSS`](#styp-tbss) | const | Specifies an uninitialized thread-local data section. |
+| [`STYP_LOADER`](#styp-loader) | const | Specifies a loader section. |
+| [`STYP_DEBUG`](#styp-debug) | const | Specifies a debug section. |
+| [`STYP_TYPCHK`](#styp-typchk) | const | Specifies a type-check section. |
+| [`STYP_OVRFLO`](#styp-ovrflo) | const | Specifies a relocation or line-number field overflow section. |
+| [`SSUBTYP_DWINFO`](#ssubtyp-dwinfo) | const |  |
+| [`SSUBTYP_DWLINE`](#ssubtyp-dwline) | const |  |
+| [`SSUBTYP_DWPBNMS`](#ssubtyp-dwpbnms) | const |  |
+| [`SSUBTYP_DWPBTYP`](#ssubtyp-dwpbtyp) | const |  |
+| [`SSUBTYP_DWARNGE`](#ssubtyp-dwarnge) | const |  |
+| [`SSUBTYP_DWABREV`](#ssubtyp-dwabrev) | const |  |
+| [`SSUBTYP_DWSTR`](#ssubtyp-dwstr) | const |  |
+| [`SSUBTYP_DWRNGES`](#ssubtyp-dwrnges) | const |  |
+| [`SSUBTYP_DWLOC`](#ssubtyp-dwloc) | const |  |
+| [`SSUBTYP_DWFRAME`](#ssubtyp-dwframe) | const |  |
+| [`SSUBTYP_DWMAC`](#ssubtyp-dwmac) | const |  |
+| [`SIZEOF_SYMBOL`](#sizeof-symbol) | const |  |
+| [`N_DEBUG`](#n-debug) | const | A special symbolic debugging symbol. |
+| [`N_ABS`](#n-abs) | const | An absolute symbol. |
+| [`N_UNDEF`](#n-undef) | const | An undefined external symbol. |
+| [`SYM_V_MASK`](#sym-v-mask) | const | Values for visibility as they would appear when encoded in the high 4 bits of the 16-bit unsigned n_type field of symbol table entries. |
+| [`SYM_V_INTERNAL`](#sym-v-internal) | const |  |
+| [`SYM_V_HIDDEN`](#sym-v-hidden) | const |  |
+| [`SYM_V_PROTECTED`](#sym-v-protected) | const |  |
+| [`SYM_V_EXPORTED`](#sym-v-exported) | const |  |
+| [`C_FILE`](#c-file) | const | Source file name and compiler information. |
+| [`C_BINCL`](#c-bincl) | const | Beginning of include file. |
+| [`C_EINCL`](#c-eincl) | const | Ending of include file. |
+| [`C_GSYM`](#c-gsym) | const | Global variable. |
+| [`C_STSYM`](#c-stsym) | const | Statically allocated symbol. |
+| [`C_BCOMM`](#c-bcomm) | const | Beginning of common block. |
+| [`C_ECOMM`](#c-ecomm) | const | End of common block. |
+| [`C_ENTRY`](#c-entry) | const | Alternate entry. |
+| [`C_BSTAT`](#c-bstat) | const | Beginning of static block. |
+| [`C_ESTAT`](#c-estat) | const | End of static block. |
+| [`C_GTLS`](#c-gtls) | const | Global thread-local variable. |
+| [`C_STTLS`](#c-sttls) | const | Static thread-local variable. |
+| [`C_DWARF`](#c-dwarf) | const | DWARF section symbol. |
+| [`C_LSYM`](#c-lsym) | const | Automatic variable allocated on stack. |
+| [`C_PSYM`](#c-psym) | const | Argument to subroutine allocated on stack. |
+| [`C_RSYM`](#c-rsym) | const | Register variable. |
+| [`C_RPSYM`](#c-rpsym) | const | Argument to function or procedure stored in register. |
+| [`C_ECOML`](#c-ecoml) | const | Local member of common block. |
+| [`C_FUN`](#c-fun) | const | Function or procedure. |
+| [`C_EXT`](#c-ext) | const | External symbol. |
+| [`C_WEAKEXT`](#c-weakext) | const | Weak external symbol. |
+| [`C_NULL`](#c-null) | const | Symbol table entry marked for deletion. |
+| [`C_STAT`](#c-stat) | const | Static. |
+| [`C_BLOCK`](#c-block) | const | Beginning or end of inner block. |
+| [`C_FCN`](#c-fcn) | const | Beginning or end of function. |
+| [`C_HIDEXT`](#c-hidext) | const | Un-named external symbol. |
+| [`C_INFO`](#c-info) | const | Comment string in .info section. |
+| [`C_DECL`](#c-decl) | const | Declaration of object (type). |
+| [`C_AUTO`](#c-auto) | const | Automatic variable. |
+| [`C_REG`](#c-reg) | const | Register variable. |
+| [`C_EXTDEF`](#c-extdef) | const | External definition. |
+| [`C_LABEL`](#c-label) | const | Label. |
+| [`C_ULABEL`](#c-ulabel) | const | Undefined label. |
+| [`C_MOS`](#c-mos) | const | Member of structure. |
+| [`C_ARG`](#c-arg) | const | Function argument. |
+| [`C_STRTAG`](#c-strtag) | const | Structure tag. |
+| [`C_MOU`](#c-mou) | const | Member of union. |
+| [`C_UNTAG`](#c-untag) | const | Union tag. |
+| [`C_TPDEF`](#c-tpdef) | const | Type definition. |
+| [`C_USTATIC`](#c-ustatic) | const | Undefined static. |
+| [`C_ENTAG`](#c-entag) | const | Enumeration tag. |
+| [`C_MOE`](#c-moe) | const | Member of enumeration. |
+| [`C_REGPARM`](#c-regparm) | const | Register parameter. |
+| [`C_FIELD`](#c-field) | const | Bit field. |
+| [`C_EOS`](#c-eos) | const | End of structure. |
+| [`C_ALIAS`](#c-alias) | const | Duplicate tag. |
+| [`C_HIDDEN`](#c-hidden) | const | Special storage class for external. |
+| [`C_EFCN`](#c-efcn) | const | Physical end of function. |
+| [`C_TCSYM`](#c-tcsym) | const | Reserved. |
+| [`XFT_FN`](#xft-fn) | const | Specifies the source-file name. |
+| [`XFT_CT`](#xft-ct) | const | Specifies the compiler time stamp. |
+| [`XFT_CV`](#xft-cv) | const | Specifies the compiler version number. |
+| [`XFT_CD`](#xft-cd) | const | Specifies compiler-defined information. |
+| [`XTY_ER`](#xty-er) | const | External reference. |
+| [`XTY_SD`](#xty-sd) | const | Csect definition for initialized storage. |
+| [`XTY_LD`](#xty-ld) | const | Defines an entry point to an initialized csect. |
+| [`XTY_CM`](#xty-cm) | const | Common csect definition. |
+| [`XMC_PR`](#xmc-pr) | const | Program Code |
+| [`XMC_RO`](#xmc-ro) | const | Read Only Constant |
+| [`XMC_DB`](#xmc-db) | const | Debug Dictionary Table |
+| [`XMC_GL`](#xmc-gl) | const | Global Linkage (Interfile Interface Code) |
+| [`XMC_XO`](#xmc-xo) | const | Extended Operation (Pseudo Machine Instruction) |
+| [`XMC_SV`](#xmc-sv) | const | Supervisor Call (32-bit process only) |
+| [`XMC_SV64`](#xmc-sv64) | const | Supervisor Call for 64-bit process |
+| [`XMC_SV3264`](#xmc-sv3264) | const | Supervisor Call for both 32- and 64-bit processes |
+| [`XMC_TI`](#xmc-ti) | const | Traceback Index csect |
+| [`XMC_TB`](#xmc-tb) | const | Traceback Table csect |
+| [`XMC_RW`](#xmc-rw) | const | Read Write Data |
+| [`XMC_TC0`](#xmc-tc0) | const | TOC Anchor for TOC Addressability |
+| [`XMC_TC`](#xmc-tc) | const | General TOC item |
+| [`XMC_TD`](#xmc-td) | const | Scalar data item in the TOC |
+| [`XMC_DS`](#xmc-ds) | const | Descriptor csect |
+| [`XMC_UA`](#xmc-ua) | const | Unclassified - Treated as Read Write |
+| [`XMC_BS`](#xmc-bs) | const | BSS class (uninitialized static internal) |
+| [`XMC_UC`](#xmc-uc) | const | Un-named Fortran Common |
+| [`XMC_TL`](#xmc-tl) | const | Initialized thread-local variable |
+| [`XMC_UL`](#xmc-ul) | const | Uninitialized thread-local variable |
+| [`XMC_TE`](#xmc-te) | const | Symbol mapped at the end of TOC |
+| [`AUX_EXCEPT`](#aux-except) | const | Identifies an exception auxiliary entry. |
+| [`AUX_FCN`](#aux-fcn) | const | Identifies a function auxiliary entry. |
+| [`AUX_SYM`](#aux-sym) | const | Identifies a symbol auxiliary entry. |
+| [`AUX_FILE`](#aux-file) | const | Identifies a file auxiliary entry. |
+| [`AUX_CSECT`](#aux-csect) | const | Identifies a csect auxiliary entry. |
+| [`AUX_SECT`](#aux-sect) | const | Identifies a SECT auxiliary entry. |
+| [`R_POS`](#r-pos) | const | Positive relocation. |
+| [`R_RL`](#r-rl) | const | Positive indirect load relocation. |
+| [`R_RLA`](#r-rla) | const | Positive load address relocation. |
+| [`R_NEG`](#r-neg) | const | Negative relocation. |
+| [`R_REL`](#r-rel) | const | Relative to self relocation. |
+| [`R_TOC`](#r-toc) | const | Relative to the TOC relocation. |
+| [`R_TRL`](#r-trl) | const | TOC relative indirect load relocation. |
+| [`R_TRLA`](#r-trla) | const | Relative to the TOC or to the thread-local storage base relocation. |
+| [`R_GL`](#r-gl) | const | Global linkage-external TOC address relocation. |
+| [`R_TCL`](#r-tcl) | const | Local object TOC address relocation. |
+| [`R_REF`](#r-ref) | const | A non-relocating relocation. |
+| [`R_BA`](#r-ba) | const | Branch absolute relocation. |
+| [`R_BR`](#r-br) | const | Branch relative to self relocation. |
+| [`R_RBA`](#r-rba) | const | Branch absolute relocation. |
+| [`R_RBR`](#r-rbr) | const | Branch relative to self relocation. |
+| [`R_TLS`](#r-tls) | const | General-dynamic reference to TLS symbol. |
+| [`R_TLS_IE`](#r-tls-ie) | const | Initial-exec reference to TLS symbol. |
+| [`R_TLS_LD`](#r-tls-ld) | const | Local-dynamic reference to TLS symbol. |
+| [`R_TLS_LE`](#r-tls-le) | const | Local-exec reference to TLS symbol. |
+| [`R_TLSM`](#r-tlsm) | const | Module reference to TLS. |
+| [`R_TLSML`](#r-tlsml) | const | Module reference to the local TLS storage. |
+| [`R_TOCU`](#r-tocu) | const | Relative to TOC upper. |
+| [`R_TOCL`](#r-tocl) | const | Relative to TOC lower. |
 
 ## Structs
 
@@ -439,19 +439,19 @@ The header at the start of every 32-bit XCOFF file.
 
 ##### `impl FileHeader for xcoff::FileHeader32`
 
-- <span id="xcofffileheader32-type-word"></span>`type Word = u32`
+- <span id="xcofffileheader32-fileheader-type-word"></span>`type Word = u32`
 
-- <span id="xcofffileheader32-type-auxheader"></span>`type AuxHeader = AuxHeader32`
+- <span id="xcofffileheader32-fileheader-type-auxheader"></span>`type AuxHeader = AuxHeader32`
 
-- <span id="xcofffileheader32-type-sectionheader"></span>`type SectionHeader = SectionHeader32`
+- <span id="xcofffileheader32-fileheader-type-sectionheader"></span>`type SectionHeader = SectionHeader32`
 
-- <span id="xcofffileheader32-type-symbol"></span>`type Symbol = Symbol32`
+- <span id="xcofffileheader32-fileheader-type-symbol"></span>`type Symbol = Symbol32`
 
-- <span id="xcofffileheader32-type-fileaux"></span>`type FileAux = FileAux32`
+- <span id="xcofffileheader32-fileheader-type-fileaux"></span>`type FileAux = FileAux32`
 
-- <span id="xcofffileheader32-type-csectaux"></span>`type CsectAux = CsectAux32`
+- <span id="xcofffileheader32-fileheader-type-csectaux"></span>`type CsectAux = CsectAux32`
 
-- <span id="xcofffileheader32-type-rel"></span>`type Rel = Rel32`
+- <span id="xcofffileheader32-fileheader-type-rel"></span>`type Rel = Rel32`
 
 - <span id="xcofffileheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -533,19 +533,19 @@ The header at the start of every 64-bit XCOFF file.
 
 ##### `impl FileHeader for xcoff::FileHeader64`
 
-- <span id="xcofffileheader64-type-word"></span>`type Word = u64`
+- <span id="xcofffileheader64-fileheader-type-word"></span>`type Word = u64`
 
-- <span id="xcofffileheader64-type-auxheader"></span>`type AuxHeader = AuxHeader64`
+- <span id="xcofffileheader64-fileheader-type-auxheader"></span>`type AuxHeader = AuxHeader64`
 
-- <span id="xcofffileheader64-type-sectionheader"></span>`type SectionHeader = SectionHeader64`
+- <span id="xcofffileheader64-fileheader-type-sectionheader"></span>`type SectionHeader = SectionHeader64`
 
-- <span id="xcofffileheader64-type-symbol"></span>`type Symbol = Symbol64`
+- <span id="xcofffileheader64-fileheader-type-symbol"></span>`type Symbol = Symbol64`
 
-- <span id="xcofffileheader64-type-fileaux"></span>`type FileAux = FileAux64`
+- <span id="xcofffileheader64-fileheader-type-fileaux"></span>`type FileAux = FileAux64`
 
-- <span id="xcofffileheader64-type-csectaux"></span>`type CsectAux = CsectAux64`
+- <span id="xcofffileheader64-fileheader-type-csectaux"></span>`type CsectAux = CsectAux64`
 
-- <span id="xcofffileheader64-type-rel"></span>`type Rel = Rel64`
+- <span id="xcofffileheader64-fileheader-type-rel"></span>`type Rel = Rel64`
 
 - <span id="xcofffileheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -728,7 +728,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 ##### `impl AuxHeader for xcoff::AuxHeader32`
 
-- <span id="xcoffauxheader32-type-word"></span>`type Word = u32`
+- <span id="xcoffauxheader32-auxheader-type-word"></span>`type Word = u32`
 
 - <span id="xcoffauxheader32-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
@@ -980,7 +980,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 ##### `impl AuxHeader for xcoff::AuxHeader64`
 
-- <span id="xcoffauxheader64-type-word"></span>`type Word = u64`
+- <span id="xcoffauxheader64-auxheader-type-word"></span>`type Word = u64`
 
 - <span id="xcoffauxheader64-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
@@ -1133,13 +1133,13 @@ Section header.
 
 ##### `impl SectionHeader for xcoff::SectionHeader32`
 
-- <span id="xcoffsectionheader32-type-word"></span>`type Word = u32`
+- <span id="xcoffsectionheader32-sectionheader-type-word"></span>`type Word = u32`
 
-- <span id="xcoffsectionheader32-type-halfword"></span>`type HalfWord = u16`
+- <span id="xcoffsectionheader32-sectionheader-type-halfword"></span>`type HalfWord = u16`
 
-- <span id="xcoffsectionheader32-type-xcoff"></span>`type Xcoff = FileHeader32`
+- <span id="xcoffsectionheader32-sectionheader-type-xcoff"></span>`type Xcoff = FileHeader32`
 
-- <span id="xcoffsectionheader32-type-rel"></span>`type Rel = Rel32`
+- <span id="xcoffsectionheader32-sectionheader-type-rel"></span>`type Rel = Rel32`
 
 - <span id="xcoffsectionheader32-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
@@ -1247,13 +1247,13 @@ Section header.
 
 ##### `impl SectionHeader for xcoff::SectionHeader64`
 
-- <span id="xcoffsectionheader64-type-word"></span>`type Word = u64`
+- <span id="xcoffsectionheader64-sectionheader-type-word"></span>`type Word = u64`
 
-- <span id="xcoffsectionheader64-type-halfword"></span>`type HalfWord = u32`
+- <span id="xcoffsectionheader64-sectionheader-type-halfword"></span>`type HalfWord = u32`
 
-- <span id="xcoffsectionheader64-type-xcoff"></span>`type Xcoff = FileHeader64`
+- <span id="xcoffsectionheader64-sectionheader-type-xcoff"></span>`type Xcoff = FileHeader64`
 
-- <span id="xcoffsectionheader64-type-rel"></span>`type Rel = Rel64`
+- <span id="xcoffsectionheader64-sectionheader-type-rel"></span>`type Rel = Rel64`
 
 - <span id="xcoffsectionheader64-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
@@ -1360,7 +1360,7 @@ Symbol table entry.
 
 ##### `impl Symbol for xcoff::Symbol32`
 
-- <span id="xcoffsymbol32-type-word"></span>`type Word = u32`
+- <span id="xcoffsymbol32-symbol-type-word"></span>`type Word = u32`
 
 - <span id="xcoffsymbol32-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
@@ -1435,7 +1435,7 @@ Symbol table entry.
 
 ##### `impl Symbol for xcoff::Symbol64`
 
-- <span id="xcoffsymbol64-type-word"></span>`type Word = u64`
+- <span id="xcoffsymbol64-symbol-type-word"></span>`type Word = u64`
 
 - <span id="xcoffsymbol64-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md#symbol)
 
@@ -2170,7 +2170,7 @@ Relocation table entry
 
 ##### `impl Rel for xcoff::Rel32`
 
-- <span id="xcoffrel32-type-word"></span>`type Word = u32`
+- <span id="xcoffrel32-rel-type-word"></span>`type Word = u32`
 
 - <span id="xcoffrel32-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 
@@ -2229,7 +2229,7 @@ Relocation table entry
 
 ##### `impl Rel for xcoff::Rel64`
 
-- <span id="xcoffrel64-type-word"></span>`type Word = u64`
+- <span id="xcoffrel64-rel-type-word"></span>`type Word = u64`
 
 - <span id="xcoffrel64-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md#rel)
 

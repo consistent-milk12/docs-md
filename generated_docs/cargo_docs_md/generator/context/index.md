@@ -160,9 +160,9 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl Pointable for GeneratorContext<'a>`
 
-- <span id="generatorcontext-const-align"></span>`const ALIGN: usize`
+- <span id="generatorcontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="generatorcontext-type-init"></span>`type Init = T`
+- <span id="generatorcontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="generatorcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

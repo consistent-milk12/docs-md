@@ -29,27 +29,27 @@ TimSort.
 - [Enums](#enums)
   - [`MergeSortResult`](#mergesortresult)
 - [Functions](#functions)
-  - [`insert_tail`](#insert_tail)
-  - [`insert_head`](#insert_head)
-  - [`insertion_sort_shift_left`](#insertion_sort_shift_left)
-  - [`insertion_sort_shift_right`](#insertion_sort_shift_right)
-  - [`partial_insertion_sort`](#partial_insertion_sort)
+  - [`insert_tail`](#insert-tail)
+  - [`insert_head`](#insert-head)
+  - [`insertion_sort_shift_left`](#insertion-sort-shift-left)
+  - [`insertion_sort_shift_right`](#insertion-sort-shift-right)
+  - [`partial_insertion_sort`](#partial-insertion-sort)
   - [`heapsort`](#heapsort)
-  - [`partition_in_blocks`](#partition_in_blocks)
+  - [`partition_in_blocks`](#partition-in-blocks)
   - [`partition`](#partition)
-  - [`partition_equal`](#partition_equal)
-  - [`break_patterns`](#break_patterns)
-  - [`choose_pivot`](#choose_pivot)
+  - [`partition_equal`](#partition-equal)
+  - [`break_patterns`](#break-patterns)
+  - [`choose_pivot`](#choose-pivot)
   - [`recurse`](#recurse)
-  - [`par_quicksort`](#par_quicksort)
+  - [`par_quicksort`](#par-quicksort)
   - [`merge`](#merge)
-  - [`merge_sort`](#merge_sort)
-  - [`provide_sorted_batch`](#provide_sorted_batch)
-  - [`find_streak`](#find_streak)
-  - [`split_for_merge`](#split_for_merge)
-  - [`par_merge`](#par_merge)
-  - [`merge_recurse`](#merge_recurse)
-  - [`par_mergesort`](#par_mergesort)
+  - [`merge_sort`](#merge-sort)
+  - [`provide_sorted_batch`](#provide-sorted-batch)
+  - [`find_streak`](#find-streak)
+  - [`split_for_merge`](#split-for-merge)
+  - [`par_merge`](#par-merge)
+  - [`merge_recurse`](#merge-recurse)
+  - [`par_mergesort`](#par-mergesort)
 
 ## Quick Reference
 
@@ -59,27 +59,27 @@ TimSort.
 | [`MergeHole`](#mergehole) | struct |  |
 | [`TimSortRun`](#timsortrun) | struct | Internal type used by merge_sort. |
 | [`MergeSortResult`](#mergesortresult) | enum | The result of merge sort. |
-| [`insert_tail`](#insert_tail) | fn | Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]` becomes sorted. |
-| [`insert_head`](#insert_head) | fn | Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted. |
-| [`insertion_sort_shift_left`](#insertion_sort_shift_left) | fn | Sort `v` assuming `v[..offset]` is already sorted. |
-| [`insertion_sort_shift_right`](#insertion_sort_shift_right) | fn | Sort `v` assuming `v[offset..]` is already sorted. |
-| [`partial_insertion_sort`](#partial_insertion_sort) | fn | Partially sorts a slice by shifting several out-of-order elements around. |
+| [`insert_tail`](#insert-tail) | fn | Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]` becomes sorted. |
+| [`insert_head`](#insert-head) | fn | Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted. |
+| [`insertion_sort_shift_left`](#insertion-sort-shift-left) | fn | Sort `v` assuming `v[..offset]` is already sorted. |
+| [`insertion_sort_shift_right`](#insertion-sort-shift-right) | fn | Sort `v` assuming `v[offset..]` is already sorted. |
+| [`partial_insertion_sort`](#partial-insertion-sort) | fn | Partially sorts a slice by shifting several out-of-order elements around. |
 | [`heapsort`](#heapsort) | fn | Sorts `v` using heapsort, which guarantees *O*(*n* \* log(*n*)) worst-case. |
-| [`partition_in_blocks`](#partition_in_blocks) | fn | Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal to `pivot`. |
+| [`partition_in_blocks`](#partition-in-blocks) | fn | Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal to `pivot`. |
 | [`partition`](#partition) | fn | Partitions `v` into elements smaller than `v[pivot]`, followed by elements greater than or equal to `v[pivot]`. |
-| [`partition_equal`](#partition_equal) | fn | Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`. |
-| [`break_patterns`](#break_patterns) | fn | Scatters some elements around in an attempt to break patterns that might cause imbalanced partitions in quicksort. |
-| [`choose_pivot`](#choose_pivot) | fn | Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted. |
+| [`partition_equal`](#partition-equal) | fn | Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`. |
+| [`break_patterns`](#break-patterns) | fn | Scatters some elements around in an attempt to break patterns that might cause imbalanced partitions in quicksort. |
+| [`choose_pivot`](#choose-pivot) | fn | Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted. |
 | [`recurse`](#recurse) | fn | Sorts `v` recursively. |
-| [`par_quicksort`](#par_quicksort) | fn | Sorts `v` using pattern-defeating quicksort in parallel. |
+| [`par_quicksort`](#par-quicksort) | fn | Sorts `v` using pattern-defeating quicksort in parallel. |
 | [`merge`](#merge) | fn | Merges non-decreasing runs `v[..mid]` and `v[mid..]` using `buf` as temporary storage, and stores the result into `v[..]`. |
-| [`merge_sort`](#merge_sort) | fn | This merge sort borrows some (but not all) ideas from TimSort, which used to be described in detail [here](https://github.com/python/cpython/blob/main/Objects/listsort.txt). |
-| [`provide_sorted_batch`](#provide_sorted_batch) | fn | Takes a range as denoted by start and end, that is already sorted and extends it to the right if necessary with sorts optimized for smaller ranges such as insertion sort. |
-| [`find_streak`](#find_streak) | fn | Finds a streak of presorted elements starting at the beginning of the slice. |
-| [`split_for_merge`](#split_for_merge) | fn | Splits two sorted slices so that they can be merged in parallel. |
-| [`par_merge`](#par_merge) | fn | Merges slices `left` and `right` in parallel and stores the result into `dest`. |
-| [`merge_recurse`](#merge_recurse) | fn | Recursively merges pre-sorted chunks inside `v`. |
-| [`par_mergesort`](#par_mergesort) | fn | Sorts `v` using merge sort in parallel. |
+| [`merge_sort`](#merge-sort) | fn | This merge sort borrows some (but not all) ideas from TimSort, which used to be described in detail [here](https://github.com/python/cpython/blob/main/Objects/listsort.txt). |
+| [`provide_sorted_batch`](#provide-sorted-batch) | fn | Takes a range as denoted by start and end, that is already sorted and extends it to the right if necessary with sorts optimized for smaller ranges such as insertion sort. |
+| [`find_streak`](#find-streak) | fn | Finds a streak of presorted elements starting at the beginning of the slice. |
+| [`split_for_merge`](#split-for-merge) | fn | Splits two sorted slices so that they can be merged in parallel. |
+| [`par_merge`](#par-merge) | fn | Merges slices `left` and `right` in parallel and stores the result into `dest`. |
+| [`merge_recurse`](#merge-recurse) | fn | Recursively merges pre-sorted chunks inside `v`. |
+| [`par_mergesort`](#par-mergesort) | fn | Sorts `v` using merge sort in parallel. |
 
 ## Structs
 
@@ -104,9 +104,9 @@ struct InsertionHole<T> {
 
 ##### `impl<T> Pointable for InsertionHole<T>`
 
-- <span id="insertionhole-const-align"></span>`const ALIGN: usize`
+- <span id="insertionhole-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="insertionhole-type-init"></span>`type Init = T`
+- <span id="insertionhole-pointable-type-init"></span>`type Init = T`
 
 - <span id="insertionhole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -138,9 +138,9 @@ struct MergeHole<T> {
 
 ##### `impl<T> Pointable for MergeHole<T>`
 
-- <span id="mergehole-const-align"></span>`const ALIGN: usize`
+- <span id="mergehole-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="mergehole-type-init"></span>`type Init = T`
+- <span id="mergehole-pointable-type-init"></span>`type Init = T`
 
 - <span id="mergehole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -179,9 +179,9 @@ Internal type used by merge_sort.
 
 ##### `impl Pointable for TimSortRun`
 
-- <span id="timsortrun-const-align"></span>`const ALIGN: usize`
+- <span id="timsortrun-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="timsortrun-type-init"></span>`type Init = T`
+- <span id="timsortrun-pointable-type-init"></span>`type Init = T`
 
 - <span id="timsortrun-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -239,9 +239,9 @@ The result of merge sort.
 
 ##### `impl Pointable for MergeSortResult`
 
-- <span id="mergesortresult-const-align"></span>`const ALIGN: usize`
+- <span id="mergesortresult-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="mergesortresult-type-init"></span>`type Init = T`
+- <span id="mergesortresult-pointable-type-init"></span>`type Init = T`
 
 - <span id="mergesortresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -90,9 +90,9 @@ for nested navigation.
 
 ##### `impl Pointable for TocEntry`
 
-- <span id="tocentry-const-align"></span>`const ALIGN: usize`
+- <span id="tocentry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocentry-type-init"></span>`type Init = T`
+- <span id="tocentry-pointable-type-init"></span>`type Init = T`
 
 - <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -152,9 +152,9 @@ modules with unnecessary navigation.
 
 ##### `impl Pointable for TocGenerator`
 
-- <span id="tocgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="tocgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocgenerator-type-init"></span>`type Init = T`
+- <span id="tocgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

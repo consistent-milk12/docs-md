@@ -54,10 +54,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 ## Contents
 
 - [Modules](#modules)
-  - [`dyld_cache`](#dyld_cache)
+  - [`dyld_cache`](#dyld-cache)
   - [`fat`](#fat)
   - [`file`](#file)
-  - [`load_command`](#load_command)
+  - [`load_command`](#load-command)
   - [`segment`](#segment)
   - [`section`](#section)
   - [`symbol`](#symbol)
@@ -138,18 +138,18 @@ fn main() -> Result<(), Box<dyn Error>> {
   - [`MachORelocationIterator32`](#machorelocationiterator32)
   - [`MachORelocationIterator64`](#machorelocationiterator64)
 - [Constants](#constants)
-  - [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min_header_size_subcaches_v1)
-  - [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min_header_size_subcaches_v2)
-  - [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min_header_size_mappings_v2)
+  - [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min-header-size-subcaches-v1)
+  - [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min-header-size-subcaches-v2)
+  - [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min-header-size-mappings-v2)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`dyld_cache`](#dyld_cache) | mod |  |
+| [`dyld_cache`](#dyld-cache) | mod |  |
 | [`fat`](#fat) | mod |  |
 | [`file`](#file) | mod |  |
-| [`load_command`](#load_command) | mod |  |
+| [`load_command`](#load-command) | mod |  |
 | [`segment`](#segment) | mod |  |
 | [`section`](#section) | mod |  |
 | [`symbol`](#symbol) | mod |  |
@@ -225,9 +225,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`MachOSymbol64`](#machosymbol64) | type | A symbol in a [`MachOFile64`](super::MachOFile64). |
 | [`MachORelocationIterator32`](#machorelocationiterator32) | type | An iterator for the relocations in a [`MachOSection32`](super::MachOSection32). |
 | [`MachORelocationIterator64`](#machorelocationiterator64) | type | An iterator for the relocations in a [`MachOSection64`](super::MachOSection64). |
-| [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min_header_size_subcaches_v1) | const |  |
-| [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min_header_size_subcaches_v2) | const |  |
-| [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min_header_size_mappings_v2) | const |  |
+| [`MIN_HEADER_SIZE_SUBCACHES_V1`](#min-header-size-subcaches-v1) | const |  |
+| [`MIN_HEADER_SIZE_SUBCACHES_V2`](#min-header-size-subcaches-v2) | const |  |
+| [`MIN_HEADER_SIZE_MAPPINGS_V2`](#min-header-size-mappings-v2) | const |  |
 
 ## Modules
 
@@ -289,7 +289,7 @@ A parsed representation of the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCache<'data, E, R>`
+##### `impl<E, R> Debug for DyldCache<'data, E, R>`
 
 - <span id="dyldcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -317,7 +317,7 @@ The data for one file in the cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldFile<'data, E, R>`
+##### `impl<E, R> Debug for DyldFile<'data, E, R>`
 
 - <span id="dyldfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -339,21 +339,21 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, 'cache, E, R> Debug for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl<E, R> Debug for DyldCacheImageIterator<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacheimageiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacheimageiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacheimageiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacheimageiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'cache, E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
+##### `impl<E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
+- <span id="dyldcacheimageiterator-iterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-next"></span>`fn next(&mut self) -> Option<DyldCacheImage<'data, 'cache, E, R>>` — [`DyldCacheImage`](#dyldcacheimage)
 
@@ -385,7 +385,7 @@ One image (dylib) from inside the dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, 'cache, E, R> Debug for DyldCacheImage<'data, 'cache, E, R>`
+##### `impl<E, R> Debug for DyldCacheImage<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -408,21 +408,21 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheMappingIterator<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheMappingIterator<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheMappingIterator<'data, E, R>`
+##### `impl IntoIterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcachemappingiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcachemappingiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcachemappingiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcachemappingiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
+##### `impl<E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
+- <span id="dyldcachemappingiterator-iterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -461,13 +461,13 @@ Information about a mapping.
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Clone for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Clone for DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemapping-clone"></span>`fn clone(&self) -> DyldCacheMapping<'data, E, R>` — [`DyldCacheMapping`](#dyldcachemapping)
 
-##### `impl<'data, E, R> Copy for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Copy for DyldCacheMapping<'data, E, R>`
 
-##### `impl<'data, E, R> Debug for DyldCacheMapping<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemapping-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -488,21 +488,21 @@ An iterator over relocations in a mapping
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIterator<'data, E, R>`
 
 - <span id="dyldcacherelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacherelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacherelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacherelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacherelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
+##### `impl<E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
+- <span id="dyldcacherelocationiterator-iterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
 
 - <span id="dyldcacherelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -556,7 +556,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -597,7 +597,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -638,7 +638,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorv5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -741,11 +741,11 @@ to [`crate::FileKind::MachOFat32`](../../index.md) or [`crate::FileKind::MachOFa
 
 #### Trait Implementations
 
-##### `impl<'data, Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
+##### `impl<Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
 
 - <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](#machofatfile)
 
-##### `impl<'data, Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
+##### `impl<Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
 
 - <span id="machofatfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -796,31 +796,31 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 #### Trait Implementations
 
-##### `impl<'data, Mach, R> Debug for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Debug for MachOFile<'data, Mach, R>`
 
 - <span id="machofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Mach, R> Object for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
 
-- <span id="machofile-type-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="machofile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
 
@@ -870,7 +870,7 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 
 - <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md#fileflags)
 
-##### `impl<'data, Mach, R> Sealed for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOFile<'data, Mach, R>`
 
 ### `MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -891,21 +891,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machocomdatiterator-iterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -928,13 +928,13 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
+- <span id="machocomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md#comdatkind)
 
@@ -946,7 +946,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
 
 ### `MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -967,21 +967,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="machocomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="machocomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1009,31 +1009,31 @@ An iterator for the load commands from a [`MachHeader`](#machheader).
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](#loadcommanditerator)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
+##### `impl<E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
 - <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](#loadcommanditerator)
 
-##### `impl<I> IntoIterator for LoadCommandIterator<'data, E>`
+##### `impl IntoIterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="loadcommanditerator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="loadcommanditerator-type-intoiter"></span>`type IntoIter = I`
+- <span id="loadcommanditerator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, E: Endian> Iterator for LoadCommandIterator<'data, E>`
+##### `impl<E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
+- <span id="loadcommanditerator-iterator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
 - <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1085,13 +1085,13 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](#loadcommanddata)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
 
 - <span id="loadcommanddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1113,21 +1113,21 @@ An iterator for the segments in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosegmentiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosegmentiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosegmentiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machosegmentiterator-iterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1159,11 +1159,11 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegment-address"></span>`fn address(&self) -> u64`
 
@@ -1183,7 +1183,7 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 - <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md#segmentflags)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
 
 ### `MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -1207,13 +1207,13 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](segment/index.md#machosegmentinternal)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
 
 - <span id="machosegmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1235,21 +1235,21 @@ An iterator for the sections in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machosectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machosectioniterator-type-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
+- <span id="machosectioniterator-iterator-type-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
 
 - <span id="machosectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1285,13 +1285,13 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
 
 - <span id="machosection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machosection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
+- <span id="machosection-objectsection-type-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md#sectionindex)
 
@@ -1327,7 +1327,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 - <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md#sectionflags)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
 
 ### `MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
 
@@ -1357,13 +1357,13 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
 
 - <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](section/index.md#machosectioninternal)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
 
 - <span id="machosectioninternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1406,17 +1406,17 @@ Returned by `macho::SymtabCommand::symbols`.
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Mach, R>` — [`SymbolTable`](#symboltable)
 
-##### `impl<'data, Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
 
-##### `impl<'data, Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
+##### `impl<Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
 
 - <span id="symboltable-default"></span>`fn default() -> Self`
 
@@ -1437,27 +1437,27 @@ A symbol table in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-clone"></span>`fn clone(&self) -> MachOSymbolTable<'data, 'file, Mach, R>` — [`MachOSymbolTable`](#machosymboltable)
 
-##### `impl<'data, 'file, Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboltable-objectsymboltable-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machosymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machosymboltable-objectsymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
 - <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
 - <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ObjectSymbolTable`](../index.md#objectsymboltable)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
 
 ### `MachOSymbolIterator<'data, 'file, Mach, R>`
 
@@ -1483,21 +1483,21 @@ An iterator for the symbols in a [`MachOFile`](#machofile).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
 
 - <span id="machosymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosymboliterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosymboliterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machosymboliterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machosymboliterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboliterator-iterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1530,17 +1530,17 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-clone"></span>`fn clone(&self) -> MachOSymbol<'data, 'file, Mach, R>` — [`MachOSymbol`](#machosymbol)
 
-##### `impl<'data, 'file, Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
 
 - <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md#symbolindex)
 
@@ -1572,7 +1572,7 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 - <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md#symbolflags), [`SectionIndex`](../../index.md#sectionindex), [`SymbolIndex`](../../index.md#symbolindex)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
 
 ### `MachORelocationIterator<'data, 'file, Mach, R>`
 
@@ -1592,21 +1592,21 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachORelocationIterator<'data, 'file, Mach, R>`
 
 - <span id="machorelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machorelocationiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machorelocationiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machorelocationiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machorelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachORelocationIterator<'data, 'file, Mach, R>`
 
-- <span id="machorelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
+- <span id="machorelocationiterator-iterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="machorelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1640,13 +1640,13 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldSubCacheSlice<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheSlice<'data, E>`
 
 - <span id="dyldsubcacheslice-clone"></span>`fn clone(&self) -> DyldSubCacheSlice<'data, E>` — [`DyldSubCacheSlice`](#dyldsubcacheslice)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldSubCacheSlice<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheSlice<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldSubCacheSlice<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheSlice<'data, E>`
 
 - <span id="dyldsubcacheslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1678,13 +1678,13 @@ so this is an enum of the two possible slice types.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingSlice<'data, E>`
 
 - <span id="dyldcachemappingslice-clone"></span>`fn clone(&self) -> DyldCacheMappingSlice<'data, E>` — [`DyldCacheMappingSlice`](#dyldcachemappingslice)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingSlice<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldCacheMappingSlice<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingSlice<'data, E>`
 
 - <span id="dyldcachemappingslice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1703,7 +1703,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E> Debug for DyldCacheMappingVersionIterator<'data, E>`
+##### `impl<E> Debug for DyldCacheMappingVersionIterator<'data, E>`
 
 - <span id="dyldcachemappingversioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1722,11 +1722,11 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E> Clone for DyldCacheMappingVersion<'data, E>`
+##### `impl<E> Clone for DyldCacheMappingVersion<'data, E>`
 
 - <span id="dyldcachemappingversion-clone"></span>`fn clone(&self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](dyld_cache/index.md#dyldcachemappingversion)
 
-##### `impl<'data, E> Copy for DyldCacheMappingVersion<'data, E>`
+##### `impl<E> Copy for DyldCacheMappingVersion<'data, E>`
 
 ### `DyldCacheSlideInfo<'data, E: Endian>`
 
@@ -1755,13 +1755,13 @@ The slide info for a dyld cache mapping, including variable length arrays.
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo<'data, E>`
 
 - <span id="dyldcacheslideinfo-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo<'data, E>` — [`DyldCacheSlideInfo`](#dyldcacheslideinfo)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
 
 - <span id="dyldcacheslideinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1783,7 +1783,7 @@ where
 
 #### Trait Implementations
 
-##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
+##### `impl<E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
 
 - <span id="dyldcacherelocationiteratorversion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2066,13 +2066,13 @@ A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted accordi
 
 #### Trait Implementations
 
-##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](#loadcommandvariant)
 
-##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 
-##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
 
 - <span id="loadcommandvariant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

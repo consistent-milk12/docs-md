@@ -14,8 +14,8 @@ being a breaking change for other implementations.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`PrivateMarker`](#privatemarker) | struct | If this type is pub but not publicly reachable, third parties can't name it and can't implement traits using it. |
-| [`private_decl!`](#private_decl) | macro |  |
-| [`private_impl!`](#private_impl) | macro |  |
+| [`private_decl!`](#private-decl) | macro |  |
+| [`private_impl!`](#private-impl) | macro |  |
 
 ## Structs
 
@@ -34,9 +34,9 @@ can't name it and can't implement traits using it.
 
 ##### `impl Pointable for PrivateMarker`
 
-- <span id="privatemarker-const-align"></span>`const ALIGN: usize`
+- <span id="privatemarker-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="privatemarker-type-init"></span>`type Init = T`
+- <span id="privatemarker-pointable-type-init"></span>`type Init = T`
 
 - <span id="privatemarker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

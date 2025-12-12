@@ -11,7 +11,7 @@
 | [`CoffCommon`](#coffcommon) | struct | The common parts of `PeFile` and `CoffFile`. |
 | [`CoffFile`](#cofffile) | struct | A COFF object file. |
 | [`CoffHeader`](#coffheader) | trait | A trait for generic access to [`pe::ImageFileHeader`] and [`pe::AnonObjectHeaderBigobj`]. |
-| [`anon_object_class_id`](#anon_object_class_id) | fn | Read the `class_id` field from a [`pe::AnonObjectHeader`]. |
+| [`anon_object_class_id`](#anon-object-class-id) | fn | Read the `class_id` field from a [`pe::AnonObjectHeader`]. |
 | [`CoffBigFile`](#coffbigfile) | type | A COFF bigobj object file with 32-bit section numbers. |
 
 ## Structs
@@ -32,7 +32,7 @@ The common parts of `PeFile` and `CoffFile`.
 
 #### Trait Implementations
 
-##### `impl<'data, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
 
 - <span id="coffcommon-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -67,31 +67,31 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 #### Trait Implementations
 
-##### `impl<'data, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffFile<'data, R, Coff>`
+##### `impl<R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffFile<'data, R, Coff>`
 
 - <span id="cofffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, R, Coff> Object for CoffFile<'data, R, Coff>`
+##### `impl<R, Coff> Object for CoffFile<'data, R, Coff>`
 
-- <span id="cofffile-type-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
+- <span id="cofffile-object-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="cofffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="cofffile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="cofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
@@ -137,7 +137,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="cofffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
-##### `impl<'data, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffFile<'data, R, Coff>`
+##### `impl<R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffFile<'data, R, Coff>`
 
 ## Traits
 

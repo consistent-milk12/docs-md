@@ -27,8 +27,8 @@ because it does less book-keeping.
 - [Enums](#enums)
   - [`Frame`](#frame)
 - [Functions](#functions)
-  - [`min_visited_capacity`](#min_visited_capacity)
-  - [`div_ceil`](#div_ceil)
+  - [`min_visited_capacity`](#min-visited-capacity)
+  - [`div_ceil`](#div-ceil)
 
 ## Quick Reference
 
@@ -42,8 +42,8 @@ because it does less book-keeping.
 | [`Cache`](#cache) | struct | A cache represents mutable state that a [`BoundedBacktracker`] requires during a search. |
 | [`Visited`](#visited) | struct | A bitset that keeps track of whether a particular (StateID, offset) has been considered during backtracking. |
 | [`Frame`](#frame) | enum | Represents a stack frame on the heap while doing backtracking. |
-| [`min_visited_capacity`](#min_visited_capacity) | fn | Returns the minimum visited capacity for the given haystack. |
-| [`div_ceil`](#div_ceil) | fn | Integer division, but rounds up instead of down. |
+| [`min_visited_capacity`](#min-visited-capacity) | fn | Returns the minimum visited capacity for the given haystack. |
+| [`div_ceil`](#div-ceil) | fn | Integer division, but rounds up instead of down. |
 
 ## Structs
 
@@ -349,15 +349,15 @@ method.
 
 ##### `impl IntoIterator for TryFindMatches<'r, 'c, 'h>`
 
-- <span id="tryfindmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tryfindmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tryfindmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="tryfindmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tryfindmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TryFindMatches<'r, 'c, 'h>`
 
-- <span id="tryfindmatches-type-item"></span>`type Item = Result<Match, MatchError>`
+- <span id="tryfindmatches-iterator-type-item"></span>`type Item = Result<Match, MatchError>`
 
 - <span id="tryfindmatches-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../index.md#match), [`MatchError`](../../../index.md#matcherror)
 
@@ -397,15 +397,15 @@ This iterator can be created with the
 
 ##### `impl IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- <span id="trycapturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trycapturesmatches-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trycapturesmatches-type-intoiter"></span>`type IntoIter = I`
+- <span id="trycapturesmatches-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trycapturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- <span id="trycapturesmatches-type-item"></span>`type Item = Result<Captures, MatchError>`
+- <span id="trycapturesmatches-iterator-type-item"></span>`type Item = Result<Captures, MatchError>`
 
 - <span id="trycapturesmatches-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md#captures), [`MatchError`](../../../index.md#matcherror)
 

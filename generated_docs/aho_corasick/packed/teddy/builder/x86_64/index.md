@@ -11,12 +11,12 @@
   - [`SlimAVX2`](#slimavx2)
   - [`FatAVX2`](#fatavx2)
 - [Functions](#functions)
-  - [`is_available_ssse3`](#is_available_ssse3)
-  - [`is_available_avx2`](#is_available_avx2)
+  - [`is_available_ssse3`](#is-available-ssse3)
+  - [`is_available_avx2`](#is-available-avx2)
 - [Macros](#macros)
-  - [`slim_ssse3!`](#slim_ssse3)
-  - [`slim_avx2!`](#slim_avx2)
-  - [`fat_avx2!`](#fat_avx2)
+  - [`slim_ssse3!`](#slim-ssse3)
+  - [`slim_avx2!`](#slim-avx2)
+  - [`fat_avx2!`](#fat-avx2)
 
 ## Quick Reference
 
@@ -25,11 +25,11 @@
 | [`SlimSSSE3`](#slimssse3) | struct |  |
 | [`SlimAVX2`](#slimavx2) | struct |  |
 | [`FatAVX2`](#fatavx2) | struct |  |
-| [`is_available_ssse3`](#is_available_ssse3) | fn |  |
-| [`is_available_avx2`](#is_available_avx2) | fn |  |
-| [`slim_ssse3!`](#slim_ssse3) | macro |  |
-| [`slim_avx2!`](#slim_avx2) | macro |  |
-| [`fat_avx2!`](#fat_avx2) | macro |  |
+| [`is_available_ssse3`](#is-available-ssse3) | fn |  |
+| [`is_available_avx2`](#is-available-avx2) | fn |  |
+| [`slim_ssse3!`](#slim-ssse3) | macro |  |
+| [`slim_avx2!`](#slim-avx2) | macro |  |
+| [`fat_avx2!`](#fat-avx2) | macro |  |
 
 ## Structs
 

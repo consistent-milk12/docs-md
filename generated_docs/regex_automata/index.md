@@ -680,7 +680,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl<T> Index for [T]`
 
-- <span id="t-type-output"></span>`type Output = T`
+- <span id="t-index-type-output"></span>`type Output = T`
 
 - <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md#patternid)
 
@@ -925,7 +925,7 @@ which means things like `Span::from(5..10)` work.
 
 ##### `impl Index for [u8]`
 
-- <span id="u8-type-output"></span>`type Output = [u8]`
+- <span id="u8-index-type-output"></span>`type Output = [u8]`
 
 - <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](#span)
 
@@ -1273,15 +1273,15 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl IntoIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patternsetiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patternsetiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="patternsetiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patternsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-type-item"></span>`type Item = PatternID`
+- <span id="patternsetiter-iterator-type-item"></span>`type Item = PatternID`
 
 - <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md#patternid)
 

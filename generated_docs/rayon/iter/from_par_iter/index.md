@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`collect_extended`](#collect_extended) | fn | Creates an empty default collection and extends it. |
-| [`collect_string!`](#collect_string) | macro |  |
+| [`collect_extended`](#collect-extended) | fn | Creates an empty default collection and extends it. |
+| [`collect_string!`](#collect-string) | macro |  |
 
 ## Functions
 

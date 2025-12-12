@@ -10,37 +10,37 @@ This module contains functionality for decompression.
 
 - [Modules](#modules)
   - [`core`](#core)
-  - [`output_buffer`](#output_buffer)
+  - [`output_buffer`](#output-buffer)
   - [`stream`](#stream)
 - [Enums](#enums)
   - [`TINFLStatus`](#tinflstatus)
 - [Functions](#functions)
-  - [`decompress_slice_iter_to_slice`](#decompress_slice_iter_to_slice)
+  - [`decompress_slice_iter_to_slice`](#decompress-slice-iter-to-slice)
 - [Constants](#constants)
-  - [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl_status_failed_cannot_make_progress)
-  - [`TINFL_STATUS_BAD_PARAM`](#tinfl_status_bad_param)
-  - [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl_status_adler32_mismatch)
-  - [`TINFL_STATUS_FAILED`](#tinfl_status_failed)
-  - [`TINFL_STATUS_DONE`](#tinfl_status_done)
-  - [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl_status_needs_more_input)
-  - [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl_status_has_more_output)
+  - [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl-status-failed-cannot-make-progress)
+  - [`TINFL_STATUS_BAD_PARAM`](#tinfl-status-bad-param)
+  - [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl-status-adler32-mismatch)
+  - [`TINFL_STATUS_FAILED`](#tinfl-status-failed)
+  - [`TINFL_STATUS_DONE`](#tinfl-status-done)
+  - [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl-status-needs-more-input)
+  - [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl-status-has-more-output)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`core`](#core) | mod | Streaming decompression functionality. |
-| [`output_buffer`](#output_buffer) | mod |  |
+| [`output_buffer`](#output-buffer) | mod |  |
 | [`stream`](#stream) | mod | Extra streaming decompression functionality. |
 | [`TINFLStatus`](#tinflstatus) | enum | Return status codes. |
-| [`decompress_slice_iter_to_slice`](#decompress_slice_iter_to_slice) | fn | Decompress one or more source slices from an iterator into the output slice. |
-| [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl_status_failed_cannot_make_progress) | const |  |
-| [`TINFL_STATUS_BAD_PARAM`](#tinfl_status_bad_param) | const |  |
-| [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl_status_adler32_mismatch) | const |  |
-| [`TINFL_STATUS_FAILED`](#tinfl_status_failed) | const |  |
-| [`TINFL_STATUS_DONE`](#tinfl_status_done) | const |  |
-| [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl_status_needs_more_input) | const |  |
-| [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl_status_has_more_output) | const |  |
+| [`decompress_slice_iter_to_slice`](#decompress-slice-iter-to-slice) | fn | Decompress one or more source slices from an iterator into the output slice. |
+| [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl-status-failed-cannot-make-progress) | const |  |
+| [`TINFL_STATUS_BAD_PARAM`](#tinfl-status-bad-param) | const |  |
+| [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl-status-adler32-mismatch) | const |  |
+| [`TINFL_STATUS_FAILED`](#tinfl-status-failed) | const |  |
+| [`TINFL_STATUS_DONE`](#tinfl-status-done) | const |  |
+| [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl-status-needs-more-input) | const |  |
+| [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl-status-has-more-output) | const |  |
 
 ## Modules
 

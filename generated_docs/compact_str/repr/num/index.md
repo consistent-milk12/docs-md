@@ -14,9 +14,9 @@ Adapted from the implementation in the `std` library at
 | Item | Kind | Description |
 |------|------|-------------|
 | [`NumChars`](#numchars) | trait | All of these `num_chars(...)` methods are kind of crazy, but they are necessary. |
-| [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
-| [`impl_IntoRepr!`](#impl_intorepr) | macro | Defines the implementation of [`IntoRepr`] for integer types |
-| [`impl_NonZero_IntoRepr!`](#impl_nonzero_intorepr) | macro | Defines the implementation of [`IntoRepr`] for NonZero integer types |
+| [`DEC_DIGITS_LUT`](#dec-digits-lut) | const |  |
+| [`impl_IntoRepr!`](#impl-intorepr) | macro | Defines the implementation of [`IntoRepr`] for integer types |
+| [`impl_NonZero_IntoRepr!`](#impl-nonzero-intorepr) | macro | Defines the implementation of [`IntoRepr`] for NonZero integer types |
 
 ## Traits
 

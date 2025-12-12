@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`find_byte`](#find_byte) | fn | Searches for the given needle in the given haystack. |
+| [`find_byte`](#find-byte) | fn | Searches for the given needle in the given haystack. |
 
 ## Functions
 

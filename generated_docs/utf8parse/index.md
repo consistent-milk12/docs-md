@@ -13,7 +13,7 @@ on the `Action` returned from unpacking a transition.
 | [`types`](#types) | mod | Types supporting the UTF-8 parser |
 | [`Parser`](#parser) | struct | A parser for Utf8 Characters |
 | [`Receiver`](#receiver) | trait | Handles codepoint and invalid sequence events from the parser. |
-| [`CONTINUATION_MASK`](#continuation_mask) | const | Continuation bytes are masked with this value. |
+| [`CONTINUATION_MASK`](#continuation-mask) | const | Continuation bytes are masked with this value. |
 
 ## Modules
 

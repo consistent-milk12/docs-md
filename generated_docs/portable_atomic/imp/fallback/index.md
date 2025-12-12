@@ -8,7 +8,7 @@
 
 - [Modules](#modules)
   - [`utils`](#utils)
-  - [`seq_lock`](#seq_lock)
+  - [`seq_lock`](#seq-lock)
 - [Structs](#structs)
   - [`AtomicI128`](#atomici128)
   - [`AtomicU128`](#atomicu128)
@@ -22,7 +22,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`utils`](#utils) | mod |  |
-| [`seq_lock`](#seq_lock) | mod |  |
+| [`seq_lock`](#seq-lock) | mod |  |
 | [`AtomicI128`](#atomici128) | struct |  |
 | [`AtomicU128`](#atomicu128) | struct |  |
 | [`lock`](#lock) | fn |  |

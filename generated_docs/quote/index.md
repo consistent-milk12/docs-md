@@ -90,18 +90,18 @@ code it is convenient for a human to read and debug.
 - [Modules](#modules)
   - [`ext`](#ext)
   - [`format`](#format)
-  - [`ident_fragment`](#ident_fragment)
-  - [`to_tokens`](#to_tokens)
+  - [`ident_fragment`](#ident-fragment)
+  - [`to_tokens`](#to-tokens)
 - [Traits](#traits)
   - [`TokenStreamExt`](#tokenstreamext)
   - [`IdentFragment`](#identfragment)
   - [`ToTokens`](#totokens)
 - [Macros](#macros)
-  - [`__quote!`](#__quote)
-  - [`__quote_spanned!`](#__quote_spanned)
-  - [`format_ident!`](#format_ident)
+  - [`__quote!`](#quote)
+  - [`__quote_spanned!`](#quote-spanned)
+  - [`format_ident!`](#format-ident)
   - [`quote!`](#quote)
-  - [`quote_spanned!`](#quote_spanned)
+  - [`quote_spanned!`](#quote-spanned)
 
 ## Quick Reference
 
@@ -109,16 +109,16 @@ code it is convenient for a human to read and debug.
 |------|------|-------------|
 | [`ext`](#ext) | mod |  |
 | [`format`](#format) | mod |  |
-| [`ident_fragment`](#ident_fragment) | mod |  |
-| [`to_tokens`](#to_tokens) | mod |  |
+| [`ident_fragment`](#ident-fragment) | mod |  |
+| [`to_tokens`](#to-tokens) | mod |  |
 | [`TokenStreamExt`](#tokenstreamext) | trait |  |
 | [`IdentFragment`](#identfragment) | trait |  |
 | [`ToTokens`](#totokens) | trait |  |
-| [`__quote!`](#__quote) | macro |  |
-| [`__quote_spanned!`](#__quote_spanned) | macro |  |
-| [`format_ident!`](#format_ident) | macro | Formatting macro for constructing `Ident`s. |
+| [`__quote!`](#quote) | macro |  |
+| [`__quote_spanned!`](#quote-spanned) | macro |  |
+| [`format_ident!`](#format-ident) | macro | Formatting macro for constructing `Ident`s. |
 | [`quote!`](#quote) | macro | The whole point. |
-| [`quote_spanned!`](#quote_spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within the macro invocation. |
+| [`quote_spanned!`](#quote-spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within the macro invocation. |
 
 ## Modules
 

@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`display_width`](#display_width) | fn | Compute the display width of `text` |
-| [`ch_width`](#ch_width) | fn |  |
+| [`display_width`](#display-width) | fn | Compute the display width of `text` |
+| [`ch_width`](#ch-width) | fn |  |
 
 ## Functions
 

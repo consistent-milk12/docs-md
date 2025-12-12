@@ -30,7 +30,7 @@ Miscellaneous tools for concurrent programming.
 - [Modules](#modules)
   - [`primitive`](#primitive)
   - [`atomic`](#atomic)
-  - [`cache_padded`](#cache_padded)
+  - [`cache_padded`](#cache-padded)
   - [`backoff`](#backoff)
   - [`sync`](#sync)
   - [`thread`](#thread)
@@ -44,7 +44,7 @@ Miscellaneous tools for concurrent programming.
 |------|------|-------------|
 | [`primitive`](#primitive) | mod |  |
 | [`atomic`](#atomic) | mod | Atomic types. |
-| [`cache_padded`](#cache_padded) | mod |  |
+| [`cache_padded`](#cache-padded) | mod |  |
 | [`backoff`](#backoff) | mod |  |
 | [`sync`](#sync) | mod | Thread synchronization primitives. |
 | [`thread`](#thread) | mod | Threads that can borrow variables from the stack. |
@@ -155,7 +155,7 @@ struct Queue<T> {
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-deref-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &T`
 
@@ -177,9 +177,9 @@ struct Queue<T> {
 
 - <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
-##### `impl<P, T> Receiver for CachePadded<T>`
+##### `impl<T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-type-target"></span>`type Target = T`
+- <span id="cachepadded-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T: Send> Send for CachePadded<T>`
 

@@ -10,13 +10,13 @@
   - [`DisplayAttrStyle`](#displayattrstyle)
   - [`DisplayPath`](#displaypath)
 - [Functions](#functions)
-  - [`parse_inner`](#parse_inner)
-  - [`single_parse_inner`](#single_parse_inner)
-  - [`single_parse_outer`](#single_parse_outer)
-  - [`parse_outermost_meta_path`](#parse_outermost_meta_path)
-  - [`parse_meta_after_path`](#parse_meta_after_path)
-  - [`parse_meta_list_after_path`](#parse_meta_list_after_path)
-  - [`parse_meta_name_value_after_path`](#parse_meta_name_value_after_path)
+  - [`parse_inner`](#parse-inner)
+  - [`single_parse_inner`](#single-parse-inner)
+  - [`single_parse_outer`](#single-parse-outer)
+  - [`parse_outermost_meta_path`](#parse-outermost-meta-path)
+  - [`parse_meta_after_path`](#parse-meta-after-path)
+  - [`parse_meta_list_after_path`](#parse-meta-list-after-path)
+  - [`parse_meta_name_value_after_path`](#parse-meta-name-value-after-path)
 
 ## Quick Reference
 
@@ -24,13 +24,13 @@
 |------|------|-------------|
 | [`DisplayAttrStyle`](#displayattrstyle) | struct |  |
 | [`DisplayPath`](#displaypath) | struct |  |
-| [`parse_inner`](#parse_inner) | fn |  |
-| [`single_parse_inner`](#single_parse_inner) | fn |  |
-| [`single_parse_outer`](#single_parse_outer) | fn |  |
-| [`parse_outermost_meta_path`](#parse_outermost_meta_path) | fn |  |
-| [`parse_meta_after_path`](#parse_meta_after_path) | fn |  |
-| [`parse_meta_list_after_path`](#parse_meta_list_after_path) | fn |  |
-| [`parse_meta_name_value_after_path`](#parse_meta_name_value_after_path) | fn |  |
+| [`parse_inner`](#parse-inner) | fn |  |
+| [`single_parse_inner`](#single-parse-inner) | fn |  |
+| [`single_parse_outer`](#single-parse-outer) | fn |  |
+| [`parse_outermost_meta_path`](#parse-outermost-meta-path) | fn |  |
+| [`parse_meta_after_path`](#parse-meta-after-path) | fn |  |
+| [`parse_meta_list_after_path`](#parse-meta-list-after-path) | fn |  |
+| [`parse_meta_name_value_after_path`](#parse-meta-name-value-after-path) | fn |  |
 
 ## Structs
 

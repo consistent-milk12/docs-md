@@ -49,29 +49,29 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 - <span id="skip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Skip<I>`
+##### `impl IntoEither for Skip<I>`
 
-##### `impl<T> IntoParallelIterator for Skip<I>`
+##### `impl IntoParallelIterator for Skip<I>`
 
-- <span id="skip-type-iter"></span>`type Iter = T`
+- <span id="skip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="skip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Skip<I>`
 
-- <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skip-paralleliterator-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="skip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Skip<I>`
+##### `impl Pointable for Skip<I>`
 
-- <span id="skip-const-align"></span>`const ALIGN: usize`
+- <span id="skip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="skip-type-init"></span>`type Init = T`
+- <span id="skip-pointable-type-init"></span>`type Init = T`
 
 - <span id="skip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

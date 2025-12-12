@@ -7,16 +7,16 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
+  - [`BY_NAME`](#by-name)
   - [`ADLAM`](#adlam)
   - [`AHOM`](#ahom)
-  - [`ANATOLIAN_HIEROGLYPHS`](#anatolian_hieroglyphs)
+  - [`ANATOLIAN_HIEROGLYPHS`](#anatolian-hieroglyphs)
   - [`ARABIC`](#arabic)
   - [`ARMENIAN`](#armenian)
   - [`AVESTAN`](#avestan)
   - [`BALINESE`](#balinese)
   - [`BAMUM`](#bamum)
-  - [`BASSA_VAH`](#bassa_vah)
+  - [`BASSA_VAH`](#bassa-vah)
   - [`BATAK`](#batak)
   - [`BENGALI`](#bengali)
   - [`BHAIKSUKI`](#bhaiksuki)
@@ -25,9 +25,9 @@
   - [`BRAILLE`](#braille)
   - [`BUGINESE`](#buginese)
   - [`BUHID`](#buhid)
-  - [`CANADIAN_ABORIGINAL`](#canadian_aboriginal)
+  - [`CANADIAN_ABORIGINAL`](#canadian-aboriginal)
   - [`CARIAN`](#carian)
-  - [`CAUCASIAN_ALBANIAN`](#caucasian_albanian)
+  - [`CAUCASIAN_ALBANIAN`](#caucasian-albanian)
   - [`CHAKMA`](#chakma)
   - [`CHAM`](#cham)
   - [`CHEROKEE`](#cherokee)
@@ -36,14 +36,14 @@
   - [`COPTIC`](#coptic)
   - [`CUNEIFORM`](#cuneiform)
   - [`CYPRIOT`](#cypriot)
-  - [`CYPRO_MINOAN`](#cypro_minoan)
+  - [`CYPRO_MINOAN`](#cypro-minoan)
   - [`CYRILLIC`](#cyrillic)
   - [`DESERET`](#deseret)
   - [`DEVANAGARI`](#devanagari)
-  - [`DIVES_AKURU`](#dives_akuru)
+  - [`DIVES_AKURU`](#dives-akuru)
   - [`DOGRA`](#dogra)
   - [`DUPLOYAN`](#duployan)
-  - [`EGYPTIAN_HIEROGLYPHS`](#egyptian_hieroglyphs)
+  - [`EGYPTIAN_HIEROGLYPHS`](#egyptian-hieroglyphs)
   - [`ELBASAN`](#elbasan)
   - [`ELYMAIC`](#elymaic)
   - [`ETHIOPIC`](#ethiopic)
@@ -54,38 +54,38 @@
   - [`GRANTHA`](#grantha)
   - [`GREEK`](#greek)
   - [`GUJARATI`](#gujarati)
-  - [`GUNJALA_GONDI`](#gunjala_gondi)
+  - [`GUNJALA_GONDI`](#gunjala-gondi)
   - [`GURMUKHI`](#gurmukhi)
-  - [`GURUNG_KHEMA`](#gurung_khema)
+  - [`GURUNG_KHEMA`](#gurung-khema)
   - [`HAN`](#han)
   - [`HANGUL`](#hangul)
-  - [`HANIFI_ROHINGYA`](#hanifi_rohingya)
+  - [`HANIFI_ROHINGYA`](#hanifi-rohingya)
   - [`HANUNOO`](#hanunoo)
   - [`HATRAN`](#hatran)
   - [`HEBREW`](#hebrew)
   - [`HIRAGANA`](#hiragana)
-  - [`IMPERIAL_ARAMAIC`](#imperial_aramaic)
+  - [`IMPERIAL_ARAMAIC`](#imperial-aramaic)
   - [`INHERITED`](#inherited)
-  - [`INSCRIPTIONAL_PAHLAVI`](#inscriptional_pahlavi)
-  - [`INSCRIPTIONAL_PARTHIAN`](#inscriptional_parthian)
+  - [`INSCRIPTIONAL_PAHLAVI`](#inscriptional-pahlavi)
+  - [`INSCRIPTIONAL_PARTHIAN`](#inscriptional-parthian)
   - [`JAVANESE`](#javanese)
   - [`KAITHI`](#kaithi)
   - [`KANNADA`](#kannada)
   - [`KATAKANA`](#katakana)
   - [`KAWI`](#kawi)
-  - [`KAYAH_LI`](#kayah_li)
+  - [`KAYAH_LI`](#kayah-li)
   - [`KHAROSHTHI`](#kharoshthi)
-  - [`KHITAN_SMALL_SCRIPT`](#khitan_small_script)
+  - [`KHITAN_SMALL_SCRIPT`](#khitan-small-script)
   - [`KHMER`](#khmer)
   - [`KHOJKI`](#khojki)
   - [`KHUDAWADI`](#khudawadi)
-  - [`KIRAT_RAI`](#kirat_rai)
+  - [`KIRAT_RAI`](#kirat-rai)
   - [`LAO`](#lao)
   - [`LATIN`](#latin)
   - [`LEPCHA`](#lepcha)
   - [`LIMBU`](#limbu)
-  - [`LINEAR_A`](#linear_a)
-  - [`LINEAR_B`](#linear_b)
+  - [`LINEAR_A`](#linear-a)
+  - [`LINEAR_B`](#linear-b)
   - [`LISU`](#lisu)
   - [`LYCIAN`](#lycian)
   - [`LYDIAN`](#lydian)
@@ -95,12 +95,12 @@
   - [`MANDAIC`](#mandaic)
   - [`MANICHAEAN`](#manichaean)
   - [`MARCHEN`](#marchen)
-  - [`MASARAM_GONDI`](#masaram_gondi)
+  - [`MASARAM_GONDI`](#masaram-gondi)
   - [`MEDEFAIDRIN`](#medefaidrin)
-  - [`MEETEI_MAYEK`](#meetei_mayek)
-  - [`MENDE_KIKAKUI`](#mende_kikakui)
-  - [`MEROITIC_CURSIVE`](#meroitic_cursive)
-  - [`MEROITIC_HIEROGLYPHS`](#meroitic_hieroglyphs)
+  - [`MEETEI_MAYEK`](#meetei-mayek)
+  - [`MENDE_KIKAKUI`](#mende-kikakui)
+  - [`MEROITIC_CURSIVE`](#meroitic-cursive)
+  - [`MEROITIC_HIEROGLYPHS`](#meroitic-hieroglyphs)
   - [`MIAO`](#miao)
   - [`MODI`](#modi)
   - [`MONGOLIAN`](#mongolian)
@@ -108,34 +108,34 @@
   - [`MULTANI`](#multani)
   - [`MYANMAR`](#myanmar)
   - [`NABATAEAN`](#nabataean)
-  - [`NAG_MUNDARI`](#nag_mundari)
+  - [`NAG_MUNDARI`](#nag-mundari)
   - [`NANDINAGARI`](#nandinagari)
-  - [`NEW_TAI_LUE`](#new_tai_lue)
+  - [`NEW_TAI_LUE`](#new-tai-lue)
   - [`NEWA`](#newa)
   - [`NKO`](#nko)
   - [`NUSHU`](#nushu)
-  - [`NYIAKENG_PUACHUE_HMONG`](#nyiakeng_puachue_hmong)
+  - [`NYIAKENG_PUACHUE_HMONG`](#nyiakeng-puachue-hmong)
   - [`OGHAM`](#ogham)
-  - [`OL_CHIKI`](#ol_chiki)
-  - [`OL_ONAL`](#ol_onal)
-  - [`OLD_HUNGARIAN`](#old_hungarian)
-  - [`OLD_ITALIC`](#old_italic)
-  - [`OLD_NORTH_ARABIAN`](#old_north_arabian)
-  - [`OLD_PERMIC`](#old_permic)
-  - [`OLD_PERSIAN`](#old_persian)
-  - [`OLD_SOGDIAN`](#old_sogdian)
-  - [`OLD_SOUTH_ARABIAN`](#old_south_arabian)
-  - [`OLD_TURKIC`](#old_turkic)
-  - [`OLD_UYGHUR`](#old_uyghur)
+  - [`OL_CHIKI`](#ol-chiki)
+  - [`OL_ONAL`](#ol-onal)
+  - [`OLD_HUNGARIAN`](#old-hungarian)
+  - [`OLD_ITALIC`](#old-italic)
+  - [`OLD_NORTH_ARABIAN`](#old-north-arabian)
+  - [`OLD_PERMIC`](#old-permic)
+  - [`OLD_PERSIAN`](#old-persian)
+  - [`OLD_SOGDIAN`](#old-sogdian)
+  - [`OLD_SOUTH_ARABIAN`](#old-south-arabian)
+  - [`OLD_TURKIC`](#old-turkic)
+  - [`OLD_UYGHUR`](#old-uyghur)
   - [`ORIYA`](#oriya)
   - [`OSAGE`](#osage)
   - [`OSMANYA`](#osmanya)
-  - [`PAHAWH_HMONG`](#pahawh_hmong)
+  - [`PAHAWH_HMONG`](#pahawh-hmong)
   - [`PALMYRENE`](#palmyrene)
-  - [`PAU_CIN_HAU`](#pau_cin_hau)
-  - [`PHAGS_PA`](#phags_pa)
+  - [`PAU_CIN_HAU`](#pau-cin-hau)
+  - [`PHAGS_PA`](#phags-pa)
   - [`PHOENICIAN`](#phoenician)
-  - [`PSALTER_PAHLAVI`](#psalter_pahlavi)
+  - [`PSALTER_PAHLAVI`](#psalter-pahlavi)
   - [`REJANG`](#rejang)
   - [`RUNIC`](#runic)
   - [`SAMARITAN`](#samaritan)
@@ -146,17 +146,17 @@
   - [`SIGNWRITING`](#signwriting)
   - [`SINHALA`](#sinhala)
   - [`SOGDIAN`](#sogdian)
-  - [`SORA_SOMPENG`](#sora_sompeng)
+  - [`SORA_SOMPENG`](#sora-sompeng)
   - [`SOYOMBO`](#soyombo)
   - [`SUNDANESE`](#sundanese)
   - [`SUNUWAR`](#sunuwar)
-  - [`SYLOTI_NAGRI`](#syloti_nagri)
+  - [`SYLOTI_NAGRI`](#syloti-nagri)
   - [`SYRIAC`](#syriac)
   - [`TAGALOG`](#tagalog)
   - [`TAGBANWA`](#tagbanwa)
-  - [`TAI_LE`](#tai_le)
-  - [`TAI_THAM`](#tai_tham)
-  - [`TAI_VIET`](#tai_viet)
+  - [`TAI_LE`](#tai-le)
+  - [`TAI_THAM`](#tai-tham)
+  - [`TAI_VIET`](#tai-viet)
   - [`TAKRI`](#takri)
   - [`TAMIL`](#tamil)
   - [`TANGSA`](#tangsa)
@@ -169,30 +169,30 @@
   - [`TIRHUTA`](#tirhuta)
   - [`TODHRI`](#todhri)
   - [`TOTO`](#toto)
-  - [`TULU_TIGALARI`](#tulu_tigalari)
+  - [`TULU_TIGALARI`](#tulu-tigalari)
   - [`UGARITIC`](#ugaritic)
   - [`VAI`](#vai)
   - [`VITHKUQI`](#vithkuqi)
   - [`WANCHO`](#wancho)
-  - [`WARANG_CITI`](#warang_citi)
+  - [`WARANG_CITI`](#warang-citi)
   - [`YEZIDI`](#yezidi)
   - [`YI`](#yi)
-  - [`ZANABAZAR_SQUARE`](#zanabazar_square)
+  - [`ZANABAZAR_SQUARE`](#zanabazar-square)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
 | [`ADLAM`](#adlam) | const |  |
 | [`AHOM`](#ahom) | const |  |
-| [`ANATOLIAN_HIEROGLYPHS`](#anatolian_hieroglyphs) | const |  |
+| [`ANATOLIAN_HIEROGLYPHS`](#anatolian-hieroglyphs) | const |  |
 | [`ARABIC`](#arabic) | const |  |
 | [`ARMENIAN`](#armenian) | const |  |
 | [`AVESTAN`](#avestan) | const |  |
 | [`BALINESE`](#balinese) | const |  |
 | [`BAMUM`](#bamum) | const |  |
-| [`BASSA_VAH`](#bassa_vah) | const |  |
+| [`BASSA_VAH`](#bassa-vah) | const |  |
 | [`BATAK`](#batak) | const |  |
 | [`BENGALI`](#bengali) | const |  |
 | [`BHAIKSUKI`](#bhaiksuki) | const |  |
@@ -201,9 +201,9 @@
 | [`BRAILLE`](#braille) | const |  |
 | [`BUGINESE`](#buginese) | const |  |
 | [`BUHID`](#buhid) | const |  |
-| [`CANADIAN_ABORIGINAL`](#canadian_aboriginal) | const |  |
+| [`CANADIAN_ABORIGINAL`](#canadian-aboriginal) | const |  |
 | [`CARIAN`](#carian) | const |  |
-| [`CAUCASIAN_ALBANIAN`](#caucasian_albanian) | const |  |
+| [`CAUCASIAN_ALBANIAN`](#caucasian-albanian) | const |  |
 | [`CHAKMA`](#chakma) | const |  |
 | [`CHAM`](#cham) | const |  |
 | [`CHEROKEE`](#cherokee) | const |  |
@@ -212,14 +212,14 @@
 | [`COPTIC`](#coptic) | const |  |
 | [`CUNEIFORM`](#cuneiform) | const |  |
 | [`CYPRIOT`](#cypriot) | const |  |
-| [`CYPRO_MINOAN`](#cypro_minoan) | const |  |
+| [`CYPRO_MINOAN`](#cypro-minoan) | const |  |
 | [`CYRILLIC`](#cyrillic) | const |  |
 | [`DESERET`](#deseret) | const |  |
 | [`DEVANAGARI`](#devanagari) | const |  |
-| [`DIVES_AKURU`](#dives_akuru) | const |  |
+| [`DIVES_AKURU`](#dives-akuru) | const |  |
 | [`DOGRA`](#dogra) | const |  |
 | [`DUPLOYAN`](#duployan) | const |  |
-| [`EGYPTIAN_HIEROGLYPHS`](#egyptian_hieroglyphs) | const |  |
+| [`EGYPTIAN_HIEROGLYPHS`](#egyptian-hieroglyphs) | const |  |
 | [`ELBASAN`](#elbasan) | const |  |
 | [`ELYMAIC`](#elymaic) | const |  |
 | [`ETHIOPIC`](#ethiopic) | const |  |
@@ -230,38 +230,38 @@
 | [`GRANTHA`](#grantha) | const |  |
 | [`GREEK`](#greek) | const |  |
 | [`GUJARATI`](#gujarati) | const |  |
-| [`GUNJALA_GONDI`](#gunjala_gondi) | const |  |
+| [`GUNJALA_GONDI`](#gunjala-gondi) | const |  |
 | [`GURMUKHI`](#gurmukhi) | const |  |
-| [`GURUNG_KHEMA`](#gurung_khema) | const |  |
+| [`GURUNG_KHEMA`](#gurung-khema) | const |  |
 | [`HAN`](#han) | const |  |
 | [`HANGUL`](#hangul) | const |  |
-| [`HANIFI_ROHINGYA`](#hanifi_rohingya) | const |  |
+| [`HANIFI_ROHINGYA`](#hanifi-rohingya) | const |  |
 | [`HANUNOO`](#hanunoo) | const |  |
 | [`HATRAN`](#hatran) | const |  |
 | [`HEBREW`](#hebrew) | const |  |
 | [`HIRAGANA`](#hiragana) | const |  |
-| [`IMPERIAL_ARAMAIC`](#imperial_aramaic) | const |  |
+| [`IMPERIAL_ARAMAIC`](#imperial-aramaic) | const |  |
 | [`INHERITED`](#inherited) | const |  |
-| [`INSCRIPTIONAL_PAHLAVI`](#inscriptional_pahlavi) | const |  |
-| [`INSCRIPTIONAL_PARTHIAN`](#inscriptional_parthian) | const |  |
+| [`INSCRIPTIONAL_PAHLAVI`](#inscriptional-pahlavi) | const |  |
+| [`INSCRIPTIONAL_PARTHIAN`](#inscriptional-parthian) | const |  |
 | [`JAVANESE`](#javanese) | const |  |
 | [`KAITHI`](#kaithi) | const |  |
 | [`KANNADA`](#kannada) | const |  |
 | [`KATAKANA`](#katakana) | const |  |
 | [`KAWI`](#kawi) | const |  |
-| [`KAYAH_LI`](#kayah_li) | const |  |
+| [`KAYAH_LI`](#kayah-li) | const |  |
 | [`KHAROSHTHI`](#kharoshthi) | const |  |
-| [`KHITAN_SMALL_SCRIPT`](#khitan_small_script) | const |  |
+| [`KHITAN_SMALL_SCRIPT`](#khitan-small-script) | const |  |
 | [`KHMER`](#khmer) | const |  |
 | [`KHOJKI`](#khojki) | const |  |
 | [`KHUDAWADI`](#khudawadi) | const |  |
-| [`KIRAT_RAI`](#kirat_rai) | const |  |
+| [`KIRAT_RAI`](#kirat-rai) | const |  |
 | [`LAO`](#lao) | const |  |
 | [`LATIN`](#latin) | const |  |
 | [`LEPCHA`](#lepcha) | const |  |
 | [`LIMBU`](#limbu) | const |  |
-| [`LINEAR_A`](#linear_a) | const |  |
-| [`LINEAR_B`](#linear_b) | const |  |
+| [`LINEAR_A`](#linear-a) | const |  |
+| [`LINEAR_B`](#linear-b) | const |  |
 | [`LISU`](#lisu) | const |  |
 | [`LYCIAN`](#lycian) | const |  |
 | [`LYDIAN`](#lydian) | const |  |
@@ -271,12 +271,12 @@
 | [`MANDAIC`](#mandaic) | const |  |
 | [`MANICHAEAN`](#manichaean) | const |  |
 | [`MARCHEN`](#marchen) | const |  |
-| [`MASARAM_GONDI`](#masaram_gondi) | const |  |
+| [`MASARAM_GONDI`](#masaram-gondi) | const |  |
 | [`MEDEFAIDRIN`](#medefaidrin) | const |  |
-| [`MEETEI_MAYEK`](#meetei_mayek) | const |  |
-| [`MENDE_KIKAKUI`](#mende_kikakui) | const |  |
-| [`MEROITIC_CURSIVE`](#meroitic_cursive) | const |  |
-| [`MEROITIC_HIEROGLYPHS`](#meroitic_hieroglyphs) | const |  |
+| [`MEETEI_MAYEK`](#meetei-mayek) | const |  |
+| [`MENDE_KIKAKUI`](#mende-kikakui) | const |  |
+| [`MEROITIC_CURSIVE`](#meroitic-cursive) | const |  |
+| [`MEROITIC_HIEROGLYPHS`](#meroitic-hieroglyphs) | const |  |
 | [`MIAO`](#miao) | const |  |
 | [`MODI`](#modi) | const |  |
 | [`MONGOLIAN`](#mongolian) | const |  |
@@ -284,34 +284,34 @@
 | [`MULTANI`](#multani) | const |  |
 | [`MYANMAR`](#myanmar) | const |  |
 | [`NABATAEAN`](#nabataean) | const |  |
-| [`NAG_MUNDARI`](#nag_mundari) | const |  |
+| [`NAG_MUNDARI`](#nag-mundari) | const |  |
 | [`NANDINAGARI`](#nandinagari) | const |  |
-| [`NEW_TAI_LUE`](#new_tai_lue) | const |  |
+| [`NEW_TAI_LUE`](#new-tai-lue) | const |  |
 | [`NEWA`](#newa) | const |  |
 | [`NKO`](#nko) | const |  |
 | [`NUSHU`](#nushu) | const |  |
-| [`NYIAKENG_PUACHUE_HMONG`](#nyiakeng_puachue_hmong) | const |  |
+| [`NYIAKENG_PUACHUE_HMONG`](#nyiakeng-puachue-hmong) | const |  |
 | [`OGHAM`](#ogham) | const |  |
-| [`OL_CHIKI`](#ol_chiki) | const |  |
-| [`OL_ONAL`](#ol_onal) | const |  |
-| [`OLD_HUNGARIAN`](#old_hungarian) | const |  |
-| [`OLD_ITALIC`](#old_italic) | const |  |
-| [`OLD_NORTH_ARABIAN`](#old_north_arabian) | const |  |
-| [`OLD_PERMIC`](#old_permic) | const |  |
-| [`OLD_PERSIAN`](#old_persian) | const |  |
-| [`OLD_SOGDIAN`](#old_sogdian) | const |  |
-| [`OLD_SOUTH_ARABIAN`](#old_south_arabian) | const |  |
-| [`OLD_TURKIC`](#old_turkic) | const |  |
-| [`OLD_UYGHUR`](#old_uyghur) | const |  |
+| [`OL_CHIKI`](#ol-chiki) | const |  |
+| [`OL_ONAL`](#ol-onal) | const |  |
+| [`OLD_HUNGARIAN`](#old-hungarian) | const |  |
+| [`OLD_ITALIC`](#old-italic) | const |  |
+| [`OLD_NORTH_ARABIAN`](#old-north-arabian) | const |  |
+| [`OLD_PERMIC`](#old-permic) | const |  |
+| [`OLD_PERSIAN`](#old-persian) | const |  |
+| [`OLD_SOGDIAN`](#old-sogdian) | const |  |
+| [`OLD_SOUTH_ARABIAN`](#old-south-arabian) | const |  |
+| [`OLD_TURKIC`](#old-turkic) | const |  |
+| [`OLD_UYGHUR`](#old-uyghur) | const |  |
 | [`ORIYA`](#oriya) | const |  |
 | [`OSAGE`](#osage) | const |  |
 | [`OSMANYA`](#osmanya) | const |  |
-| [`PAHAWH_HMONG`](#pahawh_hmong) | const |  |
+| [`PAHAWH_HMONG`](#pahawh-hmong) | const |  |
 | [`PALMYRENE`](#palmyrene) | const |  |
-| [`PAU_CIN_HAU`](#pau_cin_hau) | const |  |
-| [`PHAGS_PA`](#phags_pa) | const |  |
+| [`PAU_CIN_HAU`](#pau-cin-hau) | const |  |
+| [`PHAGS_PA`](#phags-pa) | const |  |
 | [`PHOENICIAN`](#phoenician) | const |  |
-| [`PSALTER_PAHLAVI`](#psalter_pahlavi) | const |  |
+| [`PSALTER_PAHLAVI`](#psalter-pahlavi) | const |  |
 | [`REJANG`](#rejang) | const |  |
 | [`RUNIC`](#runic) | const |  |
 | [`SAMARITAN`](#samaritan) | const |  |
@@ -322,17 +322,17 @@
 | [`SIGNWRITING`](#signwriting) | const |  |
 | [`SINHALA`](#sinhala) | const |  |
 | [`SOGDIAN`](#sogdian) | const |  |
-| [`SORA_SOMPENG`](#sora_sompeng) | const |  |
+| [`SORA_SOMPENG`](#sora-sompeng) | const |  |
 | [`SOYOMBO`](#soyombo) | const |  |
 | [`SUNDANESE`](#sundanese) | const |  |
 | [`SUNUWAR`](#sunuwar) | const |  |
-| [`SYLOTI_NAGRI`](#syloti_nagri) | const |  |
+| [`SYLOTI_NAGRI`](#syloti-nagri) | const |  |
 | [`SYRIAC`](#syriac) | const |  |
 | [`TAGALOG`](#tagalog) | const |  |
 | [`TAGBANWA`](#tagbanwa) | const |  |
-| [`TAI_LE`](#tai_le) | const |  |
-| [`TAI_THAM`](#tai_tham) | const |  |
-| [`TAI_VIET`](#tai_viet) | const |  |
+| [`TAI_LE`](#tai-le) | const |  |
+| [`TAI_THAM`](#tai-tham) | const |  |
+| [`TAI_VIET`](#tai-viet) | const |  |
 | [`TAKRI`](#takri) | const |  |
 | [`TAMIL`](#tamil) | const |  |
 | [`TANGSA`](#tangsa) | const |  |
@@ -345,15 +345,15 @@
 | [`TIRHUTA`](#tirhuta) | const |  |
 | [`TODHRI`](#todhri) | const |  |
 | [`TOTO`](#toto) | const |  |
-| [`TULU_TIGALARI`](#tulu_tigalari) | const |  |
+| [`TULU_TIGALARI`](#tulu-tigalari) | const |  |
 | [`UGARITIC`](#ugaritic) | const |  |
 | [`VAI`](#vai) | const |  |
 | [`VITHKUQI`](#vithkuqi) | const |  |
 | [`WANCHO`](#wancho) | const |  |
-| [`WARANG_CITI`](#warang_citi) | const |  |
+| [`WARANG_CITI`](#warang-citi) | const |  |
 | [`YEZIDI`](#yezidi) | const |  |
 | [`YI`](#yi) | const |  |
-| [`ZANABAZAR_SQUARE`](#zanabazar_square) | const |  |
+| [`ZANABAZAR_SQUARE`](#zanabazar-square) | const |  |
 
 ## Constants
 

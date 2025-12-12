@@ -40,14 +40,14 @@
   - [`UnwindSection`](#unwindsection)
   - [`UnwindContextStorage`](#unwindcontextstorage)
 - [Functions](#functions)
-  - [`parse_cfi_entry`](#parse_cfi_entry)
-  - [`parse_encoded_pointer`](#parse_encoded_pointer)
-  - [`parse_encoded_value`](#parse_encoded_value)
+  - [`parse_cfi_entry`](#parse-cfi-entry)
+  - [`parse_encoded_pointer`](#parse-encoded-pointer)
+  - [`parse_encoded_value`](#parse-encoded-value)
 - [Constants](#constants)
-  - [`MAX_RULES`](#max_rules)
-  - [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth)
-  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask)
-  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask)
+  - [`MAX_RULES`](#max-rules)
+  - [`MAX_UNWIND_STACK_DEPTH`](#max-unwind-stack-depth)
+  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi-instruction-high-bits-mask)
+  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi-instruction-low-bits-mask)
 
 ## Quick Reference
 
@@ -83,13 +83,13 @@
 | [`UnwindOffset`](#unwindoffset) | trait | An offset into an `UnwindSection`. |
 | [`UnwindSection`](#unwindsection) | trait | A section holding unwind information: either `.debug_frame` or `.eh_frame`. |
 | [`UnwindContextStorage`](#unwindcontextstorage) | trait | Specification of what storage should be used for [`UnwindContext`]. |
-| [`parse_cfi_entry`](#parse_cfi_entry) | fn |  |
-| [`parse_encoded_pointer`](#parse_encoded_pointer) | fn |  |
-| [`parse_encoded_value`](#parse_encoded_value) | fn |  |
-| [`MAX_RULES`](#max_rules) | const |  |
-| [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth) | const |  |
-| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask) | const |  |
-| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask) | const |  |
+| [`parse_cfi_entry`](#parse-cfi-entry) | fn |  |
+| [`parse_encoded_pointer`](#parse-encoded-pointer) | fn |  |
+| [`parse_encoded_value`](#parse-encoded-value) | fn |  |
+| [`MAX_RULES`](#max-rules) | const |  |
+| [`MAX_UNWIND_STACK_DEPTH`](#max-unwind-stack-depth) | const |  |
+| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi-instruction-high-bits-mask) | const |  |
+| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi-instruction-low-bits-mask) | const |  |
 
 ## Structs
 
@@ -154,7 +154,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
-- <span id="debugframe-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
+- <span id="debugframe-unwindsection-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
 
 ### `EhFrameHdr<R: Reader>`
 
@@ -260,7 +260,7 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 #### Trait Implementations
 
-##### `impl<'a, 'bases, R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
 
 - <span id="ehhdrtableiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -290,11 +290,11 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
 - <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md#ehhdrtable)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
 - <span id="ehhdrtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -355,7 +355,7 @@ for some discussion on the differences between `.debug_frame` and
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
-- <span id="ehframe-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
+- <span id="ehframe-unwindsection-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
 
 ### `BaseAddresses`
 
@@ -554,11 +554,11 @@ unreachable!()
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
+##### `impl<Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
 - <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md#cfientriesiter)
 
-##### `impl<'bases, Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
+##### `impl<Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
 - <span id="cfientriesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -824,21 +824,21 @@ Fully parsing this FDE requires first parsing its CIE.
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
-##### `impl<'bases, Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'bases, Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-##### `impl<'bases, Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 - <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md#partialframedescriptionentry)
 
-##### `impl<'bases, Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
+##### `impl<Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 ### `FrameDescriptionEntry<R, Offset>`
 
@@ -1100,7 +1100,7 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 #### Trait Implementations
 
-##### `impl<'a, 'ctx, R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
+##### `impl<R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
 - <span id="unwindtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1143,7 +1143,7 @@ where
 
 ##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
 
-##### `impl<'a, R, S> FromIterator for RegisterRuleMap<R, S>`
+##### `impl<R, S> FromIterator for RegisterRuleMap<R, S>`
 
 - <span id="registerrulemap-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
 
@@ -1165,25 +1165,25 @@ An unordered iterator for register rules.
 
 #### Trait Implementations
 
-##### `impl<'iter, T> Clone for RegisterRuleIter<'iter, T>`
+##### `impl<T> Clone for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
-##### `impl<'iter, T> Debug for RegisterRuleIter<'iter, T>`
+##### `impl<T> Debug for RegisterRuleIter<'iter, T>`
 
 - <span id="registerruleiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for RegisterRuleIter<'iter, T>`
+##### `impl IntoIterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="registerruleiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="registerruleiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="registerruleiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'iter, T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
+##### `impl<T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
+- <span id="registerruleiter-iterator-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
 - <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1271,11 +1271,11 @@ Can be [used with
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
 - <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md#callframeinstructioniter)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
 - <span id="callframeinstructioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1366,11 +1366,11 @@ struct PointerEncodingParameters<'a, R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<'a, R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
+##### `impl<R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
 
 - <span id="pointerencodingparameters-clone"></span>`fn clone(&self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](#pointerencodingparameters)
 
-##### `impl<'a, R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
 
 - <span id="pointerencodingparameters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1406,21 +1406,21 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 #### Trait Implementations
 
-##### `impl<'bases, Section, R> Clone for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Clone for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md#cieorfde)
 
-##### `impl<'bases, Section, R> Debug for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Debug for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'bases, Section, R> Eq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> Eq for CieOrFde<'bases, Section, R>`
 
-##### `impl<'bases, Section, R> PartialEq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
 - <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md#cieorfde)
 
-##### `impl<'bases, Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
+##### `impl<Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
 
 ### `CfaRule<T: ReaderOffset>`
 

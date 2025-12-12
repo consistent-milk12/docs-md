@@ -55,21 +55,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdatiterator-iterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -92,13 +92,13 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
@@ -110,7 +110,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="xcoffcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
 
 ### `XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
@@ -131,21 +131,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="xcoffcomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

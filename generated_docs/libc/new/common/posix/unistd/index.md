@@ -12,9 +12,9 @@ Header: `unistd.h`
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`STDIN_FILENO`](#stdin_fileno) | const |  |
-| [`STDOUT_FILENO`](#stdout_fileno) | const |  |
-| [`STDERR_FILENO`](#stderr_fileno) | const |  |
+| [`STDIN_FILENO`](#stdin-fileno) | const |  |
+| [`STDOUT_FILENO`](#stdout-fileno) | const |  |
+| [`STDERR_FILENO`](#stderr-fileno) | const |  |
 
 ## Constants
 

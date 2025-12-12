@@ -51,7 +51,7 @@ An entity with a span attached.
 
 ##### `impl<T> Deref for Sp<T>`
 
-- <span id="sp-type-target"></span>`type Target = T`
+- <span id="sp-deref-type-target"></span>`type Target = T`
 
 - <span id="sp-deref"></span>`fn deref(&self) -> &T`
 
@@ -63,9 +63,9 @@ An entity with a span attached.
 
 - <span id="sp-eq"></span>`fn eq(&self, other: &U) -> bool`
 
-##### `impl<P, T> Receiver for Sp<T>`
+##### `impl<T> Receiver for Sp<T>`
 
-- <span id="sp-type-target"></span>`type Target = T`
+- <span id="sp-receiver-type-target"></span>`type Target = T`
 
 ##### `impl<T> Spanned for Sp<T>`
 

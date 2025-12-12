@@ -142,13 +142,13 @@ instrumentation.
 - [Enums](#enums)
   - [`Kind`](#kind)
 - [Functions](#functions)
-  - [`with_default`](#with_default)
-  - [`set_default`](#set_default)
-  - [`set_global_default`](#set_global_default)
-  - [`get_default`](#get_default)
-  - [`get_global`](#get_global)
+  - [`with_default`](#with-default)
+  - [`set_default`](#set-default)
+  - [`set_global_default`](#set-global-default)
+  - [`get_default`](#get-default)
+  - [`get_global`](#get-global)
 - [Constants](#constants)
-  - [`CURRENT_STATE`](#current_state)
+  - [`CURRENT_STATE`](#current-state)
   - [`UNINITIALIZED`](#uninitialized)
   - [`INITIALIZING`](#initializing)
   - [`INITIALIZED`](#initialized)
@@ -165,12 +165,12 @@ instrumentation.
 | [`SetGlobalDefaultError`](#setglobaldefaulterror) | struct | Returned if setting the global dispatcher fails. |
 | [`Registrar`](#registrar) | struct |  |
 | [`Kind`](#kind) | enum |  |
-| [`with_default`](#with_default) | fn | Sets this dispatch as the default for the duration of a closure. |
-| [`set_default`](#set_default) | fn | Sets the dispatch as the default dispatch for the duration of the lifetime of the returned DefaultGuard |
-| [`set_global_default`](#set_global_default) | fn | Sets this dispatch as the global default for the duration of the entire program. |
-| [`get_default`](#get_default) | fn | Executes a closure with a reference to this thread's current [dispatcher]. |
-| [`get_global`](#get_global) | fn |  |
-| [`CURRENT_STATE`](#current_state) | const |  |
+| [`with_default`](#with-default) | fn | Sets this dispatch as the default for the duration of a closure. |
+| [`set_default`](#set-default) | fn | Sets the dispatch as the default dispatch for the duration of the lifetime of the returned DefaultGuard |
+| [`set_global_default`](#set-global-default) | fn | Sets this dispatch as the global default for the duration of the entire program. |
+| [`get_default`](#get-default) | fn | Executes a closure with a reference to this thread's current [dispatcher]. |
+| [`get_global`](#get-global) | fn |  |
+| [`CURRENT_STATE`](#current-state) | const |  |
 | [`UNINITIALIZED`](#uninitialized) | const |  |
 | [`INITIALIZING`](#initializing) | const |  |
 | [`INITIALIZED`](#initialized) | const |  |

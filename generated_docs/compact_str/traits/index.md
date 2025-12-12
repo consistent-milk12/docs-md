@@ -24,8 +24,8 @@ trait ToCompactString { ... }
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
-[`fmt::Display`](../../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
+[`fmt::Display`](../../miette_derive/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
+[`fmt::Display`](../../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
 implementation for free.
 
 #### Required Methods

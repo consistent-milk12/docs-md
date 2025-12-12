@@ -51,21 +51,21 @@ An iterator for the sections in an [`XcoffFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcoffsectioniterator-iterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -100,13 +100,13 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Debug for XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsection-objectsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md#sectionindex)
 
@@ -144,7 +144,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 - <span id="xcoffsection-uncompressed-data"></span>`fn uncompressed_data(&self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../../index.md#result)
 
-##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
+##### `impl<Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
 
 ### `SectionTable<'data, Xcoff: FileHeader>`
 
@@ -174,17 +174,17 @@ Returned by `FileHeader::sections`.
 
 #### Trait Implementations
 
-##### `impl<'data, Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](../index.md#sectiontable)
 
-##### `impl<'data, Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
 
-##### `impl<'data, Xcoff: fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff: fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Xcoff> Default for SectionTable<'data, Xcoff>`
+##### `impl<Xcoff> Default for SectionTable<'data, Xcoff>`
 
 - <span id="sectiontable-default"></span>`fn default() -> Self`
 

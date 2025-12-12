@@ -90,31 +90,31 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 
 #### Trait Implementations
 
-##### `impl<'data, Mach, R> Debug for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Debug for MachOFile<'data, Mach, R>`
 
 - <span id="machofile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, Mach, R> Object for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
 
-- <span id="machofile-type-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
+- <span id="machofile-object-type-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machofile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="machofile-object-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
 
@@ -164,7 +164,7 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 
 - <span id="machofile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md#fileflags)
 
-##### `impl<'data, Mach, R> Sealed for MachOFile<'data, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOFile<'data, Mach, R>`
 
 ### `MachOComdatIterator<'data, 'file, Mach, R>`
 
@@ -185,21 +185,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdatIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatiterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatiterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatiterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machocomdatiterator-iterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -222,13 +222,13 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, 'file, Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
+- <span id="machocomdat-objectcomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md#comdatkind)
 
@@ -240,7 +240,7 @@ This is a stub that doesn't implement any functionality.
 
 - <span id="machocomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../../index.md#objectcomdat)
 
-##### `impl<'data, 'file, Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Sealed for MachOComdat<'data, 'file, Mach, R>`
 
 ### `MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
@@ -261,21 +261,21 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Debug for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatsectioniterator-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatsectioniterator-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
+##### `impl<Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
+- <span id="machocomdatsectioniterator-iterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="machocomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

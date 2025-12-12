@@ -10,8 +10,8 @@
 |------|------|-------------|
 | [`FixupContext`](#fixupcontext) | struct |  |
 | [`Scan`](#scan) | enum |  |
-| [`scan_left`](#scan_left) | fn |  |
-| [`scan_right`](#scan_right) | fn |  |
+| [`scan_left`](#scan-left) | fn |  |
+| [`scan_right`](#scan-right) | fn |  |
 
 ## Structs
 

@@ -14,37 +14,37 @@
   - [`StructTrait`](#structtrait)
   - [`TupleTrait`](#tupletrait)
 - [Functions](#functions)
-  - [`expand_derive_serialize`](#expand_derive_serialize)
+  - [`expand_derive_serialize`](#expand-derive-serialize)
   - [`precondition`](#precondition)
-  - [`build_generics`](#build_generics)
-  - [`needs_serialize_bound`](#needs_serialize_bound)
-  - [`serialize_body`](#serialize_body)
-  - [`serialize_transparent`](#serialize_transparent)
-  - [`serialize_into`](#serialize_into)
-  - [`serialize_unit_struct`](#serialize_unit_struct)
-  - [`serialize_newtype_struct`](#serialize_newtype_struct)
-  - [`serialize_tuple_struct`](#serialize_tuple_struct)
-  - [`serialize_struct`](#serialize_struct)
-  - [`serialize_struct_tag_field`](#serialize_struct_tag_field)
-  - [`serialize_struct_as_struct`](#serialize_struct_as_struct)
-  - [`serialize_struct_as_map`](#serialize_struct_as_map)
-  - [`serialize_enum`](#serialize_enum)
-  - [`serialize_variant`](#serialize_variant)
-  - [`serialize_externally_tagged_variant`](#serialize_externally_tagged_variant)
-  - [`serialize_internally_tagged_variant`](#serialize_internally_tagged_variant)
-  - [`serialize_adjacently_tagged_variant`](#serialize_adjacently_tagged_variant)
-  - [`serialize_untagged_variant`](#serialize_untagged_variant)
-  - [`serialize_tuple_variant`](#serialize_tuple_variant)
-  - [`serialize_struct_variant`](#serialize_struct_variant)
-  - [`serialize_struct_variant_with_flatten`](#serialize_struct_variant_with_flatten)
-  - [`serialize_tuple_struct_visitor`](#serialize_tuple_struct_visitor)
-  - [`serialize_struct_visitor`](#serialize_struct_visitor)
-  - [`wrap_serialize_field_with`](#wrap_serialize_field_with)
-  - [`wrap_serialize_variant_with`](#wrap_serialize_variant_with)
-  - [`wrap_serialize_with`](#wrap_serialize_with)
-  - [`mut_if`](#mut_if)
-  - [`get_member`](#get_member)
-  - [`effective_style`](#effective_style)
+  - [`build_generics`](#build-generics)
+  - [`needs_serialize_bound`](#needs-serialize-bound)
+  - [`serialize_body`](#serialize-body)
+  - [`serialize_transparent`](#serialize-transparent)
+  - [`serialize_into`](#serialize-into)
+  - [`serialize_unit_struct`](#serialize-unit-struct)
+  - [`serialize_newtype_struct`](#serialize-newtype-struct)
+  - [`serialize_tuple_struct`](#serialize-tuple-struct)
+  - [`serialize_struct`](#serialize-struct)
+  - [`serialize_struct_tag_field`](#serialize-struct-tag-field)
+  - [`serialize_struct_as_struct`](#serialize-struct-as-struct)
+  - [`serialize_struct_as_map`](#serialize-struct-as-map)
+  - [`serialize_enum`](#serialize-enum)
+  - [`serialize_variant`](#serialize-variant)
+  - [`serialize_externally_tagged_variant`](#serialize-externally-tagged-variant)
+  - [`serialize_internally_tagged_variant`](#serialize-internally-tagged-variant)
+  - [`serialize_adjacently_tagged_variant`](#serialize-adjacently-tagged-variant)
+  - [`serialize_untagged_variant`](#serialize-untagged-variant)
+  - [`serialize_tuple_variant`](#serialize-tuple-variant)
+  - [`serialize_struct_variant`](#serialize-struct-variant)
+  - [`serialize_struct_variant_with_flatten`](#serialize-struct-variant-with-flatten)
+  - [`serialize_tuple_struct_visitor`](#serialize-tuple-struct-visitor)
+  - [`serialize_struct_visitor`](#serialize-struct-visitor)
+  - [`wrap_serialize_field_with`](#wrap-serialize-field-with)
+  - [`wrap_serialize_variant_with`](#wrap-serialize-variant-with)
+  - [`wrap_serialize_with`](#wrap-serialize-with)
+  - [`mut_if`](#mut-if)
+  - [`get_member`](#get-member)
+  - [`effective_style`](#effective-style)
 
 ## Quick Reference
 
@@ -55,37 +55,37 @@
 | [`StructVariant`](#structvariant) | enum |  |
 | [`StructTrait`](#structtrait) | enum |  |
 | [`TupleTrait`](#tupletrait) | enum |  |
-| [`expand_derive_serialize`](#expand_derive_serialize) | fn |  |
+| [`expand_derive_serialize`](#expand-derive-serialize) | fn |  |
 | [`precondition`](#precondition) | fn |  |
-| [`build_generics`](#build_generics) | fn |  |
-| [`needs_serialize_bound`](#needs_serialize_bound) | fn |  |
-| [`serialize_body`](#serialize_body) | fn |  |
-| [`serialize_transparent`](#serialize_transparent) | fn |  |
-| [`serialize_into`](#serialize_into) | fn |  |
-| [`serialize_unit_struct`](#serialize_unit_struct) | fn |  |
-| [`serialize_newtype_struct`](#serialize_newtype_struct) | fn |  |
-| [`serialize_tuple_struct`](#serialize_tuple_struct) | fn |  |
-| [`serialize_struct`](#serialize_struct) | fn |  |
-| [`serialize_struct_tag_field`](#serialize_struct_tag_field) | fn |  |
-| [`serialize_struct_as_struct`](#serialize_struct_as_struct) | fn |  |
-| [`serialize_struct_as_map`](#serialize_struct_as_map) | fn |  |
-| [`serialize_enum`](#serialize_enum) | fn |  |
-| [`serialize_variant`](#serialize_variant) | fn |  |
-| [`serialize_externally_tagged_variant`](#serialize_externally_tagged_variant) | fn |  |
-| [`serialize_internally_tagged_variant`](#serialize_internally_tagged_variant) | fn |  |
-| [`serialize_adjacently_tagged_variant`](#serialize_adjacently_tagged_variant) | fn |  |
-| [`serialize_untagged_variant`](#serialize_untagged_variant) | fn |  |
-| [`serialize_tuple_variant`](#serialize_tuple_variant) | fn |  |
-| [`serialize_struct_variant`](#serialize_struct_variant) | fn |  |
-| [`serialize_struct_variant_with_flatten`](#serialize_struct_variant_with_flatten) | fn |  |
-| [`serialize_tuple_struct_visitor`](#serialize_tuple_struct_visitor) | fn |  |
-| [`serialize_struct_visitor`](#serialize_struct_visitor) | fn |  |
-| [`wrap_serialize_field_with`](#wrap_serialize_field_with) | fn |  |
-| [`wrap_serialize_variant_with`](#wrap_serialize_variant_with) | fn |  |
-| [`wrap_serialize_with`](#wrap_serialize_with) | fn |  |
-| [`mut_if`](#mut_if) | fn |  |
-| [`get_member`](#get_member) | fn |  |
-| [`effective_style`](#effective_style) | fn |  |
+| [`build_generics`](#build-generics) | fn |  |
+| [`needs_serialize_bound`](#needs-serialize-bound) | fn |  |
+| [`serialize_body`](#serialize-body) | fn |  |
+| [`serialize_transparent`](#serialize-transparent) | fn |  |
+| [`serialize_into`](#serialize-into) | fn |  |
+| [`serialize_unit_struct`](#serialize-unit-struct) | fn |  |
+| [`serialize_newtype_struct`](#serialize-newtype-struct) | fn |  |
+| [`serialize_tuple_struct`](#serialize-tuple-struct) | fn |  |
+| [`serialize_struct`](#serialize-struct) | fn |  |
+| [`serialize_struct_tag_field`](#serialize-struct-tag-field) | fn |  |
+| [`serialize_struct_as_struct`](#serialize-struct-as-struct) | fn |  |
+| [`serialize_struct_as_map`](#serialize-struct-as-map) | fn |  |
+| [`serialize_enum`](#serialize-enum) | fn |  |
+| [`serialize_variant`](#serialize-variant) | fn |  |
+| [`serialize_externally_tagged_variant`](#serialize-externally-tagged-variant) | fn |  |
+| [`serialize_internally_tagged_variant`](#serialize-internally-tagged-variant) | fn |  |
+| [`serialize_adjacently_tagged_variant`](#serialize-adjacently-tagged-variant) | fn |  |
+| [`serialize_untagged_variant`](#serialize-untagged-variant) | fn |  |
+| [`serialize_tuple_variant`](#serialize-tuple-variant) | fn |  |
+| [`serialize_struct_variant`](#serialize-struct-variant) | fn |  |
+| [`serialize_struct_variant_with_flatten`](#serialize-struct-variant-with-flatten) | fn |  |
+| [`serialize_tuple_struct_visitor`](#serialize-tuple-struct-visitor) | fn |  |
+| [`serialize_struct_visitor`](#serialize-struct-visitor) | fn |  |
+| [`wrap_serialize_field_with`](#wrap-serialize-field-with) | fn |  |
+| [`wrap_serialize_variant_with`](#wrap-serialize-variant-with) | fn |  |
+| [`wrap_serialize_with`](#wrap-serialize-with) | fn |  |
+| [`mut_if`](#mut-if) | fn |  |
+| [`get_member`](#get-member) | fn |  |
+| [`effective_style`](#effective-style) | fn |  |
 
 ## Structs
 

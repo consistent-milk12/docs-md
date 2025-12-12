@@ -4,7 +4,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`impl_mirrored!`](#impl_mirrored) | macro |  |
+| [`impl_mirrored!`](#impl-mirrored) | macro |  |
 
 ## Macros
 

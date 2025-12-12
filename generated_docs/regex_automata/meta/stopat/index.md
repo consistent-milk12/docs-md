@@ -54,8 +54,8 @@ how quadratic behavior is mitigated.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`hybrid_try_search_half_fwd`](#hybrid_try_search_half_fwd) | fn |  |
-| [`hybrid_eoi_fwd`](#hybrid_eoi_fwd) | fn |  |
+| [`hybrid_try_search_half_fwd`](#hybrid-try-search-half-fwd) | fn |  |
+| [`hybrid_eoi_fwd`](#hybrid-eoi-fwd) | fn |  |
 
 ## Functions
 

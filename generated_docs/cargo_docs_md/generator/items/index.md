@@ -28,7 +28,7 @@ struct ItemRenderer<'a> {
 }
 ```
 
-*Defined in `src/generator/items.rs:35-45`*
+*Defined in `src/generator/items.rs:29-39`*
 
 Renders individual Rust items to markdown.
 
@@ -101,9 +101,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl Pointable for ItemRenderer<'a>`
 
-- <span id="itemrenderer-const-align"></span>`const ALIGN: usize`
+- <span id="itemrenderer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="itemrenderer-type-init"></span>`type Init = T`
+- <span id="itemrenderer-pointable-type-init"></span>`type Init = T`
 
 - <span id="itemrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

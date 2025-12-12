@@ -51,29 +51,29 @@ of pairs. This struct is created by the `zip()` method on
 
 - <span id="zip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md#producercallback)
 
-##### `impl<T> IntoEither for Zip<A, B>`
+##### `impl IntoEither for Zip<A, B>`
 
-##### `impl<T> IntoParallelIterator for Zip<A, B>`
+##### `impl IntoParallelIterator for Zip<A, B>`
 
-- <span id="zip-type-iter"></span>`type Iter = T`
+- <span id="zip-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="zip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zip-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
-- <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zip-paralleliterator-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md#consumer)
 
 - <span id="zip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
-##### `impl<T> Pointable for Zip<A, B>`
+##### `impl Pointable for Zip<A, B>`
 
-- <span id="zip-const-align"></span>`const ALIGN: usize`
+- <span id="zip-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="zip-type-init"></span>`type Init = T`
+- <span id="zip-pointable-type-init"></span>`type Init = T`
 
 - <span id="zip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -96,13 +96,13 @@ struct ZipProducer<A: Producer, B: Producer> {
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for ZipProducer<A, B>`
+##### `impl IntoEither for ZipProducer<A, B>`
 
-##### `impl<T> Pointable for ZipProducer<A, B>`
+##### `impl Pointable for ZipProducer<A, B>`
 
-- <span id="zipproducer-const-align"></span>`const ALIGN: usize`
+- <span id="zipproducer-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipproducer-type-init"></span>`type Init = T`
+- <span id="zipproducer-pointable-type-init"></span>`type Init = T`
 
 - <span id="zipproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -114,9 +114,9 @@ struct ZipProducer<A: Producer, B: Producer> {
 
 ##### `impl<A: Producer, B: Producer> Producer for ZipProducer<A, B>`
 
-- <span id="zipproducer-type-item"></span>`type Item = (<A as Producer>::Item, <B as Producer>::Item)`
+- <span id="zipproducer-producer-type-item"></span>`type Item = (<A as Producer>::Item, <B as Producer>::Item)`
 
-- <span id="zipproducer-type-intoiter"></span>`type IntoIter = Zip<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
+- <span id="zipproducer-producer-type-intoiter"></span>`type IntoIter = Zip<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
 - <span id="zipproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md#producer)
 

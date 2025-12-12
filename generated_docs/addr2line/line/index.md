@@ -13,10 +13,10 @@
   - [`Lines`](#lines)
   - [`LineLocationRangeIter`](#linelocationrangeiter)
 - [Functions](#functions)
-  - [`render_file`](#render_file)
-  - [`path_push`](#path_push)
-  - [`has_forward_slash_root`](#has_forward_slash_root)
-  - [`has_backward_slash_root`](#has_backward_slash_root)
+  - [`render_file`](#render-file)
+  - [`path_push`](#path-push)
+  - [`has_forward_slash_root`](#has-forward-slash-root)
+  - [`has_backward_slash_root`](#has-backward-slash-root)
 
 ## Quick Reference
 
@@ -27,10 +27,10 @@
 | [`LineRow`](#linerow) | struct |  |
 | [`Lines`](#lines) | struct |  |
 | [`LineLocationRangeIter`](#linelocationrangeiter) | struct |  |
-| [`render_file`](#render_file) | fn |  |
-| [`path_push`](#path_push) | fn |  |
-| [`has_forward_slash_root`](#has_forward_slash_root) | fn | Check if the path in the given string has a unix style root |
-| [`has_backward_slash_root`](#has_backward_slash_root) | fn | Check if the path in the given string has a windows style root |
+| [`render_file`](#render-file) | fn |  |
+| [`path_push`](#path-push) | fn |  |
+| [`has_forward_slash_root`](#has-forward-slash-root) | fn | Check if the path in the given string has a unix style root |
+| [`has_backward_slash_root`](#has-backward-slash-root) | fn | Check if the path in the given string has a windows style root |
 
 ## Structs
 
@@ -115,15 +115,15 @@ struct LineLocationRangeIter<'ctx> {
 
 ##### `impl IntoIterator for LineLocationRangeIter<'ctx>`
 
-- <span id="linelocationrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="linelocationrangeiter-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="linelocationrangeiter-type-intoiter"></span>`type IntoIter = I`
+- <span id="linelocationrangeiter-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="linelocationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LineLocationRangeIter<'ctx>`
 
-- <span id="linelocationrangeiter-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
+- <span id="linelocationrangeiter-iterator-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
 - <span id="linelocationrangeiter-next"></span>`fn next(&mut self) -> Option<(u64, u64, Location<'ctx>)>` — [`Location`](../frame/index.md#location)
 

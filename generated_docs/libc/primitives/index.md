@@ -15,53 +15,53 @@ The fixed-width integer aliases are deprecated: use the Rust types instead.
 ## Contents
 
 - [Type Aliases](#type-aliases)
-  - [`c_schar`](#c_schar)
-  - [`c_uchar`](#c_uchar)
-  - [`c_short`](#c_short)
-  - [`c_ushort`](#c_ushort)
-  - [`c_longlong`](#c_longlong)
-  - [`c_ulonglong`](#c_ulonglong)
-  - [`c_float`](#c_float)
-  - [`c_double`](#c_double)
-  - [`c_char`](#c_char)
-  - [`c_int`](#c_int)
-  - [`c_uint`](#c_uint)
-  - [`c_long`](#c_long)
-  - [`c_ulong`](#c_ulong)
-  - [`int8_t`](#int8_t)
-  - [`int16_t`](#int16_t)
-  - [`int32_t`](#int32_t)
-  - [`int64_t`](#int64_t)
-  - [`uint8_t`](#uint8_t)
-  - [`uint16_t`](#uint16_t)
-  - [`uint32_t`](#uint32_t)
-  - [`uint64_t`](#uint64_t)
+  - [`c_schar`](#c-schar)
+  - [`c_uchar`](#c-uchar)
+  - [`c_short`](#c-short)
+  - [`c_ushort`](#c-ushort)
+  - [`c_longlong`](#c-longlong)
+  - [`c_ulonglong`](#c-ulonglong)
+  - [`c_float`](#c-float)
+  - [`c_double`](#c-double)
+  - [`c_char`](#c-char)
+  - [`c_int`](#c-int)
+  - [`c_uint`](#c-uint)
+  - [`c_long`](#c-long)
+  - [`c_ulong`](#c-ulong)
+  - [`int8_t`](#int8-t)
+  - [`int16_t`](#int16-t)
+  - [`int32_t`](#int32-t)
+  - [`int64_t`](#int64-t)
+  - [`uint8_t`](#uint8-t)
+  - [`uint16_t`](#uint16-t)
+  - [`uint32_t`](#uint32-t)
+  - [`uint64_t`](#uint64-t)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`c_schar`](#c_schar) | type |  |
-| [`c_uchar`](#c_uchar) | type |  |
-| [`c_short`](#c_short) | type |  |
-| [`c_ushort`](#c_ushort) | type |  |
-| [`c_longlong`](#c_longlong) | type |  |
-| [`c_ulonglong`](#c_ulonglong) | type |  |
-| [`c_float`](#c_float) | type |  |
-| [`c_double`](#c_double) | type |  |
-| [`c_char`](#c_char) | type |  |
-| [`c_int`](#c_int) | type |  |
-| [`c_uint`](#c_uint) | type |  |
-| [`c_long`](#c_long) | type |  |
-| [`c_ulong`](#c_ulong) | type |  |
-| [`int8_t`](#int8_t) | type |  |
-| [`int16_t`](#int16_t) | type |  |
-| [`int32_t`](#int32_t) | type |  |
-| [`int64_t`](#int64_t) | type |  |
-| [`uint8_t`](#uint8_t) | type |  |
-| [`uint16_t`](#uint16_t) | type |  |
-| [`uint32_t`](#uint32_t) | type |  |
-| [`uint64_t`](#uint64_t) | type |  |
+| [`c_schar`](#c-schar) | type |  |
+| [`c_uchar`](#c-uchar) | type |  |
+| [`c_short`](#c-short) | type |  |
+| [`c_ushort`](#c-ushort) | type |  |
+| [`c_longlong`](#c-longlong) | type |  |
+| [`c_ulonglong`](#c-ulonglong) | type |  |
+| [`c_float`](#c-float) | type |  |
+| [`c_double`](#c-double) | type |  |
+| [`c_char`](#c-char) | type |  |
+| [`c_int`](#c-int) | type |  |
+| [`c_uint`](#c-uint) | type |  |
+| [`c_long`](#c-long) | type |  |
+| [`c_ulong`](#c-ulong) | type |  |
+| [`int8_t`](#int8-t) | type |  |
+| [`int16_t`](#int16-t) | type |  |
+| [`int32_t`](#int32-t) | type |  |
+| [`int64_t`](#int64-t) | type |  |
+| [`uint8_t`](#uint8-t) | type |  |
+| [`uint16_t`](#uint16-t) | type |  |
+| [`uint32_t`](#uint32-t) | type |  |
+| [`uint64_t`](#uint64-t) | type |  |
 
 ## Type Aliases
 

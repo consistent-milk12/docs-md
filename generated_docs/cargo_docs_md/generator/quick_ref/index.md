@@ -28,8 +28,8 @@ kind, and first-sentence description.
 |------|------|-------------|
 | [`QuickRefEntry`](#quickrefentry) | struct | An entry in the quick reference table. |
 | [`QuickRefGenerator`](#quickrefgenerator) | struct | Generator for markdown quick reference tables. |
-| [`extract_summary`](#extract_summary) | fn | Extract the first sentence from a documentation string. |
-| [`try_extract_sentence`](#try_extract_sentence) | fn | Try to extract a complete first sentence from text. |
+| [`extract_summary`](#extract-summary) | fn | Extract the first sentence from a documentation string. |
+| [`try_extract_sentence`](#try-extract-sentence) | fn | Try to extract a complete first sentence from text. |
 | [`ABBREVIATIONS`](#abbreviations) | const | Common abbreviations that shouldn't end sentences. |
 
 ## Structs
@@ -92,9 +92,9 @@ anchor link, and first-sentence summary.
 
 ##### `impl Pointable for QuickRefEntry`
 
-- <span id="quickrefentry-const-align"></span>`const ALIGN: usize`
+- <span id="quickrefentry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefentry-type-init"></span>`type Init = T`
+- <span id="quickrefentry-pointable-type-init"></span>`type Init = T`
 
 - <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -147,9 +147,9 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Pointable for QuickRefGenerator`
 
-- <span id="quickrefgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="quickrefgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefgenerator-type-init"></span>`type Init = T`
+- <span id="quickrefgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -169,7 +169,7 @@ kinds, and first-sentence descriptions.
 fn extract_summary(docs: Option<&str>) -> String
 ```
 
-*Defined in `src/generator/quick_ref.rs:146-186`*
+*Defined in `src/generator/quick_ref.rs:146-187`*
 
 Extract the first sentence from a documentation string.
 
@@ -204,7 +204,7 @@ assert_eq!(
 fn try_extract_sentence(text: &str) -> Option<String>
 ```
 
-*Defined in `src/generator/quick_ref.rs:198-230`*
+*Defined in `src/generator/quick_ref.rs:199-231`*
 
 Try to extract a complete first sentence from text.
 
@@ -218,7 +218,7 @@ or version number) is found, otherwise `None`.
 const ABBREVIATIONS: &[&str];
 ```
 
-*Defined in `src/generator/quick_ref.rs:189-192`*
+*Defined in `src/generator/quick_ref.rs:190-193`*
 
 Common abbreviations that shouldn't end sentences.
 

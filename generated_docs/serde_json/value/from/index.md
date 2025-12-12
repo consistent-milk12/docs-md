@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`from_integer!`](#from_integer) | macro |  |
+| [`from_integer!`](#from-integer) | macro |  |
 
 ## Macros
 

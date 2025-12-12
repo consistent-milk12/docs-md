@@ -53,26 +53,26 @@ assert_eq!(inherent, ImplCategory::Inherent);
 - [Enums](#enums)
   - [`ImplCategory`](#implcategory)
 - [Constants](#constants)
-  - [`DERIVE_TRAITS`](#derive_traits)
-  - [`CONVERSION_TRAITS`](#conversion_traits)
-  - [`ITERATOR_TRAITS`](#iterator_traits)
-  - [`IO_TRAITS`](#io_traits)
-  - [`OPERATOR_TRAITS`](#operator_traits)
-  - [`ACCESS_TRAITS`](#access_traits)
-  - [`FORMATTING_TRAITS`](#formatting_traits)
+  - [`DERIVE_TRAITS`](#derive-traits)
+  - [`CONVERSION_TRAITS`](#conversion-traits)
+  - [`ITERATOR_TRAITS`](#iterator-traits)
+  - [`IO_TRAITS`](#io-traits)
+  - [`OPERATOR_TRAITS`](#operator-traits)
+  - [`ACCESS_TRAITS`](#access-traits)
+  - [`FORMATTING_TRAITS`](#formatting-traits)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ImplCategory`](#implcategory) | enum | Logical category for trait implementations. |
-| [`DERIVE_TRAITS`](#derive_traits) | const | Traits commonly derived via `#[derive(...)]`. |
-| [`CONVERSION_TRAITS`](#conversion_traits) | const | Type conversion traits. |
-| [`ITERATOR_TRAITS`](#iterator_traits) | const | Iterator-related traits. |
-| [`IO_TRAITS`](#io_traits) | const | I/O traits from `std::io`. |
-| [`OPERATOR_TRAITS`](#operator_traits) | const | Operator overloading traits from `std::ops`. |
-| [`ACCESS_TRAITS`](#access_traits) | const | Smart pointer and indexing traits. |
-| [`FORMATTING_TRAITS`](#formatting_traits) | const | Display and formatting traits from `std::fmt`. |
+| [`DERIVE_TRAITS`](#derive-traits) | const | Traits commonly derived via `#[derive(...)]`. |
+| [`CONVERSION_TRAITS`](#conversion-traits) | const | Type conversion traits. |
+| [`ITERATOR_TRAITS`](#iterator-traits) | const | Iterator-related traits. |
+| [`IO_TRAITS`](#io-traits) | const | I/O traits from `std::io`. |
+| [`OPERATOR_TRAITS`](#operator-traits) | const | Operator overloading traits from `std::ops`. |
+| [`ACCESS_TRAITS`](#access-traits) | const | Smart pointer and indexing traits. |
+| [`FORMATTING_TRAITS`](#formatting-traits) | const | Display and formatting traits from `std::fmt`. |
 
 ## Enums
 
@@ -216,7 +216,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 - <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](#implcategory)
 
-##### `impl Comparable for ImplCategory`
+##### `impl<K> Comparable for ImplCategory`
 
 - <span id="implcategory-compare"></span>`fn compare(&self, key: &K) -> Ordering`
 
@@ -228,7 +228,7 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Eq for ImplCategory`
 
-##### `impl Equivalent for ImplCategory`
+##### `impl<K> Equivalent for ImplCategory`
 
 - <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -256,9 +256,9 @@ The variants are ordered by their typical importance/frequency of use:
 
 ##### `impl Pointable for ImplCategory`
 
-- <span id="implcategory-const-align"></span>`const ALIGN: usize`
+- <span id="implcategory-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="implcategory-type-init"></span>`type Init = T`
+- <span id="implcategory-pointable-type-init"></span>`type Init = T`
 
 - <span id="implcategory-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

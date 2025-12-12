@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Qualifiers`](#qualifiers) | enum |  |
-| [`insert_const`](#insert_const) | fn |  |
+| [`insert_const`](#insert-const) | fn |  |
 
 ## Enums
 

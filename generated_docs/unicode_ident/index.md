@@ -234,9 +234,9 @@ this data structure is straight-line code with no need for branching.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`tables`](#tables) | mod |  |
-| [`is_xid_start`](#is_xid_start) | fn | Whether the character has the Unicode property XID\_Start. |
-| [`is_xid_continue`](#is_xid_continue) | fn | Whether the character has the Unicode property XID\_Continue. |
-| [`UNICODE_VERSION`](#unicode_version) | const |  |
+| [`is_xid_start`](#is-xid-start) | fn | Whether the character has the Unicode property XID\_Start. |
+| [`is_xid_continue`](#is-xid-continue) | fn | Whether the character has the Unicode property XID\_Continue. |
+| [`UNICODE_VERSION`](#unicode-version) | const |  |
 
 ## Modules
 
@@ -266,5 +266,10 @@ Whether the character has the Unicode property XID\_Continue.
 
 ## Constants
 
-*Defined in [`unicode-ident-1.0.22/src/lib.rs:255`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L255)*
+### `UNICODE_VERSION`
+```rust
+const UNICODE_VERSION: (u8, u8, u8);
+```
+
+*Defined in [`unicode-ident-1.0.22/src/tables.rs:12`](../../.source_1765210505/unicode-ident-1.0.22/src/tables.rs#L12)*
 

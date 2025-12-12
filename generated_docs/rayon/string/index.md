@@ -44,23 +44,23 @@ but keeps the total capacity.
 
 ##### `impl IntoParallelIterator for Drain<'a>`
 
-- <span id="drain-type-iter"></span>`type Iter = T`
+- <span id="drain-intoparalleliterator-type-iter"></span>`type Iter = T`
 
-- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-intoparalleliterator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl ParallelIterator for Drain<'a>`
 
-- <span id="drain-type-item"></span>`type Item = char`
+- <span id="drain-paralleliterator-type-item"></span>`type Item = char`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md#consumer)
 
 ##### `impl Pointable for Drain<'a>`
 
-- <span id="drain-const-align"></span>`const ALIGN: usize`
+- <span id="drain-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-type-init"></span>`type Init = T`
+- <span id="drain-pointable-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

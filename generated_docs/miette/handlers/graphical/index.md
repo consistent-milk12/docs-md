@@ -13,7 +13,7 @@
 | [`FancySpan`](#fancyspan) | struct |  |
 | [`LinkStyle`](#linkstyle) | enum |  |
 | [`LabelRenderMode`](#labelrendermode) | enum |  |
-| [`split_label`](#split_label) | fn |  |
+| [`split_label`](#split-label) | fn |  |
 
 ## Structs
 

@@ -29,7 +29,7 @@ fn main() {}
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`cfg_if!`](#cfg_if) | macro | The main macro provided by this crate. |
+| [`cfg_if!`](#cfg-if) | macro | The main macro provided by this crate. |
 
 ## Macros
 

@@ -15,8 +15,8 @@
 - [Enums](#enums)
   - [`SerializeMap`](#serializemap)
 - [Functions](#functions)
-  - [`key_must_be_a_string`](#key_must_be_a_string)
-  - [`float_key_must_be_finite`](#float_key_must_be_finite)
+  - [`key_must_be_a_string`](#key-must-be-a-string)
+  - [`float_key_must_be_finite`](#float-key-must-be-finite)
 
 ## Quick Reference
 
@@ -28,8 +28,8 @@
 | [`SerializeStructVariant`](#serializestructvariant) | struct |  |
 | [`MapKeySerializer`](#mapkeyserializer) | struct |  |
 | [`SerializeMap`](#serializemap) | enum |  |
-| [`key_must_be_a_string`](#key_must_be_a_string) | fn |  |
-| [`float_key_must_be_finite`](#float_key_must_be_finite) | fn |  |
+| [`key_must_be_a_string`](#key-must-be-a-string) | fn |  |
+| [`float_key_must_be_finite`](#float-key-must-be-finite) | fn |  |
 
 ## Structs
 
@@ -66,23 +66,23 @@ where
 
 ##### `impl Serializer for Serializer`
 
-- <span id="serializer-type-ok"></span>`type Ok = Value`
+- <span id="serializer-serializer-type-ok"></span>`type Ok = Value`
 
-- <span id="serializer-type-error"></span>`type Error = Error`
+- <span id="serializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="serializer-type-serializeseq"></span>`type SerializeSeq = SerializeVec`
+- <span id="serializer-serializer-type-serializeseq"></span>`type SerializeSeq = SerializeVec`
 
-- <span id="serializer-type-serializetuple"></span>`type SerializeTuple = SerializeVec`
+- <span id="serializer-serializer-type-serializetuple"></span>`type SerializeTuple = SerializeVec`
 
-- <span id="serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = SerializeVec`
+- <span id="serializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = SerializeVec`
 
-- <span id="serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = SerializeTupleVariant`
+- <span id="serializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = SerializeTupleVariant`
 
-- <span id="serializer-type-serializemap"></span>`type SerializeMap = SerializeMap`
+- <span id="serializer-serializer-type-serializemap"></span>`type SerializeMap = SerializeMap`
 
-- <span id="serializer-type-serializestruct"></span>`type SerializeStruct = SerializeMap`
+- <span id="serializer-serializer-type-serializestruct"></span>`type SerializeStruct = SerializeMap`
 
-- <span id="serializer-type-serializestructvariant"></span>`type SerializeStructVariant = SerializeStructVariant`
+- <span id="serializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = SerializeStructVariant`
 
 - <span id="serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<Value>` — [`Result`](../../error/index.md#result), [`Value`](../index.md#value)
 
@@ -160,9 +160,9 @@ struct SerializeVec {
 
 ##### `impl SerializeSeq for SerializeVec`
 
-- <span id="serializevec-type-ok"></span>`type Ok = Value`
+- <span id="serializevec-serializeseq-type-ok"></span>`type Ok = Value`
 
-- <span id="serializevec-type-error"></span>`type Error = Error`
+- <span id="serializevec-serializeseq-type-error"></span>`type Error = Error`
 
 - <span id="serializevec-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -170,9 +170,9 @@ struct SerializeVec {
 
 ##### `impl SerializeTuple for SerializeVec`
 
-- <span id="serializevec-type-ok"></span>`type Ok = Value`
+- <span id="serializevec-serializetuple-type-ok"></span>`type Ok = Value`
 
-- <span id="serializevec-type-error"></span>`type Error = Error`
+- <span id="serializevec-serializetuple-type-error"></span>`type Error = Error`
 
 - <span id="serializevec-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -180,9 +180,9 @@ struct SerializeVec {
 
 ##### `impl SerializeTupleStruct for SerializeVec`
 
-- <span id="serializevec-type-ok"></span>`type Ok = Value`
+- <span id="serializevec-serializetuplestruct-type-ok"></span>`type Ok = Value`
 
-- <span id="serializevec-type-error"></span>`type Error = Error`
+- <span id="serializevec-serializetuplestruct-type-error"></span>`type Error = Error`
 
 - <span id="serializevec-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -203,9 +203,9 @@ struct SerializeTupleVariant {
 
 ##### `impl SerializeTupleVariant for SerializeTupleVariant`
 
-- <span id="serializetuplevariant-type-ok"></span>`type Ok = Value`
+- <span id="serializetuplevariant-serializetuplevariant-type-ok"></span>`type Ok = Value`
 
-- <span id="serializetuplevariant-type-error"></span>`type Error = Error`
+- <span id="serializetuplevariant-serializetuplevariant-type-error"></span>`type Error = Error`
 
 - <span id="serializetuplevariant-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -226,9 +226,9 @@ struct SerializeStructVariant {
 
 ##### `impl SerializeStructVariant for SerializeStructVariant`
 
-- <span id="serializestructvariant-type-ok"></span>`type Ok = Value`
+- <span id="serializestructvariant-serializestructvariant-type-ok"></span>`type Ok = Value`
 
-- <span id="serializestructvariant-type-error"></span>`type Error = Error`
+- <span id="serializestructvariant-serializestructvariant-type-error"></span>`type Error = Error`
 
 - <span id="serializestructvariant-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -246,23 +246,23 @@ struct MapKeySerializer;
 
 ##### `impl Serializer for MapKeySerializer`
 
-- <span id="mapkeyserializer-type-ok"></span>`type Ok = String`
+- <span id="mapkeyserializer-serializer-type-ok"></span>`type Ok = String`
 
-- <span id="mapkeyserializer-type-error"></span>`type Error = Error`
+- <span id="mapkeyserializer-serializer-type-error"></span>`type Error = Error`
 
-- <span id="mapkeyserializer-type-serializeseq"></span>`type SerializeSeq = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializeseq"></span>`type SerializeSeq = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializetuple"></span>`type SerializeTuple = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuple"></span>`type SerializeTuple = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializemap"></span>`type SerializeMap = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializemap"></span>`type SerializeMap = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializestruct"></span>`type SerializeStruct = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializestruct"></span>`type SerializeStruct = Impossible<String, Error>`
 
-- <span id="mapkeyserializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<String, Error>`
+- <span id="mapkeyserializer-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<String, Error>`
 
 - <span id="mapkeyserializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<String>` — [`Result`](../../error/index.md#result)
 
@@ -345,9 +345,9 @@ enum SerializeMap {
 
 ##### `impl SerializeMap for SerializeMap`
 
-- <span id="serializemap-type-ok"></span>`type Ok = Value`
+- <span id="serializemap-serializemap-type-ok"></span>`type Ok = Value`
 
-- <span id="serializemap-type-error"></span>`type Error = Error`
+- <span id="serializemap-serializemap-type-error"></span>`type Error = Error`
 
 - <span id="serializemap-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 
@@ -357,9 +357,9 @@ enum SerializeMap {
 
 ##### `impl SerializeStruct for SerializeMap`
 
-- <span id="serializemap-type-ok"></span>`type Ok = Value`
+- <span id="serializemap-serializestruct-type-ok"></span>`type Ok = Value`
 
-- <span id="serializemap-type-error"></span>`type Error = Error`
+- <span id="serializemap-serializestruct-type-error"></span>`type Error = Error`
 
 - <span id="serializemap-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../error/index.md#result)
 

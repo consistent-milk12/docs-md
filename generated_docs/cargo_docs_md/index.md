@@ -12,14 +12,16 @@ generation capabilities programmatically.
   - [`error`](#error)
   - [`generator`](#generator)
   - [`linker`](#linker)
-  - [`multi_crate`](#multi_crate)
+  - [`multi_crate`](#multi-crate)
   - [`parser`](#parser)
   - [`types`](#types)
+  - [`utils`](#utils)
 - [Structs](#structs)
   - [`Generator`](#generator)
   - [`MarkdownCapture`](#markdowncapture)
   - [`RenderConfig`](#renderconfig)
   - [`SourceConfig`](#sourceconfig)
+  - [`AnchorUtils`](#anchorutils)
   - [`LinkRegistry`](#linkregistry)
   - [`CrateCollection`](#cratecollection)
   - [`MultiCrateContext`](#multicratecontext)
@@ -36,8 +38,6 @@ generation capabilities programmatically.
   - [`Cargo`](#cargo)
   - [`Command`](#command)
   - [`CliOutputFormat`](#clioutputformat)
-- [Functions](#functions)
-  - [`slugify_anchor`](#slugify_anchor)
 - [Type Aliases](#type-aliases)
   - [`Args`](#args)
 
@@ -48,13 +48,15 @@ generation capabilities programmatically.
 | [`error`](#error) | mod | Error types for docs-md. |
 | [`generator`](#generator) | mod | Markdown documentation generator for rustdoc JSON. |
 | [`linker`](#linker) | mod | Cross-reference linking for markdown documentation. |
-| [`multi_crate`](#multi_crate) | mod | Multi-crate documentation generation. |
+| [`multi_crate`](#multi-crate) | mod | Multi-crate documentation generation. |
 | [`parser`](#parser) | mod | Rustdoc JSON parsing module. |
 | [`types`](#types) | mod | Type rendering utilities for converting rustdoc types to string representations. |
+| [`utils`](#utils) | mod | Shared utility functions used across the documentation generator. |
 | [`Generator`](#generator) | struct |  |
 | [`MarkdownCapture`](#markdowncapture) | struct |  |
 | [`RenderConfig`](#renderconfig) | struct |  |
 | [`SourceConfig`](#sourceconfig) | struct |  |
+| [`AnchorUtils`](#anchorutils) | struct |  |
 | [`LinkRegistry`](#linkregistry) | struct |  |
 | [`CrateCollection`](#cratecollection) | struct |  |
 | [`MultiCrateContext`](#multicratecontext) | struct |  |
@@ -70,7 +72,6 @@ generation capabilities programmatically.
 | [`Cargo`](#cargo) | enum | Cargo wrapper for subcommand invocation. |
 | [`Command`](#command) | enum | Available subcommands |
 | [`CliOutputFormat`](#clioutputformat) | enum | CLI-compatible output format enum (for clap `ValueEnum` derive). |
-| [`slugify_anchor`](#slugify_anchor) | fn |  |
 | [`Args`](#args) | type | Backwards-compatible type alias for existing code. |
 
 ## Modules
@@ -81,6 +82,7 @@ generation capabilities programmatically.
 - [`multi_crate`](multi_crate/index.md) — Multi-crate documentation generation.
 - [`parser`](parser/index.md) — Rustdoc JSON parsing module.
 - [`types`](types/index.md) — Type rendering utilities for converting rustdoc types to string representations.
+- [`utils`](utils/index.md) — Shared utility functions used across the documentation generator.
 
 ## Structs
 
@@ -94,7 +96,7 @@ struct Generator<'a> {
 }
 ```
 
-*Defined in `src/generator/mod.rs:89-98`*
+*Defined in `src/generator/mod.rs:86-95`*
 
 Main documentation generator.
 
@@ -153,9 +155,9 @@ generator.generate()?;
 
 ##### `impl Pointable for Generator<'a>`
 
-- <span id="generator-const-align"></span>`const ALIGN: usize`
+- <span id="generator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="generator-type-init"></span>`type Init = T`
+- <span id="generator-pointable-type-init"></span>`type Init = T`
 
 - <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -226,9 +228,9 @@ side effects.
 
 ##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-type-init"></span>`type Init = T`
+- <span id="markdowncapture-pointable-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -305,9 +307,9 @@ Configuration options for markdown rendering.
 
 ##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-type-init"></span>`type Init = T`
+- <span id="renderconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -385,9 +387,9 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-type-init"></span>`type Init = T`
+- <span id="sourceconfig-pointable-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -399,6 +401,54 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl WithSubscriber for SourceConfig`
 
+### `AnchorUtils`
+
+```rust
+struct AnchorUtils;
+```
+
+*Defined in `src/linker.rs:53`*
+
+Utilify functions to handle anchors
+
+#### Implementations
+
+- <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](linker/index.md#associtemkind)
+
+- <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
+
+- <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
+
+- <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
+
+- <span id="anchorutils-slugify-anchor-impl"></span>`fn slugify_anchor_impl(name: &str) -> String`
+
+- <span id="anchorutils-item-has-anchor"></span>`const fn item_has_anchor(kind: ItemKind) -> bool`
+
+#### Trait Implementations
+
+##### `impl Instrument for AnchorUtils`
+
+##### `impl IntoEither for AnchorUtils`
+
+##### `impl OwoColorize for AnchorUtils`
+
+##### `impl Pointable for AnchorUtils`
+
+- <span id="anchorutils-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="anchorutils-pointable-type-init"></span>`type Init = T`
+
+- <span id="anchorutils-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="anchorutils-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="anchorutils-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="anchorutils-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for AnchorUtils`
+
 ### `LinkRegistry`
 
 ```rust
@@ -408,7 +458,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:271-283`*
+*Defined in `src/linker.rs:276-288`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -466,9 +516,9 @@ create links between items.
 
 ##### `impl Pointable for LinkRegistry`
 
-- <span id="linkregistry-const-align"></span>`const ALIGN: usize`
+- <span id="linkregistry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="linkregistry-type-init"></span>`type Init = T`
+- <span id="linkregistry-pointable-type-init"></span>`type Init = T`
 
 - <span id="linkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -555,9 +605,9 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-type-init"></span>`type Init = T`
+- <span id="cratecollection-pointable-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -582,7 +632,7 @@ struct MultiCrateContext<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/context.rs:41-64`*
+*Defined in `src/multi_crate/context.rs:39-62`*
 
 Shared context for multi-crate documentation generation.
 
@@ -656,9 +706,9 @@ generation across crates.
 
 ##### `impl Pointable for MultiCrateContext<'a>`
 
-- <span id="multicratecontext-const-align"></span>`const ALIGN: usize`
+- <span id="multicratecontext-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratecontext-type-init"></span>`type Init = T`
+- <span id="multicratecontext-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -679,7 +729,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:56-62`*
+*Defined in `src/multi_crate/generator.rs:416-422`*
 
 Generator for multi-crate documentation.
 
@@ -739,9 +789,9 @@ output/
 
 ##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-type-init"></span>`type Init = T`
+- <span id="multicrategenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -789,9 +839,9 @@ println!("Found {} crates", crates.len());
 
 ##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-type-init"></span>`type Init = T`
+- <span id="multicrateparser-pointable-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -837,9 +887,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-const-align"></span>`const ALIGN: usize`
+- <span id="searchindex-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-type-init"></span>`type Init = T`
+- <span id="searchindex-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -925,9 +975,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 ##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-type-init"></span>`type Init = T`
+- <span id="searchindexgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1065,9 +1115,9 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-pointable-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1088,7 +1138,7 @@ struct Cli {
 }
 ```
 
-*Defined in `src/lib.rs:74-98`*
+*Defined in `src/lib.rs:75-99`*
 
 Top-level CLI for docs-md.
 
@@ -1142,9 +1192,9 @@ Top-level CLI for docs-md.
 
 ##### `impl Pointable for Cli`
 
-- <span id="cli-const-align"></span>`const ALIGN: usize`
+- <span id="cli-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cli-type-init"></span>`type Init = T`
+- <span id="cli-pointable-type-init"></span>`type Init = T`
 
 - <span id="cli-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1172,7 +1222,7 @@ struct DocsArgs {
 }
 ```
 
-*Defined in `src/lib.rs:127-172`*
+*Defined in `src/lib.rs:128-173`*
 
 Arguments for the `docs` subcommand (build + generate).
 
@@ -1263,9 +1313,9 @@ Arguments for the `docs` subcommand (build + generate).
 
 ##### `impl Pointable for DocsArgs`
 
-- <span id="docsargs-const-align"></span>`const ALIGN: usize`
+- <span id="docsargs-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="docsargs-type-init"></span>`type Init = T`
+- <span id="docsargs-pointable-type-init"></span>`type Init = T`
 
 - <span id="docsargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1293,7 +1343,7 @@ struct GenerateArgs {
 }
 ```
 
-*Defined in `src/lib.rs:209-296`*
+*Defined in `src/lib.rs:210-297`*
 
 Command-line arguments for direct generation (no subcommand).
 
@@ -1425,9 +1475,9 @@ The tool accepts input from two mutually exclusive sources:
 
 ##### `impl Pointable for GenerateArgs`
 
-- <span id="generateargs-const-align"></span>`const ALIGN: usize`
+- <span id="generateargs-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="generateargs-type-init"></span>`type Init = T`
+- <span id="generateargs-pointable-type-init"></span>`type Init = T`
 
 - <span id="generateargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1450,7 +1500,7 @@ enum OutputFormat {
 }
 ```
 
-*Defined in `src/lib.rs:39-52`*
+*Defined in `src/lib.rs:40-53`*
 
 Output format for the generated markdown documentation.
 
@@ -1496,9 +1546,9 @@ Controls how module files are organized in the output directory.
 
 ##### `impl Pointable for OutputFormat`
 
-- <span id="outputformat-const-align"></span>`const ALIGN: usize`
+- <span id="outputformat-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="outputformat-type-init"></span>`type Init = T`
+- <span id="outputformat-pointable-type-init"></span>`type Init = T`
 
 - <span id="outputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1524,7 +1574,7 @@ enum Cargo {
 }
 ```
 
-*Defined in `src/lib.rs:60-64`*
+*Defined in `src/lib.rs:61-65`*
 
 Cargo wrapper for subcommand invocation.
 
@@ -1569,9 +1619,9 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 
 ##### `impl Pointable for Cargo`
 
-- <span id="cargo-const-align"></span>`const ALIGN: usize`
+- <span id="cargo-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="cargo-type-init"></span>`type Init = T`
+- <span id="cargo-pointable-type-init"></span>`type Init = T`
 
 - <span id="cargo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1599,7 +1649,7 @@ enum Command {
 }
 ```
 
-*Defined in `src/lib.rs:102-119`*
+*Defined in `src/lib.rs:103-120`*
 
 Available subcommands
 
@@ -1638,9 +1688,9 @@ Available subcommands
 
 ##### `impl Pointable for Command`
 
-- <span id="command-const-align"></span>`const ALIGN: usize`
+- <span id="command-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="command-type-init"></span>`type Init = T`
+- <span id="command-pointable-type-init"></span>`type Init = T`
 
 - <span id="command-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1669,7 +1719,7 @@ enum CliOutputFormat {
 }
 ```
 
-*Defined in `src/lib.rs:303-310`*
+*Defined in `src/lib.rs:304-311`*
 
 CLI-compatible output format enum (for clap `ValueEnum` derive).
 
@@ -1707,9 +1757,9 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl Pointable for CliOutputFormat`
 
-- <span id="clioutputformat-const-align"></span>`const ALIGN: usize`
+- <span id="clioutputformat-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="clioutputformat-type-init"></span>`type Init = T`
+- <span id="clioutputformat-pointable-type-init"></span>`type Init = T`
 
 - <span id="clioutputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1727,10 +1777,6 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl WithSubscriber for CliOutputFormat`
 
-## Functions
-
-*Defined in `src/lib.rs:27`*
-
 ## Type Aliases
 
 ### `Args`
@@ -1739,7 +1785,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 type Args = GenerateArgs;
 ```
 
-*Defined in `src/lib.rs:299`*
+*Defined in `src/lib.rs:300`*
 
 Backwards-compatible type alias for existing code.
 

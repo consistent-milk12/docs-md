@@ -9,45 +9,45 @@
 - [Enums](#enums)
   - [`Input`](#input)
 - [Functions](#functions)
-  - [`is_a_terminal`](#is_a_terminal)
-  - [`is_a_color_terminal`](#is_a_color_terminal)
-  - [`c_result`](#c_result)
-  - [`terminal_size`](#terminal_size)
-  - [`read_secure`](#read_secure)
-  - [`poll_fd`](#poll_fd)
-  - [`select_or_poll_term_fd`](#select_or_poll_term_fd)
-  - [`read_single_char`](#read_single_char)
-  - [`read_bytes`](#read_bytes)
-  - [`read_single_key_impl`](#read_single_key_impl)
-  - [`read_single_key`](#read_single_key)
-  - [`key_from_utf8`](#key_from_utf8)
-  - [`wants_emoji`](#wants_emoji)
-  - [`set_title`](#set_title)
-  - [`make_raw`](#make_raw)
+  - [`is_a_terminal`](#is-a-terminal)
+  - [`is_a_color_terminal`](#is-a-color-terminal)
+  - [`c_result`](#c-result)
+  - [`terminal_size`](#terminal-size)
+  - [`read_secure`](#read-secure)
+  - [`poll_fd`](#poll-fd)
+  - [`select_or_poll_term_fd`](#select-or-poll-term-fd)
+  - [`read_single_char`](#read-single-char)
+  - [`read_bytes`](#read-bytes)
+  - [`read_single_key_impl`](#read-single-key-impl)
+  - [`read_single_key`](#read-single-key)
+  - [`key_from_utf8`](#key-from-utf8)
+  - [`wants_emoji`](#wants-emoji)
+  - [`set_title`](#set-title)
+  - [`make_raw`](#make-raw)
 - [Constants](#constants)
-  - [`DEFAULT_WIDTH`](#default_width)
+  - [`DEFAULT_WIDTH`](#default-width)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Input`](#input) | enum |  |
-| [`is_a_terminal`](#is_a_terminal) | fn |  |
-| [`is_a_color_terminal`](#is_a_color_terminal) | fn |  |
-| [`c_result`](#c_result) | fn |  |
-| [`terminal_size`](#terminal_size) | fn |  |
-| [`read_secure`](#read_secure) | fn |  |
-| [`poll_fd`](#poll_fd) | fn |  |
-| [`select_or_poll_term_fd`](#select_or_poll_term_fd) | fn |  |
-| [`read_single_char`](#read_single_char) | fn |  |
-| [`read_bytes`](#read_bytes) | fn |  |
-| [`read_single_key_impl`](#read_single_key_impl) | fn |  |
-| [`read_single_key`](#read_single_key) | fn |  |
-| [`key_from_utf8`](#key_from_utf8) | fn |  |
-| [`wants_emoji`](#wants_emoji) | fn |  |
-| [`set_title`](#set_title) | fn |  |
-| [`make_raw`](#make_raw) | fn |  |
-| [`DEFAULT_WIDTH`](#default_width) | const |  |
+| [`is_a_terminal`](#is-a-terminal) | fn |  |
+| [`is_a_color_terminal`](#is-a-color-terminal) | fn |  |
+| [`c_result`](#c-result) | fn |  |
+| [`terminal_size`](#terminal-size) | fn |  |
+| [`read_secure`](#read-secure) | fn |  |
+| [`poll_fd`](#poll-fd) | fn |  |
+| [`select_or_poll_term_fd`](#select-or-poll-term-fd) | fn |  |
+| [`read_single_char`](#read-single-char) | fn |  |
+| [`read_bytes`](#read-bytes) | fn |  |
+| [`read_single_key_impl`](#read-single-key-impl) | fn |  |
+| [`read_single_key`](#read-single-key) | fn |  |
+| [`key_from_utf8`](#key-from-utf8) | fn |  |
+| [`wants_emoji`](#wants-emoji) | fn |  |
+| [`set_title`](#set-title) | fn |  |
+| [`make_raw`](#make-raw) | fn |  |
+| [`DEFAULT_WIDTH`](#default-width) | const |  |
 
 ## Enums
 

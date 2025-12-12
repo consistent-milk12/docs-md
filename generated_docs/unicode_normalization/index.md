@@ -35,11 +35,11 @@ unicode-normalization = "0.1.20"
   - [`decompose`](#decompose)
   - [`lookups`](#lookups)
   - [`normalize`](#normalize)
-  - [`perfect_hash`](#perfect_hash)
-  - [`quick_check`](#quick_check)
+  - [`perfect_hash`](#perfect-hash)
+  - [`quick_check`](#quick-check)
   - [`recompose`](#recompose)
   - [`replace`](#replace)
-  - [`stream_safe`](#stream_safe)
+  - [`stream_safe`](#stream-safe)
   - [`tables`](#tables)
   - [`char`](#char)
 - [Structs](#structs)
@@ -52,20 +52,20 @@ unicode-normalization = "0.1.20"
 - [Traits](#traits)
   - [`UnicodeNormalization`](#unicodenormalization)
 - [Functions](#functions)
-  - [`is_nfc`](#is_nfc)
-  - [`is_nfc_quick`](#is_nfc_quick)
-  - [`is_nfc_stream_safe`](#is_nfc_stream_safe)
-  - [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick)
-  - [`is_nfd`](#is_nfd)
-  - [`is_nfd_quick`](#is_nfd_quick)
-  - [`is_nfd_stream_safe`](#is_nfd_stream_safe)
-  - [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick)
-  - [`is_nfkc`](#is_nfkc)
-  - [`is_nfkc_quick`](#is_nfkc_quick)
-  - [`is_nfkd`](#is_nfkd)
-  - [`is_nfkd_quick`](#is_nfkd_quick)
+  - [`is_nfc`](#is-nfc)
+  - [`is_nfc_quick`](#is-nfc-quick)
+  - [`is_nfc_stream_safe`](#is-nfc-stream-safe)
+  - [`is_nfc_stream_safe_quick`](#is-nfc-stream-safe-quick)
+  - [`is_nfd`](#is-nfd)
+  - [`is_nfd_quick`](#is-nfd-quick)
+  - [`is_nfd_stream_safe`](#is-nfd-stream-safe)
+  - [`is_nfd_stream_safe_quick`](#is-nfd-stream-safe-quick)
+  - [`is_nfkc`](#is-nfkc)
+  - [`is_nfkc_quick`](#is-nfkc-quick)
+  - [`is_nfkd`](#is-nfkd)
+  - [`is_nfkd_quick`](#is-nfkd-quick)
 - [Constants](#constants)
-  - [`UNICODE_VERSION`](#unicode_version)
+  - [`UNICODE_VERSION`](#unicode-version)
 
 ## Quick Reference
 
@@ -74,11 +74,11 @@ unicode-normalization = "0.1.20"
 | [`decompose`](#decompose) | mod |  |
 | [`lookups`](#lookups) | mod | Lookups of unicode properties using minimal perfect hashing. |
 | [`normalize`](#normalize) | mod | Functions for computing canonical and compatible decompositions for Unicode characters. |
-| [`perfect_hash`](#perfect_hash) | mod | Support for lookups based on minimal perfect hashing. |
-| [`quick_check`](#quick_check) | mod |  |
+| [`perfect_hash`](#perfect-hash) | mod | Support for lookups based on minimal perfect hashing. |
+| [`quick_check`](#quick-check) | mod |  |
 | [`recompose`](#recompose) | mod |  |
 | [`replace`](#replace) | mod |  |
-| [`stream_safe`](#stream_safe) | mod |  |
+| [`stream_safe`](#stream-safe) | mod |  |
 | [`tables`](#tables) | mod |  |
 | [`char`](#char) | mod | Methods for composing and decomposing characters. |
 | [`Decompositions`](#decompositions) | struct |  |
@@ -87,19 +87,19 @@ unicode-normalization = "0.1.20"
 | [`StreamSafe`](#streamsafe) | struct |  |
 | [`IsNormalized`](#isnormalized) | enum |  |
 | [`UnicodeNormalization`](#unicodenormalization) | trait | Methods for iterating over strings while applying Unicode normalizations as described in [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/). |
-| [`is_nfc`](#is_nfc) | fn |  |
-| [`is_nfc_quick`](#is_nfc_quick) | fn |  |
-| [`is_nfc_stream_safe`](#is_nfc_stream_safe) | fn |  |
-| [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick) | fn |  |
-| [`is_nfd`](#is_nfd) | fn |  |
-| [`is_nfd_quick`](#is_nfd_quick) | fn |  |
-| [`is_nfd_stream_safe`](#is_nfd_stream_safe) | fn |  |
-| [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick) | fn |  |
-| [`is_nfkc`](#is_nfkc) | fn |  |
-| [`is_nfkc_quick`](#is_nfkc_quick) | fn |  |
-| [`is_nfkd`](#is_nfkd) | fn |  |
-| [`is_nfkd_quick`](#is_nfkd_quick) | fn |  |
-| [`UNICODE_VERSION`](#unicode_version) | const |  |
+| [`is_nfc`](#is-nfc) | fn |  |
+| [`is_nfc_quick`](#is-nfc-quick) | fn |  |
+| [`is_nfc_stream_safe`](#is-nfc-stream-safe) | fn |  |
+| [`is_nfc_stream_safe_quick`](#is-nfc-stream-safe-quick) | fn |  |
+| [`is_nfd`](#is-nfd) | fn |  |
+| [`is_nfd_quick`](#is-nfd-quick) | fn |  |
+| [`is_nfd_stream_safe`](#is-nfd-stream-safe) | fn |  |
+| [`is_nfd_stream_safe_quick`](#is-nfd-stream-safe-quick) | fn |  |
+| [`is_nfkc`](#is-nfkc) | fn |  |
+| [`is_nfkc_quick`](#is-nfkc-quick) | fn |  |
+| [`is_nfkd`](#is-nfkd) | fn |  |
+| [`is_nfkd_quick`](#is-nfkd-quick) | fn |  |
+| [`UNICODE_VERSION`](#unicode-version) | const |  |
 
 ## Modules
 
@@ -151,21 +151,21 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
 
-- <span id="decompositions-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="decompositions-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="decompositions-type-intoiter"></span>`type IntoIter = I`
+- <span id="decompositions-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="decompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
-- <span id="decompositions-type-item"></span>`type Item = char`
+- <span id="decompositions-iterator-type-item"></span>`type Item = char`
 
 - <span id="decompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
 - <span id="decompositions-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> ToString for Decompositions<I>`
+##### `impl ToString for Decompositions<I>`
 
 - <span id="decompositions-to-string"></span>`fn to_string(&self) -> String`
 
@@ -219,19 +219,19 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I> IntoIterator for Recompositions<I>`
 
-- <span id="recompositions-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="recompositions-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="recompositions-type-intoiter"></span>`type IntoIter = I`
+- <span id="recompositions-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="recompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Recompositions<I>`
 
-- <span id="recompositions-type-item"></span>`type Item = char`
+- <span id="recompositions-iterator-type-item"></span>`type Item = char`
 
 - <span id="recompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
-##### `impl<T> ToString for Recompositions<I>`
+##### `impl ToString for Recompositions<I>`
 
 - <span id="recompositions-to-string"></span>`fn to_string(&self) -> String`
 
@@ -280,21 +280,21 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> IntoIterator for Replacements<I>`
 
-- <span id="replacements-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="replacements-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="replacements-type-intoiter"></span>`type IntoIter = I`
+- <span id="replacements-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="replacements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
-- <span id="replacements-type-item"></span>`type Item = char`
+- <span id="replacements-iterator-type-item"></span>`type Item = char`
 
 - <span id="replacements-next"></span>`fn next(&mut self) -> Option<char>`
 
 - <span id="replacements-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<T> ToString for Replacements<I>`
+##### `impl ToString for Replacements<I>`
 
 - <span id="replacements-to-string"></span>`fn to_string(&self) -> String`
 
@@ -339,15 +339,15 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> IntoIterator for StreamSafe<I>`
 
-- <span id="streamsafe-type-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamsafe-intoiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamsafe-type-intoiter"></span>`type IntoIter = I`
+- <span id="streamsafe-intoiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamsafe-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
-- <span id="streamsafe-type-item"></span>`type Item = char`
+- <span id="streamsafe-iterator-type-item"></span>`type Item = char`
 
 - <span id="streamsafe-next"></span>`fn next(&mut self) -> Option<char>`
 
@@ -462,31 +462,134 @@ as described in
 
 ## Functions
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+### `is_nfc`
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+```rust
+fn is_nfc(s: &str) -> bool
+```
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:111-117`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L111-L117)*
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+Authoritatively check if a string is in NFC.
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+### `is_nfc_quick`
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+```rust
+fn is_nfc_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:75-77`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L75-L77)*
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+Quickly check if a string is in NFC, potentially returning
+`IsNormalized::Maybe` if further checks are necessary.  In this case a check
+like `s.chars().nfc().eq(s.chars())` should suffice.
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+### `is_nfc_stream_safe`
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+```rust
+fn is_nfc_stream_safe(s: &str) -> bool
+```
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:151-157`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L151-L157)*
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+Authoritatively check if a string is Stream-Safe NFC.
+
+### `is_nfc_stream_safe_quick`
+
+```rust
+fn is_nfc_stream_safe_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:99-101`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L99-L101)*
+
+Quickly check if a string is Stream-Safe NFC.
+
+### `is_nfd`
+
+```rust
+fn is_nfd(s: &str) -> bool
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:131-137`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L131-L137)*
+
+Authoritatively check if a string is in NFD.
+
+### `is_nfd_quick`
+
+```rust
+fn is_nfd_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:87-89`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L87-L89)*
+
+Quickly check if a string is in NFD.
+
+### `is_nfd_stream_safe`
+
+```rust
+fn is_nfd_stream_safe(s: &str) -> bool
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:161-167`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L161-L167)*
+
+Authoritatively check if a string is Stream-Safe NFD.
+
+### `is_nfd_stream_safe_quick`
+
+```rust
+fn is_nfd_stream_safe_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:105-107`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L105-L107)*
+
+Quickly check if a string is Stream-Safe NFD.
+
+### `is_nfkc`
+
+```rust
+fn is_nfkc(s: &str) -> bool
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:121-127`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L121-L127)*
+
+Authoritatively check if a string is in NFKC.
+
+### `is_nfkc_quick`
+
+```rust
+fn is_nfkc_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:81-83`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L81-L83)*
+
+Quickly check if a string is in NFKC.
+
+### `is_nfkd`
+
+```rust
+fn is_nfkd(s: &str) -> bool
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:141-147`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L141-L147)*
+
+Authoritatively check if a string is in NFKD.
+
+### `is_nfkd_quick`
+
+```rust
+fn is_nfkd_quick<I: Iterator<Item = char>>(s: I) -> IsNormalized
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:93-95`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L93-L95)*
+
+Quickly check if a string is in NFKD.
 
 ## Constants
 
-*Defined in [`unicode-normalization-0.1.25/src/lib.rs:64`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L64)*
+### `UNICODE_VERSION`
+```rust
+const UNICODE_VERSION: (u8, u8, u8);
+```
+
+*Defined in [`unicode-normalization-0.1.25/src/tables.rs:18`](../../.source_1765210505/unicode-normalization-0.1.25/src/tables.rs#L18)*
 

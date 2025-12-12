@@ -109,9 +109,9 @@ Contains all metadata needed for search and display in results.
 
 ##### `impl Pointable for SearchEntry`
 
-- <span id="searchentry-const-align"></span>`const ALIGN: usize`
+- <span id="searchentry-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchentry-type-init"></span>`type Init = T`
+- <span id="searchentry-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -161,9 +161,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-const-align"></span>`const ALIGN: usize`
+- <span id="searchindex-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-type-init"></span>`type Init = T`
+- <span id="searchindex-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -249,9 +249,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 ##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-pointable-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-type-init"></span>`type Init = T`
+- <span id="searchindexgenerator-pointable-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

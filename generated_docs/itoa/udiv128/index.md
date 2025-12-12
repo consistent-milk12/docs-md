@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`u128_mulhi`](#u128_mulhi) | fn | Multiply unsigned 128 bit integers, return upper 128 bits of the result |
-| [`udivmod_1e19`](#udivmod_1e19) | fn | Divide `n` by 1e19 and return quotient and remainder |
+| [`u128_mulhi`](#u128-mulhi) | fn | Multiply unsigned 128 bit integers, return upper 128 bits of the result |
+| [`udivmod_1e19`](#udivmod-1e19) | fn | Divide `n` by 1e19 and return quotient and remainder |
 
 ## Functions
 

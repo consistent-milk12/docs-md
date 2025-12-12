@@ -12,8 +12,8 @@ Facility for interpreting structured content inside of an `Attribute`.
 |------|------|-------------|
 | [`ParseNestedMeta`](#parsenestedmeta) | struct | Context for parsing a single property in the conventional syntax for structured attributes. |
 | [`parser`](#parser) | fn | Make a parser that is usable with `parse_macro_input!` in a `#[proc_macro_attribute]` macro. |
-| [`parse_nested_meta`](#parse_nested_meta) | fn |  |
-| [`parse_meta_path`](#parse_meta_path) | fn |  |
+| [`parse_nested_meta`](#parse-nested-meta) | fn |  |
+| [`parse_meta_path`](#parse-meta-path) | fn |  |
 
 ## Structs
 

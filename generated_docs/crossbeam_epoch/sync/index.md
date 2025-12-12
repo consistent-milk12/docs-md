@@ -11,7 +11,7 @@ Synchronization primitives.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`list`](#list) | mod | Lock-free intrusive linked list. |
-| [`once_lock`](#once_lock) | mod |  |
+| [`once_lock`](#once-lock) | mod |  |
 | [`queue`](#queue) | mod | Michael-Scott lock-free queue. |
 
 ## Modules

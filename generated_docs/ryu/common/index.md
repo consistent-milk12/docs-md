@@ -8,12 +8,12 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`decimal_length9`](#decimal_length9) | fn |  |
-| [`log2_pow5`](#log2_pow5) | fn |  |
+| [`decimal_length9`](#decimal-length9) | fn |  |
+| [`log2_pow5`](#log2-pow5) | fn |  |
 | [`pow5bits`](#pow5bits) | fn |  |
-| [`ceil_log2_pow5`](#ceil_log2_pow5) | fn |  |
-| [`log10_pow2`](#log10_pow2) | fn |  |
-| [`log10_pow5`](#log10_pow5) | fn |  |
+| [`ceil_log2_pow5`](#ceil-log2-pow5) | fn |  |
+| [`log10_pow2`](#log10-pow2) | fn |  |
+| [`log10_pow5`](#log10-pow5) | fn |  |
 
 ## Functions
 

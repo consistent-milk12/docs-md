@@ -7,7 +7,7 @@
 ## Contents
 
 - [Constants](#constants)
-  - [`BY_NAME`](#by_name)
+  - [`BY_NAME`](#by-name)
   - [`ATERM`](#aterm)
   - [`CR`](#cr)
   - [`CLOSE`](#close)
@@ -27,7 +27,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BY_NAME`](#by_name) | const |  |
+| [`BY_NAME`](#by-name) | const |  |
 | [`ATERM`](#aterm) | const |  |
 | [`CR`](#cr) | const |  |
 | [`CLOSE`](#close) | const |  |

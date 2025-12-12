@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`IdentFragment`](#identfragment) | trait | Specialized formatting trait used by `format_ident!`. |
-| [`ident_fragment_display!`](#ident_fragment_display) | macro |  |
+| [`ident_fragment_display!`](#ident-fragment-display) | macro |  |
 
 ## Traits
 
