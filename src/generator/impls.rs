@@ -30,6 +30,7 @@ use rustdoc_types::{
 
 use crate::generator::context::RenderContext;
 use crate::generator::render_shared::{RendererInternals, RendererUtils};
+use crate::linker::ImplContext;
 use crate::types::TypeRenderer;
 use crate::utils::PathUtils;
 
@@ -240,6 +241,52 @@ impl ImplUtils {
     // various information related to rustdoc JSON and rustdoc_types crate
     // needs to be checked.
 
+    /// Extract generic parameter names that appear in the impl signature (for_ and trait).
+    ///
+    /// This extracts generics from only the visible parts of the impl header:
+    /// 1. The `for_` type: `impl<T> Trait for Foo<T>` → extracts `T` from `Foo<T>`
+    /// 2. The trait path: `impl<U> Trait<U> for Foo` → extracts `U` from `Trait<U>`
+    ///
+    /// Unlike [`extract_impl_visible_generics`], this does NOT extract from where clauses.
+    /// Use this for rendering purposes when deciding which generic params to show in
+    /// `impl<...>`. Generics that only appear in where clauses should not be shown in
+    /// the impl header since the where clause itself is not rendered.
+    ///
+    /// # Examples
+    ///
+    /// ```text
+    /// impl<T: Sized> IntoEither for T
+    ///   └─ for_ type is Generic("T") → extracts ["T"]
+    ///   └─ When rendered for `Either<L, R>`, for_ becomes `Either<L, R>`
+    ///   └─ Extracts ["L", "R"], NOT ["T"]
+    ///   └─ T is only in where clause, so `impl<T>` should NOT be shown
+    ///
+    /// impl<T> Clone for Wrapper<T>
+    ///   └─ for_ type has `Wrapper<T>` → extracts ["T"]
+    ///   └─ Result: render as `impl<T>`
+    ///
+    /// impl<T, U> Trait<U> for Foo<T>
+    ///   └─ for_ type has `Foo<T>` → extracts ["T"]
+    ///   └─ trait path has `Trait<U>` → extracts ["U"]
+    ///   └─ Result: render as `impl<T, U>` (both visible)
+    /// ```
+    #[must_use]
+    pub fn extract_impl_signature_generics(impl_block: &Impl) -> HashSet<String> {
+        let mut names = HashSet::new();
+
+        // Extract from for_ type (the type being implemented for)
+        Self::extract_type_generics_into(&impl_block.for_, &mut names);
+
+        // Extract from trait path generic arguments
+        if let Some(trait_ref) = &impl_block.trait_
+            && let Some(args) = &trait_ref.args
+        {
+            Self::extract_generic_args_into(args, &mut names);
+        }
+
+        names
+    }
+
     /// Extract all generic parameter names visible in an impl block's signature.
     ///
     /// # Why This Is Needed
@@ -264,6 +311,9 @@ impl ImplUtils {
     ///
     /// Then filter `generics.params` to only include names that appear in visible locations.
     ///
+    /// **Note:** For rendering the impl header, use [`extract_impl_signature_generics`] instead,
+    /// which excludes where clause generics.
+    ///
     /// # Examples
     ///
     /// ```text
@@ -283,36 +333,10 @@ impl ImplUtils {
     /// ```
     #[must_use]
     pub fn extract_impl_visible_generics(impl_block: &Impl) -> HashSet<String> {
-        let mut names = HashSet::new();
+        // Start with signature generics (for_ type and trait path)
+        let mut names = Self::extract_impl_signature_generics(impl_block);
 
-        // ┌─────────────────────────────────────────────────────────────────────┐
-        // │ Step 1: Extract from for_ type                                      │
-        // │                                                                     │
-        // │ Example: `impl<T> Clone for Vec<T>` → for_ is `Vec<T>` → ["T"]      │
-        // │ Example: `impl Debug for String` → for_ is `String` → []            │
-        // └─────────────────────────────────────────────────────────────────────┘
-        Self::extract_type_generics_into(&impl_block.for_, &mut names);
-
-        // ┌─────────────────────────────────────────────────────────────────────┐
-        // │ Step 2: Extract from trait path (for trait impls only)              │
-        // │                                                                     │
-        // │ Example: `impl Iterator<Item = T>` → trait args has `Item = T` → T  │
-        // │ Example: `impl<U> Trait<U> for Foo` → trait args has `U` → ["U"]    │
-        // │ Example: `impl Clone for Foo` → no trait args → []                  │
-        // └─────────────────────────────────────────────────────────────────────┘
-        if let Some(trait_ref) = &impl_block.trait_
-            && let Some(args) = &trait_ref.args
-        {
-            Self::extract_generic_args_into(args, &mut names);
-        }
-
-        // ┌─────────────────────────────────────────────────────────────────────┐
-        // │ Step 3: Extract from where clause predicates                        │
-        // │                                                                     │
-        // │ Example: `where T: Clone + Send` → BoundPredicate on T → ["T"]      │
-        // │ Example: `where <T as Trait>::Item = U` → EqPredicate → ["T", "U"]  │
-        // │ Example: `where 'a: 'b` → LifetimePredicate → [] (skip)             │
-        // └─────────────────────────────────────────────────────────────────────┘
+        // Also extract from where clause predicates
         for pred in &impl_block.generics.where_predicates {
             match pred {
                 // `where T: Clone + Iterator<Item = U>` extracts both T and U
@@ -904,23 +928,26 @@ impl<'a> ImplRenderer<'a> {
             })
             .unwrap_or_default();
 
-        // Extract generics that are VISIBLE in the signature (for_ type, trait path, where clause).
+        // Extract generics that appear in the signature (for_ type and trait path).
         // This fixes the generic parameter mismatch issue where `impl_block.generics.params`
         // might have different names (e.g., T) than what's used in for_ type (e.g., D).
         //
-        // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
-        // if the original blanket impl was defined as `impl<T> Trait for T`.
-        let visible_generics = ImplUtils::extract_impl_visible_generics(impl_block);
+        // IMPORTANT: We use `extract_impl_signature_generics` which excludes where clause
+        // generics. For blanket impls like `impl<T: Sized> IntoEither for T`, when rendered
+        // for `Either<L, R>`, the `T` only appears in the where clause `where T: Sized`.
+        // We don't want to show `impl<T> IntoEither for Either<L, R>` since T doesn't appear
+        // in the visible header - it would be confusing to users.
+        let signature_generics = ImplUtils::extract_impl_signature_generics(impl_block);
 
-        let generics = if visible_generics.is_empty() {
+        let generics = if signature_generics.is_empty() {
             String::new()
         } else {
-            // Filter impl params to only include those visible in the signature
+            // Filter impl params to only include those that appear in for_ type or trait path
             let filtered: Vec<_> = impl_block
                 .generics
                 .params
                 .iter()
-                .filter(|p| visible_generics.contains(&p.name))
+                .filter(|p| signature_generics.contains(&p.name))
                 .cloned()
                 .collect();
 
@@ -959,6 +986,15 @@ impl<'a> ImplRenderer<'a> {
         // Extract the type name for method anchor generation
         let type_name = self.type_renderer.render_type(&impl_block.for_);
 
+        // Determine impl context for anchor generation:
+        // - For trait impls, include the trait name to avoid duplicate anchors
+        //   when multiple traits define the same associated type (e.g., Output)
+        // - For inherent impls, use simple anchors
+        let impl_ctx = impl_block.trait_.as_ref().map_or(
+            ImplContext::Inherent,
+            |t| ImplContext::Trait(PathUtils::short_name(&t.path)),
+        );
+
         RendererInternals::render_impl_items(
             md,
             impl_block,
@@ -967,6 +1003,7 @@ impl<'a> ImplRenderer<'a> {
             &Some(|item: &Item| self.process_docs(item)),
             &Some(|id: Id| self.ctx.create_link(id, self.current_file)),
             Some(type_name.as_ref()),
+            impl_ctx,
         );
     }
 
