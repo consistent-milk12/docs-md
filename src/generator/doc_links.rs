@@ -206,6 +206,133 @@ static METHOD_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
 });
 
 // =============================================================================
+// Code Block Tracking
+// =============================================================================
+
+/// Classification of a line during code block processing.
+///
+/// Used by [`CodeBlockTracker`] to provide rich information about each line,
+/// enabling callers to handle fences and content appropriately.
+///
+/// # Processing Flow
+///
+/// ```text
+/// Input Line          │ State Before │ Returns             │ State After
+/// ────────────────────┼──────────────┼─────────────────────┼─────────────
+/// "```"               │ Outside      │ OpeningFence(bare)  │ Inside(```)
+/// "```rust"           │ Outside      │ OpeningFence(!bare) │ Inside(```)
+/// "let x = 1;"        │ Inside(```)  │ CodeContent         │ Inside(```)
+/// "```"               │ Inside(```)  │ ClosingFence        │ Outside
+/// "regular text"      │ Outside      │ Text                │ Outside
+/// "~~~"               │ Inside(```)  │ CodeContent         │ Inside(```) ← mismatched!
+/// ```
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum LineKind {
+    /// Opening code fence (``` or ~~~).
+    /// `bare` is true if the fence has no language specifier (exactly "```" or "~~~").
+    OpeningFence { bare: bool },
+
+    /// Closing code fence matching the opening fence.
+    ClosingFence,
+
+    /// Content inside a code block (not a fence line).
+    CodeContent,
+
+    /// Regular text outside any code block.
+    Text,
+}
+
+/// Tracks code block state while processing documentation line by line.
+///
+/// This provides a clean state machine for fence tracking that both
+/// `unhide_code_lines` and `process_links_protected` can use, avoiding
+/// duplicated inline fence detection logic.
+///
+/// # Example
+///
+/// ```text
+/// let mut tracker = CodeBlockTracker::new();
+///
+/// for line in docs.lines() {
+///     match tracker.classify(line) {
+///         LineKind::OpeningFence { bare } => { /* handle opening */ }
+///         LineKind::CodeContent => { /* process hidden lines, etc. */ }
+///         LineKind::ClosingFence => { /* output as-is */ }
+///         LineKind::Text => { /* process links */ }
+///     }
+/// }
+/// ```
+///
+/// # Fence Matching
+///
+/// The tracker correctly handles mismatched fences:
+/// - `~~~` inside a ```` ``` ```` block is treated as content, not a closing fence
+/// - Only the same fence style closes a block
+struct CodeBlockTracker {
+    /// Current fence string if inside a code block (`Some("```")` or `Some("~~~")`).
+    /// `None` when outside any code block.
+    fence: Option<&'static str>,
+}
+
+impl CodeBlockTracker {
+    /// Create a new tracker starting outside any code block.
+    const fn new() -> Self {
+        Self { fence: None }
+    }
+
+    /// Classify a line and update the tracker's state.
+    ///
+    /// This method both returns the line's classification AND updates
+    /// the tracker's state. Call once per line in order.
+    ///
+    /// # State Transitions
+    ///
+    /// ```text
+    /// ┌─────────┐  "```" or "~~~"  ┌──────────┐
+    /// │ Outside │ ───────────────→ │  Inside  │
+    /// │         │ ←─────────────── │          │
+    /// └─────────┘  matching fence  └──────────┘
+    /// ```
+    fn classify(&mut self, line: &str) -> LineKind {
+        let trimmed = line.trim_start();
+
+        // Detect fence markers (handles indented fences like "    ```")
+        let detected_fence = if trimmed.starts_with("```") {
+            Some("```")
+        } else if trimmed.starts_with("~~~") {
+            Some("~~~")
+        } else {
+            None
+        };
+
+        match (self.fence, detected_fence) {
+            // Inside code block, found matching closing fence
+            // Example: Inside "```" block, line is "```" → close the block
+            (Some(open), Some(_)) if trimmed.starts_with(open) => {
+                self.fence = None;
+                LineKind::ClosingFence
+            },
+
+            // Inside code block, line is regular content (or mismatched fence)
+            // Example: Inside "```" block, line is "~~~" → just content
+            (Some(_), _) => LineKind::CodeContent,
+
+            // Outside code block, found opening fence
+            // Example: line is "```rust" → enter code block
+            (None, Some(f)) => {
+                self.fence = Some(f);
+                // Bare fence = exactly "```" or "~~~" with no language
+                let bare = trimmed == "```" || trimmed == "~~~";
+                LineKind::OpeningFence { bare }
+            },
+
+            // Outside code block, regular text line
+            (None, None) => LineKind::Text,
+        }
+    }
+}
+
+// =============================================================================
 // Standalone Functions
 // =============================================================================
 
@@ -322,52 +449,36 @@ impl<'a> DocLinkProcessor<'a> {
     }
 
     /// Process links while protecting code block contents.
+    ///
+    /// Uses [`CodeBlockTracker`] to identify which lines are inside code blocks
+    /// (and should be left unchanged) vs regular text (which needs link processing).
     fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
         let mut result = String::with_capacity(docs.len());
+        let mut tracker = CodeBlockTracker::new();
         let mut current_pos = 0;
-
-        // Track code block state
-        let mut in_code_block = false;
-        let mut fence: Option<&str> = None;
 
         for line in docs.lines() {
             let line_end = current_pos + line.len();
 
-            // Check for code fence
-            let trimmed = line.trim_start();
-            if let Some(f) = DocLinkUtils::detect_fence(trimmed) {
-                if in_code_block {
-                    // Check if this closes the current block
-                    if let Some(open_fence) = fence
-                        && trimmed.starts_with(open_fence)
-                    {
-                        in_code_block = false;
-                        fence = None;
-                    }
-                } else {
-                    in_code_block = true;
-                    fence = Some(f);
-                }
+            // Classify line and update tracker state
+            match tracker.classify(line) {
+                // Opening/closing fences and code content: pass through unchanged
+                LineKind::OpeningFence { .. } | LineKind::ClosingFence | LineKind::CodeContent => {
+                    _ = write!(result, "{line}");
+                },
 
-                _ = write!(result, "{line}");
-            } else if in_code_block {
-                // Inside code block - don't process
-                _ = write!(result, "{line}");
-            } else {
-                // Outside code block - process links
-                let processed = self.process_line(line, item_links);
-
-                _ = write!(result, "{processed}");
+                // Text outside code blocks: process links
+                LineKind::Text => {
+                    let processed = self.process_line(line, item_links);
+                    _ = write!(result, "{processed}");
+                },
             }
 
-            // Add newline if not at end
+            // Add newline if not at end of input
             current_pos = line_end;
-
             if current_pos < docs.len() {
                 _ = writeln!(result);
-
-                // Skip the newline character
-                current_pos += 1;
+                current_pos += 1; // Skip the newline character
             }
         }
 
@@ -687,38 +798,70 @@ impl<'a> DocLinkProcessor<'a> {
     // 2. Short name match in item_links - handle qualified vs unqualified references
     // 3. Path name index lookup - fallback for cross-references not in item_links
 
-    /// Resolve a link reference to a URL.
-    fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String> {
-        // Strategy 1: Exact match in item_links (rustdoc pre-resolved)
-        if let Some(id) = item_links.get(link_text)
-            && let Some(url) = self.get_url_for_id(*id)
-        {
-            return Some(url);
-        }
+    /// Generic 3-strategy resolution with per-strategy display names.
+    ///
+    /// Unifies the resolution logic used by `resolve_to_url` and `resolve_link`.
+    /// The resolver closure receives both the `Id` and the appropriate display name
+    /// for that strategy:
+    /// - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
+    /// - Strategy 2 & 3 (fuzzy matches): uses `short_name`
+    ///
+    /// # Type Parameters
+    ///
+    /// * `T` - The result type (e.g., `String` for URLs or markdown links)
+    ///
+    /// # Arguments
+    ///
+    /// * `link_text` - Original link text from documentation
+    /// * `item_links` - Pre-resolved links from rustdoc
+    /// * `resolver` - Closure that takes `(Id, display_name)` and returns `Option<T>`
+    fn resolve_with_strategies<T, F>(
+        &self,
+        link_text: &str,
+        item_links: &HashMap<String, Id>,
+        resolver: F,
+    ) -> Option<T>
+    where
+        F: Fn(Id, &str) -> Option<T>,
+    {
+        let short = PathUtils::short_name(link_text);
 
-        // Strategy 2: Short name match in item_links
-        // Handles cases where doc uses qualified path but item_links has unqualified key
-        let short_name = PathUtils::short_name(link_text);
-
-        for (key, id) in item_links {
-            if PathUtils::short_name(key) == short_name
-                && let Some(url) = self.get_url_for_id(*id)
-            {
-                return Some(url);
+        // Strategy 1: Exact match - preserve original link_text as display name
+        if let Some(&id) = item_links.get(link_text) {
+            if let Some(result) = resolver(id, link_text) {
+                return Some(result);
             }
         }
 
-        // Strategy 3: Use path name index (for items not in this item's links map)
-        // Only reached when item_links doesn't contain a matching reference
-        if let Some(ids) = self.path_name_index.get(short_name) {
-            for id in ids {
-                if let Some(url) = self.get_url_for_id(*id) {
-                    return Some(url);
+        // Strategy 2: Short name match in item_links - use short name
+        for (key, &id) in item_links {
+            if PathUtils::short_name(key) == short {
+                if let Some(result) = resolver(id, short) {
+                    return Some(result);
+                }
+            }
+        }
+
+        // Strategy 3: Path name index fallback - use short name
+        if let Some(ids) = self.path_name_index.get(short) {
+            for &id in ids {
+                if let Some(result) = resolver(id, short) {
+                    return Some(result);
                 }
             }
         }
 
         None
+    }
+
+    /// Resolve a link reference to a URL.
+    ///
+    /// Uses the generic 3-strategy resolver. Display name is ignored since
+    /// we only need the URL.
+    fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String> {
+        self.resolve_with_strategies(link_text, item_links, |id, _display| {
+            self.get_url_for_id(id)
+        })
     }
 
     /// Get the URL for an ID (local or docs.rs).
@@ -851,40 +994,13 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Try to resolve link text to a markdown link.
     ///
-    /// Uses the same three-strategy approach as `resolve_to_url`:
-    /// 1. Exact match in `item_links` (rustdoc pre-resolved)
-    /// 2. Short name match in `item_links`
-    /// 3. Path name index fallback
+    /// Uses the generic 3-strategy resolver. Falls back to unresolved link format
+    /// `[`link_text`]` if resolution fails.
     fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String {
-        // Strategy 1: Exact match in item_links (rustdoc pre-resolved)
-        if let Some(id) = item_links.get(link_text)
-            && let Some(md_link) = self.create_link_for_id(*id, link_text)
-        {
-            return md_link;
-        }
-
-        // Strategy 2: Short name match in item_links
-        let short_name = PathUtils::short_name(link_text);
-
-        for (key, id) in item_links {
-            if PathUtils::short_name(key) == short_name
-                && let Some(md_link) = self.create_link_for_id(*id, short_name)
-            {
-                return md_link;
-            }
-        }
-
-        // Strategy 3: Use path name index (for items not in this item's links map)
-        if let Some(ids) = self.path_name_index.get(short_name) {
-            for id in ids {
-                if let Some(md_link) = self.create_link_for_id(*id, short_name) {
-                    return md_link;
-                }
-            }
-        }
-
-        // Fallback: return original (unresolved link)
-        format!("[`{link_text}`]")
+        self.resolve_with_strategies(link_text, item_links, |id, display| {
+            self.create_link_for_id(id, display)
+        })
+        .unwrap_or_else(|| format!("[`{link_text}`]"))
     }
 
     /// Create a markdown link for an ID.
@@ -1021,60 +1137,44 @@ impl DocLinkUtils {
     ///    but compiled. We remove the prefix to show the full example.
     /// 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
     ///    examples are Rust code.
+    ///
+    /// Uses [`CodeBlockTracker`] to manage fence state.
     #[must_use]
     pub fn unhide_code_lines(docs: &str) -> String {
         let mut result = String::with_capacity(docs.len());
-        let mut in_code_block = false;
-        let mut fence: Option<&str> = None;
+        let mut tracker = CodeBlockTracker::new();
 
         for line in docs.lines() {
             let trimmed = line.trim_start();
+            let leading_ws = &line[..line.len() - trimmed.len()];
 
-            // Track code block boundaries
-            if let Some(f) = Self::detect_fence(trimmed) {
-                if in_code_block && fence.is_some_and(|open| trimmed.starts_with(open)) {
-                    // Closing fence
-                    in_code_block = false;
-                    fence = None;
-
-                    _ = write!(result, "{line}");
-                } else if !in_code_block {
-                    // Opening fence - check if it needs a language identifier
-                    in_code_block = true;
-                    fence = Some(f);
-
-                    // Add `rust` to bare fences (``` or ~~~)
-                    let leading_ws = &line[..line.len() - trimmed.len()];
-
-                    if trimmed == "```" || trimmed == "~~~" {
-                        _ = write!(result, "{leading_ws}");
-                        _ = write!(result, "{trimmed}");
-                        _ = write!(result, "rust");
+            match tracker.classify(line) {
+                // Opening fence: add `rust` if bare, otherwise pass through
+                LineKind::OpeningFence { bare } => {
+                    if bare {
+                        // "```" → "```rust" (preserve indentation)
+                        _ = write!(result, "{leading_ws}{trimmed}rust");
                     } else {
                         _ = write!(result, "{line}");
                     }
-                } else {
-                    // Nested fence (different style) - just pass through
+                },
+
+                // Closing fence and regular text: pass through unchanged
+                LineKind::ClosingFence | LineKind::Text => {
                     _ = write!(result, "{line}");
-                }
+                },
 
-                _ = writeln!(result);
-                continue;
-            }
-
-            if in_code_block {
-                let leading_ws = &line[..line.len() - trimmed.len()];
-
-                if trimmed == "#" {
-                    // Just "#" becomes empty line (newline added below)
-                } else if let Some(rest) = trimmed.strip_prefix("# ") {
-                    // "# code" becomes "code"
-                    _ = write!(result, "{leading_ws}{rest}");
-                } else {
-                    _ = write!(result, "{line}");
-                }
-            } else {
-                _ = write!(result, "{line}");
+                // Code content: unhide hidden lines
+                LineKind::CodeContent => {
+                    if trimmed == "#" {
+                        // Lone "#" becomes empty line (newline added below)
+                    } else if let Some(rest) = trimmed.strip_prefix("# ") {
+                        // "# code" becomes "code" (preserve indentation)
+                        _ = write!(result, "{leading_ws}{rest}");
+                    } else {
+                        _ = write!(result, "{line}");
+                    }
+                },
             }
 
             _ = writeln!(result);
@@ -1086,17 +1186,6 @@ impl DocLinkUtils {
         }
 
         result
-    }
-
-    /// Detect a code fence and return the fence string.
-    fn detect_fence(trimmed: &str) -> Option<&'static str> {
-        if trimmed.starts_with("```") {
-            Some("```")
-        } else if trimmed.starts_with("~~~") {
-            Some("~~~")
-        } else {
-            None
-        }
     }
 
     /// Convert path-style reference links to inline code.
