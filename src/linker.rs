@@ -49,6 +49,21 @@ pub enum AssocItemKind {
     Type,
 }
 
+/// Context for generating impl item anchors, distinguishing inherent vs trait impls.
+///
+/// For trait impls, we need to include the trait name in the anchor to avoid
+/// duplicate anchors when multiple traits define the same associated type/const.
+/// For example, both `impl Add for Foo` and `impl Sub for Foo` might have
+/// `type Output`, which would create duplicate anchors without the trait name.
+#[derive(Debug, Clone, Copy)]
+pub enum ImplContext<'a> {
+    /// Inherent impl (no trait) - anchors use format `typename-itemname`
+    Inherent,
+
+    /// Trait impl - anchors include trait name: `typename-traitname-itemname`
+    Trait(&'a str),
+}
+
 /// Utilify functions to handle anchors
 pub struct AnchorUtils;
 
@@ -111,6 +126,61 @@ impl AnchorUtils {
     #[must_use]
     pub fn method_anchor(type_name: &str, method_name: &str) -> String {
         Self::assoc_item_anchor(type_name, method_name, AssocItemKind::Method)
+    }
+
+    /// Generate an anchor for an associated item in an impl block, with trait disambiguation.
+    ///
+    /// This extends `assoc_item_anchor` to handle trait impls, where multiple traits
+    /// may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
+    /// For trait impls, the trait name is included in the anchor to ensure uniqueness.
+    ///
+    /// # Arguments
+    ///
+    /// * `type_name` - The name of the implementing type
+    /// * `item_name` - The name of the associated item
+    /// * `kind` - The kind of associated item
+    /// * `impl_ctx` - Whether this is an inherent or trait impl
+    ///
+    /// # Anchor Formats
+    ///
+    /// | Context | Kind | Format | Example |
+    /// |---------|------|--------|---------|
+    /// | Inherent | Method | `type-method` | `vec-push` |
+    /// | Inherent | Type | `type-type-item` | `vec-type-item` |
+    /// | Inherent | Const | `type-const-item` | `vec-const-align` |
+    /// | Trait(Add) | Method | `type-add-method` | `vec-add-add` |
+    /// | Trait(Add) | Type | `type-add-type-item` | `vec-add-type-output` |
+    /// | Trait(Add) | Const | `type-add-const-item` | `vec-add-const-max` |
+    #[must_use]
+    pub fn impl_item_anchor(
+        type_name: &str,
+        item_name: &str,
+        kind: AssocItemKind,
+        impl_ctx: ImplContext<'_>,
+    ) -> String {
+        let type_slug = Self::slugify_anchor(type_name);
+        let item_slug = Self::slugify_anchor(item_name);
+
+        match impl_ctx {
+            // Inherent impls: use the existing format
+            ImplContext::Inherent => match kind {
+                AssocItemKind::Method => format!("{type_slug}-{item_slug}"),
+                AssocItemKind::Const => format!("{type_slug}-const-{item_slug}"),
+                AssocItemKind::Type => format!("{type_slug}-type-{item_slug}"),
+            },
+
+            // Trait impls: include trait name to avoid collisions
+            ImplContext::Trait(trait_name) => {
+                let trait_slug = Self::slugify_anchor(trait_name);
+                match kind {
+                    AssocItemKind::Method => format!("{type_slug}-{trait_slug}-{item_slug}"),
+                    AssocItemKind::Const => {
+                        format!("{type_slug}-{trait_slug}-const-{item_slug}")
+                    },
+                    AssocItemKind::Type => format!("{type_slug}-{trait_slug}-type-{item_slug}"),
+                }
+            },
+        }
     }
 
     /// Convert a name to a GitHub-style markdown anchor slug.
