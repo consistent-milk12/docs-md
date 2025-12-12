@@ -34,6 +34,12 @@ cargo install cargo-docs-md
 ## Usage
 
 ```bash
+
+# You need to run an extra command to collect your dependencies source code and 
+# make a local copy directly into your project. It renames all Cargo.toml into Crate.toml 
+# so that rust-analyzer ignores them by default.
+
+cargo docs-md collect-sources
 cargo docs-md docs
 ```
 
