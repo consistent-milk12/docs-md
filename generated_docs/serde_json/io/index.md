@@ -19,29 +19,22 @@ and/or now relying on OS-specific `std::backtrace::Backtrace`.
 |------|------|-------------|
 | [`ErrorKind`](#errorkind) | fn |  |
 | [`Bytes`](#bytes) | fn |  |
-| [`Read`](#read) | fn |  |
 
 ## Functions
 
 ### `ErrorKind`
 
 ```rust
-fn ErrorKind(&self) -> impl Iterator<Item = gimli::Range> + '_
+fn ErrorKind(&self, row: &LineRow) -> Location<'_>
 ```
 
-*Defined in [`addr2line-0.25.1/src/line.rs:121-126`](../../../.source_1765210505/addr2line-0.25.1/src/line.rs#L121-L126)*
+*Defined in [`addr2line-0.25.1/src/line.rs:128-140`](../../../.source_1765521767/addr2line-0.25.1/src/line.rs#L128-L140)*
 
 ### `Bytes`
 
 ```rust
-fn Bytes(self) -> u16
+fn Bytes(self) -> usize
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:83-85`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L83-L85)*
-
-### `Read`
-
-```rust
-fn Read(&self) -> &T
-```
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:89`](../../../.source_1765521767/aho-corasick-1.1.4/src/util/int.rs#L89)*
 

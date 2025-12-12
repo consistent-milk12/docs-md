@@ -80,7 +80,7 @@ guarantees that slices never have a length that exceeds `isize::MAX`.
 struct NonMaxUsize(core::num::NonZeroUsize);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:56`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L56)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:56`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L56)*
 
 A `usize` that can never be `usize::MAX`.
 
@@ -142,7 +142,7 @@ This type is defined to be `repr(transparent)` for
 struct SmallIndex(u32);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:144`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L144)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:144`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L144)*
 
 A type that represents a "small" index.
 
@@ -288,7 +288,7 @@ struct SmallIndexError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:376-378`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L376-L378)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:376-378`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L376-L378)*
 
 This error occurs when a small index could not be constructed.
 
@@ -336,7 +336,7 @@ struct SmallIndexIter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:402-404`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L402-L404)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:402-404`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L402-L404)*
 
 #### Trait Implementations
 
@@ -368,7 +368,7 @@ struct SmallIndexIter {
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L736)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L736)*
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](#smallindex).
 
@@ -472,7 +472,7 @@ re-exported at the crate root due to how common it is.
 struct StateID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:751`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L751)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:751`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L751)*
 
 The identifier of a finite automaton state, represented by a
 [`SmallIndex`](#smallindex).
@@ -572,7 +572,7 @@ a state ID to be a "small index."
 struct PatternIDError(SmallIndexError);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 This error occurs when a value could not be constructed.
 
@@ -620,7 +620,7 @@ trait.
 struct PatternIDIter(SmallIndexIter);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 #### Implementations
 
@@ -659,7 +659,7 @@ struct WithPatternIDIter<I> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -700,7 +700,7 @@ iterator is representable in the corresponding small index type.
 struct StateIDError(SmallIndexError);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 This error occurs when a value could not be constructed.
 
@@ -748,7 +748,7 @@ trait.
 struct StateIDIter(SmallIndexIter);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 #### Implementations
 
@@ -787,7 +787,7 @@ struct WithStateIDIter<I> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -830,7 +830,7 @@ iterator is representable in the corresponding small index type.
 trait IteratorIndexExt: Iterator { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:760-774`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L760-L774)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:760-774`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L760-L774)*
 
 A utility trait that defines a couple of adapters for making it convenient
 to access indices as "small index" types. We require ExactSizeIterator so
@@ -851,5 +851,5 @@ each element is representable by its small index type.
 
 ### `index_type_impls!`
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:421-717`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L421-L717)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:421-717`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/primitives.rs#L421-L717)*
 

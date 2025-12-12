@@ -39,7 +39,7 @@ enum State {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../../.source_1765521767/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
 
 #### Trait Implementations
 
@@ -88,7 +88,7 @@ enum Action {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../../.source_1765521767/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
 
 #### Trait Implementations
 
@@ -122,7 +122,7 @@ enum Action {
 const fn unpack(delta: u8) -> (State, Action)
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:115-124`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L115-L124)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:115-124`](../../../../.source_1765521767/anstyle-parse-0.2.7/src/state/definitions.rs#L115-L124)*
 
 Unpack a u8 into a State and Action
 
@@ -139,12 +139,12 @@ Bad things will happen if those invariants are violated.
 const STATES: [State; 16];
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:37-54`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L37-L54)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:37-54`](../../../../.source_1765521767/anstyle-parse-0.2.7/src/state/definitions.rs#L37-L54)*
 
 ### `ACTIONS`
 ```rust
 const ACTIONS: [Action; 16];
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:88-105`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L88-L105)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:88-105`](../../../../.source_1765521767/anstyle-parse-0.2.7/src/state/definitions.rs#L88-L105)*
 

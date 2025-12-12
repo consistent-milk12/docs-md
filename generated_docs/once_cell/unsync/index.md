@@ -23,7 +23,7 @@ struct OnceCell<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L411-L414)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765521767/once_cell-1.21.3/src/lib.rs#L411-L414)*
 
 A cell which can be written to only once. It is not thread safe.
 
@@ -101,7 +101,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L714-L717)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765521767/once_cell-1.21.3/src/lib.rs#L714-L717)*
 
 A value which is initialized on the first access.
 

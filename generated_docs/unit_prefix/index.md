@@ -187,7 +187,7 @@ enum Prefix {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765521767/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
 
 A numeric prefix, either binary or decimal.
 
@@ -320,7 +320,7 @@ enum NumberPrefix<F> {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765521767/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
 
 The result of trying to apply a prefix to a floating-point value.
 
@@ -377,7 +377,7 @@ The result of trying to apply a prefix to a floating-point value.
 trait Amounts: Copy + Sized + PartialOrd + Div<Output = Self> + Neg<Output = Self> { ... }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765521767/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
 
 Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of

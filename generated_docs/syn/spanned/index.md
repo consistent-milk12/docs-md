@@ -101,7 +101,7 @@ needing the unstable `join`.
 trait Spanned: private::Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/spanned.rs:96-102`](../../../.source_1765210505/syn-2.0.111/src/spanned.rs#L96-L102)*
+*Defined in [`syn-2.0.111/src/spanned.rs:96-102`](../../../.source_1765521767/syn-2.0.111/src/spanned.rs#L96-L102)*
 
 A trait that can provide the `Span` of the complete contents of a syntax
 tree node.

@@ -158,7 +158,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L35-L59)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../.source_1765521767/walkdir-2.5.0/src/dent.rs#L35-L59)*
 
 A directory entry.
 
@@ -258,7 +258,7 @@ struct Error {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../.source_1765210505/walkdir-2.5.0/src/error.rs#L28-L31)*
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../.source_1765521767/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -330,7 +330,7 @@ struct WalkDir {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:234-237`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L234-L237)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:234-237`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L234-L237)*
 
 A builder to create an iterator for recursively walking a directory.
 
@@ -454,7 +454,7 @@ struct WalkDirOptions {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:239-255`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L239-L255)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:239-255`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L239-L255)*
 
 #### Trait Implementations
 
@@ -477,7 +477,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:566-606`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L566-L606)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:566-606`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L566-L606)*
 
 An iterator for recursively descending into a directory.
 
@@ -597,7 +597,7 @@ struct Ancestor {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:611-620`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L611-L620)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:611-620`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L611-L620)*
 
 An ancestor is an item in the directory tree traversed by walkdir, and is
 used to check for loops in the tree when traversing symlinks.
@@ -629,7 +629,7 @@ struct FilterEntry<I, P> {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:1055-1058`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L1055-L1058)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:1055-1058`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L1055-L1058)*
 
 A recursive directory iterator that skips entries.
 
@@ -694,7 +694,7 @@ enum DirList {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:661-677`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L661-L677)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:661-677`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L661-L677)*
 
 A sequence of unconsumed directory entries.
 
@@ -757,7 +757,7 @@ proceeds over a `Vec<fs::DirEntry>`.
 trait DirEntryExt { ... }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L339-L343)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../.source_1765521767/walkdir-2.5.0/src/dent.rs#L339-L343)*
 
 Unix-specific extension methods for `walkdir::DirEntry`
 
@@ -779,7 +779,7 @@ Unix-specific extension methods for `walkdir::DirEntry`
 type Result<T> = ::std::result::Result<T, Error>;
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:157`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L157)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:157`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L157)*
 
 A result type for walkdir operations.
 
@@ -796,7 +796,7 @@ automatically convert to an `io::Result` when using the `try!` macro.
 
 ### `itry!`
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:137-144`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L137-L144)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:137-144`](../../.source_1765521767/walkdir-2.5.0/src/lib.rs#L137-L144)*
 
 Like try, but for iterators that return `Option<Result<_, _>>`.
 

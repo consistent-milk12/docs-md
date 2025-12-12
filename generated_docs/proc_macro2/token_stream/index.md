@@ -24,7 +24,7 @@ struct TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -94,9 +94,9 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-raw-string"></span>`fn raw_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
@@ -111,7 +111,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
 
 An iterator over `TokenStream`'s `TokenTree`s.
 

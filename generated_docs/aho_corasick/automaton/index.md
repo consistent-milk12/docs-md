@@ -76,7 +76,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -115,7 +115,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 struct StateID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../.source_1765521767/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
 
 The identifier of a finite automaton state.
 
@@ -223,7 +223,7 @@ panics or silent logical errors.
 struct StateIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../.source_1765521767/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 This error occurs when an ID could not be constructed.
 
@@ -276,7 +276,7 @@ struct OverlappingState {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:782-811`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L782-L811)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:782-811`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L782-L811)*
 
 Represents the current state of an overlapping search.
 
@@ -401,7 +401,7 @@ struct FindIter<'a, 'h, A> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:844-855`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L844-L855)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:844-855`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L844-L855)*
 
 An iterator of non-overlapping matches in a particular haystack.
 
@@ -474,7 +474,7 @@ struct FindOverlappingIter<'a, 'h, A> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:954-958`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L954-L958)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:954-958`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L954-L958)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -520,7 +520,7 @@ struct StreamFindIter<'a, A, R> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:991-993`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L991-L993)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:991-993`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L991-L993)*
 
 An iterator that reports matches in a stream.
 
@@ -575,7 +575,7 @@ struct StreamChunkIter<'a, A, R> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1036-1063`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1036-L1063)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1036-1063`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1036-L1063)*
 
 An iterator that reports matches in a stream.
 
@@ -675,7 +675,7 @@ enum Candidate {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../.source_1765521767/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -737,7 +737,7 @@ enum StreamChunk<'r> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1251-1256`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1251-L1256)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1251-1256`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1251-L1256)*
 
 A single chunk yielded by the stream chunk iterator.
 
@@ -767,7 +767,7 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 trait Automaton: private::Sealed { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:198-637`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L198-L637)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:198-637`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L198-L637)*
 
 A trait that abstracts over Aho-Corasick automata.
 
@@ -1054,7 +1054,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1259-1282`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1259-L1282)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1259-1282`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1259-L1282)*
 
 ### `try_find_fwd_imp`
 
@@ -1062,7 +1062,7 @@ fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Inp
 fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, anchored: crate::util::search::Anchored, earliest: bool) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1285-1420`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1285-L1420)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1285-1420`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1285-L1420)*
 
 ### `try_find_overlapping_fwd`
 
@@ -1070,7 +1070,7 @@ fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search:
 fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1423-1440`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1423-L1440)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1423-1440`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1423-L1440)*
 
 ### `try_find_overlapping_fwd_imp`
 
@@ -1078,7 +1078,7 @@ fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util:
 fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1443-1537`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1443-L1537)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1443-1537`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1443-L1537)*
 
 ### `get_match`
 
@@ -1086,7 +1086,7 @@ fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::u
 fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usize) -> crate::util::search::Match
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1540-1549`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1540-L1549)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1540-1549`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1540-L1549)*
 
 ### `fmt_state_indicator`
 
@@ -1094,7 +1094,7 @@ fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usi
 fn fmt_state_indicator<A: Automaton>(f: &mut core::fmt::Formatter<'_>, aut: A, id: StateID) -> core::fmt::Result
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1558-1577`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1558-L1577)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1558-1577`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1558-L1577)*
 
 Write a prefix "state" indicator for fmt::Debug impls. It always writes
 exactly two printable bytes to the given formatter.
@@ -1110,7 +1110,7 @@ overlapping is that of match and start states.)
 fn sparse_transitions<'a>(it: impl Iterator<Item = (u8, StateID)> + 'a) -> impl Iterator<Item = (u8, u8, StateID)> + 'a
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1583-1608`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1583-L1608)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1583-1608`](../../../.source_1765521767/aho-corasick-1.1.4/src/automaton.rs#L1583-L1608)*
 
 Return an iterator of transitions in a sparse format given an iterator
 of all explicitly defined transitions. The iterator yields ranges of

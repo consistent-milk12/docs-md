@@ -22,7 +22,7 @@ struct Flatten<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../../.source_1765521767/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
 together. This struct is created by the `flatten()` method on [`ParallelIterator`](../index.md).
@@ -80,7 +80,7 @@ struct FlattenConsumer<C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:39-41`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten.rs#L39-L41)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:39-41`](../../../../.source_1765521767/rayon-1.11.0/src/iter/flatten.rs#L39-L41)*
 
 #### Implementations
 
@@ -133,7 +133,7 @@ struct FlattenFolder<C, R> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:93-96`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten.rs#L93-L96)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:93-96`](../../../../.source_1765521767/rayon-1.11.0/src/iter/flatten.rs#L93-L96)*
 
 #### Trait Implementations
 

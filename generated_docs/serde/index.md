@@ -109,9 +109,9 @@ for Serde by the community.
 
 ### `crate_root!`
 
-*Defined in [`serde-1.0.228/src/lib.rs:188-262`](../../.source_1765210505/serde-1.0.228/src/lib.rs#L188-L262)*
+*Defined in [`serde-1.0.228/src/lib.rs:188-262`](../../.source_1765521767/serde-1.0.228/src/lib.rs#L188-L262)*
 
 ### `tri!`
 
-*Defined in [`serde-1.0.228/src/lib.rs:264`](../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../.source_1765521767/serde-1.0.228/src/lib.rs#L264)*
 

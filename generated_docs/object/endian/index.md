@@ -63,7 +63,7 @@ Types for compile-time and run-time endianness.
 struct LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:317`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L317)*
+*Defined in [`object-0.37.3/src/endian.rs:317`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L317)*
 
 Compile-time little endian byte order.
 
@@ -107,7 +107,7 @@ Compile-time little endian byte order.
 struct BigEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:344`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L344)*
+*Defined in [`object-0.37.3/src/endian.rs:344`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L344)*
 
 Compile-time big endian byte order.
 
@@ -151,7 +151,7 @@ Compile-time big endian byte order.
 struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:620`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L620)*
+*Defined in [`object-0.37.3/src/endian.rs:620`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L620)*
 
 An unaligned `u16` value with an externally specified endianness of type `E`.
 
@@ -209,7 +209,7 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:647`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L647)*
+*Defined in [`object-0.37.3/src/endian.rs:647`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L647)*
 
 An unaligned `u32` value with an externally specified endianness of type `E`.
 
@@ -267,7 +267,7 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:674`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L674)*
+*Defined in [`object-0.37.3/src/endian.rs:674`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L674)*
 
 An unaligned `u64` value with an externally specified endianness of type `E`.
 
@@ -325,7 +325,7 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:701`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L701)*
+*Defined in [`object-0.37.3/src/endian.rs:701`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L701)*
 
 An unaligned `i16` value with an externally specified endianness of type `E`.
 
@@ -383,7 +383,7 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:728`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L728)*
+*Defined in [`object-0.37.3/src/endian.rs:728`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L728)*
 
 An unaligned `i32` value with an externally specified endianness of type `E`.
 
@@ -441,7 +441,7 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:755`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L755)*
+*Defined in [`object-0.37.3/src/endian.rs:755`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L755)*
 
 An unaligned `i64` value with an externally specified endianness of type `E`.
 
@@ -504,7 +504,7 @@ enum Endianness {
 }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L278-L283)*
+*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L278-L283)*
 
 An endianness that is selectable at run-time.
 
@@ -560,7 +560,7 @@ An endianness that is selectable at run-time.
 trait Endian: Debug + Default + Clone + Copy + PartialEq + Eq + 'static { ... }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L13-L274)*
+*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L13-L274)*
 
 A trait for using an endianness specification.
 
@@ -699,7 +699,7 @@ This trait does not require that the endianness is known at compile time.
 type NativeEndian = LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:371`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L371)*
+*Defined in [`object-0.37.3/src/endian.rs:371`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L371)*
 
 The native endianness for the target platform.
 
@@ -709,7 +709,7 @@ The native endianness for the target platform.
 type U16<E> = U16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:595`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L595)*
+*Defined in [`object-0.37.3/src/endian.rs:595`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L595)*
 
 A `u16` value with an externally specified endianness of type `E`.
 
@@ -719,7 +719,7 @@ A `u16` value with an externally specified endianness of type `E`.
 type U32<E> = U32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:599`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L599)*
+*Defined in [`object-0.37.3/src/endian.rs:599`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L599)*
 
 A `u32` value with an externally specified endianness of type `E`.
 
@@ -729,7 +729,7 @@ A `u32` value with an externally specified endianness of type `E`.
 type U64<E> = U64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:603`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L603)*
+*Defined in [`object-0.37.3/src/endian.rs:603`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L603)*
 
 A `u64` value with an externally specified endianness of type `E`.
 
@@ -739,7 +739,7 @@ A `u64` value with an externally specified endianness of type `E`.
 type I16<E> = I16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:607`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L607)*
+*Defined in [`object-0.37.3/src/endian.rs:607`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L607)*
 
 An `i16` value with an externally specified endianness of type `E`.
 
@@ -749,7 +749,7 @@ An `i16` value with an externally specified endianness of type `E`.
 type I32<E> = I32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:611`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L611)*
+*Defined in [`object-0.37.3/src/endian.rs:611`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L611)*
 
 An `i32` value with an externally specified endianness of type `E`.
 
@@ -759,7 +759,7 @@ An `i32` value with an externally specified endianness of type `E`.
 type I64<E> = I64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:615`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L615)*
+*Defined in [`object-0.37.3/src/endian.rs:615`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L615)*
 
 An `i64` value with an externally specified endianness of type `E`.
 
@@ -767,5 +767,5 @@ An `i64` value with an externally specified endianness of type `E`.
 
 ### `unsafe_impl_endian_pod!`
 
-*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L387-L393)*
+*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../../.source_1765521767/object-0.37.3/src/endian.rs#L387-L393)*
 

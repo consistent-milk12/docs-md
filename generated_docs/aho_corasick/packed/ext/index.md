@@ -18,7 +18,7 @@
 trait Pointer { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/ext.rs:2-18`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/ext.rs#L2-L18)*
+*Defined in [`aho-corasick-1.1.4/src/packed/ext.rs:2-18`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/ext.rs#L2-L18)*
 
 A trait for adding some helper routines to pointers.
 

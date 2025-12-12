@@ -24,7 +24,7 @@ Operating on raw file descriptors is unsafe.
 unsafe fn close(raw_fd: backend::fd::RawFd)
 ```
 
-*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../../.source_1765210505/rustix-1.1.2/src/io/close.rs#L54-L56)*
+*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../../.source_1765521767/rustix-1.1.2/src/io/close.rs#L54-L56)*
 
 `close(raw_fd)`—Closes a `RawFd` directly.
 

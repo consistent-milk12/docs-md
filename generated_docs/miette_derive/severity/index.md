@@ -19,7 +19,7 @@
 struct Severity(syn::Ident);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/severity.rs:15`](../../../.source_1765210505/miette-derive-7.6.0/src/severity.rs#L15)*
+*Defined in [`miette-derive-7.6.0/src/severity.rs:15`](../../../.source_1765521767/miette-derive-7.6.0/src/severity.rs#L15)*
 
 #### Implementations
 
@@ -41,5 +41,5 @@ struct Severity(syn::Ident);
 fn get_severity(input: &str, span: proc_macro2::Span) -> syn::Result<String>
 ```
 
-*Defined in [`miette-derive-7.6.0/src/severity.rs:50-60`](../../../.source_1765210505/miette-derive-7.6.0/src/severity.rs#L50-L60)*
+*Defined in [`miette-derive-7.6.0/src/severity.rs:50-60`](../../../.source_1765521767/miette-derive-7.6.0/src/severity.rs#L50-L60)*
 

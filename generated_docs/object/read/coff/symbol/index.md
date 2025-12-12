@@ -47,7 +47,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -104,7 +104,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
 
 An iterator for symbol entries in a COFF or PE file.
 
@@ -141,7 +141,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
 
 A symbol table in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -182,7 +182,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
 
 An iterator for the symbols in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -226,7 +226,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
 
 A symbol in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile).
 
@@ -292,7 +292,7 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait ImageSymbol: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
 
 A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe::ImageSymbolEx`](../../../pe/index.md).
 
@@ -361,7 +361,7 @@ A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe
 type CoffBigSymbolTable<'data, 'file, R> = CoffSymbolTable<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
 
 A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -371,7 +371,7 @@ A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbolIterator<'data, 'file, R> = CoffSymbolIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
 
 An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -381,7 +381,7 @@ An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbol<'data, 'file, R> = CoffSymbol<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
 
 A symbol in a [`CoffBigFile`](super::CoffBigFile).
 

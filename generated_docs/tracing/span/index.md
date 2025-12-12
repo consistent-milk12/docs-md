@@ -363,7 +363,7 @@ struct Id<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L95-L99)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../../.source_1765521767/addr2line-0.25.1/src/lib.rs#L95-L99)*
 
 *Re-exported from `addr2line`*
 
@@ -374,8 +374,6 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
-
 - <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../dispatcher/index.md#defaultguard)
 
 - <span id="context-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Record`](#record), [`DefaultGuard`](../dispatcher/index.md#defaultguard), [`set_global_default`](../dispatcher/index.md#set-global-default)
@@ -385,6 +383,8 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
 
 - <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md#defaultguard), [`DefaultGuard`](../dispatcher/index.md#defaultguard), [`Record`](#record)
+
+- <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 
 - <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
 
@@ -401,7 +401,7 @@ struct Span {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L349-L359)*
+*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L349-L359)*
 
 A handle representing a span, with the capability to enter the span if it
 exists.
@@ -506,7 +506,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:367-376`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L367-L376)*
+*Defined in [`tracing-0.1.43/src/span.rs:367-376`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L367-L376)*
 
 A handle representing the capacity to enter a span which is known to exist.
 
@@ -567,7 +567,7 @@ struct Entered<'a> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:388-390`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L388-L390)*
+*Defined in [`tracing-0.1.43/src/span.rs:388-390`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L388-L390)*
 
 A guard representing a span which has been entered and is currently
 executing.
@@ -600,7 +600,7 @@ struct EnteredSpan {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:402-412`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L402-L412)*
+*Defined in [`tracing-0.1.43/src/span.rs:402-412`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L402-L412)*
 
 An owned version of [`Entered`](#entered), a guard representing a span which has been
 entered and is currently executing.
@@ -659,7 +659,7 @@ struct PhantomNotSend {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:1594-1596`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L1594-L1596)*
+*Defined in [`tracing-0.1.43/src/span.rs:1594-1596`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L1594-L1596)*
 
 Technically, `EnteredSpan` _can_ implement both `Send` *and*
 `Sync` safely. It doesn't, because it has a `PhantomNotSend` field,
@@ -696,7 +696,7 @@ Thus, this is totally safe.
 trait AsId: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:336-340`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L336-L340)*
+*Defined in [`tracing-0.1.43/src/span.rs:336-340`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L336-L340)*
 
 Trait implemented by types which have a span `Id`.
 
@@ -721,5 +721,5 @@ fn Attributes(self) -> Result<U, <U as TryFrom>::Error>
 const PhantomNotSend: PhantomNotSend;
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:1599`](../../../.source_1765210505/tracing-0.1.43/src/span.rs#L1599)*
+*Defined in [`tracing-0.1.43/src/span.rs:1599`](../../../.source_1765521767/tracing-0.1.43/src/span.rs#L1599)*
 

@@ -21,7 +21,7 @@ enum Either<Left, Right> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/either.rs:5-8`](../../../.source_1765210505/regex-syntax-0.8.8/src/either.rs#L5-L8)*
+*Defined in [`regex-syntax-0.8.8/src/either.rs:5-8`](../../../.source_1765521767/regex-syntax-0.8.8/src/either.rs#L5-L8)*
 
 A simple binary sum type.
 

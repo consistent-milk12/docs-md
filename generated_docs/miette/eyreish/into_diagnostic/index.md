@@ -19,7 +19,7 @@
 struct DiagnosticError(Box<dyn std::error::Error + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
 
 Convenience [`Diagnostic`](../../index.md) that can be used as an "anonymous" wrapper for
 Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
@@ -60,15 +60,15 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 trait IntoDiagnostic<T, E> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../../.source_1765521767/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../../clap_builder/error/index.md).
+[`std::error::Error`](../../../addr2line/index.md) to a [`Result<T, Report>`](../../../cargo_metadata/errors/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
+[`std::error::Error`](../../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -76,7 +76,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) con
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../cargo_docs_md/error/index.md)s
+  Converts [`Result`](../../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../../addr2line/index.md)s
 
 #### Implementors
 

@@ -82,7 +82,7 @@ struct MaybeItemFn {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/lib.rs:638-645`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L638-L645)*
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:638-645`](../../.source_1765521767/tracing-attributes-0.1.31/src/lib.rs#L638-L645)*
 
 This is a more flexible/imprecise `ItemFn` type,
 which's block is just a `TokenStream` (it may contain invalid code).
@@ -118,7 +118,7 @@ struct MaybeItemFnRef<'a, B: ToTokens> {
 }
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/lib.rs:710-717`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L710-L717)*
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:710-717`](../../.source_1765521767/tracing-attributes-0.1.31/src/lib.rs#L710-L717)*
 
 A generic reference type for `MaybeItemFn`,
 that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream`, `Block`).
@@ -141,7 +141,7 @@ that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream
 fn instrument_speculative(args: attr::InstrumentArgs, item: proc_macro::TokenStream) -> proc_macro::TokenStream
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/lib.rs:587-600`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L587-L600)*
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:587-600`](../../.source_1765521767/tracing-attributes-0.1.31/src/lib.rs#L587-L600)*
 
 Instrument the function, without parsing the function body (instead using the raw tokens).
 
@@ -151,7 +151,7 @@ Instrument the function, without parsing the function body (instead using the ra
 fn instrument_precise(args: attr::InstrumentArgs, item: proc_macro::TokenStream) -> Result<proc_macro::TokenStream, syn::Error>
 ```
 
-*Defined in [`tracing-attributes-0.1.31/src/lib.rs:604-633`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L604-L633)*
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:604-633`](../../.source_1765521767/tracing-attributes-0.1.31/src/lib.rs#L604-L633)*
 
 Instrument the function, by fully parsing the function body,
 which allows us to rewrite some statements related to async-like patterns.

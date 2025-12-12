@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`visit_mut`](#visit-mut) | mod | Syntax tree traversal to mutate an exclusive borrow of a syntax tree in place. |
+| [`visit`](#visit) | mod | Syntax tree traversal to walk a shared borrow of a syntax tree. |
 | [`clone`](#clone) | mod |  |
 | [`debug`](#debug) | mod |  |
 | [`eq`](#eq) | mod |  |
@@ -16,7 +16,7 @@
 
 ## Modules
 
-- [`visit_mut`](visit_mut/index.md) — Syntax tree traversal to mutate an exclusive borrow of a syntax tree in
+- [`visit`](visit/index.md) — Syntax tree traversal to walk a shared borrow of a syntax tree.
 - [`clone`](clone/index.md)
 - [`debug`](debug/index.md)
 - [`eq`](eq/index.md)

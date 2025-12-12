@@ -81,7 +81,7 @@ struct Demangle<'a> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:66-70`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L66-L70)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:66-70`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L66-L70)*
 
 Representation of a demangled symbol name.
 
@@ -107,7 +107,7 @@ struct TryDemangleError {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:219-221`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L219-L221)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:219-221`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L219-L221)*
 
 Error returned from the `try_demangle` function below when demangling fails.
 
@@ -127,7 +127,7 @@ Error returned from the `try_demangle` function below when demangling fails.
 struct SizeLimitExhausted;
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:293`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L293)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:293`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L293)*
 
 #### Trait Implementations
 
@@ -150,7 +150,7 @@ struct SizeLimitedFmtAdapter<F> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:295-298`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L295-L298)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:295-298`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L295-L298)*
 
 #### Trait Implementations
 
@@ -169,7 +169,7 @@ enum DemangleStyle<'a> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:72-75`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L72-L75)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:72-75`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L72-L75)*
 
 #### Trait Implementations
 
@@ -185,7 +185,7 @@ enum DemangleStyle<'a> {
 fn demangle(s: &str) -> Demangle<'_>
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:92-146`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L92-L146)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:92-146`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L92-L146)*
 
 De-mangles a Rust symbol into a more readable version
 
@@ -209,7 +209,7 @@ assert_eq!(demangle("foo").to_string(), "foo");
 fn try_demangle(s: &str) -> Result<Demangle<'_>, TryDemangleError>
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:237-244`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L237-L244)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:237-244`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L237-L244)*
 
 The same as `demangle`, except return an `Err` if the string does not appear
 to be a Rust symbol, rather than "demangling" the given string as a no-op.
@@ -232,7 +232,7 @@ assert_eq!(rustc_demangle::demangle(not_a_rust_symbol).as_str(), not_a_rust_symb
 fn is_symbol_like(s: &str) -> bool
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:253-259`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L253-L259)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:253-259`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L253-L259)*
 
 ### `is_ascii_alphanumeric`
 
@@ -240,7 +240,7 @@ fn is_symbol_like(s: &str) -> bool
 fn is_ascii_alphanumeric(c: char) -> bool
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:262-267`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L262-L267)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:262-267`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L262-L267)*
 
 ### `is_ascii_punctuation`
 
@@ -248,7 +248,7 @@ fn is_ascii_alphanumeric(c: char) -> bool
 fn is_ascii_punctuation(c: char) -> bool
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:270-278`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L270-L278)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:270-278`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L270-L278)*
 
 ## Constants
 
@@ -257,5 +257,5 @@ fn is_ascii_punctuation(c: char) -> bool
 const MAX_SIZE: usize = 1_000_000usize;
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/lib.rs:290`](../../.source_1765210505/rustc-demangle-0.1.26/src/lib.rs#L290)*
+*Defined in [`rustc-demangle-0.1.26/src/lib.rs:290`](../../.source_1765521767/rustc-demangle-0.1.26/src/lib.rs#L290)*
 

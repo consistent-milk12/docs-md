@@ -43,7 +43,7 @@ The `Path.path` string is already formatted for display, while
 struct ImplUtils;
 ```
 
-*Defined in `src/generator/impls.rs:103`*
+*Defined in `src/generator/impls.rs:104`*
 
 Utility functions to work with impl's and generics
 
@@ -58,6 +58,8 @@ Utility functions to work with impl's and generics
 - <span id="implutils-is-generic-type"></span>`fn is_generic_type(ty: &Type) -> bool`
 
 - <span id="implutils-generic-args-contain-generic"></span>`fn generic_args_contain_generic(args: &GenericArgs) -> bool`
+
+- <span id="implutils-extract-impl-signature-generics"></span>`fn extract_impl_signature_generics(impl_block: &Impl) -> HashSet<String>`
 
 - <span id="implutils-extract-impl-visible-generics"></span>`fn extract_impl_visible_generics(impl_block: &Impl) -> HashSet<String>`
 
@@ -105,7 +107,7 @@ struct ImplRenderer<'a> {
 }
 ```
 
-*Defined in `src/generator/impls.rs:714-723`*
+*Defined in `src/generator/impls.rs:738-747`*
 
 Renders impl blocks to markdown.
 
@@ -179,7 +181,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 const BLANKET_TRAITS: &[&str];
 ```
 
-*Defined in `src/generator/impls.rs:40-54`*
+*Defined in `src/generator/impls.rs:41-55`*
 
 Blanket trait implementations to filter from output.
 
@@ -191,7 +193,7 @@ without providing useful information. Users who want them can use `--include-bla
 const TRIVIAL_DERIVE_TRAITS: &[&str];
 ```
 
-*Defined in `src/generator/impls.rs:69-85`*
+*Defined in `src/generator/impls.rs:70-86`*
 
 Trivial derive trait implementations that can be collapsed.
 
@@ -212,7 +214,7 @@ The list includes:
 const TRIVIAL_DERIVE_DESCRIPTIONS: &[(&str, &str)];
 ```
 
-*Defined in `src/generator/impls.rs:90-100`*
+*Defined in `src/generator/impls.rs:91-101`*
 
 Short descriptions for trivial derive traits, used in summary tables.
 

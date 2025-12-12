@@ -24,7 +24,7 @@ struct Decompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765521767/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
 
 External iterator for a string decomposition's characters.
 
@@ -91,7 +91,7 @@ enum DecompositionType {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765521767/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
 
 #### Trait Implementations
 

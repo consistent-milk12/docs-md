@@ -24,7 +24,7 @@ struct PubTypesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765521767/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
 
 A single parsed pubtype.
 
@@ -56,7 +56,7 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765521767/gimli-0.32.3/src/read/pubtypes.rs#L50)*
 
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
@@ -87,7 +87,7 @@ found in the `.debug_info` section.
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765521767/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 

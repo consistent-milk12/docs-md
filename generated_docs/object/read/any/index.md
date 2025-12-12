@@ -87,7 +87,7 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L532-L534)*
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L532-L534)*
 
 An iterator for the loadable segments in a [`File`](../index.md).
 
@@ -119,7 +119,7 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L574-L576)*
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](../index.md).
 
@@ -161,7 +161,7 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L665-L667)*
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L665-L667)*
 
 An iterator for the sections in a [`File`](../index.md).
 
@@ -193,7 +193,7 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L708-L710)*
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](../index.md).
 
@@ -253,7 +253,7 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L843-L845)*
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L843-L845)*
 
 An iterator for the COMDAT section groups in a [`File`](../index.md).
 
@@ -285,7 +285,7 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L885-L887)*
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](../index.md).
 
@@ -321,7 +321,7 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L959-L961)*
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L959-L961)*
 
 An iterator for the sections in a [`Comdat`](../index.md).
 
@@ -355,7 +355,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1001-L1006)*
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1001-L1006)*
 
 A symbol table in a [`File`](../index.md).
 
@@ -389,7 +389,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1085-L1090)*
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1085-L1090)*
 
 An iterator for the symbols in a [`SymbolTable`](../index.md).
 
@@ -423,7 +423,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1165-L1170)*
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](../index.md).
 
@@ -479,7 +479,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1301-L1306)*
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1301-L1306)*
 
 An iterator for the dynamic relocation entries in a [`File`](../index.md).
 
@@ -511,7 +511,7 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1338-L1340)*
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1338-L1340)*
 
 An iterator for the relocation entries in a [`Section`](../index.md).
 
@@ -554,7 +554,7 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L213-L236)*
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L213-L236)*
 
 An object file that can be any supported file format.
 
@@ -673,7 +673,7 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L537-L560)*
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L537-L560)*
 
 #### Trait Implementations
 
@@ -698,7 +698,7 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L579-L602)*
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -723,7 +723,7 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L671-L694)*
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L671-L694)*
 
 #### Trait Implementations
 
@@ -748,7 +748,7 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L712-L735)*
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L712-L735)*
 
 ### `ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -767,7 +767,7 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L848-L871)*
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -792,7 +792,7 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L889-L912)*
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L889-L912)*
 
 ### `ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -811,7 +811,7 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L964-L987)*
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -838,7 +838,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1009-L1055)*
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1009-L1055)*
 
 #### Trait Implementations
 
@@ -865,7 +865,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1093-L1149)*
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -892,7 +892,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1172-L1218)*
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1172-L1218)*
 
 ### `DynamicRelocationIteratorInternal<'data, 'file, R>`
 
@@ -906,7 +906,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1309-L1320)*
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -931,7 +931,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1343-L1366)*
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L1343-L1366)*
 
 #### Trait Implementations
 
@@ -943,7 +943,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 ### `with_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L30-L57)*
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L30-L57)*
 
 Evaluate an expression on the contents of a file format enum.
 
@@ -951,27 +951,27 @@ This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L59-L86)*
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L59-L86)*
 
 ### `map_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L89-L116)*
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L119-L146)*
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L119-L146)*
 
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L148-L175)*
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L148-L175)*
 
 ### `next_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L178-L205)*
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../../.source_1765521767/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

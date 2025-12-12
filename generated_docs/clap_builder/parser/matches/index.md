@@ -51,7 +51,7 @@ struct IdsRef<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
 
 Iterate over `Arg` and `ArgGroup` [`Id`](../../util/id/index.md)s via `ArgMatches::ids`.
 
@@ -116,7 +116,7 @@ struct RawValues<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
 
 Iterate over raw argument values via `ArgMatches::get_raw`.
 
@@ -190,7 +190,7 @@ struct Values<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
 
 Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
@@ -258,7 +258,7 @@ struct ValuesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
 
 Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
@@ -329,7 +329,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -443,7 +443,7 @@ struct Indices<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
 
 Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
@@ -515,7 +515,7 @@ enum ValueSource {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
 
 Origin of the argument's value
 

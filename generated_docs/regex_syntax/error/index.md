@@ -26,7 +26,7 @@ struct Formatter<'e, E> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:55-65`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L55-L65)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:55-65`](../../../.source_1765521767/regex-syntax-0.8.8/src/error.rs#L55-L65)*
 
 A helper type for formatting nice error messages.
 
@@ -78,7 +78,7 @@ struct Spans<'p> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:134-152`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L134-L152)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:134-152`](../../../.source_1765521767/regex-syntax-0.8.8/src/error.rs#L134-L152)*
 
 This type represents an arbitrary number of error spans in a way that makes
 it convenient to notate the regex pattern. ("Notate" means "point out
@@ -141,7 +141,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L16-L23)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../../.source_1765521767/regex-syntax-0.8.8/src/error.rs#L16-L23)*
 
 This error type encompasses any error that can be returned by this crate.
 
@@ -196,5 +196,5 @@ new variant is not considered a breaking change.
 fn repeat_char(c: char, count: usize) -> alloc::string::String
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:268-270`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L268-L270)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:268-270`](../../../.source_1765521767/regex-syntax-0.8.8/src/error.rs#L268-L270)*
 

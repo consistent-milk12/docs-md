@@ -24,7 +24,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
 
 Puts the task into the Rayon thread pool's job queue in the "static"
 or "global" scope. Just like a standard thread, this task is not
@@ -82,7 +82,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:69-82`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L69-L82)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:69-82`](../../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L69-L82)*
 
 Spawns an asynchronous job in `registry.`
 
@@ -96,7 +96,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:84-100`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L84-L100)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:84-100`](../../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L84-L100)*
 
 ### `spawn_fifo`
 
@@ -106,7 +106,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
 
 Fires off a task into the Rayon thread pool in the "static" or
 "global" scope.  Just like a standard thread, this task is not
@@ -142,7 +142,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:141-160`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L141-L160)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:141-160`](../../../.source_1765521767/rayon-core-1.13.0/src/spawn/mod.rs#L141-L160)*
 
 Spawns an asynchronous FIFO job in `registry.`
 

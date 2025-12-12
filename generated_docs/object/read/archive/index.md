@@ -78,7 +78,7 @@ struct ArchiveFile<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:66-73`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L66-L73)*
+*Defined in [`object-0.37.3/src/read/archive.rs:66-73`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L66-L73)*
 
 A partially parsed archive file.
 
@@ -121,7 +121,7 @@ struct ArchiveMemberIterator<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:323-328`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L323-L328)*
+*Defined in [`object-0.37.3/src/read/archive.rs:323-328`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L323-L328)*
 
 An iterator over the members of an archive.
 
@@ -156,7 +156,7 @@ struct ArchiveMember<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:374-380`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L374-L380)*
+*Defined in [`object-0.37.3/src/read/archive.rs:374-380`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L374-L380)*
 
 A partially parsed archive member.
 
@@ -202,7 +202,7 @@ A partially parsed archive member.
 struct ArchiveOffset(u64);
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:598`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L598)*
+*Defined in [`object-0.37.3/src/read/archive.rs:598`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L598)*
 
 An offset of a member in an archive.
 
@@ -224,7 +224,7 @@ An offset of a member in an archive.
 struct ArchiveSymbolIterator<'data>(SymbolIteratorInternal<'data>);
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:602`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L602)*
+*Defined in [`object-0.37.3/src/read/archive.rs:602`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L602)*
 
 An iterator over the symbols in the archive symbol table.
 
@@ -267,7 +267,7 @@ struct ArchiveSymbol<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:825-828`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L825-L828)*
+*Defined in [`object-0.37.3/src/read/archive.rs:825-828`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L825-L828)*
 
 A symbol in the archive symbol table.
 
@@ -307,7 +307,7 @@ enum ArchiveKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:33-50`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L33-L50)*
+*Defined in [`object-0.37.3/src/read/archive.rs:33-50`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L33-L50)*
 
 The kind of archive format.
 
@@ -381,7 +381,7 @@ enum Members<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:54-62`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L54-L62)*
+*Defined in [`object-0.37.3/src/read/archive.rs:54-62`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L54-L62)*
 
 The list of members in the archive.
 
@@ -406,7 +406,7 @@ enum MemberHeader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:365-370`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L365-L370)*
+*Defined in [`object-0.37.3/src/read/archive.rs:365-370`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L365-L370)*
 
 An archive member header.
 
@@ -461,7 +461,7 @@ enum SymbolIteratorInternal<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:605-665`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L605-L665)*
+*Defined in [`object-0.37.3/src/read/archive.rs:605-665`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L605-L665)*
 
 #### Variants
 
@@ -538,7 +538,7 @@ enum SymbolIteratorInternal<'data> {
 fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:845-861`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L845-L861)*
+*Defined in [`object-0.37.3/src/read/archive.rs:845-861`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L845-L861)*
 
 ### `parse_sysv_extended_name`
 
@@ -546,7 +546,7 @@ fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
 fn parse_sysv_extended_name<'data>(digits: &[u8], names: &'data [u8]) -> Result<&'data [u8], ()>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:865-879`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L865-L879)*
+*Defined in [`object-0.37.3/src/read/archive.rs:865-879`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L865-L879)*
 
 Digits are a decimal offset into the extended name table.
 Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
@@ -557,7 +557,7 @@ Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
 fn parse_bsd_extended_name<'data, R: ReadRef<'data>>(digits: &[u8], data: R, offset: &mut u64, size: &mut u64) -> Result<&'data [u8], ()>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:884-898`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L884-L898)*
+*Defined in [`object-0.37.3/src/read/archive.rs:884-898`](../../../../.source_1765521767/object-0.37.3/src/read/archive.rs#L884-L898)*
 
 Digits are a decimal length of the extended name, which is contained
 in `data` at `offset`.

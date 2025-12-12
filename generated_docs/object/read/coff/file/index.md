@@ -26,7 +26,7 @@ struct CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L20-L24)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L20-L24)*
 
 The common parts of `PeFile` and `CoffFile`.
 
@@ -46,7 +46,7 @@ struct CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L41-L46)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L41-L46)*
 
 A COFF object file.
 
@@ -147,7 +147,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait CoffHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L293-L338)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L293-L338)*
 
 A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../../pe/index.md).
 
@@ -200,7 +200,7 @@ A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and 
 fn anon_object_class_id<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<pe::ClsId>
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L284-L289)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L284-L289)*
 
 Read the `class_id` field from a [`pe::AnonObjectHeader`](../../../pe/index.md).
 
@@ -214,7 +214,7 @@ This can be used to determine the format of the header.
 type CoffBigFile<'data, R> = CoffFile<'data, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L32)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L32)*
 
 A COFF bigobj object file with 32-bit section numbers.
 

@@ -57,7 +57,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -171,7 +171,7 @@ struct SubCommand {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1357-1360`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1357-L1360)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1357-1360`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1357-L1360)*
 
 #### Trait Implementations
 
@@ -199,7 +199,7 @@ struct IdsRef<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
 
 Iterate over `Arg` and `ArgGroup` [`Id`](../../../util/id/index.md)s via `ArgMatches::ids`.
 
@@ -264,7 +264,7 @@ struct Values<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
 
 Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
@@ -332,7 +332,7 @@ struct ValuesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
 
 Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
@@ -401,7 +401,7 @@ struct RawValues<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
 
 Iterate over raw argument values via `ArgMatches::get_raw`.
 
@@ -474,7 +474,7 @@ struct Occurrences<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1621-1624`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1621-L1624)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1621-1624`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1621-L1624)*
 
 #### Trait Implementations
 
@@ -520,7 +520,7 @@ struct OccurrenceValues<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1656-1659`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1656-L1659)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1656-1659`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1656-L1659)*
 
 #### Trait Implementations
 
@@ -562,7 +562,7 @@ struct OccurrencesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1682-1685`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1682-L1685)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1682-1685`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1682-L1685)*
 
 #### Trait Implementations
 
@@ -608,7 +608,7 @@ struct OccurrenceValuesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1722-1725`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1722-L1725)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1722-1725`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1722-L1725)*
 
 #### Trait Implementations
 
@@ -650,7 +650,7 @@ struct RawOccurrences<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1754-1757`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1754-L1757)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1754-1757`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1754-L1757)*
 
 #### Trait Implementations
 
@@ -696,7 +696,7 @@ struct RawOccurrenceValues<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1789-1792`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1789-L1792)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1789-1792`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1789-L1792)*
 
 #### Trait Implementations
 
@@ -739,7 +739,7 @@ struct Indices<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
 
 Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
@@ -807,7 +807,7 @@ assert_eq!(indices.next(), None);
 fn unwrap_downcast_ref<T: Any + Clone + Send + Sync + 'static>(value: &self::any_value::AnyValue) -> &T
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1889-1891`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1889-L1891)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1889-1891`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1889-L1891)*
 
 ### `unwrap_downcast_into`
 
@@ -815,5 +815,5 @@ fn unwrap_downcast_ref<T: Any + Clone + Send + Sync + 'static>(value: &self::any
 fn unwrap_downcast_into<T: Any + Clone + Send + Sync + 'static>(value: self::any_value::AnyValue) -> T
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1894-1896`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1894-L1896)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1894-1896`](../../../../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1894-L1896)*
 

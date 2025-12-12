@@ -41,7 +41,7 @@ struct DFA {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765210505/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765521767/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
 
 A DFA implementation of Aho-Corasick.
 
@@ -234,7 +234,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:389-393`](../../../.source_1765210505/aho-corasick-1.1.4/src/dfa.rs#L389-L393)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:389-393`](../../../.source_1765521767/aho-corasick-1.1.4/src/dfa.rs#L389-L393)*
 
 A builder for configuring an Aho-Corasick DFA.
 
@@ -286,7 +286,7 @@ their behavior is identical.
 fn sparse_iter<F: FnMut(u8, u8, crate::util::primitives::StateID)>(nnfa: &noncontiguous::NFA, oldsid: crate::util::primitives::StateID, classes: &crate::util::alphabet::ByteClasses, f: F)
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:801-835`](../../../.source_1765210505/aho-corasick-1.1.4/src/dfa.rs#L801-L835)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:801-835`](../../../.source_1765521767/aho-corasick-1.1.4/src/dfa.rs#L801-L835)*
 
 Iterate over all possible equivalence class transitions in this state.
 The closure is called for all transitions with a distinct equivalence

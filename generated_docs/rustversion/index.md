@@ -227,5 +227,5 @@ extern crate alloc;
 const RUSTVERSION: crate::version::Version;
 ```
 
-*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765210505/rustversion-1.0.22/src/lib.rs#L217)*
+*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765521767/rustversion-1.0.22/src/lib.rs#L217)*
 

@@ -50,7 +50,7 @@ struct Metadata<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
 
 Metadata describing a [`span`](../span/index.md) or [`event`](../event/index.md).
 
@@ -181,7 +181,7 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L90)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L90)*
 
 Indicates whether the callsite is a span or event.
 
@@ -231,7 +231,7 @@ Indicates whether the callsite is a span or event.
 struct Level(LevelInner);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L221)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -435,7 +435,7 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L239)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L239)*
 
 A filter comparable to a verbosity [`Level`](#level).
 
@@ -545,7 +545,7 @@ and `LevelFilter`s interact.
 struct ParseLevelFilterError(());
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:243`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L243)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:243`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L243)*
 
 Indicates that a string could not be parsed to a valid level.
 
@@ -577,7 +577,7 @@ struct ParseLevelError {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:805-807`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L805-L807)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:805-807`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L805-L807)*
 
 Returned if parsing a `Level` fails.
 
@@ -611,7 +611,7 @@ enum LevelInner {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:579-600`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L579-L600)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:579-600`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L579-L600)*
 
 #### Variants
 
@@ -677,5 +677,5 @@ enum LevelInner {
 fn filter_as_usize(x: &Option<Level>) -> usize
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:972-977`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L972-L977)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:972-977`](../../../.source_1765521767/tracing-core-0.1.35/src/metadata.rs#L972-L977)*
 

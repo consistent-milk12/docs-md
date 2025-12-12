@@ -37,15 +37,15 @@ instructions.
 
 ### `syscall!`
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:75-151`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L75-L151)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:75-151`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L75-L151)*
 
 ### `syscall_always_asm!`
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:156-230`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L156-L230)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:156-230`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L156-L230)*
 
 ### `syscall_readonly!`
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:234-310`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L234-L310)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/arch/mod.rs:234-310`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/arch/mod.rs#L234-L310)*
 
 Like `syscall`, but adds the `readonly` attribute to the inline asm, which
 indicates that the syscall does not mutate any memory.

@@ -21,7 +21,7 @@ Platform-agnostic support types.
 struct Padding<T: Copy>(core::mem::MaybeUninit<T>);
 ```
 
-*Defined in [`libc-0.2.178/src/types.rs:17`](../../../.source_1765210505/libc-0.2.178/src/types.rs#L17)*
+*Defined in [`libc-0.2.178/src/types.rs:17`](../../../.source_1765521767/libc-0.2.178/src/types.rs#L17)*
 
 A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding
 while providing `Default`.
@@ -50,5 +50,5 @@ while providing `Default`.
 type CEnumRepr = crate::c_uint;
 ```
 
-*Defined in [`libc-0.2.178/src/types.rs:59`](../../../.source_1765210505/libc-0.2.178/src/types.rs#L59)*
+*Defined in [`libc-0.2.178/src/types.rs:59`](../../../.source_1765521767/libc-0.2.178/src/types.rs#L59)*
 

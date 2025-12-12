@@ -48,7 +48,7 @@ struct ProgressDrawTarget {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
 
 Target for draw operations
 
@@ -111,7 +111,7 @@ struct DrawStateWrapper<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:380-383`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L380-L383)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:380-383`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L380-L383)*
 
 #### Implementations
 
@@ -149,7 +149,7 @@ struct RateLimiter {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:435-439`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L435-L439)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:435-439`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L435-L439)*
 
 #### Implementations
 
@@ -173,7 +173,7 @@ struct DrawState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:488-495`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L488-L495)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:488-495`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L488-L495)*
 
 The drawn state of an element.
 
@@ -219,7 +219,7 @@ The drawn state of an element.
 struct VisualLines(usize);
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:600`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L600)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:600`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L600)*
 
 #### Implementations
 
@@ -303,7 +303,7 @@ enum TargetKind {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:248-266`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L248-L266)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:248-266`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L248-L266)*
 
 #### Implementations
 
@@ -338,7 +338,7 @@ enum Drawable<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:288-305`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L288-L305)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:288-305`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L288-L305)*
 
 #### Implementations
 
@@ -361,7 +361,7 @@ enum LineAdjust {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:373-378`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L373-L378)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:373-378`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L373-L378)*
 
 #### Variants
 
@@ -383,7 +383,7 @@ enum LineType {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:653-657`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L653-L657)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:653-657`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L653-L657)*
 
 #### Implementations
 
@@ -417,7 +417,7 @@ enum LineType {
 fn visual_line_count(lines: &[LineType], width: usize) -> VisualLines
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:646-650`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L646-L650)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:646-650`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L646-L650)*
 
 Calculate the number of visual lines in the given lines, after
 accounting for line wrapping and non-printable characters.
@@ -429,5 +429,5 @@ accounting for line wrapping and non-printable characters.
 const MAX_BURST: u8 = 20u8;
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:484`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L484)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:484`](../../../.source_1765521767/indicatif-0.18.3/src/draw_target.rs#L484)*
 

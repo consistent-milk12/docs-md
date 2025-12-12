@@ -21,7 +21,7 @@ Extensions to the parsing API with niche applicability.
 trait Speculative { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/discouraged.rs:13-165`](../../../../.source_1765210505/syn-2.0.111/src/discouraged.rs#L13-L165)*
+*Defined in [`syn-2.0.111/src/discouraged.rs:13-165`](../../../../.source_1765521767/syn-2.0.111/src/discouraged.rs#L13-L165)*
 
 Extensions to the `ParseStream` API to support speculative parsing.
 
@@ -41,7 +41,7 @@ Extensions to the `ParseStream` API to support speculative parsing.
 trait AnyDelimiter { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/discouraged.rs:205-209`](../../../../.source_1765210505/syn-2.0.111/src/discouraged.rs#L205-L209)*
+*Defined in [`syn-2.0.111/src/discouraged.rs:205-209`](../../../../.source_1765521767/syn-2.0.111/src/discouraged.rs#L205-L209)*
 
 Extensions to the `ParseStream` API to support manipulating invisible
 delimiters the same as if they were visible.

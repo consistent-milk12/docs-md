@@ -14,6 +14,7 @@ generation capabilities programmatically.
   - [`linker`](#linker)
   - [`multi_crate`](#multi-crate)
   - [`parser`](#parser)
+  - [`source`](#source)
   - [`types`](#types)
   - [`utils`](#utils)
 - [Structs](#structs)
@@ -32,6 +33,7 @@ generation capabilities programmatically.
   - [`UnifiedLinkRegistry`](#unifiedlinkregistry)
   - [`Cli`](#cli)
   - [`DocsArgs`](#docsargs)
+  - [`CollectSourcesArgs`](#collectsourcesargs)
   - [`GenerateArgs`](#generateargs)
 - [Enums](#enums)
   - [`OutputFormat`](#outputformat)
@@ -50,6 +52,7 @@ generation capabilities programmatically.
 | [`linker`](#linker) | mod | Cross-reference linking for markdown documentation. |
 | [`multi_crate`](#multi-crate) | mod | Multi-crate documentation generation. |
 | [`parser`](#parser) | mod | Rustdoc JSON parsing module. |
+| [`source`](#source) | mod | Source code parsing for enhanced documentation. |
 | [`types`](#types) | mod | Type rendering utilities for converting rustdoc types to string representations. |
 | [`utils`](#utils) | mod | Shared utility functions used across the documentation generator. |
 | [`Generator`](#generator) | struct |  |
@@ -67,6 +70,7 @@ generation capabilities programmatically.
 | [`UnifiedLinkRegistry`](#unifiedlinkregistry) | struct |  |
 | [`Cli`](#cli) | struct | Top-level CLI for docs-md. |
 | [`DocsArgs`](#docsargs) | struct | Arguments for the `docs` subcommand (build + generate). |
+| [`CollectSourcesArgs`](#collectsourcesargs) | struct | Arguments for the `collect-sources` subcommand. |
 | [`GenerateArgs`](#generateargs) | struct | Command-line arguments for direct generation (no subcommand). |
 | [`OutputFormat`](#outputformat) | enum | Output format for the generated markdown documentation. |
 | [`Cargo`](#cargo) | enum | Cargo wrapper for subcommand invocation. |
@@ -81,6 +85,7 @@ generation capabilities programmatically.
 - [`linker`](linker/index.md) — Cross-reference linking for markdown documentation.
 - [`multi_crate`](multi_crate/index.md) — Multi-crate documentation generation.
 - [`parser`](parser/index.md) — Rustdoc JSON parsing module.
+- [`source`](source/index.md) — Source code parsing for enhanced documentation.
 - [`types`](types/index.md) — Type rendering utilities for converting rustdoc types to string representations.
 - [`utils`](utils/index.md) — Shared utility functions used across the documentation generator.
 
@@ -407,7 +412,7 @@ Requires the `source-parsing` feature to have any effect.
 struct AnchorUtils;
 ```
 
-*Defined in `src/linker.rs:53`*
+*Defined in `src/linker.rs:68`*
 
 Utilify functions to handle anchors
 
@@ -416,6 +421,8 @@ Utilify functions to handle anchors
 - <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](linker/index.md#associtemkind)
 
 - <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
+
+- <span id="anchorutils-impl-item-anchor"></span>`fn impl_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind, impl_ctx: ImplContext<'_>) -> String` — [`AssocItemKind`](linker/index.md#associtemkind), [`ImplContext`](linker/index.md#implcontext)
 
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
@@ -458,7 +465,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:276-288`*
+*Defined in `src/linker.rs:346-358`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -729,7 +736,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:416-422`*
+*Defined in `src/multi_crate/generator.rs:418-424`*
 
 Generator for multi-crate documentation.
 
@@ -1327,6 +1334,97 @@ Arguments for the `docs` subcommand (build + generate).
 
 ##### `impl WithSubscriber for DocsArgs`
 
+### `CollectSourcesArgs`
+
+```rust
+struct CollectSourcesArgs {
+    pub output: Option<std::path::PathBuf>,
+    pub include_dev: bool,
+    pub dry_run: bool,
+    pub manifest_path: Option<std::path::PathBuf>,
+}
+```
+
+*Defined in `src/lib.rs:178-198`*
+
+Arguments for the `collect-sources` subcommand.
+
+#### Fields
+
+- **`output`**: `Option<std::path::PathBuf>`
+
+  Output directory for collected sources.
+  
+  If not specified, creates `.source_{timestamp}/` in the workspace root.
+
+- **`include_dev`**: `bool`
+
+  Include dev-dependencies in collection.
+  
+  By default, only regular dependencies are collected.
+
+- **`dry_run`**: `bool`
+
+  Dry run - show what would be collected without copying.
+
+- **`manifest_path`**: `Option<std::path::PathBuf>`
+
+  Path to Cargo.toml (defaults to current directory).
+
+#### Trait Implementations
+
+##### `impl Args for CollectSourcesArgs`
+
+- <span id="collectsourcesargs-group-id"></span>`fn group_id() -> Option<clap::Id>`
+
+- <span id="collectsourcesargs-augment-args"></span>`fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- <span id="collectsourcesargs-augment-args-for-update"></span>`fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory for CollectSourcesArgs`
+
+- <span id="collectsourcesargs-command"></span>`fn command<'b>() -> clap::Command`
+
+- <span id="collectsourcesargs-command-for-update"></span>`fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for CollectSourcesArgs`
+
+- <span id="collectsourcesargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl FromArgMatches for CollectSourcesArgs`
+
+- <span id="collectsourcesargs-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- <span id="collectsourcesargs-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- <span id="collectsourcesargs-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- <span id="collectsourcesargs-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl Instrument for CollectSourcesArgs`
+
+##### `impl IntoEither for CollectSourcesArgs`
+
+##### `impl OwoColorize for CollectSourcesArgs`
+
+##### `impl Parser for CollectSourcesArgs`
+
+##### `impl Pointable for CollectSourcesArgs`
+
+- <span id="collectsourcesargs-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="collectsourcesargs-pointable-type-init"></span>`type Init = T`
+
+- <span id="collectsourcesargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="collectsourcesargs-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="collectsourcesargs-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="collectsourcesargs-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for CollectSourcesArgs`
+
 ### `GenerateArgs`
 
 ```rust
@@ -1646,6 +1744,7 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 ```rust
 enum Command {
     Docs(DocsArgs),
+    CollectSources(CollectSourcesArgs),
 }
 ```
 
@@ -1663,6 +1762,15 @@ Available subcommands
   markdown documentation from the result. Requires nightly toolchain.
   
   Example: `cargo docs-md docs --primary-crate my_crate`
+
+- **`CollectSources`**
+
+  Collect dependency sources to a local directory.
+  
+  Copies source code from `~/.cargo/registry/src/` into a local
+  `.source_{timestamp}/` directory for parsing and documentation.
+  
+  Example: `cargo docs-md collect-sources --include-dev`
 
 #### Trait Implementations
 

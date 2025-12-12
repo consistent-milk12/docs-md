@@ -168,7 +168,7 @@ struct CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L20-L24)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L20-L24)*
 
 The common parts of `PeFile` and `CoffFile`.
 
@@ -188,7 +188,7 @@ struct CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L41-L46)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L41-L46)*
 
 A COFF object file.
 
@@ -289,7 +289,7 @@ struct SectionTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L19-L21)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L19-L21)*
 
 The table of section headers in a COFF or PE file.
 
@@ -339,7 +339,7 @@ struct CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:121-129`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L121-L129)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:121-129`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L121-L129)*
 
 An iterator for the loadable sections in a [`CoffFile`](#cofffile).
 
@@ -372,7 +372,7 @@ struct CoffSegment<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:154-162`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L154-L162)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:154-162`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L154-L162)*
 
 A loadable section in a [`CoffFile`](#cofffile).
 
@@ -423,7 +423,7 @@ struct CoffSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:253-261`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L253-L261)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:253-261`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L253-L261)*
 
 An iterator for the sections in a [`CoffFile`](#cofffile).
 
@@ -457,7 +457,7 @@ struct CoffSection<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:287-296`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L287-L296)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:287-296`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L287-L296)*
 
 A section in a [`CoffFile`](#cofffile).
 
@@ -531,7 +531,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -588,7 +588,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
 
 An iterator for symbol entries in a COFF or PE file.
 
@@ -625,7 +625,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
 
 A symbol table in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -666,7 +666,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
 
 An iterator for the symbols in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -710,7 +710,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
 
 A symbol in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile).
 
@@ -777,7 +777,7 @@ struct CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../.source_1765521767/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
 
 An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
@@ -810,7 +810,7 @@ struct CoffComdatIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:17-25`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L17-L25)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:17-25`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L17-L25)*
 
 An iterator for the COMDAT section groups in a [`CoffFile`](#cofffile).
 
@@ -849,7 +849,7 @@ struct CoffComdat<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:63-73`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L63-L73)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:63-73`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L63-L73)*
 
 A COMDAT section group in a [`CoffFile`](#cofffile).
 
@@ -891,7 +891,7 @@ struct CoffComdatSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHead
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:172-181`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L172-L181)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:172-181`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L172-L181)*
 
 An iterator for the sections in a COMDAT section group in a [`CoffFile`](#cofffile).
 
@@ -927,7 +927,7 @@ struct ImportFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L20-L26)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../.source_1765521767/object-0.37.3/src/read/coff/import.rs#L20-L26)*
 
 A Windows short form description of a symbol to import.
 
@@ -973,7 +973,7 @@ struct ImportObjectData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../.source_1765521767/object-0.37.3/src/read/coff/import.rs#L200-L204)*
 
 The data following [`pe::ImportObjectHeader`](../../pe/index.md).
 
@@ -1006,7 +1006,7 @@ enum ImportName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L114-L119)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../.source_1765521767/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -1050,7 +1050,7 @@ enum ImportType {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L123-L130)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../.source_1765521767/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 
@@ -1100,7 +1100,7 @@ The kind of import symbol.
 trait CoffHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L293-L338)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L293-L338)*
 
 A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../pe/index.md).
 
@@ -1151,7 +1151,7 @@ A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`p
 trait ImageSymbol: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
 
 A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::ImageSymbolEx`](../../pe/index.md).
 
@@ -1220,7 +1220,7 @@ A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::I
 fn anon_object_class_id<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<pe::ClsId>
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L284-L289)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L284-L289)*
 
 Read the `class_id` field from a [`pe::AnonObjectHeader`](../../pe/index.md).
 
@@ -1234,7 +1234,7 @@ This can be used to determine the format of the header.
 type CoffBigFile<'data, R> = CoffFile<'data, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L32)*
+*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../.source_1765521767/object-0.37.3/src/read/coff/file.rs#L32)*
 
 A COFF bigobj object file with 32-bit section numbers.
 
@@ -1249,7 +1249,7 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 type CoffBigSegmentIterator<'data, 'file, R> = CoffSegmentIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:116-117`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L116-L117)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:116-117`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L116-L117)*
 
 An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1259,7 +1259,7 @@ An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSegment<'data, 'file, R> = CoffSegment<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:147-148`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L147-L148)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:147-148`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L147-L148)*
 
 A loadable section in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1271,7 +1271,7 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 type CoffBigSectionIterator<'data, 'file, R> = CoffSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:248-249`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L248-L249)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:248-249`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L248-L249)*
 
 An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1281,7 +1281,7 @@ An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSection<'data, 'file, R> = CoffSection<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:280-281`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L280-L281)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:280-281`](../../../../.source_1765521767/object-0.37.3/src/read/coff/section.rs#L280-L281)*
 
 A section in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1293,7 +1293,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 type CoffBigSymbolTable<'data, 'file, R> = CoffSymbolTable<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
 
 A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1303,7 +1303,7 @@ A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbolIterator<'data, 'file, R> = CoffSymbolIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
 
 An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1313,7 +1313,7 @@ An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbol<'data, 'file, R> = CoffSymbol<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../.source_1765521767/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
 
 A symbol in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1325,7 +1325,7 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 type CoffBigRelocationIterator<'data, 'file, R> = CoffRelocationIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../.source_1765521767/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
 
 An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 
@@ -1335,7 +1335,7 @@ An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 type CoffBigComdatIterator<'data, 'file, R> = CoffComdatIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:12-13`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:12-13`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L12-L13)*
 
 An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1345,7 +1345,7 @@ An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFil
 type CoffBigComdat<'data, 'file, R> = CoffComdat<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:56-57`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L56-L57)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:56-57`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L56-L57)*
 
 A COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1357,7 +1357,7 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 type CoffBigComdatSectionIterator<'data, 'file, R> = CoffComdatSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/comdat.rs:167-168`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L167-L168)*
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:167-168`](../../../../.source_1765521767/object-0.37.3/src/read/coff/comdat.rs#L167-L168)*
 
 An iterator for the sections in a COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 

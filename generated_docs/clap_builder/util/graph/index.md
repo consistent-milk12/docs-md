@@ -22,7 +22,7 @@ struct Child<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/graph.rs:2-5`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/graph.rs#L2-L5)*
+*Defined in [`clap_builder-4.5.53/src/util/graph.rs:2-5`](../../../../.source_1765521767/clap_builder-4.5.53/src/util/graph.rs#L2-L5)*
 
 #### Implementations
 
@@ -40,7 +40,7 @@ struct Child<T> {
 struct ChildGraph<T>(Vec<Child<T>>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/graph.rs:17`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/graph.rs#L17)*
+*Defined in [`clap_builder-4.5.53/src/util/graph.rs:17`](../../../../.source_1765521767/clap_builder-4.5.53/src/util/graph.rs#L17)*
 
 #### Implementations
 

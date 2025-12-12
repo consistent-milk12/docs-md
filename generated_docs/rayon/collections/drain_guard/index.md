@@ -21,7 +21,7 @@ struct DrainGuard<'a, T, C: From<Vec<T>>> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/mod.rs:46-49`](../../../../.source_1765210505/rayon-1.11.0/src/collections/mod.rs#L46-L49)*
+*Defined in [`rayon-1.11.0/src/collections/mod.rs:46-49`](../../../../.source_1765521767/rayon-1.11.0/src/collections/mod.rs#L46-L49)*
 
 A proxy for draining a collection by converting to a `Vec` and back.
 

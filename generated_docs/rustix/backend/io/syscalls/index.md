@@ -65,7 +65,7 @@ See the `rustix::backend` module documentation for details.
 unsafe fn read(fd: crate::fd::BorrowedFd<'_>, buf: (*mut u8, usize)) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:35-37`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L35-L37)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:35-37`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L35-L37)*
 
 ### `pread`
 
@@ -73,7 +73,7 @@ unsafe fn read(fd: crate::fd::BorrowedFd<'_>, buf: (*mut u8, usize)) -> io::Resu
 unsafe fn pread(fd: crate::fd::BorrowedFd<'_>, buf: (*mut u8, usize), pos: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:40-93`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L40-L93)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:40-93`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L40-L93)*
 
 ### `readv`
 
@@ -81,7 +81,7 @@ unsafe fn pread(fd: crate::fd::BorrowedFd<'_>, buf: (*mut u8, usize), pos: u64) 
 fn readv(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:96-100`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L96-L100)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:96-100`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L96-L100)*
 
 ### `preadv`
 
@@ -89,7 +89,7 @@ fn readv(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>]) 
 fn preadv(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>], pos: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:103-122`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L103-L122)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:103-122`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L103-L122)*
 
 ### `preadv2`
 
@@ -97,7 +97,7 @@ fn preadv(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>],
 fn preadv2(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>], pos: u64, flags: crate::io::ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:125-146`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L125-L146)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:125-146`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L125-L146)*
 
 ### `write`
 
@@ -105,7 +105,7 @@ fn preadv2(fd: crate::fd::BorrowedFd<'_>, bufs: &mut [crate::io::IoSliceMut<'_>]
 fn write(fd: crate::fd::BorrowedFd<'_>, buf: &[u8]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:149-153`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L149-L153)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:149-153`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L149-L153)*
 
 ### `pwrite`
 
@@ -113,7 +113,7 @@ fn write(fd: crate::fd::BorrowedFd<'_>, buf: &[u8]) -> io::Result<usize>
 fn pwrite(fd: crate::fd::BorrowedFd<'_>, buf: &[u8], pos: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:156-209`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L156-L209)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:156-209`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L156-L209)*
 
 ### `writev`
 
@@ -121,7 +121,7 @@ fn pwrite(fd: crate::fd::BorrowedFd<'_>, buf: &[u8], pos: u64) -> io::Result<usi
 fn writev(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:212-216`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L212-L216)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:212-216`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L212-L216)*
 
 ### `pwritev`
 
@@ -129,7 +129,7 @@ fn writev(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>]) -> io:
 fn pwritev(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>], pos: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:219-234`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L219-L234)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:219-234`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L219-L234)*
 
 ### `pwritev2`
 
@@ -137,7 +137,7 @@ fn pwritev(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>], pos: 
 fn pwritev2(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>], pos: u64, flags: crate::io::ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:237-258`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L237-L258)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:237-258`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L237-L258)*
 
 ### `close`
 
@@ -145,7 +145,7 @@ fn pwritev2(fd: crate::fd::BorrowedFd<'_>, bufs: &[crate::io::IoSlice<'_>], pos:
 unsafe fn close(fd: crate::fd::RawFd)
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:261-264`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L261-L264)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:261-264`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L261-L264)*
 
 ### `ioctl`
 
@@ -153,7 +153,7 @@ unsafe fn close(fd: crate::fd::RawFd)
 unsafe fn ioctl(fd: crate::fd::BorrowedFd<'_>, request: crate::ioctl::Opcode, arg: *mut c::c_void) -> io::Result<crate::ioctl::IoctlOutput>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:273-279`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L273-L279)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:273-279`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L273-L279)*
 
 ### `ioctl_readonly`
 
@@ -161,7 +161,7 @@ unsafe fn ioctl(fd: crate::fd::BorrowedFd<'_>, request: crate::ioctl::Opcode, ar
 unsafe fn ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: crate::ioctl::Opcode, arg: *mut c::c_void) -> io::Result<crate::ioctl::IoctlOutput>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:282-288`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L282-L288)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:282-288`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L282-L288)*
 
 ### `dup`
 
@@ -169,7 +169,7 @@ unsafe fn ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: crate::ioctl::O
 fn dup(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:291-293`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L291-L293)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:291-293`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L291-L293)*
 
 ### `dup2`
 
@@ -177,7 +177,7 @@ fn dup(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::fd::OwnedFd>
 fn dup2(fd: crate::fd::BorrowedFd<'_>, new: &mut crate::fd::OwnedFd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:297-310`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L297-L310)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:297-310`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L297-L310)*
 
 ### `dup3`
 
@@ -185,7 +185,7 @@ fn dup2(fd: crate::fd::BorrowedFd<'_>, new: &mut crate::fd::OwnedFd) -> io::Resu
 fn dup3(fd: crate::fd::BorrowedFd<'_>, new: &mut crate::fd::OwnedFd, flags: crate::io::DupFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:314-316`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L314-L316)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:314-316`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L314-L316)*
 
 ### `fcntl_getfd`
 
@@ -193,7 +193,7 @@ fn dup3(fd: crate::fd::BorrowedFd<'_>, new: &mut crate::fd::OwnedFd, flags: crat
 fn fcntl_getfd(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::io::FdFlags>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:319-330`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L319-L330)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:319-330`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L319-L330)*
 
 ### `fcntl_setfd`
 
@@ -201,7 +201,7 @@ fn fcntl_getfd(fd: crate::fd::BorrowedFd<'_>) -> io::Result<crate::io::FdFlags>
 fn fcntl_setfd(fd: crate::fd::BorrowedFd<'_>, flags: crate::io::FdFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:333-342`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L333-L342)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:333-342`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L333-L342)*
 
 ### `fcntl_dupfd_cloexec`
 
@@ -209,5 +209,5 @@ fn fcntl_setfd(fd: crate::fd::BorrowedFd<'_>, flags: crate::io::FdFlags) -> io::
 fn fcntl_dupfd_cloexec(fd: crate::fd::BorrowedFd<'_>, min: crate::fd::RawFd) -> io::Result<crate::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:345-364`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L345-L364)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs:345-364`](../../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/syscalls.rs#L345-L364)*
 

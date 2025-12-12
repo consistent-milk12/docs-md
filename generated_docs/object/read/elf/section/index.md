@@ -44,7 +44,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -124,7 +124,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L358-L365)*
 
 An iterator for the sections in an [`ElfFile`](../index.md).
 
@@ -165,7 +165,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](../index.md).
 
@@ -245,7 +245,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) and [`elf::SectionHeader64`](../../../elf/index.md).
 
@@ -398,7 +398,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L350-L351)*
 
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
@@ -408,7 +408,7 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L353-L354)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -418,7 +418,7 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L396-L397)*
 
 A section in an [`ElfFile32`](super::ElfFile32).
 
@@ -428,7 +428,7 @@ A section in an [`ElfFile32`](super::ElfFile32).
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L399-L400)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 

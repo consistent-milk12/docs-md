@@ -31,7 +31,7 @@ struct ResolvedItem<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:48-60`*
+*Defined in `src/multi_crate/generator.rs:50-62`*
 
 Result of resolving a potential re-export to its actual item.
 
@@ -114,7 +114,7 @@ struct CategorizedItems<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:66-77`*
+*Defined in `src/multi_crate/generator.rs:68-79`*
 
 Categorized module items for rendering.
 
@@ -180,7 +180,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:416-422`*
+*Defined in `src/multi_crate/generator.rs:418-424`*
 
 Generator for multi-crate documentation.
 
@@ -265,7 +265,7 @@ struct MultiCrateModuleRenderer<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:742-754`*
+*Defined in `src/multi_crate/generator.rs:744-756`*
 
 Module renderer for multi-crate context.
 

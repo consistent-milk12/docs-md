@@ -127,7 +127,7 @@ struct Error {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:52-54`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L52-L54)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:52-54`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L52-L54)*
 
 A minimal representation of all possible errors that can occur using the
 `IntoDeserializer` trait.
@@ -168,7 +168,7 @@ struct UnitDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:137-139`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L137-L139)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:137-139`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L137-L139)*
 
 A deserializer holding a `()`.
 
@@ -269,7 +269,7 @@ struct BoolDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:328`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L328)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:328`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L328)*
 
 A deserializer holding
 a `bool`.
@@ -371,7 +371,7 @@ struct I8Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:329`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L329)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:329`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L329)*
 
 A deserializer holding
 an `i8`.
@@ -473,7 +473,7 @@ struct I16Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:330`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L330)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:330`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L330)*
 
 A deserializer holding
 an `i16`.
@@ -575,7 +575,7 @@ struct I32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:331`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L331)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:331`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L331)*
 
 A deserializer holding
 an `i32`.
@@ -677,7 +677,7 @@ struct I64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:332`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L332)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:332`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L332)*
 
 A deserializer holding
 an `i64`.
@@ -779,7 +779,7 @@ struct I128Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:333`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L333)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:333`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L333)*
 
 A deserializer holding
 an `i128`.
@@ -881,7 +881,7 @@ struct IsizeDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:334`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L334)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:334`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L334)*
 
 A deserializer holding
 an `isize`.
@@ -983,7 +983,7 @@ struct U8Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:335`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L335)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:335`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L335)*
 
 A deserializer holding
 a `u8`.
@@ -1085,7 +1085,7 @@ struct U16Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:336`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L336)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:336`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L336)*
 
 A deserializer holding
 a `u16`.
@@ -1187,7 +1187,7 @@ struct U64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:337`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L337)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:337`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L337)*
 
 A deserializer holding
 a `u64`.
@@ -1289,7 +1289,7 @@ struct U128Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:338`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L338)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:338`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L338)*
 
 A deserializer holding
 a `u128`.
@@ -1391,7 +1391,7 @@ struct UsizeDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:339`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L339)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:339`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L339)*
 
 A deserializer holding
 a `usize`.
@@ -1493,7 +1493,7 @@ struct F32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:340`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L340)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:340`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L340)*
 
 A deserializer holding
 an `f32`.
@@ -1595,7 +1595,7 @@ struct F64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:341`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L341)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:341`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L341)*
 
 A deserializer holding
 an `f64`.
@@ -1697,7 +1697,7 @@ struct CharDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:342`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L342)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:342`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L342)*
 
 A deserializer holding
 a `char`.
@@ -1799,7 +1799,7 @@ struct U32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:345-348`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L345-L348)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:345-348`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L345-L348)*
 
 A deserializer holding a `u32`.
 
@@ -1908,7 +1908,7 @@ struct StrDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:445-448`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L445-L448)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:445-448`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L445-L448)*
 
 A deserializer holding a `&str`.
 
@@ -2017,7 +2017,7 @@ struct BorrowedStrDeserializer<'de, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:546-549`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L546-L549)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:546-549`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L546-L549)*
 
 A deserializer holding a `&str` with a lifetime tied to another
 deserializer.
@@ -2127,7 +2127,7 @@ struct StringDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:637-640`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L637-L640)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:637-640`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L637-L640)*
 
 A deserializer holding a `String`.
 
@@ -2234,7 +2234,7 @@ struct CowStrDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:754-757`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L754-L757)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:754-757`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L754-L757)*
 
 A deserializer holding a `Cow<str>`.
 
@@ -2341,7 +2341,7 @@ struct BytesDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:872-875`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L872-L875)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:872-875`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L872-L875)*
 
 A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 
@@ -2442,7 +2442,7 @@ struct BorrowedBytesDeserializer<'de, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:942-945`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L942-L945)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:942-945`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L942-L945)*
 
 A deserializer holding a `&[u8]` with a lifetime tied to another
 deserializer. Always calls `Visitor::visit_borrowed_bytes`.
@@ -2545,7 +2545,7 @@ struct SeqDeserializer<I, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1003-1007`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1003-L1007)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1003-1007`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1003-L1007)*
 
 A deserializer that iterates over a sequence.
 
@@ -2649,7 +2649,7 @@ A deserializer that iterates over a sequence.
 struct ExpectedInSeq(usize);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1108`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1108)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1108`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1108)*
 
 #### Trait Implementations
 
@@ -2665,7 +2665,7 @@ struct SeqAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1182-1184`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1182-L1184)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1182-1184`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1182-L1184)*
 
 A deserializer holding a `SeqAccess`.
 
@@ -2770,7 +2770,7 @@ where
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1227-1237`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1227-L1237)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1227-1237`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1227-L1237)*
 
 A deserializer that iterates over a map.
 
@@ -2886,7 +2886,7 @@ A deserializer that iterates over a map.
 struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1475`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1475)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1475`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1475)*
 
 #### Trait Implementations
 
@@ -2962,7 +2962,7 @@ struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1528`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1528)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1528`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1528)*
 
 #### Trait Implementations
 
@@ -2980,7 +2980,7 @@ struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 struct ExpectedInMap(usize);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1562`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1562)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1562`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1562)*
 
 #### Trait Implementations
 
@@ -2996,7 +2996,7 @@ struct MapAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1611-1613`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1611-L1613)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1611-1613`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1611-L1613)*
 
 A deserializer holding a `MapAccess`.
 
@@ -3102,7 +3102,7 @@ struct EnumAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1687-1689`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1687-L1689)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1687-1689`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1687-L1689)*
 
 A deserializer holding an `EnumAccess`.
 
@@ -3200,15 +3200,15 @@ A deserializer holding an `EnumAccess`.
 type ErrorImpl = Box<str>;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:57`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L57)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:57`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L57)*
 
 ## Macros
 
 ### `impl_copy_clone!`
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:35-45`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L35-L45)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:35-45`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L35-L45)*
 
 ### `primitive_deserializer!`
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:254-326`](../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L254-L326)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:254-326`](../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L254-L326)*
 

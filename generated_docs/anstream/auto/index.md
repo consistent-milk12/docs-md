@@ -22,7 +22,7 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L19-L21)*
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../../.source_1765521767/anstream-0.6.21/src/auto.rs#L19-L21)*
 
 [`std::io::Write`](../../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
@@ -90,7 +90,7 @@ enum StreamInner<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:24-29`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L24-L29)*
+*Defined in [`anstream-0.6.21/src/auto.rs:24-29`](../../../.source_1765521767/anstream-0.6.21/src/auto.rs#L24-L29)*
 
 #### Trait Implementations
 
@@ -106,5 +106,5 @@ enum StreamInner<S: RawStream> {
 fn choice(raw: &dyn RawStream) -> crate::ColorChoice
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:198-223`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L198-L223)*
+*Defined in [`anstream-0.6.21/src/auto.rs:198-223`](../../../.source_1765521767/anstream-0.6.21/src/auto.rs#L198-L223)*
 

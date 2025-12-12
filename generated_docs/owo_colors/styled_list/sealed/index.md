@@ -18,7 +18,7 @@
 trait IsStyled { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styled_list.rs:12-17`](../../../../.source_1765210505/owo-colors-4.2.3/src/styled_list.rs#L12-L17)*
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:12-17`](../../../../.source_1765521767/owo-colors-4.2.3/src/styled_list.rs#L12-L17)*
 
 #### Associated Types
 

@@ -23,7 +23,7 @@ struct Chain<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765521767/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
 This struct is created by the `chain()` method on [`ParallelIterator`](../index.md)
@@ -96,7 +96,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765521767/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
 
 #### Implementations
 
@@ -144,7 +144,7 @@ struct ChainSeq<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765521767/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
 
 Wrapper for `Chain` to implement `ExactSizeIterator`
 

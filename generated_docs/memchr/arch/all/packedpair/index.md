@@ -41,7 +41,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
 
 An architecture independent "packed pair" finder.
 
@@ -90,7 +90,7 @@ struct Pair {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
 
 A pair of byte offsets into a needle to use as a predicate.
 
@@ -145,7 +145,7 @@ needles with length at least 2.
 struct DefaultFrequencyRank;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
 
 The default byte frequency heuristic that is good for most haystacks.
 
@@ -163,7 +163,7 @@ The default byte frequency heuristic that is good for most haystacks.
 trait HeuristicFrequencyRank { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
 
 This trait allows the user to customize the heuristic used to determine the
 relative frequency of a given byte in the dataset being searched.

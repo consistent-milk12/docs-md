@@ -56,7 +56,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
 
 The configuration used for building a bounded backtracker.
 
@@ -100,7 +100,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
 
 A builder for a bounded backtracker.
 
@@ -191,7 +191,7 @@ struct BoundedBacktracker {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
 
 A backtracking regex engine that bounds its execution to avoid exponential
 blow-up.
@@ -325,7 +325,7 @@ struct TryFindMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -372,7 +372,7 @@ struct TryCapturesMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a fallible search.
@@ -418,7 +418,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
 
 A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
@@ -479,7 +479,7 @@ struct Visited {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
 
 A bitset that keeps track of whether a particular (StateID, offset) has
 been considered during backtracking. If it has already been visited, then
@@ -553,7 +553,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
 
 Represents a stack frame on the heap while doing backtracking.
 
@@ -596,7 +596,7 @@ backtracking branch turns out to not lead to a match.
 fn min_visited_capacity(nfa: &crate::nfa::thompson::NFA, input: &crate::util::search::Input<'_>) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
 
 Returns the minimum visited capacity for the given haystack.
 
@@ -620,7 +620,7 @@ the size the given NFA and haystack.
 fn div_ceil(lhs: usize, rhs: usize) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
 
 Integer division, but rounds up instead of down.
 

@@ -22,7 +22,7 @@ where
     C: ParallelExtend<<I as >::Item> + Default
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/from_par_iter.rs:14-22`](../../../../.source_1765210505/rayon-1.11.0/src/iter/from_par_iter.rs#L14-L22)*
+*Defined in [`rayon-1.11.0/src/iter/from_par_iter.rs:14-22`](../../../../.source_1765521767/rayon-1.11.0/src/iter/from_par_iter.rs#L14-L22)*
 
 Creates an empty default collection and extends it.
 
@@ -30,5 +30,5 @@ Creates an empty default collection and extends it.
 
 ### `collect_string!`
 
-*Defined in [`rayon-1.11.0/src/iter/from_par_iter.rs:179-201`](../../../../.source_1765210505/rayon-1.11.0/src/iter/from_par_iter.rs#L179-L201)*
+*Defined in [`rayon-1.11.0/src/iter/from_par_iter.rs:179-201`](../../../../.source_1765521767/rayon-1.11.0/src/iter/from_par_iter.rs#L179-L201)*
 

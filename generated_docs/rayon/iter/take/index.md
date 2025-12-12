@@ -21,7 +21,7 @@ struct Take<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765521767/rayon-1.11.0/src/iter/take.rs#L10-L13)*
 
 `Take` is an iterator that iterates over the first `n` elements.
 This struct is created by the `take()` method on [`IndexedParallelIterator`](../index.md)

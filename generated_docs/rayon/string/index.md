@@ -25,7 +25,7 @@ struct Drain<'a> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/string.rs:25-28`](../../../.source_1765210505/rayon-1.11.0/src/string.rs#L25-L28)*
+*Defined in [`rayon-1.11.0/src/string.rs:25-28`](../../../.source_1765521767/rayon-1.11.0/src/string.rs#L25-L28)*
 
 Draining parallel iterator that moves a range of characters out of a string,
 but keeps the total capacity.

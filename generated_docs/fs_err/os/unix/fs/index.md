@@ -22,7 +22,7 @@ Unix-specific extensions to wrappers in `fs_err` for `std::fs` types.
 trait FileExt: crate::Sealed { ... }
 ```
 
-*Defined in [`fs-err-3.2.0/src/os/unix.rs:23-28`](../../../../../.source_1765210505/fs-err-3.2.0/src/os/unix.rs#L23-L28)*
+*Defined in [`fs-err-3.2.0/src/os/unix.rs:23-28`](../../../../../.source_1765521767/fs-err-3.2.0/src/os/unix.rs#L23-L28)*
 
 Wrapper for [`std::os::unix::fs::FileExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html).
 
@@ -49,7 +49,7 @@ This trait is sealed and can not be implemented by other crates.
 trait OpenOptionsExt: crate::Sealed { ... }
 ```
 
-*Defined in [`fs-err-3.2.0/src/os/unix.rs:34-39`](../../../../../.source_1765210505/fs-err-3.2.0/src/os/unix.rs#L34-L39)*
+*Defined in [`fs-err-3.2.0/src/os/unix.rs:34-39`](../../../../../.source_1765521767/fs-err-3.2.0/src/os/unix.rs#L34-L39)*
 
 Wrapper for [`std::os::unix::fs::OpenOptionsExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html)
 
@@ -78,7 +78,7 @@ This trait is sealed and can not be implemented by other crates.
 fn symlink<P: AsRef<std::path::Path>, Q: AsRef<std::path::Path>>(src: P, dst: Q) -> io::Result<()>
 ```
 
-*Defined in [`fs-err-3.2.0/src/os/unix.rs:12-17`](../../../../../.source_1765210505/fs-err-3.2.0/src/os/unix.rs#L12-L17)*
+*Defined in [`fs-err-3.2.0/src/os/unix.rs:12-17`](../../../../../.source_1765521767/fs-err-3.2.0/src/os/unix.rs#L12-L17)*
 
 Creates a new symbolic link on the filesystem.
 

@@ -48,7 +48,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.

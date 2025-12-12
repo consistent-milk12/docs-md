@@ -25,7 +25,7 @@
 fn derive_args(input: &syn::DeriveInput) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:25-56`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L25-L56)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:25-56`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L25-L56)*
 
 ### `gen_for_struct`
 
@@ -33,7 +33,7 @@ fn derive_args(input: &syn::DeriveInput) -> Result<proc_macro2::TokenStream, syn
 fn gen_for_struct(item: &crate::item::Item, item_name: &proc_macro2::Ident, generics: &syn::Generics, fields: &[(&syn::Field, crate::item::Item)]) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:58-165`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L58-L165)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:58-165`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L58-L165)*
 
 ### `gen_augment`
 
@@ -41,7 +41,7 @@ fn gen_for_struct(item: &crate::item::Item, item_name: &proc_macro2::Ident, gene
 fn gen_augment(fields: &[(&syn::Field, crate::item::Item)], app_var: &proc_macro2::Ident, parent_item: &crate::item::Item, override_required: bool) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:169-441`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L169-L441)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:169-441`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L169-L441)*
 
 Generate a block of code to add arguments/subcommands corresponding to
 the `fields` to an cmd.
@@ -52,7 +52,7 @@ the `fields` to an cmd.
 fn gen_constructor(fields: &[(&syn::Field, crate::item::Item)]) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:443-552`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L443-L552)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:443-552`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L443-L552)*
 
 ### `gen_updater`
 
@@ -60,7 +60,7 @@ fn gen_constructor(fields: &[(&syn::Field, crate::item::Item)]) -> Result<proc_m
 fn gen_updater(fields: &[(&syn::Field, crate::item::Item)], use_self: bool) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:554-658`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L554-L658)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:554-658`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L554-L658)*
 
 ### `gen_parsers`
 
@@ -68,7 +68,7 @@ fn gen_updater(fields: &[(&syn::Field, crate::item::Item)], use_self: bool) -> R
 fn gen_parsers(item: &crate::item::Item, ty: &self::spanned::Sp<self::ty::Ty>, field_name: &proc_macro2::Ident, field: &syn::Field, update: Option<&proc_macro2::TokenStream>) -> Result<proc_macro2::TokenStream, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:660-762`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L660-L762)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:660-762`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L660-L762)*
 
 ### `raw_deprecated`
 
@@ -76,7 +76,7 @@ fn gen_parsers(item: &crate::item::Item, ty: &self::spanned::Sp<self::ty::Ty>, f
 fn raw_deprecated() -> proc_macro2::TokenStream
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:770-775`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L770-L775)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:770-775`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L770-L775)*
 
 ### `collect_args_fields`
 
@@ -84,5 +84,5 @@ fn raw_deprecated() -> proc_macro2::TokenStream
 fn collect_args_fields<'a>(item: &'a crate::item::Item, fields: &'a syn::FieldsNamed) -> Result<Vec<(&'a syn::Field, crate::item::Item)>, syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/derives/args.rs:777-789`](../../../../.source_1765210505/clap_derive-4.5.49/src/derives/args.rs#L777-L789)*
+*Defined in [`clap_derive-4.5.49/src/derives/args.rs:777-789`](../../../../.source_1765521767/clap_derive-4.5.49/src/derives/args.rs#L777-L789)*
 

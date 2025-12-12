@@ -21,7 +21,7 @@ struct TryReserveError {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
 
 The error type for `try_reserve` methods.
 
@@ -68,7 +68,7 @@ enum TryReserveErrorKind {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
 
 Details of the allocation that caused a `TryReserveError`
 

@@ -19,7 +19,7 @@
 fn display_width(text: &str) -> usize
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:55-74`](../../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/core.rs#L55-L74)*
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:55-74`](../../../../../.source_1765521767/clap_builder-4.5.53/src/output/textwrap/core.rs#L55-L74)*
 
 Compute the display width of `text`
 
@@ -80,5 +80,5 @@ shows "👨‍🦰" as “👨🦰”.
 fn ch_width(_: char) -> usize
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:82-84`](../../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/core.rs#L82-L84)*
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:82-84`](../../../../../.source_1765521767/clap_builder-4.5.53/src/output/textwrap/core.rs#L82-L84)*
 

@@ -24,7 +24,7 @@ struct GraphicalTheme {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -86,7 +86,7 @@ struct ThemeStyles {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -170,7 +170,7 @@ struct ThemeCharacters {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
 
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -211,5 +211,5 @@ Characters to be used when drawing when using
 fn style() -> owo_colors::Style
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

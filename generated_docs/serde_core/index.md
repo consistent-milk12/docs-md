@@ -84,7 +84,7 @@ as shown in the following build timings.
 trait Deserialize<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../.source_1765521767/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -264,7 +264,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 trait Deserializer<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../.source_1765521767/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -544,7 +544,7 @@ a basic JSON `Deserializer`.
 trait Serialize { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
 
 A **data structure** that can be serialized into any data format supported
 by Serde.
@@ -720,7 +720,7 @@ provides an implementation of `Serialize` for it.
 trait Serializer: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../.source_1765521767/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -965,11 +965,11 @@ a basic JSON `Serializer`.
 
 ### `tri!`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../.source_1765521767/serde_core-1.0.228/src/lib.rs#L111)*
 
 ### `forward_to_deserialize_any!`
 
-*Defined in [`serde_core-1.0.228/src/macros.rs:110-118`](../../.source_1765210505/serde_core-1.0.228/src/macros.rs#L110-L118)*
+*Defined in [`serde_core-1.0.228/src/macros.rs:110-118`](../../.source_1765521767/serde_core-1.0.228/src/macros.rs#L110-L118)*
 
 Helper macro when implementing the `Deserializer` part of a new data format
 for Serde.

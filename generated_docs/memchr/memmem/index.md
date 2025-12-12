@@ -121,7 +121,7 @@ struct FindIter<'h, 'n> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:237-242`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L237-L242)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:237-242`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L237-L242)*
 
 An iterator over non-overlapping substring matches.
 
@@ -172,7 +172,7 @@ struct FindRevIter<'h, 'n> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:314-320`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L314-L320)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:314-320`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L314-L320)*
 
 An iterator over non-overlapping substring matches in reverse.
 
@@ -227,7 +227,7 @@ struct Finder<'n> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:387-390`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L387-L390)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:387-390`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L387-L390)*
 
 A single substring searcher fixed to a particular needle.
 
@@ -276,7 +276,7 @@ struct FinderRev<'n> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:524-527`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L524-L527)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:524-527`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L524-L527)*
 
 A single substring reverse searcher fixed to a particular needle.
 
@@ -324,7 +324,7 @@ struct FinderBuilder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:654-656`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L654-L656)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:654-656`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L654-L656)*
 
 A builder for constructing non-default forward or reverse memmem finders.
 
@@ -369,7 +369,7 @@ enum Prefilter {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:544-551`](../../../.source_1765210505/memchr-2.7.6/src/memmem/searcher.rs#L544-L551)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:544-551`](../../../.source_1765521767/memchr-2.7.6/src/memmem/searcher.rs#L544-L551)*
 
 Prefilter controls whether heuristics are used to accelerate searching.
 
@@ -437,7 +437,7 @@ useful.
 fn find_iter<'h, 'n, N: 'n + ?Sized + AsRef<[u8]>>(haystack: &'h [u8], needle: &'n N) -> FindIter<'h, 'n>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:116-121`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L116-L121)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:116-121`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L116-L121)*
 
 Returns an iterator over all non-overlapping occurrences of a substring in
 a haystack.
@@ -472,7 +472,7 @@ assert_eq!(None, it.next());
 fn rfind_iter<'h, 'n, N: 'n + ?Sized + AsRef<[u8]>>(haystack: &'h [u8], needle: &'n N) -> FindRevIter<'h, 'n>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:150-155`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L150-L155)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:150-155`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L150-L155)*
 
 Returns a reverse iterator over all non-overlapping occurrences of a
 substring in a haystack.
@@ -507,7 +507,7 @@ assert_eq!(None, it.next());
 fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:185-191`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L185-L191)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:185-191`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L185-L191)*
 
 Returns the index of the first occurrence of the given needle.
 
@@ -543,7 +543,7 @@ assert_eq!(None, memmem::find(haystack, b"quux"));
 fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/mod.rs:222-228`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L222-L228)*
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:222-228`](../../../.source_1765521767/memchr-2.7.6/src/memmem/mod.rs#L222-L228)*
 
 Returns the index of the last occurrence of the given needle.
 

@@ -27,7 +27,7 @@ enum Enum {}
 fn deserialize(params: &crate::de::Parameters, variants: &[crate::internals::ast::Variant<'_>], cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:23-115`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_externally.rs#L23-L115)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:23-115`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_externally.rs#L23-L115)*
 
 Generates `Deserialize::deserialize` body for an `enum Enum {...}` without additional attributes
 
@@ -37,7 +37,7 @@ Generates `Deserialize::deserialize` body for an `enum Enum {...}` without addit
 fn deserialize_externally_tagged_variant(params: &crate::de::Parameters, variant: &crate::internals::ast::Variant<'_>, cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:117-160`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_externally.rs#L117-L160)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:117-160`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_externally.rs#L117-L160)*
 
 ### `wrap_deserialize_variant_with`
 
@@ -45,7 +45,7 @@ fn deserialize_externally_tagged_variant(params: &crate::de::Parameters, variant
 fn wrap_deserialize_variant_with(params: &crate::de::Parameters, variant: &crate::internals::ast::Variant<'_>, deserialize_with: &syn::ExprPath) -> (proc_macro2::TokenStream, proc_macro2::TokenStream, proc_macro2::TokenStream)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:162-174`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_externally.rs#L162-L174)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:162-174`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_externally.rs#L162-L174)*
 
 ### `deserialize_externally_tagged_newtype_variant`
 
@@ -53,5 +53,5 @@ fn wrap_deserialize_variant_with(params: &crate::de::Parameters, variant: &crate
 fn deserialize_externally_tagged_newtype_variant(variant_ident: &syn::Ident, params: &crate::de::Parameters, field: &crate::internals::ast::Field<'_>, cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:176-212`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_externally.rs#L176-L212)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_externally.rs:176-212`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_externally.rs#L176-L212)*
 

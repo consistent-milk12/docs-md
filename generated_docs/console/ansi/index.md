@@ -40,7 +40,7 @@ struct Matches<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:109-112`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L109-L112)*
+*Defined in [`console-0.16.1/src/ansi.rs:109-112`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L109-L112)*
 
 #### Implementations
 
@@ -78,7 +78,7 @@ struct Match<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:122-126`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L122-L126)*
+*Defined in [`console-0.16.1/src/ansi.rs:122-126`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L122-L126)*
 
 #### Implementations
 
@@ -98,9 +98,9 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L206-L208)*
+*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L206-L208)*
 
-A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/fmt/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -128,7 +128,7 @@ struct AnsiCodeIterator<'a> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L233-L239)*
+*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L233-L239)*
 
 An iterator over ansi codes in a string.
 
@@ -185,7 +185,7 @@ enum State {
 }
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:10-24`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L10-L24)*
+*Defined in [`console-0.16.1/src/ansi.rs:10-24`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L10-L24)*
 
 #### Implementations
 
@@ -219,7 +219,7 @@ enum State {
 fn find_ansi_code_exclusive(it: &mut core::iter::Peekable<core::str::CharIndices<'_>>) -> Option<(usize, usize)>
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:149-188`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L149-L188)*
+*Defined in [`console-0.16.1/src/ansi.rs:149-188`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L149-L188)*
 
 ### `strip_ansi_codes`
 
@@ -227,7 +227,7 @@ fn find_ansi_code_exclusive(it: &mut core::iter::Peekable<core::str::CharIndices
 fn strip_ansi_codes(s: &str) -> alloc::borrow::Cow<'_, str>
 ```
 
-*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L192-L203)*
+*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../../.source_1765521767/console-0.16.1/src/ansi.rs#L192-L203)*
 
 Helper function to strip ansi codes.
 

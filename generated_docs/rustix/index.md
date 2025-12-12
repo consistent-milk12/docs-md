@@ -51,10 +51,10 @@ Ok(())
 ```
 
 rustix's APIs perform the following tasks:
- - Error values are translated to [`Result`](../clap_builder/error/index.md)s.
+ - Error values are translated to [`Result`](../cargo_metadata/errors/index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use [`Arg`](#arg), so they accept any string type.
+ - Path arguments use `Arg`, so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for
@@ -155,7 +155,7 @@ which does perform sandboxing and restricts ambient authorities.
 
 ### `cstr!`
 
-*Defined in [`rustix-1.1.2/src/cstr.rs:29-58`](../../.source_1765210505/rustix-1.1.2/src/cstr.rs#L29-L58)*
+*Defined in [`rustix-1.1.2/src/cstr.rs:29-58`](../../.source_1765521767/rustix-1.1.2/src/cstr.rs#L29-L58)*
 
 A macro for [`CStr`](ffi/index.md) literals.
 

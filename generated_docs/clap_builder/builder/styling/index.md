@@ -30,7 +30,7 @@ struct Styles {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 

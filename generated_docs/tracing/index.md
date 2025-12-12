@@ -992,7 +992,7 @@ struct Span {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../.source_1765210505/tracing-0.1.43/src/span.rs#L349-L359)*
+*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../.source_1765521767/tracing-0.1.43/src/span.rs#L349-L359)*
 
 A handle representing a span, with the capability to enter the span if it
 exists.
@@ -1096,7 +1096,7 @@ manner regardless of whether or not the trace is currently being collected.
 trait Instrument: Sized { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L20-L131)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../.source_1765521767/tracing-0.1.43/src/instrument.rs#L20-L131)*
 
 Attaches spans to a `std::future::Future`.
 
@@ -1138,7 +1138,7 @@ fn Subscriber(&self) -> &T
 
 ### `event!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:615-1053`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L615-L1053)*
+*Defined in [`tracing-0.1.43/src/macros.rs:615-1053`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L615-L1053)*
 
 Constructs a new `Event`.
 
@@ -1176,7 +1176,7 @@ event!(Level::INFO, the_answer = data.0);
 
 ### `span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:20-131`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L20-L131)*
+*Defined in [`tracing-0.1.43/src/macros.rs:20-131`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L20-L131)*
 
 Constructs a new span.
 
@@ -1197,7 +1197,7 @@ let _enter = span.enter();
 
 ### `record_all!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:152-161`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L152-L161)*
+*Defined in [`tracing-0.1.43/src/macros.rs:152-161`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L152-L161)*
 
 Records multiple values on a span in a single call. As with recording
 individual values, all fields must be declared when the span is created.
@@ -1218,7 +1218,7 @@ record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 
 ### `trace_span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:197-242`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L197-L242)*
+*Defined in [`tracing-0.1.43/src/macros.rs:197-242`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L197-L242)*
 
 Constructs a span at the trace level.
 
@@ -1254,7 +1254,7 @@ span.in_scope(|| {
 
 ### `debug_span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:278-323`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L278-L323)*
+*Defined in [`tracing-0.1.43/src/macros.rs:278-323`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L278-L323)*
 
 Constructs a span at the debug level.
 
@@ -1290,7 +1290,7 @@ span.in_scope(|| {
 
 ### `info_span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:359-404`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L359-L404)*
+*Defined in [`tracing-0.1.43/src/macros.rs:359-404`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L359-L404)*
 
 Constructs a span at the info level.
 
@@ -1326,7 +1326,7 @@ span.in_scope(|| {
 
 ### `warn_span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:440-485`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L440-L485)*
+*Defined in [`tracing-0.1.43/src/macros.rs:440-485`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L440-L485)*
 
 Constructs a span at the warn level.
 
@@ -1362,7 +1362,7 @@ span.in_scope(|| {
 
 ### `error_span!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:520-565`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L520-L565)*
+*Defined in [`tracing-0.1.43/src/macros.rs:520-565`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L520-L565)*
 
 Constructs a span at the error level.
 
@@ -1398,7 +1398,7 @@ span.in_scope(|| {
 
 ### `event_enabled!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1083-1087`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1083-L1087)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1083-1087`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1083-L1087)*
 
 Tests whether an event with the specified level and target would be enabled.
 
@@ -1429,7 +1429,7 @@ if event_enabled!(Level::DEBUG, foo_field) {
 
 ### `span_enabled!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1117-1121`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1117-L1121)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1117-1121`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1117-L1121)*
 
 Tests whether a span with the specified level and target would be enabled.
 
@@ -1460,7 +1460,7 @@ if span_enabled!(Level::DEBUG, foo_field) {
 
 ### `enabled!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1214-1294`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1214-L1294)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1214-1294`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1214-L1294)*
 
 Checks whether a span or event is [enabled](#enabled) based on the provided [`metadata`](../tracing_core/metadata/index.md).
 
@@ -1549,7 +1549,7 @@ returns true.
 
 ### `trace!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1333-1583`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1333-L1583)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1333-1583`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1333-L1583)*
 
 Constructs an event at the trace level.
 
@@ -1588,7 +1588,7 @@ trace!(name: "completed", position = ?pos);
 
 ### `debug!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1609-1859`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1609-L1859)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1609-1859`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1609-L1859)*
 
 Constructs an event at the debug level.
 
@@ -1614,7 +1614,7 @@ debug!(name: "completed", position = ?pos);
 
 ### `info!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:1896-2146`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1896-L2146)*
+*Defined in [`tracing-0.1.43/src/macros.rs:1896-2146`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L1896-L2146)*
 
 Constructs an event at the info level.
 
@@ -1651,7 +1651,7 @@ info!(name: "completed", "completed connection to {:?}", addr);
 
 ### `warn!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:2176-2426`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L2176-L2426)*
+*Defined in [`tracing-0.1.43/src/macros.rs:2176-2426`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L2176-L2426)*
 
 Constructs an event at the warn level.
 
@@ -1681,7 +1681,7 @@ warn!(name: "invalid", ?input);
 
 ### `error!`
 
-*Defined in [`tracing-0.1.43/src/macros.rs:2452-2702`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L2452-L2702)*
+*Defined in [`tracing-0.1.43/src/macros.rs:2452-2702`](../../.source_1765521767/tracing-0.1.43/src/macros.rs#L2452-L2702)*
 
 Constructs an event at the error level.
 

@@ -25,7 +25,7 @@ struct LiteralTrie {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:81-90`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L81-L90)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:81-90`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L81-L90)*
 
 A trie that preserves leftmost-first match semantics.
 
@@ -145,7 +145,7 @@ struct Frame<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:303-320`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L303-L320)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:303-320`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L303-L320)*
 
 An explicit stack frame used for traversing the trie without using
 recursion.
@@ -206,7 +206,7 @@ struct State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:363-366`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L363-L366)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:363-366`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L363-L366)*
 
 A state in a trie.
 
@@ -272,7 +272,7 @@ struct StateChunksIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:444-448`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L444-L448)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:444-448`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L444-L448)*
 
 An iterator over all of the chunks in a state, including the active chunk.
 
@@ -308,7 +308,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:466-469`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L466-L469)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:466-469`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L466-L469)*
 
 A single transition in a trie to another state.
 

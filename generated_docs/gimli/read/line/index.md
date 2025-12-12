@@ -81,7 +81,7 @@ struct DebugLine<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L17-L19)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L17-L19)*
 
 The `DebugLine` struct contains the source location to instruction mapping
 found in the `.debug_line` section.
@@ -126,7 +126,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L168-L177)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L168-L177)*
 
 Executes a `LineProgram` to iterate over the rows in the matrix of line number information.
 
@@ -162,7 +162,7 @@ struct LineInstructions<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L529-L531)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L529-L531)*
 
 An iterator yielding parsed instructions.
 
@@ -204,7 +204,7 @@ struct LineRow {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L580-L594)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L580-L594)*
 
 A row in the line number program's resulting matrix.
 
@@ -282,7 +282,7 @@ struct LineSequence<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L977-L985)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L977-L985)*
 
 A sequence within a line number program.  A sequence, as defined in section
 6.2.5 of the standard, is a linear subset of a line number program within
@@ -334,7 +334,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L996-L1047)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L996-L1047)*
 
 A header for a line number program in the `.debug_line` section, as defined
 in section 6.2.4 of the standard.
@@ -476,7 +476,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
 
 A line number program that has not been run to completion.
 
@@ -523,7 +523,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
 
 A line number program that has previously been run to completion.
 
@@ -573,7 +573,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
 
 An entry in the `LineProgramHeader`'s `file_names` set.
 
@@ -624,7 +624,7 @@ struct FileEntryFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
 
 The format of a component of an include directory or file name entry.
 
@@ -695,7 +695,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L267-L399)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L267-L399)*
 
 A parsed line number program instruction.
 
@@ -883,7 +883,7 @@ enum ColumnType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L961-L967)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L961-L967)*
 
 The type of column that a row is referring to.
 
@@ -937,7 +937,7 @@ where
     Offset: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L121-L130)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L121-L130)*
 
 A `LineProgram` provides access to a `LineProgramHeader` and
 a way to add files to the files table if necessary. Gimli consumers should
@@ -966,7 +966,7 @@ never need to use or see this trait.
 fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
 
 ### `parse_file_v5`
 
@@ -974,7 +974,7 @@ fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encodin
 fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<FileEntry<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
 
 ### `parse_attribute`
 
@@ -982,7 +982,7 @@ fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, fo
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, form: constants::DwForm) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
 
 ## Type Aliases
 
@@ -992,7 +992,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 type LineNumberProgram<R, Offset> = dyn LineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L116)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L116)*
 
 Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 
@@ -1002,7 +1002,7 @@ Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 type StateMachine<R, Program, Offset> = LineRows<R, Program, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L160)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L160)*
 
 Deprecated. `StateMachine` has been renamed to `LineRows`.
 
@@ -1012,7 +1012,7 @@ Deprecated. `StateMachine` has been renamed to `LineRows`.
 type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L179-L180)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L179-L180)*
 
 ### `ResumedLineRows<'program, R, Offset>`
 
@@ -1020,7 +1020,7 @@ type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, 
 type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L182-L183)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L182-L183)*
 
 ### `Opcode<R>`
 
@@ -1028,7 +1028,7 @@ type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLinePr
 type Opcode<R> = LineInstruction<R, <R as Reader>::Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L263)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L263)*
 
 Deprecated. `Opcode` has been renamed to `LineInstruction`.
 
@@ -1038,7 +1038,7 @@ Deprecated. `Opcode` has been renamed to `LineInstruction`.
 type OpcodesIter<R> = LineInstructions<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L521)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L521)*
 
 Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 
@@ -1048,7 +1048,7 @@ Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 type LineNumberRow = LineRow;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L574)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L574)*
 
 Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 
@@ -1058,7 +1058,7 @@ Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 type LineNumberSequence<R> = LineSequence<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L971)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L971)*
 
 Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 
@@ -1068,7 +1068,7 @@ Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 type LineNumberProgramHeader<R, Offset> = LineProgramHeader<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L991)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L991)*
 
 Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 
@@ -1078,7 +1078,7 @@ Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 type IncompleteLineNumberProgram<R, Offset> = IncompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1407)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1407)*
 
 Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLineProgram`.
 
@@ -1088,7 +1088,7 @@ Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLinePro
 type CompleteLineNumberProgram<R, Offset> = CompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1500)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../../.source_1765521767/gimli-0.32.3/src/read/line.rs#L1500)*
 
 Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram`.
 

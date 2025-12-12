@@ -24,7 +24,7 @@ struct SeqLock {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:27-33`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L27-L33)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:27-33`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L27-L33)*
 
 A simple stamped lock.
 
@@ -56,7 +56,7 @@ struct SeqLockWriteGuard<'a> {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:82-88`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L82-L88)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:82-88`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L82-L88)*
 
 An RAII guard that releases the lock and increments the stamp when dropped.
 
@@ -88,7 +88,7 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 type Stamp = usize;
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:18`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L18)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:18`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L18)*
 
 ### `AtomicChunk`
 
@@ -96,7 +96,7 @@ type Stamp = usize;
 type AtomicChunk = core::sync::atomic::AtomicUsize;
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:23`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L23)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:23`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L23)*
 
 ### `Chunk`
 
@@ -104,5 +104,5 @@ type AtomicChunk = core::sync::atomic::AtomicUsize;
 type Chunk = usize;
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:24`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L24)*
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:24`](../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L24)*
 

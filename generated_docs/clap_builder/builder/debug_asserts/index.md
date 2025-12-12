@@ -43,7 +43,7 @@ enum Flag<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:401-404`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L401-L404)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:401-404`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L401-L404)*
 
 #### Trait Implementations
 
@@ -69,7 +69,7 @@ enum Flag<'a> {
 fn assert_app(cmd: &crate::Command)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:11-384`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L11-L384)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:11-384`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L11-L384)*
 
 ### `duplicate_tip`
 
@@ -77,7 +77,7 @@ fn assert_app(cmd: &crate::Command)
 fn duplicate_tip(cmd: &crate::Command, first: &crate::Arg, second: &crate::Arg) -> &'static str
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:386-398`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L386-L398)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:386-398`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L386-L398)*
 
 ### `detect_duplicate_flags`
 
@@ -85,7 +85,7 @@ fn duplicate_tip(cmd: &crate::Command, first: &crate::Arg, second: &crate::Arg) 
 fn detect_duplicate_flags(flags: &[Flag<'_>], short_or_long: &str)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:435-454`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L435-L454)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:435-454`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L435-L454)*
 
 ### `find_duplicates`
 
@@ -93,7 +93,7 @@ fn detect_duplicate_flags(flags: &[Flag<'_>], short_or_long: &str)
 fn find_duplicates<T: PartialEq>(slice: &[T]) -> impl Iterator<Item = (&T, &T)>
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:460-468`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L460-L468)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:460-468`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L460-L468)*
 
 Find duplicates in a sorted array.
 
@@ -106,7 +106,7 @@ must be placed next to each other, we can check only adjacent elements.
 fn assert_app_flags(cmd: &crate::Command)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:470-491`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L470-L491)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:470-491`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L470-L491)*
 
 ### `_verify_positionals`
 
@@ -114,7 +114,7 @@ fn assert_app_flags(cmd: &crate::Command)
 fn _verify_positionals(cmd: &crate::Command) -> bool
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:494-678`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L494-L678)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:494-678`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L494-L678)*
 
 ### `assert_arg`
 
@@ -122,7 +122,7 @@ fn _verify_positionals(cmd: &crate::Command) -> bool
 fn assert_arg(arg: &crate::Arg)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:680-788`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L680-L788)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:680-788`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L680-L788)*
 
 ### `assert_arg_flags`
 
@@ -130,5 +130,5 @@ fn assert_arg(arg: &crate::Arg)
 fn assert_arg_flags(arg: &crate::Arg)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:790-818`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/debug_asserts.rs#L790-L818)*
+*Defined in [`clap_builder-4.5.53/src/builder/debug_asserts.rs:790-818`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/debug_asserts.rs#L790-L818)*
 

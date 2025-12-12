@@ -16,7 +16,7 @@ The processor applies transformations in this order:
 3. Process reference-style links `[text]`ref``
 4. Process path reference links ``text``
 5. Process method links `[Type::method]`
-6. Process backtick links `[`Name`](#name)`
+6. Process backtick links ``Name``
 7. Process plain links `[name]`
 8. Convert HTML-style rustdoc links
 9. Clean up blank lines
@@ -129,7 +129,7 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` [`Name`](#name) `` - Backtick code links (most common)
+- `` `Name` `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links

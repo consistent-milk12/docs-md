@@ -47,7 +47,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile`](../index.md).
 
@@ -84,7 +84,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
 
 A COMDAT section group in a [`XcoffFile`](../index.md).
 
@@ -123,7 +123,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile`](../index.md).
 
@@ -157,7 +157,7 @@ This is a stub that doesn't implement any functionality.
 type XcoffComdatIterator32<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -167,7 +167,7 @@ An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile3
 type XcoffComdatIterator64<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -177,7 +177,7 @@ An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile6
 type XcoffComdat32<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
 
 A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -187,7 +187,7 @@ A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 type XcoffComdat64<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
 
 A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -197,7 +197,7 @@ A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 type XcoffComdatSectionIterator32<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -207,7 +207,7 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](supe
 type XcoffComdatSectionIterator64<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 

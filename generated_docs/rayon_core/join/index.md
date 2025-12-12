@@ -25,7 +25,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../../.source_1765210505/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../../.source_1765521767/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
 
 Takes two closures and *potentially* runs them in parallel. It
 returns a pair of the results from those closures.
@@ -118,7 +118,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../../.source_1765210505/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../../.source_1765521767/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
 
 Identical to `join`, except that the closures have a parameter
 that provides context for the way the closure has been called,
@@ -134,7 +134,7 @@ with.
 unsafe fn join_recover_from_panic(worker_thread: &crate::registry::WorkerThread, job_b_latch: &crate::latch::SpinLatch<'_>, err: Box<dyn Any + Send>) -> never
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:179-186`](../../../.source_1765210505/rayon-core-1.13.0/src/join/mod.rs#L179-L186)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:179-186`](../../../.source_1765521767/rayon-core-1.13.0/src/join/mod.rs#L179-L186)*
 
 If job A panics, we still cannot return until we are sure that job
 B is complete. This is because it may contain references into the

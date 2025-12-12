@@ -19,7 +19,7 @@
 unsafe fn write_mantissa_long(output: u64, result: *mut u8)
 ```
 
-*Defined in [`ryu-1.0.20/src/pretty/mantissa.rs:5-41`](../../../../.source_1765210505/ryu-1.0.20/src/pretty/mantissa.rs#L5-L41)*
+*Defined in [`ryu-1.0.20/src/pretty/mantissa.rs:5-41`](../../../../.source_1765521767/ryu-1.0.20/src/pretty/mantissa.rs#L5-L41)*
 
 ### `write_mantissa`
 
@@ -27,5 +27,5 @@ unsafe fn write_mantissa_long(output: u64, result: *mut u8)
 unsafe fn write_mantissa(output: u32, result: *mut u8)
 ```
 
-*Defined in [`ryu-1.0.20/src/pretty/mantissa.rs:44-82`](../../../../.source_1765210505/ryu-1.0.20/src/pretty/mantissa.rs#L44-L82)*
+*Defined in [`ryu-1.0.20/src/pretty/mantissa.rs:44-82`](../../../../.source_1765521767/ryu-1.0.20/src/pretty/mantissa.rs#L44-L82)*
 

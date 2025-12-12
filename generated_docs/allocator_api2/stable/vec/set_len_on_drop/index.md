@@ -21,7 +21,7 @@ struct SetLenOnDrop<'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs:6-9`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs#L6-L9)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs:6-9`](../../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs#L6-L9)*
 
 #### Implementations
 

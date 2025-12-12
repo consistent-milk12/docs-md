@@ -24,11 +24,11 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/fill.rs:36-47`](../../../.source_1765210505/textwrap-0.16.2/src/fill.rs#L36-L47)*
+*Defined in [`textwrap-0.16.2/src/fill.rs:36-47`](../../../.source_1765521767/textwrap-0.16.2/src/fill.rs#L36-L47)*
 
 Fill a line of text at a given width.
 
-The result is a [`String`](../../clap_builder/index.md), complete with newlines between each
+The result is a [`String`](../../cargo_platform/index.md), complete with newlines between each
 line. Use [`wrap()`](../wrap/index.md) if you need access to the individual lines.
 
 The easiest way to use this function is to pass an integer for
@@ -64,7 +64,7 @@ assert_eq!(
 fn fill_slow_path(text: &str, options: crate::Options<'_>) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/fill.rs:52-66`](../../../.source_1765210505/textwrap-0.16.2/src/fill.rs#L52-L66)*
+*Defined in [`textwrap-0.16.2/src/fill.rs:52-66`](../../../.source_1765521767/textwrap-0.16.2/src/fill.rs#L52-L66)*
 
 Slow path for fill.
 
@@ -76,7 +76,7 @@ This is taken when `text` is longer than `options.width`.
 fn fill_inplace(text: &mut String, width: usize)
 ```
 
-*Defined in [`textwrap-0.16.2/src/fill.rs:120-153`](../../../.source_1765210505/textwrap-0.16.2/src/fill.rs#L120-L153)*
+*Defined in [`textwrap-0.16.2/src/fill.rs:120-153`](../../../.source_1765521767/textwrap-0.16.2/src/fill.rs#L120-L153)*
 
 Fill `text` in-place without reallocating the input string.
 

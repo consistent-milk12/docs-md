@@ -54,7 +54,7 @@ struct DwarfSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
 
 All of the commonly used DWARF sections.
 
@@ -187,7 +187,7 @@ struct Dwarf<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
 
 All of the commonly used DWARF sections, and other common information.
 
@@ -299,7 +299,7 @@ struct DwarfPackageSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
 
 The sections from a `.dwp` file.
 
@@ -415,7 +415,7 @@ struct DwarfPackage<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
 
 The sections from a `.dwp` file, with parsed indices.
 
@@ -518,7 +518,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
 
 All of the commonly used information for a unit in the `.debug_info` or `.debug_types`
 sections.
@@ -608,7 +608,7 @@ struct UnitRef<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
 
 A reference to a `Unit` and its associated `Dwarf`.
 
@@ -703,7 +703,7 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 struct RangeIter<R: Reader>(RangeIterInner<R>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1630)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L1630)*
 
 An iterator for the address ranges of a `DebuggingInformationEntry`.
 
@@ -734,7 +734,7 @@ enum RangeIterInner<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../../.source_1765521767/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
 
 #### Trait Implementations
 

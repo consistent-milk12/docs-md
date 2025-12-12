@@ -43,7 +43,7 @@ struct One<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:100-103`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L100-L103)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:100-103`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L100-L103)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -86,7 +86,7 @@ struct Two<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:437-442`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L437-L442)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:437-442`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L437-L442)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -135,7 +135,7 @@ struct Three<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:695-702`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L695-L702)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:695-702`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L695-L702)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -184,7 +184,7 @@ struct Iter<'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:999-1012`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L999-L1012)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:999-1012`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L999-L1012)*
 
 An iterator over all occurrences of a set of bytes in a haystack.
 
@@ -258,7 +258,7 @@ respectively.
 unsafe fn search_slice_with_raw(haystack: &[u8], find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1125-1136`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1125-L1136)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1125-1136`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L1125-L1136)*
 
 Search a slice using a function that operates on raw pointers.
 
@@ -283,7 +283,7 @@ the end pointer.
 unsafe fn fwd_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1148-1162`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1148-L1162)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1148-1162`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L1148-L1162)*
 
 Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
@@ -301,7 +301,7 @@ ptr` and `ptr <= end_ptr`.
 unsafe fn rev_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1174-1189`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1174-L1189)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1174-1189`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L1174-L1189)*
 
 Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
@@ -319,7 +319,7 @@ ptr` and `ptr <= end_ptr`.
 unsafe fn count_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1199-1214`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1199-L1214)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1199-1214`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/memchr.rs#L1199-L1214)*
 
 Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns
 the number of times `confirm(*ptr)` returns `true`.

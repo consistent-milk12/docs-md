@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -178,7 +178,7 @@ struct Field {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L134-L137)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -235,7 +235,7 @@ and use the key for that name for all other accesses.
 struct Empty;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L146)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L146)*
 
 An empty field.
 
@@ -273,7 +273,7 @@ struct FieldSet {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L159-L164)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L159-L164)*
 
 Describes the fields present on a span.
 
@@ -349,7 +349,7 @@ struct ValueSet<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L167-L170)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L167-L170)*
 
 A set of fields and values for a span.
 
@@ -390,7 +390,7 @@ struct Iter {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L182-L185)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L182-L185)*
 
 An iterator over a set of fields.
 
@@ -420,7 +420,7 @@ An iterator over a set of fields.
 struct DisplayValue<T: fmt::Display>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L360)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L360)*
 
 A `Value` which serializes using `fmt::Display`.
 
@@ -457,7 +457,7 @@ avoid an unnecessary evaluation.
 struct DebugValue<T: fmt::Debug>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L364)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L364)*
 
 A `Value` which serializes as a string using `fmt::Debug`.
 
@@ -483,7 +483,7 @@ A `Value` which serializes as a string using `fmt::Debug`.
 struct HexBytes<'a>(&'a [u8]);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L397)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L397)*
 
 #### Trait Implementations
 
@@ -502,7 +502,7 @@ enum Values<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L172-L178)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L172-L178)*
 
 #### Variants
 
@@ -523,7 +523,7 @@ enum Values<'a> {
 trait Visit { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L275-L341)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L275-L341)*
 
 Visits typed values.
 
@@ -669,7 +669,7 @@ available when the Rust standard library is present, as it requires the
 trait Value: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L350-L353)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L350-L353)*
 
 A field value of an erased type.
 
@@ -740,7 +740,7 @@ where
     T: fmt::Display
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L368-L373)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L368-L373)*
 
 Wraps a type implementing `fmt::Display` as a `Value` that can be
 recorded using its `Display` implementation.
@@ -753,7 +753,7 @@ where
     T: fmt::Debug
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L377-L382)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L377-L382)*
 
 Wraps a type implementing `fmt::Debug` as a `Value` that can be
 recorded using its `Debug` implementation.
@@ -762,17 +762,17 @@ recorded using its `Debug` implementation.
 
 ### `impl_values!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L442-L448)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L442-L448)*
 
 ### `ty_to_nonzero!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L450-L487)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L450-L487)*
 
 ### `impl_one_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L489-L534)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L489-L534)*
 
 ### `impl_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L536-L547)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765521767/tracing-core-0.1.35/src/field.rs#L536-L547)*
 

@@ -72,7 +72,7 @@ a|b|0x0C
 struct ParseError(ParseErrorKind);
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:244`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L244)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:244`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L244)*
 
 An error encountered while parsing flags from text.
 
@@ -116,7 +116,7 @@ enum ParseErrorKind {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:248-262`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L248-L262)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:248-262`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L248-L262)*
 
 #### Trait Implementations
 
@@ -132,7 +132,7 @@ enum ParseErrorKind {
 trait WriteHex { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:227-230`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L227-L230)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:227-230`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L227-L230)*
 
 Encode a value as a hex string.
 
@@ -165,7 +165,7 @@ Implementors of this trait should not write the `0x` prefix.
 trait ParseHex { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:235-240`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L235-L240)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:235-240`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L235-L240)*
 
 Parse a value from a hex string.
 
@@ -200,7 +200,7 @@ where
     <B as >::Bits: WriteHex
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:42-78`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L42-L78)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:42-78`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L42-L78)*
 
 Write a flags value as text.
 
@@ -214,7 +214,7 @@ where
     <B as >::Bits: ParseHex
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:99-137`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L99-L137)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:99-137`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L99-L137)*
 
 Parse a flags value from text.
 
@@ -229,7 +229,7 @@ where
     <B as >::Bits: WriteHex
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:142-147`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L142-L147)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:142-147`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L142-L147)*
 
 Write a flags value as text, ignoring any unknown bits.
 
@@ -241,7 +241,7 @@ where
     <B as >::Bits: ParseHex
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:155-160`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L155-L160)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:155-160`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L155-L160)*
 
 Parse a flags value from text.
 
@@ -254,7 +254,7 @@ Unknown bits will be ignored.
 fn to_writer_strict<B: Flags>(flags: &B, writer: impl Write) -> Result<(), fmt::Error>
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:165-181`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L165-L181)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:165-181`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L165-L181)*
 
 Write only the contained, defined, named flags in a flags value as text.
 
@@ -264,7 +264,7 @@ Write only the contained, defined, named flags in a flags value as text.
 fn from_str_strict<B: Flags>(input: &str) -> Result<B, ParseError>
 ```
 
-*Defined in [`bitflags-2.10.0/src/parser.rs:189-220`](../../../.source_1765210505/bitflags-2.10.0/src/parser.rs#L189-L220)*
+*Defined in [`bitflags-2.10.0/src/parser.rs:189-220`](../../../.source_1765521767/bitflags-2.10.0/src/parser.rs#L189-L220)*
 
 Parse a flags value from text.
 

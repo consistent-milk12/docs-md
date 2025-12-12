@@ -28,7 +28,7 @@ struct ThreadPool {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
 
 Represents a user-created [thread pool].
 
@@ -128,7 +128,7 @@ enum Yield {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
 
 Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
@@ -184,7 +184,7 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 fn current_thread_index() -> Option<usize>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
 
 If called from a Rayon worker thread, returns the index of that
 thread within its current pool; if not called from a Rayon thread,
@@ -213,7 +213,7 @@ restarted.
 fn current_thread_has_pending_tasks() -> Option<bool>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
 
 If called from a Rayon worker thread, indicates whether that
 thread's local deque still has pending tasks. Otherwise, returns
@@ -227,7 +227,7 @@ thread's local deque still has pending tasks. Otherwise, returns
 fn yield_now() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
 
 Cooperatively yields execution to Rayon.
 
@@ -248,7 +248,7 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn yield_local() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../../.source_1765521767/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
 
 Cooperatively yields execution to local Rayon work.
 

@@ -50,7 +50,7 @@ struct Scope<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 See [`scope()`](#scope) for more information.
@@ -92,7 +92,7 @@ struct ScopeFifo<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
@@ -137,7 +137,7 @@ struct ScopeBase<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:36-54`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L36-L54)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:36-54`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L36-L54)*
 
 #### Fields
 
@@ -202,7 +202,7 @@ struct ScopeBase<'scope> {
 struct ScopePtr<T>(*const T);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:760`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L760)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:760`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L760)*
 
 Used to capture a scope `&Self` pointer in jobs, without faking a lifetime.
 
@@ -244,7 +244,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -477,7 +477,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -564,7 +564,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -596,7 +596,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:405-412`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L405-L412)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:405-412`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L405-L412)*
 
 ### `get_in_place_thread_registry`
 
@@ -604,7 +604,7 @@ where
 fn get_in_place_thread_registry(registry: Option<&std::sync::Arc<crate::registry::Registry>>) -> (Option<&crate::registry::WorkerThread>, Option<&std::sync::Arc<crate::registry::Registry>>)
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:414-426`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L414-L426)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:414-426`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L414-L426)*
 
 ### `in_place_scope_fifo`
 
@@ -614,7 +614,7 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -646,5 +646,5 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:456-463`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L456-L463)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:456-463`](../../../.source_1765521767/rayon-core-1.13.0/src/scope/mod.rs#L456-L463)*
 

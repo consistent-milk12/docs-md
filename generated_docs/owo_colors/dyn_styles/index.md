@@ -66,7 +66,7 @@ struct Styled<T> {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
 
 A wrapper type which applies a [`Style`](../index.md) when displaying the inner type
 
@@ -145,7 +145,7 @@ struct Style {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
 
 A pre-computed style that can be applied to a struct using `OwoColorize::style`.
 
@@ -337,7 +337,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 struct StyleFlags(u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
 
 #### Implementations
 
@@ -373,7 +373,7 @@ struct StyleFlags(u8);
 struct StylePrefixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
 
 Formatter for the prefix of a [`Style`](../index.md).
 
@@ -410,7 +410,7 @@ the suffix, which is useful for formatting the prefix separately.
 struct StyleSuffixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
 
 Formatter for the suffix of a [`Style`](../index.md).
 
@@ -459,7 +459,7 @@ enum Effect {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
 
 A runtime-configurable text effect for use with [`Style`](../index.md)
 
@@ -485,7 +485,7 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 const fn style() -> Style
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
 
 Helper to create [`Style`](../index.md)s more ergonomically
 
@@ -496,72 +496,72 @@ Helper to create [`Style`](../index.md)s more ergonomically
 const DIMMED_SHIFT: u8 = 0u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
 
 ### `ITALIC_SHIFT`
 ```rust
 const ITALIC_SHIFT: u8 = 1u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
 
 ### `UNDERLINE_SHIFT`
 ```rust
 const UNDERLINE_SHIFT: u8 = 2u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
 
 ### `BLINK_SHIFT`
 ```rust
 const BLINK_SHIFT: u8 = 3u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
 
 ### `BLINK_FAST_SHIFT`
 ```rust
 const BLINK_FAST_SHIFT: u8 = 4u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
 
 ### `REVERSED_SHIFT`
 ```rust
 const REVERSED_SHIFT: u8 = 5u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
 
 ### `HIDDEN_SHIFT`
 ```rust
 const HIDDEN_SHIFT: u8 = 6u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
 
 ### `STRIKETHROUGH_SHIFT`
 ```rust
 const STRIKETHROUGH_SHIFT: u8 = 7u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
 
 ## Macros
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
 
 ### `style_flags_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
 
 ### `impl_fmt!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../../.source_1765521767/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
 

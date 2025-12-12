@@ -18,7 +18,7 @@
 struct DebugReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../../.source_1765210505/miette-7.6.0/src/handlers/debug.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../../.source_1765521767/miette-7.6.0/src/handlers/debug.rs#L11)*
 
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any

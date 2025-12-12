@@ -27,7 +27,7 @@ struct SharedSeed {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L78-L80)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../../.source_1765521767/foldhash-0.2.0/src/seed.rs#L78-L80)*
 
 A random seed intended to be shared by many different foldhash instances.
 
@@ -60,7 +60,7 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 fn gen_per_hasher_seed() -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:22-71`](../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L22-L71)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:22-71`](../../../.source_1765521767/foldhash-0.2.0/src/seed.rs#L22-L71)*
 
 ## Constants
 
@@ -69,7 +69,7 @@ fn gen_per_hasher_seed() -> u64
 const FIXED_GLOBAL_SEED: SharedSeed;
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:11-20`](../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L11-L20)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:11-20`](../../../.source_1765521767/foldhash-0.2.0/src/seed.rs#L11-L20)*
 
 Used for FixedState, and RandomState if atomics for dynamic init are unavailable.
 

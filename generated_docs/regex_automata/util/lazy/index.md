@@ -28,7 +28,7 @@ values that are shared safely across multiple threads simultaneously.
 struct Lazy<T, F>(lazy::Lazy<T, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:52`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/lazy.rs#L52)*
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:52`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/lazy.rs#L52)*
 
 A lazily initialized value that implements `Deref` for `T`.
 

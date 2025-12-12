@@ -66,7 +66,7 @@ struct Buffer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:27-33`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L27-L33)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:27-33`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L27-L33)*
 
 A buffer that holds tasks in a worker queue.
 
@@ -129,7 +129,7 @@ struct Inner<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:110-119`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L110-L119)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:110-119`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L110-L119)*
 
 Internal queue data shared between the worker and stealers.
 
@@ -189,7 +189,7 @@ struct Worker<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -301,7 +301,7 @@ struct Stealer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -387,7 +387,7 @@ struct Slot<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1198-1204`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1198-L1204)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1198-1204`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1198-L1204)*
 
 A slot in a block.
 
@@ -430,7 +430,7 @@ struct Block<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1219-1225`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1219-L1225)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1219-1225`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1219-L1225)*
 
 A block in a linked list.
 
@@ -481,7 +481,7 @@ struct Position<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1289-1295`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1289-L1295)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1289-1295`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1289-L1295)*
 
 A position in a queue.
 
@@ -521,7 +521,7 @@ struct Injector<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
 
 An injector queue.
 
@@ -619,7 +619,7 @@ enum Flavor {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:145-151`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L145-L151)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:145-151`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L145-L151)*
 
 Worker queue flavor: FIFO or LIFO.
 
@@ -677,7 +677,7 @@ enum Steal<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -769,68 +769,68 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 const MIN_CAP: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:16`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L16)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:16`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L16)*
 
 ### `MAX_BATCH`
 ```rust
 const MAX_BATCH: usize = 32usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:18`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L18)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:18`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L18)*
 
 ### `FLUSH_THRESHOLD_BYTES`
 ```rust
 const FLUSH_THRESHOLD_BYTES: usize = 1_024usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:21`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L21)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:21`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L21)*
 
 ### `WRITE`
 ```rust
 const WRITE: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1184`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1184)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1184`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1184)*
 
 ### `READ`
 ```rust
 const READ: usize = 2usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1185`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1185)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1185`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1185)*
 
 ### `DESTROY`
 ```rust
 const DESTROY: usize = 4usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1186`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1186)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1186`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1186)*
 
 ### `LAP`
 ```rust
 const LAP: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1189`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1189)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1189`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1189)*
 
 ### `BLOCK_CAP`
 ```rust
 const BLOCK_CAP: usize = 63usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1191`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1191)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1191`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1191)*
 
 ### `SHIFT`
 ```rust
 const SHIFT: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1193`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1193)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1193`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1193)*
 
 ### `HAS_NEXT`
 ```rust
 const HAS_NEXT: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1195`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1195)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1195`](../../../.source_1765521767/crossbeam-deque-0.8.6/src/deque.rs#L1195)*
 

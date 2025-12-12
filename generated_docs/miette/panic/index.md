@@ -19,7 +19,7 @@
 struct Panic(String);
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L30)*
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765521767/miette-7.6.0/src/panic.rs#L30)*
 
 #### Implementations
 
@@ -61,7 +61,7 @@ struct Panic(String);
 fn set_panic_hook()
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L8-L27)*
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765521767/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 

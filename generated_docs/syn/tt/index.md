@@ -19,7 +19,7 @@
 struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 ```
 
-*Defined in [`syn-2.0.111/src/tt.rs:4`](../../../.source_1765210505/syn-2.0.111/src/tt.rs#L4)*
+*Defined in [`syn-2.0.111/src/tt.rs:4`](../../../.source_1765521767/syn-2.0.111/src/tt.rs#L4)*
 
 #### Trait Implementations
 
@@ -37,7 +37,7 @@ struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 struct TokenStreamHelper<'a>(&'a proc_macro2::TokenStream);
 ```
 
-*Defined in [`syn-2.0.111/src/tt.rs:65`](../../../.source_1765210505/syn-2.0.111/src/tt.rs#L65)*
+*Defined in [`syn-2.0.111/src/tt.rs:65`](../../../.source_1765521767/syn-2.0.111/src/tt.rs#L65)*
 
 #### Trait Implementations
 

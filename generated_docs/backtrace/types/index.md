@@ -23,7 +23,7 @@ enum BytesOrWideString<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765210505/backtrace-0.3.76/src/types.rs#L17-L22)*
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765521767/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing

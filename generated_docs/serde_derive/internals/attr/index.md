@@ -107,7 +107,7 @@ struct Attr<'c, T> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:24-29`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L24-L29)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:24-29`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L24-L29)*
 
 #### Implementations
 
@@ -129,7 +129,7 @@ struct Attr<'c, T> {
 struct BoolAttr<'c>(Attr<'c, ()>);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:77`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L77)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:77`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L77)*
 
 #### Implementations
 
@@ -150,7 +150,7 @@ struct VecAttr<'c, T> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:93-98`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L93-L98)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:93-98`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L93-L98)*
 
 #### Implementations
 
@@ -171,7 +171,7 @@ struct RenameAllRules {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:138-141`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L138-L141)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:138-141`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L138-L141)*
 
 #### Implementations
 
@@ -210,7 +210,7 @@ struct Container {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:155-175`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L155-L175)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:155-175`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L155-L175)*
 
 Represents struct or enum attribute information.
 
@@ -278,7 +278,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:728-740`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L728-L740)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:728-740`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L728-L740)*
 
 Represents variant attribute information
 
@@ -319,7 +319,7 @@ struct BorrowAttribute {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:742-745`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L742-L745)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:742-745`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L742-L745)*
 
 ### `Field`
 
@@ -341,7 +341,7 @@ struct Field {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:978-992`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L978-L992)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:978-992`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L978-L992)*
 
 Represents field attribute information
 
@@ -399,7 +399,7 @@ enum RenameRule {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 
@@ -484,7 +484,7 @@ enum TagType {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:178-206`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L178-L206)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:178-206`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L178-L206)*
 
 Styles of representing an enum.
 
@@ -532,7 +532,7 @@ enum Identifier {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:211-223`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L211-L223)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:211-223`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L211-L223)*
 
 Whether this enum represents the fields of a struct or the variants of an
 enum.
@@ -572,7 +572,7 @@ enum Default {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:995-1002`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L995-L1002)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:995-1002`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L995-L1002)*
 
 Represents the default to use for a field when deserializing.
 
@@ -602,7 +602,7 @@ Represents the default to use for a field when deserializing.
 fn unraw(ident: &syn::Ident) -> syn::Ident
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:133-135`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L133-L135)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:133-135`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L133-L135)*
 
 ### `decide_tag`
 
@@ -610,7 +610,7 @@ fn unraw(ident: &syn::Ident) -> syn::Ident
 fn decide_tag(cx: &crate::internals::Ctxt, item: &syn::DeriveInput, untagged: BoolAttr<'_>, internal_tag: Attr<'_, String>, content: Attr<'_, String>) -> TagType
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:622-681`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L622-L681)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:622-681`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L622-L681)*
 
 ### `decide_identifier`
 
@@ -618,7 +618,7 @@ fn decide_tag(cx: &crate::internals::Ctxt, item: &syn::DeriveInput, untagged: Bo
 fn decide_identifier(cx: &crate::internals::Ctxt, item: &syn::DeriveInput, field_identifier: BoolAttr<'_>, variant_identifier: BoolAttr<'_>) -> Identifier
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:683-725`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L683-L725)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:683-725`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L683-L725)*
 
 ### `get_ser_and_de`
 
@@ -630,7 +630,7 @@ where
     R: Into<Option<T>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1343-1386`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1343-L1386)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1343-1386`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1343-L1386)*
 
 ### `get_renames`
 
@@ -638,7 +638,7 @@ where
 fn get_renames(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<syn::LitStr>, Option<syn::LitStr>)>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1388-1395`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1388-L1395)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1388-1395`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1388-L1395)*
 
 ### `get_multiple_renames`
 
@@ -646,7 +646,7 @@ fn get_renames(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta:
 fn get_multiple_renames(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<syn::LitStr>, Vec<syn::LitStr>)>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1397-1403`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1397-L1403)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1397-1403`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1397-L1403)*
 
 ### `get_where_predicates`
 
@@ -654,7 +654,7 @@ fn get_multiple_renames(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNest
 fn get_where_predicates(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<Vec<syn::WherePredicate>>, Option<Vec<syn::WherePredicate>>)>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1405-1411`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1405-L1411)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1405-1411`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1405-L1411)*
 
 ### `get_lit_str`
 
@@ -662,7 +662,7 @@ fn get_where_predicates(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNest
 fn get_lit_str(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::LitStr>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1413-1419`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1413-L1419)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1413-1419`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1413-L1419)*
 
 ### `get_lit_str2`
 
@@ -670,7 +670,7 @@ fn get_lit_str(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta:
 fn get_lit_str2(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::LitStr>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1421-1455`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1421-L1455)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1421-1455`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1421-L1455)*
 
 ### `parse_lit_into_path`
 
@@ -678,7 +678,7 @@ fn get_lit_str2(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: 
 fn parse_lit_into_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::Path>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1457-1477`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1457-L1477)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1457-1477`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1457-L1477)*
 
 ### `parse_lit_into_expr_path`
 
@@ -686,7 +686,7 @@ fn parse_lit_into_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &sy
 fn parse_lit_into_expr_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::ExprPath>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1479-1499`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1479-L1499)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1479-1499`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1479-L1499)*
 
 ### `parse_lit_into_where`
 
@@ -694,7 +694,7 @@ fn parse_lit_into_expr_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta
 fn parse_lit_into_where(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Vec<syn::WherePredicate>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1501-1521`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1501-L1521)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1501-1521`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1501-L1521)*
 
 ### `parse_lit_into_ty`
 
@@ -702,7 +702,7 @@ fn parse_lit_into_where(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_ite
 fn parse_lit_into_ty(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::Type>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1523-1543`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1523-L1543)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1523-1543`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1523-L1543)*
 
 ### `parse_lit_into_lifetimes`
 
@@ -710,7 +710,7 @@ fn parse_lit_into_ty(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn:
 fn parse_lit_into_lifetimes(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<std::collections::BTreeSet<syn::Lifetime>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1547-1584`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1547-L1584)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1547-1584`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1547-L1584)*
 
 ### `is_implicitly_borrowed`
 
@@ -718,7 +718,7 @@ fn parse_lit_into_lifetimes(cx: &crate::internals::Ctxt, meta: &syn::meta::Parse
 fn is_implicitly_borrowed(ty: &syn::Type) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1586-1588`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1586-L1588)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1586-1588`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1586-L1588)*
 
 ### `is_implicitly_borrowed_reference`
 
@@ -726,7 +726,7 @@ fn is_implicitly_borrowed(ty: &syn::Type) -> bool
 fn is_implicitly_borrowed_reference(ty: &syn::Type) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1590-1592`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1590-L1592)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1590-1592`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1590-L1592)*
 
 ### `is_cow`
 
@@ -734,7 +734,7 @@ fn is_implicitly_borrowed_reference(ty: &syn::Type) -> bool
 fn is_cow(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1616-1641`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1616-L1641)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1616-1641`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1616-L1641)*
 
 ### `is_option`
 
@@ -742,7 +742,7 @@ fn is_cow(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 fn is_option(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1643-1668`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1643-L1668)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1643-1668`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1643-L1668)*
 
 ### `is_reference`
 
@@ -750,7 +750,7 @@ fn is_option(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 fn is_reference(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1690-1695`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1690-L1695)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1690-1695`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1690-L1695)*
 
 ### `is_str`
 
@@ -758,7 +758,7 @@ fn is_reference(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 fn is_str(ty: &syn::Type) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1697-1699`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1697-L1699)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1697-1699`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1697-L1699)*
 
 ### `is_slice_u8`
 
@@ -766,7 +766,7 @@ fn is_str(ty: &syn::Type) -> bool
 fn is_slice_u8(ty: &syn::Type) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1701-1706`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1701-L1706)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1701-1706`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1701-L1706)*
 
 ### `is_primitive_type`
 
@@ -774,7 +774,7 @@ fn is_slice_u8(ty: &syn::Type) -> bool
 fn is_primitive_type(ty: &syn::Type, primitive: &str) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1708-1713`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1708-L1713)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1708-1713`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1708-L1713)*
 
 ### `is_primitive_path`
 
@@ -782,7 +782,7 @@ fn is_primitive_type(ty: &syn::Type, primitive: &str) -> bool
 fn is_primitive_path(path: &syn::Path, primitive: &str) -> bool
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1715-1720`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1715-L1720)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1715-1720`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1715-L1720)*
 
 ### `borrowable_lifetimes`
 
@@ -790,7 +790,7 @@ fn is_primitive_path(path: &syn::Path, primitive: &str) -> bool
 fn borrowable_lifetimes(cx: &crate::internals::Ctxt, name: &crate::internals::name::Name, field: &syn::Field) -> Result<std::collections::BTreeSet<syn::Lifetime>, ()>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1729-1743`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1729-L1743)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1729-1743`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1729-L1743)*
 
 ### `collect_lifetimes`
 
@@ -798,7 +798,7 @@ fn borrowable_lifetimes(cx: &crate::internals::Ctxt, name: &crate::internals::na
 fn collect_lifetimes(ty: &syn::Type, out: &mut std::collections::BTreeSet<syn::Lifetime>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1745-1810`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1745-L1810)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1745-1810`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1745-L1810)*
 
 ### `collect_lifetimes_from_tokens`
 
@@ -806,7 +806,7 @@ fn collect_lifetimes(ty: &syn::Type, out: &mut std::collections::BTreeSet<syn::L
 fn collect_lifetimes_from_tokens(tokens: proc_macro2::TokenStream, out: &mut std::collections::BTreeSet<syn::Lifetime>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1812-1831`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1812-L1831)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1812-1831`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1812-L1831)*
 
 ## Type Aliases
 
@@ -816,5 +816,5 @@ fn collect_lifetimes_from_tokens(tokens: proc_macro2::TokenStream, out: &mut std
 type SerAndDe<T> = (Option<T>, Option<T>);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1341`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1341)*
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1341`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/attr.rs#L1341)*
 

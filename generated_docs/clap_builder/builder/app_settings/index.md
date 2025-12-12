@@ -19,7 +19,7 @@
 struct AppFlags(u32);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:7`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/app_settings.rs#L7)*
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:7`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/app_settings.rs#L7)*
 
 #### Implementations
 
@@ -102,9 +102,9 @@ enum AppSettings {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:48-82`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/app_settings.rs#L48-L82)*
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:48-82`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/app_settings.rs#L48-L82)*
 
-Application level settings, which affect how [`Command`](../../index.md) operates
+Application level settings, which affect how [`Command`](../command/index.md) operates
 
 <div class="warning">
 

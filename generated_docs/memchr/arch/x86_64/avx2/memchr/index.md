@@ -46,7 +46,7 @@ struct One {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:29-34`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L29-L34)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:29-34`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L29-L34)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -115,7 +115,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:467-470`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L467-L470)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:467-470`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L467-L470)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -172,7 +172,7 @@ struct Two {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:516-521`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L516-L521)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:516-521`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L516-L521)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -237,7 +237,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:855-858`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L855-L858)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:855-858`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L855-L858)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -292,7 +292,7 @@ struct Three {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:895-900`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L895-L900)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:895-900`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L895-L900)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -357,7 +357,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:1242-1245`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L1242-L1245)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:1242-1245`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L1242-L1245)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 

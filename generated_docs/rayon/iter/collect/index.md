@@ -29,7 +29,7 @@ where
     T: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:13-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L13-L21)*
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:13-21`](../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/mod.rs#L13-L21)*
 
 Collects the results of the exact iterator into the specified vector.
 
@@ -44,7 +44,7 @@ where
     T: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:34-40`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L34-L40)*
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:34-40`](../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/mod.rs#L34-L40)*
 
 Collects the results of the iterator into the specified vector.
 
@@ -68,7 +68,7 @@ where
     B: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:45-65`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L45-L65)*
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:45-65`](../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/mod.rs#L45-L65)*
 
 Unzips the results of the exact iterator into the specified vectors.
 
@@ -83,7 +83,7 @@ where
     F: FnOnce(self::consumer::CollectConsumer<'_, T>) -> self::consumer::CollectResult<'_, T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:75-114`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L75-L114)*
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:75-114`](../../../../.source_1765521767/rayon-1.11.0/src/iter/collect/mod.rs#L75-L114)*
 
 Create a consumer on the slice of memory we are collecting into.
 

@@ -56,7 +56,7 @@
 struct Id(crate::builder::Str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../.source_1765210505/clap_builder-4.5.53/src/util/id.rs#L11)*
+*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../.source_1765521767/clap_builder-4.5.53/src/util/id.rs#L11)*
 
 `Arg` or `ArgGroup` identifier
 
@@ -142,7 +142,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 fn eq_ignore_case(left: &str, right: &str) -> bool
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/mod.rs:33-35`](../../../.source_1765210505/clap_builder-4.5.53/src/util/mod.rs#L33-L35)*
+*Defined in [`clap_builder-4.5.53/src/util/mod.rs:33-35`](../../../.source_1765521767/clap_builder-4.5.53/src/util/mod.rs#L33-L35)*
 
 ## Constants
 
@@ -151,12 +151,12 @@ fn eq_ignore_case(left: &str, right: &str) -> bool
 const SUCCESS_CODE: i32 = 0i32;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/mod.rs:24`](../../../.source_1765210505/clap_builder-4.5.53/src/util/mod.rs#L24)*
+*Defined in [`clap_builder-4.5.53/src/util/mod.rs:24`](../../../.source_1765521767/clap_builder-4.5.53/src/util/mod.rs#L24)*
 
 ### `USAGE_CODE`
 ```rust
 const USAGE_CODE: i32 = 2i32;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/mod.rs:30`](../../../.source_1765210505/clap_builder-4.5.53/src/util/mod.rs#L30)*
+*Defined in [`clap_builder-4.5.53/src/util/mod.rs:30`](../../../.source_1765521767/clap_builder-4.5.53/src/util/mod.rs#L30)*
 

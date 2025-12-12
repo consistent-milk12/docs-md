@@ -1,6 +1,8 @@
 # Crate `allocator_api2`
 
+
 allocator-api2 crate.
+
 
 ## Contents
 
@@ -61,7 +63,7 @@ allocator-api2 crate.
 unsafe fn assume(v: bool)
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
 
 ### `addr`
 
@@ -69,7 +71,7 @@ unsafe fn assume(v: bool)
 fn addr<T>(x: *const T) -> usize
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
 
 ### `invalid_mut`
 
@@ -77,13 +79,13 @@ fn addr<T>(x: *const T) -> usize
 fn invalid_mut<T>(addr: usize) -> *mut T
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
 
 ## Macros
 
 ### `vec!`
 
-*Defined in [`allocator-api2-0.2.21/src/stable/macros.rs:56-83`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/macros.rs#L56-L83)*
+*Defined in [`allocator-api2-0.2.21/src/stable/macros.rs:56-83`](../../.source_1765521767/allocator-api2-0.2.21/src/stable/macros.rs#L56-L83)*
 
 Creates a [`Vec`](stable/vec/index.md) containing the arguments.
 
@@ -99,6 +101,7 @@ assert_eq!(v[0], 1);
 assert_eq!(v[1], 2);
 assert_eq!(v[2], 3);
 ```
+
 
 ```rust
 use allocator_api2::{vec, alloc::Global};
@@ -136,9 +139,10 @@ Also, note that `vec![expr; 0]` is allowed, and produces an empty vector.
 This will still evaluate `expr`, however, and immediately drop the resulting value, so
 be mindful of side effects.
 
+
 ### `unsize_box!`
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:47-60`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L47-L60)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:47-60`](../../.source_1765521767/allocator-api2-0.2.21/src/stable/mod.rs#L47-L60)*
 
 Allows turning a `Box<T: Sized, A>` into a `Box<U: ?Sized, A>` where `T` can be unsizing-coerced into a `U`.
 
@@ -148,7 +152,7 @@ With the standard library's `alloc::boxed::Box`, this is done automatically usin
 can't take advantage of that machinery on stable. So, we need to use type inference and the fact that you *can*
 still coerce the inner pointer of a box to get the compiler to help us unsize it using this macro.
 
-## Example
+# Example
 
 ```rust
 use allocator_api2::unsize_box;

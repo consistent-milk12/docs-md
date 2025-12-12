@@ -7,7 +7,7 @@
 <br>
 
 This library provides a convenient derive macro for the standard library's
-[`std::error::Error`](../cargo_docs_md/error/index.md) trait.
+[`std::error::Error`](../addr2line/index.md) trait.
 
 <br>
 
@@ -39,7 +39,7 @@ pub enum DataStoreError {
 
 - Thiserror deliberately does not appear in your public API. You get the
   same thing as if you had written an implementation of
-  [`std::error::Error`](../cargo_docs_md/error/index.md) by hand, and switching from handwritten impls to
+  [`std::error::Error`](../addr2line/index.md) by hand, and switching from handwritten impls to
   thiserror or vice versa is not a breaking change.
 
 - Errors may be enums, structs with named fields, tuple structs, or unit

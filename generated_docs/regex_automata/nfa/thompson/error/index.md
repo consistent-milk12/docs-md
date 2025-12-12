@@ -21,7 +21,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
 
 An error that can occurred during the construction of a thompson NFA.
 
@@ -109,7 +109,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
 
 The kind of error that occurred during the construction of a thompson NFA.
 

@@ -72,7 +72,7 @@ struct SliceRead<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:164-170`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L164-L170)*
+*Defined in [`serde_json-1.0.145/src/read.rs:164-170`](../../../.source_1765521767/serde_json-1.0.145/src/read.rs#L164-L170)*
 
 JSON input source that reads from a slice of bytes.
 
@@ -110,7 +110,7 @@ struct StrRead<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:175-179`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L175-L179)*
+*Defined in [`serde_json-1.0.145/src/read.rs:175-179`](../../../.source_1765521767/serde_json-1.0.145/src/read.rs#L175-L179)*
 
 JSON input source that reads from a UTF-8 string.
 
@@ -137,7 +137,7 @@ where
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:149-158`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L149-L158)*
+*Defined in [`serde_json-1.0.145/src/read.rs:149-158`](../../../.source_1765521767/serde_json-1.0.145/src/read.rs#L149-L158)*
 
 JSON input source that reads from a std::io input stream.
 
@@ -164,10 +164,11 @@ struct Deserializer<R> {
     read: R,
     scratch: alloc::vec::Vec<u8>,
     remaining_depth: u8,
+    disable_recursion_limit: bool,
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L31-L39)*
+*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L31-L39)*
 
 A structure that deserializes JSON into Rust values.
 
@@ -252,7 +253,7 @@ struct SeqAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1917-1920`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L1917-L1920)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1917-1920`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L1917-L1920)*
 
 #### Implementations
 
@@ -275,7 +276,7 @@ struct MapAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1970-1973`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L1970-L1973)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1970-1973`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L1970-L1973)*
 
 #### Implementations
 
@@ -299,7 +300,7 @@ struct VariantAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2035-2037`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2035-L2037)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2035-2037`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2035-L2037)*
 
 #### Implementations
 
@@ -335,7 +336,7 @@ struct UnitVariantAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2088-2090`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2088-L2090)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2088-2090`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2088-L2090)*
 
 #### Implementations
 
@@ -371,7 +372,7 @@ struct MapKey<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2151-2153`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2151-L2153)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2151-2153`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2151-L2153)*
 
 Only deserialize from this after peeking a '"' byte! Otherwise it may
 deserialize invalid JSON successfully.
@@ -460,7 +461,7 @@ struct StreamDeserializer<'de, R, T> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2349-L2355)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2349-L2355)*
 
 Iterator that deserializes a stream into multiple JSON values.
 
@@ -522,7 +523,7 @@ enum ParserNumber {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:109-115`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L109-L115)*
+*Defined in [`serde_json-1.0.145/src/de.rs:109-115`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L109-L115)*
 
 #### Implementations
 
@@ -538,7 +539,7 @@ enum ParserNumber {
 trait Read<'de>: private::Sealed { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:28-117`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L28-L117)*
+*Defined in [`serde_json-1.0.145/src/read.rs:28-117`](../../../.source_1765521767/serde_json-1.0.145/src/read.rs#L28-L117)*
 
 Trait used by the deserializer for iterating over input. This is manually
 "specialized" for iterating over `&[u8]`. Once feature(specialization) is
@@ -565,7 +566,7 @@ where
     T: de::Deserialize<'de>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2495-2506`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2495-L2506)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2495-2506`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2495-L2506)*
 
 ### `from_reader`
 
@@ -576,7 +577,7 @@ where
     T: de::DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2612-L2618)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2612-L2618)*
 
 Deserialize an instance of type `T` from an I/O stream of JSON.
 
@@ -687,7 +688,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2655-L2660)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2655-L2660)*
 
 Deserialize an instance of type `T` from bytes of JSON text.
 
@@ -733,7 +734,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2697-L2702)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2697-L2702)*
 
 Deserialize an instance of type `T` from a string of JSON text.
 
@@ -775,21 +776,21 @@ type.
 
 ### `overflow!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:101-107`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L101-L107)*
+*Defined in [`serde_json-1.0.145/src/de.rs:101-107`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L101-L107)*
 
 ### `deserialize_number!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1339-1352`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L1339-L1352)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1339-1352`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L1339-L1352)*
 
 ### `if_checking_recursion_limit!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1355-1359`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L1355-L1359)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1362-1368`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L1362-L1368)*
 
 ### `check_recursion!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1370-1385`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L1370-L1385)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1370-1385`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L1370-L1385)*
 
 ### `deserialize_numeric_key!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2155-2187`](../../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2155-L2187)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2155-2187`](../../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2155-L2187)*
 

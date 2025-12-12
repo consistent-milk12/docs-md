@@ -25,7 +25,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L42-L51)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L42-L51)*
 
 An export from a PE file.
 
@@ -72,7 +72,7 @@ struct ExportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L87-L94)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L87-L94)*
 
 A partially parsed PE export table.
 
@@ -138,7 +138,7 @@ enum ExportTarget<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L10-L21)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L10-L21)*
 
 Where an export is pointing to.
 
@@ -186,5 +186,5 @@ Where an export is pointing to.
 fn parse_ordinal(digits: &[u8]) -> Option<u32>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L324-L334)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/export.rs#L324-L334)*
 

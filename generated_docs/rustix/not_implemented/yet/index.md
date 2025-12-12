@@ -89,7 +89,7 @@ incomplete list of such functions.
 fn tgkill()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:290`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L290)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:290`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L290)*
 
 See the [module comment](self).
 
@@ -99,7 +99,7 @@ See the [module comment](self).
 fn raise()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:291`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L291)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:291`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L291)*
 
 See the [module comment](self).
 
@@ -109,7 +109,7 @@ See the [module comment](self).
 fn sysctl()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:292`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L292)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:292`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L292)*
 
 See the [module comment](self).
 
@@ -119,7 +119,7 @@ See the [module comment](self).
 fn mq_open()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:293`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L293)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:293`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L293)*
 
 See the [module comment](self).
 
@@ -129,7 +129,7 @@ See the [module comment](self).
 fn mq_send()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:294`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L294)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:294`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L294)*
 
 See the [module comment](self).
 
@@ -139,7 +139,7 @@ See the [module comment](self).
 fn mq_unlink()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:295`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L295)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:295`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L295)*
 
 See the [module comment](self).
 
@@ -149,7 +149,7 @@ See the [module comment](self).
 fn recvmmsg()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:296`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L296)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:296`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L296)*
 
 See the [module comment](self).
 
@@ -159,7 +159,7 @@ See the [module comment](self).
 fn cachestat()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:297`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L297)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:297`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L297)*
 
 See the [module comment](self).
 
@@ -169,7 +169,7 @@ See the [module comment](self).
 fn fanotify_init()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:298`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L298)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:298`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L298)*
 
 See the [module comment](self).
 
@@ -179,7 +179,7 @@ See the [module comment](self).
 fn fanotify_mark()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:299`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L299)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:299`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L299)*
 
 See the [module comment](self).
 
@@ -189,7 +189,7 @@ See the [module comment](self).
 fn getifaddrs()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:300`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L300)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:300`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L300)*
 
 See the [module comment](self).
 
@@ -199,7 +199,7 @@ See the [module comment](self).
 fn signalfd()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:301`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L301)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:301`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L301)*
 
 See the [module comment](self).
 
@@ -209,7 +209,7 @@ See the [module comment](self).
 fn mount_setattr()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:302`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L302)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:302`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L302)*
 
 See the [module comment](self).
 
@@ -219,7 +219,7 @@ See the [module comment](self).
 fn extattr_delete_fd()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:303`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L303)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:303`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L303)*
 
 See the [module comment](self).
 
@@ -229,7 +229,7 @@ See the [module comment](self).
 fn extattr_delete_link()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:304`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L304)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:304`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L304)*
 
 See the [module comment](self).
 
@@ -239,7 +239,7 @@ See the [module comment](self).
 fn extattr_get_fd()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:305`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L305)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:305`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L305)*
 
 See the [module comment](self).
 
@@ -249,7 +249,7 @@ See the [module comment](self).
 fn extattr_get_link()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:306`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L306)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:306`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L306)*
 
 See the [module comment](self).
 
@@ -259,7 +259,7 @@ See the [module comment](self).
 fn extattr_list_fd()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:307`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L307)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:307`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L307)*
 
 See the [module comment](self).
 
@@ -269,7 +269,7 @@ See the [module comment](self).
 fn extattr_list_link()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:308`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L308)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:308`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L308)*
 
 See the [module comment](self).
 
@@ -279,7 +279,7 @@ See the [module comment](self).
 fn extattr_set_fd()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:309`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L309)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:309`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L309)*
 
 See the [module comment](self).
 
@@ -289,7 +289,7 @@ See the [module comment](self).
 fn extattr_set_link()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:310`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L310)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:310`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L310)*
 
 See the [module comment](self).
 
@@ -299,7 +299,7 @@ See the [module comment](self).
 fn get_mempolicy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:311`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L311)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:311`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L311)*
 
 See the [module comment](self).
 
@@ -309,7 +309,7 @@ See the [module comment](self).
 fn mbind()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:312`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L312)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:312`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L312)*
 
 See the [module comment](self).
 
@@ -319,7 +319,7 @@ See the [module comment](self).
 fn set_mempolicy()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:313`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L313)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:313`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L313)*
 
 See the [module comment](self).
 
@@ -329,7 +329,7 @@ See the [module comment](self).
 fn migrate_pages()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:314`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L314)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:314`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L314)*
 
 See the [module comment](self).
 
@@ -339,7 +339,7 @@ See the [module comment](self).
 fn move_pages()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:315`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L315)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:315`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L315)*
 
 See the [module comment](self).
 
@@ -349,7 +349,7 @@ See the [module comment](self).
 fn fchmodat2()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:316`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L316)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:316`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L316)*
 
 See the [module comment](self).
 
@@ -359,7 +359,7 @@ See the [module comment](self).
 fn shmat()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:317`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L317)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:317`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L317)*
 
 See the [module comment](self).
 
@@ -369,7 +369,7 @@ See the [module comment](self).
 fn shmdt()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:318`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L318)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:318`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L318)*
 
 See the [module comment](self).
 
@@ -379,7 +379,7 @@ See the [module comment](self).
 fn shmget()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:319`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L319)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:319`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L319)*
 
 See the [module comment](self).
 
@@ -389,7 +389,7 @@ See the [module comment](self).
 fn shmctl()
 ```
 
-*Defined in [`rustix-1.1.2/src/not_implemented.rs:320`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L320)*
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:320`](../../../../.source_1765521767/rustix-1.1.2/src/not_implemented.rs#L320)*
 
 See the [module comment](self).
 

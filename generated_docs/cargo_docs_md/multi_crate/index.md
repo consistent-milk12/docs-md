@@ -468,7 +468,7 @@ struct MultiCrateGenerator<'a> {
 }
 ```
 
-*Defined in `src/multi_crate/generator.rs:416-422`*
+*Defined in `src/multi_crate/generator.rs:418-424`*
 
 Generator for multi-crate documentation.
 

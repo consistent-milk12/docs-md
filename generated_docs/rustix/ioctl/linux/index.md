@@ -53,7 +53,7 @@
 const fn compose_opcode(dir: super::Direction, group: super::Opcode, num: super::Opcode, size: super::Opcode) -> super::Opcode
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:7-30`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L7-L30)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:7-30`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L7-L30)*
 
 Compose an opcode from its component parts.
 
@@ -64,68 +64,68 @@ Compose an opcode from its component parts.
 const NUM_BITS: super::Opcode = 8u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:32`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L32)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:32`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L32)*
 
 ### `GROUP_BITS`
 ```rust
 const GROUP_BITS: super::Opcode = 8u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:33`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L33)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:33`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L33)*
 
 ### `NUM_SHIFT`
 ```rust
 const NUM_SHIFT: super::Opcode = 0u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:35`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L35)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:35`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L35)*
 
 ### `GROUP_SHIFT`
 ```rust
 const GROUP_SHIFT: super::Opcode = 8u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:36`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L36)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:36`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L36)*
 
 ### `SIZE_SHIFT`
 ```rust
 const SIZE_SHIFT: super::Opcode = 16u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:37`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L37)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:37`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L37)*
 
 ### `DIR_SHIFT`
 ```rust
 const DIR_SHIFT: super::Opcode = 30u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:38`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L38)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:38`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L38)*
 
 ### `NUM_MASK`
 ```rust
 const NUM_MASK: super::Opcode = 255u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:40`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L40)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:40`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L40)*
 
 ### `GROUP_MASK`
 ```rust
 const GROUP_MASK: super::Opcode = 255u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:41`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L41)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:41`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L41)*
 
 ### `SIZE_MASK`
 ```rust
 const SIZE_MASK: super::Opcode = 16_383u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:42`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L42)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:42`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L42)*
 
 ### `DIR_MASK`
 ```rust
 const DIR_MASK: super::Opcode = 3u32;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:43`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/linux.rs#L43)*
+*Defined in [`rustix-1.1.2/src/ioctl/linux.rs:43`](../../../../.source_1765521767/rustix-1.1.2/src/ioctl/linux.rs#L43)*
 

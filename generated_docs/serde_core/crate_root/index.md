@@ -14,5 +14,5 @@
 
 ### `crate_root!`
 
-*Defined in [`serde_core-1.0.228/src/crate_root.rs:1-171`](../../../.source_1765210505/serde_core-1.0.228/src/crate_root.rs#L1-L171)*
+*Defined in [`serde_core-1.0.228/src/crate_root.rs:1-171`](../../../.source_1765521767/serde_core-1.0.228/src/crate_root.rs#L1-L171)*
 

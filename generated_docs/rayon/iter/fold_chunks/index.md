@@ -23,7 +23,7 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765521767/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
 
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.

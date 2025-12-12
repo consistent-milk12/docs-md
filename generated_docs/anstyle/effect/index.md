@@ -23,7 +23,7 @@
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -148,7 +148,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
 ### `EffectsDisplay`
 
@@ -156,7 +156,7 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -191,7 +191,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](../index.md)
 
@@ -236,7 +236,7 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L358-L361)*
 
 #### Trait Implementations
 
@@ -277,5 +277,5 @@ struct EffectIndexIter {
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765521767/anstyle-1.0.13/src/effect.rs#L268-L317)*
 

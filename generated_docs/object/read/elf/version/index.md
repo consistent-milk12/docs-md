@@ -24,7 +24,7 @@
 struct VersionIndex(u16);
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L10)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L10)*
 
 A version index.
 
@@ -65,7 +65,7 @@ struct Version<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L38-L44)*
 
 A version definition or requirement.
 
@@ -104,7 +104,7 @@ struct VersionTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L75-L78)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -150,7 +150,7 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L234-L237)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
@@ -196,7 +196,7 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L297-L301)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
@@ -241,7 +241,7 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L350-L353)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 
@@ -287,7 +287,7 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L426-L430)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../../.source_1765521767/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 

@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
 
 An abstraction for building Thompson NFAs by hand.
 
@@ -352,7 +352,7 @@ enum State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:28-128`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L28-L128)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:28-128`](../../../../../.source_1765521767/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L28-L128)*
 
 An intermediate NFA state used during construction.
 

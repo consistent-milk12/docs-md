@@ -49,7 +49,7 @@
 struct ListVecConsumer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:84`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L84)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:84`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L84)*
 
 #### Trait Implementations
 
@@ -97,7 +97,7 @@ struct ListVecFolder<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:86-88`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L86-L88)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:86-88`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L86-L88)*
 
 #### Trait Implementations
 
@@ -135,7 +135,7 @@ struct ListVecFolder<T> {
 struct ListConsumer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:313`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L313)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:313`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L313)*
 
 #### Trait Implementations
 
@@ -183,7 +183,7 @@ struct ListFolder<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:315-317`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L315-L317)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:315-317`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L315-L317)*
 
 #### Trait Implementations
 
@@ -221,7 +221,7 @@ struct ListFolder<T> {
 struct ListReducer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:319`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L319)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:319`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L319)*
 
 #### Trait Implementations
 
@@ -251,7 +251,7 @@ struct ListReducer;
 struct ListStringConsumer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:437`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L437)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:437`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L437)*
 
 #### Trait Implementations
 
@@ -299,7 +299,7 @@ struct ListStringFolder {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:439-441`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L439-L441)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:439-441`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L439-L441)*
 
 #### Trait Implementations
 
@@ -339,7 +339,7 @@ struct ListStringFolder {
 fn len<T>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:42-47`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L42-L47)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:42-47`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L42-L47)*
 
 Computes the total length of a `fast_collect` result.
 
@@ -349,7 +349,7 @@ Computes the total length of a `fast_collect` result.
 fn string_len<T: AsRef<str>>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:50-56`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L50-L56)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:50-56`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L50-L56)*
 
 Computes the total string length of a `fast_collect` result.
 
@@ -359,7 +359,7 @@ Computes the total string length of a `fast_collect` result.
 fn osstring_len<T: AsRef<std::ffi::OsStr>>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:59-65`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L59-L65)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:59-65`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L59-L65)*
 
 Computes the total OS-string length of a `fast_collect` result.
 
@@ -372,18 +372,18 @@ where
     T: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:67-82`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L67-L82)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:67-82`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L67-L82)*
 
 ## Macros
 
 ### `extend!`
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:15-29`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L15-L29)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:15-29`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L15-L29)*
 
 Performs a generic `par_extend` by collecting to a `LinkedList<Vec<_>>` in
 parallel, then extending the collection sequentially.
 
 ### `extend_reserved!`
 
-*Defined in [`rayon-1.11.0/src/iter/extend.rs:30-39`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L30-L39)*
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:30-39`](../../../../.source_1765521767/rayon-1.11.0/src/iter/extend.rs#L30-L39)*
 

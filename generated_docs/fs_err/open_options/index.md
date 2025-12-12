@@ -23,7 +23,7 @@
 struct OpenOptions(fs::OpenOptions);
 ```
 
-*Defined in [`fs-err-3.2.0/src/open_options.rs:7`](../../../.source_1765210505/fs-err-3.2.0/src/open_options.rs#L7)*
+*Defined in [`fs-err-3.2.0/src/open_options.rs:7`](../../../.source_1765521767/fs-err-3.2.0/src/open_options.rs#L7)*
 
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
 

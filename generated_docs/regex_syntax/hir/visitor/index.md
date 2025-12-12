@@ -23,7 +23,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
 
 HeapVisitor visits every item in an `Hir` recursively using constant stack
 size and a heap size proportional to the size of the `Hir`.
@@ -64,7 +64,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
 
 Represents a single stack frame while performing structural induction over
 an `Hir`.
@@ -103,7 +103,7 @@ an `Hir`.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -162,7 +162,7 @@ running it using the [`visit`](#visit) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

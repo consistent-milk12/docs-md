@@ -34,7 +34,7 @@ struct FixupContext {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:11-149`](../../../.source_1765210505/syn-2.0.111/src/fixup.rs#L11-L149)*
+*Defined in [`syn-2.0.111/src/fixup.rs:11-149`](../../../.source_1765521767/syn-2.0.111/src/fixup.rs#L11-L149)*
 
 #### Implementations
 
@@ -82,7 +82,7 @@ enum Scan {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:455-459`](../../../.source_1765210505/syn-2.0.111/src/fixup.rs#L455-L459)*
+*Defined in [`syn-2.0.111/src/fixup.rs:455-459`](../../../.source_1765521767/syn-2.0.111/src/fixup.rs#L455-L459)*
 
 #### Trait Implementations
 
@@ -104,7 +104,7 @@ enum Scan {
 fn scan_left(expr: &crate::expr::Expr, fixup: FixupContext) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:479-490`](../../../.source_1765210505/syn-2.0.111/src/fixup.rs#L479-L490)*
+*Defined in [`syn-2.0.111/src/fixup.rs:479-490`](../../../.source_1765521767/syn-2.0.111/src/fixup.rs#L479-L490)*
 
 ### `scan_right`
 
@@ -112,5 +112,5 @@ fn scan_left(expr: &crate::expr::Expr, fixup: FixupContext) -> bool
 fn scan_right(expr: &crate::expr::Expr, fixup: FixupContext, precedence: crate::precedence::Precedence, fail_offset: u8, bailout_offset: u8) -> Scan
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:493-773`](../../../.source_1765210505/syn-2.0.111/src/fixup.rs#L493-L773)*
+*Defined in [`syn-2.0.111/src/fixup.rs:493-773`](../../../.source_1765521767/syn-2.0.111/src/fixup.rs#L493-L773)*
 

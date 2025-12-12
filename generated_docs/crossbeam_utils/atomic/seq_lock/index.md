@@ -21,7 +21,7 @@ struct SeqLock {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:7-13`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L7-L13)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:7-13`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L7-L13)*
 
 A simple stamped lock.
 
@@ -53,7 +53,7 @@ struct SeqLockWriteGuard {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:67-73`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L67-L73)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:67-73`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L67-L73)*
 
 An RAII guard that releases the lock and increments the stamp when dropped.
 

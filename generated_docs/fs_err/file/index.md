@@ -28,7 +28,7 @@ struct File {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:13-16`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L13-L16)*
+*Defined in [`fs-err-3.2.0/src/file.rs:13-16`](../../../.source_1765521767/fs-err-3.2.0/src/file.rs#L13-L16)*
 
 Wrapper around `std::fs::File` which adds more helpful
 information to all errors.
@@ -108,7 +108,7 @@ information to all errors.
 fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:20-22`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L20-L22)*
+*Defined in [`fs-err-3.2.0/src/file.rs:20-22`](../../../.source_1765521767/fs-err-3.2.0/src/file.rs#L20-L22)*
 
 ### `create`
 
@@ -116,5 +116,5 @@ fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::
 fn create(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:25-27`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L25-L27)*
+*Defined in [`fs-err-3.2.0/src/file.rs:25-27`](../../../.source_1765521767/fs-err-3.2.0/src/file.rs#L25-L27)*
 

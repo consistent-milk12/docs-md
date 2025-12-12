@@ -124,7 +124,7 @@ enum BreakClass {
 }
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:4-96`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L4-L96)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:4-96`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L4-L96)*
 
 Unicode line breaking class.
 
@@ -335,7 +335,7 @@ enum BreakOpportunity {
 }
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:67-72`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L67-L72)*
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:67-72`](../../.source_1765521767/unicode-linebreak-0.1.5/src/lib.rs#L67-L72)*
 
 Break opportunity type.
 
@@ -377,7 +377,7 @@ Break opportunity type.
 fn is_safe_pair(a: BreakClass, b: BreakClass) -> bool
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:8-10`](../../.source_1765210505/unicode-linebreak-0.1.5/src/tables.rs#L8-L10)*
+*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:8-10`](../../.source_1765521767/unicode-linebreak-0.1.5/src/tables.rs#L8-L10)*
 
 ### `break_property`
 
@@ -385,7 +385,7 @@ fn is_safe_pair(a: BreakClass, b: BreakClass) -> bool
 fn break_property(codepoint: u32) -> BreakClass
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:41-63`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L41-L63)*
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:41-63`](../../.source_1765521767/unicode-linebreak-0.1.5/src/lib.rs#L41-L63)*
 
 Returns the line break property of the specified code point.
 
@@ -402,7 +402,7 @@ assert_eq!(break_property(0x2CF3), BreakClass::Alphabetic);
 fn linebreaks(s: &str) -> impl Iterator<Item = (usize, BreakOpportunity)> + Clone + '_
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:89-114`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L89-L114)*
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:89-114`](../../.source_1765521767/unicode-linebreak-0.1.5/src/lib.rs#L89-L114)*
 
 Returns an iterator over line break opportunities in the specified string.
 
@@ -426,7 +426,7 @@ assert!(linebreaks("Hello world!").eq(vec![(6, Allowed), (12, Mandatory)]));
 fn split_at_safe(s: &str) -> (&str, &str)
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:136-147`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L136-L147)*
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:136-147`](../../.source_1765521767/unicode-linebreak-0.1.5/src/lib.rs#L136-L147)*
 
 Divides the string at the last index where further breaks do not depend on prior context.
 
@@ -456,7 +456,7 @@ assert!(linebreaks(safe).eq(linebreaks(s).filter_map(|(i, x)| i.checked_sub(n).m
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:27`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L27)*
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:27`](../../.source_1765521767/unicode-linebreak-0.1.5/src/lib.rs#L27)*
 
 The [Unicode version](https://www.unicode.org/versions/) conformed to.
 
@@ -465,7 +465,7 @@ The [Unicode version](https://www.unicode.org/versions/) conformed to.
 const BMP_LIMIT: u32 = 65_536u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:112`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L112)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:112`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L112)*
 
 Ceiling for code points in the Basic Multilingual Place (BMP).
 
@@ -474,7 +474,7 @@ Ceiling for code points in the Basic Multilingual Place (BMP).
 const SHIFT_3: u32 = 4u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:115`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L115)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:115`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L115)*
 
 Shift size for getting index-3 table offset.
 
@@ -483,7 +483,7 @@ Shift size for getting index-3 table offset.
 const SHIFT_2: u32 = 9u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:117`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L117)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:117`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L117)*
 
 Shift size for getting index-2 table offset.
 
@@ -492,7 +492,7 @@ Shift size for getting index-2 table offset.
 const SHIFT_1: u32 = 14u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:119`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L119)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:119`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L119)*
 
 Shift size for getting index-1 table offset.
 
@@ -501,7 +501,7 @@ Shift size for getting index-1 table offset.
 const BMP_SHIFT: u32 = 6u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:121`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L121)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:121`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L121)*
 
 Shift size for getting BMP block start.
 
@@ -510,61 +510,61 @@ Shift size for getting BMP block start.
 const INDEX_2_BLOCK_LENGTH: u32 = 32u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:123`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L123)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:123`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L123)*
 
 ### `INDEX_3_BLOCK_LENGTH`
 ```rust
 const INDEX_3_BLOCK_LENGTH: u32 = 32u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:124`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L124)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:124`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L124)*
 
 ### `SMALL_DATA_BLOCK_LENGTH`
 ```rust
 const SMALL_DATA_BLOCK_LENGTH: u32 = 16u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:125`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L125)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:125`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L125)*
 
 ### `BMP_DATA_BLOCK_LENGTH`
 ```rust
 const BMP_DATA_BLOCK_LENGTH: u32 = 64u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:126`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L126)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:126`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L126)*
 
 ### `ALLOWED_BREAK_BIT`
 ```rust
 const ALLOWED_BREAK_BIT: u8 = 128u8;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:128`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L128)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:128`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L128)*
 
 ### `MANDATORY_BREAK_BIT`
 ```rust
 const MANDATORY_BREAK_BIT: u8 = 64u8;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:129`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L129)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:129`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L129)*
 
 ### `eot`
 ```rust
 const eot: u8 = 43u8;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:132`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L132)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:132`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L132)*
 
 ### `sot`
 ```rust
 const sot: u8 = 44u8;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:134`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L134)*
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:134`](../../.source_1765521767/unicode-linebreak-0.1.5/src/shared.rs#L134)*
 
 ### `BREAK_PROP_TRIE_HIGH_START`
 ```rust
 const BREAK_PROP_TRIE_HIGH_START: u32 = 918_016u32;
 ```
 
-*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:1`](../../.source_1765210505/unicode-linebreak-0.1.5/src/tables.rs#L1)*
+*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:1`](../../.source_1765521767/unicode-linebreak-0.1.5/src/tables.rs#L1)*
 

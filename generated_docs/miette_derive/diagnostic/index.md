@@ -25,7 +25,7 @@ struct DiagnosticDef {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765521767/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
 
 ### `DiagnosticConcreteArgs`
 
@@ -43,7 +43,7 @@ struct DiagnosticConcreteArgs {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765521767/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
 
 #### Implementations
 
@@ -77,7 +77,7 @@ enum Diagnostic {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765521767/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
 
 #### Implementations
 
@@ -94,7 +94,7 @@ enum DiagnosticDefArgs {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765521767/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
 
 #### Implementations
 

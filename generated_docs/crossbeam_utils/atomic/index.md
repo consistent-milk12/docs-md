@@ -35,7 +35,7 @@ struct AtomicCell<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -113,7 +113,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 trait AtomicConsume { ... }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 

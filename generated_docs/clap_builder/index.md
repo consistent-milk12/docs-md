@@ -148,7 +148,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../.source_1765521767/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -316,7 +316,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../.source_1765210505/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../.source_1765521767/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -442,7 +442,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../.source_1765521767/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -566,7 +566,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../.source_1765521767/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -677,7 +677,7 @@ if matches.contains_id("out") {
 struct Id(crate::builder::Str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../.source_1765210505/clap_builder-4.5.53/src/util/id.rs#L11)*
+*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../.source_1765521767/clap_builder-4.5.53/src/util/id.rs#L11)*
 
 `Arg` or `ArgGroup` identifier
 
@@ -773,7 +773,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../.source_1765521767/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -1189,7 +1189,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../.source_1765210505/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../.source_1765521767/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -1328,7 +1328,7 @@ enum ColorChoice {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../.source_1765210505/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../.source_1765521767/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
 
 Represents the color preferences for program output
 
@@ -1444,7 +1444,7 @@ Represents the color preferences for program output
 trait Args: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L227-L246)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L227-L246)*
 
 Parse a set of arguments into a user-defined container.
 
@@ -1487,7 +1487,7 @@ with:
 trait CommandFactory: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L116-L125)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L116-L125)*
 
 Create a [`Command`](builder/command/index.md) relevant for a user-defined container.
 
@@ -1513,7 +1513,7 @@ Derived as part of [`Parser`](derive/index.md).
 trait FromArgMatches: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L130-L212)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L130-L212)*
 
 Converts an instance of [`ArgMatches`](parser/matches/arg_matches/index.md) to a user-defined container.
 
@@ -1551,7 +1551,7 @@ Derived as part of [`Parser`](derive/index.md), [`Args`](derive/index.md), and [
 trait Parser: FromArgMatches + CommandFactory + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L29-L111)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L29-L111)*
 
 Parse command-line arguments into `Self`.
 
@@ -1609,7 +1609,7 @@ See also [`Subcommand`](derive/index.md) and [`Args`](derive/index.md).
 trait Subcommand: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L262-L279)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L262-L279)*
 
 Parse a sub-command into a user-defined enum.
 
@@ -1652,7 +1652,7 @@ with:
 trait ValueEnum: Sized + Clone { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L293-L314)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../.source_1765521767/clap_builder-4.5.53/src/derive.rs#L293-L314)*
 
 Parse arguments into enums.
 
@@ -1695,7 +1695,7 @@ When deriving [`Parser`](derive/index.md), a field whose type implements `ValueE
 type Error = error::Error<error::DefaultFormatter>;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/lib.rs:30`](../../.source_1765210505/clap_builder-4.5.53/src/lib.rs#L30)*
+*Defined in [`clap_builder-4.5.53/src/lib.rs:30`](../../.source_1765521767/clap_builder-4.5.53/src/lib.rs#L30)*
 
 Command Line Argument Parser Error
 
@@ -1709,23 +1709,23 @@ See `Command::error` to create an error.
 const INTERNAL_ERROR_MSG: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/lib.rs:48-49`](../../.source_1765210505/clap_builder-4.5.53/src/lib.rs#L48-L49)*
+*Defined in [`clap_builder-4.5.53/src/lib.rs:48-49`](../../.source_1765521767/clap_builder-4.5.53/src/lib.rs#L48-L49)*
 
 ## Macros
 
 ### `command!`
 
-*Defined in [`clap_builder-4.5.53/src/macros.rs:155-162`](../../.source_1765210505/clap_builder-4.5.53/src/macros.rs#L155-L162)*
+*Defined in [`clap_builder-4.5.53/src/macros.rs:155-162`](../../.source_1765521767/clap_builder-4.5.53/src/macros.rs#L155-L162)*
 
 Requires `cargo` feature flag to be enabled.
 
 ### `arg!`
 
-*Defined in [`clap_builder-4.5.53/src/macros.rs:532-563`](../../.source_1765210505/clap_builder-4.5.53/src/macros.rs#L532-L563)*
+*Defined in [`clap_builder-4.5.53/src/macros.rs:532-563`](../../.source_1765521767/clap_builder-4.5.53/src/macros.rs#L532-L563)*
 
-Create an [`Arg`](#arg) from a usage string.
+Create an [`Arg`](builder/arg/index.md) from a usage string.
 
-Allows creation of basic settings for the [`Arg`](#arg).
+Allows creation of basic settings for the [`Arg`](builder/arg/index.md).
 
 <div class="warning">
 
@@ -1820,7 +1820,7 @@ assert_eq!(m.get_one::<String>("input"), None);
 
 ### `value_parser!`
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2626-2632`](../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L2626-L2632)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2626-2632`](../../.source_1765521767/clap_builder-4.5.53/src/builder/value_parser.rs#L2626-L2632)*
 
 Select a [`ValueParser`](builder/value_parser/index.md) implementation from the intended type
 

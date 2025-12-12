@@ -20,7 +20,7 @@ struct DataDirectories<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
+*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
 
 The table of data directories in a PE file.
 

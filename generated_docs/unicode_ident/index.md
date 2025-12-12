@@ -250,7 +250,7 @@ this data structure is straight-line code with no need for branching.
 fn is_xid_start(ch: char) -> bool
 ```
 
-*Defined in [`unicode-ident-1.0.22/src/lib.rs:261-268`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L261-L268)*
+*Defined in [`unicode-ident-1.0.22/src/lib.rs:261-268`](../../.source_1765521767/unicode-ident-1.0.22/src/lib.rs#L261-L268)*
 
 Whether the character has the Unicode property XID\_Start.
 
@@ -260,7 +260,7 @@ Whether the character has the Unicode property XID\_Start.
 fn is_xid_continue(ch: char) -> bool
 ```
 
-*Defined in [`unicode-ident-1.0.22/src/lib.rs:271-281`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L271-L281)*
+*Defined in [`unicode-ident-1.0.22/src/lib.rs:271-281`](../../.source_1765521767/unicode-ident-1.0.22/src/lib.rs#L271-L281)*
 
 Whether the character has the Unicode property XID\_Continue.
 
@@ -271,5 +271,5 @@ Whether the character has the Unicode property XID\_Continue.
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-ident-1.0.22/src/tables.rs:12`](../../.source_1765210505/unicode-ident-1.0.22/src/tables.rs#L12)*
+*Defined in [`unicode-ident-1.0.22/src/tables.rs:12`](../../.source_1765521767/unicode-ident-1.0.22/src/tables.rs#L12)*
 

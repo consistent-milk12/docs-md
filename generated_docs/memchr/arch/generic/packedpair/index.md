@@ -31,7 +31,7 @@ struct Finder<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:35-40`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/packedpair.rs#L35-L40)*
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:35-40`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/packedpair.rs#L35-L40)*
 
 A generic architecture dependent "packed pair" finder.
 
@@ -87,7 +87,7 @@ to inline calls into routines marked with
 unsafe fn matched(start: *const u8, cur: *const u8, chunki: usize) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:312-314`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/packedpair.rs#L312-L314)*
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:312-314`](../../../../../.source_1765521767/memchr-2.7.6/src/arch/generic/packedpair.rs#L312-L314)*
 
 Accepts a chunk-relative offset and returns a haystack relative offset.
 

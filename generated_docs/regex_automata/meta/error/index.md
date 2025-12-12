@@ -24,7 +24,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
 
 An error that occurs when construction of a `Regex` fails.
 
@@ -90,7 +90,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 struct RetryQuadraticError(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:164`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L164)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:164`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L164)*
 
 An error that occurs when potential quadratic behavior has been detected
 when applying either the "reverse suffix" or "reverse inner" optimizations.
@@ -126,7 +126,7 @@ struct RetryFailError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:200-202`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L200-L202)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:200-202`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L200-L202)*
 
 An error that occurs when a regex engine "gives up" for some reason before
 finishing a search. Usually this occurs because of heuristic Unicode word
@@ -175,7 +175,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:32-35`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L32-L35)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:32-35`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L32-L35)*
 
 #### Trait Implementations
 
@@ -196,7 +196,7 @@ enum RetryError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:135-138`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L135-L138)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:135-138`](../../../../.source_1765521767/regex-automata-0.4.13/src/meta/error.rs#L135-L138)*
 
 An error that occurs when a search should be retried.
 

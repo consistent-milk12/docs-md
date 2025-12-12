@@ -135,7 +135,7 @@ code it is convenient for a human to read and debug.
 trait TokenStreamExt: private::Sealed { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765210505/quote-1.0.42/src/ext.rs#L8-L57)*
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765521767/quote-1.0.42/src/ext.rs#L8-L57)*
 
 TokenStream extension trait with methods for appending tokens.
 
@@ -169,11 +169,11 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 trait IdentFragment { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765210505/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765521767/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
 
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.
@@ -214,7 +214,7 @@ See `format_ident!` for more information.
 trait ToTokens { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765210505/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765521767/quote-1.0.42/src/to_tokens.rs#L9-L72)*
 
 Types that can be interpolated inside a `quote!` invocation.
 
@@ -273,15 +273,15 @@ Types that can be interpolated inside a `quote!` invocation.
 
 ### `__quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L128-L478)*
+*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765521767/quote-1.0.42/src/lib.rs#L128-L478)*
 
 ### `__quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L527-L625)*
+*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765521767/quote-1.0.42/src/lib.rs#L527-L625)*
 
 ### `format_ident!`
 
-*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765210505/quote-1.0.42/src/format.rs#L111-L125)*
+*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765521767/quote-1.0.42/src/format.rs#L111-L125)*
 
 Formatting macro for constructing `Ident`s.
 
@@ -391,7 +391,7 @@ assert_eq!(upper_hex, "Id_A");
 
 ### `quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L483-L487)*
+*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765521767/quote-1.0.42/src/lib.rs#L483-L487)*
 
 The whole point.
 
@@ -734,7 +734,7 @@ quote! {
 
 ### `quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L630-L634)*
+*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765521767/quote-1.0.42/src/lib.rs#L630-L634)*
 
 Same as `quote!`, but applies a given span to all tokens originating within
 the macro invocation.

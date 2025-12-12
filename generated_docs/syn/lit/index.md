@@ -67,7 +67,7 @@ struct LitStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L58-L63)*
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L58-L63)*
 
 A UTF-8 string literal: `"foo"`.
 
@@ -119,7 +119,7 @@ struct LitByteStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L65-L70)*
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L65-L70)*
 
 A byte string literal: `b"foo"`.
 
@@ -171,7 +171,7 @@ struct LitCStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L72-L77)*
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L72-L77)*
 
 A nul-terminated C-string literal: `c"foo"`.
 
@@ -223,7 +223,7 @@ struct LitByte {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L79-L84)*
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L79-L84)*
 
 A byte literal: `b'f'`.
 
@@ -275,7 +275,7 @@ struct LitChar {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L86-L91)*
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L86-L91)*
 
 A character literal: `'a'`.
 
@@ -328,7 +328,7 @@ struct LitRepr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:93-96`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L93-L96)*
+*Defined in [`syn-2.0.111/src/lit.rs:93-96`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L93-L96)*
 
 #### Trait Implementations
 
@@ -344,7 +344,7 @@ struct LitInt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L98-L103)*
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L98-L103)*
 
 An integer literal: `1` or `1u16`.
 
@@ -406,7 +406,7 @@ struct LitIntRepr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:105-109`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L105-L109)*
+*Defined in [`syn-2.0.111/src/lit.rs:105-109`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L105-L109)*
 
 #### Trait Implementations
 
@@ -422,7 +422,7 @@ struct LitFloat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L111-L118)*
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L111-L118)*
 
 A floating point literal: `1f64` or `1.0e10f64`.
 
@@ -486,7 +486,7 @@ struct LitFloatRepr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:120-124`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L120-L124)*
+*Defined in [`syn-2.0.111/src/lit.rs:120-124`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L120-L124)*
 
 #### Trait Implementations
 
@@ -503,7 +503,7 @@ struct LitBool {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L126-L132)*
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L126-L132)*
 
 A boolean literal: `true` or `false`.
 
@@ -565,7 +565,7 @@ enum Lit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L17-L56)*
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -666,5 +666,5 @@ This type is a [syntax tree enum].
 
 ### `lit_extra_traits!`
 
-*Defined in [`syn-2.0.111/src/lit.rs:778-818`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L778-L818)*
+*Defined in [`syn-2.0.111/src/lit.rs:778-818`](../../../.source_1765521767/syn-2.0.111/src/lit.rs#L778-L818)*
 

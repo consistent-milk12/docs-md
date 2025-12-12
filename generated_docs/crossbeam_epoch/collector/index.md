@@ -21,7 +21,7 @@ struct Collector {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
 
 An epoch-based garbage collector.
 
@@ -77,7 +77,7 @@ struct LocalHandle {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
 
 A handle to a garbage collector.
 

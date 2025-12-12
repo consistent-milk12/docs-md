@@ -79,7 +79,7 @@ struct NoArg<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
 
 Implements an `ioctl` with no real arguments.
 
@@ -117,7 +117,7 @@ struct Getter<const OPCODE: super::Opcode, Output> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
 
 Implements the traditional “getter” pattern for `ioctl`s.
 
@@ -164,7 +164,7 @@ struct Setter<const OPCODE: super::Opcode, Input> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
 
 Implements the pattern for `ioctl`s where a pointer argument is given to
 the `ioctl`.
@@ -211,7 +211,7 @@ struct Updater<'a, const OPCODE: super::Opcode, Value> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
 
 Implements an “updater” pattern for `ioctl`s.
 
@@ -254,7 +254,7 @@ struct IntegerSetter<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
 
 Implements an `ioctl` that passes an integer into the `ioctl`.
 
@@ -303,7 +303,7 @@ enum Direction {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:271-283`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L271-L283)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:271-283`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L271-L283)*
 
 The direction that an `ioctl` is going.
 
@@ -368,7 +368,7 @@ kernel, and `Write` means the kernel writing data to userspace.
 trait Ioctl { ... }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:147-190`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L147-L190)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:147-190`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L147-L190)*
 
 A trait defining the properties of an `ioctl` command.
 
@@ -435,7 +435,7 @@ By implementing this trait, you guarantee that:
 unsafe fn ioctl<F: AsFd, I: Ioctl>(fd: F, ioctl: I) -> crate::io::Result<<I as >::Output>
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:91-107`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L91-L107)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:91-107`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L91-L107)*
 
 Perform an `ioctl` call.
 
@@ -491,7 +491,7 @@ are compatible with Rust language invariants.
 unsafe fn _ioctl(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:109-111`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L109-L111)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:109-111`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L109-L111)*
 
 ### `_ioctl_readonly`
 
@@ -499,7 +499,7 @@ unsafe fn _ioctl(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_
 unsafe fn _ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:113-119`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L113-L119)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:113-119`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L113-L119)*
 
 ## Type Aliases
 
@@ -509,7 +509,7 @@ unsafe fn _ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *
 type IoctlOutput = c::c_int;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:286`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L286)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:286`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L286)*
 
 The type used by the `ioctl` to signify the output.
 
@@ -519,7 +519,7 @@ The type used by the `ioctl` to signify the output.
 type Opcode = c::c_uint;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:289`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L289)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:289`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L289)*
 
 The type used by the `ioctl` to signify the command.
 
@@ -529,5 +529,5 @@ The type used by the `ioctl` to signify the command.
 type _Opcode = c::c_uint;
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:293`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L293)*
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:293`](../../../.source_1765521767/rustix-1.1.2/src/ioctl/mod.rs#L293)*
 

@@ -22,7 +22,7 @@ struct ProgressBarIter<T> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L62-L65)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765521767/indicatif-0.18.3/src/iter.rs#L62-L65)*
 
 Wraps an iterator to display its progress.
 
@@ -114,7 +114,7 @@ where
     Self: Sized + Iterator { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L18-L58)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765521767/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 

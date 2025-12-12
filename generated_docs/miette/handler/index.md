@@ -45,7 +45,7 @@ struct MietteHandlerOpts {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L42-L61)*
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../../.source_1765521767/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](../index.md) from options.
 
@@ -140,7 +140,7 @@ struct MietteHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L387-L389)*
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../../.source_1765521767/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -183,7 +183,7 @@ enum RgbColors {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L15-L23)*
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../../.source_1765521767/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -236,7 +236,7 @@ enum HighlighterOption {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L414-L419)*
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../../.source_1765521767/miette-7.6.0/src/handler.rs#L414-L419)*
 
 #### Implementations
 

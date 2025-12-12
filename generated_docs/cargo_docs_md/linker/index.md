@@ -40,6 +40,7 @@ let link = registry.create_link(&some_id, "index.md");
 | [`AnchorUtils`](#anchorutils) | struct | Utilify functions to handle anchors |
 | [`LinkRegistry`](#linkregistry) | struct | Registry mapping item IDs to their documentation file paths. |
 | [`AssocItemKind`](#associtemkind) | enum | Kind of associated item for anchor generation. |
+| [`ImplContext`](#implcontext) | enum | Context for generating impl item anchors, distinguishing inherent vs trait impls. |
 
 ## Structs
 
@@ -49,7 +50,7 @@ let link = registry.create_link(&some_id, "index.md");
 struct AnchorUtils;
 ```
 
-*Defined in `src/linker.rs:53`*
+*Defined in `src/linker.rs:68`*
 
 Utilify functions to handle anchors
 
@@ -58,6 +59,8 @@ Utilify functions to handle anchors
 - <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](#associtemkind)
 
 - <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
+
+- <span id="anchorutils-impl-item-anchor"></span>`fn impl_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind, impl_ctx: ImplContext<'_>) -> String` — [`AssocItemKind`](#associtemkind), [`ImplContext`](#implcontext)
 
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
@@ -100,7 +103,7 @@ struct LinkRegistry {
 }
 ```
 
-*Defined in `src/linker.rs:276-288`*
+*Defined in `src/linker.rs:346-358`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -250,4 +253,66 @@ Used to disambiguate anchors when multiple items share the same name
 ##### `impl StructuralPartialEq for AssocItemKind`
 
 ##### `impl WithSubscriber for AssocItemKind`
+
+### `ImplContext<'a>`
+
+```rust
+enum ImplContext<'a> {
+    Inherent,
+    Trait(&'a str),
+}
+```
+
+*Defined in `src/linker.rs:59-65`*
+
+Context for generating impl item anchors, distinguishing inherent vs trait impls.
+
+For trait impls, we need to include the trait name in the anchor to avoid
+duplicate anchors when multiple traits define the same associated type/const.
+For example, both `impl Add for Foo` and `impl Sub for Foo` might have
+`type Output`, which would create duplicate anchors without the trait name.
+
+#### Variants
+
+- **`Inherent`**
+
+  Inherent impl (no trait) - anchors use format `typename-itemname`
+
+- **`Trait`**
+
+  Trait impl - anchors include trait name: `typename-traitname-itemname`
+
+#### Trait Implementations
+
+##### `impl Clone for ImplContext<'a>`
+
+- <span id="implcontext-clone"></span>`fn clone(&self) -> ImplContext<'a>` — [`ImplContext`](#implcontext)
+
+##### `impl Copy for ImplContext<'a>`
+
+##### `impl Debug for ImplContext<'a>`
+
+- <span id="implcontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Instrument for ImplContext<'a>`
+
+##### `impl IntoEither for ImplContext<'a>`
+
+##### `impl OwoColorize for ImplContext<'a>`
+
+##### `impl Pointable for ImplContext<'a>`
+
+- <span id="implcontext-pointable-const-align"></span>`const ALIGN: usize`
+
+- <span id="implcontext-pointable-type-init"></span>`type Init = T`
+
+- <span id="implcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="implcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="implcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="implcontext-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for ImplContext<'a>`
 

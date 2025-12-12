@@ -57,7 +57,7 @@
 struct CpuInfo(u32);
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:5`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L5)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:5`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L5)*
 
 #### Implementations
 
@@ -85,7 +85,7 @@ enum CpuInfoFlag {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:154-160`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L154-L160)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:154-160`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L154-L160)*
 
 #### Trait Implementations
 
@@ -103,7 +103,7 @@ enum CpuInfoFlag {
 fn set(x: u32, bit: u32) -> u32
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:21-23`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L21-L23)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:21-23`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L21-L23)*
 
 ### `test`
 
@@ -111,7 +111,7 @@ fn set(x: u32, bit: u32) -> u32
 fn test(x: u32, bit: u32) -> bool
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:26-28`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L26-L28)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:26-28`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L26-L28)*
 
 ### `detect`
 
@@ -119,7 +119,7 @@ fn test(x: u32, bit: u32) -> bool
 fn detect() -> CpuInfo
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:31-47`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L31-L47)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:31-47`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L31-L47)*
 
 ### `__cpuid`
 
@@ -127,7 +127,7 @@ fn detect() -> CpuInfo
 fn __cpuid(leaf: u32) -> core::arch::x86_64::CpuidResult
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:30-51`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L30-L51)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:30-51`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L30-L51)*
 
 ### `_vender`
 
@@ -135,7 +135,7 @@ fn __cpuid(leaf: u32) -> core::arch::x86_64::CpuidResult
 const fn _vender(b: &[u8; 12]) -> [u32; 3]
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:59-65`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L59-L65)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:59-65`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L59-L65)*
 
 ### `_vendor_id`
 
@@ -143,7 +143,7 @@ const fn _vender(b: &[u8; 12]) -> [u32; 3]
 fn _vendor_id() -> [u32; 3]
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:66-69`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L66-L69)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:66-69`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L66-L69)*
 
 ### `_vendor_has_vmovdqa_atomic`
 
@@ -151,7 +151,7 @@ fn _vendor_id() -> [u32; 3]
 fn _vendor_has_vmovdqa_atomic(vendor_id: [u32; 3], family: u32) -> bool
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:70-78`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L70-L78)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:70-78`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L70-L78)*
 
 ### `_detect`
 
@@ -159,7 +159,7 @@ fn _vendor_has_vmovdqa_atomic(vendor_id: [u32; 3], family: u32) -> bool
 fn _detect(info: &mut CpuInfo)
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:81-118`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L81-L118)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:81-118`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L81-L118)*
 
 ## Constants
 
@@ -168,39 +168,39 @@ fn _detect(info: &mut CpuInfo)
 const _VENDOR_ID_INTEL: [u32; 3];
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:54`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L54)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:54`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L54)*
 
 ### `_VENDOR_ID_INTEL2`
 ```rust
 const _VENDOR_ID_INTEL2: [u32; 3];
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:55`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L55)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:55`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L55)*
 
 ### `_VENDOR_ID_AMD`
 ```rust
 const _VENDOR_ID_AMD: [u32; 3];
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:56`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L56)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:56`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L56)*
 
 ### `_VENDOR_ID_CENTAUR`
 ```rust
 const _VENDOR_ID_CENTAUR: [u32; 3];
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:57`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L57)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:57`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L57)*
 
 ### `_VENDOR_ID_ZHAOXIN`
 ```rust
 const _VENDOR_ID_ZHAOXIN: [u32; 3];
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:58`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L58)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs:58`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/x86_64.rs#L58)*
 
 ## Macros
 
 ### `flags!`
 
-*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:49-92`](../../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L49-L92)*
+*Defined in [`portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs:49-92`](../../../../../../.source_1765521767/portable-atomic-1.11.1/src/imp/atomic128/../detect/common.rs#L49-L92)*
 

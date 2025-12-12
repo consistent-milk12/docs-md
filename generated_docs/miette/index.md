@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../cargo_docs_md/error/index.md).
+  [`std::error::Error`](../addr2line/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../cargo_docs_md/error/index.md).
+regular [`std::error::Error`](../addr2line/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -979,7 +979,7 @@ struct Report {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -1083,7 +1083,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L69)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](#set-hook) was unable to install the provided
 [`ErrorHook`](#errorhook).
@@ -1139,7 +1139,7 @@ struct MietteHandlerOpts {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L42-L61)*
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../.source_1765521767/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](#miettehandler) from options.
 
@@ -1234,7 +1234,7 @@ struct MietteHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L387-L389)*
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../.source_1765521767/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](#reporthandler) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -1278,7 +1278,7 @@ struct MietteDiagnostic {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../.source_1765210505/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../.source_1765521767/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 
@@ -1393,10 +1393,10 @@ struct NamedSource<S: SourceCode + 'static> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../.source_1765210505/miette-7.6.0/src/named_source.rs#L7-L11)*
+*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../.source_1765521767/miette-7.6.0/src/named_source.rs#L7-L11)*
 
 Utility struct for when you have a regular [`SourceCode`](#sourcecode) type that doesn't
-implement `name`. For example [`String`](../clap_builder/index.md). Or if you want to override the
+implement `name`. For example [`String`](../cargo_platform/index.md). Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations
@@ -1451,7 +1451,7 @@ implement `name`. For example [`String`](../clap_builder/index.md). Or if you wa
 struct Panic(String);
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:30`](../../.source_1765210505/miette-7.6.0/src/panic.rs#L30)*
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../.source_1765521767/miette-7.6.0/src/panic.rs#L30)*
 
 #### Implementations
 
@@ -1495,7 +1495,7 @@ struct LabeledSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L250-L255)*
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](#sourcespan).
 
@@ -1561,7 +1561,7 @@ struct MietteSpanContents<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L458-L473)*
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L458-L473)*
 
 Basic implementation of the [`SpanContents`](#spancontents) trait, for convenience.
 
@@ -1610,7 +1610,7 @@ struct SourceSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L549-L554)*
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](#sourcecode)
 
@@ -1674,7 +1674,7 @@ Span within a [`SourceCode`](#sourcecode)
 struct SourceOffset(ByteOffset);
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L673)*
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a [`SourceCode`](#sourcecode)
 
@@ -1731,7 +1731,7 @@ enum MietteError {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../.source_1765210505/miette-7.6.0/src/error.rs#L13-L21)*
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../.source_1765521767/miette-7.6.0/src/error.rs#L13-L21)*
 
 Error enum for miette. Used by certain operations in the protocol.
 
@@ -1739,7 +1739,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -1791,7 +1791,7 @@ enum RgbColors {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L15-L23)*
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../.source_1765521767/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -1844,7 +1844,7 @@ enum HighlighterOption {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L414-L419)*
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../.source_1765521767/miette-7.6.0/src/handler.rs#L414-L419)*
 
 #### Implementations
 
@@ -1868,7 +1868,7 @@ enum Severity {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L189-L198)*
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](#diagnostic) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -1931,7 +1931,7 @@ enum Severity {
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
 
 Error Report Handler trait for customizing `miette::Report`
 
@@ -1965,7 +1965,7 @@ Error Report Handler trait for customizing `miette::Report`
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](#result).
 
@@ -2171,7 +2171,7 @@ supports both of the following use cases:
 trait Diagnostic: std::error::Error { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L20-L70)*
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L20-L70)*
 
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
@@ -2231,11 +2231,11 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L236-L245)*
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L236-L245)*
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like [`String`](../clap_builder/index.md)s, as
+This trait is able to support simple `SourceCode` types like [`String`](../cargo_platform/index.md)s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -2267,7 +2267,7 @@ gigabytes or larger in size.
 trait SpanContents<'a> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L426-L452)*
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](#sourcecode) covered by [`SourceSpan`](#sourcespan).
 
@@ -2317,7 +2317,7 @@ Includes line and column information to optimize highlight calculations.
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
 
 Set the error hook.
 
@@ -2327,7 +2327,7 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
 
 ### `get_default_printer`
 
@@ -2335,7 +2335,7 @@ fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
 
 ### `set_panic_hook`
 
@@ -2343,7 +2343,7 @@ fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn set_panic_hook()
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../.source_1765210505/miette-7.6.0/src/panic.rs#L8-L27)*
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../.source_1765521767/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 
@@ -2355,7 +2355,7 @@ Tells miette to render panics using its rendering engine.
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
 
 ### `Result<T, E>`
 
@@ -2363,7 +2363,7 @@ type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + 
 type Result<T, E> = core::result::Result<T, E>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L257)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../.source_1765521767/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 
@@ -2426,7 +2426,7 @@ You can just replace `use`s of `anyhow::Result`/`eyre::Result` with
 type ByteOffset = usize;
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L666)*
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L666)*
 
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](#sourcecode).
 
@@ -2434,7 +2434,7 @@ type ByteOffset = usize;
 
 ### `bail!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:80-89`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L80-L89)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:80-89`](../../.source_1765521767/miette-7.6.0/src/eyreish/macros.rs#L80-L89)*
 
 Return early with an error.
 
@@ -2503,7 +2503,7 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `ensure!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:156-169`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L156-L169)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:156-169`](../../.source_1765521767/miette-7.6.0/src/eyreish/macros.rs#L156-L169)*
 
 Return early with an error if a condition is not satisfied.
 
@@ -2565,7 +2565,7 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `miette!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:229-240`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L229-L240)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:229-240`](../../.source_1765521767/miette-7.6.0/src/eyreish/macros.rs#L229-L240)*
 
 Construct an ad-hoc [`Report`](#report).
 
@@ -2612,7 +2612,7 @@ You can just replace `use`s of the `anyhow!`/`eyre!` macros with `miette!`.
 
 ### `diagnostic!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:291-300`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L291-L300)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:291-300`](../../.source_1765521767/miette-7.6.0/src/eyreish/macros.rs#L291-L300)*
 
 Construct a [`MietteDiagnostic`](#miettediagnostic) in more user-friendly way.
 
@@ -2650,9 +2650,9 @@ assert_eq!(diag.message, "1 + 2 = 3");
 
 ### `box_error_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L72-L86)*
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L72-L86)*
 
 ### `box_borrow_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L94-L104)*
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../.source_1765521767/miette-7.6.0/src/protocol.rs#L94-L104)*
 

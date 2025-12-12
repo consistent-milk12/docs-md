@@ -40,7 +40,7 @@ struct NFA {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:91-120`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L91-L120)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:91-120`](../../../../.source_1765521767/aho-corasick-1.1.4/src/nfa/contiguous.rs#L91-L120)*
 
 A contiguous NFA implementation of Aho-Corasick.
 
@@ -215,7 +215,7 @@ struct State<'a> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:390-399`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L390-L399)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:390-399`](../../../../.source_1765521767/aho-corasick-1.1.4/src/nfa/contiguous.rs#L390-L399)*
 
 The "in memory" representation a single dense or sparse state.
 
@@ -293,7 +293,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:894-898`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L894-L898)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:894-898`](../../../../.source_1765521767/aho-corasick-1.1.4/src/nfa/contiguous.rs#L894-L898)*
 
 A builder for configuring an Aho-Corasick contiguous NFA.
 
@@ -353,7 +353,7 @@ enum StateTrans<'a> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:407-446`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L407-L446)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:407-446`](../../../../.source_1765521767/aho-corasick-1.1.4/src/nfa/contiguous.rs#L407-L446)*
 
 The underlying representation of sparse or dense transitions for a state.
 
@@ -395,7 +395,7 @@ represent a lot of wasteful work.
 fn u32_len(ntrans: usize) -> usize
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:1080-1086`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L1080-L1086)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:1080-1086`](../../../../.source_1765521767/aho-corasick-1.1.4/src/nfa/contiguous.rs#L1080-L1086)*
 
 Computes the number of u32 values needed to represent one byte per the
 number of transitions given.

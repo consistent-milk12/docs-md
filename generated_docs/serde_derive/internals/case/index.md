@@ -24,7 +24,7 @@ struct ParseError<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
 
 #### Trait Implementations
 
@@ -54,7 +54,7 @@ enum RenameRule {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765521767/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 

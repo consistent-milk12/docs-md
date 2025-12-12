@@ -294,7 +294,7 @@ struct Flag<B> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L15-L18)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L15-L18)*
 
 A defined flags value that may be named or unnamed.
 
@@ -324,7 +324,7 @@ A defined flags value that may be named or unnamed.
 trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Self> + BitXor<Output = Self> + Not<Output = Self> + Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L346-L362)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L346-L362)*
 
 A bits type that can be used as storage for a flags type.
 
@@ -355,7 +355,7 @@ A bits type that can be used as storage for a flags type.
 trait Flags: Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L132-L341)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../.source_1765521767/bitflags-2.10.0/src/traits.rs#L132-L341)*
 
 A set of defined flags using a bits type as storage.
 
@@ -543,7 +543,7 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
 ### `bitflags!`
 
-*Defined in [`bitflags-2.10.0/src/lib.rs:456-597`](../../.source_1765210505/bitflags-2.10.0/src/lib.rs#L456-L597)*
+*Defined in [`bitflags-2.10.0/src/lib.rs:456-597`](../../.source_1765521767/bitflags-2.10.0/src/lib.rs#L456-L597)*
 
 Generate a flags type.
 
@@ -673,7 +673,7 @@ bitflags! {
 
 ### `bitflags_match!`
 
-*Defined in [`bitflags-2.10.0/src/lib.rs:817-827`](../../.source_1765210505/bitflags-2.10.0/src/lib.rs#L817-L827)*
+*Defined in [`bitflags-2.10.0/src/lib.rs:817-827`](../../.source_1765521767/bitflags-2.10.0/src/lib.rs#L817-L827)*
 
 A macro that matches flags values, similar to Rust's `match` statement.
 

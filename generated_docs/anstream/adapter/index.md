@@ -57,7 +57,7 @@ struct StripBytes {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:245-248`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L245-L248)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:245-248`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L245-L248)*
 
 Incrementally strip non-contiguous data
 
@@ -99,7 +99,7 @@ struct StripBytesIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:268-272`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L268-L272)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:268-272`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L268-L272)*
 
 See [`StripBytes`](strip/index.md)
 
@@ -139,7 +139,7 @@ struct StripStr {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:79-81`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L79-L81)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:79-81`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L79-L81)*
 
 Incrementally strip non-contiguous data
 
@@ -180,7 +180,7 @@ struct StripStrIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:100-103`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L100-L103)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:100-103`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L100-L103)*
 
 See [`StripStr`](strip/index.md)
 
@@ -222,7 +222,7 @@ struct StrippedBytes<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:184-188`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L184-L188)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:184-188`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L184-L188)*
 
 See [`strip_bytes`](strip/index.md)
 
@@ -281,7 +281,7 @@ struct StrippedStr<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:28-31`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L28-L31)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:28-31`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L28-L31)*
 
 See [`strip_str`](strip/index.md)
 
@@ -344,7 +344,7 @@ struct WinconBytes {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:3-6`](../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L3-L6)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:3-6`](../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L3-L6)*
 
 Incrementally convert to wincon calls for non-contiguous data
 
@@ -386,7 +386,7 @@ struct WinconBytesIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:28-32`](../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L28-L32)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:28-32`](../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L28-L32)*
 
 See [`WinconBytes`](wincon/index.md)
 
@@ -426,7 +426,7 @@ See [`WinconBytes`](wincon/index.md)
 fn strip_bytes(data: &[u8]) -> StrippedBytes<'_>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
 
 Strip ANSI escapes from bytes, returning the printable content
 
@@ -449,7 +449,7 @@ assert_eq!(plain_str.as_slice(), &b"foo bar"[..]);
 fn strip_str(data: &str) -> StrippedStr<'_>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../.source_1765521767/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
 
 Strip ANSI escapes from a `&str`, returning the printable content
 

@@ -27,7 +27,7 @@ Higher-level traits to describe writeable streams
 trait RawStream: std::io::Write + IsTerminal + private::Sealed { ... }
 ```
 
-*Defined in [`anstream-0.6.21/src/stream.rs:5`](../../../.source_1765210505/anstream-0.6.21/src/stream.rs#L5)*
+*Defined in [`anstream-0.6.21/src/stream.rs:5`](../../../.source_1765521767/anstream-0.6.21/src/stream.rs#L5)*
 
 Required functionality for underlying [`std::io::Write`](../../fs_err/index.md) for adaptation
 
@@ -51,7 +51,7 @@ Required functionality for underlying [`std::io::Write`](../../fs_err/index.md) 
 trait IsTerminal: private::Sealed { ... }
 ```
 
-*Defined in [`anstream-0.6.21/src/stream.rs:37-40`](../../../.source_1765210505/anstream-0.6.21/src/stream.rs#L37-L40)*
+*Defined in [`anstream-0.6.21/src/stream.rs:37-40`](../../../.source_1765521767/anstream-0.6.21/src/stream.rs#L37-L40)*
 
 Trait to determine if a descriptor/handle refers to a terminal/tty.
 
@@ -82,7 +82,7 @@ Trait to determine if a descriptor/handle refers to a terminal/tty.
 trait AsLockedWrite: private::Sealed { ... }
 ```
 
-*Defined in [`anstream-0.6.21/src/stream.rs:135-143`](../../../.source_1765210505/anstream-0.6.21/src/stream.rs#L135-L143)*
+*Defined in [`anstream-0.6.21/src/stream.rs:135-143`](../../../.source_1765521767/anstream-0.6.21/src/stream.rs#L135-L143)*
 
 Lock a stream
 

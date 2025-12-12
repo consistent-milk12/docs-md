@@ -23,7 +23,7 @@ Collectors collect and record trace data.
 struct Interest(InterestKind);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L589)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L589)*
 
 Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
 
@@ -64,7 +64,7 @@ in order to determine whether that span should be enabled or disabled.
 struct NoSubscriber(());
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:672`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L672)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:672`](../../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L672)*
 
 A no-op [`Subscriber`](#subscriber).
 
@@ -121,7 +121,7 @@ enum InterestKind {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:592-596`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L592-L596)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:592-596`](../../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L592-L596)*
 
 #### Trait Implementations
 
@@ -159,7 +159,7 @@ enum InterestKind {
 trait Subscriber: 'static { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../../.source_1765521767/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 

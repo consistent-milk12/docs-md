@@ -18,7 +18,7 @@
 struct IgnoredAny;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765210505/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765521767/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 

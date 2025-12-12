@@ -22,7 +22,7 @@
 trait IsTerminal: sealed::Sealed { ... }
 ```
 
-*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:7-23`](../../.source_1765210505/is_terminal_polyfill-1.70.2/src/lib.rs#L7-L23)*
+*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:7-23`](../../.source_1765521767/is_terminal_polyfill-1.70.2/src/lib.rs#L7-L23)*
 
 Trait to determine if a descriptor/handle refers to a terminal/tty.
 
@@ -46,5 +46,5 @@ Trait to determine if a descriptor/handle refers to a terminal/tty.
 
 ### `impl_is_terminal!`
 
-*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:29-40`](../../.source_1765210505/is_terminal_polyfill-1.70.2/src/lib.rs#L29-L40)*
+*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:29-40`](../../.source_1765521767/is_terminal_polyfill-1.70.2/src/lib.rs#L29-L40)*
 

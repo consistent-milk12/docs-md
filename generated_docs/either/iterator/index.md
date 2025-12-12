@@ -21,7 +21,7 @@ struct IterEither<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../../.source_1765210505/either-1.15.0/src/iterator.rs#L19-L21)*
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../../.source_1765521767/either-1.15.0/src/iterator.rs#L19-L21)*
 
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
@@ -105,5 +105,5 @@ and `factor_iter_mut` methods.
 
 ### `wrap_either!`
 
-*Defined in [`either-1.15.0/src/iterator.rs:4-11`](../../../.source_1765210505/either-1.15.0/src/iterator.rs#L4-L11)*
+*Defined in [`either-1.15.0/src/iterator.rs:4-11`](../../../.source_1765521767/either-1.15.0/src/iterator.rs#L4-L11)*
 

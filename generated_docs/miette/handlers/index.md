@@ -80,7 +80,7 @@ Reporters included with `miette`.
 struct DebugReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../.source_1765210505/miette-7.6.0/src/handlers/debug.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../.source_1765521767/miette-7.6.0/src/handlers/debug.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -132,7 +132,7 @@ struct GraphicalReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -221,7 +221,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -255,7 +255,7 @@ struct FancySpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -301,7 +301,7 @@ struct FancySpan {
 struct JSONReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../.source_1765521767/miette-7.6.0/src/handlers/json.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders JSON output. It's a machine-readable output.
 
@@ -335,7 +335,7 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L27)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../.source_1765521767/miette-7.6.0/src/handlers/json.rs#L27)*
 
 #### Trait Implementations
 
@@ -359,7 +359,7 @@ struct NarratableReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -408,7 +408,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
 
 #### Implementations
 
@@ -427,7 +427,7 @@ struct GraphicalTheme {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -489,7 +489,7 @@ struct ThemeStyles {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -573,7 +573,7 @@ struct ThemeCharacters {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
 
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -618,7 +618,7 @@ enum LinkStyle {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
 
 #### Trait Implementations
 
@@ -652,7 +652,7 @@ enum LabelRenderMode {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -699,7 +699,7 @@ enum SpanAttach {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
 
 #### Trait Implementations
 
@@ -713,7 +713,7 @@ enum SpanAttach {
 fn split_label(v: String) -> Vec<String>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../.source_1765521767/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 
 ### `escape`
 
@@ -721,7 +721,7 @@ fn split_label(v: String) -> Vec<String>
 const fn escape(input: &str) -> Escape<'_>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L52-L54)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../.source_1765521767/miette-7.6.0/src/handlers/json.rs#L52-L54)*
 
 ### `safe_get_column`
 
@@ -729,7 +729,7 @@ const fn escape(input: &str) -> Escape<'_>
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../.source_1765521767/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character
@@ -740,5 +740,5 @@ the character
 fn style() -> owo_colors::Style
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../.source_1765521767/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

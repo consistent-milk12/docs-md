@@ -63,7 +63,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L37-L47)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L37-L47)*
 
 A PE image file.
 
@@ -180,7 +180,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L432-L439)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L432-L439)*
 
 An iterator for the COMDAT section groups in a [`PeFile`](../index.md).
 
@@ -217,7 +217,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L465-L472)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L465-L472)*
 
 A COMDAT section group in a [`PeFile`](../index.md).
 
@@ -256,7 +256,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L525-L532)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L525-L532)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile`](../index.md).
 
@@ -290,7 +290,7 @@ This is a stub that doesn't implement any functionality.
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L589-L671)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L589-L671)*
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and [`pe::ImageNtHeaders64`](../../../pe/index.md).
 
@@ -347,7 +347,7 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L675-L709)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L675-L709)*
 
 A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../../pe/index.md).
 
@@ -426,7 +426,7 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md
 fn optional_header_magic<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<u16>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L572-L585)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L572-L585)*
 
 Find the optional header and read its `magic` field.
 
@@ -441,7 +441,7 @@ fully parse the NT headers.
 type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L26)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L26)*
 
 A PE32 (32-bit) image file.
 
@@ -454,7 +454,7 @@ to [`crate::FileKind::Pe32`](../../../index.md).
 type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L31)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L31)*
 
 A PE32+ (64-bit) image file.
 
@@ -467,7 +467,7 @@ to [`crate::FileKind::Pe64`](../../../index.md).
 type PeComdatIterator32<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L422-L423)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L422-L423)*
 
 An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 
@@ -477,7 +477,7 @@ An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 type PeComdatIterator64<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L425-L426)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L425-L426)*
 
 An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 
@@ -487,7 +487,7 @@ An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 type PeComdat32<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L455-L456)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L455-L456)*
 
 A COMDAT section group in a [`PeFile32`](../index.md).
 
@@ -497,7 +497,7 @@ A COMDAT section group in a [`PeFile32`](../index.md).
 type PeComdat64<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L458-L459)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L458-L459)*
 
 A COMDAT section group in a [`PeFile64`](../index.md).
 
@@ -507,7 +507,7 @@ A COMDAT section group in a [`PeFile64`](../index.md).
 type PeComdatSectionIterator32<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L515-L516)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L515-L516)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile32`](../index.md).
 
@@ -517,7 +517,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile32`](../inde
 type PeComdatSectionIterator64<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L518-L519)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../../.source_1765521767/object-0.37.3/src/read/pe/file.rs#L518-L519)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile64`](../index.md).
 

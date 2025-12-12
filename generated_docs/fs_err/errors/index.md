@@ -25,7 +25,7 @@ struct Error {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/errors.rs:49-53`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L49-L53)*
+*Defined in [`fs-err-3.2.0/src/errors.rs:49-53`](../../../.source_1765521767/fs-err-3.2.0/src/errors.rs#L49-L53)*
 
 Contains an IO error that has a file path attached.
 
@@ -67,7 +67,7 @@ struct SourceDestError {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/errors.rs:157-162`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L157-L162)*
+*Defined in [`fs-err-3.2.0/src/errors.rs:157-162`](../../../.source_1765521767/fs-err-3.2.0/src/errors.rs#L157-L162)*
 
 Error type used by functions like `fs::copy` that holds two paths.
 
@@ -127,7 +127,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/errors.rs:9-42`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L9-L42)*
+*Defined in [`fs-err-3.2.0/src/errors.rs:9-42`](../../../.source_1765521767/fs-err-3.2.0/src/errors.rs#L9-L42)*
 
 #### Trait Implementations
 
@@ -153,7 +153,7 @@ enum SourceDestErrorKind {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/errors.rs:140-153`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L140-L153)*
+*Defined in [`fs-err-3.2.0/src/errors.rs:140-153`](../../../.source_1765521767/fs-err-3.2.0/src/errors.rs#L140-L153)*
 
 #### Trait Implementations
 

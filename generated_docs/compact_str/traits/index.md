@@ -19,13 +19,13 @@
 trait ToCompactString { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L16-L49)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765521767/compact_str-0.9.0/src/traits.rs#L16-L49)*
 
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../../miette_derive/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
-[`fmt::Display`](../../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
+[`fmt::Display`](../../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
+[`fmt::Display`](../../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
 implementation for free.
 
 #### Required Methods
@@ -50,7 +50,7 @@ implementation for free.
 trait CompactStringExt { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L142-L169)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765521767/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](../index.md) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator

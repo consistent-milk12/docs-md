@@ -26,7 +26,7 @@ struct BacktraceFmt<'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../../.source_1765210505/backtrace-0.3.76/src/print.rs#L17-L23)*
+*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../../.source_1765521767/backtrace-0.3.76/src/print.rs#L17-L23)*
 
 A formatter for backtraces.
 
@@ -57,7 +57,7 @@ struct BacktraceFrameFmt<'fmt, 'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../../.source_1765210505/backtrace-0.3.76/src/print.rs#L111-L114)*
+*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../../.source_1765521767/backtrace-0.3.76/src/print.rs#L111-L114)*
 
 A formatter for just one frame of a backtrace.
 
@@ -98,7 +98,7 @@ enum PrintFmt {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../../.source_1765210505/backtrace-0.3.76/src/print.rs#L28-L33)*
+*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../../.source_1765521767/backtrace-0.3.76/src/print.rs#L28-L33)*
 
 The styles of printing that we can print
 
@@ -135,5 +135,5 @@ The styles of printing that we can print
 const HEX_WIDTH: usize = 18usize;
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:7`](../../../.source_1765210505/backtrace-0.3.76/src/print.rs#L7)*
+*Defined in [`backtrace-0.3.76/src/print.rs:7`](../../../.source_1765521767/backtrace-0.3.76/src/print.rs#L7)*
 

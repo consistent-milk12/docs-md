@@ -64,7 +64,7 @@ struct Ctxt {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
+*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../.source_1765521767/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
 
 A type to collect errors together and format them.
 
@@ -103,7 +103,7 @@ enum Derive {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:18-21`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L18-L21)*
+*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:18-21`](../../../.source_1765521767/serde_derive-1.0.228/src/internals/mod.rs#L18-L21)*
 
 #### Trait Implementations
 
@@ -121,7 +121,7 @@ enum Derive {
 fn replace_receiver(input: &mut syn::DeriveInput)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../.source_1765521767/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
 
 ### `ungroup`
 
@@ -129,5 +129,5 @@ fn replace_receiver(input: &mut syn::DeriveInput)
 fn ungroup(ty: &syn::Type) -> &syn::Type
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:23-28`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L23-L28)*
+*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:23-28`](../../../.source_1765521767/serde_derive-1.0.228/src/internals/mod.rs#L23-L28)*
 

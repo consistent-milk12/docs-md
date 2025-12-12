@@ -28,7 +28,7 @@ struct Patterns {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
 
 A non-empty collection of non-empty patterns to search for.
 
@@ -117,7 +117,7 @@ struct PatternIter<'p> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:188-191`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L188-L191)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:188-191`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/pattern.rs#L188-L191)*
 
 An iterator over the patterns in the `Patterns` collection.
 
@@ -153,7 +153,7 @@ this is iterating over.
 struct Pattern<'a>(&'a [u8]);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:209`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L209)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:209`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/pattern.rs#L209)*
 
 A pattern that is used in packed searching.
 
@@ -187,7 +187,7 @@ A pattern that is used in packed searching.
 fn is_prefix(haystack: &[u8], needle: &[u8]) -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:293-301`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L293-L301)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:293-301`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/pattern.rs#L293-L301)*
 
 Returns true if and only if `needle` is a prefix of `haystack`.
 
@@ -206,7 +206,7 @@ another function that is marked as `inline(never)` or just `inline`.
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:368-416`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L368-L416)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:368-416`](../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/pattern.rs#L368-L416)*
 
 Compare `n` bytes at the given pointers for equality.
 

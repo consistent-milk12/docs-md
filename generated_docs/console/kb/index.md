@@ -40,7 +40,7 @@ enum Key {
 }
 ```
 
-*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../../.source_1765210505/console-0.16.1/src/kb.rs#L9-L32)*
+*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../../.source_1765521767/console-0.16.1/src/kb.rs#L9-L32)*
 
 Key mapping
 

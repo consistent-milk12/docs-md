@@ -592,7 +592,7 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` [`Name`](#name) `` - Backtick code links (most common)
+- `` `Name` `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links

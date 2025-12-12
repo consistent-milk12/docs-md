@@ -23,7 +23,7 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
 
 A draining iterator for `Vec<T>`.
 

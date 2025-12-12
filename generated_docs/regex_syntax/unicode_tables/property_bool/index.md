@@ -152,460 +152,460 @@
 const BY_NAME: &'static [(&'static str, &'static [(char, char)])];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9-75`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9-L75)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9-75`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9-L75)*
 
 ### `ASCII_HEX_DIGIT`
 ```rust
 const ASCII_HEX_DIGIT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:77-78`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L77-L78)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:77-78`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L77-L78)*
 
 ### `ALPHABETIC`
 ```rust
 const ALPHABETIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:80-838`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L80-L838)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:80-838`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L80-L838)*
 
 ### `BIDI_CONTROL`
 ```rust
 const BIDI_CONTROL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:840-845`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L840-L845)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:840-845`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L840-L845)*
 
 ### `BIDI_MIRRORED`
 ```rust
 const BIDI_MIRRORED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:847-962`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L847-L962)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:847-962`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L847-L962)*
 
 ### `CASE_IGNORABLE`
 ```rust
 const CASE_IGNORABLE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:964-1417`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L964-L1417)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:964-1417`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L964-L1417)*
 
 ### `CASED`
 ```rust
 const CASED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:1419-1579`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L1419-L1579)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:1419-1579`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L1419-L1579)*
 
 ### `CHANGES_WHEN_CASEFOLDED`
 ```rust
 const CHANGES_WHEN_CASEFOLDED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:1581-2208`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L1581-L2208)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:1581-2208`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L1581-L2208)*
 
 ### `CHANGES_WHEN_CASEMAPPED`
 ```rust
 const CHANGES_WHEN_CASEMAPPED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2210-2342`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2210-L2342)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2210-2342`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2210-L2342)*
 
 ### `CHANGES_WHEN_LOWERCASED`
 ```rust
 const CHANGES_WHEN_LOWERCASED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2344-2959`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2344-L2959)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2344-2959`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2344-L2959)*
 
 ### `CHANGES_WHEN_TITLECASED`
 ```rust
 const CHANGES_WHEN_TITLECASED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2961-3591`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2961-L3591)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:2961-3591`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L2961-L3591)*
 
 ### `CHANGES_WHEN_UPPERCASED`
 ```rust
 const CHANGES_WHEN_UPPERCASED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:3593-4224`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L3593-L4224)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:3593-4224`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L3593-L4224)*
 
 ### `DASH`
 ```rust
 const DASH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4226-4251`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4226-L4251)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4226-4251`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4226-L4251)*
 
 ### `DEFAULT_IGNORABLE_CODE_POINT`
 ```rust
 const DEFAULT_IGNORABLE_CODE_POINT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4253-4271`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4253-L4271)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4253-4271`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4253-L4271)*
 
 ### `DEPRECATED`
 ```rust
 const DEPRECATED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4273-4282`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4273-L4282)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4273-4282`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4273-L4282)*
 
 ### `DIACRITIC`
 ```rust
 const DIACRITIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4284-4499`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4284-L4499)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4284-4499`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4284-L4499)*
 
 ### `EMOJI`
 ```rust
 const EMOJI: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4501-4652`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4501-L4652)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4501-4652`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4501-L4652)*
 
 ### `EMOJI_COMPONENT`
 ```rust
 const EMOJI_COMPONENT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4654-4665`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4654-L4665)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4654-4665`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4654-L4665)*
 
 ### `EMOJI_MODIFIER`
 ```rust
 const EMOJI_MODIFIER: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4667`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4667)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4667`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4667)*
 
 ### `EMOJI_MODIFIER_BASE`
 ```rust
 const EMOJI_MODIFIER_BASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4669-4710`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4669-L4710)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4669-4710`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4669-L4710)*
 
 ### `EMOJI_PRESENTATION`
 ```rust
 const EMOJI_PRESENTATION: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4712-4793`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4712-L4793)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4712-4793`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4712-L4793)*
 
 ### `EXTENDED_PICTOGRAPHIC`
 ```rust
 const EXTENDED_PICTOGRAPHIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4795-4874`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4795-L4874)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4795-4874`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4795-L4874)*
 
 ### `EXTENDER`
 ```rust
 const EXTENDER: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4876-4918`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4876-L4918)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4876-4918`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4876-L4918)*
 
 ### `GRAPHEME_BASE`
 ```rust
 const GRAPHEME_BASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4920-5815`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4920-L5815)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:4920-5815`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L4920-L5815)*
 
 ### `GRAPHEME_EXTEND`
 ```rust
 const GRAPHEME_EXTEND: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:5817-6193`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L5817-L6193)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:5817-6193`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L5817-L6193)*
 
 ### `GRAPHEME_LINK`
 ```rust
 const GRAPHEME_LINK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6195-6254`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6195-L6254)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6195-6254`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6195-L6254)*
 
 ### `HEX_DIGIT`
 ```rust
 const HEX_DIGIT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6256-6263`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6256-L6263)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6256-6263`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6256-L6263)*
 
 ### `HYPHEN`
 ```rust
 const HYPHEN: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6265-6276`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6265-L6276)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6265-6276`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6265-L6276)*
 
 ### `IDS_BINARY_OPERATOR`
 ```rust
 const IDS_BINARY_OPERATOR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6278-6279`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6278-L6279)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6278-6279`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6278-L6279)*
 
 ### `IDS_TRINARY_OPERATOR`
 ```rust
 const IDS_TRINARY_OPERATOR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6281`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6281)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6281`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6281)*
 
 ### `IDS_UNARY_OPERATOR`
 ```rust
 const IDS_UNARY_OPERATOR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6283`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6283)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6283`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6283)*
 
 ### `ID_COMPAT_MATH_CONTINUE`
 ```rust
 const ID_COMPAT_MATH_CONTINUE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6285-6304`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6285-L6304)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6285-6304`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6285-L6304)*
 
 ### `ID_COMPAT_MATH_START`
 ```rust
 const ID_COMPAT_MATH_START: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6306-6320`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6306-L6320)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6306-6320`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6306-L6320)*
 
 ### `ID_CONTINUE`
 ```rust
 const ID_CONTINUE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6322-7116`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6322-L7116)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:6322-7116`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L6322-L7116)*
 
 ### `ID_START`
 ```rust
 const ID_START: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7118-7796`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7118-L7796)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7118-7796`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7118-L7796)*
 
 ### `IDEOGRAPHIC`
 ```rust
 const IDEOGRAPHIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7798-7820`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7798-L7820)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7798-7820`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7798-L7820)*
 
 ### `INCB`
 ```rust
 const INCB: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7822-8221`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7822-L8221)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:7822-8221`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L7822-L8221)*
 
 ### `JOIN_CONTROL`
 ```rust
 const JOIN_CONTROL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8223`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8223)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8223`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8223)*
 
 ### `LOGICAL_ORDER_EXCEPTION`
 ```rust
 const LOGICAL_ORDER_EXCEPTION: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8225-8233`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8225-L8233)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8225-8233`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8225-L8233)*
 
 ### `LOWERCASE`
 ```rust
 const LOWERCASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8235-8911`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8235-L8911)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8235-8911`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8235-L8911)*
 
 ### `MATH`
 ```rust
 const MATH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8913-9053`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8913-L9053)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:8913-9053`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L8913-L9053)*
 
 ### `MODIFIER_COMBINING_MARK`
 ```rust
 const MODIFIER_COMBINING_MARK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9055-9065`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9055-L9065)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9055-9065`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9055-L9065)*
 
 ### `NONCHARACTER_CODE_POINT`
 ```rust
 const NONCHARACTER_CODE_POINT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9067-9086`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9067-L9086)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9067-9086`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9067-L9086)*
 
 ### `OTHER_ALPHABETIC`
 ```rust
 const OTHER_ALPHABETIC: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9088-9339`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9088-L9339)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9088-9339`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9088-L9339)*
 
 ### `OTHER_DEFAULT_IGNORABLE_CODE_POINT`
 ```rust
 const OTHER_DEFAULT_IGNORABLE_CODE_POINT: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9341-9353`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9341-L9353)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9341-9353`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9341-L9353)*
 
 ### `OTHER_GRAPHEME_EXTEND`
 ```rust
 const OTHER_GRAPHEME_EXTEND: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9355-9405`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9355-L9405)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9355-9405`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9355-L9405)*
 
 ### `OTHER_ID_CONTINUE`
 ```rust
 const OTHER_ID_CONTINUE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9407-9415`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9407-L9415)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9407-9415`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9407-L9415)*
 
 ### `OTHER_ID_START`
 ```rust
 const OTHER_ID_START: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9417-9418`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9417-L9418)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9417-9418`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9417-L9418)*
 
 ### `OTHER_LOWERCASE`
 ```rust
 const OTHER_LOWERCASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9420-9449`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9420-L9449)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9420-9449`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9420-L9449)*
 
 ### `OTHER_MATH`
 ```rust
 const OTHER_MATH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9451-9586`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9451-L9586)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9451-9586`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9451-L9586)*
 
 ### `OTHER_UPPERCASE`
 ```rust
 const OTHER_UPPERCASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9588-9589`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9588-L9589)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9588-9589`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9588-L9589)*
 
 ### `PATTERN_SYNTAX`
 ```rust
 const PATTERN_SYNTAX: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9591-9620`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9591-L9620)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9591-9620`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9591-L9620)*
 
 ### `PATTERN_WHITE_SPACE`
 ```rust
 const PATTERN_WHITE_SPACE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9622-9628`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9622-L9628)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9622-9628`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9622-L9628)*
 
 ### `PREPENDED_CONCATENATION_MARK`
 ```rust
 const PREPENDED_CONCATENATION_MARK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9630-9638`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9630-L9638)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9630-9638`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9630-L9638)*
 
 ### `QUOTATION_MARK`
 ```rust
 const QUOTATION_MARK: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9640-9654`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9640-L9654)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9640-9654`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9640-L9654)*
 
 ### `RADICAL`
 ```rust
 const RADICAL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9656-9657`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9656-L9657)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9656-9657`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9656-L9657)*
 
 ### `REGIONAL_INDICATOR`
 ```rust
 const REGIONAL_INDICATOR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9659`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9659)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9659`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9659)*
 
 ### `SENTENCE_TERMINAL`
 ```rust
 const SENTENCE_TERMINAL: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9661-9750`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9661-L9750)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9661-9750`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9661-L9750)*
 
 ### `SOFT_DOTTED`
 ```rust
 const SOFT_DOTTED: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9752-9787`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9752-L9787)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9752-9787`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9752-L9787)*
 
 ### `TERMINAL_PUNCTUATION`
 ```rust
 const TERMINAL_PUNCTUATION: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9789-9906`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9789-L9906)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9789-9906`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9789-L9906)*
 
 ### `UNIFIED_IDEOGRAPH`
 ```rust
 const UNIFIED_IDEOGRAPH: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9908-9926`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9908-L9926)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9908-9926`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9908-L9926)*
 
 ### `UPPERCASE`
 ```rust
 const UPPERCASE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9928-10585`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9928-L10585)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:9928-10585`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L9928-L10585)*
 
 ### `VARIATION_SELECTOR`
 ```rust
 const VARIATION_SELECTOR: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10587-10592`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10587-L10592)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10587-10592`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10587-L10592)*
 
 ### `WHITE_SPACE`
 ```rust
 const WHITE_SPACE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10594-10605`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10594-L10605)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10594-10605`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10594-L10605)*
 
 ### `XID_CONTINUE`
 ```rust
 const XID_CONTINUE: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10607-11408`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10607-L11408)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:10607-11408`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L10607-L11408)*
 
 ### `XID_START`
 ```rust
 const XID_START: &'static [(char, char)];
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:11410-12095`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L11410-L12095)*
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/property_bool.rs:11410-12095`](../../../../.source_1765521767/regex-syntax-0.8.8/src/unicode_tables/property_bool.rs#L11410-L12095)*
 

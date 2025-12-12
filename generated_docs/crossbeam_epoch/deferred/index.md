@@ -24,7 +24,7 @@ struct Deferred {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:19-23`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L19-L23)*
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:19-23`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/deferred.rs#L19-L23)*
 
 A `FnOnce()` that is stored inline if small, or otherwise boxed on the heap.
 
@@ -66,7 +66,7 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 type Data = [usize; 3];
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:14`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L14)*
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:14`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/deferred.rs#L14)*
 
 Some space to keep a `FnOnce()` object on the stack.
 
@@ -77,7 +77,7 @@ Some space to keep a `FnOnce()` object on the stack.
 const DATA_WORDS: usize = 3usize;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:11`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L11)*
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:11`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/deferred.rs#L11)*
 
 Number of words a piece of `Data` can hold.
 

@@ -28,7 +28,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -167,7 +167,7 @@ struct Span {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -254,7 +254,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
 
 A representation of a match reported by an Aho-Corasick searcher.
 
@@ -336,7 +336,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -391,7 +391,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -551,7 +551,7 @@ enum StartKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.

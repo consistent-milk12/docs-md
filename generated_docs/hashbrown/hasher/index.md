@@ -22,7 +22,7 @@ struct DefaultHashBuilder {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765521767/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -59,7 +59,7 @@ struct DefaultHasher {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765521767/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
 
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -103,5 +103,5 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 ### `forward_writes!`
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765521767/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
 

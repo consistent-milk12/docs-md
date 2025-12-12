@@ -163,7 +163,7 @@ is not allowed. For more guidance on working with box from unsafe code, see
 struct Box<T: ?Sized, A: Allocator>(super::unique::Unique<T>, A);
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
 
 A pointer type for heap allocation.
 
@@ -371,7 +371,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 trait BoxIter { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
 
 #### Associated Types
 

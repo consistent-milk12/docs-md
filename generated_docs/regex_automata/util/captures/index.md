@@ -79,7 +79,7 @@ struct Captures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:130-173`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L130-L173)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:130-173`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L130-L173)*
 
 The span offsets of capturing groups after a match has been found.
 
@@ -271,7 +271,7 @@ struct CapturesDebugMap<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1217-1220`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1217-L1220)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1217-1220`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L1217-L1220)*
 
 A little helper type to provide a nice map-like debug representation for
 our capturing group spans.
@@ -291,7 +291,7 @@ struct CapturesPatternIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1258-1261`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1258-L1261)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1258-1261`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L1258-L1261)*
 
 An iterator over all capturing groups in a `Captures` value.
 
@@ -340,7 +340,7 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 struct GroupInfo(alloc::sync::Arc<GroupInfoInner>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1451`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1451)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1451`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L1451)*
 
 Represents information about capturing groups in a compiled regex.
 
@@ -567,7 +567,7 @@ struct GroupInfoInner {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2179-2184`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2179-L2184)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2179-2184`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2179-L2184)*
 
 The inner guts of `GroupInfo`. This type only exists so that it can
 be wrapped in an `Arc` to make `GroupInfo` reference counted.
@@ -604,7 +604,7 @@ struct GroupInfoError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2337-2339`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2337-L2339)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2337-2339`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2337-L2339)*
 
 An error that may occur when building a `GroupInfo`.
 
@@ -655,7 +655,7 @@ struct GroupInfoPatternNames<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2480-2482`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2480-L2482)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2480-2482`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2480-L2482)*
 
 An iterator over capturing groups and their names for a specific pattern.
 
@@ -711,7 +711,7 @@ struct GroupInfoAllNames<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2516-2521`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2516-L2521)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2516-2521`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2516-L2521)*
 
 An iterator over capturing groups and their names for a `GroupInfo`.
 
@@ -766,7 +766,7 @@ enum GroupInfoErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2346-2387`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2346-L2387)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2346-2387`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2346-L2387)*
 
 The kind of error that occurs when building a `GroupInfo` fails.
 
@@ -825,7 +825,7 @@ export it.
 type CaptureNameMap = std::collections::HashMap<alloc::sync::Arc<str>, crate::util::primitives::SmallIndex>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2172`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2172)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2172`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/captures.rs#L2172)*
 
 A map from capture group name to its corresponding capture group index.
 

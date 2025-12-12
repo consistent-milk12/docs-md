@@ -23,9 +23,9 @@ Functions which duplicate file descriptors.
 struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../.source_1765521767/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../index.md).
+`O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
 
 
 #### Implementations
@@ -158,13 +158,13 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L44-L46)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L44-L46)*
 
 `dup(fd)`—Creates a new `OwnedFd` instance that shares the same
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -198,7 +198,7 @@ be unexpectedly allocated on other threads or in libraries.
 fn dup2<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L89-L91)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L89-L91)*
 
 `dup2(fd, new)`—Changes the [file description] of a file descriptor.
 
@@ -209,7 +209,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+support it, or [`fcntl_dupfd_cloexec`](../index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.
@@ -245,7 +245,7 @@ For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 fn dup3<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd, flags: DupFlags) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L123-L125)*
+*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../../.source_1765521767/rustix-1.1.2/src/io/dup.rs#L123-L125)*
 
 `dup3(fd, new, flags)`—Changes the [file description] of a file
 descriptor, with flags.

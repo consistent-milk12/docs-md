@@ -48,7 +48,7 @@ struct TranslatorBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:20-24`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L20-L24)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:20-24`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L20-L24)*
 
 A builder for constructing an AST->HIR translator.
 
@@ -99,7 +99,7 @@ struct Translator {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:147-156`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L147-L156)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:147-156`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L147-L156)*
 
 A translator maps abstract syntax to a high level intermediate
 representation.
@@ -153,7 +153,7 @@ struct TranslatorI<'t, 'p> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:674-677`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L674-L677)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:674-677`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L674-L677)*
 
 The internal implementation of a translator.
 
@@ -263,7 +263,7 @@ struct Flags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1222-1231`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1222-L1231)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1222-1231`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L1222-L1231)*
 
 A translator's representation of a regular expression's flags at any given
 moment in time.
@@ -325,7 +325,7 @@ enum HirFrame {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:185-249`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L185-L249)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:185-249`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L185-L249)*
 
 An HirFrame is a single stack frame, represented explicitly, which is
 created for each item in the Ast that we traverse.
@@ -435,7 +435,7 @@ traversing the Ast itself.
 fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1312-1317`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1312-L1317)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1312-1317`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L1312-L1317)*
 
 ### `ascii_class`
 
@@ -443,7 +443,7 @@ fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
 fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1319-1346`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1319-L1346)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1319-1346`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L1319-L1346)*
 
 ### `ascii_class_as_chars`
 
@@ -451,7 +451,7 @@ fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
 fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (char, char)>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1348-1352`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1348-L1352)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1348-1352`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L1348-L1352)*
 
 ## Type Aliases
 
@@ -461,5 +461,5 @@ fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (cha
 type Result<T> = core::result::Result<T, crate::hir::Error>;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:16`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L16)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:16`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/translate.rs#L16)*
 

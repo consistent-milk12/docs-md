@@ -24,7 +24,7 @@ struct IntervalSet<I> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
 
 #### Fields
 
@@ -99,7 +99,7 @@ struct IntervalSet<I> {
 struct IntervalSetIter<'a, I>(slice::Iter<'a, I>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
 
 An iterator over intervals.
 
@@ -131,7 +131,7 @@ An iterator over intervals.
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
 
 #### Associated Types
 
@@ -190,7 +190,7 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
 
 #### Required Methods
 

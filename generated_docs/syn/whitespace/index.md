@@ -19,7 +19,7 @@
 fn skip(s: &str) -> &str
 ```
 
-*Defined in [`syn-2.0.111/src/whitespace.rs:1-60`](../../../.source_1765210505/syn-2.0.111/src/whitespace.rs#L1-L60)*
+*Defined in [`syn-2.0.111/src/whitespace.rs:1-60`](../../../.source_1765521767/syn-2.0.111/src/whitespace.rs#L1-L60)*
 
 ### `is_whitespace`
 
@@ -27,5 +27,5 @@ fn skip(s: &str) -> &str
 fn is_whitespace(ch: char) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/whitespace.rs:62-65`](../../../.source_1765210505/syn-2.0.111/src/whitespace.rs#L62-L65)*
+*Defined in [`syn-2.0.111/src/whitespace.rs:62-65`](../../../.source_1765521767/syn-2.0.111/src/whitespace.rs#L62-L65)*
 

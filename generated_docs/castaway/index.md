@@ -39,7 +39,7 @@ Castaway provides the following key macros:
 trait LifetimeFree { ... }
 ```
 
-*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../.source_1765210505/castaway-0.2.4/src/lifetime_free.rs#L43)*
+*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../.source_1765521767/castaway-0.2.4/src/lifetime_free.rs#L43)*
 
 Marker trait for types that do not contain any lifetime parameters. Such
 types are safe to cast from non-static type parameters if their types are
@@ -142,7 +142,7 @@ unsafe impl LifetimeFree for PlainOldData {}
 
 ### `cast!`
 
-*Defined in [`castaway-0.2.4/src/lib.rs:177-207`](../../.source_1765210505/castaway-0.2.4/src/lib.rs#L177-L207)*
+*Defined in [`castaway-0.2.4/src/lib.rs:177-207`](../../.source_1765521767/castaway-0.2.4/src/lib.rs#L177-L207)*
 
 Attempt to cast the result of an expression into a given concrete type.
 
@@ -291,7 +291,7 @@ println!("default: {}", "hello".fast_to_string());
 
 ### `match_type!`
 
-*Defined in [`castaway-0.2.4/src/lib.rs:263-285`](../../.source_1765210505/castaway-0.2.4/src/lib.rs#L263-L285)*
+*Defined in [`castaway-0.2.4/src/lib.rs:263-285`](../../.source_1765521767/castaway-0.2.4/src/lib.rs#L263-L285)*
 
 Match the result of an expression against multiple concrete types.
 

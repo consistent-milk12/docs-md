@@ -24,11 +24,11 @@
 fn xid_ok(symbol: &str) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/ident.rs:37-49`](../../../.source_1765210505/syn-2.0.111/src/ident.rs#L37-L49)*
+*Defined in [`syn-2.0.111/src/ident.rs:37-49`](../../../.source_1765521767/syn-2.0.111/src/ident.rs#L37-L49)*
 
 ## Macros
 
 ### `ident_from_token!`
 
-*Defined in [`syn-2.0.111/src/ident.rs:15-23`](../../../.source_1765210505/syn-2.0.111/src/ident.rs#L15-L23)*
+*Defined in [`syn-2.0.111/src/ident.rs:15-23`](../../../.source_1765521767/syn-2.0.111/src/ident.rs#L15-L23)*
 

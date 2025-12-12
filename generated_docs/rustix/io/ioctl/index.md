@@ -29,7 +29,7 @@ processes, live in other top-level API modules.
 fn ioctl_fioclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:26-32`](../../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L26-L32)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:26-32`](../../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L26-L32)*
 
 `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag.
 
@@ -45,7 +45,7 @@ descriptors.
 fn ioctl_fionclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:44-50`](../../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L44-L50)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:44-50`](../../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L44-L50)*
 
 `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag.
 
@@ -61,7 +61,7 @@ descriptors.
 fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:64-70`](../../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L64-L70)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:64-70`](../../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L64-L70)*
 
 `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode.
 
@@ -79,7 +79,7 @@ fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 fn ioctl_fionread<Fd: AsFd>(fd: Fd) -> io::Result<u64>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/ioctl.rs:92-98`](../../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L92-L98)*
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:92-98`](../../../../.source_1765521767/rustix-1.1.2/src/io/ioctl.rs#L92-L98)*
 
 `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read.
 

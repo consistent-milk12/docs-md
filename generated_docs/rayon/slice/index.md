@@ -91,7 +91,7 @@ struct ChunkBy<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
@@ -151,7 +151,7 @@ struct ChunkByMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
 
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
@@ -208,7 +208,7 @@ struct Chunks<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -276,7 +276,7 @@ struct ChunksExact<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -346,7 +346,7 @@ struct ChunksExactMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -415,7 +415,7 @@ struct ChunksMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../.source_1765210505/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../.source_1765521767/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -478,7 +478,7 @@ struct RChunks<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:6-9`](../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L6-L9)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:6-9`](../../../.source_1765521767/rayon-1.11.0/src/slice/rchunks.rs#L6-L9)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
@@ -546,7 +546,7 @@ struct RChunksExact<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:92-96`](../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L92-L96)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:92-96`](../../../.source_1765521767/rayon-1.11.0/src/slice/rchunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
@@ -616,7 +616,7 @@ struct RChunksExactMut<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:272-276`](../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L272-L276)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:272-276`](../../../.source_1765521767/rayon-1.11.0/src/slice/rchunks.rs#L272-L276)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -685,7 +685,7 @@ struct RChunksMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:192-195`](../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L192-L195)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:192-195`](../../../.source_1765521767/rayon-1.11.0/src/slice/rchunks.rs#L192-L195)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -747,7 +747,7 @@ struct Iter<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:801-803`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L801-L803)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:801-803`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L801-L803)*
 
 Parallel iterator over immutable items in a slice
 
@@ -809,7 +809,7 @@ struct IterProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:846-848`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L846-L848)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:846-848`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L846-L848)*
 
 #### Trait Implementations
 
@@ -848,7 +848,7 @@ struct Windows<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:866-869`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L866-L869)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:866-869`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L866-L869)*
 
 Parallel iterator over immutable overlapping windows of a slice
 
@@ -911,7 +911,7 @@ struct WindowsProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:916-919`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L916-L919)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:916-919`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L916-L919)*
 
 #### Trait Implementations
 
@@ -949,7 +949,7 @@ struct IterMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:948-950`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L948-L950)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:948-950`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L948-L950)*
 
 Parallel iterator over mutable items in a slice
 
@@ -1007,7 +1007,7 @@ struct IterMutProducer<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:987-989`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L987-L989)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:987-989`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L987-L989)*
 
 #### Trait Implementations
 
@@ -1046,7 +1046,7 @@ struct Split<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1009-1012`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L1009-L1012)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1009-1012`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L1009-L1012)*
 
 Parallel iterator over slices separated by a predicate
 
@@ -1099,7 +1099,7 @@ struct SplitInclusive<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1047-1050`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L1047-L1050)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1047-1050`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L1047-L1050)*
 
 Parallel iterator over slices separated by a predicate,
 including the matched part as a terminator.
@@ -1153,7 +1153,7 @@ struct SplitMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1135-1138`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L1135-L1138)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1135-1138`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L1135-L1138)*
 
 Parallel iterator over mutable slices separated by a predicate
 
@@ -1202,7 +1202,7 @@ struct SplitInclusiveMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1166-1169`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L1166-L1169)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1166-1169`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L1166-L1169)*
 
 Parallel iterator over mutable slices separated by a predicate,
 including the matched part as a terminator.
@@ -1251,7 +1251,7 @@ including the matched part as a terminator.
 trait ParallelSlice<T: Sync> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:29-199`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L29-L199)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:29-199`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L29-L199)*
 
 Parallel extensions for slices.
 
@@ -1305,7 +1305,7 @@ Parallel extensions for slices.
 trait ParallelSliceMut<T: Send> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:209-754`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L209-L754)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:209-754`](../../../.source_1765521767/rayon-1.11.0/src/slice/mod.rs#L209-L754)*
 
 Parallel extensions for mutable slices.
 

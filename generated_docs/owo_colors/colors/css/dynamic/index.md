@@ -166,7 +166,7 @@ enum CssColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../../.source_1765210505/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../../.source_1765521767/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)

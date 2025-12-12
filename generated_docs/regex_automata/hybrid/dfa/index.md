@@ -70,7 +70,7 @@ struct DFA {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:118-126`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L118-L126)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:118-126`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L118-L126)*
 
 A hybrid NFA/DFA (also called a "lazy DFA") for regex searching.
 
@@ -199,7 +199,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:1777-1867`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L1777-L1867)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:1777-1867`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L1777-L1867)*
 
 A cache represents a partially computed DFA.
 
@@ -366,7 +366,7 @@ struct SearchProgress {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2048-2051`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2048-L2051)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2048-2051`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2048-L2051)*
 
 Keeps track of the progress of the current search.
 
@@ -398,7 +398,7 @@ struct Lazy<'i, 'c> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2081-2084`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2081-L2084)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2081-2084`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2081-L2084)*
 
 A type that groups methods that require the base NFA/DFA and writable
 access to the cache.
@@ -458,7 +458,7 @@ struct LazyRef<'i, 'c> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2677-2680`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2677-L2680)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2677-2680`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2677-L2680)*
 
 A type that groups methods that require the base NFA/DFA and read-only
 access to the cache.
@@ -511,7 +511,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2880-2899`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2880-L2899)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2880-2899`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2880-L2899)*
 
 The configuration used for building a lazy DFA.
 
@@ -606,7 +606,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:3991-3995`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L3991-L3995)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:3991-3995`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L3991-L3995)*
 
 A builder for constructing a lazy deterministic finite automaton from
 regular expressions.
@@ -712,7 +712,7 @@ struct OverlappingState {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4188-4227`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4188-L4227)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4188-4227`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L4188-L4227)*
 
 Represents the current state of an overlapping search.
 
@@ -820,7 +820,7 @@ enum StateSaver {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2819-2832`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2819-L2832)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2819-2832`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2819-L2832)*
 
 A simple type that encapsulates the saving of a state ID through a cache
 clearing.
@@ -876,7 +876,7 @@ where
     F: FnMut(&crate::util::search::Input<'_>, &mut OverlappingState) -> Result<(), crate::util::search::MatchError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4261-4293`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4261-L4293)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4261-4293`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L4261-L4293)*
 
 Runs the given overlapping `search` function (forwards or backwards) until
 a match is found whose offset does not split a codepoint.
@@ -892,7 +892,7 @@ in legitimate matches getting skipped.
 fn minimum_lazy_state_id(classes: &crate::util::alphabet::ByteClasses) -> Result<crate::hybrid::id::LazyStateID, crate::hybrid::id::LazyStateIDError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4301-4307`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4301-L4307)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4301-4307`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L4301-L4307)*
 
 Based on the minimum number of states required for a useful lazy DFA cache,
 this returns the minimum lazy state ID that must be representable.
@@ -907,7 +907,7 @@ may be insufficient if our MIN_STATES value is (for some reason) too high.
 fn minimum_cache_capacity(nfa: &thompson::NFA, classes: &crate::util::alphabet::ByteClasses, starts_for_each_pattern: bool) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4335-4392`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4335-L4392)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4335-4392`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L4335-L4392)*
 
 Based on the minimum number of states required for a useful lazy DFA cache,
 this returns a heuristic minimum number of bytes of heap space required.
@@ -944,7 +944,7 @@ minimum number of states to be added.)
 type StateMap = std::collections::HashMap<self::state::State, crate::hybrid::id::LazyStateID>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2074`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2074)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2074`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L2074)*
 
 A map from states to state identifiers. When using std, we use a standard
 hashmap, since it's a bit faster for this use case. (Other maps, like
@@ -960,7 +960,7 @@ fully minimize the DFA, but it works well in a lot of cases.
 const MIN_STATES: usize = 5usize;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:42`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L42)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:42`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L42)*
 
 The minimum number of states that a lazy DFA's cache size must support.
 
@@ -975,7 +975,7 @@ assume that the cache can fit at least some small number of states.
 const SENTINEL_STATES: usize = 3usize;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:50`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L50)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:50`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/dfa.rs#L50)*
 
 The number of "sentinel" states that get added to every lazy DFA.
 

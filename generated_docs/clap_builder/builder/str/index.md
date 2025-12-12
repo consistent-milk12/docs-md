@@ -25,7 +25,7 @@ struct Str {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../../.source_1765521767/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
 
 A UTF-8-encoded fixed string
 

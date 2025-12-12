@@ -20,7 +20,7 @@
 trait AtomicConsume { ... }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 
@@ -53,9 +53,9 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 
 ### `impl_consume!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:55-62`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/consume.rs#L55-L62)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:55-62`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/consume.rs#L55-L62)*
 
 ### `impl_atomic!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:64-77`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/consume.rs#L64-L77)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:64-77`](../../../../.source_1765521767/crossbeam-utils-0.8.21/src/atomic/consume.rs#L64-L77)*
 

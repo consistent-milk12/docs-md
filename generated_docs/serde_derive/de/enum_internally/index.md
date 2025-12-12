@@ -26,7 +26,7 @@ enum Enum {}
 fn deserialize(params: &crate::de::Parameters, variants: &[crate::internals::ast::Variant<'_>], cattrs: &attr::Container, tag: &str) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_internally.rs:21-63`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_internally.rs#L21-L63)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_internally.rs:21-63`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_internally.rs#L21-L63)*
 
 Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(tag)]` attribute
 
@@ -36,5 +36,5 @@ Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde
 fn deserialize_internally_tagged_variant(params: &crate::de::Parameters, variant: &crate::internals::ast::Variant<'_>, cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
-*Defined in [`serde_derive-1.0.228/src/de/enum_internally.rs:67-106`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_internally.rs#L67-L106)*
+*Defined in [`serde_derive-1.0.228/src/de/enum_internally.rs:67-106`](../../../../.source_1765521767/serde_derive-1.0.228/src/de/enum_internally.rs#L67-L106)*
 

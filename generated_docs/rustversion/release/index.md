@@ -23,7 +23,7 @@ struct Release {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/release.rs:7-10`](../../../.source_1765210505/rustversion-1.0.22/src/release.rs#L7-L10)*
+*Defined in [`rustversion-1.0.22/src/release.rs:7-10`](../../../.source_1765521767/rustversion-1.0.22/src/release.rs#L7-L10)*
 
 #### Trait Implementations
 
@@ -61,7 +61,7 @@ struct Release {
 fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Result<Release, Error>
 ```
 
-*Defined in [`rustversion-1.0.22/src/release.rs:12-14`](../../../.source_1765210505/rustversion-1.0.22/src/release.rs#L12-L14)*
+*Defined in [`rustversion-1.0.22/src/release.rs:12-14`](../../../.source_1765521767/rustversion-1.0.22/src/release.rs#L12-L14)*
 
 ### `try_parse`
 
@@ -69,5 +69,5 @@ fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Resul
 fn try_parse(iter: &'_ mut IterImpl) -> std::result::Result<Release, ()>
 ```
 
-*Defined in [`rustversion-1.0.22/src/release.rs:16-34`](../../../.source_1765210505/rustversion-1.0.22/src/release.rs#L16-L34)*
+*Defined in [`rustversion-1.0.22/src/release.rs:16-34`](../../../.source_1765521767/rustversion-1.0.22/src/release.rs#L16-L34)*
 

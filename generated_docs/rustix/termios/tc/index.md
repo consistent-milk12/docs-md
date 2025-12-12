@@ -46,7 +46,7 @@
 struct Pid(core::num::NonZeroI32);
 ```
 
-*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L19)*
+*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../../.source_1765521767/rustix-1.1.2/src/pid.rs#L19)*
 
 `pid_t`—A non-zero Unix process ID.
 
@@ -138,7 +138,7 @@ On Linux, `Pid` values are also used to identify threads.
 fn tcgetattr<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Termios>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:30-32`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L30-L32)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:30-32`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L30-L32)*
 
 `tcgetattr(fd)`—Get terminal attributes.
 
@@ -163,7 +163,7 @@ initializes the fields that `TCGETS` doesn't initialize, and fails with
 fn tcgetwinsize<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Winsize>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:50-52`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L50-L52)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:50-52`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L50-L52)*
 
 `tcgetwinsize(fd)`—Get the current terminal window size.
 
@@ -179,7 +179,7 @@ Also known as the `TIOCGWINSZ` operation with `ioctl`.
 fn tcgetpgrp<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:72-74`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L72-L74)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:72-74`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L72-L74)*
 
 `tcgetpgrp(fd)`—Get the terminal foreground process group.
 
@@ -202,7 +202,7 @@ pid is 0.
 fn tcsetpgrp<Fd: AsFd>(fd: Fd, pid: Pid) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:89-91`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L89-L91)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:89-91`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L89-L91)*
 
 `tcsetpgrp(fd, pid)`—Set the terminal foreground process group.
 
@@ -220,7 +220,7 @@ Also known as the `TIOCSPGRP` operation with `ioctl`.
 fn tcsetattr<Fd: AsFd>(fd: Fd, optional_actions: crate::termios::OptionalActions, termios: &crate::termios::Termios) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:114-120`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L114-L120)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:114-120`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L114-L120)*
 
 `tcsetattr(fd)`—Set terminal attributes.
 
@@ -244,7 +244,7 @@ with `io::Errno::RANGE` if the input or output speeds cannot be supported.
 fn tcsendbreak<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:142-144`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L142-L144)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:142-144`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L142-L144)*
 
 `tcsendbreak(fd, 0)`—Transmit zero-valued bits.
 
@@ -270,7 +270,7 @@ parameter of 0.
 fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:158-160`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L158-L160)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:158-160`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L158-L160)*
 
 `tcdrain(fd, duration)`—Wait until all pending output has been written.
 
@@ -288,7 +288,7 @@ fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 fn tcflush<Fd: AsFd>(fd: Fd, queue_selector: crate::termios::QueueSelector) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:176-178`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L176-L178)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:176-178`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L176-L178)*
 
 `tcflush(fd, queue_selector)`—Wait until all pending output has been
 written.
@@ -307,7 +307,7 @@ written.
 fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:193-195`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L193-L195)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:193-195`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L193-L195)*
 
 `tcflow(fd, action)`—Suspend or resume transmission or reception.
 
@@ -325,7 +325,7 @@ fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 fn tcgetsid<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:208-210`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L208-L210)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:208-210`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L208-L210)*
 
 `tcgetsid(fd)`—Return the session ID of the current session with `fd` as
 its controlling terminal.
@@ -342,7 +342,7 @@ its controlling terminal.
 fn tcsetwinsize<Fd: AsFd>(fd: Fd, winsize: crate::termios::Winsize) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/tc.rs:223-225`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L223-L225)*
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:223-225`](../../../../.source_1765521767/rustix-1.1.2/src/termios/tc.rs#L223-L225)*
 
 `tcsetwinsize(fd)`—Set the current terminal window size.
 

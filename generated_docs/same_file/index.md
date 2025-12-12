@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-Additionally, this crate provides a [`Handle`](unix/index.md) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for
@@ -83,7 +83,7 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 struct Handle(imp::Handle);
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765210505/same-file-1.0.6/src/lib.rs#L109)*
+*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765521767/same-file-1.0.6/src/lib.rs#L109)*
 
 A handle to a file that can be tested for equality with other handles.
 
@@ -97,7 +97,7 @@ Equality is determined by comparing inode numbers on Unix and a combination
 of identifier, volume serial, and file size on Windows. Note that it's
 possible for comparing two handles to produce a false positive on some
 platforms. Namely, two handles can compare equal even if the two handles
-*don't* point to the same file. Check the [source] for specific
+*don't* point to the same file. Check the [`source`](../cargo_docs_md/source/index.md) for specific
 implementation details.
 
 
@@ -158,7 +158,7 @@ where
     Q: AsRef<std::path::Path>
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765210505/same-file-1.0.6/src/lib.rs#L370-L376)*
+*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765521767/same-file-1.0.6/src/lib.rs#L370-L376)*
 
 Returns true if the two file paths may correspond to the same file.
 

@@ -20,6 +20,7 @@
   - [`mismatch`](#mismatch)
   - [`into_compiler_token`](#into-compiler-token)
   - [`debug_span_field_if_nontrivial`](#debug-span-field-if-nontrivial)
+  - [`invalidate_current_thread_spans`](#invalidate-current-thread-spans)
 - [Macros](#macros)
   - [`suffixed_numbers!`](#suffixed-numbers)
   - [`unsuffixed_integers!`](#unsuffixed-integers)
@@ -39,6 +40,7 @@
 | [`mismatch`](#mismatch) | fn |  |
 | [`into_compiler_token`](#into-compiler-token) | fn |  |
 | [`debug_span_field_if_nontrivial`](#debug-span-field-if-nontrivial) | fn |  |
+| [`invalidate_current_thread_spans`](#invalidate-current-thread-spans) | fn |  |
 | [`suffixed_numbers!`](#suffixed-numbers) | macro |  |
 | [`unsuffixed_integers!`](#unsuffixed-integers) | macro |  |
 
@@ -53,7 +55,7 @@ struct DeferredTokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:31-34`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L31-L34)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:31-34`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L31-L34)*
 
 #### Implementations
 
@@ -82,7 +84,7 @@ enum TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:21-24`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L21-L24)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:21-24`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L21-L24)*
 
 #### Implementations
 
@@ -136,9 +138,9 @@ enum TokenStream {
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-raw-string"></span>`fn raw_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
@@ -154,7 +156,7 @@ enum LexError {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:36-43`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L36-L43)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:36-43`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L36-L43)*
 
 #### Implementations
 
@@ -183,7 +185,7 @@ enum TokenTreeIter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:312-315`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L312-L315)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:312-315`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L312-L315)*
 
 #### Trait Implementations
 
@@ -216,7 +218,7 @@ enum Span {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:370-373`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L370-L373)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:370-373`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L370-L373)*
 
 #### Implementations
 
@@ -229,6 +231,16 @@ enum Span {
 - <span id="span-located-at"></span>`fn located_at(&self, other: Span) -> Span` — [`Span`](#span)
 
 - <span id="span-unwrap"></span>`fn unwrap(self) -> proc_macro::Span`
+
+- <span id="span-byte-range"></span>`fn byte_range(&self) -> Range<usize>`
+
+- <span id="span-start"></span>`fn start(&self) -> LineColumn` — [`LineColumn`](../location/index.md#linecolumn)
+
+- <span id="span-end"></span>`fn end(&self) -> LineColumn` — [`LineColumn`](../location/index.md#linecolumn)
+
+- <span id="span-file"></span>`fn file(&self) -> String`
+
+- <span id="span-local-file"></span>`fn local_file(&self) -> Option<PathBuf>`
 
 - <span id="span-join"></span>`fn join(&self, other: Span) -> Option<Span>` — [`Span`](#span)
 
@@ -259,7 +271,7 @@ enum Group {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:558-561`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L558-L561)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:558-561`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L558-L561)*
 
 #### Implementations
 
@@ -303,7 +315,7 @@ enum Group {
 
 ##### `impl ToTokens for proc_macro2::Group`
 
-- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](../parse/index.md#cursor), [`TokenTree`](../index.md#tokentree), [`Reject`](../parse/index.md#reject)
+- <span id="proc-macro2group-lex-error"></span>`fn lex_error(cursor: Cursor<'_>) -> crate::fallback::LexError` — [`Cursor`](../parse/index.md#cursor)
 
 ##### `impl Token for proc_macro2::Group`
 
@@ -316,7 +328,7 @@ enum Ident {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:663-666`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L663-L666)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:663-666`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L663-L666)*
 
 #### Implementations
 
@@ -364,6 +376,8 @@ enum Ident {
 
 ##### `impl ToTokens for proc_macro2::Ident`
 
+- <span id="proc-macro2ident-ident"></span>`fn ident(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::Ident), Reject>` — [`Cursor`](../parse/index.md#cursor), [`Ident`](../index.md#ident), [`Reject`](../parse/index.md#reject)
+
 ##### `impl Token for proc_macro2::Ident`
 
 ### `Literal`
@@ -375,7 +389,7 @@ enum Literal {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:758-761`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L758-L761)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:758-761`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L758-L761)*
 
 #### Implementations
 
@@ -481,8 +495,6 @@ enum Literal {
 
 ##### `impl ToTokens for proc_macro2::Literal`
 
-- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md#cursor), [`Reject`](../parse/index.md#reject)
-
 ##### `impl Token for proc_macro2::Literal`
 
 ## Functions
@@ -493,7 +505,7 @@ enum Literal {
 fn mismatch(line: u32) -> never
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:46-56`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L46-L56)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:46-56`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L46-L56)*
 
 ### `into_compiler_token`
 
@@ -501,7 +513,7 @@ fn mismatch(line: u32) -> never
 fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:161-176`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L161-L176)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:161-176`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L161-L176)*
 
 ### `debug_span_field_if_nontrivial`
 
@@ -509,15 +521,23 @@ fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 fn debug_span_field_if_nontrivial(debug: &mut fmt::DebugStruct<'_, '_>, span: Span)
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:548-555`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L548-L555)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:548-555`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L548-L555)*
+
+### `invalidate_current_thread_spans`
+
+```rust
+fn invalidate_current_thread_spans()
+```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:976-984`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L976-L984)*
 
 ## Macros
 
 ### `suffixed_numbers!`
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:763-773`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L763-L773)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:763-773`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L763-L773)*
 
 ### `unsuffixed_integers!`
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:775-785`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L775-L785)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:775-785`](../../../.source_1765521767/proc-macro2-1.0.103/src/wrapper.rs#L775-L785)*
 

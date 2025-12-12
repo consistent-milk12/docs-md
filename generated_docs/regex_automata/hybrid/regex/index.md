@@ -38,7 +38,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:82-96`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L82-L96)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:82-96`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/regex.rs#L82-L96)*
 
 A regular expression that uses hybrid NFA/DFAs (also called "lazy DFAs")
 for searching.
@@ -140,7 +140,7 @@ struct FindMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:569-573`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L569-L573)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:569-573`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/regex.rs#L569-L573)*
 
 An iterator over all non-overlapping matches for an infallible search.
 
@@ -184,7 +184,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:601-604`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L601-L604)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:601-604`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/regex.rs#L601-L604)*
 
 A cache represents a partially computed forward and reverse DFA.
 
@@ -240,7 +240,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:767-769`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L767-L769)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:767-769`](../../../../.source_1765521767/regex-automata-0.4.13/src/hybrid/regex.rs#L767-L769)*
 
 A builder for a regex based on a hybrid NFA/DFA.
 

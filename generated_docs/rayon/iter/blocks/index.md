@@ -25,7 +25,7 @@ struct BlocksCallback<S, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:4-8`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L4-L8)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:4-8`](../../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L4-L8)*
 
 #### Trait Implementations
 
@@ -59,7 +59,7 @@ struct ExponentialBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
 
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
@@ -120,7 +120,7 @@ struct UniformBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
 
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
@@ -180,5 +180,5 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 fn exponential_size(size: &usize) -> Option<usize>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:89-91`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L89-L91)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:89-91`](../../../../.source_1765521767/rayon-1.11.0/src/iter/blocks.rs#L89-L91)*
 

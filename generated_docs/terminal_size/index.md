@@ -43,7 +43,7 @@ if let Some((Width(w), Height(h))) = size {
 struct Width(u16);
 ```
 
-*Defined in [`terminal_size-0.4.3/src/lib.rs:22`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L22)*
+*Defined in [`terminal_size-0.4.3/src/lib.rs:22`](../../.source_1765521767/terminal_size-0.4.3/src/lib.rs#L22)*
 
 #### Trait Implementations
 
@@ -79,7 +79,7 @@ struct Width(u16);
 struct Height(u16);
 ```
 
-*Defined in [`terminal_size-0.4.3/src/lib.rs:24`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L24)*
+*Defined in [`terminal_size-0.4.3/src/lib.rs:24`](../../.source_1765521767/terminal_size-0.4.3/src/lib.rs#L24)*
 
 #### Trait Implementations
 
@@ -117,7 +117,7 @@ struct Height(u16);
 fn terminal_size() -> Option<(super::Width, super::Height)>
 ```
 
-*Defined in [`terminal_size-0.4.3/src/unix.rs:9-19`](../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L9-L19)*
+*Defined in [`terminal_size-0.4.3/src/unix.rs:9-19`](../../.source_1765521767/terminal_size-0.4.3/src/unix.rs#L9-L19)*
 
 Returns the size of the terminal.
 
@@ -131,7 +131,7 @@ is a TTY, then `None` is returned.
 fn terminal_size_of<Fd: AsFd>(fd: Fd) -> Option<(super::Width, super::Height)>
 ```
 
-*Defined in [`terminal_size-0.4.3/src/unix.rs:24-41`](../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L24-L41)*
+*Defined in [`terminal_size-0.4.3/src/unix.rs:24-41`](../../.source_1765521767/terminal_size-0.4.3/src/unix.rs#L24-L41)*
 
 Returns the size of the terminal using the given file descriptor, if available.
 
@@ -143,7 +143,7 @@ If the given file descriptor is not a tty, returns `None`
 unsafe fn terminal_size_using_fd(fd: std::os::unix::io::RawFd) -> Option<(super::Width, super::Height)>
 ```
 
-*Defined in [`terminal_size-0.4.3/src/unix.rs:54-56`](../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L54-L56)*
+*Defined in [`terminal_size-0.4.3/src/unix.rs:54-56`](../../.source_1765521767/terminal_size-0.4.3/src/unix.rs#L54-L56)*
 
 Returns the size of the terminal using the given raw file descriptor, if available.
 

@@ -20,7 +20,7 @@ struct BigInt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/bigint.rs:4-6`](../../../.source_1765210505/syn-2.0.111/src/bigint.rs#L4-L6)*
+*Defined in [`syn-2.0.111/src/bigint.rs:4-6`](../../../.source_1765521767/syn-2.0.111/src/bigint.rs#L4-L6)*
 
 #### Implementations
 

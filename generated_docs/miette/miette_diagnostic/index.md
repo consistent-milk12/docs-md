@@ -25,7 +25,7 @@ struct MietteDiagnostic {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765210505/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765521767/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 

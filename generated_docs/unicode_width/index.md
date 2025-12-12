@@ -166,7 +166,7 @@ Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 trait UnicodeWidthChar: private::Sealed { ... }
 ```
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:194-213`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L194-L213)*
+*Defined in [`unicode-width-0.2.2/src/lib.rs:194-213`](../../.source_1765521767/unicode-width-0.2.2/src/lib.rs#L194-L213)*
 
 Methods for determining displayed width of Unicode characters.
 
@@ -190,7 +190,7 @@ Methods for determining displayed width of Unicode characters.
 trait UnicodeWidthStr: private::Sealed { ... }
 ```
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:229-246`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L229-L246)*
+*Defined in [`unicode-width-0.2.2/src/lib.rs:229-246`](../../.source_1765521767/unicode-width-0.2.2/src/lib.rs#L229-L246)*
 
 Methods for determining displayed width of Unicode strings.
 
@@ -215,7 +215,7 @@ Methods for determining displayed width of Unicode strings.
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../.source_1765210505/unicode-width-0.2.2/src/tables.rs#L165)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../.source_1765521767/unicode-width-0.2.2/src/tables.rs#L165)*
 
 The version of [Unicode](http://www.unicode.org/)
 that this version of unicode-width is based on.

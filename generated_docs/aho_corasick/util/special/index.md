@@ -23,7 +23,7 @@ struct Special {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/special.rs:10-28`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/special.rs#L10-L28)*
+*Defined in [`aho-corasick-1.1.4/src/util/special.rs:10-28`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/special.rs#L10-L28)*
 
 A collection of sentinel state IDs for Aho-Corasick automata.
 

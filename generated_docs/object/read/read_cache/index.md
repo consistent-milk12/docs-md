@@ -23,7 +23,7 @@ struct ReadCache<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L31-L33)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../../.source_1765521767/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](../index.md) for data in a stream that implements
 `Read + Seek`.
@@ -74,7 +74,7 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L36-L41)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../../.source_1765521767/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -98,7 +98,7 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L172-L176)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../../.source_1765521767/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](../index.md) for a range of data in a stream that
 implements `Read + Seek`.
@@ -133,7 +133,7 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 trait ReadCacheOps { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L222-L242)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../../.source_1765521767/object-0.37.3/src/read/read_cache.rs#L222-L242)*
 
 Operations required to implement [`ReadCache`](../index.md).
 

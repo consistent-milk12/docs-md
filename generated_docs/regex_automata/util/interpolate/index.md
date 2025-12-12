@@ -85,7 +85,7 @@ struct CaptureRef<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:226-229`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L226-L229)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:226-229`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L226-L229)*
 
 `CaptureRef` represents a reference to a capture group inside some text.
 The reference is either a capture group name or a number.
@@ -124,7 +124,7 @@ enum Ref<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:235-238`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L235-L238)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:235-238`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L235-L238)*
 
 A reference to a capture group in some text.
 
@@ -158,7 +158,7 @@ e.g., `$2`, `$foo`, `${foo}`.
 fn string(replacement: &str, append: impl FnMut(usize, &mut alloc::string::String), name_to_index: impl FnMut(&str) -> Option<usize>, dst: &mut alloc::string::String)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:94-134`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L94-L134)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:94-134`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L94-L134)*
 
 Accepts a replacement string and interpolates capture references with their
 corresponding values.
@@ -209,7 +209,7 @@ assert_eq!("foo BAR baz", dst);
 fn bytes(replacement: &[u8], append: impl FnMut(usize, &mut alloc::vec::Vec<u8>), name_to_index: impl FnMut(&str) -> Option<usize>, dst: &mut alloc::vec::Vec<u8>)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:178-218`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L178-L218)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:178-218`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L178-L218)*
 
 Accepts a replacement byte string and interpolates capture references with
 their corresponding values.
@@ -260,7 +260,7 @@ assert_eq!(&b"foo BAR baz"[..], dst);
 fn find_cap_ref(replacement: &[u8]) -> Option<CaptureRef<'_>>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:260-290`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L260-L290)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:260-290`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L260-L290)*
 
 Parses a possible reference to a capture group name in the given text,
 starting at the beginning of `replacement`.
@@ -277,7 +277,7 @@ being a valid reference, then it should be replaced with the empty string.
 fn find_cap_ref_braced(rep: &[u8], i: usize) -> Option<CaptureRef<'_>>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:295-319`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L295-L319)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:295-319`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L295-L319)*
 
 Looks for a braced reference, e.g., `${foo1}`. This assumes that an opening
 brace has been found at `i-1` in `rep`. This then looks for a closing
@@ -289,7 +289,7 @@ brace and returns the capture reference within the brace.
 fn is_valid_cap_letter(b: u8) -> bool
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:323-325`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L323-L325)*
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:323-325`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/interpolate.rs#L323-L325)*
 
 Returns true if and only if the given byte is allowed in a capture name
 written in non-brace form.

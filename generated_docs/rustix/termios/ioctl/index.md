@@ -21,7 +21,7 @@ Terminal-related `ioctl` functions.
 fn ioctl_tiocexcl<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:32-38`](../../../../.source_1765210505/rustix-1.1.2/src/termios/ioctl.rs#L32-L38)*
+*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:32-38`](../../../../.source_1765521767/rustix-1.1.2/src/termios/ioctl.rs#L32-L38)*
 
 `ioctl(fd, TIOCEXCL)`—Enables exclusive mode on a terminal.
 
@@ -44,7 +44,7 @@ device fail with `io::Errno::BUSY`.
 fn ioctl_tiocnxcl<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:60-66`](../../../../.source_1765210505/rustix-1.1.2/src/termios/ioctl.rs#L60-L66)*
+*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:60-66`](../../../../.source_1765521767/rustix-1.1.2/src/termios/ioctl.rs#L60-L66)*
 
 `ioctl(fd, TIOCNXCL)`—Disables exclusive mode on a terminal.
 

@@ -18,7 +18,7 @@
 struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 ```
 
-*Defined in [`syn-2.0.111/src/print.rs:4`](../../../.source_1765210505/syn-2.0.111/src/print.rs#L4)*
+*Defined in [`syn-2.0.111/src/print.rs:4`](../../../.source_1765521767/syn-2.0.111/src/print.rs#L4)*
 
 #### Trait Implementations
 

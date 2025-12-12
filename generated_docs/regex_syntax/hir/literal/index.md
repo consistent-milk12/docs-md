@@ -94,7 +94,7 @@ struct Extractor {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:147-153`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L147-L153)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:147-153`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L147-L153)*
 
 Extracts prefix or suffix literal sequences from [`Hir`](../index.md) expressions.
 
@@ -241,7 +241,7 @@ struct Seq {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:733-745`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L733-L745)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:733-745`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L733-L745)*
 
 A sequence of literals.
 
@@ -421,7 +421,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2049-2052`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2049-L2052)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2049-2052`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L2049-L2052)*
 
 A single literal extracted from an [`Hir`](../index.md) expression.
 
@@ -510,7 +510,7 @@ struct PreferenceTrie {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2203-2216`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2203-L2216)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2203-2216`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L2203-L2216)*
 
 A "preference" trie that rejects literals that will never match when
 executing a leftmost first or "preference" search.
@@ -575,7 +575,7 @@ struct State {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2220-2225`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2220-L2225)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2220-2225`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L2220-L2225)*
 
 A single state in a trie. Uses a sparse representation for its transitions.
 
@@ -608,7 +608,7 @@ enum ExtractKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:640-649`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L640-L649)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:640-649`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L640-L649)*
 
 The kind of literals to extract from an [`Hir`](../index.md) expression.
 
@@ -656,7 +656,7 @@ The default extraction kind is `Prefix`.
 fn rank(byte: u8) -> u8
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2319-2321`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2319-L2321)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2319-2321`](../../../../.source_1765521767/regex-syntax-0.8.8/src/hir/literal.rs#L2319-L2321)*
 
 Returns the "rank" of the given byte.
 

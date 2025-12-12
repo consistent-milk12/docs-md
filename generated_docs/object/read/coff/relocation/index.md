@@ -22,7 +22,7 @@ struct CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
 
 An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
@@ -54,7 +54,7 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 type CoffBigRelocationIterator<'data, 'file, R> = CoffRelocationIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../../.source_1765521767/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
 
 An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 

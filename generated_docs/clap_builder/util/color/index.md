@@ -22,7 +22,7 @@ enum ColorChoice {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765521767/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
 
 Represents the color preferences for program output
 

@@ -22,10 +22,10 @@ struct NamedSource<S: SourceCode + 'static> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../../.source_1765210505/miette-7.6.0/src/named_source.rs#L7-L11)*
+*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../../.source_1765521767/miette-7.6.0/src/named_source.rs#L7-L11)*
 
 Utility struct for when you have a regular [`SourceCode`](../index.md) type that doesn't
-implement `name`. For example [`String`](../../clap_builder/index.md). Or if you want to override the
+implement `name`. For example [`String`](../../cargo_platform/index.md). Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations

@@ -17,5 +17,5 @@
 const RANK: [u8; 256];
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/default_rank.rs:1-258`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/default_rank.rs#L1-L258)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/default_rank.rs:1-258`](../../../../../../.source_1765521767/memchr-2.7.6/src/arch/all/packedpair/default_rank.rs#L1-L258)*
 

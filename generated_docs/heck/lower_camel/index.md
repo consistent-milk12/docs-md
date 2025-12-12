@@ -19,9 +19,9 @@
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../../.source_1765210505/heck-0.5.0/src/lower_camel.rs#L44)*
+*Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../../.source_1765521767/heck-0.5.0/src/lower_camel.rs#L44)*
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -50,7 +50,7 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 trait ToLowerCamelCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/lower_camel.rs:23-26`](../../../.source_1765210505/heck-0.5.0/src/lower_camel.rs#L23-L26)*
+*Defined in [`heck-0.5.0/src/lower_camel.rs:23-26`](../../../.source_1765521767/heck-0.5.0/src/lower_camel.rs#L23-L26)*
 
 This trait defines a lower camel case conversion.
 

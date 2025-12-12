@@ -21,7 +21,7 @@
 struct ComboColorDisplay<'a, Fg: Color, Bg: Color, T: ?Sized>(&'a T, core::marker::PhantomData<(Fg, Bg)>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../../.source_1765210505/owo-colors-4.2.3/src/combo.rs#L11)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../../.source_1765521767/owo-colors-4.2.3/src/combo.rs#L11)*
 
 A wrapper type which applies both a foreground and background color
 
@@ -157,7 +157,7 @@ A wrapper type which applies both a foreground and background color
 struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>(&'a T, Fg, Bg);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../../.source_1765210505/owo-colors-4.2.3/src/combo.rs#L17)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../../.source_1765521767/owo-colors-4.2.3/src/combo.rs#L17)*
 
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
@@ -218,11 +218,11 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](#com
 
 ### `impl_fmt_for_combo!`
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:19-51`](../../../.source_1765210505/owo-colors-4.2.3/src/combo.rs#L19-L51)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:19-51`](../../../.source_1765521767/owo-colors-4.2.3/src/combo.rs#L19-L51)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:66-516`](../../../.source_1765210505/owo-colors-4.2.3/src/combo.rs#L66-L516)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:66-516`](../../../.source_1765521767/owo-colors-4.2.3/src/combo.rs#L66-L516)*
 
 implement specialized color methods for FgColorDisplay BgColorDisplay, ComboColorDisplay
 

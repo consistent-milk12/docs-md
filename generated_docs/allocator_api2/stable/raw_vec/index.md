@@ -41,7 +41,7 @@ struct TryReserveError {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
 
 The error type for `try_reserve` methods.
 
@@ -85,7 +85,7 @@ struct RawVec<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:116-120`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L116-L120)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:116-120`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L116-L120)*
 
 A low-level utility for more ergonomically allocating, reallocating, and deallocating
 a buffer of memory on the heap without having to worry about all the corner cases
@@ -141,7 +141,7 @@ enum TryReserveErrorKind {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
 
 Details of the allocation that caused a `TryReserveError`
 
@@ -183,7 +183,7 @@ enum AllocInit {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:86-91`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L86-L91)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:86-91`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L86-L91)*
 
 #### Variants
 
@@ -205,7 +205,7 @@ where
     A: Allocator
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:564-595`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L564-L595)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:564-595`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L564-L595)*
 
 ### `handle_reserve`
 
@@ -213,7 +213,7 @@ where
 fn handle_reserve(result: Result<(), TryReserveError>)
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:610-616`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L610-L616)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:610-616`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L610-L616)*
 
 ### `alloc_guard`
 
@@ -221,7 +221,7 @@ fn handle_reserve(result: Result<(), TryReserveError>)
 fn alloc_guard(alloc_size: usize) -> Result<(), TryReserveError>
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:628-634`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L628-L634)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:628-634`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L628-L634)*
 
 ### `capacity_overflow`
 
@@ -229,5 +229,5 @@ fn alloc_guard(alloc_size: usize) -> Result<(), TryReserveError>
 fn capacity_overflow() -> never
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:640-642`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L640-L642)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:640-642`](../../../../.source_1765521767/allocator-api2-0.2.21/src/stable/raw_vec.rs#L640-L642)*
 

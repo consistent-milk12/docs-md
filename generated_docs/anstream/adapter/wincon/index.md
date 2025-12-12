@@ -40,7 +40,7 @@ struct WinconBytes {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:3-6`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L3-L6)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:3-6`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L3-L6)*
 
 Incrementally convert to wincon calls for non-contiguous data
 
@@ -82,7 +82,7 @@ struct WinconBytesIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:28-32`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L28-L32)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:28-32`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L28-L32)*
 
 See [`WinconBytes`](#winconbytes)
 
@@ -124,7 +124,7 @@ struct WinconCapture {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:68-72`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L68-L72)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:68-72`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L68-L72)*
 
 #### Implementations
 
@@ -174,7 +174,7 @@ enum CsiState {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:272-278`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L272-L278)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:272-278`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L272-L278)*
 
 #### Trait Implementations
 
@@ -206,7 +206,7 @@ enum ColorTarget {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:281-285`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L281-L285)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:281-285`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L281-L285)*
 
 #### Trait Implementations
 
@@ -236,7 +236,7 @@ enum ColorTarget {
 fn next_bytes(bytes: &mut &[u8], parser: &mut anstyle_parse::Parser, capture: &mut WinconCapture) -> Option<(anstyle::Style, String)>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:44-65`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L44-L65)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:44-65`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L44-L65)*
 
 ### `to_ansi_color`
 
@@ -244,5 +244,5 @@ fn next_bytes(bytes: &mut &[u8], parser: &mut anstyle_parse::Parser, capture: &m
 fn to_ansi_color(digit: u16) -> Option<anstyle::AnsiColor>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:287-299`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L287-L299)*
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:287-299`](../../../../.source_1765521767/anstream-0.6.21/src/adapter/wincon.rs#L287-L299)*
 

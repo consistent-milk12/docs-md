@@ -44,7 +44,7 @@ struct UnitOnly<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1738-1740`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1738-L1740)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1738-1740`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1738-L1740)*
 
 #### Trait Implementations
 
@@ -68,7 +68,7 @@ struct MapAsEnum<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1796-1798`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1796-L1798)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1796-1798`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1796-L1798)*
 
 #### Trait Implementations
 
@@ -93,7 +93,7 @@ struct SeedTupleVariant<V> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1840-1843`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1840-L1843)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1840-1843`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1840-L1843)*
 
 #### Trait Implementations
 
@@ -111,7 +111,7 @@ struct SeedStructVariant<V> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1859-1861`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1859-L1861)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1859-1861`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1859-L1861)*
 
 #### Trait Implementations
 
@@ -129,7 +129,7 @@ struct SeedStructVariant<V> {
 trait Pair { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1879-1883`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1879-L1883)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1879-1883`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1879-L1883)*
 
 Avoid having to restate the generic types on `MapDeserializer`. The
 `Iterator::Item` contains enough information to figure out K and V.
@@ -156,7 +156,7 @@ Avoid having to restate the generic types on `MapDeserializer`. The
 fn unit_only<T, E>(t: T) -> (T, UnitOnly<E>)
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1742-1749`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1742-L1749)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1742-1749`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1742-L1749)*
 
 ### `map_as_enum`
 
@@ -164,7 +164,7 @@ fn unit_only<T, E>(t: T) -> (T, UnitOnly<E>)
 fn map_as_enum<A>(map: A) -> MapAsEnum<A>
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1800-1802`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1800-L1802)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1800-1802`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1800-L1802)*
 
 ## Type Aliases
 
@@ -174,7 +174,7 @@ fn map_as_enum<A>(map: A) -> MapAsEnum<A>
 type First<T> = <T as Pair>::First;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1893`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1893)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1893`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1893)*
 
 ### `Second<T>`
 
@@ -182,5 +182,5 @@ type First<T> = <T as Pair>::First;
 type Second<T> = <T as Pair>::Second;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1894`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1894)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1894`](../../../../../.source_1765521767/serde_core-1.0.228/src/de/value.rs#L1894)*
 

@@ -18,5 +18,5 @@
 fn enable_ansi_colors() -> Option<bool>
 ```
 
-*Defined in [`anstyle-query-1.1.5/src/windows.rs:63-65`](../../../../.source_1765210505/anstyle-query-1.1.5/src/windows.rs#L63-L65)*
+*Defined in [`anstyle-query-1.1.5/src/windows.rs:63-65`](../../../../.source_1765521767/anstyle-query-1.1.5/src/windows.rs#L63-L65)*
 

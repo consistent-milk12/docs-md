@@ -55,7 +55,7 @@ struct LabeledSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L250-L255)*
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](../index.md).
 
@@ -121,7 +121,7 @@ struct MietteSpanContents<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L458-L473)*
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L458-L473)*
 
 Basic implementation of the [`SpanContents`](../index.md) trait, for convenience.
 
@@ -170,7 +170,7 @@ struct SourceSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L549-L554)*
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](../index.md)
 
@@ -234,7 +234,7 @@ Span within a [`SourceCode`](../index.md)
 struct SourceOffset(ByteOffset);
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L673)*
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a [`SourceCode`](../index.md)
 
@@ -292,7 +292,7 @@ enum Severity {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L189-L198)*
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](../index.md) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -355,7 +355,7 @@ enum Severity {
 trait Diagnostic: std::error::Error { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L20-L70)*
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L20-L70)*
 
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
@@ -415,11 +415,11 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L236-L245)*
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L236-L245)*
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like [`String`](../../clap_builder/index.md)s, as
+This trait is able to support simple `SourceCode` types like [`String`](../../cargo_platform/index.md)s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -451,7 +451,7 @@ gigabytes or larger in size.
 trait SpanContents<'a> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L426-L452)*
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](../index.md) covered by [`SourceSpan`](../index.md).
 
@@ -501,7 +501,7 @@ Includes line and column information to optimize highlight calculations.
 type ByteOffset = usize;
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L666)*
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L666)*
 
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](../index.md).
 
@@ -509,9 +509,9 @@ type ByteOffset = usize;
 
 ### `box_error_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L72-L86)*
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L72-L86)*
 
 ### `box_borrow_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765210505/miette-7.6.0/src/protocol.rs#L94-L104)*
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765521767/miette-7.6.0/src/protocol.rs#L94-L104)*
 

@@ -25,7 +25,7 @@ enum Qualifiers {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/constfn.rs:6-12`](../../../.source_1765210505/rustversion-1.0.22/src/constfn.rs#L6-L12)*
+*Defined in [`rustversion-1.0.22/src/constfn.rs:6-12`](../../../.source_1765521767/rustversion-1.0.22/src/constfn.rs#L6-L12)*
 
 #### Implementations
 
@@ -51,5 +51,5 @@ enum Qualifiers {
 fn insert_const(input: proc_macro::TokenStream, const_span: proc_macro::Span) -> std::result::Result<proc_macro::TokenStream, Error>
 ```
 
-*Defined in [`rustversion-1.0.22/src/constfn.rs:25-58`](../../../.source_1765210505/rustversion-1.0.22/src/constfn.rs#L25-L58)*
+*Defined in [`rustversion-1.0.22/src/constfn.rs:25-58`](../../../.source_1765521767/rustversion-1.0.22/src/constfn.rs#L25-L58)*
 

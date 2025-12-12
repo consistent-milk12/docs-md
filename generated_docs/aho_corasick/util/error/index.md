@@ -23,7 +23,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -70,7 +70,7 @@ trait.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L130)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -155,7 +155,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:23-49`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L23-L49)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:23-49`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L23-L49)*
 
 The kind of error that occurred.
 
@@ -203,7 +203,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../../../.source_1765521767/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
 
 The underlying kind of a [`MatchError`](#matcherror).
 

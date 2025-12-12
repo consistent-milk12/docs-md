@@ -62,7 +62,7 @@ struct Bag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
 
 A bag of deferred functions.
 
@@ -121,7 +121,7 @@ struct SealedBag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
 
 A pair of an epoch and a bag.
 
@@ -165,7 +165,7 @@ struct Global {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
 
 The global data for a garbage collector.
 
@@ -225,7 +225,7 @@ struct Local {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
 
 Participant for garbage collection.
 
@@ -322,7 +322,7 @@ Participant for garbage collection.
 const MAX_OBJECTS: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
 
 Maximum number of objects a bag can contain.
 

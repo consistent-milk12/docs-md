@@ -80,7 +80,7 @@ struct HashMap<K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L185-L188)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -313,7 +313,7 @@ struct Iter<'a, K, V> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2206-2209`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2206-L2209)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2206-2209`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2206-L2209)*
 
 An iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a V)`.
@@ -389,7 +389,7 @@ struct IterMut<'a, K, V> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2255-2259`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2255-L2259)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2255-2259`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2255-L2259)*
 
 A mutable iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a mut V)`.
@@ -465,7 +465,7 @@ struct IntoIter<K, V, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2307-2309`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2307-L2309)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2307-2309`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2307-L2309)*
 
 An owning iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(K, V)`.
@@ -542,7 +542,7 @@ struct IntoKeys<K, V, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2351-2353`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2351-L2353)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2351-2353`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2351-L2353)*
 
 An owning iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `K`.
@@ -614,7 +614,7 @@ struct IntoValues<K, V, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2429-2431`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2429-L2431)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2429-2431`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2429-L2431)*
 
 An owning iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `V`.
@@ -685,7 +685,7 @@ struct Keys<'a, K, V> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2507-2509`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2507-L2509)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2507-2509`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2507-L2509)*
 
 An iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `&'a K`.
@@ -760,7 +760,7 @@ struct Values<'a, K, V> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2555-2557`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2555-L2557)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2555-2557`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2555-L2557)*
 
 An iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a V`.
@@ -835,7 +835,7 @@ struct Drain<'a, K, V, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2603-2605`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2603-L2605)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2603-2605`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2603-L2605)*
 
 A draining iterator over the entries of a `HashMap` in arbitrary
 order. The iterator element type is `(K, V)`.
@@ -907,7 +907,7 @@ struct ExtractIf<'a, K, V, F, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2650-2653`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2650-L2653)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2650-2653`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2650-L2653)*
 
 A draining iterator over entries of a `HashMap` which don't satisfy the predicate
 `f(&k, &mut v)` in arbitrary order. The iterator element type is `(K, V)`.
@@ -967,7 +967,7 @@ struct ValuesMut<'a, K, V> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2702-2704`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2702-L2704)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2702-2704`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2702-L2704)*
 
 A mutable iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a mut V`.
@@ -1039,7 +1039,7 @@ struct OccupiedEntry<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2831-2835`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2831-L2835)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2831-2835`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2831-L2835)*
 
 A view into an occupied entry in a [`HashMap`](../hash_map/index.md).
 It is part of the [`Entry`](../hash_map/index.md) and [`EntryRef`](../hash_map/index.md) enums.
@@ -1118,7 +1118,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`Entry`](../hash_map/index.md) enum.
@@ -1175,7 +1175,7 @@ struct VacantEntryRef<'map, 'key, K, Q: ?Sized, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:3037-3041`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L3037-L3041)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:3037-3041`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L3037-L3041)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`EntryRef`](../hash_map/index.md) enum.
@@ -1231,7 +1231,7 @@ struct OccupiedError<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:3078-3083`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L3078-L3083)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:3078-3083`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L3078-L3083)*
 
 The error returned by [`try_insert`](HashMap::try_insert) when the key already exists.
 
@@ -1290,7 +1290,7 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -1368,7 +1368,7 @@ struct RawOccupiedEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
 
 A view into an occupied entry in a `HashMap`.
 It is part of the [`RawEntryMut`](../raw_entry/index.md) enum.
@@ -1478,7 +1478,7 @@ struct RawVacantEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`RawEntryMut`](../raw_entry/index.md) enum.
@@ -1551,7 +1551,7 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -1615,7 +1615,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2749-2782`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2749-L2782)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2749-2782`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2749-L2782)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
@@ -1728,7 +1728,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:2957-2990`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2957-L2990)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:2957-2990`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L2957-L2990)*
 
 A view into a single entry in a map, which may either be vacant or occupied,
 with any borrowed form of the map's key type.
@@ -1844,7 +1844,7 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765521767/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
@@ -1992,7 +1992,7 @@ where
     S: BuildHasher
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:209-215`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L209-L215)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:209-215`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L209-L215)*
 
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
@@ -2005,7 +2005,7 @@ where
     Q: Equivalent<K> + ?Sized
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:220-225`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L220-L225)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:220-225`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L220-L225)*
 
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
@@ -2018,7 +2018,7 @@ where
     Q: Equivalent<K> + ?Sized
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:231-236`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L231-L236)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:231-236`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L231-L236)*
 
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
@@ -2032,7 +2032,7 @@ where
     S: BuildHasher
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:240-249`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L240-L249)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:240-249`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L240-L249)*
 
 ### `assert_covariance`
 
@@ -2040,5 +2040,5 @@ where
 fn assert_covariance()
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:4814-4854`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L4814-L4854)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:4814-4854`](../../../.source_1765521767/hashbrown-0.16.1/src/map.rs#L4814-L4854)*
 

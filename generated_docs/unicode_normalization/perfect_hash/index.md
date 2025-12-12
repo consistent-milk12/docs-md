@@ -21,7 +21,7 @@ Support for lookups based on minimal perfect hashing.
 fn my_hash(key: u32, salt: u32, n: usize) -> usize
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:16-20`](../../../.source_1765210505/unicode-normalization-0.1.25/src/perfect_hash.rs#L16-L20)*
+*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:16-20`](../../../.source_1765521767/unicode-normalization-0.1.25/src/perfect_hash.rs#L16-L20)*
 
 ### `mph_lookup`
 
@@ -33,7 +33,7 @@ where
     FV: Fn(KV) -> V
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:30-50`](../../../.source_1765210505/unicode-normalization-0.1.25/src/perfect_hash.rs#L30-L50)*
+*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:30-50`](../../../.source_1765521767/unicode-normalization-0.1.25/src/perfect_hash.rs#L30-L50)*
 
 Do a lookup using minimal perfect hashing.
 

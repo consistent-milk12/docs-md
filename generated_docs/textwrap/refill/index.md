@@ -21,7 +21,7 @@ Functionality for unfilling and refilling text.
 fn unfill(text: &str) -> (String, crate::Options<'_>)
 ```
 
-*Defined in [`textwrap-0.16.2/src/refill.rs:62-114`](../../../.source_1765210505/textwrap-0.16.2/src/refill.rs#L62-L114)*
+*Defined in [`textwrap-0.16.2/src/refill.rs:62-114`](../../../.source_1765521767/textwrap-0.16.2/src/refill.rs#L62-L114)*
 
 Unpack a paragraph of already-wrapped text.
 
@@ -87,7 +87,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/refill.rs:169-188`](../../../.source_1765210505/textwrap-0.16.2/src/refill.rs#L169-L188)*
+*Defined in [`textwrap-0.16.2/src/refill.rs:169-188`](../../../.source_1765521767/textwrap-0.16.2/src/refill.rs#L169-L188)*
 
 Refill a paragraph of wrapped text with a new width.
 

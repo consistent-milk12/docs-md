@@ -207,7 +207,7 @@ Unit struct to organize path related utility functions related to renderer funct
 struct TraitRenderer;
 ```
 
-*Defined in `src/generator/render_shared.rs:253`*
+*Defined in `src/generator/render_shared.rs:254`*
 
 Unit struct to organize trait related functions.
 
@@ -249,7 +249,7 @@ Unit struct to organize trait related functions.
 struct RendererInternals;
 ```
 
-*Defined in `src/generator/render_shared.rs:415`*
+*Defined in `src/generator/render_shared.rs:418`*
 
 Unit struct containing renderer functions.
 Helpful because free functions are annoying.
@@ -274,7 +274,7 @@ Helpful because free functions are annoying.
 
 - <span id="rendererinternals-render-macro-heading"></span>`fn render_macro_heading(md: &mut String, name: &str)`
 
-- <span id="rendererinternals-render-impl-items"></span>`fn render_impl_items<F, L>(md: &mut String, impl_block: &Impl, krate: &Crate, type_renderer: &TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>, parent_type_name: Option<&str>)` — [`TypeRenderer`](../../types/index.md#typerenderer)
+- <span id="rendererinternals-render-impl-items"></span>`fn render_impl_items<F, L>(md: &mut String, impl_block: &Impl, krate: &Crate, type_renderer: &TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>, parent_type_name: Option<&str>, impl_ctx: ImplContext<'_>)` — [`TypeRenderer`](../../types/index.md#typerenderer), [`ImplContext`](../../linker/index.md#implcontext)
 
 - <span id="rendererinternals-render-function-type-links-inline"></span>`fn render_function_type_links_inline<L>(md: &mut String, f: &rustdoc_types::Function, type_renderer: TypeRenderer<'_>, create_link: &L)` — [`TypeRenderer`](../../types/index.md#typerenderer)
 
@@ -328,7 +328,7 @@ Helpful because free functions are annoying.
 trait DocsProcessor { ... }
 ```
 
-*Defined in `src/generator/render_shared.rs:1327-1330`*
+*Defined in `src/generator/render_shared.rs:1343-1346`*
 
 Check if a render context can resolve documentation.
 

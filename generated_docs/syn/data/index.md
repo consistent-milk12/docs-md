@@ -49,7 +49,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L9-L24)*
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -110,7 +110,7 @@ struct FieldsNamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L48-L56)*
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
@@ -162,7 +162,7 @@ struct FieldsUnnamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L58-L65)*
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
@@ -217,7 +217,7 @@ struct Field {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L181-L200)*
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -274,7 +274,7 @@ struct Members<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L202-L205)*
+*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L202-L205)*
 
 #### Trait Implementations
 
@@ -308,7 +308,7 @@ enum Fields {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L26-L46)*
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765521767/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 

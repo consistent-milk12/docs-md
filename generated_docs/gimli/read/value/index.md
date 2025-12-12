@@ -35,7 +35,7 @@ enum ValueType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../../.source_1765210505/gimli-0.32.3/src/read/value.rs#L26-L51)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../../.source_1765521767/gimli-0.32.3/src/read/value.rs#L26-L51)*
 
 The type of an entry on the DWARF stack.
 
@@ -133,7 +133,7 @@ enum Value {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../../.source_1765210505/gimli-0.32.3/src/read/value.rs#L55-L78)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../../.source_1765521767/gimli-0.32.3/src/read/value.rs#L55-L78)*
 
 The value of an entry on the DWARF stack.
 
@@ -269,7 +269,7 @@ The value of an entry on the DWARF stack.
 fn sign_extend(value: u64, mask: u64) -> i64
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../../.source_1765210505/gimli-0.32.3/src/read/value.rs#L13-L17)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../../.source_1765521767/gimli-0.32.3/src/read/value.rs#L13-L17)*
 
 Convert a u64 to an i64, with sign extension if required.
 
@@ -282,5 +282,5 @@ as a signed value.
 fn mask_bit_size(addr_mask: u64) -> u32
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../../.source_1765210505/gimli-0.32.3/src/read/value.rs#L20-L22)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../../.source_1765521767/gimli-0.32.3/src/read/value.rs#L20-L22)*
 

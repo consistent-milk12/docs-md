@@ -41,7 +41,7 @@ struct SlimSSSE3<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:465-467`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L465-L467)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:465-467`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L465-L467)*
 
 #### Implementations
 
@@ -72,7 +72,7 @@ struct SlimAVX2<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:528-531`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L528-L531)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:528-531`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L528-L531)*
 
 #### Implementations
 
@@ -102,7 +102,7 @@ struct FatAVX2<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:601-603`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L601-L603)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:601-603`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L601-L603)*
 
 #### Implementations
 
@@ -132,7 +132,7 @@ struct FatAVX2<const BYTES: usize> {
 fn is_available_ssse3() -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:664-687`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L664-L687)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:664-687`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L664-L687)*
 
 ### `is_available_avx2`
 
@@ -140,19 +140,19 @@ fn is_available_ssse3() -> bool
 fn is_available_avx2() -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:690-713`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L690-L713)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:690-713`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L690-L713)*
 
 ## Macros
 
 ### `slim_ssse3!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:470-520`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L470-L520)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:470-520`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L470-L520)*
 
 ### `slim_avx2!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:534-593`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L534-L593)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:534-593`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L534-L593)*
 
 ### `fat_avx2!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:606-656`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L606-L656)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:606-656`](../../../../../../.source_1765521767/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L606-L656)*
 

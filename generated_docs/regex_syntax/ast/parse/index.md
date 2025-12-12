@@ -53,7 +53,7 @@ struct ParserBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:123-128`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L123-L128)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:123-128`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L123-L128)*
 
 A builder for a regular expression parser.
 
@@ -106,7 +106,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:249-283`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L249-L283)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:249-283`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L249-L283)*
 
 A regular expression parser.
 
@@ -204,7 +204,7 @@ struct ParserI<'s, P> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:295-300`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L295-L300)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:295-300`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L295-L300)*
 
 ParserI is the internal parser implementation.
 
@@ -313,7 +313,7 @@ struct NestLimiter<'p, 's, P> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2266-2271`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L2266-L2271)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2266-2271`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L2266-L2271)*
 
 A type that traverses a fully parsed Ast and checks whether its depth
 exceeds the specified nesting limit. If it does, then an error is returned.
@@ -378,7 +378,7 @@ enum Primitive {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:33-39`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L33-L39)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:33-39`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L33-L39)*
 
 A primitive is an expression with no sub-expressions. This includes
 literals, assertions and non-set character classes. This representation
@@ -428,7 +428,7 @@ enum GroupState {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:306-321`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L306-L321)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:306-321`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L306-L321)*
 
 GroupState represents a single stack frame while parsing nested groups
 and alternations. Each frame records the state up to an opening parenthesis
@@ -472,7 +472,7 @@ enum ClassState {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:330-348`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L330-L348)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:330-348`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L330-L348)*
 
 ClassState represents a single stack frame while parsing character classes.
 Each frame records the state up to an intersection, difference, symmetric
@@ -510,7 +510,7 @@ a character class. In all other cases, it is empty.
 fn is_hex(c: char) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:103-105`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L103-L105)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:103-105`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L103-L105)*
 
 Returns true if the given character is a hexadecimal digit.
 
@@ -520,7 +520,7 @@ Returns true if the given character is a hexadecimal digit.
 fn is_capture_char(c: char, first: bool) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:111-117`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L111-L117)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:111-117`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L111-L117)*
 
 Returns true if the given character is a valid in a capture group name.
 
@@ -533,7 +533,7 @@ group name (which must be alphabetic or underscore).
 fn specialize_err<T>(result: core::result::Result<T, ast::Error>, from: ast::ErrorKind, to: ast::ErrorKind) -> core::result::Result<T, ast::Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2420-2434`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L2420-L2434)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2420-2434`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L2420-L2434)*
 
 When the result is an error, transforms the ast::ErrorKind from the source
 Result into another one. This function is used to return clearer error
@@ -547,5 +547,5 @@ messages when possible.
 type Result<T> = core::result::Result<T, ast::Error>;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:24`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L24)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:24`](../../../../.source_1765521767/regex-syntax-0.8.8/src/ast/parse.rs#L24)*
 

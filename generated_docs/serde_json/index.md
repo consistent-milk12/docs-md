@@ -394,10 +394,11 @@ struct Deserializer<R> {
     read: R,
     scratch: alloc::vec::Vec<u8>,
     remaining_depth: u8,
+    disable_recursion_limit: bool,
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L31-L39)*
+*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../.source_1765521767/serde_json-1.0.145/src/de.rs#L31-L39)*
 
 A structure that deserializes JSON into Rust values.
 
@@ -485,7 +486,7 @@ struct StreamDeserializer<'de, R, T> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2349-L2355)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2349-L2355)*
 
 Iterator that deserializes a stream into multiple JSON values.
 
@@ -543,7 +544,7 @@ struct Error {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../.source_1765210505/serde_json-1.0.145/src/error.rs#L17-L22)*
+*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../.source_1765521767/serde_json-1.0.145/src/error.rs#L17-L22)*
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
@@ -607,7 +608,7 @@ struct Serializer<W, F> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L17-L20)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L17-L20)*
 
 A structure for serializing Rust values into JSON.
 
@@ -707,7 +708,7 @@ struct Map<K, V> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../.source_1765210505/serde_json-1.0.145/src/map.rs#L29-L31)*
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../.source_1765521767/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -905,7 +906,7 @@ struct Number {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../.source_1765210505/serde_json-1.0.145/src/number.rs#L22-L24)*
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../.source_1765521767/serde_json-1.0.145/src/number.rs#L22-L24)*
 
 Represents a JSON number, whether integer or floating point.
 
@@ -1064,7 +1065,7 @@ enum Value {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../.source_1765521767/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
 
 Represents any valid JSON value.
 
@@ -1291,7 +1292,7 @@ where
     T: de::DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2612-L2618)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2612-L2618)*
 
 Deserialize an instance of type `T` from an I/O stream of JSON.
 
@@ -1402,7 +1403,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2655-L2660)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2655-L2660)*
 
 Deserialize an instance of type `T` from bytes of JSON text.
 
@@ -1448,7 +1449,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2697-L2702)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../.source_1765521767/serde_json-1.0.145/src/de.rs#L2697-L2702)*
 
 Deserialize an instance of type `T` from a string of JSON text.
 
@@ -1494,7 +1495,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
 
 Serialize the given data structure as a String of JSON.
 
@@ -1511,7 +1512,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
 
 Serialize the given data structure as a pretty-printed String of JSON.
 
@@ -1528,7 +1529,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
 
 Serialize the given data structure as a JSON byte vector.
 
@@ -1545,7 +1546,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
 
 Serialize the given data structure as a pretty-printed JSON byte vector.
 
@@ -1563,7 +1564,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
 
 Serialize the given data structure as JSON into the I/O stream.
 
@@ -1583,7 +1584,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../.source_1765521767/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
 
 Serialize the given data structure as pretty-printed JSON into the I/O
 stream.
@@ -1603,7 +1604,7 @@ where
     T: DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../.source_1765521767/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
 
 Interpret a `serde_json::Value` as an instance of type `T`.
 
@@ -1649,7 +1650,7 @@ where
     T: Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../.source_1765521767/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
 
 Convert a `T` into `serde_json::Value` which is an enum that can represent
 any valid JSON data.
@@ -1713,7 +1714,7 @@ fn main() {
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../.source_1765210505/serde_json-1.0.145/src/error.rs#L25)*
+*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../.source_1765521767/serde_json-1.0.145/src/error.rs#L25)*
 
 Alias for a `Result` with the error type `serde_json::Error`.
 
@@ -1721,11 +1722,11 @@ Alias for a `Result` with the error type `serde_json::Error`.
 
 ### `tri!`
 
-*Defined in [`serde_json-1.0.145/src/lib.rs:410-417`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L410-L417)*
+*Defined in [`serde_json-1.0.145/src/lib.rs:410-417`](../../.source_1765521767/serde_json-1.0.145/src/lib.rs#L410-L417)*
 
 ### `json!`
 
-*Defined in [`serde_json-1.0.145/src/macros.rs:54-59`](../../.source_1765210505/serde_json-1.0.145/src/macros.rs#L54-L59)*
+*Defined in [`serde_json-1.0.145/src/macros.rs:54-59`](../../.source_1765521767/serde_json-1.0.145/src/macros.rs#L54-L59)*
 
 Construct a `serde_json::Value` from a JSON literal.
 

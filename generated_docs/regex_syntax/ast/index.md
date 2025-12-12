@@ -129,7 +129,7 @@ struct Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:24-32`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L24-L32)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:24-32`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L24-L32)*
 
 An error that occurred while parsing a regular expression into an abstract
 syntax tree.
@@ -201,7 +201,7 @@ struct Span {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:319-324`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L319-L324)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:319-324`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L319-L324)*
 
 Span represents the position information of a single AST item.
 
@@ -270,7 +270,7 @@ struct Position {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:350-358`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L350-L358)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:350-358`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L350-L358)*
 
 A single position in a regular expression.
 
@@ -333,7 +333,7 @@ struct WithComments {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:439-444`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L439-L444)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:439-444`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L439-L444)*
 
 An abstract syntax tree for a singular expression along with comments
 found.
@@ -379,7 +379,7 @@ struct Comment {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:452-458`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L452-L458)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:452-458`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L452-L458)*
 
 A comment from a regular expression with an associated span.
 
@@ -424,7 +424,7 @@ struct Alternation {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:623-628`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L623-L628)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:623-628`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L623-L628)*
 
 An alternation of regular expressions.
 
@@ -469,7 +469,7 @@ struct Concat {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:648-653`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L648-L653)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:648-653`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L648-L653)*
 
 A concatenation of regular expressions.
 
@@ -515,7 +515,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:677-684`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L677-L684)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:677-684`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L677-L684)*
 
 A single literal expression.
 
@@ -569,7 +569,7 @@ struct ClassPerl {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:785-793`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L785-L793)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:785-793`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L785-L793)*
 
 A Perl character class.
 
@@ -616,7 +616,7 @@ struct ClassAscii {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:810-818`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L810-L818)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:810-818`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L810-L818)*
 
 An ASCII character class.
 
@@ -663,7 +663,7 @@ struct ClassUnicode {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:887-902`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L887-L902)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:887-902`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L887-L902)*
 
 A Unicode character class.
 
@@ -721,7 +721,7 @@ struct ClassBracketed {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1112-1121`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1112-L1121)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1112-1121`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1112-L1121)*
 
 A bracketed character class, e.g., `[a-z0-9]`.
 
@@ -769,7 +769,7 @@ struct ClassSetRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1209-1216`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1209-L1216)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1209-1216`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1209-L1216)*
 
 A single character class range in a set.
 
@@ -818,7 +818,7 @@ struct ClassSetUnion {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1231-1237`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1231-L1237)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1231-1237`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1231-L1237)*
 
 A union of items inside a character class set.
 
@@ -868,7 +868,7 @@ struct ClassSetBinaryOp {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1276-1285`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1276-L1285)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1276-1285`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1276-L1285)*
 
 A Unicode character class set operation.
 
@@ -917,7 +917,7 @@ struct Assertion {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1308-1313`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1308-L1313)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1308-1313`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1308-L1313)*
 
 A single zero-width assertion.
 
@@ -960,7 +960,7 @@ struct Repetition {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1348-1357`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1348-L1357)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1348-1357`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1348-L1357)*
 
 A repetition operation applied to a regular expression.
 
@@ -1009,7 +1009,7 @@ struct RepetitionOp {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1362-1368`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1362-L1368)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1362-1368`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1362-L1368)*
 
 The repetition operator itself.
 
@@ -1052,7 +1052,7 @@ struct Group {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1417-1424`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1417-L1424)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1417-1424`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1417-L1424)*
 
 A grouped regular expression.
 
@@ -1111,7 +1111,7 @@ struct CaptureName {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1478-1485`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1478-L1485)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1478-1485`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1478-L1485)*
 
 A capture name.
 
@@ -1159,7 +1159,7 @@ struct SetFlags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1519-1524`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1519-L1524)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1519-1524`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1519-L1524)*
 
 A group of flags that is not applied to a particular regular expression.
 
@@ -1200,7 +1200,7 @@ struct Flags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1531-1537`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1531-L1537)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1531-1537`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1531-L1537)*
 
 A group of flags.
 
@@ -1250,7 +1250,7 @@ struct FlagsItem {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1584-1589`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1584-L1589)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1584-1589`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1584-L1589)*
 
 A single item in a group of flags.
 
@@ -1331,7 +1331,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:75-190`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L75-L190)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:75-190`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L75-L190)*
 
 The type of an error that occurred while building an AST.
 
@@ -1555,7 +1555,7 @@ enum Ast {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:469-496`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L469-L496)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:469-496`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L469-L496)*
 
 An abstract syntax tree for a single regular expression.
 
@@ -1693,7 +1693,7 @@ enum LiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:702-724`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L702-L724)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:702-724`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L702-L724)*
 
 The kind of a single literal expression.
 
@@ -1766,7 +1766,7 @@ enum SpecialLiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:732-748`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L732-L748)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:732-748`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L732-L748)*
 
 The type of a special literal.
 
@@ -1832,7 +1832,7 @@ enum HexLiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:757-767`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L757-L767)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:757-767`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L757-L767)*
 
 The type of a Unicode hex literal.
 
@@ -1889,7 +1889,7 @@ enum ClassPerlKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:798-805`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L798-L805)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:798-805`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L798-L805)*
 
 The available Perl character classes.
 
@@ -1946,7 +1946,7 @@ enum ClassAsciiKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:823-852`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L823-L852)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:823-852`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L823-L852)*
 
 The available ASCII character classes.
 
@@ -2044,7 +2044,7 @@ enum ClassUnicodeKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:922-937`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L922-L937)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:922-937`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L922-L937)*
 
 The available forms of Unicode character classes.
 
@@ -2091,7 +2091,7 @@ enum ClassUnicodeOpKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1089-1097`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1089-L1097)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1089-1097`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1089-L1097)*
 
 The type of op used in a Unicode character class.
 
@@ -2141,7 +2141,7 @@ enum ClassSet {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1131-1137`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1131-L1137)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1131-1137`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1131-L1137)*
 
 A character class set.
 
@@ -2206,7 +2206,7 @@ enum ClassSetItem {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1165-1188`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1165-L1188)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1165-1188`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1165-L1188)*
 
 A single component of a character class set.
 
@@ -2282,7 +2282,7 @@ enum ClassSetBinaryOpKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1294-1303`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1294-L1303)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1294-1303`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1294-L1303)*
 
 The type of a Unicode character class set operation.
 
@@ -2345,7 +2345,7 @@ enum AssertionKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1318-1343`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1318-L1343)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1318-1343`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1318-L1343)*
 
 An assertion kind.
 
@@ -2428,7 +2428,7 @@ enum RepetitionKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1373-1382`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1373-L1382)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1373-1382`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1373-L1382)*
 
 The kind of a repetition operator.
 
@@ -2478,7 +2478,7 @@ enum RepetitionRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1387-1394`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1387-L1394)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1387-1394`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1387-L1394)*
 
 A range repetition operator.
 
@@ -2531,7 +2531,7 @@ enum GroupKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1459-1471`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1459-L1471)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1459-1471`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1459-L1471)*
 
 The kind of a group.
 
@@ -2576,7 +2576,7 @@ enum FlagsItemKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1594-1600`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1594-L1600)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1594-1600`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1594-L1600)*
 
 The kind of an item in a group of flags.
 
@@ -2627,7 +2627,7 @@ enum Flag {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1615-1630`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1615-L1630)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1615-1630`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/mod.rs#L1615-L1630)*
 
 A single flag.
 
@@ -2689,7 +2689,7 @@ A single flag.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -2775,7 +2775,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../.source_1765521767/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

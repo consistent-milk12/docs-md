@@ -30,7 +30,7 @@ struct Epoch {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
 
 An epoch that can be marked as pinned or unpinned.
 
@@ -103,7 +103,7 @@ struct AtomicEpoch {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765521767/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
 
 An atomic value that holds an `Epoch`.
 

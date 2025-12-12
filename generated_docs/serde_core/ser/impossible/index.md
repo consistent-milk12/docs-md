@@ -25,7 +25,7 @@ struct Impossible<Ok, Error> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../../.source_1765210505/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../../.source_1765521767/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
 
 Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
@@ -160,5 +160,5 @@ enum Void {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:66`](../../../../.source_1765210505/serde_core-1.0.228/src/ser/impossible.rs#L66)*
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:66`](../../../../.source_1765521767/serde_core-1.0.228/src/ser/impossible.rs#L66)*
 

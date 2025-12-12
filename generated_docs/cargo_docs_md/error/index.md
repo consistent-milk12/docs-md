@@ -40,6 +40,9 @@ enum Error {
     DuplicateCrate(String),
     NoCrateName(std::path::PathBuf),
     ProgressBarTemplate(indicatif::style::TemplateError),
+    SourceLocator(String),
+    SourceParser(String),
+    SourceCollector(String),
 }
 ```
 
@@ -140,6 +143,34 @@ Each variant includes:
   This indicates an invalid progress bar template string.
   Since templates are compile-time constants, this error
   typically indicates a programming error.
+
+- **`SourceLocator`**
+
+  Failed to locate crate source in the Cargo registry.
+  
+  This occurs when:
+  - The crate is not downloaded in ~/.cargo/registry/src/
+  - The specified version doesn't exist
+  - The registry path is misconfigured
+
+- **`SourceParser`**
+
+  Failed to parse Rust source code with syn.
+  
+  This occurs when:
+  - The source file contains invalid Rust syntax
+  - The file cannot be read
+  - Module resolution fails
+
+- **`SourceCollector`**
+
+  Failed to collect dependency sources.
+  
+  This occurs when:
+  - Cargo metadata cannot be loaded
+  - The registry path doesn't exist
+  - File copy operations fail
+  - Too many .source_* directories exist
 
 #### Trait Implementations
 

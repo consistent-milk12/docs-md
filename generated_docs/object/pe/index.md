@@ -1617,7 +1617,7 @@ struct ImageDosHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:29-68`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L29-L68)*
+*Defined in [`object-0.37.3/src/pe.rs:29-68`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L29-L68)*
 
 DOS .EXE header
 
@@ -1756,7 +1756,7 @@ struct ImageOs2Header {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:73-134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L73-L134)*
+*Defined in [`object-0.37.3/src/pe.rs:73-134`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L73-L134)*
 
 OS/2 .EXE header
 
@@ -1954,7 +1954,7 @@ struct ImageVxdHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:139-240`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L139-L240)*
+*Defined in [`object-0.37.3/src/pe.rs:139-240`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L139-L240)*
 
 Windows VXD header
 
@@ -2179,7 +2179,7 @@ struct MaskedRichHeaderEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:252-255`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L252-L255)*
+*Defined in [`object-0.37.3/src/pe.rs:252-255`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L252-L255)*
 
 A PE rich header entry.
 
@@ -2218,7 +2218,7 @@ struct ImageFileHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:263-271`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L263-L271)*
+*Defined in [`object-0.37.3/src/pe.rs:263-271`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L263-L271)*
 
 #### Trait Implementations
 
@@ -2263,7 +2263,7 @@ struct ImageDataDirectory {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:384-387`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L384-L387)*
+*Defined in [`object-0.37.3/src/pe.rs:384-387`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L384-L387)*
 
 #### Implementations
 
@@ -2324,7 +2324,7 @@ struct ImageOptionalHeader32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:397-432`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L397-L432)*
+*Defined in [`object-0.37.3/src/pe.rs:397-432`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L397-L432)*
 
 #### Trait Implementations
 
@@ -2422,7 +2422,7 @@ struct ImageRomOptionalHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:436-450`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L436-L450)*
+*Defined in [`object-0.37.3/src/pe.rs:436-450`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L436-L450)*
 
 #### Trait Implementations
 
@@ -2474,7 +2474,7 @@ struct ImageOptionalHeader64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:454-485`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L454-L485)*
+*Defined in [`object-0.37.3/src/pe.rs:454-485`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L454-L485)*
 
 #### Trait Implementations
 
@@ -2562,7 +2562,7 @@ struct ImageNtHeaders64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:493-497`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L493-L497)*
+*Defined in [`object-0.37.3/src/pe.rs:493-497`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L493-L497)*
 
 #### Trait Implementations
 
@@ -2604,7 +2604,7 @@ struct ImageNtHeaders32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:501-505`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L501-L505)*
+*Defined in [`object-0.37.3/src/pe.rs:501-505`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L501-L505)*
 
 #### Trait Implementations
 
@@ -2645,7 +2645,7 @@ struct ImageRomHeaders {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:509-512`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L509-L512)*
+*Defined in [`object-0.37.3/src/pe.rs:509-512`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L509-L512)*
 
 #### Trait Implementations
 
@@ -2667,7 +2667,7 @@ struct ImageRomHeaders {
 struct Guid([u8; 16]);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L604)*
+*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L604)*
 
 #### Implementations
 
@@ -2707,7 +2707,7 @@ struct Guid([u8; 16]);
 struct ClsId([u8; 16]);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L604)*
+*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L604)*
 
 #### Implementations
 
@@ -2755,7 +2755,7 @@ struct AnonObjectHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:633-646`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L633-L646)*
+*Defined in [`object-0.37.3/src/pe.rs:633-646`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L633-L646)*
 
 Non-COFF Object file header
 
@@ -2812,7 +2812,7 @@ struct AnonObjectHeaderV2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:650-669`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L650-L669)*
+*Defined in [`object-0.37.3/src/pe.rs:650-669`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L650-L669)*
 
 #### Fields
 
@@ -2882,7 +2882,7 @@ struct AnonObjectHeaderBigobj {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:678-705`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L678-L705)*
+*Defined in [`object-0.37.3/src/pe.rs:678-705`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L678-L705)*
 
 #### Fields
 
@@ -2977,7 +2977,7 @@ struct ImageSectionHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:715-726`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L715-L726)*
+*Defined in [`object-0.37.3/src/pe.rs:715-726`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L715-L726)*
 
 #### Implementations
 
@@ -3014,7 +3014,7 @@ struct ImageSymbol {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:817-825`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L817-L825)*
+*Defined in [`object-0.37.3/src/pe.rs:817-825`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L817-L825)*
 
 #### Fields
 
@@ -3056,7 +3056,7 @@ struct ImageSymbol {
 struct ImageSymbolBytes([u8; 18]);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:831`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L831)*
+*Defined in [`object-0.37.3/src/pe.rs:831`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L831)*
 
 #### Trait Implementations
 
@@ -3085,7 +3085,7 @@ struct ImageSymbolEx {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:836-844`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L836-L844)*
+*Defined in [`object-0.37.3/src/pe.rs:836-844`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L836-L844)*
 
 #### Fields
 
@@ -3127,7 +3127,7 @@ struct ImageSymbolEx {
 struct ImageSymbolExBytes([u8; 20]);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:850`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L850)*
+*Defined in [`object-0.37.3/src/pe.rs:850`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L850)*
 
 #### Trait Implementations
 
@@ -3154,7 +3154,7 @@ struct ImageAuxSymbolTokenDef {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:956-964`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L956-L964)*
+*Defined in [`object-0.37.3/src/pe.rs:956-964`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L956-L964)*
 
 #### Fields
 
@@ -3196,7 +3196,7 @@ struct ImageAuxSymbolFunction {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:972-978`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L972-L978)*
+*Defined in [`object-0.37.3/src/pe.rs:972-978`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L972-L978)*
 
 Auxiliary symbol format 1: function definitions.
 
@@ -3226,7 +3226,7 @@ struct ImageAuxSymbolFunctionBeginEnd {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:984-991`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L984-L991)*
+*Defined in [`object-0.37.3/src/pe.rs:984-991`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L984-L991)*
 
 Auxiliary symbol format 2: .bf and .ef symbols.
 
@@ -3259,7 +3259,7 @@ struct ImageAuxSymbolWeak {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:999-1003`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L999-L1003)*
+*Defined in [`object-0.37.3/src/pe.rs:999-1003`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L999-L1003)*
 
 Auxiliary symbol format 3: weak externals.
 
@@ -3304,7 +3304,7 @@ struct ImageAuxSymbolSection {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1011-1027`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1011-L1027)*
+*Defined in [`object-0.37.3/src/pe.rs:1011-1027`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1011-L1027)*
 
 Auxiliary symbol format 5: sections.
 
@@ -3362,7 +3362,7 @@ struct ImageAuxSymbolCrc {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1033-1035`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1033-L1035)*
+*Defined in [`object-0.37.3/src/pe.rs:1033-1035`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1033-L1035)*
 
 #### Trait Implementations
 
@@ -3388,7 +3388,7 @@ struct ImageRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1061-1066`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1061-L1066)*
+*Defined in [`object-0.37.3/src/pe.rs:1061-1066`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1061-L1066)*
 
 #### Fields
 
@@ -3423,7 +3423,7 @@ struct ImageLinenumber {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1721-1727`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1721-L1727)*
+*Defined in [`object-0.37.3/src/pe.rs:1721-1727`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1721-L1727)*
 
 #### Fields
 
@@ -3459,7 +3459,7 @@ struct ImageBaseRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1735-1739`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1735-L1739)*
+*Defined in [`object-0.37.3/src/pe.rs:1735-1739`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1735-L1739)*
 
 #### Trait Implementations
 
@@ -3489,7 +3489,7 @@ struct ImageArchiveMemberHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1787-1802`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1787-L1802)*
+*Defined in [`object-0.37.3/src/pe.rs:1787-1802`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1787-L1802)*
 
 #### Fields
 
@@ -3553,7 +3553,7 @@ struct ImageExportDirectory {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1816-1831`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1816-L1831)*
+*Defined in [`object-0.37.3/src/pe.rs:1816-1831`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1816-L1831)*
 
 #### Fields
 
@@ -3591,7 +3591,7 @@ struct ImageImportByName {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1839-1842`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1839-L1842)*
+*Defined in [`object-0.37.3/src/pe.rs:1839-1842`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1839-L1842)*
 
 #### Trait Implementations
 
@@ -3613,7 +3613,7 @@ struct ImageImportByName {
 struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1846`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1846)*
+*Defined in [`object-0.37.3/src/pe.rs:1846`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1846)*
 
 #### Trait Implementations
 
@@ -3645,7 +3645,7 @@ struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 struct ImageThunkData32(crate::endian::U32<crate::endian::LittleEndian>);
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1861`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1861)*
+*Defined in [`object-0.37.3/src/pe.rs:1861`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1861)*
 
 #### Trait Implementations
 
@@ -3684,7 +3684,7 @@ struct ImageTlsDirectory64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1892-1901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1892-L1901)*
+*Defined in [`object-0.37.3/src/pe.rs:1892-1901`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1892-L1901)*
 
 #### Fields
 
@@ -3723,7 +3723,7 @@ struct ImageTlsDirectory32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1905-1914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1905-L1914)*
+*Defined in [`object-0.37.3/src/pe.rs:1905-1914`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1905-L1914)*
 
 #### Fields
 
@@ -3761,7 +3761,7 @@ struct ImageImportDescriptor {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1918-1932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1918-L1932)*
+*Defined in [`object-0.37.3/src/pe.rs:1918-1932`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1918-L1932)*
 
 #### Fields
 
@@ -3813,7 +3813,7 @@ struct ImageBoundImportDescriptor {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1952-1957`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1952-L1957)*
+*Defined in [`object-0.37.3/src/pe.rs:1952-1957`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1952-L1957)*
 
 #### Trait Implementations
 
@@ -3839,7 +3839,7 @@ struct ImageBoundForwarderRef {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1961-1965`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1961-L1965)*
+*Defined in [`object-0.37.3/src/pe.rs:1961-1965`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1961-L1965)*
 
 #### Trait Implementations
 
@@ -3870,7 +3870,7 @@ struct ImageDelayloadDescriptor {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1969-1986`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1969-L1986)*
+*Defined in [`object-0.37.3/src/pe.rs:1969-1986`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1969-L1986)*
 
 #### Fields
 
@@ -3933,7 +3933,7 @@ struct ImageResourceDirectory {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2026-2033`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2026-L2033)*
+*Defined in [`object-0.37.3/src/pe.rs:2026-2033`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2026-L2033)*
 
 #### Trait Implementations
 
@@ -3958,7 +3958,7 @@ struct ImageResourceDirectoryEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2054-2057`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2054-L2057)*
+*Defined in [`object-0.37.3/src/pe.rs:2054-2057`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2054-L2057)*
 
 #### Implementations
 
@@ -3998,7 +3998,7 @@ struct ImageResourceDirectoryString {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2070-2073`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2070-L2073)*
+*Defined in [`object-0.37.3/src/pe.rs:2070-2073`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2070-L2073)*
 
 #### Trait Implementations
 
@@ -4022,7 +4022,7 @@ struct ImageResourceDirStringU {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2077-2080`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2077-L2080)*
+*Defined in [`object-0.37.3/src/pe.rs:2077-2080`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2077-L2080)*
 
 #### Trait Implementations
 
@@ -4049,7 +4049,7 @@ struct ImageResourceDataEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2093-2099`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2093-L2099)*
+*Defined in [`object-0.37.3/src/pe.rs:2093-2099`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2093-L2099)*
 
 #### Fields
 
@@ -4082,7 +4082,7 @@ struct ImageLoadConfigCodeIntegrity {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2152-2160`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2152-L2160)*
+*Defined in [`object-0.37.3/src/pe.rs:2152-2160`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2152-L2160)*
 
 #### Fields
 
@@ -4121,7 +4121,7 @@ struct ImageDynamicRelocationTable {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2168-2172`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2168-L2172)*
+*Defined in [`object-0.37.3/src/pe.rs:2168-2172`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2168-L2172)*
 
 #### Trait Implementations
 
@@ -4146,7 +4146,7 @@ struct ImageDynamicRelocation32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2180-2184`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2180-L2184)*
+*Defined in [`object-0.37.3/src/pe.rs:2180-2184`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2180-L2184)*
 
 #### Trait Implementations
 
@@ -4171,7 +4171,7 @@ struct ImageDynamicRelocation64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2188-2192`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2188-L2192)*
+*Defined in [`object-0.37.3/src/pe.rs:2188-2192`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2188-L2192)*
 
 #### Trait Implementations
 
@@ -4199,7 +4199,7 @@ struct ImageDynamicRelocation32V2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2196-2204`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2196-L2204)*
+*Defined in [`object-0.37.3/src/pe.rs:2196-2204`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2196-L2204)*
 
 #### Trait Implementations
 
@@ -4227,7 +4227,7 @@ struct ImageDynamicRelocation64V2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2208-2216`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2208-L2216)*
+*Defined in [`object-0.37.3/src/pe.rs:2208-2216`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2208-L2216)*
 
 #### Trait Implementations
 
@@ -4251,7 +4251,7 @@ struct ImagePrologueDynamicRelocationHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2231-2234`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2231-L2234)*
+*Defined in [`object-0.37.3/src/pe.rs:2231-2234`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2231-L2234)*
 
 #### Trait Implementations
 
@@ -4278,7 +4278,7 @@ struct ImageEpilogueDynamicRelocationHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2239-2246`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2239-L2246)*
+*Defined in [`object-0.37.3/src/pe.rs:2239-2246`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2239-L2246)*
 
 #### Trait Implementations
 
@@ -4343,7 +4343,7 @@ struct ImageLoadConfigDirectory32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2285-2343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2285-L2343)*
+*Defined in [`object-0.37.3/src/pe.rs:2285-2343`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2285-L2343)*
 
 #### Fields
 
@@ -4470,7 +4470,7 @@ struct ImageLoadConfigDirectory64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2347-2406`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2347-L2406)*
+*Defined in [`object-0.37.3/src/pe.rs:2347-2406`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2347-L2406)*
 
 #### Fields
 
@@ -4566,7 +4566,7 @@ struct ImageHotPatchInfo {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2410-2420`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2410-L2420)*
+*Defined in [`object-0.37.3/src/pe.rs:2410-2420`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2410-L2420)*
 
 #### Fields
 
@@ -4607,7 +4607,7 @@ struct ImageHotPatchBase {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2424-2434`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2424-L2434)*
+*Defined in [`object-0.37.3/src/pe.rs:2424-2434`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2424-L2434)*
 
 #### Fields
 
@@ -4638,7 +4638,7 @@ struct ImageHotPatchHashes {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2438-2441`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2438-L2441)*
+*Defined in [`object-0.37.3/src/pe.rs:2438-2441`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2438-L2441)*
 
 #### Trait Implementations
 
@@ -4663,7 +4663,7 @@ struct ImageArmRuntimeFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2530-2533`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2530-L2533)*
+*Defined in [`object-0.37.3/src/pe.rs:2530-2533`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2530-L2533)*
 
 #### Trait Implementations
 
@@ -4688,7 +4688,7 @@ struct ImageArm64RuntimeFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2537-2540`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2537-L2540)*
+*Defined in [`object-0.37.3/src/pe.rs:2537-2540`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2537-L2540)*
 
 #### Trait Implementations
 
@@ -4716,7 +4716,7 @@ struct ImageAlpha64RuntimeFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2544-2550`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2544-L2550)*
+*Defined in [`object-0.37.3/src/pe.rs:2544-2550`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2544-L2550)*
 
 #### Trait Implementations
 
@@ -4744,7 +4744,7 @@ struct ImageAlphaRuntimeFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2554-2560`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2554-L2560)*
+*Defined in [`object-0.37.3/src/pe.rs:2554-2560`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2554-L2560)*
 
 #### Trait Implementations
 
@@ -4770,7 +4770,7 @@ struct ImageRuntimeFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2564-2568`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2564-L2568)*
+*Defined in [`object-0.37.3/src/pe.rs:2564-2568`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2564-L2568)*
 
 #### Trait Implementations
 
@@ -4806,7 +4806,7 @@ struct ImageEnclaveConfig32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2579-2593`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2579-L2593)*
+*Defined in [`object-0.37.3/src/pe.rs:2579-2593`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2579-L2593)*
 
 #### Trait Implementations
 
@@ -4842,7 +4842,7 @@ struct ImageEnclaveConfig64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2597-2611`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2597-L2611)*
+*Defined in [`object-0.37.3/src/pe.rs:2597-2611`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2597-L2611)*
 
 #### Trait Implementations
 
@@ -4872,7 +4872,7 @@ struct ImageEnclaveImport {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2621-2629`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2621-L2629)*
+*Defined in [`object-0.37.3/src/pe.rs:2621-2629`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2621-L2629)*
 
 #### Trait Implementations
 
@@ -4903,7 +4903,7 @@ struct ImageDebugDirectory {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2643-2652`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2643-L2652)*
+*Defined in [`object-0.37.3/src/pe.rs:2643-2652`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2643-L2652)*
 
 #### Trait Implementations
 
@@ -4934,7 +4934,7 @@ struct ImageCoffSymbolsHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2674-2683`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2674-L2683)*
+*Defined in [`object-0.37.3/src/pe.rs:2674-2683`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2674-L2683)*
 
 #### Trait Implementations
 
@@ -4961,7 +4961,7 @@ struct ImageDebugMisc {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2723-2733`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2723-L2733)*
+*Defined in [`object-0.37.3/src/pe.rs:2723-2733`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2723-L2733)*
 
 #### Fields
 
@@ -5001,7 +5001,7 @@ struct ImageFunctionEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2743-2747`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2743-L2747)*
+*Defined in [`object-0.37.3/src/pe.rs:2743-2747`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2743-L2747)*
 
 #### Trait Implementations
 
@@ -5027,7 +5027,7 @@ struct ImageFunctionEntry64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2751-2755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2751-L2755)*
+*Defined in [`object-0.37.3/src/pe.rs:2751-2755`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2751-L2755)*
 
 #### Trait Implementations
 
@@ -5063,7 +5063,7 @@ struct ImageSeparateDebugHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2779-2793`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2779-L2793)*
+*Defined in [`object-0.37.3/src/pe.rs:2779-2793`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2779-L2793)*
 
 #### Trait Implementations
 
@@ -5095,7 +5095,7 @@ struct NonPagedDebugInfo {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2797-2809`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2797-L2809)*
+*Defined in [`object-0.37.3/src/pe.rs:2797-2809`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2797-L2809)*
 
 #### Trait Implementations
 
@@ -5120,7 +5120,7 @@ struct ImageArchitectureEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2847-2852`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2847-L2852)*
+*Defined in [`object-0.37.3/src/pe.rs:2847-2852`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2847-L2852)*
 
 #### Fields
 
@@ -5161,7 +5161,7 @@ struct ImportObjectHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2863-2882`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2863-L2882)*
+*Defined in [`object-0.37.3/src/pe.rs:2863-2882`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2863-L2882)*
 
 #### Fields
 
@@ -5228,7 +5228,7 @@ struct ImageCor20Header {
 }
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2951-2976`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2951-L2976)*
+*Defined in [`object-0.37.3/src/pe.rs:2951-2976`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2951-L2976)*
 
 #### Trait Implementations
 
@@ -5251,7 +5251,7 @@ struct ImageCor20Header {
 const IMAGE_DOS_SIGNATURE: u16 = 23_117u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:16`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L16)*
+*Defined in [`object-0.37.3/src/pe.rs:16`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L16)*
 
 MZ
 
@@ -5260,7 +5260,7 @@ MZ
 const IMAGE_OS2_SIGNATURE: u16 = 17_742u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:18`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L18)*
+*Defined in [`object-0.37.3/src/pe.rs:18`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L18)*
 
 NE
 
@@ -5269,7 +5269,7 @@ NE
 const IMAGE_OS2_SIGNATURE_LE: u16 = 17_740u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:20`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L20)*
+*Defined in [`object-0.37.3/src/pe.rs:20`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L20)*
 
 LE
 
@@ -5278,7 +5278,7 @@ LE
 const IMAGE_VXD_SIGNATURE: u16 = 17_740u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:22`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L22)*
+*Defined in [`object-0.37.3/src/pe.rs:22`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L22)*
 
 LE
 
@@ -5287,7 +5287,7 @@ LE
 const IMAGE_NT_SIGNATURE: u32 = 17_744u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:24`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L24)*
+*Defined in [`object-0.37.3/src/pe.rs:24`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L24)*
 
 PE00
 
@@ -5296,14 +5296,14 @@ PE00
 const IMAGE_SIZEOF_FILE_HEADER: usize = 20usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:273`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L273)*
+*Defined in [`object-0.37.3/src/pe.rs:273`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L273)*
 
 ### `IMAGE_FILE_RELOCS_STRIPPED`
 ```rust
 const IMAGE_FILE_RELOCS_STRIPPED: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:276`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L276)*
+*Defined in [`object-0.37.3/src/pe.rs:276`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L276)*
 
 Relocation info stripped from file.
 
@@ -5312,7 +5312,7 @@ Relocation info stripped from file.
 const IMAGE_FILE_EXECUTABLE_IMAGE: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:278`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L278)*
+*Defined in [`object-0.37.3/src/pe.rs:278`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L278)*
 
 File is executable  (i.e. no unresolved external references).
 
@@ -5321,7 +5321,7 @@ File is executable  (i.e. no unresolved external references).
 const IMAGE_FILE_LINE_NUMS_STRIPPED: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:280`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L280)*
+*Defined in [`object-0.37.3/src/pe.rs:280`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L280)*
 
 Line numbers stripped from file.
 
@@ -5330,7 +5330,7 @@ Line numbers stripped from file.
 const IMAGE_FILE_LOCAL_SYMS_STRIPPED: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:282`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L282)*
+*Defined in [`object-0.37.3/src/pe.rs:282`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L282)*
 
 Local symbols stripped from file.
 
@@ -5339,7 +5339,7 @@ Local symbols stripped from file.
 const IMAGE_FILE_AGGRESIVE_WS_TRIM: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:284`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L284)*
+*Defined in [`object-0.37.3/src/pe.rs:284`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L284)*
 
 Aggressively trim working set
 
@@ -5348,7 +5348,7 @@ Aggressively trim working set
 const IMAGE_FILE_LARGE_ADDRESS_AWARE: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:286`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L286)*
+*Defined in [`object-0.37.3/src/pe.rs:286`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L286)*
 
 App can handle >2gb addresses
 
@@ -5357,7 +5357,7 @@ App can handle >2gb addresses
 const IMAGE_FILE_BYTES_REVERSED_LO: u16 = 128u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:288`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L288)*
+*Defined in [`object-0.37.3/src/pe.rs:288`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L288)*
 
 Bytes of machine word are reversed.
 
@@ -5366,7 +5366,7 @@ Bytes of machine word are reversed.
 const IMAGE_FILE_32BIT_MACHINE: u16 = 256u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:290`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L290)*
+*Defined in [`object-0.37.3/src/pe.rs:290`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L290)*
 
 32 bit word machine.
 
@@ -5375,7 +5375,7 @@ const IMAGE_FILE_32BIT_MACHINE: u16 = 256u16;
 const IMAGE_FILE_DEBUG_STRIPPED: u16 = 512u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:292`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L292)*
+*Defined in [`object-0.37.3/src/pe.rs:292`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L292)*
 
 Debugging info stripped from file in .DBG file
 
@@ -5384,7 +5384,7 @@ Debugging info stripped from file in .DBG file
 const IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP: u16 = 1_024u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:294`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L294)*
+*Defined in [`object-0.37.3/src/pe.rs:294`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L294)*
 
 If Image is on removable media, copy and run from the swap file.
 
@@ -5393,7 +5393,7 @@ If Image is on removable media, copy and run from the swap file.
 const IMAGE_FILE_NET_RUN_FROM_SWAP: u16 = 2_048u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:296`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L296)*
+*Defined in [`object-0.37.3/src/pe.rs:296`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L296)*
 
 If Image is on Net, copy and run from the swap file.
 
@@ -5402,7 +5402,7 @@ If Image is on Net, copy and run from the swap file.
 const IMAGE_FILE_SYSTEM: u16 = 4_096u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:298`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L298)*
+*Defined in [`object-0.37.3/src/pe.rs:298`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L298)*
 
 System File.
 
@@ -5411,7 +5411,7 @@ System File.
 const IMAGE_FILE_DLL: u16 = 8_192u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:300`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L300)*
+*Defined in [`object-0.37.3/src/pe.rs:300`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L300)*
 
 File is a DLL.
 
@@ -5420,7 +5420,7 @@ File is a DLL.
 const IMAGE_FILE_UP_SYSTEM_ONLY: u16 = 16_384u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:302`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L302)*
+*Defined in [`object-0.37.3/src/pe.rs:302`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L302)*
 
 File should only be run on a UP machine
 
@@ -5429,7 +5429,7 @@ File should only be run on a UP machine
 const IMAGE_FILE_BYTES_REVERSED_HI: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:304`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L304)*
+*Defined in [`object-0.37.3/src/pe.rs:304`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L304)*
 
 Bytes of machine word are reversed.
 
@@ -5438,14 +5438,14 @@ Bytes of machine word are reversed.
 const IMAGE_FILE_MACHINE_UNKNOWN: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:306`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L306)*
+*Defined in [`object-0.37.3/src/pe.rs:306`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L306)*
 
 ### `IMAGE_FILE_MACHINE_TARGET_HOST`
 ```rust
 const IMAGE_FILE_MACHINE_TARGET_HOST: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:308`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L308)*
+*Defined in [`object-0.37.3/src/pe.rs:308`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L308)*
 
 Useful for indicating we want to interact with the host and not a WoW guest.
 
@@ -5454,7 +5454,7 @@ Useful for indicating we want to interact with the host and not a WoW guest.
 const IMAGE_FILE_MACHINE_I386: u16 = 332u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:310`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L310)*
+*Defined in [`object-0.37.3/src/pe.rs:310`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L310)*
 
 Intel 386.
 
@@ -5463,7 +5463,7 @@ Intel 386.
 const IMAGE_FILE_MACHINE_R3000: u16 = 354u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:312`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L312)*
+*Defined in [`object-0.37.3/src/pe.rs:312`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L312)*
 
 MIPS little-endian, 0x160 big-endian
 
@@ -5472,7 +5472,7 @@ MIPS little-endian, 0x160 big-endian
 const IMAGE_FILE_MACHINE_R4000: u16 = 358u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:314`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L314)*
+*Defined in [`object-0.37.3/src/pe.rs:314`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L314)*
 
 MIPS little-endian
 
@@ -5481,7 +5481,7 @@ MIPS little-endian
 const IMAGE_FILE_MACHINE_R10000: u16 = 360u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:316`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L316)*
+*Defined in [`object-0.37.3/src/pe.rs:316`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L316)*
 
 MIPS little-endian
 
@@ -5490,7 +5490,7 @@ MIPS little-endian
 const IMAGE_FILE_MACHINE_WCEMIPSV2: u16 = 361u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:318`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L318)*
+*Defined in [`object-0.37.3/src/pe.rs:318`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L318)*
 
 MIPS little-endian WCE v2
 
@@ -5499,7 +5499,7 @@ MIPS little-endian WCE v2
 const IMAGE_FILE_MACHINE_ALPHA: u16 = 388u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:320`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L320)*
+*Defined in [`object-0.37.3/src/pe.rs:320`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L320)*
 
 Alpha_AXP
 
@@ -5508,7 +5508,7 @@ Alpha_AXP
 const IMAGE_FILE_MACHINE_SH3: u16 = 418u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:322`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L322)*
+*Defined in [`object-0.37.3/src/pe.rs:322`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L322)*
 
 SH3 little-endian
 
@@ -5517,14 +5517,14 @@ SH3 little-endian
 const IMAGE_FILE_MACHINE_SH3DSP: u16 = 419u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:323`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L323)*
+*Defined in [`object-0.37.3/src/pe.rs:323`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L323)*
 
 ### `IMAGE_FILE_MACHINE_SH3E`
 ```rust
 const IMAGE_FILE_MACHINE_SH3E: u16 = 420u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:325`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L325)*
+*Defined in [`object-0.37.3/src/pe.rs:325`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L325)*
 
 SH3E little-endian
 
@@ -5533,7 +5533,7 @@ SH3E little-endian
 const IMAGE_FILE_MACHINE_SH4: u16 = 422u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:327`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L327)*
+*Defined in [`object-0.37.3/src/pe.rs:327`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L327)*
 
 SH4 little-endian
 
@@ -5542,7 +5542,7 @@ SH4 little-endian
 const IMAGE_FILE_MACHINE_SH5: u16 = 424u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:329`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L329)*
+*Defined in [`object-0.37.3/src/pe.rs:329`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L329)*
 
 SH5
 
@@ -5551,7 +5551,7 @@ SH5
 const IMAGE_FILE_MACHINE_ARM: u16 = 448u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:331`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L331)*
+*Defined in [`object-0.37.3/src/pe.rs:331`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L331)*
 
 ARM Little-Endian
 
@@ -5560,7 +5560,7 @@ ARM Little-Endian
 const IMAGE_FILE_MACHINE_THUMB: u16 = 450u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:333`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L333)*
+*Defined in [`object-0.37.3/src/pe.rs:333`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L333)*
 
 ARM Thumb/Thumb-2 Little-Endian
 
@@ -5569,7 +5569,7 @@ ARM Thumb/Thumb-2 Little-Endian
 const IMAGE_FILE_MACHINE_ARMNT: u16 = 452u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:335`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L335)*
+*Defined in [`object-0.37.3/src/pe.rs:335`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L335)*
 
 ARM Thumb-2 Little-Endian
 
@@ -5578,14 +5578,14 @@ ARM Thumb-2 Little-Endian
 const IMAGE_FILE_MACHINE_AM33: u16 = 467u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:336`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L336)*
+*Defined in [`object-0.37.3/src/pe.rs:336`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L336)*
 
 ### `IMAGE_FILE_MACHINE_POWERPC`
 ```rust
 const IMAGE_FILE_MACHINE_POWERPC: u16 = 496u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:338`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L338)*
+*Defined in [`object-0.37.3/src/pe.rs:338`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L338)*
 
 IBM PowerPC Little-Endian
 
@@ -5594,14 +5594,14 @@ IBM PowerPC Little-Endian
 const IMAGE_FILE_MACHINE_POWERPCFP: u16 = 497u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:339`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L339)*
+*Defined in [`object-0.37.3/src/pe.rs:339`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L339)*
 
 ### `IMAGE_FILE_MACHINE_POWERPCBE`
 ```rust
 const IMAGE_FILE_MACHINE_POWERPCBE: u16 = 498u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:341`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L341)*
+*Defined in [`object-0.37.3/src/pe.rs:341`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L341)*
 
 IBM PowerPC Big-Endian
 
@@ -5610,7 +5610,7 @@ IBM PowerPC Big-Endian
 const IMAGE_FILE_MACHINE_IA64: u16 = 512u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L343)*
+*Defined in [`object-0.37.3/src/pe.rs:343`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L343)*
 
 Intel 64
 
@@ -5619,7 +5619,7 @@ Intel 64
 const IMAGE_FILE_MACHINE_MIPS16: u16 = 614u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:345`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L345)*
+*Defined in [`object-0.37.3/src/pe.rs:345`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L345)*
 
 MIPS
 
@@ -5628,7 +5628,7 @@ MIPS
 const IMAGE_FILE_MACHINE_ALPHA64: u16 = 644u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:347`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L347)*
+*Defined in [`object-0.37.3/src/pe.rs:347`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L347)*
 
 ALPHA64
 
@@ -5637,7 +5637,7 @@ ALPHA64
 const IMAGE_FILE_MACHINE_MIPSFPU: u16 = 870u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:349`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L349)*
+*Defined in [`object-0.37.3/src/pe.rs:349`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L349)*
 
 MIPS
 
@@ -5646,7 +5646,7 @@ MIPS
 const IMAGE_FILE_MACHINE_MIPSFPU16: u16 = 1_126u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:351`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L351)*
+*Defined in [`object-0.37.3/src/pe.rs:351`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L351)*
 
 MIPS
 
@@ -5655,14 +5655,14 @@ MIPS
 const IMAGE_FILE_MACHINE_AXP64: u16 = 644u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:352`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L352)*
+*Defined in [`object-0.37.3/src/pe.rs:352`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L352)*
 
 ### `IMAGE_FILE_MACHINE_TRICORE`
 ```rust
 const IMAGE_FILE_MACHINE_TRICORE: u16 = 1_312u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:354`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L354)*
+*Defined in [`object-0.37.3/src/pe.rs:354`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L354)*
 
 Infineon
 
@@ -5671,14 +5671,14 @@ Infineon
 const IMAGE_FILE_MACHINE_CEF: u16 = 3_311u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:355`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L355)*
+*Defined in [`object-0.37.3/src/pe.rs:355`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L355)*
 
 ### `IMAGE_FILE_MACHINE_EBC`
 ```rust
 const IMAGE_FILE_MACHINE_EBC: u16 = 3_772u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:357`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L357)*
+*Defined in [`object-0.37.3/src/pe.rs:357`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L357)*
 
 EFI Byte Code
 
@@ -5687,7 +5687,7 @@ EFI Byte Code
 const IMAGE_FILE_MACHINE_AMD64: u16 = 34_404u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:359`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L359)*
+*Defined in [`object-0.37.3/src/pe.rs:359`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L359)*
 
 AMD64 (K8)
 
@@ -5696,7 +5696,7 @@ AMD64 (K8)
 const IMAGE_FILE_MACHINE_M32R: u16 = 36_929u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:361`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L361)*
+*Defined in [`object-0.37.3/src/pe.rs:361`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L361)*
 
 M32R little-endian
 
@@ -5705,7 +5705,7 @@ M32R little-endian
 const IMAGE_FILE_MACHINE_ARM64: u16 = 43_620u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:363`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L363)*
+*Defined in [`object-0.37.3/src/pe.rs:363`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L363)*
 
 ARM64 Little-Endian
 
@@ -5714,7 +5714,7 @@ ARM64 Little-Endian
 const IMAGE_FILE_MACHINE_ARM64EC: u16 = 42_561u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:365`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L365)*
+*Defined in [`object-0.37.3/src/pe.rs:365`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L365)*
 
 ARM64EC ("Emulation Compatible")
 
@@ -5723,14 +5723,14 @@ ARM64EC ("Emulation Compatible")
 const IMAGE_FILE_MACHINE_CEE: u16 = 49_390u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:366`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L366)*
+*Defined in [`object-0.37.3/src/pe.rs:366`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L366)*
 
 ### `IMAGE_FILE_MACHINE_RISCV32`
 ```rust
 const IMAGE_FILE_MACHINE_RISCV32: u16 = 20_530u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:368`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L368)*
+*Defined in [`object-0.37.3/src/pe.rs:368`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L368)*
 
 RISCV32
 
@@ -5739,7 +5739,7 @@ RISCV32
 const IMAGE_FILE_MACHINE_RISCV64: u16 = 20_580u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:370`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L370)*
+*Defined in [`object-0.37.3/src/pe.rs:370`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L370)*
 
 RISCV64
 
@@ -5748,7 +5748,7 @@ RISCV64
 const IMAGE_FILE_MACHINE_RISCV128: u16 = 20_776u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:372`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L372)*
+*Defined in [`object-0.37.3/src/pe.rs:372`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L372)*
 
 RISCV128
 
@@ -5757,7 +5757,7 @@ RISCV128
 const IMAGE_FILE_MACHINE_ARM64X: u16 = 42_574u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:374`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L374)*
+*Defined in [`object-0.37.3/src/pe.rs:374`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L374)*
 
 ARM64X (Mixed ARM64 and ARM64EC)
 
@@ -5766,7 +5766,7 @@ ARM64X (Mixed ARM64 and ARM64EC)
 const IMAGE_FILE_MACHINE_CHPE_X86: u16 = 14_948u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:376`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L376)*
+*Defined in [`object-0.37.3/src/pe.rs:376`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L376)*
 
 CHPE x86 ("Compiled Hybrid Portable Executable")
 
@@ -5775,35 +5775,35 @@ CHPE x86 ("Compiled Hybrid Portable Executable")
 const IMAGE_NUMBEROF_DIRECTORY_ENTRIES: usize = 16usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:389`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L389)*
+*Defined in [`object-0.37.3/src/pe.rs:389`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L389)*
 
 ### `IMAGE_NT_OPTIONAL_HDR32_MAGIC`
 ```rust
 const IMAGE_NT_OPTIONAL_HDR32_MAGIC: u16 = 267u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:487`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L487)*
+*Defined in [`object-0.37.3/src/pe.rs:487`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L487)*
 
 ### `IMAGE_NT_OPTIONAL_HDR64_MAGIC`
 ```rust
 const IMAGE_NT_OPTIONAL_HDR64_MAGIC: u16 = 523u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L488)*
+*Defined in [`object-0.37.3/src/pe.rs:488`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L488)*
 
 ### `IMAGE_ROM_OPTIONAL_HDR_MAGIC`
 ```rust
 const IMAGE_ROM_OPTIONAL_HDR_MAGIC: u16 = 263u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:489`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L489)*
+*Defined in [`object-0.37.3/src/pe.rs:489`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L489)*
 
 ### `IMAGE_SUBSYSTEM_UNKNOWN`
 ```rust
 const IMAGE_SUBSYSTEM_UNKNOWN: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:517`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L517)*
+*Defined in [`object-0.37.3/src/pe.rs:517`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L517)*
 
 Unknown subsystem.
 
@@ -5812,7 +5812,7 @@ Unknown subsystem.
 const IMAGE_SUBSYSTEM_NATIVE: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:519`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L519)*
+*Defined in [`object-0.37.3/src/pe.rs:519`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L519)*
 
 Image doesn't require a subsystem.
 
@@ -5821,7 +5821,7 @@ Image doesn't require a subsystem.
 const IMAGE_SUBSYSTEM_WINDOWS_GUI: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:521`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L521)*
+*Defined in [`object-0.37.3/src/pe.rs:521`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L521)*
 
 Image runs in the Windows GUI subsystem.
 
@@ -5830,7 +5830,7 @@ Image runs in the Windows GUI subsystem.
 const IMAGE_SUBSYSTEM_WINDOWS_CUI: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:523`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L523)*
+*Defined in [`object-0.37.3/src/pe.rs:523`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L523)*
 
 Image runs in the Windows character subsystem.
 
@@ -5839,7 +5839,7 @@ Image runs in the Windows character subsystem.
 const IMAGE_SUBSYSTEM_OS2_CUI: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:525`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L525)*
+*Defined in [`object-0.37.3/src/pe.rs:525`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L525)*
 
 image runs in the OS/2 character subsystem.
 
@@ -5848,7 +5848,7 @@ image runs in the OS/2 character subsystem.
 const IMAGE_SUBSYSTEM_POSIX_CUI: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:527`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L527)*
+*Defined in [`object-0.37.3/src/pe.rs:527`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L527)*
 
 image runs in the Posix character subsystem.
 
@@ -5857,7 +5857,7 @@ image runs in the Posix character subsystem.
 const IMAGE_SUBSYSTEM_NATIVE_WINDOWS: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:529`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L529)*
+*Defined in [`object-0.37.3/src/pe.rs:529`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L529)*
 
 image is a native Win9x driver.
 
@@ -5866,7 +5866,7 @@ image is a native Win9x driver.
 const IMAGE_SUBSYSTEM_WINDOWS_CE_GUI: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:531`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L531)*
+*Defined in [`object-0.37.3/src/pe.rs:531`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L531)*
 
 Image runs in the Windows CE subsystem.
 
@@ -5875,56 +5875,56 @@ Image runs in the Windows CE subsystem.
 const IMAGE_SUBSYSTEM_EFI_APPLICATION: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:532`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L532)*
+*Defined in [`object-0.37.3/src/pe.rs:532`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L532)*
 
 ### `IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:533`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L533)*
+*Defined in [`object-0.37.3/src/pe.rs:533`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L533)*
 
 ### `IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:534`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L534)*
+*Defined in [`object-0.37.3/src/pe.rs:534`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L534)*
 
 ### `IMAGE_SUBSYSTEM_EFI_ROM`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_ROM: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:535`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L535)*
+*Defined in [`object-0.37.3/src/pe.rs:535`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L535)*
 
 ### `IMAGE_SUBSYSTEM_XBOX`
 ```rust
 const IMAGE_SUBSYSTEM_XBOX: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:536`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L536)*
+*Defined in [`object-0.37.3/src/pe.rs:536`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L536)*
 
 ### `IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`
 ```rust
 const IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:537`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L537)*
+*Defined in [`object-0.37.3/src/pe.rs:537`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L537)*
 
 ### `IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`
 ```rust
 const IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:538`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L538)*
+*Defined in [`object-0.37.3/src/pe.rs:538`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L538)*
 
 ### `IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`
 ```rust
 const IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:547`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L547)*
+*Defined in [`object-0.37.3/src/pe.rs:547`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L547)*
 
 Image can handle a high entropy 64-bit virtual address space.
 
@@ -5933,7 +5933,7 @@ Image can handle a high entropy 64-bit virtual address space.
 const IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE: u16 = 64u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:549`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L549)*
+*Defined in [`object-0.37.3/src/pe.rs:549`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L549)*
 
 DLL can move.
 
@@ -5942,7 +5942,7 @@ DLL can move.
 const IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY: u16 = 128u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:551`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L551)*
+*Defined in [`object-0.37.3/src/pe.rs:551`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L551)*
 
 Code Integrity Image
 
@@ -5951,7 +5951,7 @@ Code Integrity Image
 const IMAGE_DLLCHARACTERISTICS_NX_COMPAT: u16 = 256u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:553`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L553)*
+*Defined in [`object-0.37.3/src/pe.rs:553`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L553)*
 
 Image is NX compatible
 
@@ -5960,7 +5960,7 @@ Image is NX compatible
 const IMAGE_DLLCHARACTERISTICS_NO_ISOLATION: u16 = 512u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:555`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L555)*
+*Defined in [`object-0.37.3/src/pe.rs:555`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L555)*
 
 Image understands isolation and doesn't want it
 
@@ -5969,7 +5969,7 @@ Image understands isolation and doesn't want it
 const IMAGE_DLLCHARACTERISTICS_NO_SEH: u16 = 1_024u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:557`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L557)*
+*Defined in [`object-0.37.3/src/pe.rs:557`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L557)*
 
 Image does not use SEH.  No SE handler may reside in this image
 
@@ -5978,7 +5978,7 @@ Image does not use SEH.  No SE handler may reside in this image
 const IMAGE_DLLCHARACTERISTICS_NO_BIND: u16 = 2_048u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:559`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L559)*
+*Defined in [`object-0.37.3/src/pe.rs:559`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L559)*
 
 Do not bind this image.
 
@@ -5987,7 +5987,7 @@ Do not bind this image.
 const IMAGE_DLLCHARACTERISTICS_APPCONTAINER: u16 = 4_096u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:561`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L561)*
+*Defined in [`object-0.37.3/src/pe.rs:561`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L561)*
 
 Image should execute in an AppContainer
 
@@ -5996,7 +5996,7 @@ Image should execute in an AppContainer
 const IMAGE_DLLCHARACTERISTICS_WDM_DRIVER: u16 = 8_192u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:563`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L563)*
+*Defined in [`object-0.37.3/src/pe.rs:563`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L563)*
 
 Driver uses WDM model
 
@@ -6005,7 +6005,7 @@ Driver uses WDM model
 const IMAGE_DLLCHARACTERISTICS_GUARD_CF: u16 = 16_384u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:565`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L565)*
+*Defined in [`object-0.37.3/src/pe.rs:565`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L565)*
 
 Image supports Control Flow Guard.
 
@@ -6014,14 +6014,14 @@ Image supports Control Flow Guard.
 const IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:566`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L566)*
+*Defined in [`object-0.37.3/src/pe.rs:566`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L566)*
 
 ### `IMAGE_DIRECTORY_ENTRY_EXPORT`
 ```rust
 const IMAGE_DIRECTORY_ENTRY_EXPORT: usize = 0usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:571`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L571)*
+*Defined in [`object-0.37.3/src/pe.rs:571`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L571)*
 
 Export Directory
 
@@ -6030,7 +6030,7 @@ Export Directory
 const IMAGE_DIRECTORY_ENTRY_IMPORT: usize = 1usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:573`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L573)*
+*Defined in [`object-0.37.3/src/pe.rs:573`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L573)*
 
 Import Directory
 
@@ -6039,7 +6039,7 @@ Import Directory
 const IMAGE_DIRECTORY_ENTRY_RESOURCE: usize = 2usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L575)*
+*Defined in [`object-0.37.3/src/pe.rs:575`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L575)*
 
 Resource Directory
 
@@ -6048,7 +6048,7 @@ Resource Directory
 const IMAGE_DIRECTORY_ENTRY_EXCEPTION: usize = 3usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:577`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L577)*
+*Defined in [`object-0.37.3/src/pe.rs:577`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L577)*
 
 Exception Directory
 
@@ -6057,7 +6057,7 @@ Exception Directory
 const IMAGE_DIRECTORY_ENTRY_SECURITY: usize = 4usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:579`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L579)*
+*Defined in [`object-0.37.3/src/pe.rs:579`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L579)*
 
 Security Directory
 
@@ -6066,7 +6066,7 @@ Security Directory
 const IMAGE_DIRECTORY_ENTRY_BASERELOC: usize = 5usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:581`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L581)*
+*Defined in [`object-0.37.3/src/pe.rs:581`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L581)*
 
 Base Relocation Table
 
@@ -6075,7 +6075,7 @@ Base Relocation Table
 const IMAGE_DIRECTORY_ENTRY_DEBUG: usize = 6usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:583`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L583)*
+*Defined in [`object-0.37.3/src/pe.rs:583`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L583)*
 
 Debug Directory
 
@@ -6084,7 +6084,7 @@ Debug Directory
 const IMAGE_DIRECTORY_ENTRY_ARCHITECTURE: usize = 7usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:586`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L586)*
+*Defined in [`object-0.37.3/src/pe.rs:586`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L586)*
 
 Architecture Specific Data
 
@@ -6093,7 +6093,7 @@ Architecture Specific Data
 const IMAGE_DIRECTORY_ENTRY_GLOBALPTR: usize = 8usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:588`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L588)*
+*Defined in [`object-0.37.3/src/pe.rs:588`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L588)*
 
 RVA of GP
 
@@ -6102,7 +6102,7 @@ RVA of GP
 const IMAGE_DIRECTORY_ENTRY_TLS: usize = 9usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:590`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L590)*
+*Defined in [`object-0.37.3/src/pe.rs:590`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L590)*
 
 TLS Directory
 
@@ -6111,7 +6111,7 @@ TLS Directory
 const IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG: usize = 10usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:592`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L592)*
+*Defined in [`object-0.37.3/src/pe.rs:592`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L592)*
 
 Load Configuration Directory
 
@@ -6120,7 +6120,7 @@ Load Configuration Directory
 const IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT: usize = 11usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:594`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L594)*
+*Defined in [`object-0.37.3/src/pe.rs:594`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L594)*
 
 Bound Import Directory in headers
 
@@ -6129,7 +6129,7 @@ Bound Import Directory in headers
 const IMAGE_DIRECTORY_ENTRY_IAT: usize = 12usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:596`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L596)*
+*Defined in [`object-0.37.3/src/pe.rs:596`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L596)*
 
 Import Address Table
 
@@ -6138,7 +6138,7 @@ Import Address Table
 const IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT: usize = 13usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:598`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L598)*
+*Defined in [`object-0.37.3/src/pe.rs:598`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L598)*
 
 Delay Load Import Descriptors
 
@@ -6147,7 +6147,7 @@ Delay Load Import Descriptors
 const IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR: usize = 14usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:600`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L600)*
+*Defined in [`object-0.37.3/src/pe.rs:600`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L600)*
 
 COM Runtime descriptor
 
@@ -6156,7 +6156,7 @@ COM Runtime descriptor
 const ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID: ClsId;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:672-674`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L672-L674)*
+*Defined in [`object-0.37.3/src/pe.rs:672-674`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L672-L674)*
 
 The required value of `AnonObjectHeaderBigobj::class_id`.
 
@@ -6165,21 +6165,21 @@ The required value of `AnonObjectHeaderBigobj::class_id`.
 const IMAGE_SIZEOF_SHORT_NAME: usize = 8usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:707`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L707)*
+*Defined in [`object-0.37.3/src/pe.rs:707`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L707)*
 
 ### `IMAGE_SIZEOF_SECTION_HEADER`
 ```rust
 const IMAGE_SIZEOF_SECTION_HEADER: usize = 40usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:728`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L728)*
+*Defined in [`object-0.37.3/src/pe.rs:728`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L728)*
 
 ### `IMAGE_SCN_TYPE_NO_PAD`
 ```rust
 const IMAGE_SCN_TYPE_NO_PAD: u32 = 8u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:737`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L737)*
+*Defined in [`object-0.37.3/src/pe.rs:737`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L737)*
 
 Reserved.
 
@@ -6188,7 +6188,7 @@ Reserved.
 const IMAGE_SCN_CNT_CODE: u32 = 32u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:741`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L741)*
+*Defined in [`object-0.37.3/src/pe.rs:741`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L741)*
 
 Section contains code.
 
@@ -6197,7 +6197,7 @@ Section contains code.
 const IMAGE_SCN_CNT_INITIALIZED_DATA: u32 = 64u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:743`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L743)*
+*Defined in [`object-0.37.3/src/pe.rs:743`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L743)*
 
 Section contains initialized data.
 
@@ -6206,7 +6206,7 @@ Section contains initialized data.
 const IMAGE_SCN_CNT_UNINITIALIZED_DATA: u32 = 128u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:745`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L745)*
+*Defined in [`object-0.37.3/src/pe.rs:745`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L745)*
 
 Section contains uninitialized data.
 
@@ -6215,7 +6215,7 @@ Section contains uninitialized data.
 const IMAGE_SCN_LNK_OTHER: u32 = 256u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:748`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L748)*
+*Defined in [`object-0.37.3/src/pe.rs:748`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L748)*
 
 Reserved.
 
@@ -6224,7 +6224,7 @@ Reserved.
 const IMAGE_SCN_LNK_INFO: u32 = 512u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:750`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L750)*
+*Defined in [`object-0.37.3/src/pe.rs:750`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L750)*
 
 Section contains comments or some other type of information.
 
@@ -6233,7 +6233,7 @@ Section contains comments or some other type of information.
 const IMAGE_SCN_LNK_REMOVE: u32 = 2_048u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:753`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L753)*
+*Defined in [`object-0.37.3/src/pe.rs:753`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L753)*
 
 Section contents will not become part of image.
 
@@ -6242,7 +6242,7 @@ Section contents will not become part of image.
 const IMAGE_SCN_LNK_COMDAT: u32 = 4_096u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L755)*
+*Defined in [`object-0.37.3/src/pe.rs:755`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L755)*
 
 Section contents comdat.
 
@@ -6251,7 +6251,7 @@ Section contents comdat.
 const IMAGE_SCN_NO_DEFER_SPEC_EXC: u32 = 16_384u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:759`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L759)*
+*Defined in [`object-0.37.3/src/pe.rs:759`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L759)*
 
 Reset speculative exceptions handling bits in the TLB entries for this section.
 
@@ -6260,7 +6260,7 @@ Reset speculative exceptions handling bits in the TLB entries for this section.
 const IMAGE_SCN_GPREL: u32 = 32_768u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:761`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L761)*
+*Defined in [`object-0.37.3/src/pe.rs:761`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L761)*
 
 Section content can be accessed relative to GP
 
@@ -6269,70 +6269,70 @@ Section content can be accessed relative to GP
 const IMAGE_SCN_MEM_FARDATA: u32 = 32_768u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:762`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L762)*
+*Defined in [`object-0.37.3/src/pe.rs:762`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L762)*
 
 ### `IMAGE_SCN_MEM_PURGEABLE`
 ```rust
 const IMAGE_SCN_MEM_PURGEABLE: u32 = 131_072u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:764`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L764)*
+*Defined in [`object-0.37.3/src/pe.rs:764`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L764)*
 
 ### `IMAGE_SCN_MEM_16BIT`
 ```rust
 const IMAGE_SCN_MEM_16BIT: u32 = 131_072u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:765`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L765)*
+*Defined in [`object-0.37.3/src/pe.rs:765`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L765)*
 
 ### `IMAGE_SCN_MEM_LOCKED`
 ```rust
 const IMAGE_SCN_MEM_LOCKED: u32 = 262_144u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:766`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L766)*
+*Defined in [`object-0.37.3/src/pe.rs:766`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L766)*
 
 ### `IMAGE_SCN_MEM_PRELOAD`
 ```rust
 const IMAGE_SCN_MEM_PRELOAD: u32 = 524_288u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:767`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L767)*
+*Defined in [`object-0.37.3/src/pe.rs:767`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L767)*
 
 ### `IMAGE_SCN_ALIGN_1BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_1BYTES: u32 = 1_048_576u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:769`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L769)*
+*Defined in [`object-0.37.3/src/pe.rs:769`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L769)*
 
 ### `IMAGE_SCN_ALIGN_2BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_2BYTES: u32 = 2_097_152u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:770`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L770)*
+*Defined in [`object-0.37.3/src/pe.rs:770`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L770)*
 
 ### `IMAGE_SCN_ALIGN_4BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_4BYTES: u32 = 3_145_728u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:771`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L771)*
+*Defined in [`object-0.37.3/src/pe.rs:771`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L771)*
 
 ### `IMAGE_SCN_ALIGN_8BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_8BYTES: u32 = 4_194_304u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:772`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L772)*
+*Defined in [`object-0.37.3/src/pe.rs:772`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L772)*
 
 ### `IMAGE_SCN_ALIGN_16BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_16BYTES: u32 = 5_242_880u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:774`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L774)*
+*Defined in [`object-0.37.3/src/pe.rs:774`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L774)*
 
 Default alignment if no others are specified.
 
@@ -6341,77 +6341,77 @@ Default alignment if no others are specified.
 const IMAGE_SCN_ALIGN_32BYTES: u32 = 6_291_456u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:775`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L775)*
+*Defined in [`object-0.37.3/src/pe.rs:775`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L775)*
 
 ### `IMAGE_SCN_ALIGN_64BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_64BYTES: u32 = 7_340_032u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:776`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L776)*
+*Defined in [`object-0.37.3/src/pe.rs:776`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L776)*
 
 ### `IMAGE_SCN_ALIGN_128BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_128BYTES: u32 = 8_388_608u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:777`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L777)*
+*Defined in [`object-0.37.3/src/pe.rs:777`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L777)*
 
 ### `IMAGE_SCN_ALIGN_256BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_256BYTES: u32 = 9_437_184u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:778`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L778)*
+*Defined in [`object-0.37.3/src/pe.rs:778`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L778)*
 
 ### `IMAGE_SCN_ALIGN_512BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_512BYTES: u32 = 10_485_760u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:779`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L779)*
+*Defined in [`object-0.37.3/src/pe.rs:779`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L779)*
 
 ### `IMAGE_SCN_ALIGN_1024BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_1024BYTES: u32 = 11_534_336u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:780`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L780)*
+*Defined in [`object-0.37.3/src/pe.rs:780`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L780)*
 
 ### `IMAGE_SCN_ALIGN_2048BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_2048BYTES: u32 = 12_582_912u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:781`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L781)*
+*Defined in [`object-0.37.3/src/pe.rs:781`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L781)*
 
 ### `IMAGE_SCN_ALIGN_4096BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_4096BYTES: u32 = 13_631_488u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:782`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L782)*
+*Defined in [`object-0.37.3/src/pe.rs:782`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L782)*
 
 ### `IMAGE_SCN_ALIGN_8192BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_8192BYTES: u32 = 14_680_064u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:783`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L783)*
+*Defined in [`object-0.37.3/src/pe.rs:783`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L783)*
 
 ### `IMAGE_SCN_ALIGN_MASK`
 ```rust
 const IMAGE_SCN_ALIGN_MASK: u32 = 15_728_640u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:785`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L785)*
+*Defined in [`object-0.37.3/src/pe.rs:785`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L785)*
 
 ### `IMAGE_SCN_LNK_NRELOC_OVFL`
 ```rust
 const IMAGE_SCN_LNK_NRELOC_OVFL: u32 = 16_777_216u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:788`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L788)*
+*Defined in [`object-0.37.3/src/pe.rs:788`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L788)*
 
 Section contains extended relocations.
 
@@ -6420,7 +6420,7 @@ Section contains extended relocations.
 const IMAGE_SCN_MEM_DISCARDABLE: u32 = 33_554_432u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:790`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L790)*
+*Defined in [`object-0.37.3/src/pe.rs:790`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L790)*
 
 Section can be discarded.
 
@@ -6429,7 +6429,7 @@ Section can be discarded.
 const IMAGE_SCN_MEM_NOT_CACHED: u32 = 67_108_864u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:792`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L792)*
+*Defined in [`object-0.37.3/src/pe.rs:792`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L792)*
 
 Section is not cacheable.
 
@@ -6438,7 +6438,7 @@ Section is not cacheable.
 const IMAGE_SCN_MEM_NOT_PAGED: u32 = 134_217_728u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:794`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L794)*
+*Defined in [`object-0.37.3/src/pe.rs:794`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L794)*
 
 Section is not pageable.
 
@@ -6447,7 +6447,7 @@ Section is not pageable.
 const IMAGE_SCN_MEM_SHARED: u32 = 268_435_456u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:796`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L796)*
+*Defined in [`object-0.37.3/src/pe.rs:796`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L796)*
 
 Section is shareable.
 
@@ -6456,7 +6456,7 @@ Section is shareable.
 const IMAGE_SCN_MEM_EXECUTE: u32 = 536_870_912u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:798`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L798)*
+*Defined in [`object-0.37.3/src/pe.rs:798`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L798)*
 
 Section is executable.
 
@@ -6465,7 +6465,7 @@ Section is executable.
 const IMAGE_SCN_MEM_READ: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:800`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L800)*
+*Defined in [`object-0.37.3/src/pe.rs:800`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L800)*
 
 Section is readable.
 
@@ -6474,7 +6474,7 @@ Section is readable.
 const IMAGE_SCN_MEM_WRITE: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:802`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L802)*
+*Defined in [`object-0.37.3/src/pe.rs:802`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L802)*
 
 Section is writeable.
 
@@ -6483,7 +6483,7 @@ Section is writeable.
 const IMAGE_SCN_SCALE_INDEX: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:808`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L808)*
+*Defined in [`object-0.37.3/src/pe.rs:808`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L808)*
 
 Tls index is scaled
 
@@ -6492,21 +6492,21 @@ Tls index is scaled
 const IMAGE_SIZEOF_SYMBOL: usize = 18usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:827`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L827)*
+*Defined in [`object-0.37.3/src/pe.rs:827`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L827)*
 
 ### `IMAGE_SIZEOF_SYMBOL_EX`
 ```rust
 const IMAGE_SIZEOF_SYMBOL_EX: usize = 20usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:846`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L846)*
+*Defined in [`object-0.37.3/src/pe.rs:846`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L846)*
 
 ### `IMAGE_SYM_UNDEFINED`
 ```rust
 const IMAGE_SYM_UNDEFINED: i32 = 0i32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:858`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L858)*
+*Defined in [`object-0.37.3/src/pe.rs:858`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L858)*
 
 Symbol is undefined or is common.
 
@@ -6515,7 +6515,7 @@ Symbol is undefined or is common.
 const IMAGE_SYM_ABSOLUTE: i32 = -1i32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:860`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L860)*
+*Defined in [`object-0.37.3/src/pe.rs:860`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L860)*
 
 Symbol is an absolute value.
 
@@ -6524,7 +6524,7 @@ Symbol is an absolute value.
 const IMAGE_SYM_DEBUG: i32 = -2i32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:862`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L862)*
+*Defined in [`object-0.37.3/src/pe.rs:862`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L862)*
 
 Symbol is a special debug item.
 
@@ -6533,7 +6533,7 @@ Symbol is a special debug item.
 const IMAGE_SYM_SECTION_MAX: u16 = 65_279u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:864`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L864)*
+*Defined in [`object-0.37.3/src/pe.rs:864`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L864)*
 
 Values 0xFF00-0xFFFF are special
 
@@ -6542,14 +6542,14 @@ Values 0xFF00-0xFFFF are special
 const IMAGE_SYM_SECTION_MAX_EX: u32 = 2_147_483_647u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:865`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L865)*
+*Defined in [`object-0.37.3/src/pe.rs:865`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L865)*
 
 ### `IMAGE_SYM_TYPE_NULL`
 ```rust
 const IMAGE_SYM_TYPE_NULL: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:870`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L870)*
+*Defined in [`object-0.37.3/src/pe.rs:870`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L870)*
 
 no type.
 
@@ -6558,14 +6558,14 @@ no type.
 const IMAGE_SYM_TYPE_VOID: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:871`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L871)*
+*Defined in [`object-0.37.3/src/pe.rs:871`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L871)*
 
 ### `IMAGE_SYM_TYPE_CHAR`
 ```rust
 const IMAGE_SYM_TYPE_CHAR: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:873`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L873)*
+*Defined in [`object-0.37.3/src/pe.rs:873`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L873)*
 
 type character.
 
@@ -6574,7 +6574,7 @@ type character.
 const IMAGE_SYM_TYPE_SHORT: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:875`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L875)*
+*Defined in [`object-0.37.3/src/pe.rs:875`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L875)*
 
 type short integer.
 
@@ -6583,49 +6583,49 @@ type short integer.
 const IMAGE_SYM_TYPE_INT: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:876`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L876)*
+*Defined in [`object-0.37.3/src/pe.rs:876`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L876)*
 
 ### `IMAGE_SYM_TYPE_LONG`
 ```rust
 const IMAGE_SYM_TYPE_LONG: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:877`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L877)*
+*Defined in [`object-0.37.3/src/pe.rs:877`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L877)*
 
 ### `IMAGE_SYM_TYPE_FLOAT`
 ```rust
 const IMAGE_SYM_TYPE_FLOAT: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:878`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L878)*
+*Defined in [`object-0.37.3/src/pe.rs:878`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L878)*
 
 ### `IMAGE_SYM_TYPE_DOUBLE`
 ```rust
 const IMAGE_SYM_TYPE_DOUBLE: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:879`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L879)*
+*Defined in [`object-0.37.3/src/pe.rs:879`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L879)*
 
 ### `IMAGE_SYM_TYPE_STRUCT`
 ```rust
 const IMAGE_SYM_TYPE_STRUCT: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:880`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L880)*
+*Defined in [`object-0.37.3/src/pe.rs:880`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L880)*
 
 ### `IMAGE_SYM_TYPE_UNION`
 ```rust
 const IMAGE_SYM_TYPE_UNION: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:881`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L881)*
+*Defined in [`object-0.37.3/src/pe.rs:881`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L881)*
 
 ### `IMAGE_SYM_TYPE_ENUM`
 ```rust
 const IMAGE_SYM_TYPE_ENUM: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:883`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L883)*
+*Defined in [`object-0.37.3/src/pe.rs:883`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L883)*
 
 enumeration.
 
@@ -6634,7 +6634,7 @@ enumeration.
 const IMAGE_SYM_TYPE_MOE: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:885`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L885)*
+*Defined in [`object-0.37.3/src/pe.rs:885`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L885)*
 
 member of enumeration.
 
@@ -6643,42 +6643,42 @@ member of enumeration.
 const IMAGE_SYM_TYPE_BYTE: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:886`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L886)*
+*Defined in [`object-0.37.3/src/pe.rs:886`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L886)*
 
 ### `IMAGE_SYM_TYPE_WORD`
 ```rust
 const IMAGE_SYM_TYPE_WORD: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:887`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L887)*
+*Defined in [`object-0.37.3/src/pe.rs:887`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L887)*
 
 ### `IMAGE_SYM_TYPE_UINT`
 ```rust
 const IMAGE_SYM_TYPE_UINT: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:888`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L888)*
+*Defined in [`object-0.37.3/src/pe.rs:888`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L888)*
 
 ### `IMAGE_SYM_TYPE_DWORD`
 ```rust
 const IMAGE_SYM_TYPE_DWORD: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:889`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L889)*
+*Defined in [`object-0.37.3/src/pe.rs:889`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L889)*
 
 ### `IMAGE_SYM_TYPE_PCODE`
 ```rust
 const IMAGE_SYM_TYPE_PCODE: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:890`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L890)*
+*Defined in [`object-0.37.3/src/pe.rs:890`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L890)*
 
 ### `IMAGE_SYM_DTYPE_NULL`
 ```rust
 const IMAGE_SYM_DTYPE_NULL: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:895`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L895)*
+*Defined in [`object-0.37.3/src/pe.rs:895`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L895)*
 
 no derived type.
 
@@ -6687,7 +6687,7 @@ no derived type.
 const IMAGE_SYM_DTYPE_POINTER: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:897`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L897)*
+*Defined in [`object-0.37.3/src/pe.rs:897`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L897)*
 
 pointer.
 
@@ -6696,7 +6696,7 @@ pointer.
 const IMAGE_SYM_DTYPE_FUNCTION: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:899`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L899)*
+*Defined in [`object-0.37.3/src/pe.rs:899`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L899)*
 
 function.
 
@@ -6705,7 +6705,7 @@ function.
 const IMAGE_SYM_DTYPE_ARRAY: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L901)*
+*Defined in [`object-0.37.3/src/pe.rs:901`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L901)*
 
 array.
 
@@ -6714,336 +6714,336 @@ array.
 const IMAGE_SYM_CLASS_END_OF_FUNCTION: u8 = 255u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:904`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L904)*
+*Defined in [`object-0.37.3/src/pe.rs:904`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L904)*
 
 ### `IMAGE_SYM_CLASS_NULL`
 ```rust
 const IMAGE_SYM_CLASS_NULL: u8 = 0u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:905`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L905)*
+*Defined in [`object-0.37.3/src/pe.rs:905`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L905)*
 
 ### `IMAGE_SYM_CLASS_AUTOMATIC`
 ```rust
 const IMAGE_SYM_CLASS_AUTOMATIC: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:906`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L906)*
+*Defined in [`object-0.37.3/src/pe.rs:906`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L906)*
 
 ### `IMAGE_SYM_CLASS_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_EXTERNAL: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:907`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L907)*
+*Defined in [`object-0.37.3/src/pe.rs:907`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L907)*
 
 ### `IMAGE_SYM_CLASS_STATIC`
 ```rust
 const IMAGE_SYM_CLASS_STATIC: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:908`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L908)*
+*Defined in [`object-0.37.3/src/pe.rs:908`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L908)*
 
 ### `IMAGE_SYM_CLASS_REGISTER`
 ```rust
 const IMAGE_SYM_CLASS_REGISTER: u8 = 4u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:909`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L909)*
+*Defined in [`object-0.37.3/src/pe.rs:909`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L909)*
 
 ### `IMAGE_SYM_CLASS_EXTERNAL_DEF`
 ```rust
 const IMAGE_SYM_CLASS_EXTERNAL_DEF: u8 = 5u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:910`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L910)*
+*Defined in [`object-0.37.3/src/pe.rs:910`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L910)*
 
 ### `IMAGE_SYM_CLASS_LABEL`
 ```rust
 const IMAGE_SYM_CLASS_LABEL: u8 = 6u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:911`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L911)*
+*Defined in [`object-0.37.3/src/pe.rs:911`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L911)*
 
 ### `IMAGE_SYM_CLASS_UNDEFINED_LABEL`
 ```rust
 const IMAGE_SYM_CLASS_UNDEFINED_LABEL: u8 = 7u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:912`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L912)*
+*Defined in [`object-0.37.3/src/pe.rs:912`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L912)*
 
 ### `IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_STRUCT: u8 = 8u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:913`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L913)*
+*Defined in [`object-0.37.3/src/pe.rs:913`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L913)*
 
 ### `IMAGE_SYM_CLASS_ARGUMENT`
 ```rust
 const IMAGE_SYM_CLASS_ARGUMENT: u8 = 9u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L914)*
+*Defined in [`object-0.37.3/src/pe.rs:914`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L914)*
 
 ### `IMAGE_SYM_CLASS_STRUCT_TAG`
 ```rust
 const IMAGE_SYM_CLASS_STRUCT_TAG: u8 = 10u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:915`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L915)*
+*Defined in [`object-0.37.3/src/pe.rs:915`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L915)*
 
 ### `IMAGE_SYM_CLASS_MEMBER_OF_UNION`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_UNION: u8 = 11u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:916`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L916)*
+*Defined in [`object-0.37.3/src/pe.rs:916`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L916)*
 
 ### `IMAGE_SYM_CLASS_UNION_TAG`
 ```rust
 const IMAGE_SYM_CLASS_UNION_TAG: u8 = 12u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:917`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L917)*
+*Defined in [`object-0.37.3/src/pe.rs:917`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L917)*
 
 ### `IMAGE_SYM_CLASS_TYPE_DEFINITION`
 ```rust
 const IMAGE_SYM_CLASS_TYPE_DEFINITION: u8 = 13u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:918`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L918)*
+*Defined in [`object-0.37.3/src/pe.rs:918`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L918)*
 
 ### `IMAGE_SYM_CLASS_UNDEFINED_STATIC`
 ```rust
 const IMAGE_SYM_CLASS_UNDEFINED_STATIC: u8 = 14u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:919`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L919)*
+*Defined in [`object-0.37.3/src/pe.rs:919`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L919)*
 
 ### `IMAGE_SYM_CLASS_ENUM_TAG`
 ```rust
 const IMAGE_SYM_CLASS_ENUM_TAG: u8 = 15u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:920`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L920)*
+*Defined in [`object-0.37.3/src/pe.rs:920`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L920)*
 
 ### `IMAGE_SYM_CLASS_MEMBER_OF_ENUM`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_ENUM: u8 = 16u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:921`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L921)*
+*Defined in [`object-0.37.3/src/pe.rs:921`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L921)*
 
 ### `IMAGE_SYM_CLASS_REGISTER_PARAM`
 ```rust
 const IMAGE_SYM_CLASS_REGISTER_PARAM: u8 = 17u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:922`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L922)*
+*Defined in [`object-0.37.3/src/pe.rs:922`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L922)*
 
 ### `IMAGE_SYM_CLASS_BIT_FIELD`
 ```rust
 const IMAGE_SYM_CLASS_BIT_FIELD: u8 = 18u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:923`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L923)*
+*Defined in [`object-0.37.3/src/pe.rs:923`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L923)*
 
 ### `IMAGE_SYM_CLASS_FAR_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_FAR_EXTERNAL: u8 = 68u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:925`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L925)*
+*Defined in [`object-0.37.3/src/pe.rs:925`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L925)*
 
 ### `IMAGE_SYM_CLASS_BLOCK`
 ```rust
 const IMAGE_SYM_CLASS_BLOCK: u8 = 100u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:927`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L927)*
+*Defined in [`object-0.37.3/src/pe.rs:927`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L927)*
 
 ### `IMAGE_SYM_CLASS_FUNCTION`
 ```rust
 const IMAGE_SYM_CLASS_FUNCTION: u8 = 101u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:928`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L928)*
+*Defined in [`object-0.37.3/src/pe.rs:928`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L928)*
 
 ### `IMAGE_SYM_CLASS_END_OF_STRUCT`
 ```rust
 const IMAGE_SYM_CLASS_END_OF_STRUCT: u8 = 102u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:929`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L929)*
+*Defined in [`object-0.37.3/src/pe.rs:929`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L929)*
 
 ### `IMAGE_SYM_CLASS_FILE`
 ```rust
 const IMAGE_SYM_CLASS_FILE: u8 = 103u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:930`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L930)*
+*Defined in [`object-0.37.3/src/pe.rs:930`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L930)*
 
 ### `IMAGE_SYM_CLASS_SECTION`
 ```rust
 const IMAGE_SYM_CLASS_SECTION: u8 = 104u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L932)*
+*Defined in [`object-0.37.3/src/pe.rs:932`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L932)*
 
 ### `IMAGE_SYM_CLASS_WEAK_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_WEAK_EXTERNAL: u8 = 105u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:933`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L933)*
+*Defined in [`object-0.37.3/src/pe.rs:933`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L933)*
 
 ### `IMAGE_SYM_CLASS_CLR_TOKEN`
 ```rust
 const IMAGE_SYM_CLASS_CLR_TOKEN: u8 = 107u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:935`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L935)*
+*Defined in [`object-0.37.3/src/pe.rs:935`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L935)*
 
 ### `N_BTMASK`
 ```rust
 const N_BTMASK: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:939`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L939)*
+*Defined in [`object-0.37.3/src/pe.rs:939`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L939)*
 
 ### `N_TMASK`
 ```rust
 const N_TMASK: u16 = 48u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:940`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L940)*
+*Defined in [`object-0.37.3/src/pe.rs:940`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L940)*
 
 ### `N_TMASK1`
 ```rust
 const N_TMASK1: u16 = 192u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:941`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L941)*
+*Defined in [`object-0.37.3/src/pe.rs:941`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L941)*
 
 ### `N_TMASK2`
 ```rust
 const N_TMASK2: u16 = 240u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:942`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L942)*
+*Defined in [`object-0.37.3/src/pe.rs:942`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L942)*
 
 ### `N_BTSHFT`
 ```rust
 const N_BTSHFT: usize = 4usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:943`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L943)*
+*Defined in [`object-0.37.3/src/pe.rs:943`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L943)*
 
 ### `N_TSHIFT`
 ```rust
 const N_TSHIFT: usize = 2usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:944`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L944)*
+*Defined in [`object-0.37.3/src/pe.rs:944`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L944)*
 
 ### `IMAGE_SYM_DTYPE_SHIFT`
 ```rust
 const IMAGE_SYM_DTYPE_SHIFT: usize = 4usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:946`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L946)*
+*Defined in [`object-0.37.3/src/pe.rs:946`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L946)*
 
 ### `IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`
 ```rust
 const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:966`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L966)*
+*Defined in [`object-0.37.3/src/pe.rs:966`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L966)*
 
 ### `IMAGE_COMDAT_SELECT_NODUPLICATES`
 ```rust
 const IMAGE_COMDAT_SELECT_NODUPLICATES: u8 = 1u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1041`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1041)*
+*Defined in [`object-0.37.3/src/pe.rs:1041`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1041)*
 
 ### `IMAGE_COMDAT_SELECT_ANY`
 ```rust
 const IMAGE_COMDAT_SELECT_ANY: u8 = 2u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1042`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1042)*
+*Defined in [`object-0.37.3/src/pe.rs:1042`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1042)*
 
 ### `IMAGE_COMDAT_SELECT_SAME_SIZE`
 ```rust
 const IMAGE_COMDAT_SELECT_SAME_SIZE: u8 = 3u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1043`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1043)*
+*Defined in [`object-0.37.3/src/pe.rs:1043`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1043)*
 
 ### `IMAGE_COMDAT_SELECT_EXACT_MATCH`
 ```rust
 const IMAGE_COMDAT_SELECT_EXACT_MATCH: u8 = 4u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1044`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1044)*
+*Defined in [`object-0.37.3/src/pe.rs:1044`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1044)*
 
 ### `IMAGE_COMDAT_SELECT_ASSOCIATIVE`
 ```rust
 const IMAGE_COMDAT_SELECT_ASSOCIATIVE: u8 = 5u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1045`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1045)*
+*Defined in [`object-0.37.3/src/pe.rs:1045`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1045)*
 
 ### `IMAGE_COMDAT_SELECT_LARGEST`
 ```rust
 const IMAGE_COMDAT_SELECT_LARGEST: u8 = 6u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1046`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1046)*
+*Defined in [`object-0.37.3/src/pe.rs:1046`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1046)*
 
 ### `IMAGE_COMDAT_SELECT_NEWEST`
 ```rust
 const IMAGE_COMDAT_SELECT_NEWEST: u8 = 7u8;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1047`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1047)*
+*Defined in [`object-0.37.3/src/pe.rs:1047`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1047)*
 
 ### `IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1049`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1049)*
+*Defined in [`object-0.37.3/src/pe.rs:1049`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1049)*
 
 ### `IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_LIBRARY: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1050`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1050)*
+*Defined in [`object-0.37.3/src/pe.rs:1050`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1050)*
 
 ### `IMAGE_WEAK_EXTERN_SEARCH_ALIAS`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_ALIAS: u32 = 3u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1051`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1051)*
+*Defined in [`object-0.37.3/src/pe.rs:1051`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1051)*
 
 ### `IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`
 ```rust
 const IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY: u32 = 4u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1052`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1052)*
+*Defined in [`object-0.37.3/src/pe.rs:1052`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1052)*
 
 ### `IMAGE_REL_I386_ABSOLUTE`
 ```rust
 const IMAGE_REL_I386_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1072`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1072)*
+*Defined in [`object-0.37.3/src/pe.rs:1072`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1072)*
 
 Reference is absolute, no relocation is necessary
 
@@ -7052,7 +7052,7 @@ Reference is absolute, no relocation is necessary
 const IMAGE_REL_I386_DIR16: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1074`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1074)*
+*Defined in [`object-0.37.3/src/pe.rs:1074`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1074)*
 
 Direct 16-bit reference to the symbols virtual address
 
@@ -7061,7 +7061,7 @@ Direct 16-bit reference to the symbols virtual address
 const IMAGE_REL_I386_REL16: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1076`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1076)*
+*Defined in [`object-0.37.3/src/pe.rs:1076`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1076)*
 
 PC-relative 16-bit reference to the symbols virtual address
 
@@ -7070,7 +7070,7 @@ PC-relative 16-bit reference to the symbols virtual address
 const IMAGE_REL_I386_DIR32: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1078`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1078)*
+*Defined in [`object-0.37.3/src/pe.rs:1078`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1078)*
 
 Direct 32-bit reference to the symbols virtual address
 
@@ -7079,7 +7079,7 @@ Direct 32-bit reference to the symbols virtual address
 const IMAGE_REL_I386_DIR32NB: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1080`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1080)*
+*Defined in [`object-0.37.3/src/pe.rs:1080`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1080)*
 
 Direct 32-bit reference to the symbols virtual address, base not included
 
@@ -7088,7 +7088,7 @@ Direct 32-bit reference to the symbols virtual address, base not included
 const IMAGE_REL_I386_SEG12: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1082`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1082)*
+*Defined in [`object-0.37.3/src/pe.rs:1082`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1082)*
 
 Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address
 
@@ -7097,21 +7097,21 @@ Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address
 const IMAGE_REL_I386_SECTION: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1083`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1083)*
+*Defined in [`object-0.37.3/src/pe.rs:1083`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1083)*
 
 ### `IMAGE_REL_I386_SECREL`
 ```rust
 const IMAGE_REL_I386_SECREL: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1084`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1084)*
+*Defined in [`object-0.37.3/src/pe.rs:1084`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1084)*
 
 ### `IMAGE_REL_I386_TOKEN`
 ```rust
 const IMAGE_REL_I386_TOKEN: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1086`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1086)*
+*Defined in [`object-0.37.3/src/pe.rs:1086`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1086)*
 
 clr token
 
@@ -7120,7 +7120,7 @@ clr token
 const IMAGE_REL_I386_SECREL7: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1088`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1088)*
+*Defined in [`object-0.37.3/src/pe.rs:1088`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1088)*
 
 7 bit offset from base of section containing target
 
@@ -7129,7 +7129,7 @@ const IMAGE_REL_I386_SECREL7: u16 = 13u16;
 const IMAGE_REL_I386_REL32: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1090`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1090)*
+*Defined in [`object-0.37.3/src/pe.rs:1090`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1090)*
 
 PC-relative 32-bit reference to the symbols virtual address
 
@@ -7138,7 +7138,7 @@ PC-relative 32-bit reference to the symbols virtual address
 const IMAGE_REL_MIPS_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1096`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1096)*
+*Defined in [`object-0.37.3/src/pe.rs:1096`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1096)*
 
 Reference is absolute, no relocation is necessary
 
@@ -7147,70 +7147,70 @@ Reference is absolute, no relocation is necessary
 const IMAGE_REL_MIPS_REFHALF: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1097`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1097)*
+*Defined in [`object-0.37.3/src/pe.rs:1097`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1097)*
 
 ### `IMAGE_REL_MIPS_REFWORD`
 ```rust
 const IMAGE_REL_MIPS_REFWORD: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1098`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1098)*
+*Defined in [`object-0.37.3/src/pe.rs:1098`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1098)*
 
 ### `IMAGE_REL_MIPS_JMPADDR`
 ```rust
 const IMAGE_REL_MIPS_JMPADDR: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1099`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1099)*
+*Defined in [`object-0.37.3/src/pe.rs:1099`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1099)*
 
 ### `IMAGE_REL_MIPS_REFHI`
 ```rust
 const IMAGE_REL_MIPS_REFHI: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1100`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1100)*
+*Defined in [`object-0.37.3/src/pe.rs:1100`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1100)*
 
 ### `IMAGE_REL_MIPS_REFLO`
 ```rust
 const IMAGE_REL_MIPS_REFLO: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1101`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1101)*
+*Defined in [`object-0.37.3/src/pe.rs:1101`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1101)*
 
 ### `IMAGE_REL_MIPS_GPREL`
 ```rust
 const IMAGE_REL_MIPS_GPREL: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1102`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1102)*
+*Defined in [`object-0.37.3/src/pe.rs:1102`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1102)*
 
 ### `IMAGE_REL_MIPS_LITERAL`
 ```rust
 const IMAGE_REL_MIPS_LITERAL: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1103`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1103)*
+*Defined in [`object-0.37.3/src/pe.rs:1103`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1103)*
 
 ### `IMAGE_REL_MIPS_SECTION`
 ```rust
 const IMAGE_REL_MIPS_SECTION: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1104`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1104)*
+*Defined in [`object-0.37.3/src/pe.rs:1104`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1104)*
 
 ### `IMAGE_REL_MIPS_SECREL`
 ```rust
 const IMAGE_REL_MIPS_SECREL: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1105`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1105)*
+*Defined in [`object-0.37.3/src/pe.rs:1105`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1105)*
 
 ### `IMAGE_REL_MIPS_SECRELLO`
 ```rust
 const IMAGE_REL_MIPS_SECRELLO: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1107`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1107)*
+*Defined in [`object-0.37.3/src/pe.rs:1107`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1107)*
 
 Low 16-bit section relative reference (used for >32k TLS)
 
@@ -7219,7 +7219,7 @@ Low 16-bit section relative reference (used for >32k TLS)
 const IMAGE_REL_MIPS_SECRELHI: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1109`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1109)*
+*Defined in [`object-0.37.3/src/pe.rs:1109`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1109)*
 
 High 16-bit section relative reference (used for >32k TLS)
 
@@ -7228,7 +7228,7 @@ High 16-bit section relative reference (used for >32k TLS)
 const IMAGE_REL_MIPS_TOKEN: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1111`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1111)*
+*Defined in [`object-0.37.3/src/pe.rs:1111`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1111)*
 
 clr token
 
@@ -7237,147 +7237,147 @@ clr token
 const IMAGE_REL_MIPS_JMPADDR16: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1112`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1112)*
+*Defined in [`object-0.37.3/src/pe.rs:1112`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1112)*
 
 ### `IMAGE_REL_MIPS_REFWORDNB`
 ```rust
 const IMAGE_REL_MIPS_REFWORDNB: u16 = 34u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1113`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1113)*
+*Defined in [`object-0.37.3/src/pe.rs:1113`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1113)*
 
 ### `IMAGE_REL_MIPS_PAIR`
 ```rust
 const IMAGE_REL_MIPS_PAIR: u16 = 37u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1114`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1114)*
+*Defined in [`object-0.37.3/src/pe.rs:1114`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1114)*
 
 ### `IMAGE_REL_ALPHA_ABSOLUTE`
 ```rust
 const IMAGE_REL_ALPHA_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1119`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1119)*
+*Defined in [`object-0.37.3/src/pe.rs:1119`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1119)*
 
 ### `IMAGE_REL_ALPHA_REFLONG`
 ```rust
 const IMAGE_REL_ALPHA_REFLONG: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1120`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1120)*
+*Defined in [`object-0.37.3/src/pe.rs:1120`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1120)*
 
 ### `IMAGE_REL_ALPHA_REFQUAD`
 ```rust
 const IMAGE_REL_ALPHA_REFQUAD: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1121`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1121)*
+*Defined in [`object-0.37.3/src/pe.rs:1121`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1121)*
 
 ### `IMAGE_REL_ALPHA_GPREL32`
 ```rust
 const IMAGE_REL_ALPHA_GPREL32: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1122`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1122)*
+*Defined in [`object-0.37.3/src/pe.rs:1122`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1122)*
 
 ### `IMAGE_REL_ALPHA_LITERAL`
 ```rust
 const IMAGE_REL_ALPHA_LITERAL: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1123`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1123)*
+*Defined in [`object-0.37.3/src/pe.rs:1123`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1123)*
 
 ### `IMAGE_REL_ALPHA_LITUSE`
 ```rust
 const IMAGE_REL_ALPHA_LITUSE: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1124`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1124)*
+*Defined in [`object-0.37.3/src/pe.rs:1124`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1124)*
 
 ### `IMAGE_REL_ALPHA_GPDISP`
 ```rust
 const IMAGE_REL_ALPHA_GPDISP: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1125`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1125)*
+*Defined in [`object-0.37.3/src/pe.rs:1125`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1125)*
 
 ### `IMAGE_REL_ALPHA_BRADDR`
 ```rust
 const IMAGE_REL_ALPHA_BRADDR: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1126`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1126)*
+*Defined in [`object-0.37.3/src/pe.rs:1126`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1126)*
 
 ### `IMAGE_REL_ALPHA_HINT`
 ```rust
 const IMAGE_REL_ALPHA_HINT: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1127`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1127)*
+*Defined in [`object-0.37.3/src/pe.rs:1127`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1127)*
 
 ### `IMAGE_REL_ALPHA_INLINE_REFLONG`
 ```rust
 const IMAGE_REL_ALPHA_INLINE_REFLONG: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1128`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1128)*
+*Defined in [`object-0.37.3/src/pe.rs:1128`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1128)*
 
 ### `IMAGE_REL_ALPHA_REFHI`
 ```rust
 const IMAGE_REL_ALPHA_REFHI: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1129`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1129)*
+*Defined in [`object-0.37.3/src/pe.rs:1129`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1129)*
 
 ### `IMAGE_REL_ALPHA_REFLO`
 ```rust
 const IMAGE_REL_ALPHA_REFLO: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1130`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1130)*
+*Defined in [`object-0.37.3/src/pe.rs:1130`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1130)*
 
 ### `IMAGE_REL_ALPHA_PAIR`
 ```rust
 const IMAGE_REL_ALPHA_PAIR: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1131`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1131)*
+*Defined in [`object-0.37.3/src/pe.rs:1131`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1131)*
 
 ### `IMAGE_REL_ALPHA_MATCH`
 ```rust
 const IMAGE_REL_ALPHA_MATCH: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1132`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1132)*
+*Defined in [`object-0.37.3/src/pe.rs:1132`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1132)*
 
 ### `IMAGE_REL_ALPHA_SECTION`
 ```rust
 const IMAGE_REL_ALPHA_SECTION: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1133`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1133)*
+*Defined in [`object-0.37.3/src/pe.rs:1133`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1133)*
 
 ### `IMAGE_REL_ALPHA_SECREL`
 ```rust
 const IMAGE_REL_ALPHA_SECREL: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1134)*
+*Defined in [`object-0.37.3/src/pe.rs:1134`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1134)*
 
 ### `IMAGE_REL_ALPHA_REFLONGNB`
 ```rust
 const IMAGE_REL_ALPHA_REFLONGNB: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1135`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1135)*
+*Defined in [`object-0.37.3/src/pe.rs:1135`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1135)*
 
 ### `IMAGE_REL_ALPHA_SECRELLO`
 ```rust
 const IMAGE_REL_ALPHA_SECRELLO: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1137`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1137)*
+*Defined in [`object-0.37.3/src/pe.rs:1137`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1137)*
 
 Low 16-bit section relative reference
 
@@ -7386,7 +7386,7 @@ Low 16-bit section relative reference
 const IMAGE_REL_ALPHA_SECRELHI: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1139`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1139)*
+*Defined in [`object-0.37.3/src/pe.rs:1139`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1139)*
 
 High 16-bit section relative reference
 
@@ -7395,7 +7395,7 @@ High 16-bit section relative reference
 const IMAGE_REL_ALPHA_REFQ3: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1141`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1141)*
+*Defined in [`object-0.37.3/src/pe.rs:1141`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1141)*
 
 High 16 bits of 48 bit reference
 
@@ -7404,7 +7404,7 @@ High 16 bits of 48 bit reference
 const IMAGE_REL_ALPHA_REFQ2: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1143`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1143)*
+*Defined in [`object-0.37.3/src/pe.rs:1143`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1143)*
 
 Middle 16 bits of 48 bit reference
 
@@ -7413,7 +7413,7 @@ Middle 16 bits of 48 bit reference
 const IMAGE_REL_ALPHA_REFQ1: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1145`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1145)*
+*Defined in [`object-0.37.3/src/pe.rs:1145`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1145)*
 
 Low 16 bits of 48 bit reference
 
@@ -7422,7 +7422,7 @@ Low 16 bits of 48 bit reference
 const IMAGE_REL_ALPHA_GPRELLO: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1147`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1147)*
+*Defined in [`object-0.37.3/src/pe.rs:1147`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1147)*
 
 Low 16-bit GP relative reference
 
@@ -7431,7 +7431,7 @@ Low 16-bit GP relative reference
 const IMAGE_REL_ALPHA_GPRELHI: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1149`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1149)*
+*Defined in [`object-0.37.3/src/pe.rs:1149`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1149)*
 
 High 16-bit GP relative reference
 
@@ -7440,7 +7440,7 @@ High 16-bit GP relative reference
 const IMAGE_REL_PPC_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1155`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1155)*
+*Defined in [`object-0.37.3/src/pe.rs:1155`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1155)*
 
 NOP
 
@@ -7449,7 +7449,7 @@ NOP
 const IMAGE_REL_PPC_ADDR64: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1157`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1157)*
+*Defined in [`object-0.37.3/src/pe.rs:1157`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1157)*
 
 64-bit address
 
@@ -7458,7 +7458,7 @@ const IMAGE_REL_PPC_ADDR64: u16 = 1u16;
 const IMAGE_REL_PPC_ADDR32: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1159`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1159)*
+*Defined in [`object-0.37.3/src/pe.rs:1159`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1159)*
 
 32-bit address
 
@@ -7467,7 +7467,7 @@ const IMAGE_REL_PPC_ADDR32: u16 = 2u16;
 const IMAGE_REL_PPC_ADDR24: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1161`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1161)*
+*Defined in [`object-0.37.3/src/pe.rs:1161`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1161)*
 
 26-bit address, shifted left 2 (branch absolute)
 
@@ -7476,7 +7476,7 @@ const IMAGE_REL_PPC_ADDR24: u16 = 3u16;
 const IMAGE_REL_PPC_ADDR16: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1163`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1163)*
+*Defined in [`object-0.37.3/src/pe.rs:1163`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1163)*
 
 16-bit address
 
@@ -7485,7 +7485,7 @@ const IMAGE_REL_PPC_ADDR16: u16 = 4u16;
 const IMAGE_REL_PPC_ADDR14: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1165`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1165)*
+*Defined in [`object-0.37.3/src/pe.rs:1165`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1165)*
 
 16-bit address, shifted left 2 (load doubleword)
 
@@ -7494,7 +7494,7 @@ const IMAGE_REL_PPC_ADDR14: u16 = 5u16;
 const IMAGE_REL_PPC_REL24: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1167`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1167)*
+*Defined in [`object-0.37.3/src/pe.rs:1167`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1167)*
 
 26-bit PC-relative offset, shifted left 2 (branch relative)
 
@@ -7503,7 +7503,7 @@ const IMAGE_REL_PPC_REL24: u16 = 6u16;
 const IMAGE_REL_PPC_REL14: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1169`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1169)*
+*Defined in [`object-0.37.3/src/pe.rs:1169`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1169)*
 
 16-bit PC-relative offset, shifted left 2 (br cond relative)
 
@@ -7512,7 +7512,7 @@ const IMAGE_REL_PPC_REL14: u16 = 7u16;
 const IMAGE_REL_PPC_TOCREL16: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1171`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1171)*
+*Defined in [`object-0.37.3/src/pe.rs:1171`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1171)*
 
 16-bit offset from TOC base
 
@@ -7521,7 +7521,7 @@ const IMAGE_REL_PPC_TOCREL16: u16 = 8u16;
 const IMAGE_REL_PPC_TOCREL14: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1173`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1173)*
+*Defined in [`object-0.37.3/src/pe.rs:1173`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1173)*
 
 16-bit offset from TOC base, shifted left 2 (load doubleword)
 
@@ -7530,7 +7530,7 @@ const IMAGE_REL_PPC_TOCREL14: u16 = 9u16;
 const IMAGE_REL_PPC_ADDR32NB: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1176`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1176)*
+*Defined in [`object-0.37.3/src/pe.rs:1176`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1176)*
 
 32-bit addr w/o image base
 
@@ -7539,7 +7539,7 @@ const IMAGE_REL_PPC_ADDR32NB: u16 = 10u16;
 const IMAGE_REL_PPC_SECREL: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1178`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1178)*
+*Defined in [`object-0.37.3/src/pe.rs:1178`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1178)*
 
 va of containing section (as in an image sectionhdr)
 
@@ -7548,7 +7548,7 @@ va of containing section (as in an image sectionhdr)
 const IMAGE_REL_PPC_SECTION: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1180`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1180)*
+*Defined in [`object-0.37.3/src/pe.rs:1180`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1180)*
 
 sectionheader number
 
@@ -7557,7 +7557,7 @@ sectionheader number
 const IMAGE_REL_PPC_IFGLUE: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1182`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1182)*
+*Defined in [`object-0.37.3/src/pe.rs:1182`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1182)*
 
 substitute TOC restore instruction iff symbol is glue code
 
@@ -7566,7 +7566,7 @@ substitute TOC restore instruction iff symbol is glue code
 const IMAGE_REL_PPC_IMGLUE: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1184`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1184)*
+*Defined in [`object-0.37.3/src/pe.rs:1184`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1184)*
 
 symbol is glue code; virtual address is TOC restore instruction
 
@@ -7575,7 +7575,7 @@ symbol is glue code; virtual address is TOC restore instruction
 const IMAGE_REL_PPC_SECREL16: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1186`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1186)*
+*Defined in [`object-0.37.3/src/pe.rs:1186`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1186)*
 
 va of containing section (limited to 16 bits)
 
@@ -7584,28 +7584,28 @@ va of containing section (limited to 16 bits)
 const IMAGE_REL_PPC_REFHI: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1187`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1187)*
+*Defined in [`object-0.37.3/src/pe.rs:1187`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1187)*
 
 ### `IMAGE_REL_PPC_REFLO`
 ```rust
 const IMAGE_REL_PPC_REFLO: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1188`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1188)*
+*Defined in [`object-0.37.3/src/pe.rs:1188`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1188)*
 
 ### `IMAGE_REL_PPC_PAIR`
 ```rust
 const IMAGE_REL_PPC_PAIR: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1189`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1189)*
+*Defined in [`object-0.37.3/src/pe.rs:1189`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1189)*
 
 ### `IMAGE_REL_PPC_SECRELLO`
 ```rust
 const IMAGE_REL_PPC_SECRELLO: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1191`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1191)*
+*Defined in [`object-0.37.3/src/pe.rs:1191`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1191)*
 
 Low 16-bit section relative reference (used for >32k TLS)
 
@@ -7614,7 +7614,7 @@ Low 16-bit section relative reference (used for >32k TLS)
 const IMAGE_REL_PPC_SECRELHI: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1193`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1193)*
+*Defined in [`object-0.37.3/src/pe.rs:1193`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1193)*
 
 High 16-bit section relative reference (used for >32k TLS)
 
@@ -7623,14 +7623,14 @@ High 16-bit section relative reference (used for >32k TLS)
 const IMAGE_REL_PPC_GPREL: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1194`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1194)*
+*Defined in [`object-0.37.3/src/pe.rs:1194`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1194)*
 
 ### `IMAGE_REL_PPC_TOKEN`
 ```rust
 const IMAGE_REL_PPC_TOKEN: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1196`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1196)*
+*Defined in [`object-0.37.3/src/pe.rs:1196`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1196)*
 
 clr token
 
@@ -7639,7 +7639,7 @@ clr token
 const IMAGE_REL_PPC_TYPEMASK: u16 = 255u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1199`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1199)*
+*Defined in [`object-0.37.3/src/pe.rs:1199`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1199)*
 
 mask to isolate above values in IMAGE_RELOCATION.Type
 
@@ -7648,7 +7648,7 @@ mask to isolate above values in IMAGE_RELOCATION.Type
 const IMAGE_REL_PPC_NEG: u16 = 256u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1204`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1204)*
+*Defined in [`object-0.37.3/src/pe.rs:1204`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1204)*
 
 subtract reloc value rather than adding it
 
@@ -7657,7 +7657,7 @@ subtract reloc value rather than adding it
 const IMAGE_REL_PPC_BRTAKEN: u16 = 512u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1206`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1206)*
+*Defined in [`object-0.37.3/src/pe.rs:1206`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1206)*
 
 fix branch prediction bit to predict branch taken
 
@@ -7666,7 +7666,7 @@ fix branch prediction bit to predict branch taken
 const IMAGE_REL_PPC_BRNTAKEN: u16 = 1_024u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1208`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1208)*
+*Defined in [`object-0.37.3/src/pe.rs:1208`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1208)*
 
 fix branch prediction bit to predict branch not taken
 
@@ -7675,7 +7675,7 @@ fix branch prediction bit to predict branch not taken
 const IMAGE_REL_PPC_TOCDEFN: u16 = 2_048u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1210`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1210)*
+*Defined in [`object-0.37.3/src/pe.rs:1210`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1210)*
 
 toc slot defined in file (or, data in toc)
 
@@ -7684,7 +7684,7 @@ toc slot defined in file (or, data in toc)
 const IMAGE_REL_SH3_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1216`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1216)*
+*Defined in [`object-0.37.3/src/pe.rs:1216`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1216)*
 
 No relocation
 
@@ -7693,7 +7693,7 @@ No relocation
 const IMAGE_REL_SH3_DIRECT16: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1218`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1218)*
+*Defined in [`object-0.37.3/src/pe.rs:1218`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1218)*
 
 16 bit direct
 
@@ -7702,7 +7702,7 @@ const IMAGE_REL_SH3_DIRECT16: u16 = 1u16;
 const IMAGE_REL_SH3_DIRECT32: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1220`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1220)*
+*Defined in [`object-0.37.3/src/pe.rs:1220`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1220)*
 
 32 bit direct
 
@@ -7711,7 +7711,7 @@ const IMAGE_REL_SH3_DIRECT32: u16 = 2u16;
 const IMAGE_REL_SH3_DIRECT8: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1222`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1222)*
+*Defined in [`object-0.37.3/src/pe.rs:1222`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1222)*
 
 8 bit direct, -128..255
 
@@ -7720,7 +7720,7 @@ const IMAGE_REL_SH3_DIRECT8: u16 = 3u16;
 const IMAGE_REL_SH3_DIRECT8_WORD: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1224`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1224)*
+*Defined in [`object-0.37.3/src/pe.rs:1224`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1224)*
 
 8 bit direct .W (0 ext.)
 
@@ -7729,7 +7729,7 @@ const IMAGE_REL_SH3_DIRECT8_WORD: u16 = 4u16;
 const IMAGE_REL_SH3_DIRECT8_LONG: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1226`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1226)*
+*Defined in [`object-0.37.3/src/pe.rs:1226`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1226)*
 
 8 bit direct .L (0 ext.)
 
@@ -7738,7 +7738,7 @@ const IMAGE_REL_SH3_DIRECT8_LONG: u16 = 5u16;
 const IMAGE_REL_SH3_DIRECT4: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1228`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1228)*
+*Defined in [`object-0.37.3/src/pe.rs:1228`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1228)*
 
 4 bit direct (0 ext.)
 
@@ -7747,7 +7747,7 @@ const IMAGE_REL_SH3_DIRECT4: u16 = 6u16;
 const IMAGE_REL_SH3_DIRECT4_WORD: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1230`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1230)*
+*Defined in [`object-0.37.3/src/pe.rs:1230`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1230)*
 
 4 bit direct .W (0 ext.)
 
@@ -7756,7 +7756,7 @@ const IMAGE_REL_SH3_DIRECT4_WORD: u16 = 7u16;
 const IMAGE_REL_SH3_DIRECT4_LONG: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1232`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1232)*
+*Defined in [`object-0.37.3/src/pe.rs:1232`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1232)*
 
 4 bit direct .L (0 ext.)
 
@@ -7765,7 +7765,7 @@ const IMAGE_REL_SH3_DIRECT4_LONG: u16 = 8u16;
 const IMAGE_REL_SH3_PCREL8_WORD: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1234`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1234)*
+*Defined in [`object-0.37.3/src/pe.rs:1234`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1234)*
 
 8 bit PC relative .W
 
@@ -7774,7 +7774,7 @@ const IMAGE_REL_SH3_PCREL8_WORD: u16 = 9u16;
 const IMAGE_REL_SH3_PCREL8_LONG: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1236`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1236)*
+*Defined in [`object-0.37.3/src/pe.rs:1236`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1236)*
 
 8 bit PC relative .L
 
@@ -7783,7 +7783,7 @@ const IMAGE_REL_SH3_PCREL8_LONG: u16 = 10u16;
 const IMAGE_REL_SH3_PCREL12_WORD: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1238`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1238)*
+*Defined in [`object-0.37.3/src/pe.rs:1238`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1238)*
 
 12 LSB PC relative .W
 
@@ -7792,7 +7792,7 @@ const IMAGE_REL_SH3_PCREL12_WORD: u16 = 11u16;
 const IMAGE_REL_SH3_STARTOF_SECTION: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1240`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1240)*
+*Defined in [`object-0.37.3/src/pe.rs:1240`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1240)*
 
 Start of EXE section
 
@@ -7801,7 +7801,7 @@ Start of EXE section
 const IMAGE_REL_SH3_SIZEOF_SECTION: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1242`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1242)*
+*Defined in [`object-0.37.3/src/pe.rs:1242`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1242)*
 
 Size of EXE section
 
@@ -7810,7 +7810,7 @@ Size of EXE section
 const IMAGE_REL_SH3_SECTION: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1244`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1244)*
+*Defined in [`object-0.37.3/src/pe.rs:1244`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1244)*
 
 Section table index
 
@@ -7819,7 +7819,7 @@ Section table index
 const IMAGE_REL_SH3_SECREL: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1246`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1246)*
+*Defined in [`object-0.37.3/src/pe.rs:1246`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1246)*
 
 Offset within section
 
@@ -7828,7 +7828,7 @@ Offset within section
 const IMAGE_REL_SH3_DIRECT32_NB: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1248`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1248)*
+*Defined in [`object-0.37.3/src/pe.rs:1248`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1248)*
 
 32 bit direct not based
 
@@ -7837,7 +7837,7 @@ const IMAGE_REL_SH3_DIRECT32_NB: u16 = 16u16;
 const IMAGE_REL_SH3_GPREL4_LONG: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1250`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1250)*
+*Defined in [`object-0.37.3/src/pe.rs:1250`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1250)*
 
 GP-relative addressing
 
@@ -7846,7 +7846,7 @@ GP-relative addressing
 const IMAGE_REL_SH3_TOKEN: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1252`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1252)*
+*Defined in [`object-0.37.3/src/pe.rs:1252`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1252)*
 
 clr token
 
@@ -7855,7 +7855,7 @@ clr token
 const IMAGE_REL_SHM_PCRELPT: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1255`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1255)*
+*Defined in [`object-0.37.3/src/pe.rs:1255`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1255)*
 
 Offset from current instruction in longwords
 if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB
@@ -7865,7 +7865,7 @@ if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB
 const IMAGE_REL_SHM_REFLO: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1257`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1257)*
+*Defined in [`object-0.37.3/src/pe.rs:1257`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1257)*
 
 Low bits of 32-bit address
 
@@ -7874,7 +7874,7 @@ Low bits of 32-bit address
 const IMAGE_REL_SHM_REFHALF: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1259`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1259)*
+*Defined in [`object-0.37.3/src/pe.rs:1259`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1259)*
 
 High bits of 32-bit address
 
@@ -7883,7 +7883,7 @@ High bits of 32-bit address
 const IMAGE_REL_SHM_RELLO: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1261`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1261)*
+*Defined in [`object-0.37.3/src/pe.rs:1261`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1261)*
 
 Low bits of relative reference
 
@@ -7892,7 +7892,7 @@ Low bits of relative reference
 const IMAGE_REL_SHM_RELHALF: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1263`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1263)*
+*Defined in [`object-0.37.3/src/pe.rs:1263`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1263)*
 
 High bits of relative reference
 
@@ -7901,7 +7901,7 @@ High bits of relative reference
 const IMAGE_REL_SHM_PAIR: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1265`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1265)*
+*Defined in [`object-0.37.3/src/pe.rs:1265`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1265)*
 
 offset operand for relocation
 
@@ -7910,7 +7910,7 @@ offset operand for relocation
 const IMAGE_REL_SH_NOMODE: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1268`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1268)*
+*Defined in [`object-0.37.3/src/pe.rs:1268`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1268)*
 
 relocation ignores section mode
 
@@ -7919,7 +7919,7 @@ relocation ignores section mode
 const IMAGE_REL_ARM_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1271`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1271)*
+*Defined in [`object-0.37.3/src/pe.rs:1271`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1271)*
 
 No relocation required
 
@@ -7928,7 +7928,7 @@ No relocation required
 const IMAGE_REL_ARM_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1273`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1273)*
+*Defined in [`object-0.37.3/src/pe.rs:1273`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1273)*
 
 32 bit address
 
@@ -7937,7 +7937,7 @@ const IMAGE_REL_ARM_ADDR32: u16 = 1u16;
 const IMAGE_REL_ARM_ADDR32NB: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1275`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1275)*
+*Defined in [`object-0.37.3/src/pe.rs:1275`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1275)*
 
 32 bit address w/o image base
 
@@ -7946,7 +7946,7 @@ const IMAGE_REL_ARM_ADDR32NB: u16 = 2u16;
 const IMAGE_REL_ARM_BRANCH24: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1277`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1277)*
+*Defined in [`object-0.37.3/src/pe.rs:1277`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1277)*
 
 24 bit offset << 2 & sign ext.
 
@@ -7955,7 +7955,7 @@ const IMAGE_REL_ARM_BRANCH24: u16 = 3u16;
 const IMAGE_REL_ARM_BRANCH11: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1279`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1279)*
+*Defined in [`object-0.37.3/src/pe.rs:1279`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1279)*
 
 Thumb: 2 11 bit offsets
 
@@ -7964,7 +7964,7 @@ Thumb: 2 11 bit offsets
 const IMAGE_REL_ARM_TOKEN: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1281`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1281)*
+*Defined in [`object-0.37.3/src/pe.rs:1281`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1281)*
 
 clr token
 
@@ -7973,7 +7973,7 @@ clr token
 const IMAGE_REL_ARM_GPREL12: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1283`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1283)*
+*Defined in [`object-0.37.3/src/pe.rs:1283`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1283)*
 
 GP-relative addressing (ARM)
 
@@ -7982,7 +7982,7 @@ GP-relative addressing (ARM)
 const IMAGE_REL_ARM_GPREL7: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1285`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1285)*
+*Defined in [`object-0.37.3/src/pe.rs:1285`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1285)*
 
 GP-relative addressing (Thumb)
 
@@ -7991,21 +7991,21 @@ GP-relative addressing (Thumb)
 const IMAGE_REL_ARM_BLX24: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1286`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1286)*
+*Defined in [`object-0.37.3/src/pe.rs:1286`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1286)*
 
 ### `IMAGE_REL_ARM_BLX11`
 ```rust
 const IMAGE_REL_ARM_BLX11: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1287`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1287)*
+*Defined in [`object-0.37.3/src/pe.rs:1287`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1287)*
 
 ### `IMAGE_REL_ARM_REL32`
 ```rust
 const IMAGE_REL_ARM_REL32: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1289`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1289)*
+*Defined in [`object-0.37.3/src/pe.rs:1289`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1289)*
 
 32-bit relative address from byte following reloc
 
@@ -8014,7 +8014,7 @@ const IMAGE_REL_ARM_REL32: u16 = 10u16;
 const IMAGE_REL_ARM_SECTION: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1291`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1291)*
+*Defined in [`object-0.37.3/src/pe.rs:1291`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1291)*
 
 Section table index
 
@@ -8023,7 +8023,7 @@ Section table index
 const IMAGE_REL_ARM_SECREL: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1293`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1293)*
+*Defined in [`object-0.37.3/src/pe.rs:1293`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1293)*
 
 Offset within section
 
@@ -8032,7 +8032,7 @@ Offset within section
 const IMAGE_REL_ARM_MOV32A: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1295`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1295)*
+*Defined in [`object-0.37.3/src/pe.rs:1295`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1295)*
 
 ARM: MOVW/MOVT
 
@@ -8041,7 +8041,7 @@ ARM: MOVW/MOVT
 const IMAGE_REL_ARM_MOV32: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1297`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1297)*
+*Defined in [`object-0.37.3/src/pe.rs:1297`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1297)*
 
 ARM: MOVW/MOVT (deprecated)
 
@@ -8050,7 +8050,7 @@ ARM: MOVW/MOVT (deprecated)
 const IMAGE_REL_ARM_MOV32T: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1299`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1299)*
+*Defined in [`object-0.37.3/src/pe.rs:1299`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1299)*
 
 Thumb: MOVW/MOVT
 
@@ -8059,7 +8059,7 @@ Thumb: MOVW/MOVT
 const IMAGE_REL_THUMB_MOV32: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1301`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1301)*
+*Defined in [`object-0.37.3/src/pe.rs:1301`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1301)*
 
 Thumb: MOVW/MOVT (deprecated)
 
@@ -8068,7 +8068,7 @@ Thumb: MOVW/MOVT (deprecated)
 const IMAGE_REL_ARM_BRANCH20T: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1303`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1303)*
+*Defined in [`object-0.37.3/src/pe.rs:1303`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1303)*
 
 Thumb: 32-bit conditional B
 
@@ -8077,7 +8077,7 @@ Thumb: 32-bit conditional B
 const IMAGE_REL_THUMB_BRANCH20: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1305`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1305)*
+*Defined in [`object-0.37.3/src/pe.rs:1305`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1305)*
 
 Thumb: 32-bit conditional B (deprecated)
 
@@ -8086,7 +8086,7 @@ Thumb: 32-bit conditional B (deprecated)
 const IMAGE_REL_ARM_BRANCH24T: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1307`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1307)*
+*Defined in [`object-0.37.3/src/pe.rs:1307`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1307)*
 
 Thumb: 32-bit B or BL
 
@@ -8095,7 +8095,7 @@ Thumb: 32-bit B or BL
 const IMAGE_REL_THUMB_BRANCH24: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1309`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1309)*
+*Defined in [`object-0.37.3/src/pe.rs:1309`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1309)*
 
 Thumb: 32-bit B or BL (deprecated)
 
@@ -8104,7 +8104,7 @@ Thumb: 32-bit B or BL (deprecated)
 const IMAGE_REL_ARM_BLX23T: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1311`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1311)*
+*Defined in [`object-0.37.3/src/pe.rs:1311`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1311)*
 
 Thumb: BLX immediate
 
@@ -8113,7 +8113,7 @@ Thumb: BLX immediate
 const IMAGE_REL_THUMB_BLX23: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1313`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1313)*
+*Defined in [`object-0.37.3/src/pe.rs:1313`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1313)*
 
 Thumb: BLX immediate (deprecated)
 
@@ -8122,77 +8122,77 @@ Thumb: BLX immediate (deprecated)
 const IMAGE_REL_AM_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1315`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1315)*
+*Defined in [`object-0.37.3/src/pe.rs:1315`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1315)*
 
 ### `IMAGE_REL_AM_ADDR32`
 ```rust
 const IMAGE_REL_AM_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1316`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1316)*
+*Defined in [`object-0.37.3/src/pe.rs:1316`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1316)*
 
 ### `IMAGE_REL_AM_ADDR32NB`
 ```rust
 const IMAGE_REL_AM_ADDR32NB: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1317`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1317)*
+*Defined in [`object-0.37.3/src/pe.rs:1317`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1317)*
 
 ### `IMAGE_REL_AM_CALL32`
 ```rust
 const IMAGE_REL_AM_CALL32: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1318`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1318)*
+*Defined in [`object-0.37.3/src/pe.rs:1318`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1318)*
 
 ### `IMAGE_REL_AM_FUNCINFO`
 ```rust
 const IMAGE_REL_AM_FUNCINFO: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1319`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1319)*
+*Defined in [`object-0.37.3/src/pe.rs:1319`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1319)*
 
 ### `IMAGE_REL_AM_REL32_1`
 ```rust
 const IMAGE_REL_AM_REL32_1: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1320`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1320)*
+*Defined in [`object-0.37.3/src/pe.rs:1320`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1320)*
 
 ### `IMAGE_REL_AM_REL32_2`
 ```rust
 const IMAGE_REL_AM_REL32_2: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1321`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1321)*
+*Defined in [`object-0.37.3/src/pe.rs:1321`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1321)*
 
 ### `IMAGE_REL_AM_SECREL`
 ```rust
 const IMAGE_REL_AM_SECREL: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1322`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1322)*
+*Defined in [`object-0.37.3/src/pe.rs:1322`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1322)*
 
 ### `IMAGE_REL_AM_SECTION`
 ```rust
 const IMAGE_REL_AM_SECTION: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1323`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1323)*
+*Defined in [`object-0.37.3/src/pe.rs:1323`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1323)*
 
 ### `IMAGE_REL_AM_TOKEN`
 ```rust
 const IMAGE_REL_AM_TOKEN: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1324`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1324)*
+*Defined in [`object-0.37.3/src/pe.rs:1324`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1324)*
 
 ### `IMAGE_REL_ARM64_ABSOLUTE`
 ```rust
 const IMAGE_REL_ARM64_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1331`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1331)*
+*Defined in [`object-0.37.3/src/pe.rs:1331`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1331)*
 
 No relocation required
 
@@ -8201,7 +8201,7 @@ No relocation required
 const IMAGE_REL_ARM64_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1333`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1333)*
+*Defined in [`object-0.37.3/src/pe.rs:1333`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1333)*
 
 32 bit address. Review! do we need it?
 
@@ -8210,7 +8210,7 @@ const IMAGE_REL_ARM64_ADDR32: u16 = 1u16;
 const IMAGE_REL_ARM64_ADDR32NB: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1335`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1335)*
+*Defined in [`object-0.37.3/src/pe.rs:1335`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1335)*
 
 32 bit address w/o image base (RVA: for Data/PData/XData)
 
@@ -8219,7 +8219,7 @@ const IMAGE_REL_ARM64_ADDR32NB: u16 = 2u16;
 const IMAGE_REL_ARM64_BRANCH26: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1337`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1337)*
+*Defined in [`object-0.37.3/src/pe.rs:1337`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1337)*
 
 26 bit offset << 2 & sign ext. for B & BL
 
@@ -8228,7 +8228,7 @@ const IMAGE_REL_ARM64_BRANCH26: u16 = 3u16;
 const IMAGE_REL_ARM64_PAGEBASE_REL21: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1339`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1339)*
+*Defined in [`object-0.37.3/src/pe.rs:1339`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1339)*
 
 ADRP
 
@@ -8237,7 +8237,7 @@ ADRP
 const IMAGE_REL_ARM64_REL21: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1341`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1341)*
+*Defined in [`object-0.37.3/src/pe.rs:1341`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1341)*
 
 ADR
 
@@ -8246,7 +8246,7 @@ ADR
 const IMAGE_REL_ARM64_PAGEOFFSET_12A: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1343)*
+*Defined in [`object-0.37.3/src/pe.rs:1343`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1343)*
 
 ADD/ADDS (immediate) with zero shift, for page offset
 
@@ -8255,7 +8255,7 @@ ADD/ADDS (immediate) with zero shift, for page offset
 const IMAGE_REL_ARM64_PAGEOFFSET_12L: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1345`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1345)*
+*Defined in [`object-0.37.3/src/pe.rs:1345`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1345)*
 
 LDR (indexed, unsigned immediate), for page offset
 
@@ -8264,7 +8264,7 @@ LDR (indexed, unsigned immediate), for page offset
 const IMAGE_REL_ARM64_SECREL: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1347`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1347)*
+*Defined in [`object-0.37.3/src/pe.rs:1347`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1347)*
 
 Offset within section
 
@@ -8273,7 +8273,7 @@ Offset within section
 const IMAGE_REL_ARM64_SECREL_LOW12A: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1349`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1349)*
+*Defined in [`object-0.37.3/src/pe.rs:1349`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1349)*
 
 ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset
 
@@ -8282,7 +8282,7 @@ ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset
 const IMAGE_REL_ARM64_SECREL_HIGH12A: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1351`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1351)*
+*Defined in [`object-0.37.3/src/pe.rs:1351`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1351)*
 
 ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset
 
@@ -8291,7 +8291,7 @@ ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset
 const IMAGE_REL_ARM64_SECREL_LOW12L: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1353`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1353)*
+*Defined in [`object-0.37.3/src/pe.rs:1353`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1353)*
 
 LDR (indexed, unsigned immediate), for bit 0:11 of section offset
 
@@ -8300,14 +8300,14 @@ LDR (indexed, unsigned immediate), for bit 0:11 of section offset
 const IMAGE_REL_ARM64_TOKEN: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1354`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1354)*
+*Defined in [`object-0.37.3/src/pe.rs:1354`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1354)*
 
 ### `IMAGE_REL_ARM64_SECTION`
 ```rust
 const IMAGE_REL_ARM64_SECTION: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1356`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1356)*
+*Defined in [`object-0.37.3/src/pe.rs:1356`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1356)*
 
 Section table index
 
@@ -8316,7 +8316,7 @@ Section table index
 const IMAGE_REL_ARM64_ADDR64: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1358`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1358)*
+*Defined in [`object-0.37.3/src/pe.rs:1358`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1358)*
 
 64 bit address
 
@@ -8325,7 +8325,7 @@ const IMAGE_REL_ARM64_ADDR64: u16 = 14u16;
 const IMAGE_REL_ARM64_BRANCH19: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1360`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1360)*
+*Defined in [`object-0.37.3/src/pe.rs:1360`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1360)*
 
 19 bit offset << 2 & sign ext. for conditional B
 
@@ -8334,7 +8334,7 @@ const IMAGE_REL_ARM64_BRANCH19: u16 = 15u16;
 const IMAGE_REL_ARM64_BRANCH14: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1362`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1362)*
+*Defined in [`object-0.37.3/src/pe.rs:1362`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1362)*
 
 TBZ/TBNZ
 
@@ -8343,7 +8343,7 @@ TBZ/TBNZ
 const IMAGE_REL_ARM64_REL32: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1364`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1364)*
+*Defined in [`object-0.37.3/src/pe.rs:1364`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1364)*
 
 32-bit relative address from byte following reloc
 
@@ -8352,7 +8352,7 @@ const IMAGE_REL_ARM64_REL32: u16 = 17u16;
 const IMAGE_REL_AMD64_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1370`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1370)*
+*Defined in [`object-0.37.3/src/pe.rs:1370`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1370)*
 
 Reference is absolute, no relocation is necessary
 
@@ -8361,7 +8361,7 @@ Reference is absolute, no relocation is necessary
 const IMAGE_REL_AMD64_ADDR64: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1372`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1372)*
+*Defined in [`object-0.37.3/src/pe.rs:1372`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1372)*
 
 64-bit address (VA).
 
@@ -8370,7 +8370,7 @@ const IMAGE_REL_AMD64_ADDR64: u16 = 1u16;
 const IMAGE_REL_AMD64_ADDR32: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1374`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1374)*
+*Defined in [`object-0.37.3/src/pe.rs:1374`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1374)*
 
 32-bit address (VA).
 
@@ -8379,7 +8379,7 @@ const IMAGE_REL_AMD64_ADDR32: u16 = 2u16;
 const IMAGE_REL_AMD64_ADDR32NB: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1376`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1376)*
+*Defined in [`object-0.37.3/src/pe.rs:1376`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1376)*
 
 32-bit address w/o image base (RVA).
 
@@ -8388,7 +8388,7 @@ const IMAGE_REL_AMD64_ADDR32NB: u16 = 3u16;
 const IMAGE_REL_AMD64_REL32: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1378`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1378)*
+*Defined in [`object-0.37.3/src/pe.rs:1378`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1378)*
 
 32-bit relative address from byte following reloc
 
@@ -8397,7 +8397,7 @@ const IMAGE_REL_AMD64_REL32: u16 = 4u16;
 const IMAGE_REL_AMD64_REL32_1: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1380`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1380)*
+*Defined in [`object-0.37.3/src/pe.rs:1380`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1380)*
 
 32-bit relative address from byte distance 1 from reloc
 
@@ -8406,7 +8406,7 @@ const IMAGE_REL_AMD64_REL32_1: u16 = 5u16;
 const IMAGE_REL_AMD64_REL32_2: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1382`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1382)*
+*Defined in [`object-0.37.3/src/pe.rs:1382`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1382)*
 
 32-bit relative address from byte distance 2 from reloc
 
@@ -8415,7 +8415,7 @@ const IMAGE_REL_AMD64_REL32_2: u16 = 6u16;
 const IMAGE_REL_AMD64_REL32_3: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1384`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1384)*
+*Defined in [`object-0.37.3/src/pe.rs:1384`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1384)*
 
 32-bit relative address from byte distance 3 from reloc
 
@@ -8424,7 +8424,7 @@ const IMAGE_REL_AMD64_REL32_3: u16 = 7u16;
 const IMAGE_REL_AMD64_REL32_4: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1386`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1386)*
+*Defined in [`object-0.37.3/src/pe.rs:1386`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1386)*
 
 32-bit relative address from byte distance 4 from reloc
 
@@ -8433,7 +8433,7 @@ const IMAGE_REL_AMD64_REL32_4: u16 = 8u16;
 const IMAGE_REL_AMD64_REL32_5: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1388`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1388)*
+*Defined in [`object-0.37.3/src/pe.rs:1388`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1388)*
 
 32-bit relative address from byte distance 5 from reloc
 
@@ -8442,7 +8442,7 @@ const IMAGE_REL_AMD64_REL32_5: u16 = 9u16;
 const IMAGE_REL_AMD64_SECTION: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1390`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1390)*
+*Defined in [`object-0.37.3/src/pe.rs:1390`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1390)*
 
 Section index
 
@@ -8451,7 +8451,7 @@ Section index
 const IMAGE_REL_AMD64_SECREL: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1392`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1392)*
+*Defined in [`object-0.37.3/src/pe.rs:1392`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1392)*
 
 32 bit offset from base of section containing target
 
@@ -8460,7 +8460,7 @@ const IMAGE_REL_AMD64_SECREL: u16 = 11u16;
 const IMAGE_REL_AMD64_SECREL7: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1394`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1394)*
+*Defined in [`object-0.37.3/src/pe.rs:1394`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1394)*
 
 7 bit unsigned offset from base of section containing target
 
@@ -8469,7 +8469,7 @@ const IMAGE_REL_AMD64_SECREL7: u16 = 12u16;
 const IMAGE_REL_AMD64_TOKEN: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1396`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1396)*
+*Defined in [`object-0.37.3/src/pe.rs:1396`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1396)*
 
 32 bit metadata token
 
@@ -8478,7 +8478,7 @@ const IMAGE_REL_AMD64_TOKEN: u16 = 13u16;
 const IMAGE_REL_AMD64_SREL32: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1398`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1398)*
+*Defined in [`object-0.37.3/src/pe.rs:1398`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1398)*
 
 32 bit signed span-dependent value emitted into object
 
@@ -8487,14 +8487,14 @@ const IMAGE_REL_AMD64_SREL32: u16 = 14u16;
 const IMAGE_REL_AMD64_PAIR: u16 = 15u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1399`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1399)*
+*Defined in [`object-0.37.3/src/pe.rs:1399`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1399)*
 
 ### `IMAGE_REL_AMD64_SSPAN32`
 ```rust
 const IMAGE_REL_AMD64_SSPAN32: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1401`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1401)*
+*Defined in [`object-0.37.3/src/pe.rs:1401`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1401)*
 
 32 bit signed span-dependent value applied at link time
 
@@ -8503,14 +8503,14 @@ const IMAGE_REL_AMD64_SSPAN32: u16 = 16u16;
 const IMAGE_REL_AMD64_EHANDLER: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1402`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1402)*
+*Defined in [`object-0.37.3/src/pe.rs:1402`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1402)*
 
 ### `IMAGE_REL_AMD64_IMPORT_BR`
 ```rust
 const IMAGE_REL_AMD64_IMPORT_BR: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1404`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1404)*
+*Defined in [`object-0.37.3/src/pe.rs:1404`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1404)*
 
 Indirect branch to an import
 
@@ -8519,7 +8519,7 @@ Indirect branch to an import
 const IMAGE_REL_AMD64_IMPORT_CALL: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1406`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1406)*
+*Defined in [`object-0.37.3/src/pe.rs:1406`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1406)*
 
 Indirect call to an import
 
@@ -8528,7 +8528,7 @@ Indirect call to an import
 const IMAGE_REL_AMD64_CFG_BR: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1408`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1408)*
+*Defined in [`object-0.37.3/src/pe.rs:1408`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1408)*
 
 Indirect branch to a CFG check
 
@@ -8537,7 +8537,7 @@ Indirect branch to a CFG check
 const IMAGE_REL_AMD64_CFG_BR_REX: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1410`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1410)*
+*Defined in [`object-0.37.3/src/pe.rs:1410`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1410)*
 
 Indirect branch to a CFG check, with REX.W prefix
 
@@ -8546,7 +8546,7 @@ Indirect branch to a CFG check, with REX.W prefix
 const IMAGE_REL_AMD64_CFG_CALL: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1412`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1412)*
+*Defined in [`object-0.37.3/src/pe.rs:1412`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1412)*
 
 Indirect call to a CFG check
 
@@ -8555,7 +8555,7 @@ Indirect call to a CFG check
 const IMAGE_REL_AMD64_INDIR_BR: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1414`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1414)*
+*Defined in [`object-0.37.3/src/pe.rs:1414`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1414)*
 
 Indirect branch to a target in RAX (no CFG)
 
@@ -8564,7 +8564,7 @@ Indirect branch to a target in RAX (no CFG)
 const IMAGE_REL_AMD64_INDIR_BR_REX: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1416`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1416)*
+*Defined in [`object-0.37.3/src/pe.rs:1416`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1416)*
 
 Indirect branch to a target in RAX, with REX.W prefix (no CFG)
 
@@ -8573,7 +8573,7 @@ Indirect branch to a target in RAX, with REX.W prefix (no CFG)
 const IMAGE_REL_AMD64_INDIR_CALL: u16 = 25u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1418`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1418)*
+*Defined in [`object-0.37.3/src/pe.rs:1418`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1418)*
 
 Indirect call to a target in RAX (no CFG)
 
@@ -8582,7 +8582,7 @@ Indirect call to a target in RAX (no CFG)
 const IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1420`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1420)*
+*Defined in [`object-0.37.3/src/pe.rs:1420`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1420)*
 
 Indirect branch for a switch table using Reg 0 (RAX)
 
@@ -8591,7 +8591,7 @@ Indirect branch for a switch table using Reg 0 (RAX)
 const IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST: u16 = 47u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1422`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1422)*
+*Defined in [`object-0.37.3/src/pe.rs:1422`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1422)*
 
 Indirect branch for a switch table using Reg 15 (R15)
 
@@ -8600,147 +8600,147 @@ Indirect branch for a switch table using Reg 15 (R15)
 const IMAGE_REL_IA64_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1427`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1427)*
+*Defined in [`object-0.37.3/src/pe.rs:1427`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1427)*
 
 ### `IMAGE_REL_IA64_IMM14`
 ```rust
 const IMAGE_REL_IA64_IMM14: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1428`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1428)*
+*Defined in [`object-0.37.3/src/pe.rs:1428`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1428)*
 
 ### `IMAGE_REL_IA64_IMM22`
 ```rust
 const IMAGE_REL_IA64_IMM22: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1429`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1429)*
+*Defined in [`object-0.37.3/src/pe.rs:1429`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1429)*
 
 ### `IMAGE_REL_IA64_IMM64`
 ```rust
 const IMAGE_REL_IA64_IMM64: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1430`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1430)*
+*Defined in [`object-0.37.3/src/pe.rs:1430`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1430)*
 
 ### `IMAGE_REL_IA64_DIR32`
 ```rust
 const IMAGE_REL_IA64_DIR32: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1431`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1431)*
+*Defined in [`object-0.37.3/src/pe.rs:1431`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1431)*
 
 ### `IMAGE_REL_IA64_DIR64`
 ```rust
 const IMAGE_REL_IA64_DIR64: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1432`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1432)*
+*Defined in [`object-0.37.3/src/pe.rs:1432`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1432)*
 
 ### `IMAGE_REL_IA64_PCREL21B`
 ```rust
 const IMAGE_REL_IA64_PCREL21B: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1433`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1433)*
+*Defined in [`object-0.37.3/src/pe.rs:1433`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1433)*
 
 ### `IMAGE_REL_IA64_PCREL21M`
 ```rust
 const IMAGE_REL_IA64_PCREL21M: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1434`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1434)*
+*Defined in [`object-0.37.3/src/pe.rs:1434`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1434)*
 
 ### `IMAGE_REL_IA64_PCREL21F`
 ```rust
 const IMAGE_REL_IA64_PCREL21F: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1435`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1435)*
+*Defined in [`object-0.37.3/src/pe.rs:1435`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1435)*
 
 ### `IMAGE_REL_IA64_GPREL22`
 ```rust
 const IMAGE_REL_IA64_GPREL22: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1436`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1436)*
+*Defined in [`object-0.37.3/src/pe.rs:1436`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1436)*
 
 ### `IMAGE_REL_IA64_LTOFF22`
 ```rust
 const IMAGE_REL_IA64_LTOFF22: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1437`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1437)*
+*Defined in [`object-0.37.3/src/pe.rs:1437`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1437)*
 
 ### `IMAGE_REL_IA64_SECTION`
 ```rust
 const IMAGE_REL_IA64_SECTION: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1438`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1438)*
+*Defined in [`object-0.37.3/src/pe.rs:1438`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1438)*
 
 ### `IMAGE_REL_IA64_SECREL22`
 ```rust
 const IMAGE_REL_IA64_SECREL22: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1439`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1439)*
+*Defined in [`object-0.37.3/src/pe.rs:1439`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1439)*
 
 ### `IMAGE_REL_IA64_SECREL64I`
 ```rust
 const IMAGE_REL_IA64_SECREL64I: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1440`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1440)*
+*Defined in [`object-0.37.3/src/pe.rs:1440`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1440)*
 
 ### `IMAGE_REL_IA64_SECREL32`
 ```rust
 const IMAGE_REL_IA64_SECREL32: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1441`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1441)*
+*Defined in [`object-0.37.3/src/pe.rs:1441`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1441)*
 
 ### `IMAGE_REL_IA64_DIR32NB`
 ```rust
 const IMAGE_REL_IA64_DIR32NB: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1443`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1443)*
+*Defined in [`object-0.37.3/src/pe.rs:1443`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1443)*
 
 ### `IMAGE_REL_IA64_SREL14`
 ```rust
 const IMAGE_REL_IA64_SREL14: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1444`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1444)*
+*Defined in [`object-0.37.3/src/pe.rs:1444`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1444)*
 
 ### `IMAGE_REL_IA64_SREL22`
 ```rust
 const IMAGE_REL_IA64_SREL22: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1445`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1445)*
+*Defined in [`object-0.37.3/src/pe.rs:1445`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1445)*
 
 ### `IMAGE_REL_IA64_SREL32`
 ```rust
 const IMAGE_REL_IA64_SREL32: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1446`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1446)*
+*Defined in [`object-0.37.3/src/pe.rs:1446`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1446)*
 
 ### `IMAGE_REL_IA64_UREL32`
 ```rust
 const IMAGE_REL_IA64_UREL32: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1447`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1447)*
+*Defined in [`object-0.37.3/src/pe.rs:1447`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1447)*
 
 ### `IMAGE_REL_IA64_PCREL60X`
 ```rust
 const IMAGE_REL_IA64_PCREL60X: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1449`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1449)*
+*Defined in [`object-0.37.3/src/pe.rs:1449`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1449)*
 
 This is always a BRL and never converted
 
@@ -8749,7 +8749,7 @@ This is always a BRL and never converted
 const IMAGE_REL_IA64_PCREL60B: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1451`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1451)*
+*Defined in [`object-0.37.3/src/pe.rs:1451`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1451)*
 
 If possible, convert to MBB bundle with NOP.B in slot 1
 
@@ -8758,7 +8758,7 @@ If possible, convert to MBB bundle with NOP.B in slot 1
 const IMAGE_REL_IA64_PCREL60F: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1453`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1453)*
+*Defined in [`object-0.37.3/src/pe.rs:1453`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1453)*
 
 If possible, convert to MFB bundle with NOP.F in slot 1
 
@@ -8767,7 +8767,7 @@ If possible, convert to MFB bundle with NOP.F in slot 1
 const IMAGE_REL_IA64_PCREL60I: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1455`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1455)*
+*Defined in [`object-0.37.3/src/pe.rs:1455`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1455)*
 
 If possible, convert to MIB bundle with NOP.I in slot 1
 
@@ -8776,7 +8776,7 @@ If possible, convert to MIB bundle with NOP.I in slot 1
 const IMAGE_REL_IA64_PCREL60M: u16 = 25u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1457`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1457)*
+*Defined in [`object-0.37.3/src/pe.rs:1457`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1457)*
 
 If possible, convert to MMB bundle with NOP.M in slot 1
 
@@ -8785,14 +8785,14 @@ If possible, convert to MMB bundle with NOP.M in slot 1
 const IMAGE_REL_IA64_IMMGPREL64: u16 = 26u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1458`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1458)*
+*Defined in [`object-0.37.3/src/pe.rs:1458`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1458)*
 
 ### `IMAGE_REL_IA64_TOKEN`
 ```rust
 const IMAGE_REL_IA64_TOKEN: u16 = 27u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1460`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1460)*
+*Defined in [`object-0.37.3/src/pe.rs:1460`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1460)*
 
 clr token
 
@@ -8801,21 +8801,21 @@ clr token
 const IMAGE_REL_IA64_GPREL32: u16 = 28u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1461`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1461)*
+*Defined in [`object-0.37.3/src/pe.rs:1461`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1461)*
 
 ### `IMAGE_REL_IA64_ADDEND`
 ```rust
 const IMAGE_REL_IA64_ADDEND: u16 = 31u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1462`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1462)*
+*Defined in [`object-0.37.3/src/pe.rs:1462`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1462)*
 
 ### `IMAGE_REL_CEF_ABSOLUTE`
 ```rust
 const IMAGE_REL_CEF_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1468`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1468)*
+*Defined in [`object-0.37.3/src/pe.rs:1468`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1468)*
 
 Reference is absolute, no relocation is necessary
 
@@ -8824,7 +8824,7 @@ Reference is absolute, no relocation is necessary
 const IMAGE_REL_CEF_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1470`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1470)*
+*Defined in [`object-0.37.3/src/pe.rs:1470`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1470)*
 
 32-bit address (VA).
 
@@ -8833,7 +8833,7 @@ const IMAGE_REL_CEF_ADDR32: u16 = 1u16;
 const IMAGE_REL_CEF_ADDR64: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1472`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1472)*
+*Defined in [`object-0.37.3/src/pe.rs:1472`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1472)*
 
 64-bit address (VA).
 
@@ -8842,7 +8842,7 @@ const IMAGE_REL_CEF_ADDR64: u16 = 2u16;
 const IMAGE_REL_CEF_ADDR32NB: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1474`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1474)*
+*Defined in [`object-0.37.3/src/pe.rs:1474`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1474)*
 
 32-bit address w/o image base (RVA).
 
@@ -8851,7 +8851,7 @@ const IMAGE_REL_CEF_ADDR32NB: u16 = 3u16;
 const IMAGE_REL_CEF_SECTION: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1476`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1476)*
+*Defined in [`object-0.37.3/src/pe.rs:1476`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1476)*
 
 Section index
 
@@ -8860,7 +8860,7 @@ Section index
 const IMAGE_REL_CEF_SECREL: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1478`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1478)*
+*Defined in [`object-0.37.3/src/pe.rs:1478`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1478)*
 
 32 bit offset from base of section containing target
 
@@ -8869,7 +8869,7 @@ const IMAGE_REL_CEF_SECREL: u16 = 5u16;
 const IMAGE_REL_CEF_TOKEN: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1480`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1480)*
+*Defined in [`object-0.37.3/src/pe.rs:1480`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1480)*
 
 32 bit metadata token
 
@@ -8878,7 +8878,7 @@ const IMAGE_REL_CEF_TOKEN: u16 = 6u16;
 const IMAGE_REL_CEE_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1486`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1486)*
+*Defined in [`object-0.37.3/src/pe.rs:1486`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1486)*
 
 Reference is absolute, no relocation is necessary
 
@@ -8887,7 +8887,7 @@ Reference is absolute, no relocation is necessary
 const IMAGE_REL_CEE_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1488)*
+*Defined in [`object-0.37.3/src/pe.rs:1488`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1488)*
 
 32-bit address (VA).
 
@@ -8896,7 +8896,7 @@ const IMAGE_REL_CEE_ADDR32: u16 = 1u16;
 const IMAGE_REL_CEE_ADDR64: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1490`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1490)*
+*Defined in [`object-0.37.3/src/pe.rs:1490`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1490)*
 
 64-bit address (VA).
 
@@ -8905,7 +8905,7 @@ const IMAGE_REL_CEE_ADDR64: u16 = 2u16;
 const IMAGE_REL_CEE_ADDR32NB: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1492`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1492)*
+*Defined in [`object-0.37.3/src/pe.rs:1492`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1492)*
 
 32-bit address w/o image base (RVA).
 
@@ -8914,7 +8914,7 @@ const IMAGE_REL_CEE_ADDR32NB: u16 = 3u16;
 const IMAGE_REL_CEE_SECTION: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1494`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1494)*
+*Defined in [`object-0.37.3/src/pe.rs:1494`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1494)*
 
 Section index
 
@@ -8923,7 +8923,7 @@ Section index
 const IMAGE_REL_CEE_SECREL: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1496`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1496)*
+*Defined in [`object-0.37.3/src/pe.rs:1496`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1496)*
 
 32 bit offset from base of section containing target
 
@@ -8932,7 +8932,7 @@ const IMAGE_REL_CEE_SECREL: u16 = 5u16;
 const IMAGE_REL_CEE_TOKEN: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1498`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1498)*
+*Defined in [`object-0.37.3/src/pe.rs:1498`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1498)*
 
 32 bit metadata token
 
@@ -8941,7 +8941,7 @@ const IMAGE_REL_CEE_TOKEN: u16 = 6u16;
 const IMAGE_REL_M32R_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1501`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1501)*
+*Defined in [`object-0.37.3/src/pe.rs:1501`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1501)*
 
 No relocation required
 
@@ -8950,7 +8950,7 @@ No relocation required
 const IMAGE_REL_M32R_ADDR32: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1503`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1503)*
+*Defined in [`object-0.37.3/src/pe.rs:1503`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1503)*
 
 32 bit address
 
@@ -8959,7 +8959,7 @@ const IMAGE_REL_M32R_ADDR32: u16 = 1u16;
 const IMAGE_REL_M32R_ADDR32NB: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1505`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1505)*
+*Defined in [`object-0.37.3/src/pe.rs:1505`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1505)*
 
 32 bit address w/o image base
 
@@ -8968,7 +8968,7 @@ const IMAGE_REL_M32R_ADDR32NB: u16 = 2u16;
 const IMAGE_REL_M32R_ADDR24: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1507`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1507)*
+*Defined in [`object-0.37.3/src/pe.rs:1507`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1507)*
 
 24 bit address
 
@@ -8977,7 +8977,7 @@ const IMAGE_REL_M32R_ADDR24: u16 = 3u16;
 const IMAGE_REL_M32R_GPREL16: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1509`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1509)*
+*Defined in [`object-0.37.3/src/pe.rs:1509`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1509)*
 
 GP relative addressing
 
@@ -8986,7 +8986,7 @@ GP relative addressing
 const IMAGE_REL_M32R_PCREL24: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1511`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1511)*
+*Defined in [`object-0.37.3/src/pe.rs:1511`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1511)*
 
 24 bit offset << 2 & sign ext.
 
@@ -8995,7 +8995,7 @@ const IMAGE_REL_M32R_PCREL24: u16 = 5u16;
 const IMAGE_REL_M32R_PCREL16: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1513`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1513)*
+*Defined in [`object-0.37.3/src/pe.rs:1513`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1513)*
 
 16 bit offset << 2 & sign ext.
 
@@ -9004,7 +9004,7 @@ const IMAGE_REL_M32R_PCREL16: u16 = 6u16;
 const IMAGE_REL_M32R_PCREL8: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1515`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1515)*
+*Defined in [`object-0.37.3/src/pe.rs:1515`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1515)*
 
 8 bit offset << 2 & sign ext.
 
@@ -9013,7 +9013,7 @@ const IMAGE_REL_M32R_PCREL8: u16 = 7u16;
 const IMAGE_REL_M32R_REFHALF: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1517`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1517)*
+*Defined in [`object-0.37.3/src/pe.rs:1517`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1517)*
 
 16 MSBs
 
@@ -9022,7 +9022,7 @@ const IMAGE_REL_M32R_REFHALF: u16 = 8u16;
 const IMAGE_REL_M32R_REFHI: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1519`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1519)*
+*Defined in [`object-0.37.3/src/pe.rs:1519`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1519)*
 
 16 MSBs; adj for LSB sign ext.
 
@@ -9031,7 +9031,7 @@ const IMAGE_REL_M32R_REFHI: u16 = 9u16;
 const IMAGE_REL_M32R_REFLO: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1521`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1521)*
+*Defined in [`object-0.37.3/src/pe.rs:1521`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1521)*
 
 16 LSBs
 
@@ -9040,7 +9040,7 @@ const IMAGE_REL_M32R_REFLO: u16 = 10u16;
 const IMAGE_REL_M32R_PAIR: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1523`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1523)*
+*Defined in [`object-0.37.3/src/pe.rs:1523`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1523)*
 
 Link HI and LO
 
@@ -9049,7 +9049,7 @@ Link HI and LO
 const IMAGE_REL_M32R_SECTION: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1525`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1525)*
+*Defined in [`object-0.37.3/src/pe.rs:1525`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1525)*
 
 Section table index
 
@@ -9058,7 +9058,7 @@ Section table index
 const IMAGE_REL_M32R_SECREL32: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1527`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1527)*
+*Defined in [`object-0.37.3/src/pe.rs:1527`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1527)*
 
 32 bit section relative reference
 
@@ -9067,7 +9067,7 @@ const IMAGE_REL_M32R_SECREL32: u16 = 13u16;
 const IMAGE_REL_M32R_TOKEN: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1529`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1529)*
+*Defined in [`object-0.37.3/src/pe.rs:1529`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1529)*
 
 clr token
 
@@ -9076,7 +9076,7 @@ clr token
 const IMAGE_REL_EBC_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1532`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1532)*
+*Defined in [`object-0.37.3/src/pe.rs:1532`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1532)*
 
 No relocation required
 
@@ -9085,7 +9085,7 @@ No relocation required
 const IMAGE_REL_EBC_ADDR32NB: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1534`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1534)*
+*Defined in [`object-0.37.3/src/pe.rs:1534`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1534)*
 
 32 bit address w/o image base
 
@@ -9094,7 +9094,7 @@ const IMAGE_REL_EBC_ADDR32NB: u16 = 1u16;
 const IMAGE_REL_EBC_REL32: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1536`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1536)*
+*Defined in [`object-0.37.3/src/pe.rs:1536`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1536)*
 
 32-bit relative address from byte following reloc
 
@@ -9103,7 +9103,7 @@ const IMAGE_REL_EBC_REL32: u16 = 2u16;
 const IMAGE_REL_EBC_SECTION: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1538`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1538)*
+*Defined in [`object-0.37.3/src/pe.rs:1538`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1538)*
 
 Section table index
 
@@ -9112,7 +9112,7 @@ Section table index
 const IMAGE_REL_EBC_SECREL: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1540`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1540)*
+*Defined in [`object-0.37.3/src/pe.rs:1540`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1540)*
 
 Offset within section
 
@@ -9121,7 +9121,7 @@ Offset within section
 const EMARCH_ENC_I17_IMM7B_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1553`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1553)*
+*Defined in [`object-0.37.3/src/pe.rs:1553`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1553)*
 
 Intel-IA64-Filler
 
@@ -9130,7 +9130,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM7B_SIZE_X: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1555`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1555)*
+*Defined in [`object-0.37.3/src/pe.rs:1555`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1555)*
 
 Intel-IA64-Filler
 
@@ -9139,7 +9139,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1557`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1557)*
+*Defined in [`object-0.37.3/src/pe.rs:1557`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1557)*
 
 Intel-IA64-Filler
 
@@ -9148,7 +9148,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM7B_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1559`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1559)*
+*Defined in [`object-0.37.3/src/pe.rs:1559`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1559)*
 
 Intel-IA64-Filler
 
@@ -9157,7 +9157,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM9D_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1562`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1562)*
+*Defined in [`object-0.37.3/src/pe.rs:1562`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1562)*
 
 Intel-IA64-Filler
 
@@ -9166,7 +9166,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM9D_SIZE_X: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1564`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1564)*
+*Defined in [`object-0.37.3/src/pe.rs:1564`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1564)*
 
 Intel-IA64-Filler
 
@@ -9175,7 +9175,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X: u16 = 18u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1566`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1566)*
+*Defined in [`object-0.37.3/src/pe.rs:1566`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1566)*
 
 Intel-IA64-Filler
 
@@ -9184,7 +9184,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM9D_VAL_POS_X: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1568`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1568)*
+*Defined in [`object-0.37.3/src/pe.rs:1568`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1568)*
 
 Intel-IA64-Filler
 
@@ -9193,7 +9193,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM5C_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1571`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1571)*
+*Defined in [`object-0.37.3/src/pe.rs:1571`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1571)*
 
 Intel-IA64-Filler
 
@@ -9202,7 +9202,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM5C_SIZE_X: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1573`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1573)*
+*Defined in [`object-0.37.3/src/pe.rs:1573`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1573)*
 
 Intel-IA64-Filler
 
@@ -9211,7 +9211,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X: u16 = 13u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1575)*
+*Defined in [`object-0.37.3/src/pe.rs:1575`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1575)*
 
 Intel-IA64-Filler
 
@@ -9220,7 +9220,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM5C_VAL_POS_X: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1577`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1577)*
+*Defined in [`object-0.37.3/src/pe.rs:1577`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1577)*
 
 Intel-IA64-Filler
 
@@ -9229,7 +9229,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IC_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1580`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1580)*
+*Defined in [`object-0.37.3/src/pe.rs:1580`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1580)*
 
 Intel-IA64-Filler
 
@@ -9238,7 +9238,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IC_SIZE_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1582`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1582)*
+*Defined in [`object-0.37.3/src/pe.rs:1582`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1582)*
 
 Intel-IA64-Filler
 
@@ -9247,7 +9247,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IC_INST_WORD_POS_X: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1584`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1584)*
+*Defined in [`object-0.37.3/src/pe.rs:1584`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1584)*
 
 Intel-IA64-Filler
 
@@ -9256,7 +9256,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IC_VAL_POS_X: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1586`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1586)*
+*Defined in [`object-0.37.3/src/pe.rs:1586`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1586)*
 
 Intel-IA64-Filler
 
@@ -9265,7 +9265,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41A_INST_WORD_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1589`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1589)*
+*Defined in [`object-0.37.3/src/pe.rs:1589`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1589)*
 
 Intel-IA64-Filler
 
@@ -9274,7 +9274,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41A_SIZE_X: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1591`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1591)*
+*Defined in [`object-0.37.3/src/pe.rs:1591`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1591)*
 
 Intel-IA64-Filler
 
@@ -9283,7 +9283,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1593`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1593)*
+*Defined in [`object-0.37.3/src/pe.rs:1593`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1593)*
 
 Intel-IA64-Filler
 
@@ -9292,7 +9292,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41A_VAL_POS_X: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1595`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1595)*
+*Defined in [`object-0.37.3/src/pe.rs:1595`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1595)*
 
 Intel-IA64-Filler
 
@@ -9301,7 +9301,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41B_INST_WORD_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1598`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1598)*
+*Defined in [`object-0.37.3/src/pe.rs:1598`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1598)*
 
 Intel-IA64-Filler
 
@@ -9310,7 +9310,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41B_SIZE_X: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1600`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1600)*
+*Defined in [`object-0.37.3/src/pe.rs:1600`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1600)*
 
 Intel-IA64-Filler
 
@@ -9319,7 +9319,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1602`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1602)*
+*Defined in [`object-0.37.3/src/pe.rs:1602`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1602)*
 
 Intel-IA64-Filler
 
@@ -9328,7 +9328,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41B_VAL_POS_X: u16 = 32u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1604)*
+*Defined in [`object-0.37.3/src/pe.rs:1604`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1604)*
 
 Intel-IA64-Filler
 
@@ -9337,7 +9337,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41C_INST_WORD_X: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1607`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1607)*
+*Defined in [`object-0.37.3/src/pe.rs:1607`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1607)*
 
 Intel-IA64-Filler
 
@@ -9346,7 +9346,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41C_SIZE_X: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1609`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1609)*
+*Defined in [`object-0.37.3/src/pe.rs:1609`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1609)*
 
 Intel-IA64-Filler
 
@@ -9355,7 +9355,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1611`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1611)*
+*Defined in [`object-0.37.3/src/pe.rs:1611`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1611)*
 
 Intel-IA64-Filler
 
@@ -9364,7 +9364,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_IMM41C_VAL_POS_X: u16 = 40u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1613`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1613)*
+*Defined in [`object-0.37.3/src/pe.rs:1613`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1613)*
 
 Intel-IA64-Filler
 
@@ -9373,7 +9373,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_SIGN_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1616`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1616)*
+*Defined in [`object-0.37.3/src/pe.rs:1616`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1616)*
 
 Intel-IA64-Filler
 
@@ -9382,7 +9382,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_SIGN_SIZE_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1618`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1618)*
+*Defined in [`object-0.37.3/src/pe.rs:1618`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1618)*
 
 Intel-IA64-Filler
 
@@ -9391,7 +9391,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_SIGN_INST_WORD_POS_X: u16 = 27u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1620`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1620)*
+*Defined in [`object-0.37.3/src/pe.rs:1620`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1620)*
 
 Intel-IA64-Filler
 
@@ -9400,7 +9400,7 @@ Intel-IA64-Filler
 const EMARCH_ENC_I17_SIGN_VAL_POS_X: u16 = 63u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1622`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1622)*
+*Defined in [`object-0.37.3/src/pe.rs:1622`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1622)*
 
 Intel-IA64-Filler
 
@@ -9409,7 +9409,7 @@ Intel-IA64-Filler
 const X3_OPCODE_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1625`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1625)*
+*Defined in [`object-0.37.3/src/pe.rs:1625`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1625)*
 
 Intel-IA64-Filler
 
@@ -9418,7 +9418,7 @@ Intel-IA64-Filler
 const X3_OPCODE_SIZE_X: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1627`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1627)*
+*Defined in [`object-0.37.3/src/pe.rs:1627`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1627)*
 
 Intel-IA64-Filler
 
@@ -9427,7 +9427,7 @@ Intel-IA64-Filler
 const X3_OPCODE_INST_WORD_POS_X: u16 = 28u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1629`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1629)*
+*Defined in [`object-0.37.3/src/pe.rs:1629`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1629)*
 
 Intel-IA64-Filler
 
@@ -9436,7 +9436,7 @@ Intel-IA64-Filler
 const X3_OPCODE_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1631`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1631)*
+*Defined in [`object-0.37.3/src/pe.rs:1631`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1631)*
 
 Intel-IA64-Filler
 
@@ -9445,7 +9445,7 @@ Intel-IA64-Filler
 const X3_I_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1634`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1634)*
+*Defined in [`object-0.37.3/src/pe.rs:1634`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1634)*
 
 Intel-IA64-Filler
 
@@ -9454,7 +9454,7 @@ Intel-IA64-Filler
 const X3_I_SIZE_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1636`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1636)*
+*Defined in [`object-0.37.3/src/pe.rs:1636`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1636)*
 
 Intel-IA64-Filler
 
@@ -9463,7 +9463,7 @@ Intel-IA64-Filler
 const X3_I_INST_WORD_POS_X: u16 = 27u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1638`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1638)*
+*Defined in [`object-0.37.3/src/pe.rs:1638`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1638)*
 
 Intel-IA64-Filler
 
@@ -9472,7 +9472,7 @@ Intel-IA64-Filler
 const X3_I_SIGN_VAL_POS_X: u16 = 59u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1640`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1640)*
+*Defined in [`object-0.37.3/src/pe.rs:1640`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1640)*
 
 Intel-IA64-Filler
 
@@ -9481,7 +9481,7 @@ Intel-IA64-Filler
 const X3_D_WH_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1643`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1643)*
+*Defined in [`object-0.37.3/src/pe.rs:1643`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1643)*
 
 Intel-IA64-Filler
 
@@ -9490,7 +9490,7 @@ Intel-IA64-Filler
 const X3_D_WH_SIZE_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1645`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1645)*
+*Defined in [`object-0.37.3/src/pe.rs:1645`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1645)*
 
 Intel-IA64-Filler
 
@@ -9499,7 +9499,7 @@ Intel-IA64-Filler
 const X3_D_WH_INST_WORD_POS_X: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1647`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1647)*
+*Defined in [`object-0.37.3/src/pe.rs:1647`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1647)*
 
 Intel-IA64-Filler
 
@@ -9508,7 +9508,7 @@ Intel-IA64-Filler
 const X3_D_WH_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1649`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1649)*
+*Defined in [`object-0.37.3/src/pe.rs:1649`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1649)*
 
 Intel-IA64-Filler
 
@@ -9517,7 +9517,7 @@ Intel-IA64-Filler
 const X3_IMM20_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1652`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1652)*
+*Defined in [`object-0.37.3/src/pe.rs:1652`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1652)*
 
 Intel-IA64-Filler
 
@@ -9526,7 +9526,7 @@ Intel-IA64-Filler
 const X3_IMM20_SIZE_X: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1654`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1654)*
+*Defined in [`object-0.37.3/src/pe.rs:1654`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1654)*
 
 Intel-IA64-Filler
 
@@ -9535,7 +9535,7 @@ Intel-IA64-Filler
 const X3_IMM20_INST_WORD_POS_X: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1656`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1656)*
+*Defined in [`object-0.37.3/src/pe.rs:1656`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1656)*
 
 Intel-IA64-Filler
 
@@ -9544,7 +9544,7 @@ Intel-IA64-Filler
 const X3_IMM20_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1658`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1658)*
+*Defined in [`object-0.37.3/src/pe.rs:1658`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1658)*
 
 Intel-IA64-Filler
 
@@ -9553,7 +9553,7 @@ Intel-IA64-Filler
 const X3_IMM39_1_INST_WORD_X: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1661`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1661)*
+*Defined in [`object-0.37.3/src/pe.rs:1661`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1661)*
 
 Intel-IA64-Filler
 
@@ -9562,7 +9562,7 @@ Intel-IA64-Filler
 const X3_IMM39_1_SIZE_X: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1663`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1663)*
+*Defined in [`object-0.37.3/src/pe.rs:1663`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1663)*
 
 Intel-IA64-Filler
 
@@ -9571,7 +9571,7 @@ Intel-IA64-Filler
 const X3_IMM39_1_INST_WORD_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1665`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1665)*
+*Defined in [`object-0.37.3/src/pe.rs:1665`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1665)*
 
 Intel-IA64-Filler
 
@@ -9580,7 +9580,7 @@ Intel-IA64-Filler
 const X3_IMM39_1_SIGN_VAL_POS_X: u16 = 36u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1667`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1667)*
+*Defined in [`object-0.37.3/src/pe.rs:1667`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1667)*
 
 Intel-IA64-Filler
 
@@ -9589,7 +9589,7 @@ Intel-IA64-Filler
 const X3_IMM39_2_INST_WORD_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1670`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1670)*
+*Defined in [`object-0.37.3/src/pe.rs:1670`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1670)*
 
 Intel-IA64-Filler
 
@@ -9598,7 +9598,7 @@ Intel-IA64-Filler
 const X3_IMM39_2_SIZE_X: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1672`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1672)*
+*Defined in [`object-0.37.3/src/pe.rs:1672`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1672)*
 
 Intel-IA64-Filler
 
@@ -9607,7 +9607,7 @@ Intel-IA64-Filler
 const X3_IMM39_2_INST_WORD_POS_X: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1674`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1674)*
+*Defined in [`object-0.37.3/src/pe.rs:1674`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1674)*
 
 Intel-IA64-Filler
 
@@ -9616,7 +9616,7 @@ Intel-IA64-Filler
 const X3_IMM39_2_SIGN_VAL_POS_X: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1676`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1676)*
+*Defined in [`object-0.37.3/src/pe.rs:1676`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1676)*
 
 Intel-IA64-Filler
 
@@ -9625,7 +9625,7 @@ Intel-IA64-Filler
 const X3_P_INST_WORD_X: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1679`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1679)*
+*Defined in [`object-0.37.3/src/pe.rs:1679`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1679)*
 
 Intel-IA64-Filler
 
@@ -9634,7 +9634,7 @@ Intel-IA64-Filler
 const X3_P_SIZE_X: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1681`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1681)*
+*Defined in [`object-0.37.3/src/pe.rs:1681`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1681)*
 
 Intel-IA64-Filler
 
@@ -9643,7 +9643,7 @@ Intel-IA64-Filler
 const X3_P_INST_WORD_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1683`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1683)*
+*Defined in [`object-0.37.3/src/pe.rs:1683`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1683)*
 
 Intel-IA64-Filler
 
@@ -9652,7 +9652,7 @@ Intel-IA64-Filler
 const X3_P_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1685`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1685)*
+*Defined in [`object-0.37.3/src/pe.rs:1685`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1685)*
 
 Intel-IA64-Filler
 
@@ -9661,7 +9661,7 @@ Intel-IA64-Filler
 const X3_TMPLT_INST_WORD_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1688`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1688)*
+*Defined in [`object-0.37.3/src/pe.rs:1688`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1688)*
 
 Intel-IA64-Filler
 
@@ -9670,7 +9670,7 @@ Intel-IA64-Filler
 const X3_TMPLT_SIZE_X: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1690`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1690)*
+*Defined in [`object-0.37.3/src/pe.rs:1690`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1690)*
 
 Intel-IA64-Filler
 
@@ -9679,7 +9679,7 @@ Intel-IA64-Filler
 const X3_TMPLT_INST_WORD_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1692`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1692)*
+*Defined in [`object-0.37.3/src/pe.rs:1692`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1692)*
 
 Intel-IA64-Filler
 
@@ -9688,7 +9688,7 @@ Intel-IA64-Filler
 const X3_TMPLT_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1694`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1694)*
+*Defined in [`object-0.37.3/src/pe.rs:1694`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1694)*
 
 Intel-IA64-Filler
 
@@ -9697,7 +9697,7 @@ Intel-IA64-Filler
 const X3_BTYPE_QP_INST_WORD_X: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1697`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1697)*
+*Defined in [`object-0.37.3/src/pe.rs:1697`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1697)*
 
 Intel-IA64-Filler
 
@@ -9706,7 +9706,7 @@ Intel-IA64-Filler
 const X3_BTYPE_QP_SIZE_X: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1699`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1699)*
+*Defined in [`object-0.37.3/src/pe.rs:1699`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1699)*
 
 Intel-IA64-Filler
 
@@ -9715,7 +9715,7 @@ Intel-IA64-Filler
 const X3_BTYPE_QP_INST_WORD_POS_X: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1701`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1701)*
+*Defined in [`object-0.37.3/src/pe.rs:1701`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1701)*
 
 Intel-IA64-Filler
 
@@ -9724,7 +9724,7 @@ Intel-IA64-Filler
 const X3_BTYPE_QP_INST_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1703`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1703)*
+*Defined in [`object-0.37.3/src/pe.rs:1703`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1703)*
 
 Intel-IA64-Filler
 
@@ -9733,7 +9733,7 @@ Intel-IA64-Filler
 const X3_EMPTY_INST_WORD_X: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1706`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1706)*
+*Defined in [`object-0.37.3/src/pe.rs:1706`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1706)*
 
 Intel-IA64-Filler
 
@@ -9742,7 +9742,7 @@ Intel-IA64-Filler
 const X3_EMPTY_SIZE_X: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1708`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1708)*
+*Defined in [`object-0.37.3/src/pe.rs:1708`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1708)*
 
 Intel-IA64-Filler
 
@@ -9751,7 +9751,7 @@ Intel-IA64-Filler
 const X3_EMPTY_INST_WORD_POS_X: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1710`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1710)*
+*Defined in [`object-0.37.3/src/pe.rs:1710`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1710)*
 
 Intel-IA64-Filler
 
@@ -9760,7 +9760,7 @@ Intel-IA64-Filler
 const X3_EMPTY_INST_VAL_POS_X: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1712`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1712)*
+*Defined in [`object-0.37.3/src/pe.rs:1712`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1712)*
 
 Intel-IA64-Filler
 
@@ -9769,210 +9769,210 @@ Intel-IA64-Filler
 const IMAGE_REL_BASED_ABSOLUTE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1745`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1745)*
+*Defined in [`object-0.37.3/src/pe.rs:1745`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1745)*
 
 ### `IMAGE_REL_BASED_HIGH`
 ```rust
 const IMAGE_REL_BASED_HIGH: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1746`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1746)*
+*Defined in [`object-0.37.3/src/pe.rs:1746`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1746)*
 
 ### `IMAGE_REL_BASED_LOW`
 ```rust
 const IMAGE_REL_BASED_LOW: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1747`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1747)*
+*Defined in [`object-0.37.3/src/pe.rs:1747`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1747)*
 
 ### `IMAGE_REL_BASED_HIGHLOW`
 ```rust
 const IMAGE_REL_BASED_HIGHLOW: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1748`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1748)*
+*Defined in [`object-0.37.3/src/pe.rs:1748`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1748)*
 
 ### `IMAGE_REL_BASED_HIGHADJ`
 ```rust
 const IMAGE_REL_BASED_HIGHADJ: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1749`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1749)*
+*Defined in [`object-0.37.3/src/pe.rs:1749`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1749)*
 
 ### `IMAGE_REL_BASED_MACHINE_SPECIFIC_5`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_5: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1750`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1750)*
+*Defined in [`object-0.37.3/src/pe.rs:1750`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1750)*
 
 ### `IMAGE_REL_BASED_RESERVED`
 ```rust
 const IMAGE_REL_BASED_RESERVED: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1751`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1751)*
+*Defined in [`object-0.37.3/src/pe.rs:1751`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1751)*
 
 ### `IMAGE_REL_BASED_MACHINE_SPECIFIC_7`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_7: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1752`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1752)*
+*Defined in [`object-0.37.3/src/pe.rs:1752`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1752)*
 
 ### `IMAGE_REL_BASED_MACHINE_SPECIFIC_8`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_8: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1753`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1753)*
+*Defined in [`object-0.37.3/src/pe.rs:1753`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1753)*
 
 ### `IMAGE_REL_BASED_MACHINE_SPECIFIC_9`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_9: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1754`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1754)*
+*Defined in [`object-0.37.3/src/pe.rs:1754`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1754)*
 
 ### `IMAGE_REL_BASED_DIR64`
 ```rust
 const IMAGE_REL_BASED_DIR64: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1755)*
+*Defined in [`object-0.37.3/src/pe.rs:1755`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1755)*
 
 ### `IMAGE_REL_BASED_IA64_IMM64`
 ```rust
 const IMAGE_REL_BASED_IA64_IMM64: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1761`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1761)*
+*Defined in [`object-0.37.3/src/pe.rs:1761`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1761)*
 
 ### `IMAGE_REL_BASED_MIPS_JMPADDR`
 ```rust
 const IMAGE_REL_BASED_MIPS_JMPADDR: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1763`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1763)*
+*Defined in [`object-0.37.3/src/pe.rs:1763`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1763)*
 
 ### `IMAGE_REL_BASED_MIPS_JMPADDR16`
 ```rust
 const IMAGE_REL_BASED_MIPS_JMPADDR16: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1764`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1764)*
+*Defined in [`object-0.37.3/src/pe.rs:1764`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1764)*
 
 ### `IMAGE_REL_BASED_ARM_MOV32`
 ```rust
 const IMAGE_REL_BASED_ARM_MOV32: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1766`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1766)*
+*Defined in [`object-0.37.3/src/pe.rs:1766`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1766)*
 
 ### `IMAGE_REL_BASED_THUMB_MOV32`
 ```rust
 const IMAGE_REL_BASED_THUMB_MOV32: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1767`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1767)*
+*Defined in [`object-0.37.3/src/pe.rs:1767`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1767)*
 
 ### `IMAGE_REL_BASED_RISCV_HIGH20`
 ```rust
 const IMAGE_REL_BASED_RISCV_HIGH20: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1769`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1769)*
+*Defined in [`object-0.37.3/src/pe.rs:1769`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1769)*
 
 ### `IMAGE_REL_BASED_RISCV_LOW12I`
 ```rust
 const IMAGE_REL_BASED_RISCV_LOW12I: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1770`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1770)*
+*Defined in [`object-0.37.3/src/pe.rs:1770`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1770)*
 
 ### `IMAGE_REL_BASED_RISCV_LOW12S`
 ```rust
 const IMAGE_REL_BASED_RISCV_LOW12S: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1771`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1771)*
+*Defined in [`object-0.37.3/src/pe.rs:1771`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1771)*
 
 ### `IMAGE_ARCHIVE_START_SIZE`
 ```rust
 const IMAGE_ARCHIVE_START_SIZE: usize = 8usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1777`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1777)*
+*Defined in [`object-0.37.3/src/pe.rs:1777`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1777)*
 
 ### `IMAGE_ARCHIVE_START`
 ```rust
 const IMAGE_ARCHIVE_START: &[u8; 8];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1778`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1778)*
+*Defined in [`object-0.37.3/src/pe.rs:1778`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1778)*
 
 ### `IMAGE_ARCHIVE_END`
 ```rust
 const IMAGE_ARCHIVE_END: &[u8];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1779`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1779)*
+*Defined in [`object-0.37.3/src/pe.rs:1779`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1779)*
 
 ### `IMAGE_ARCHIVE_PAD`
 ```rust
 const IMAGE_ARCHIVE_PAD: &[u8];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1780`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1780)*
+*Defined in [`object-0.37.3/src/pe.rs:1780`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1780)*
 
 ### `IMAGE_ARCHIVE_LINKER_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_LINKER_MEMBER: &[u8; 16];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1781`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1781)*
+*Defined in [`object-0.37.3/src/pe.rs:1781`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1781)*
 
 ### `IMAGE_ARCHIVE_LONGNAMES_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_LONGNAMES_MEMBER: &[u8; 16];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1782`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1782)*
+*Defined in [`object-0.37.3/src/pe.rs:1782`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1782)*
 
 ### `IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_HYBRIDMAP_MEMBER: &[u8; 16];
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1783`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1783)*
+*Defined in [`object-0.37.3/src/pe.rs:1783`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1783)*
 
 ### `IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`
 ```rust
 const IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR: u16 = 60u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1804`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1804)*
+*Defined in [`object-0.37.3/src/pe.rs:1804`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1804)*
 
 ### `IMAGE_ORDINAL_FLAG64`
 ```rust
 const IMAGE_ORDINAL_FLAG64: u64 = 9_223_372_036_854_775_808u64;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1875`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1875)*
+*Defined in [`object-0.37.3/src/pe.rs:1875`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1875)*
 
 ### `IMAGE_ORDINAL_FLAG32`
 ```rust
 const IMAGE_ORDINAL_FLAG32: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:1876`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1876)*
+*Defined in [`object-0.37.3/src/pe.rs:1876`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L1876)*
 
 ### `IMAGE_DELAYLOAD_RVA_BASED`
 ```rust
 const IMAGE_DELAYLOAD_RVA_BASED: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2004`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2004)*
+*Defined in [`object-0.37.3/src/pe.rs:2004`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2004)*
 
 Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`.
 
@@ -9981,21 +9981,21 @@ Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`.
 const IMAGE_RESOURCE_NAME_IS_STRING: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2035`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2035)*
+*Defined in [`object-0.37.3/src/pe.rs:2035`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2035)*
 
 ### `IMAGE_RESOURCE_DATA_IS_DIRECTORY`
 ```rust
 const IMAGE_RESOURCE_DATA_IS_DIRECTORY: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2036`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2036)*
+*Defined in [`object-0.37.3/src/pe.rs:2036`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2036)*
 
 ### `RT_CURSOR`
 ```rust
 const RT_CURSOR: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2104`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2104)*
+*Defined in [`object-0.37.3/src/pe.rs:2104`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2104)*
 
 ID for: Hardware-dependent cursor resource.
 
@@ -10004,7 +10004,7 @@ ID for: Hardware-dependent cursor resource.
 const RT_BITMAP: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2106`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2106)*
+*Defined in [`object-0.37.3/src/pe.rs:2106`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2106)*
 
 ID for: Bitmap resource.
 
@@ -10013,7 +10013,7 @@ ID for: Bitmap resource.
 const RT_ICON: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2108`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2108)*
+*Defined in [`object-0.37.3/src/pe.rs:2108`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2108)*
 
 ID for: Hardware-dependent icon resource.
 
@@ -10022,7 +10022,7 @@ ID for: Hardware-dependent icon resource.
 const RT_MENU: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2110`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2110)*
+*Defined in [`object-0.37.3/src/pe.rs:2110`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2110)*
 
 ID for: Menu resource.
 
@@ -10031,7 +10031,7 @@ ID for: Menu resource.
 const RT_DIALOG: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2112`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2112)*
+*Defined in [`object-0.37.3/src/pe.rs:2112`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2112)*
 
 ID for: Dialog box.
 
@@ -10040,7 +10040,7 @@ ID for: Dialog box.
 const RT_STRING: u16 = 6u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2114`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2114)*
+*Defined in [`object-0.37.3/src/pe.rs:2114`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2114)*
 
 ID for: String-table entry.
 
@@ -10049,7 +10049,7 @@ ID for: String-table entry.
 const RT_FONTDIR: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2116`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2116)*
+*Defined in [`object-0.37.3/src/pe.rs:2116`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2116)*
 
 ID for: Font directory resource.
 
@@ -10058,7 +10058,7 @@ ID for: Font directory resource.
 const RT_FONT: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2118`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2118)*
+*Defined in [`object-0.37.3/src/pe.rs:2118`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2118)*
 
 ID for: Font resource.
 
@@ -10067,7 +10067,7 @@ ID for: Font resource.
 const RT_ACCELERATOR: u16 = 9u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2120`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2120)*
+*Defined in [`object-0.37.3/src/pe.rs:2120`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2120)*
 
 ID for: Accelerator table.
 
@@ -10076,7 +10076,7 @@ ID for: Accelerator table.
 const RT_RCDATA: u16 = 10u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2122`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2122)*
+*Defined in [`object-0.37.3/src/pe.rs:2122`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2122)*
 
 ID for: Application-defined resource (raw data).
 
@@ -10085,7 +10085,7 @@ ID for: Application-defined resource (raw data).
 const RT_MESSAGETABLE: u16 = 11u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2124`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2124)*
+*Defined in [`object-0.37.3/src/pe.rs:2124`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2124)*
 
 ID for: Message-table entry.
 
@@ -10094,7 +10094,7 @@ ID for: Message-table entry.
 const RT_GROUP_CURSOR: u16 = 12u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2126`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2126)*
+*Defined in [`object-0.37.3/src/pe.rs:2126`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2126)*
 
 ID for: Hardware-independent cursor resource.
 
@@ -10103,7 +10103,7 @@ ID for: Hardware-independent cursor resource.
 const RT_GROUP_ICON: u16 = 14u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2128`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2128)*
+*Defined in [`object-0.37.3/src/pe.rs:2128`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2128)*
 
 ID for: Hardware-independent icon resource.
 
@@ -10112,7 +10112,7 @@ ID for: Hardware-independent icon resource.
 const RT_VERSION: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2130`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2130)*
+*Defined in [`object-0.37.3/src/pe.rs:2130`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2130)*
 
 ID for: Version resource.
 
@@ -10121,7 +10121,7 @@ ID for: Version resource.
 const RT_DLGINCLUDE: u16 = 17u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2132`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2132)*
+*Defined in [`object-0.37.3/src/pe.rs:2132`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2132)*
 
 ID for: Allows a resource editing tool to associate a string with an .rc file.
 
@@ -10130,7 +10130,7 @@ ID for: Allows a resource editing tool to associate a string with an .rc file.
 const RT_PLUGPLAY: u16 = 19u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2134)*
+*Defined in [`object-0.37.3/src/pe.rs:2134`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2134)*
 
 ID for: Plug and Play resource.
 
@@ -10139,7 +10139,7 @@ ID for: Plug and Play resource.
 const RT_VXD: u16 = 20u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2136`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2136)*
+*Defined in [`object-0.37.3/src/pe.rs:2136`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2136)*
 
 ID for: VXD.
 
@@ -10148,7 +10148,7 @@ ID for: VXD.
 const RT_ANICURSOR: u16 = 21u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2138`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2138)*
+*Defined in [`object-0.37.3/src/pe.rs:2138`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2138)*
 
 ID for: Animated cursor.
 
@@ -10157,7 +10157,7 @@ ID for: Animated cursor.
 const RT_ANIICON: u16 = 22u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2140`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2140)*
+*Defined in [`object-0.37.3/src/pe.rs:2140`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2140)*
 
 ID for: Animated icon.
 
@@ -10166,7 +10166,7 @@ ID for: Animated icon.
 const RT_HTML: u16 = 23u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2142`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2142)*
+*Defined in [`object-0.37.3/src/pe.rs:2142`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2142)*
 
 ID for: HTML resource.
 
@@ -10175,7 +10175,7 @@ ID for: HTML resource.
 const RT_MANIFEST: u16 = 24u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2144`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2144)*
+*Defined in [`object-0.37.3/src/pe.rs:2144`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2144)*
 
 ID for: Side-by-Side Assembly Manifest.
 
@@ -10184,161 +10184,161 @@ ID for: Side-by-Side Assembly Manifest.
 const IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2222`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2222)*
+*Defined in [`object-0.37.3/src/pe.rs:2222`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2222)*
 
 ### `IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2223`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2223)*
+*Defined in [`object-0.37.3/src/pe.rs:2223`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2223)*
 
 ### `IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER: u32 = 3u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2224`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2224)*
+*Defined in [`object-0.37.3/src/pe.rs:2224`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2224)*
 
 ### `IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER: u32 = 4u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2225`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2225)*
+*Defined in [`object-0.37.3/src/pe.rs:2225`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2225)*
 
 ### `IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH: u32 = 5u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2226`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2226)*
+*Defined in [`object-0.37.3/src/pe.rs:2226`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2226)*
 
 ### `IMAGE_HOT_PATCH_BASE_OBLIGATORY`
 ```rust
 const IMAGE_HOT_PATCH_BASE_OBLIGATORY: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2443`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2443)*
+*Defined in [`object-0.37.3/src/pe.rs:2443`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2443)*
 
 ### `IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`
 ```rust
 const IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2444`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2444)*
+*Defined in [`object-0.37.3/src/pe.rs:2444`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2444)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_INVERSE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_INVERSE: u32 = 2_147_483_648u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2446`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2446)*
+*Defined in [`object-0.37.3/src/pe.rs:2446`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2446)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_OBLIGATORY: u32 = 1_073_741_824u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2447`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2447)*
+*Defined in [`object-0.37.3/src/pe.rs:2447`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2447)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_RESERVED`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_RESERVED: u32 = 1_072_705_536u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2448`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2448)*
+*Defined in [`object-0.37.3/src/pe.rs:2448`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2448)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_TYPE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_TYPE: u32 = 1_032_192u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2449`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2449)*
+*Defined in [`object-0.37.3/src/pe.rs:2449`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2449)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA: u32 = 32_768u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2450`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2450)*
+*Defined in [`object-0.37.3/src/pe.rs:2450`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2450)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_TARGET_RVA: u32 = 16_384u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2451`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2451)*
+*Defined in [`object-0.37.3/src/pe.rs:2451`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2451)*
 
 ### `IMAGE_HOT_PATCH_CHUNK_SIZE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_SIZE: u32 = 4_095u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2452`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2452)*
+*Defined in [`object-0.37.3/src/pe.rs:2452`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2452)*
 
 ### `IMAGE_HOT_PATCH_NONE`
 ```rust
 const IMAGE_HOT_PATCH_NONE: u32 = 0u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2454`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2454)*
+*Defined in [`object-0.37.3/src/pe.rs:2454`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2454)*
 
 ### `IMAGE_HOT_PATCH_FUNCTION`
 ```rust
 const IMAGE_HOT_PATCH_FUNCTION: u32 = 114_688u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2455`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2455)*
+*Defined in [`object-0.37.3/src/pe.rs:2455`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2455)*
 
 ### `IMAGE_HOT_PATCH_ABSOLUTE`
 ```rust
 const IMAGE_HOT_PATCH_ABSOLUTE: u32 = 180_224u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2456`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2456)*
+*Defined in [`object-0.37.3/src/pe.rs:2456`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2456)*
 
 ### `IMAGE_HOT_PATCH_REL32`
 ```rust
 const IMAGE_HOT_PATCH_REL32: u32 = 245_760u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2457`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2457)*
+*Defined in [`object-0.37.3/src/pe.rs:2457`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2457)*
 
 ### `IMAGE_HOT_PATCH_CALL_TARGET`
 ```rust
 const IMAGE_HOT_PATCH_CALL_TARGET: u32 = 278_528u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2458`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2458)*
+*Defined in [`object-0.37.3/src/pe.rs:2458`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2458)*
 
 ### `IMAGE_HOT_PATCH_INDIRECT`
 ```rust
 const IMAGE_HOT_PATCH_INDIRECT: u32 = 376_832u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2459`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2459)*
+*Defined in [`object-0.37.3/src/pe.rs:2459`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2459)*
 
 ### `IMAGE_HOT_PATCH_NO_CALL_TARGET`
 ```rust
 const IMAGE_HOT_PATCH_NO_CALL_TARGET: u32 = 409_600u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2460`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2460)*
+*Defined in [`object-0.37.3/src/pe.rs:2460`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2460)*
 
 ### `IMAGE_HOT_PATCH_DYNAMIC_VALUE`
 ```rust
 const IMAGE_HOT_PATCH_DYNAMIC_VALUE: u32 = 491_520u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2461`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2461)*
+*Defined in [`object-0.37.3/src/pe.rs:2461`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2461)*
 
 ### `IMAGE_GUARD_CF_INSTRUMENTED`
 ```rust
 const IMAGE_GUARD_CF_INSTRUMENTED: u32 = 256u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2464`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2464)*
+*Defined in [`object-0.37.3/src/pe.rs:2464`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2464)*
 
 Module performs control flow integrity checks using system-supplied support
 
@@ -10347,7 +10347,7 @@ Module performs control flow integrity checks using system-supplied support
 const IMAGE_GUARD_CFW_INSTRUMENTED: u32 = 512u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2466`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2466)*
+*Defined in [`object-0.37.3/src/pe.rs:2466`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2466)*
 
 Module performs control flow and write integrity checks
 
@@ -10356,7 +10356,7 @@ Module performs control flow and write integrity checks
 const IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT: u32 = 1_024u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2468`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2468)*
+*Defined in [`object-0.37.3/src/pe.rs:2468`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2468)*
 
 Module contains valid control flow target metadata
 
@@ -10365,7 +10365,7 @@ Module contains valid control flow target metadata
 const IMAGE_GUARD_SECURITY_COOKIE_UNUSED: u32 = 2_048u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2470`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2470)*
+*Defined in [`object-0.37.3/src/pe.rs:2470`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2470)*
 
 Module does not make use of the /GS security cookie
 
@@ -10374,7 +10374,7 @@ Module does not make use of the /GS security cookie
 const IMAGE_GUARD_PROTECT_DELAYLOAD_IAT: u32 = 4_096u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2472`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2472)*
+*Defined in [`object-0.37.3/src/pe.rs:2472`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2472)*
 
 Module supports read only delay load IAT
 
@@ -10383,7 +10383,7 @@ Module supports read only delay load IAT
 const IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION: u32 = 8_192u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2474`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2474)*
+*Defined in [`object-0.37.3/src/pe.rs:2474`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2474)*
 
 Delayload import table in its own .didat section (with nothing else in it) that can be freely reprotected
 
@@ -10392,7 +10392,7 @@ Delayload import table in its own .didat section (with nothing else in it) that 
 const IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT: u32 = 16_384u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2478`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2478)*
+*Defined in [`object-0.37.3/src/pe.rs:2478`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2478)*
 
 Module contains suppressed export information.
 
@@ -10403,7 +10403,7 @@ This also infers that the address taken taken IAT table is also present in the l
 const IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION: u32 = 32_768u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2480`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2480)*
+*Defined in [`object-0.37.3/src/pe.rs:2480`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2480)*
 
 Module enables suppression of exports
 
@@ -10412,7 +10412,7 @@ Module enables suppression of exports
 const IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT: u32 = 65_536u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2482`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2482)*
+*Defined in [`object-0.37.3/src/pe.rs:2482`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2482)*
 
 Module contains longjmp target information
 
@@ -10421,7 +10421,7 @@ Module contains longjmp target information
 const IMAGE_GUARD_RF_INSTRUMENTED: u32 = 131_072u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2484`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2484)*
+*Defined in [`object-0.37.3/src/pe.rs:2484`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2484)*
 
 Module contains return flow instrumentation and metadata
 
@@ -10430,7 +10430,7 @@ Module contains return flow instrumentation and metadata
 const IMAGE_GUARD_RF_ENABLE: u32 = 262_144u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2486`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2486)*
+*Defined in [`object-0.37.3/src/pe.rs:2486`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2486)*
 
 Module requests that the OS enable return flow protection
 
@@ -10439,7 +10439,7 @@ Module requests that the OS enable return flow protection
 const IMAGE_GUARD_RF_STRICT: u32 = 524_288u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2488)*
+*Defined in [`object-0.37.3/src/pe.rs:2488`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2488)*
 
 Module requests that the OS enable return flow protection in strict mode
 
@@ -10448,7 +10448,7 @@ Module requests that the OS enable return flow protection in strict mode
 const IMAGE_GUARD_RETPOLINE_PRESENT: u32 = 1_048_576u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2490`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2490)*
+*Defined in [`object-0.37.3/src/pe.rs:2490`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2490)*
 
 Module was built with retpoline support
 
@@ -10457,7 +10457,7 @@ Module was built with retpoline support
 const IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK: u32 = 4_026_531_840u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2493`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2493)*
+*Defined in [`object-0.37.3/src/pe.rs:2493`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2493)*
 
 Stride of Guard CF function table encoded in these bits (additional count of bytes per element)
 
@@ -10466,7 +10466,7 @@ Stride of Guard CF function table encoded in these bits (additional count of byt
 const IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT: u32 = 28u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2495`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2495)*
+*Defined in [`object-0.37.3/src/pe.rs:2495`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2495)*
 
 Shift to right-justify Guard CF function table stride
 
@@ -10475,7 +10475,7 @@ Shift to right-justify Guard CF function table stride
 const IMAGE_GUARD_FLAG_FID_SUPPRESSED: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2502`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2502)*
+*Defined in [`object-0.37.3/src/pe.rs:2502`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2502)*
 
 The containing GFID entry is suppressed
 
@@ -10484,7 +10484,7 @@ The containing GFID entry is suppressed
 const IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2504`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2504)*
+*Defined in [`object-0.37.3/src/pe.rs:2504`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2504)*
 
 The containing GFID entry is export suppressed
 
@@ -10493,245 +10493,245 @@ The containing GFID entry is export suppressed
 const IMAGE_ENCLAVE_LONG_ID_LENGTH: usize = 32usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2574`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2574)*
+*Defined in [`object-0.37.3/src/pe.rs:2574`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2574)*
 
 ### `IMAGE_ENCLAVE_SHORT_ID_LENGTH`
 ```rust
 const IMAGE_ENCLAVE_SHORT_ID_LENGTH: usize = 16usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2575)*
+*Defined in [`object-0.37.3/src/pe.rs:2575`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2575)*
 
 ### `IMAGE_ENCLAVE_POLICY_DEBUGGABLE`
 ```rust
 const IMAGE_ENCLAVE_POLICY_DEBUGGABLE: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2615`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2615)*
+*Defined in [`object-0.37.3/src/pe.rs:2615`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2615)*
 
 ### `IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`
 ```rust
 const IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2617`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2617)*
+*Defined in [`object-0.37.3/src/pe.rs:2617`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2617)*
 
 ### `IMAGE_ENCLAVE_IMPORT_MATCH_NONE`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_NONE: u32 = 0u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2631`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2631)*
+*Defined in [`object-0.37.3/src/pe.rs:2631`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2631)*
 
 ### `IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2632`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2632)*
+*Defined in [`object-0.37.3/src/pe.rs:2632`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2632)*
 
 ### `IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2633`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2633)*
+*Defined in [`object-0.37.3/src/pe.rs:2633`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2633)*
 
 ### `IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID: u32 = 3u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2634`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2634)*
+*Defined in [`object-0.37.3/src/pe.rs:2634`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2634)*
 
 ### `IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID: u32 = 4u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2635`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2635)*
+*Defined in [`object-0.37.3/src/pe.rs:2635`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2635)*
 
 ### `IMAGE_DEBUG_TYPE_UNKNOWN`
 ```rust
 const IMAGE_DEBUG_TYPE_UNKNOWN: u32 = 0u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2654`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2654)*
+*Defined in [`object-0.37.3/src/pe.rs:2654`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2654)*
 
 ### `IMAGE_DEBUG_TYPE_COFF`
 ```rust
 const IMAGE_DEBUG_TYPE_COFF: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2655`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2655)*
+*Defined in [`object-0.37.3/src/pe.rs:2655`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2655)*
 
 ### `IMAGE_DEBUG_TYPE_CODEVIEW`
 ```rust
 const IMAGE_DEBUG_TYPE_CODEVIEW: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2656`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2656)*
+*Defined in [`object-0.37.3/src/pe.rs:2656`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2656)*
 
 ### `IMAGE_DEBUG_TYPE_FPO`
 ```rust
 const IMAGE_DEBUG_TYPE_FPO: u32 = 3u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2657`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2657)*
+*Defined in [`object-0.37.3/src/pe.rs:2657`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2657)*
 
 ### `IMAGE_DEBUG_TYPE_MISC`
 ```rust
 const IMAGE_DEBUG_TYPE_MISC: u32 = 4u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2658`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2658)*
+*Defined in [`object-0.37.3/src/pe.rs:2658`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2658)*
 
 ### `IMAGE_DEBUG_TYPE_EXCEPTION`
 ```rust
 const IMAGE_DEBUG_TYPE_EXCEPTION: u32 = 5u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2659`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2659)*
+*Defined in [`object-0.37.3/src/pe.rs:2659`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2659)*
 
 ### `IMAGE_DEBUG_TYPE_FIXUP`
 ```rust
 const IMAGE_DEBUG_TYPE_FIXUP: u32 = 6u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2660`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2660)*
+*Defined in [`object-0.37.3/src/pe.rs:2660`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2660)*
 
 ### `IMAGE_DEBUG_TYPE_OMAP_TO_SRC`
 ```rust
 const IMAGE_DEBUG_TYPE_OMAP_TO_SRC: u32 = 7u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2661`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2661)*
+*Defined in [`object-0.37.3/src/pe.rs:2661`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2661)*
 
 ### `IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`
 ```rust
 const IMAGE_DEBUG_TYPE_OMAP_FROM_SRC: u32 = 8u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2662`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2662)*
+*Defined in [`object-0.37.3/src/pe.rs:2662`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2662)*
 
 ### `IMAGE_DEBUG_TYPE_BORLAND`
 ```rust
 const IMAGE_DEBUG_TYPE_BORLAND: u32 = 9u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2663`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2663)*
+*Defined in [`object-0.37.3/src/pe.rs:2663`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2663)*
 
 ### `IMAGE_DEBUG_TYPE_RESERVED10`
 ```rust
 const IMAGE_DEBUG_TYPE_RESERVED10: u32 = 10u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2664`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2664)*
+*Defined in [`object-0.37.3/src/pe.rs:2664`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2664)*
 
 ### `IMAGE_DEBUG_TYPE_CLSID`
 ```rust
 const IMAGE_DEBUG_TYPE_CLSID: u32 = 11u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2665`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2665)*
+*Defined in [`object-0.37.3/src/pe.rs:2665`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2665)*
 
 ### `IMAGE_DEBUG_TYPE_VC_FEATURE`
 ```rust
 const IMAGE_DEBUG_TYPE_VC_FEATURE: u32 = 12u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2666`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2666)*
+*Defined in [`object-0.37.3/src/pe.rs:2666`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2666)*
 
 ### `IMAGE_DEBUG_TYPE_POGO`
 ```rust
 const IMAGE_DEBUG_TYPE_POGO: u32 = 13u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2667`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2667)*
+*Defined in [`object-0.37.3/src/pe.rs:2667`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2667)*
 
 ### `IMAGE_DEBUG_TYPE_ILTCG`
 ```rust
 const IMAGE_DEBUG_TYPE_ILTCG: u32 = 14u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2668`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2668)*
+*Defined in [`object-0.37.3/src/pe.rs:2668`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2668)*
 
 ### `IMAGE_DEBUG_TYPE_MPX`
 ```rust
 const IMAGE_DEBUG_TYPE_MPX: u32 = 15u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2669`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2669)*
+*Defined in [`object-0.37.3/src/pe.rs:2669`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2669)*
 
 ### `IMAGE_DEBUG_TYPE_REPRO`
 ```rust
 const IMAGE_DEBUG_TYPE_REPRO: u32 = 16u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2670`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2670)*
+*Defined in [`object-0.37.3/src/pe.rs:2670`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2670)*
 
 ### `FRAME_FPO`
 ```rust
 const FRAME_FPO: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2685`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2685)*
+*Defined in [`object-0.37.3/src/pe.rs:2685`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2685)*
 
 ### `FRAME_TRAP`
 ```rust
 const FRAME_TRAP: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2686`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2686)*
+*Defined in [`object-0.37.3/src/pe.rs:2686`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2686)*
 
 ### `FRAME_TSS`
 ```rust
 const FRAME_TSS: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2687`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2687)*
+*Defined in [`object-0.37.3/src/pe.rs:2687`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2687)*
 
 ### `FRAME_NONFPO`
 ```rust
 const FRAME_NONFPO: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2688`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2688)*
+*Defined in [`object-0.37.3/src/pe.rs:2688`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2688)*
 
 ### `IMAGE_DEBUG_MISC_EXENAME`
 ```rust
 const IMAGE_DEBUG_MISC_EXENAME: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2719`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2719)*
+*Defined in [`object-0.37.3/src/pe.rs:2719`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2719)*
 
 ### `IMAGE_SEPARATE_DEBUG_SIGNATURE`
 ```rust
 const IMAGE_SEPARATE_DEBUG_SIGNATURE: u16 = 18_756u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2811`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2811)*
+*Defined in [`object-0.37.3/src/pe.rs:2811`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2811)*
 
 ### `NON_PAGED_DEBUG_SIGNATURE`
 ```rust
 const NON_PAGED_DEBUG_SIGNATURE: u16 = 18_766u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2812`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2812)*
+*Defined in [`object-0.37.3/src/pe.rs:2812`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2812)*
 
 ### `IMAGE_SEPARATE_DEBUG_FLAGS_MASK`
 ```rust
 const IMAGE_SEPARATE_DEBUG_FLAGS_MASK: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2814`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2814)*
+*Defined in [`object-0.37.3/src/pe.rs:2814`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2814)*
 
 ### `IMAGE_SEPARATE_DEBUG_MISMATCH`
 ```rust
 const IMAGE_SEPARATE_DEBUG_MISMATCH: u16 = 32_768u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2816`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2816)*
+*Defined in [`object-0.37.3/src/pe.rs:2816`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2816)*
 
 when DBG was updated, the old checksum didn't match.
 
@@ -10740,63 +10740,63 @@ when DBG was updated, the old checksum didn't match.
 const IMPORT_OBJECT_HDR_SIG2: u16 = 65_535u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2859`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2859)*
+*Defined in [`object-0.37.3/src/pe.rs:2859`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2859)*
 
 ### `IMPORT_OBJECT_TYPE_MASK`
 ```rust
 const IMPORT_OBJECT_TYPE_MASK: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2884`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2884)*
+*Defined in [`object-0.37.3/src/pe.rs:2884`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2884)*
 
 ### `IMPORT_OBJECT_TYPE_SHIFT`
 ```rust
 const IMPORT_OBJECT_TYPE_SHIFT: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2885`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2885)*
+*Defined in [`object-0.37.3/src/pe.rs:2885`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2885)*
 
 ### `IMPORT_OBJECT_CODE`
 ```rust
 const IMPORT_OBJECT_CODE: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2886`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2886)*
+*Defined in [`object-0.37.3/src/pe.rs:2886`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2886)*
 
 ### `IMPORT_OBJECT_DATA`
 ```rust
 const IMPORT_OBJECT_DATA: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2887`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2887)*
+*Defined in [`object-0.37.3/src/pe.rs:2887`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2887)*
 
 ### `IMPORT_OBJECT_CONST`
 ```rust
 const IMPORT_OBJECT_CONST: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2888`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2888)*
+*Defined in [`object-0.37.3/src/pe.rs:2888`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2888)*
 
 ### `IMPORT_OBJECT_NAME_MASK`
 ```rust
 const IMPORT_OBJECT_NAME_MASK: u16 = 7u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2890`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2890)*
+*Defined in [`object-0.37.3/src/pe.rs:2890`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2890)*
 
 ### `IMPORT_OBJECT_NAME_SHIFT`
 ```rust
 const IMPORT_OBJECT_NAME_SHIFT: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2891`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2891)*
+*Defined in [`object-0.37.3/src/pe.rs:2891`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2891)*
 
 ### `IMPORT_OBJECT_ORDINAL`
 ```rust
 const IMPORT_OBJECT_ORDINAL: u16 = 0u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2893`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2893)*
+*Defined in [`object-0.37.3/src/pe.rs:2893`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2893)*
 
 Import by ordinal
 
@@ -10805,7 +10805,7 @@ Import by ordinal
 const IMPORT_OBJECT_NAME: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2895`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2895)*
+*Defined in [`object-0.37.3/src/pe.rs:2895`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2895)*
 
 Import name == public symbol name.
 
@@ -10814,7 +10814,7 @@ Import name == public symbol name.
 const IMPORT_OBJECT_NAME_NO_PREFIX: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2897`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2897)*
+*Defined in [`object-0.37.3/src/pe.rs:2897`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2897)*
 
 Import name == public symbol name skipping leading ?, @, or optionally _.
 
@@ -10823,7 +10823,7 @@ Import name == public symbol name skipping leading ?, @, or optionally _.
 const IMPORT_OBJECT_NAME_UNDECORATE: u16 = 3u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2899`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2899)*
+*Defined in [`object-0.37.3/src/pe.rs:2899`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2899)*
 
 Import name == public symbol name skipping leading ?, @, or optionally _ and truncating at first @.
 
@@ -10832,7 +10832,7 @@ Import name == public symbol name skipping leading ?, @, or optionally _ and tru
 const IMPORT_OBJECT_NAME_EXPORTAS: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2901)*
+*Defined in [`object-0.37.3/src/pe.rs:2901`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2901)*
 
 Import name == a name is explicitly provided after the DLL name.
 
@@ -10841,126 +10841,126 @@ Import name == a name is explicitly provided after the DLL name.
 const COMIMAGE_FLAGS_ILONLY: u32 = 1u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2904`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2904)*
+*Defined in [`object-0.37.3/src/pe.rs:2904`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2904)*
 
 ### `COMIMAGE_FLAGS_32BITREQUIRED`
 ```rust
 const COMIMAGE_FLAGS_32BITREQUIRED: u32 = 2u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2905`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2905)*
+*Defined in [`object-0.37.3/src/pe.rs:2905`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2905)*
 
 ### `COMIMAGE_FLAGS_IL_LIBRARY`
 ```rust
 const COMIMAGE_FLAGS_IL_LIBRARY: u32 = 4u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2906`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2906)*
+*Defined in [`object-0.37.3/src/pe.rs:2906`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2906)*
 
 ### `COMIMAGE_FLAGS_STRONGNAMESIGNED`
 ```rust
 const COMIMAGE_FLAGS_STRONGNAMESIGNED: u32 = 8u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2907`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2907)*
+*Defined in [`object-0.37.3/src/pe.rs:2907`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2907)*
 
 ### `COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`
 ```rust
 const COMIMAGE_FLAGS_NATIVE_ENTRYPOINT: u32 = 16u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2908`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2908)*
+*Defined in [`object-0.37.3/src/pe.rs:2908`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2908)*
 
 ### `COMIMAGE_FLAGS_TRACKDEBUGDATA`
 ```rust
 const COMIMAGE_FLAGS_TRACKDEBUGDATA: u32 = 65_536u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2909`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2909)*
+*Defined in [`object-0.37.3/src/pe.rs:2909`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2909)*
 
 ### `COMIMAGE_FLAGS_32BITPREFERRED`
 ```rust
 const COMIMAGE_FLAGS_32BITPREFERRED: u32 = 131_072u32;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2910`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2910)*
+*Defined in [`object-0.37.3/src/pe.rs:2910`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2910)*
 
 ### `COR_VERSION_MAJOR_V2`
 ```rust
 const COR_VERSION_MAJOR_V2: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2913`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2913)*
+*Defined in [`object-0.37.3/src/pe.rs:2913`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2913)*
 
 ### `COR_VERSION_MAJOR`
 ```rust
 const COR_VERSION_MAJOR: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2914)*
+*Defined in [`object-0.37.3/src/pe.rs:2914`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2914)*
 
 ### `COR_VERSION_MINOR`
 ```rust
 const COR_VERSION_MINOR: u16 = 5u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2915`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2915)*
+*Defined in [`object-0.37.3/src/pe.rs:2915`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2915)*
 
 ### `COR_DELETED_NAME_LENGTH`
 ```rust
 const COR_DELETED_NAME_LENGTH: usize = 8usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2916`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2916)*
+*Defined in [`object-0.37.3/src/pe.rs:2916`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2916)*
 
 ### `COR_VTABLEGAP_NAME_LENGTH`
 ```rust
 const COR_VTABLEGAP_NAME_LENGTH: usize = 8usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2917`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2917)*
+*Defined in [`object-0.37.3/src/pe.rs:2917`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2917)*
 
 ### `NATIVE_TYPE_MAX_CB`
 ```rust
 const NATIVE_TYPE_MAX_CB: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2920`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2920)*
+*Defined in [`object-0.37.3/src/pe.rs:2920`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2920)*
 
 ### `COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`
 ```rust
 const COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE: u16 = 255u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2921`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2921)*
+*Defined in [`object-0.37.3/src/pe.rs:2921`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2921)*
 
 ### `IMAGE_COR_MIH_METHODRVA`
 ```rust
 const IMAGE_COR_MIH_METHODRVA: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2924`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2924)*
+*Defined in [`object-0.37.3/src/pe.rs:2924`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2924)*
 
 ### `IMAGE_COR_MIH_EHRVA`
 ```rust
 const IMAGE_COR_MIH_EHRVA: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2925`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2925)*
+*Defined in [`object-0.37.3/src/pe.rs:2925`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2925)*
 
 ### `IMAGE_COR_MIH_BASICBLOCK`
 ```rust
 const IMAGE_COR_MIH_BASICBLOCK: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2926`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2926)*
+*Defined in [`object-0.37.3/src/pe.rs:2926`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2926)*
 
 ### `COR_VTABLE_32BIT`
 ```rust
 const COR_VTABLE_32BIT: u16 = 1u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2930`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2930)*
+*Defined in [`object-0.37.3/src/pe.rs:2930`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2930)*
 
 V-table slots are 32-bits in size.
 
@@ -10969,7 +10969,7 @@ V-table slots are 32-bits in size.
 const COR_VTABLE_64BIT: u16 = 2u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2932)*
+*Defined in [`object-0.37.3/src/pe.rs:2932`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2932)*
 
 V-table slots are 64-bits in size.
 
@@ -10978,7 +10978,7 @@ V-table slots are 64-bits in size.
 const COR_VTABLE_FROM_UNMANAGED: u16 = 4u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2934`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2934)*
+*Defined in [`object-0.37.3/src/pe.rs:2934`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2934)*
 
 If set, transition from unmanaged.
 
@@ -10987,7 +10987,7 @@ If set, transition from unmanaged.
 const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN: u16 = 8u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2936`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2936)*
+*Defined in [`object-0.37.3/src/pe.rs:2936`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2936)*
 
 If set, transition from unmanaged with keeping the current appdomain.
 
@@ -10996,7 +10996,7 @@ If set, transition from unmanaged with keeping the current appdomain.
 const COR_VTABLE_CALL_MOST_DERIVED: u16 = 16u16;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2938`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2938)*
+*Defined in [`object-0.37.3/src/pe.rs:2938`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2938)*
 
 Call most derived method described by
 
@@ -11005,7 +11005,7 @@ Call most derived method described by
 const IMAGE_COR_EATJ_THUNK_SIZE: usize = 32usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2942`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2942)*
+*Defined in [`object-0.37.3/src/pe.rs:2942`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2942)*
 
 Size of a jump thunk reserved range.
 
@@ -11014,12 +11014,12 @@ Size of a jump thunk reserved range.
 const MAX_CLASS_NAME: usize = 1_024usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2945`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2945)*
+*Defined in [`object-0.37.3/src/pe.rs:2945`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2945)*
 
 ### `MAX_PACKAGE_NAME`
 ```rust
 const MAX_PACKAGE_NAME: usize = 1_024usize;
 ```
 
-*Defined in [`object-0.37.3/src/pe.rs:2946`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2946)*
+*Defined in [`object-0.37.3/src/pe.rs:2946`](../../../.source_1765521767/object-0.37.3/src/pe.rs#L2946)*
 

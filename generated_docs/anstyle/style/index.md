@@ -24,7 +24,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765521767/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -133,7 +133,7 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765521767/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 

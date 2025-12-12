@@ -26,7 +26,7 @@ struct ClapAttr {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:17-22`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L17-L22)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:17-22`](../../../.source_1765521767/clap_derive-4.5.49/src/attr.rs#L17-L22)*
 
 #### Implementations
 
@@ -80,7 +80,7 @@ enum MagicAttrName {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:145-171`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L145-L171)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:145-171`](../../../.source_1765521767/clap_derive-4.5.49/src/attr.rs#L145-L171)*
 
 #### Trait Implementations
 
@@ -108,7 +108,7 @@ enum AttrValue {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:175-179`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L175-L179)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:175-179`](../../../.source_1765521767/clap_derive-4.5.49/src/attr.rs#L175-L179)*
 
 #### Trait Implementations
 
@@ -137,7 +137,7 @@ enum AttrKind {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:195-202`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L195-L202)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:195-202`](../../../.source_1765521767/clap_derive-4.5.49/src/attr.rs#L195-L202)*
 
 #### Implementations
 

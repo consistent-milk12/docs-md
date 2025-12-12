@@ -45,7 +45,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:145-157`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L145-L157)*
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:145-157`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/syntax.rs#L145-L157)*
 
 A common set of configuration options that apply to the syntax of a regex.
 
@@ -139,7 +139,7 @@ are instead provided here as one cohesive unit.
 fn parse(pattern: &str) -> Result<regex_syntax::hir::Hir, regex_syntax::Error>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:37-39`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L37-L39)*
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:37-39`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/syntax.rs#L37-L39)*
 
 A convenience routine for parsing a pattern into an HIR value with the
 default configuration.
@@ -163,7 +163,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn parse_many<P: AsRef<str>>(patterns: &[P]) -> Result<alloc::vec::Vec<regex_syntax::hir::Hir>, regex_syntax::Error>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:63-65`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L63-L65)*
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:63-65`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/syntax.rs#L63-L65)*
 
 A convenience routine for parsing many patterns into HIR value with the
 default configuration.
@@ -194,7 +194,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn parse_with(pattern: &str, config: &Config) -> Result<regex_syntax::hir::Hir, regex_syntax::Error>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:86-90`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L86-L90)*
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:86-90`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/syntax.rs#L86-L90)*
 
 A convenience routine for parsing a pattern into an HIR value using a
 `Config`.
@@ -222,7 +222,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn parse_many_with<P: AsRef<str>>(patterns: &[P], config: &Config) -> Result<alloc::vec::Vec<regex_syntax::hir::Hir>, regex_syntax::Error>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:118-129`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L118-L129)*
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:118-129`](../../../../.source_1765521767/regex-automata-0.4.13/src/util/syntax.rs#L118-L129)*
 
 A convenience routine for parsing many patterns into HIR values using a
 `Config`.

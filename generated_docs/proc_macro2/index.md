@@ -89,8 +89,10 @@ a different thread.
   - [`detection`](#detection)
   - [`extra`](#extra)
   - [`imp`](#imp)
+  - [`location`](#location)
   - [`token_stream`](#token-stream)
 - [Structs](#structs)
+  - [`LineColumn`](#linecolumn)
   - [`TokenStream`](#tokenstream)
   - [`LexError`](#lexerror)
   - [`Span`](#span)
@@ -117,7 +119,9 @@ a different thread.
 | [`detection`](#detection) | mod |  |
 | [`extra`](#extra) | mod | Items which do not have a correspondence to any API in the proc_macro crate, but are necessary to include in proc-macro2. |
 | [`imp`](#imp) | mod |  |
+| [`location`](#location) | mod |  |
 | [`token_stream`](#token-stream) | mod | Public implementation details for the `TokenStream` type, such as iterators. |
+| [`LineColumn`](#linecolumn) | struct |  |
 | [`TokenStream`](#tokenstream) | struct | An abstract stream of tokens, or more concretely a sequence of token trees. |
 | [`LexError`](#lexerror) | struct | Error returned from `TokenStream::from_str`. |
 | [`Span`](#span) | struct | A region of source code, along with macro expansion information. |
@@ -140,9 +144,69 @@ a different thread.
 - [`detection`](detection/index.md)
 - [`extra`](extra/index.md) — Items which do not have a correspondence to any API in the proc_macro crate,
 - [`imp`](imp/index.md)
+- [`location`](location/index.md)
 - [`token_stream`](token_stream/index.md) — Public implementation details for the `TokenStream` type, such as iterators.
 
 ## Structs
+
+### `LineColumn`
+
+```rust
+struct LineColumn {
+    pub line: usize,
+    pub column: usize,
+}
+```
+
+*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../.source_1765521767/proc-macro2-1.0.103/src/location.rs#L8-L15)*
+
+A line-column pair representing the start or end of a `Span`.
+
+This type is semver exempt and not exposed by default.
+
+#### Fields
+
+- **`line`**: `usize`
+
+  The 1-indexed line in the source file on which the span starts or ends
+  (inclusive).
+
+- **`column`**: `usize`
+
+  The 0-indexed column (in UTF-8 characters) in the source file on which
+  the span starts or ends (inclusive).
+
+#### Trait Implementations
+
+##### `impl Clone for LineColumn`
+
+- <span id="linecolumn-clone"></span>`fn clone(&self) -> LineColumn` — [`LineColumn`](location/index.md#linecolumn)
+
+##### `impl Copy for LineColumn`
+
+##### `impl Debug for LineColumn`
+
+- <span id="linecolumn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq for LineColumn`
+
+##### `impl Hash for LineColumn`
+
+- <span id="linecolumn-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl Ord for LineColumn`
+
+- <span id="linecolumn-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+
+##### `impl PartialEq for LineColumn`
+
+- <span id="linecolumn-eq"></span>`fn eq(&self, other: &LineColumn) -> bool` — [`LineColumn`](location/index.md#linecolumn)
+
+##### `impl PartialOrd for LineColumn`
+
+- <span id="linecolumn-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+
+##### `impl StructuralPartialEq for LineColumn`
 
 ### `TokenStream`
 
@@ -153,7 +217,7 @@ struct TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -223,9 +287,9 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
+- <span id="proc-macro2tokenstream-raw-string"></span>`fn raw_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
-- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
@@ -240,7 +304,7 @@ struct LexError {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
 
 Error returned from `TokenStream::from_str`.
 
@@ -273,7 +337,7 @@ struct Span {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
 
 A region of source code, along with macro expansion information.
 
@@ -292,6 +356,16 @@ A region of source code, along with macro expansion information.
 - <span id="span-located-at"></span>`fn located_at(&self, other: Span) -> Span` — [`Span`](#span)
 
 - <span id="span-unwrap"></span>`fn unwrap(self) -> proc_macro::Span`
+
+- <span id="span-byte-range"></span>`fn byte_range(&self) -> Range<usize>`
+
+- <span id="span-start"></span>`fn start(&self) -> LineColumn` — [`LineColumn`](location/index.md#linecolumn)
+
+- <span id="span-end"></span>`fn end(&self) -> LineColumn` — [`LineColumn`](location/index.md#linecolumn)
+
+- <span id="span-file"></span>`fn file(&self) -> String`
+
+- <span id="span-local-file"></span>`fn local_file(&self) -> Option<PathBuf>`
 
 - <span id="span-join"></span>`fn join(&self, other: Span) -> Option<Span>` — [`Span`](#span)
 
@@ -319,7 +393,7 @@ struct Group {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
 
 A delimited token stream.
 
@@ -372,7 +446,7 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 ##### `impl ToTokens for proc_macro2::Group`
 
-- <span id="proc-macro2group-leaf-token"></span>`fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](parse/index.md#cursor), [`TokenTree`](#tokentree), [`Reject`](parse/index.md#reject)
+- <span id="proc-macro2group-lex-error"></span>`fn lex_error(cursor: Cursor<'_>) -> crate::fallback::LexError` — [`Cursor`](parse/index.md#cursor)
 
 ##### `impl Token for proc_macro2::Group`
 
@@ -386,7 +460,7 @@ struct Punct {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
 
 A `Punct` is a single punctuation character like `+`, `-` or `#`.
 
@@ -431,7 +505,7 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens for proc_macro2::Punct`
 
-- <span id="proc-macro2punct-ident-not-raw"></span>`fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
+- <span id="proc-macro2punct-ident-any"></span>`fn ident_any(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::Ident), Reject>` — [`Cursor`](parse/index.md#cursor), [`Ident`](#ident), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::Punct`
 
@@ -444,7 +518,7 @@ struct Ident {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
 
 A word of Rust code, which may be a keyword or legal variable name.
 
@@ -571,6 +645,8 @@ if ident_string.len() > 60 {
 
 ##### `impl ToTokens for proc_macro2::Ident`
 
+- <span id="proc-macro2ident-ident"></span>`fn ident(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::Ident), Reject>` — [`Cursor`](parse/index.md#cursor), [`Ident`](#ident), [`Reject`](parse/index.md#reject)
+
 ##### `impl Token for proc_macro2::Ident`
 
 ### `Literal`
@@ -582,7 +658,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
 
 A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`),
 byte character (`b'a'`), an integer or floating point number with or without
@@ -699,8 +775,6 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl ToTokens for proc_macro2::Literal`
 
-- <span id="proc-macro2literal-literal-nocapture"></span>`fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
-
 ##### `impl Token for proc_macro2::Literal`
 
 ## Enums
@@ -716,7 +790,7 @@ enum TokenTree {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
 
 A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
@@ -776,7 +850,7 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl ToTokens for proc_macro2::TokenTree`
 
-- <span id="proc-macro2tokentree-cooked-string"></span>`fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
+- <span id="proc-macro2tokentree-string"></span>`fn string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md#cursor), [`Reject`](parse/index.md#reject)
 
 ##### `impl Token for proc_macro2::TokenTree`
 
@@ -791,7 +865,7 @@ enum Delimiter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
 
 Describes how a sequence of token trees is delimited.
 
@@ -860,7 +934,7 @@ enum Spacing {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
 
 Whether a `Punct` is followed immediately by another `Punct` or followed by
 another token or whitespace.
@@ -902,9 +976,9 @@ another token or whitespace.
 
 ### `suffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
 
 ### `unsuffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765521767/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
 

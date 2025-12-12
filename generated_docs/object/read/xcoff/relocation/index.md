@@ -27,7 +27,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
 
 An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
@@ -59,7 +59,7 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 trait Rel: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
 
 A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xcoff::Rel64`](../../../xcoff/index.md).
 
@@ -94,7 +94,7 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 type XcoffRelocationIterator32<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
 
 An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 
@@ -104,7 +104,7 @@ An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 type XcoffRelocationIterator64<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../../.source_1765521767/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
 
 An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 
