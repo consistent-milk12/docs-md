@@ -14,7 +14,7 @@ use std::path::Path;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Span, StructKind, VariantKind, Visibility};
 
 use crate::generator::context::RenderContext;
-use crate::linker::{AnchorUtils, AssocItemKind};
+use crate::linker::{AnchorUtils, AssocItemKind, ImplContext};
 use crate::types::TypeRenderer;
 
 // =============================================================================
@@ -184,6 +184,40 @@ impl RendererUtils {
         }
     }
 
+    /// Write tuple field types directly to buffer, comma-separated.
+    ///
+    /// Avoids intermediate `Vec` allocation by writing directly to the output buffer.
+    /// Handles `Option<Id>` fields from rustdoc's representation of tuple structs/variants
+    /// (where `None` indicates a private field).
+    ///
+    /// # Arguments
+    ///
+    /// * `out` - Output buffer to write to
+    /// * `fields` - Slice of optional field IDs from rustdoc
+    /// * `krate` - Crate containing field definitions
+    /// * `type_renderer` - Type renderer for field types
+    pub fn write_tuple_fields(
+        out: &mut String,
+        fields: &[Option<Id>],
+        krate: &Crate,
+        type_renderer: &TypeRenderer,
+    ) {
+        let mut first = true;
+        for id in fields.iter().filter_map(|id| id.as_ref()) {
+            if let Some(item) = krate.index.get(id)
+                && let ItemEnum::StructField(ty) = &item.inner
+            {
+                if !first {
+                    _ = write!(out, ", ");
+                }
+
+                // write! is infallible for String
+                _ = write!(out, "{}", type_renderer.render_type(ty));
+                first = false;
+            }
+        }
+    }
+
     /// Transform an absolute cargo registry path to a relative `.source_*` path.
     ///
     /// Converts paths like:
@@ -216,10 +250,48 @@ impl RendererUtils {
     }
 }
 
-/// Unit struct to ornagize trait related functions.
+/// Unit struct to organize trait related functions.
 pub struct TraitRenderer;
 
 impl TraitRenderer {
+    /// Write trait bounds with `: ` prefix directly to buffer.
+    ///
+    /// Avoids intermediate `Vec` allocation for trait supertrait bounds.
+    /// Writes nothing if bounds are empty.
+    ///
+    /// # Arguments
+    ///
+    /// * `out` - Output buffer to write to
+    /// * `bounds` - Slice of generic bounds from the trait
+    /// * `type_renderer` - Type renderer for bounds (passed by value as it's Copy)
+    fn write_trait_bounds(
+        out: &mut String,
+        bounds: &[rustdoc_types::GenericBound],
+        type_renderer: TypeRenderer,
+    ) {
+        if bounds.is_empty() {
+            return;
+        }
+
+        _ = write!(out, ": ");
+        let mut first = true;
+
+        for bound in bounds {
+            let rendered = type_renderer.render_generic_bound(bound);
+            // Skip empty rendered bounds
+            if rendered.is_empty() {
+                continue;
+            }
+
+            if !first {
+                _ = write!(out, " + ");
+            }
+
+            _ = write!(out, "{}", &rendered);
+            first = false;
+        }
+    }
+
     /// Render a trait definition code block to markdown.
     ///
     /// Produces a heading with the trait name and generics, followed by a Rust
@@ -244,18 +316,10 @@ impl TraitRenderer {
 
         _ = writeln!(md, "```rust");
 
-        let bounds = if t.bounds.is_empty() {
-            String::new()
-        } else {
-            let bound_strs: Vec<Cow<str>> = t
-                .bounds
-                .iter()
-                .map(|b| type_renderer.render_generic_bound(b))
-                .collect();
-            format!(": {}", bound_strs.join(" + "))
-        };
+        _ = write!(md, "trait {name}{generics}");
+        Self::write_trait_bounds(md, &t.bounds, *type_renderer);
+        _ = writeln!(md, "{where_clause} {{ ... }}");
 
-        _ = writeln!(md, "trait {name}{generics}{bounds}{where_clause} {{ ... }}");
         _ = writeln!(md, "```\n");
     }
 
@@ -385,26 +449,9 @@ impl RendererInternals {
             },
 
             StructKind::Tuple(fields) => {
-                let field_types: Vec<Cow<str>> = fields
-                    .iter()
-                    .filter_map(|id| id.as_ref())
-                    .filter_map(|id| krate.index.get(id))
-                    .filter_map(|item| {
-                        if let ItemEnum::StructField(ty) = &item.inner {
-                            Some(type_renderer.render_type(ty))
-                        } else {
-                            None
-                        }
-                    })
-                    .collect();
-                _ = writeln!(
-                    md,
-                    "struct {}{}({}){};",
-                    name,
-                    generics,
-                    field_types.join(", "),
-                    where_clause
-                );
+                _ = write!(md, "struct {name}{generics}(");
+                RendererUtils::write_tuple_fields(md, fields, krate, type_renderer);
+                _ = writeln!(md, "){where_clause};");
             },
 
             StructKind::Plain {
@@ -551,20 +598,9 @@ impl RendererInternals {
                 },
 
                 VariantKind::Tuple(fields) => {
-                    let field_types: Vec<Cow<str>> = fields
-                        .iter()
-                        .filter_map(|id| id.as_ref())
-                        .filter_map(|id| krate.index.get(id))
-                        .filter_map(|item| {
-                            if let ItemEnum::StructField(ty) = &item.inner {
-                                Some(type_renderer.render_type(ty))
-                            } else {
-                                None
-                            }
-                        })
-                        .collect();
-
-                    _ = writeln!(md, "    {}({}),", variant_name, field_types.join(", "));
+                    _ = write!(md, "    {variant_name}(");
+                    RendererUtils::write_tuple_fields(md, fields, krate, type_renderer);
+                    _ = writeln!(md, "),");
                 },
 
                 VariantKind::Struct { fields, .. } => {
@@ -789,6 +825,11 @@ impl RendererInternals {
     /// * `process_docs` - Optional closure to process documentation
     /// * `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
     /// * `parent_type_name` - Optional type name for generating method anchors
+    /// * `impl_ctx` - Context for anchor generation (inherent vs trait impl)
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Internal helper with documented params"
+    )]
     pub fn render_impl_items<F, L>(
         md: &mut String,
         impl_block: &Impl,
@@ -797,6 +838,7 @@ impl RendererInternals {
         process_docs: &Option<F>,
         create_type_link: &Option<L>,
         parent_type_name: Option<&str>,
+        impl_ctx: ImplContext<'_>,
     ) where
         F: Fn(&Item) -> Option<String>,
         L: Fn(rustdoc_types::Id) -> Option<String>,
@@ -833,10 +875,11 @@ impl RendererInternals {
                     ItemEnum::AssocConst { type_, .. } => {
                         // Add anchor for associated constants if parent type is known
                         if let Some(type_name) = parent_type_name {
-                            let anchor = AnchorUtils::assoc_item_anchor(
+                            let anchor = AnchorUtils::impl_item_anchor(
                                 type_name,
                                 name,
                                 AssocItemKind::Const,
+                                impl_ctx,
                             );
                             _ = writeln!(
                                 md,
@@ -854,11 +897,17 @@ impl RendererInternals {
 
                     ItemEnum::AssocType { type_, .. } => {
                         // Add anchor for associated types if parent type is known
+                        // Use impl_item_anchor to include trait name for uniqueness
                         let anchor_prefix = parent_type_name
                             .map(|tn| {
                                 format!(
                                     "<span id=\"{}\"></span>",
-                                    AnchorUtils::assoc_item_anchor(tn, name, AssocItemKind::Type)
+                                    AnchorUtils::impl_item_anchor(
+                                        tn,
+                                        name,
+                                        AssocItemKind::Type,
+                                        impl_ctx
+                                    )
                                 )
                             })
                             .unwrap_or_default();
