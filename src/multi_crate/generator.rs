@@ -27,6 +27,8 @@ use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
 use crate::multi_crate::{CrateCollection, MultiCrateContext};
 use crate::types::TypeRenderer;
+use crate::linker::ImplContext;
+use crate::utils::PathUtils;
 use crate::{AnchorUtils, Args};
 
 // ============================================================================
@@ -1997,6 +1999,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &None::<fn(&Item) -> Option<String>>,
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(type_name.as_ref()),
+                    ImplContext::Inherent,
                 );
             }
         }
@@ -2009,6 +2012,13 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 // Extract type name for method anchor generation
                 let for_type = type_renderer.render_type(&impl_block.for_);
 
+                // Determine impl context for anchor generation:
+                // - For trait impls, include the trait name to avoid duplicate anchors
+                let impl_ctx = impl_block.trait_.as_ref().map_or(
+                    ImplContext::Inherent,
+                    |t| ImplContext::Trait(PathUtils::short_name(&t.path)),
+                );
+
                 if let Some(trait_path) = &impl_block.trait_ {
                     // Build trait name with generic args
                     let trait_name = trait_path
@@ -2017,13 +2027,27 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         .last()
                         .unwrap_or(&trait_path.path);
 
-                    // Only show generic parameters if the `for_` type is itself generic.
-                    // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
-                    // if the original blanket impl was defined as `impl<T> Trait for T`.
-                    let generics = if ImplUtils::is_generic_type(&impl_block.for_) {
-                        type_renderer.render_generics(&impl_block.generics.params)
-                    } else {
+                    // Only show generic parameters that appear in the signature (for_ type
+                    // or trait path). For blanket impls like `impl<T: Sized> IntoEither for T`,
+                    // when rendered for `Either<L, R>`, the `T` only appears in the where clause.
+                    // We don't want to show orphaned generics like `impl<T> IntoEither for Either<L, R>`.
+                    let signature_generics = ImplUtils::extract_impl_signature_generics(impl_block);
+                    let generics = if signature_generics.is_empty() {
                         String::new()
+                    } else {
+                        // Filter to params that appear in the signature
+                        let filtered: Vec<_> = impl_block
+                            .generics
+                            .params
+                            .iter()
+                            .filter(|p| signature_generics.contains(&p.name))
+                            .cloned()
+                            .collect();
+                        if filtered.is_empty() {
+                            String::new()
+                        } else {
+                            type_renderer.render_generics(&filtered)
+                        }
                     };
 
                     // Include unsafe/negative markers like single-crate mode
@@ -2044,6 +2068,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &None::<fn(&Item) -> Option<String>>,
                     &Some(|id: Id| LinkResolver::create_link(self.view, id, self.file_path)),
                     Some(for_type.as_ref()),
+                    impl_ctx,
                 );
             }
         }
